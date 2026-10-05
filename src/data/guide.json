@@ -1,0 +1,1135 @@
+{
+ "meta": {
+  "title": "Bangladesh motorcycle ownership: rules and costs",
+  "compiledOn": "2026-10-06",
+  "currency": "BDT",
+  "disclaimer": "Fees and rules change; always confirm on brta.gov.bd / bsp.brta.gov.bd or at your BRTA circle office before paying. Figures marked confidence 'medium' or 'low' come from secondary sources or conflicting reports.",
+  "sourceIndex": {
+   "gazette2022": {
+    "title": "BRTA - Road Transport Rules 2022, Schedule-1 fees (Bangladesh Gazette Extraordinary, 27 Dec 2022), via brta.gov.bd 'বিভিন্ন ফি'",
+    "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-brta/2024/12/2e6d2c3e81cd4418882881f35e0e95bd.pdf",
+    "publisher": "BRTA / Govt of Bangladesh",
+    "date": "2022-12-27"
+   },
+   "brtaFeesPage": {
+    "title": "BRTA - বিভিন্ন ফি (fees page)",
+    "url": "https://brta.gov.bd/pages/static-pages/6922dcac933eb65569e11838",
+    "publisher": "BRTA"
+   },
+   "dnpMemo": {
+    "title": "Road Division memo 35.020.031.00.00.025.2011-431: RFID number plate & DRC prices (via brta.gov.bd 'ডিএনপি ও ডিআরসি ফি')",
+    "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-brta/2024/12/f910dfd1b03241d1907f6cbe46201ccc.pdf",
+    "publisher": "Road Transport & Highways Division",
+    "date": "2012-10-23"
+   },
+   "brtaRegPage": {
+    "title": "BRTA - মোটরযানের নিবন্ধন (registration process & documents)",
+    "url": "https://brta.gov.bd/pages/static-pages/6922dba7933eb65569e0b9c1",
+    "publisher": "BRTA",
+    "date": "2026-06-30"
+   },
+   "brtaTaxTokenPage": {
+    "title": "BRTA - ট্যাক্স টোকেন নবায়ন",
+    "url": "https://brta.gov.bd/pages/static-pages/6922e0ab933eb65569e281ad",
+    "publisher": "BRTA",
+    "date": "2022-03-10"
+   },
+   "brtaTransferPage": {
+    "title": "BRTA - মালিকানা বদলী (ownership transfer documents)",
+    "url": "https://brta.gov.bd/site/page/67a3c40f-6cbb-4340-9873-2c8ba48f7e85/",
+    "publisher": "BRTA",
+    "date": "2026-06-30"
+   },
+   "brtaDLPage": {
+    "title": "BRTA - ড্রাইভিং লাইসেন্স পাওয়ার প্রক্রিয়া (licence process & fees)",
+    "url": "https://brta.gov.bd/pages/static-pages/6922e0e7933eb65569e2919e",
+    "publisher": "BRTA",
+    "date": "2026-06-30"
+   },
+   "brtaDLPage2": {
+    "title": "BRTA - ড্রাইভিং লাইসেন্স (learner -> written/oral/field test)",
+    "url": "https://brta.gov.bd/pages/static-pages/6922e12b933eb65569e2aa50",
+    "publisher": "BRTA",
+    "date": "2023-05-17"
+   },
+   "bsp": {
+    "title": "BRTA Service Portal (BSP)",
+    "url": "https://bsp.brta.gov.bd/",
+    "publisher": "BRTA"
+   },
+   "bspFees": {
+    "title": "BSP - registered vehicle fees / dues lookup",
+    "url": "https://bsp.brta.gov.bd/registeredVehicleFeesIndex?lan=en",
+    "publisher": "BRTA"
+   },
+   "bspTransfer": {
+    "title": "BSP - ownership transfer application",
+    "url": "https://bsp.brta.gov.bd/v/vehicleTransferOwnership/applicationForTransferOwnershipIndex",
+    "publisher": "BRTA"
+   },
+   "dsFeeHalved": {
+    "title": "Bike registration fee halved",
+    "url": "https://www.thedailystar.net/business/news/bike-registration-fee-halved-2038333",
+    "publisher": "The Daily Star",
+    "date": "2021-02-03"
+   },
+   "deshibikerReg": {
+    "title": "Bike Registration Fees in Bangladesh (2, 5, 10 years)",
+    "url": "https://deshibiker.com/bike-registration-fees-in-bd/",
+    "publisher": "DeshiBiker",
+    "date": "2025-05-11"
+   },
+   "deshibikerTax": {
+    "title": "How Much is the Road Tax of a Motorcycle in Bangladesh?",
+    "url": "https://deshibiker.com/road-tax-of-a-motorcycle-in-bd/",
+    "publisher": "DeshiBiker",
+    "date": "2025-05-11"
+   },
+   "pdts": {
+    "title": "Motorcycle Registration Fees in Bangladesh by CC [2025 Update]",
+    "url": "https://pdts.com.bd/blogs/30",
+    "publisher": "PDTS",
+    "date": "2024-06-25"
+   },
+   "bikebdReg": {
+    "title": "Motorcycle Registration Procedure In Bangladesh",
+    "url": "https://www.bikebd.com/blog/motorcycle-registration-procedure-in-bangladesh",
+    "publisher": "BikeBD",
+    "date": "2026-10-05"
+   },
+   "bikebd10yr": {
+    "title": "What To Do When The Motorcycle Tax Token Validity Exceeds 10 Years?",
+    "url": "https://www.bikebd.com/bn/blog/what-to-do-when-the-motorcycle-tax-token-validity-exceeds-10-years",
+    "publisher": "BikeBD",
+    "date": "2025-11-29"
+   },
+   "bikebdDL": {
+    "title": "How To Get A Motorcycle Driving License - Details and Cost",
+    "url": "https://bikebd.com/blog/driving-license",
+    "publisher": "BikeBD",
+    "date": "2026-10-05"
+   },
+   "bikebdTransfer": {
+    "title": "Motorcycle ownership transfer process Bangladesh",
+    "url": "https://bikebd.com/blog/motorcycle-ownership-transfer-process-bangladesh",
+    "publisher": "BikeBD",
+    "date": "2026-10-05"
+   },
+   "bdnewsTransfer": {
+    "title": "Motorcycle ownership transfer (Bangla)",
+    "url": "https://bangla.bdnews24.com/lifestyle/Jenerakun/74366df2801b",
+    "publisher": "bdnews24.com",
+    "date": "2026-08-26"
+   },
+   "dsAITDropped": {
+    "title": "Govt may drop planned wealth tax, bike and rickshaw AIT",
+    "url": "https://www.thedailystar.net/business/economy/news/govt-may-drop-planned-wealth-tax-bike-and-rickshaw-ait-4190076",
+    "publisher": "The Daily Star",
+    "date": "2026-06-04"
+   },
+   "dtFuelOct": {
+    "title": "Fuel prices unchanged for October",
+    "url": "https://www.dhakatribune.com/bangladesh/power-energy/421056/fuel-prices-unchanged-for-october",
+    "publisher": "Dhaka Tribune",
+    "date": "2026-09-30"
+   },
+   "bdnewsFuel": {
+    "title": "Fuel prices (30 Sep 2026)",
+    "url": "https://bdnews24.com/business/f3ub8nrf1p",
+    "publisher": "bdnews24.com",
+    "date": "2026-09-30"
+   },
+   "unbFuel": {
+    "title": "Fuel prices rise up to nearly 36% between January and September 2026",
+    "url": "https://www.unb.com.bd/category/Bangladesh/fuel-prices-rise-up-to-nearly-36-between-january-and-september-2026/195927",
+    "publisher": "UNB"
+   },
+   "paloCc375": {
+    "title": "Import of 375cc motorcycles on the cards, questions over new policy",
+    "url": "https://en.prothomalo.com/business/c7d38h8nz8",
+    "publisher": "Prothom Alo English",
+    "date": "2026-06"
+   },
+   "dsBn375": {
+    "title": "দেশে চালানো যাবে ৩৭৫ সিসি পর্যন্ত মোটরসাইকেল",
+    "url": "https://bangla.thedailystar.net/news/bangladesh/news-522546",
+    "publisher": "The Daily Star Bangla",
+    "date": "2023-10-11"
+   },
+   "dhakatimesIPO": {
+    "title": "দেশে ৩৭৫ সিসি পর্যন্ত মোটরসাইকেল আমদানির সুযোগ, গেজেট প্রকাশ",
+    "url": "https://www.dhakatimes24.com/2026/08/25/411300",
+    "publisher": "Dhaka Times",
+    "date": "2026-08-25"
+   },
+   "deshrupantorIPO": {
+    "title": "১৬৫ সিসির বেশি বাইক আমদানি করা যাবে না",
+    "url": "https://www.deshrupantor.com/715706/",
+    "publisher": "Desh Rupantor",
+    "date": "2026-08-26"
+   },
+   "banglatribuneIPO": {
+    "title": "এলসির বাইরে মূল্যসীমা ছাড়াই পণ্য আমদানি, বদলে গেলো আমদানি নীতির কাঠামো",
+    "url": "https://www.banglatribune.com/964670",
+    "publisher": "Bangla Tribune",
+    "date": "2026-08"
+   },
+   "feIPO": {
+    "title": "BB issues import policy implementation guidelines",
+    "url": "https://thefinancialexpress.com.bd/bangladesh/bb-issues-import-policy-implementation-guidelines",
+    "publisher": "The Financial Express",
+    "date": "2026-09-13"
+   },
+   "ds500cc": {
+    "title": "Up to 500cc motorbikes can be made locally",
+    "url": "https://www.thedailystar.net/business/economy/news/500cc-bikes-can-be-made-locally-3012596",
+    "publisher": "The Daily Star"
+   },
+   "tbsInsurance": {
+    "title": "IDRA motor insurance sees low response amid high premiums, non-compulsory rules",
+    "url": "https://www.tbsnews.net/node/1357826",
+    "publisher": "The Business Standard",
+    "date": "2026-02-10"
+   },
+   "paloInsurance": {
+    "title": "Insurance for bike, other vehicles set to be mandatory again",
+    "url": "https://en.prothomalo.com/bangladesh/gzl00ewg0c",
+    "publisher": "Prothom Alo English",
+    "date": "2024-03-15"
+   },
+   "tbsPenalties": {
+    "title": "Penalties for violating rules under the new Road Transport Act",
+    "url": "https://www.tbsnews.net/node/21549",
+    "publisher": "The Business Standard",
+    "date": "2019-11"
+   },
+   "ittefaqHelmet": {
+    "title": "Bikers without helmet will not get fuel",
+    "url": "https://en.ittefaq.com.bd/8815/bikers-without-helmet-will-not-get-fuel",
+    "publisher": "The Daily Ittefaq (English)",
+    "date": "2024-05-15"
+   },
+   "bikebdHelmetStd": {
+    "title": "How effective is Bangladesh's own motorcycle helmet standard",
+    "url": "https://www.bikebd.com/blog/how-effective-is-bangladeshs-own-motorcycle-helmet-standard",
+    "publisher": "BikeBD"
+   },
+   "tbsHelmetGrade": {
+    "title": "Bikers' safety takes backseat with no rule to grade helmets",
+    "url": "https://www.tbsnews.net/node/366583",
+    "publisher": "The Business Standard"
+   },
+   "dtExpressway": {
+    "title": "Motorcycles, three-wheelers banned on Dhaka Elevated Expressway",
+    "url": "https://www.dhakatribune.com/bangladesh/dhaka/319966/motorcycles-three-wheelers-banned-on-dhaka",
+    "publisher": "Dhaka Tribune",
+    "date": "2023-07-08"
+   },
+   "paloPadma": {
+    "title": "Motorcycles allowed to ply on Padma Bridge from Thursday",
+    "url": "https://en.prothomalo.com/bangladesh/rbjde07nzk",
+    "publisher": "Prothom Alo English",
+    "date": "2023-04-18"
+   },
+   "tbsPadma": {
+    "title": "Motorcycles ply Padma Bridge once again",
+    "url": "https://www.tbsnews.net/node/619670",
+    "publisher": "The Business Standard",
+    "date": "2023-04-20"
+   },
+   "dsRideshare": {
+    "title": "Ride-Sharing Service in Capital: Govt to shut door on outside vehicles",
+    "url": "https://www.thedailystar.net/backpage/news/govt-shuts-door-outside-vehicles-1697077",
+    "publisher": "The Daily Star",
+    "date": "2019-02-04"
+   },
+   "dsRideshareReg": {
+    "title": "BRTA starts registering ride-sharing firms",
+    "url": "https://d11.thedailystar.net/backpage/news/brta-starts-registering-ride-sharing-firms-1765546",
+    "publisher": "The Daily Star"
+   }
+  }
+ },
+ "registration": {
+  "asOf": "2026-10-06",
+  "summary": "BRTA's statutory registration fee is only two slabs: up to 100cc = Tk 2,000, above 100cc = Tk 3,000 (Road Transport Rules 2022). There is no separate registration slab for 125cc vs 150cc vs 250cc vs 350cc, so all >100cc bikes pay the same BRTA package. The buyer pays on top of ex-showroom price: registration fee + inspection + digital registration certificate (DRC) + RFID retro-reflective number plate + road tax (tax token, 2-year or 10-year) + a one-time Financial Assistance Fund (Trustee Board) fee + 15% VAT on BRTA service fees. Dealers usually collect this as a 'registration package' and may add a service charge.",
+  "bands": [
+   {
+    "label": "~100cc (up to 100cc)",
+    "ccMin": 0,
+    "ccMax": 100,
+    "totalBDT": 10664,
+    "totalBDT10yr": 19664,
+    "totalNote": "Secondary-source package totals (DeshiBiker, May 2025): 2-year tax token Tk 10,664; 10-year tax token Tk 19,664. PDTS (Jun 2024) lists Tk 10,441 / 19,441 for >90kg ≤100cc and Tk 9,291 / 13,891 for <90kg bikes, so expect roughly Tk 9,300-10,700 (2-yr) or Tk 13,900-19,700 (10-yr).",
+    "confidence": "medium",
+    "breakdown": [
+     {
+      "item": "BRTA registration fee (Road Transport Rules 2022, Sch.1 item 21-ka)",
+      "amountBDT": 2000,
+      "confidence": "high"
+     },
+     {
+      "item": "Vehicle inspection fee (Sch.1 item 32)",
+      "amountBDT": 800,
+      "confidence": "high"
+     },
+     {
+      "item": "Digital Registration Certificate (DRC / smart card blue book)",
+      "amountBDT": 540,
+      "confidence": "high"
+     },
+     {
+      "item": "RFID retro-reflective number plate (single-plate rate per 2012 memo; BikeBD also lists 2,200)",
+      "amountBDT": 2200,
+      "confidence": "medium"
+     },
+     {
+      "item": "Road tax / tax token, 2 years (VAT-inclusive per DeshiBiker)",
+      "amountBDT": 1150,
+      "confidence": "medium"
+     },
+     {
+      "item": "Road tax / tax token, 10 years paid upfront (alternative to 2-year)",
+      "amountBDT": 5750,
+      "confidence": "medium"
+     },
+     {
+      "item": "Financial Assistance Fund (Trustee Board) one-time fee",
+      "amountBDT": 1150,
+      "confidence": "medium"
+     },
+     {
+      "item": "VAT 15% on BRTA service fees (registration, inspection, DRC, plate)",
+      "amountBDT": 831,
+      "confidence": "medium",
+      "note": "Computed as 15% of 2,000+800+540+2,200; official components sum to ~Tk 8,671 (2-yr) and the gap to the ~Tk 10,664 market total is not explained in any source found."
+     }
+    ]
+   },
+   {
+    "label": "~125cc",
+    "ccMin": 101,
+    "ccMax": 125,
+    "totalBDT": 11764,
+    "totalBDT10yr": 20964,
+    "totalNote": "Same BRTA package as every >100cc bike. DeshiBiker (May 2025): Tk 11,764 (2-yr) / Tk 20,964 (10-yr). PDTS gives Tk 20,764 for 10-yr (likely a typo; 11,764 + 4 x 2,300 = 20,964).",
+    "confidence": "medium",
+    "breakdownRef": "above100cc"
+   },
+   {
+    "label": "~150-165cc",
+    "ccMin": 126,
+    "ccMax": 165,
+    "totalBDT": 11764,
+    "totalBDT10yr": 20964,
+    "totalNote": "Same as >100cc. Since FY2026-27 discussions, owners of bikes above 150cc are expected to hold a TIN (Daily Star, 4 Jun 2026) - check with dealer.",
+    "confidence": "medium",
+    "breakdownRef": "above100cc"
+   },
+   {
+    "label": "~250cc",
+    "ccMin": 166,
+    "ccMax": 250,
+    "totalBDT": 11764,
+    "totalBDT10yr": 20964,
+    "totalNote": "Registration fee schedule has no separate slab above 100cc, so BRTA charges should match the >100cc package. No source found itemising a 250cc registration specifically; dealer packages may differ.",
+    "confidence": "low",
+    "breakdownRef": "above100cc"
+   },
+   {
+    "label": "~350cc",
+    "ccMin": 251,
+    "ccMax": 375,
+    "totalBDT": 11764,
+    "totalBDT10yr": 20964,
+    "totalNote": "Same statutory slab as >100cc. Only locally manufactured/assembled bikes up to 375cc are registrable (see ccPolicy). Some brands (e.g. Royal Enfield via IFAD) have run free-2-year-registration promotions. No source itemising a 350cc registration found.",
+    "confidence": "low",
+    "breakdownRef": "above100cc"
+   }
+  ],
+  "breakdowns": {
+   "above100cc": [
+    {
+     "item": "BRTA registration fee (Road Transport Rules 2022, Sch.1 item 21-kha)",
+     "amountBDT": 3000,
+     "confidence": "high"
+    },
+    {
+     "item": "Vehicle inspection fee (Sch.1 item 32)",
+     "amountBDT": 800,
+     "confidence": "high"
+    },
+    {
+     "item": "Digital Registration Certificate (DRC)",
+     "amountBDT": 540,
+     "confidence": "high"
+    },
+    {
+     "item": "RFID retro-reflective number plate",
+     "amountBDT": 2200,
+     "confidence": "medium"
+    },
+    {
+     "item": "Road tax / tax token, 2 years (VAT-inclusive)",
+     "amountBDT": 2300,
+     "confidence": "medium"
+    },
+    {
+     "item": "Road tax / tax token, 10 years paid upfront (alternative to 2-year)",
+     "amountBDT": 11500,
+     "confidence": "medium"
+    },
+    {
+     "item": "Financial Assistance Fund (Trustee Board) one-time fee",
+     "amountBDT": 1150,
+     "confidence": "medium"
+    },
+    {
+     "item": "VAT 15% on BRTA service fees (registration, inspection, DRC, plate)",
+     "amountBDT": 981,
+     "confidence": "medium",
+     "note": "Computed: 15% of 3,000+800+540+2,200. Official components sum to ~Tk 10,971 (2-yr); market quotes are ~Tk 11,764, unexplained Tk ~800 difference may be other charges/rounding."
+    }
+   ]
+  },
+  "fitness": "Motorcycles do not need a periodic fitness certificate renewal in practice; BRTA issues a fitness certificate with the registration. The gazette's annual fitness fee (Tk 800) applies to non-heavy vehicles generally - confidence low on whether it is charged for private motorcycles.",
+  "changes2024to2026": [
+   {
+    "date": "2021-02",
+    "change": "Registration fee cut from Tk 4,200 to Tk 2,000 (≤100cc) and Tk 5,600 to Tk 3,000 (>100cc). Codified in Road Transport Rules 2022 Schedule-1.",
+    "source": {
+     "title": "Bike registration fee halved",
+     "url": "https://www.thedailystar.net/business/news/bike-registration-fee-halved-2038333",
+     "publisher": "The Daily Star",
+     "date": "2021-02-03"
+    },
+    "confidence": "high"
+   },
+   {
+    "date": "2023",
+    "change": "One-time Financial Assistance Fund (Trustee Board) fee of Tk 1,150 added; owners who registered before 2023 pay it at next tax-token renewal.",
+    "source": {
+     "title": "How Much is the Road Tax of a Motorcycle in Bangladesh?",
+     "url": "https://deshibiker.com/road-tax-of-a-motorcycle-in-bd/",
+     "publisher": "DeshiBiker",
+     "date": "2025-05-11"
+    },
+    "confidence": "medium"
+   },
+   {
+    "date": "ongoing",
+    "change": "10-year tax token rule: a motorcycle's road tax is payable for a maximum of 10 years (upfront ~Tk 11,500 for >100cc, or Tk 2,300 every 2 years). After 10 years the bike gets a 'tax-free' token renewed every 5 years for a token Tk 23 bank deposit.",
+    "source": {
+     "title": "What To Do When The Motorcycle Tax Token Validity Exceeds 10 Years?",
+     "url": "https://www.bikebd.com/bn/blog/what-to-do-when-the-motorcycle-tax-token-validity-exceeds-10-years",
+     "publisher": "BikeBD",
+     "date": "2025-11-29"
+    },
+    "confidence": "medium"
+   },
+   {
+    "date": "2026-06-04",
+    "change": "Proposed first-ever annual advance income tax (AIT) on motorcycles in the FY2026-27 budget (initially Tk 2,000 for 111-125cc, Tk 5,000 for 126-165cc, Tk 10,000 above 165cc) was dropped after protests. No motorcycle AIT is in force; owners of >150cc bikes still need a TIN.",
+    "source": {
+     "title": "Govt may drop planned wealth tax, bike and rickshaw AIT",
+     "url": "https://www.thedailystar.net/business/economy/news/govt-may-drop-planned-wealth-tax-bike-and-rickshaw-ait-4190076",
+     "publisher": "The Daily Star",
+     "date": "2026-06-04"
+    },
+    "confidence": "high"
+   }
+  ],
+  "process": [
+   "Collect from dealer: sale certificate, bill of entry/invoice (or CKD gate pass), VAT documents (Mushak-11), customs/assembly papers",
+   "Apply at BRTA circle office/online; BRTA verifies and issues an assessment slip",
+   "Pay fees at authorised bank or online (bKash etc. via BSP)",
+   "Present the bike for BRTA inspection",
+   "Registration approved; acknowledgement, fitness certificate and tax token issued",
+   "Give biometrics (photo, signature, fingerprints) when notified by SMS for the DRC",
+   "Collect DRC and RFID number plate on SMS notice (BikeBD: typically within ~1 month)"
+  ],
+  "sources": [
+   {
+    "title": "BRTA - Road Transport Rules 2022, Schedule-1 fees (Bangladesh Gazette Extraordinary, 27 Dec 2022), via brta.gov.bd 'বিভিন্ন ফি'",
+    "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-brta/2024/12/2e6d2c3e81cd4418882881f35e0e95bd.pdf",
+    "publisher": "BRTA / Govt of Bangladesh",
+    "date": "2022-12-27"
+   },
+   {
+    "title": "BRTA - বিভিন্ন ফি (fees page)",
+    "url": "https://brta.gov.bd/pages/static-pages/6922dcac933eb65569e11838",
+    "publisher": "BRTA"
+   },
+   {
+    "title": "Road Division memo 35.020.031.00.00.025.2011-431: RFID number plate & DRC prices (via brta.gov.bd 'ডিএনপি ও ডিআরসি ফি')",
+    "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-brta/2024/12/f910dfd1b03241d1907f6cbe46201ccc.pdf",
+    "publisher": "Road Transport & Highways Division",
+    "date": "2012-10-23"
+   },
+   {
+    "title": "BRTA - মোটরযানের নিবন্ধন (registration process & documents)",
+    "url": "https://brta.gov.bd/pages/static-pages/6922dba7933eb65569e0b9c1",
+    "publisher": "BRTA",
+    "date": "2026-06-30"
+   },
+   {
+    "title": "Bike Registration Fees in Bangladesh (2, 5, 10 years)",
+    "url": "https://deshibiker.com/bike-registration-fees-in-bd/",
+    "publisher": "DeshiBiker",
+    "date": "2025-05-11"
+   },
+   {
+    "title": "How Much is the Road Tax of a Motorcycle in Bangladesh?",
+    "url": "https://deshibiker.com/road-tax-of-a-motorcycle-in-bd/",
+    "publisher": "DeshiBiker",
+    "date": "2025-05-11"
+   },
+   {
+    "title": "Motorcycle Registration Fees in Bangladesh by CC [2025 Update]",
+    "url": "https://pdts.com.bd/blogs/30",
+    "publisher": "PDTS",
+    "date": "2024-06-25"
+   },
+   {
+    "title": "Motorcycle Registration Procedure In Bangladesh",
+    "url": "https://www.bikebd.com/blog/motorcycle-registration-procedure-in-bangladesh",
+    "publisher": "BikeBD",
+    "date": "2026-10-05"
+   },
+   {
+    "title": "What To Do When The Motorcycle Tax Token Validity Exceeds 10 Years?",
+    "url": "https://www.bikebd.com/bn/blog/what-to-do-when-the-motorcycle-tax-token-validity-exceeds-10-years",
+    "publisher": "BikeBD",
+    "date": "2025-11-29"
+   },
+   {
+    "title": "Bike registration fee halved",
+    "url": "https://www.thedailystar.net/business/news/bike-registration-fee-halved-2038333",
+    "publisher": "The Daily Star",
+    "date": "2021-02-03"
+   },
+   {
+    "title": "Govt may drop planned wealth tax, bike and rickshaw AIT",
+    "url": "https://www.thedailystar.net/business/economy/news/govt-may-drop-planned-wealth-tax-bike-and-rickshaw-ait-4190076",
+    "publisher": "The Daily Star",
+    "date": "2026-06-04"
+   }
+  ],
+  "confidence": "medium - statutory fee slabs are confirmed from the gazette; package totals and road-tax amounts come from secondary guides that disagree slightly. BikeBD's itemised table (Oct 2026) still shows pre-2021 registration fees (4,200/5,600), so it was not used for totals."
+ },
+ "licence": {
+  "asOf": "2026-10-06",
+  "eligibility": {
+   "minAgeNonProfessional": 18,
+   "minAgeProfessional": 21,
+   "minEducation": "Class 8 pass",
+   "other": "Mentally and physically fit; NID required for BSP account"
+  },
+  "types": [
+   {
+    "type": "Learner (শিক্ষানবিশ) licence",
+    "feeBDT": 518,
+    "feeNote": "1 category (e.g. motorcycle only) Tk 518; 2 categories (e.g. motorcycle + car) Tk 748. Paid online. BikeBD quotes older Tk 345/518 figures - BRTA page is authoritative.",
+    "fee2CategoriesBDT": 748,
+    "validity": "Printable immediately from BSP; BRTA advises 2-3 months of practice before the test",
+    "confidence": "high"
+   },
+   {
+    "type": "Smart card - non-professional",
+    "feeBDT": 4497,
+    "validityYears": 10,
+    "postalDeliveryBDT": 60,
+    "confidence": "high"
+   },
+   {
+    "type": "Smart card - professional (needed for commercial riding)",
+    "feeBDT": 2772,
+    "validityYears": 5,
+    "postalDeliveryBDT": 60,
+    "extra": "Dope test report must be uploaded",
+    "confidence": "high"
+   }
+  ],
+  "documents": [
+   "Applicant photo (≤150KB, 300x300)",
+   "Medical certificate from a registered doctor (BRTA form)",
+   "NID scan",
+   "Utility bill if current address differs from NID",
+   "Education certificate (Class 8+)",
+   "For smart card: learner licence scanned with pass seal; dope test report (professional only)"
+  ],
+  "exam": {
+   "components": [
+    "Written test",
+    "Oral (viva) test",
+    "Field/practical riding test"
+   ],
+   "notes": "Held at the BRTA circle's test centre on the date given on the learner licence. Biometrics taken and fingerprint matched against the NID server before the test. Result uploaded online and sent by SMS within 1 working day. Bring original learner licence and a pen."
+  },
+  "steps": [
+   {
+    "step": 1,
+    "title": "Create BSP account",
+    "detail": "Register on bsp.brta.gov.bd with your NID; set division/district/thana (decides your BRTA circle)."
+   },
+   {
+    "step": 2,
+    "title": "Apply for learner licence",
+    "detail": "Upload photo, medical certificate, NID, utility bill, education certificate; pay Tk 518 (1 category) or Tk 748 (2 categories) online; print learner licence immediately."
+   },
+   {
+    "step": 3,
+    "title": "Practise and sit the test",
+    "detail": "On the scheduled date: biometrics, then written, oral and field test. BikeBD reports test dates are usually 3-6 months out (sometimes earlier)."
+   },
+   {
+    "step": 4,
+    "title": "Apply for smart card",
+    "detail": "Upload learner licence with pass seal, pay Tk 4,497 (non-professional, 10 yr) or Tk 2,772 (professional, 5 yr) + Tk 60 postage online. Bank-counter payment is no longer accepted."
+   },
+   {
+    "step": 5,
+    "title": "Ride on temporary authorisation",
+    "detail": "After approval print the auto-generated Temporary Authorization slip from BSP and carry it (laminated) until the card arrives."
+   },
+   {
+    "step": 6,
+    "title": "Receive smart card by post",
+    "detail": "Delivered to your address; BikeBD reports processing usually takes 3-4 months. Police verification currently not required."
+   }
+  ],
+  "typicalTimeline": "Roughly 4-9 months end to end (2-3 months practice/test wait + 3-4 months card printing); temporary authorisation lets you ride legally meanwhile.",
+  "statutoryBaseFees": "Underlying gazette fees (Road Transport Rules 2022): learner Tk 250, competency test Tk 200 per attempt, licence issue Tk 300, annual licence fee Tk 300; BRTA's published totals above include these plus VAT/card charges.",
+  "sources": [
+   {
+    "title": "BRTA - ড্রাইভিং লাইসেন্স পাওয়ার প্রক্রিয়া (licence process & fees)",
+    "url": "https://brta.gov.bd/pages/static-pages/6922e0e7933eb65569e2919e",
+    "publisher": "BRTA",
+    "date": "2026-06-30"
+   },
+   {
+    "title": "BRTA - ড্রাইভিং লাইসেন্স (learner -> written/oral/field test)",
+    "url": "https://brta.gov.bd/pages/static-pages/6922e12b933eb65569e2aa50",
+    "publisher": "BRTA",
+    "date": "2023-05-17"
+   },
+   {
+    "title": "BRTA - Road Transport Rules 2022, Schedule-1 fees (Bangladesh Gazette Extraordinary, 27 Dec 2022), via brta.gov.bd 'বিভিন্ন ফি'",
+    "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-brta/2024/12/2e6d2c3e81cd4418882881f35e0e95bd.pdf",
+    "publisher": "BRTA / Govt of Bangladesh",
+    "date": "2022-12-27"
+   },
+   {
+    "title": "How To Get A Motorcycle Driving License - Details and Cost",
+    "url": "https://bikebd.com/blog/driving-license",
+    "publisher": "BikeBD",
+    "date": "2026-10-05"
+   },
+   {
+    "title": "BRTA Service Portal (BSP)",
+    "url": "https://bsp.brta.gov.bd/",
+    "publisher": "BRTA"
+   }
+  ],
+  "confidence": "high for fees and documents (BRTA page updated 30 Jun 2026); medium for timeline"
+ },
+ "ccPolicy": {
+  "asOf": "2026-10-06",
+  "currentRule": "Registration: BRTA registers motorcycles up to 375cc only if manufactured/assembled in Bangladesh (Road Transport & Highways Division decision, Oct 2023). Fully built (CBU) imports: historically capped at 165cc. Local manufacturers may import parts/machinery to build up to 500cc.",
+  "maxCcForRegularBuyersRegistrable": 375,
+  "maxCcCbuImportLegacy": 165,
+  "maxCcLocalManufacturePermitted": 500,
+  "history": [
+   {
+    "period": "until early 2000s",
+    "rule": "No engine capacity restriction"
+   },
+   {
+    "period": "early 2000s",
+    "rule": "Cap of 150cc introduced (security concerns about fast bikes); later raised to 165cc"
+   },
+   {
+    "period": "2018-2022",
+    "rule": "165cc cap on sale/registration; industry lobbied for higher; 2018 motorcycle industry policy",
+    "source": {
+     "title": "Import of 375cc motorcycles on the cards, questions over new policy",
+     "url": "https://en.prothomalo.com/business/c7d38h8nz8",
+     "publisher": "Prothom Alo English",
+     "date": "2026-06"
+    }
+   },
+   {
+    "period": "2022-2023",
+    "rule": "Govt approved local manufacture up to 500cc (e.g. Kawasaki via Asian Motorbikes); Royal Enfield 350cc local assembly by IFAD",
+    "source": {
+     "title": "Up to 500cc motorbikes can be made locally",
+     "url": "https://www.thedailystar.net/business/economy/news/500cc-bikes-can-be-made-locally-3012596",
+     "publisher": "The Daily Star"
+    }
+   },
+   {
+    "period": "2023-10-11",
+    "rule": "Locally made motorcycles up to 375cc allowed to be registered and ridden",
+    "source": {
+     "title": "দেশে চালানো যাবে ৩৭৫ সিসি পর্যন্ত মোটরসাইকেল",
+     "url": "https://bangla.thedailystar.net/news/bangladesh/news-522546",
+     "publisher": "The Daily Star Bangla",
+     "date": "2023-10-11"
+    }
+   },
+   {
+    "period": "2026-08-24",
+    "rule": "Import Policy Order 2026-2029 issued (valid to 31 Dec 2029). Reports CONFLICT on motorcycles: Dhaka Times (25 Aug 2026) says CBU import up to 375cc is now allowed; Desh Rupantor (26 Aug 2026) and Bangla Tribune say the final order kept the >165cc CBU import ban (police exempt) despite the draft proposing 375cc.",
+    "source": [
+     {
+      "title": "দেশে ৩৭৫ সিসি পর্যন্ত মোটরসাইকেল আমদানির সুযোগ, গেজেট প্রকাশ",
+      "url": "https://www.dhakatimes24.com/2026/08/25/411300",
+      "publisher": "Dhaka Times",
+      "date": "2026-08-25"
+     },
+     {
+      "title": "১৬৫ সিসির বেশি বাইক আমদানি করা যাবে না",
+      "url": "https://www.deshrupantor.com/715706/",
+      "publisher": "Desh Rupantor",
+      "date": "2026-08-26"
+     },
+     {
+      "title": "এলসির বাইরে মূল্যসীমা ছাড়াই পণ্য আমদানি, বদলে গেলো আমদানি নীতির কাঠামো",
+      "url": "https://www.banglatribune.com/964670",
+      "publisher": "Bangla Tribune",
+      "date": "2026-08"
+     },
+     {
+      "title": "BB issues import policy implementation guidelines",
+      "url": "https://thefinancialexpress.com.bd/bangladesh/bb-issues-import-policy-implementation-guidelines",
+      "publisher": "The Financial Express",
+      "date": "2026-09-13"
+     }
+    ],
+    "confidence": "low"
+   }
+  ],
+  "importDutyNotes": "Tariff on >250cc imports was first proposed in an earlier budget (Prothom Alo). Exact current CBU duty rates for motorcycles were not verified in this research - confidence low; check NBR customs tariff (HS 8711).",
+  "sources": [
+   {
+    "title": "দেশে চালানো যাবে ৩৭৫ সিসি পর্যন্ত মোটরসাইকেল",
+    "url": "https://bangla.thedailystar.net/news/bangladesh/news-522546",
+    "publisher": "The Daily Star Bangla",
+    "date": "2023-10-11"
+   },
+   {
+    "title": "Import of 375cc motorcycles on the cards, questions over new policy",
+    "url": "https://en.prothomalo.com/business/c7d38h8nz8",
+    "publisher": "Prothom Alo English",
+    "date": "2026-06"
+   },
+   {
+    "title": "দেশে ৩৭৫ সিসি পর্যন্ত মোটরসাইকেল আমদানির সুযোগ, গেজেট প্রকাশ",
+    "url": "https://www.dhakatimes24.com/2026/08/25/411300",
+    "publisher": "Dhaka Times",
+    "date": "2026-08-25"
+   },
+   {
+    "title": "১৬৫ সিসির বেশি বাইক আমদানি করা যাবে না",
+    "url": "https://www.deshrupantor.com/715706/",
+    "publisher": "Desh Rupantor",
+    "date": "2026-08-26"
+   },
+   {
+    "title": "এলসির বাইরে মূল্যসীমা ছাড়াই পণ্য আমদানি, বদলে গেলো আমদানি নীতির কাঠামো",
+    "url": "https://www.banglatribune.com/964670",
+    "publisher": "Bangla Tribune",
+    "date": "2026-08"
+   },
+   {
+    "title": "BB issues import policy implementation guidelines",
+    "url": "https://thefinancialexpress.com.bd/bangladesh/bb-issues-import-policy-implementation-guidelines",
+    "publisher": "The Financial Express",
+    "date": "2026-09-13"
+   },
+   {
+    "title": "Up to 500cc motorbikes can be made locally",
+    "url": "https://www.thedailystar.net/business/economy/news/500cc-bikes-can-be-made-locally-3012596",
+    "publisher": "The Daily Star"
+   }
+  ],
+  "confidence": "high for 375cc locally-made registration rule; low for CBU import status after IPO 2026-29 (conflicting reports)"
+ },
+ "fuel": {
+  "octane": 165,
+  "petrol": 160,
+  "diesel": 135,
+  "kerosene": 155,
+  "unit": "BDT per litre",
+  "asOf": "2026-10-01",
+  "effectiveFrom": "2026-09-20",
+  "note": "October 2026 prices unchanged from the 20 Sep 2026 revision, when every fuel was raised by Tk 20/litre. Prices are reviewed monthly by the Energy and Mineral Resources Division (automatic formula-based pricing introduced 2024), but the October decision was announced as 'retained with approval of the appropriate authority'. UNB reports prices rose up to ~36% between Jan and Sep 2026.",
+  "source": {
+   "title": "Fuel prices unchanged for October",
+   "url": "https://www.dhakatribune.com/bangladesh/power-energy/421056/fuel-prices-unchanged-for-october",
+   "publisher": "Dhaka Tribune",
+   "date": "2026-09-30"
+  },
+  "sources": [
+   {
+    "title": "Fuel prices unchanged for October",
+    "url": "https://www.dhakatribune.com/bangladesh/power-energy/421056/fuel-prices-unchanged-for-october",
+    "publisher": "Dhaka Tribune",
+    "date": "2026-09-30"
+   },
+   {
+    "title": "Fuel prices (30 Sep 2026)",
+    "url": "https://bdnews24.com/business/f3ub8nrf1p",
+    "publisher": "bdnews24.com",
+    "date": "2026-09-30"
+   },
+   {
+    "title": "Fuel prices rise up to nearly 36% between January and September 2026",
+    "url": "https://www.unb.com.bd/category/Bangladesh/fuel-prices-rise-up-to-nearly-36-between-january-and-september-2026/195927",
+    "publisher": "UNB"
+   }
+  ],
+  "confidence": "high"
+ },
+ "insurance": {
+  "asOf": "2026-10-06",
+  "thirdPartyMandatory": false,
+  "summary": "Third-party motor insurance was compulsory under the Motor Vehicles Ordinance 1983 but became optional under the Road Transport Act 2018 (in effect from Nov 2019; abolished in practice Dec 2020). Cabinet approved in principle (12 Mar 2024) an amendment to make it mandatory again with a fine up to Tk 3,000, but as of Feb 2026 it is still not mandatory. IDRA relaunched third-party cover as 'Motor Liability Insurance' on a one-year pilot from Aug 2025.",
+  "thirdParty": {
+   "exampleAnnualPremiumBDT": 1006,
+   "exampleFor": "150cc motorcycle (IDRA Motor Liability pilot)",
+   "coverage": [
+    {
+     "item": "Death / permanent total disability per person",
+     "amountBDT": 200000
+    },
+    {
+     "item": "Serious injury",
+     "amountBDT": 20000
+    },
+    {
+     "item": "Third-party vehicle/property damage",
+     "amountBDT": 60000
+    },
+    {
+     "item": "Legal/arbitration costs",
+     "amountBDT": 10000
+    }
+   ],
+   "source": {
+    "title": "IDRA motor insurance sees low response amid high premiums, non-compulsory rules",
+    "url": "https://www.tbsnews.net/node/1357826",
+    "publisher": "The Business Standard",
+    "date": "2026-02-10"
+   },
+   "confidence": "high"
+  },
+  "comprehensive": {
+   "typicalRange": "No authoritative 2026 rate found. Comprehensive (own-damage + theft) is sold by general insurers as a percentage of the bike's insured value; ask insurers for a quote.",
+   "minBDT": null,
+   "maxBDT": null,
+   "confidence": "low"
+  },
+  "sources": [
+   {
+    "title": "IDRA motor insurance sees low response amid high premiums, non-compulsory rules",
+    "url": "https://www.tbsnews.net/node/1357826",
+    "publisher": "The Business Standard",
+    "date": "2026-02-10"
+   },
+   {
+    "title": "Insurance for bike, other vehicles set to be mandatory again",
+    "url": "https://en.prothomalo.com/bangladesh/gzl00ewg0c",
+    "publisher": "Prothom Alo English",
+    "date": "2024-03-15"
+   }
+  ],
+  "confidence": "high for legal status and pilot premium; low for comprehensive pricing"
+ },
+ "laws": [
+  {
+   "title": "Helmet mandatory for rider and pillion",
+   "detail": "Road Transport Act 2018 requires the rider and passenger to wear a proper helmet. Riding without a helmet or carrying more than one pillion: fine up to Tk 10,000 or up to 3 months jail or both (plus demerit points).",
+   "sources": [
+    {
+     "title": "Penalties for violating rules under the new Road Transport Act",
+     "url": "https://www.tbsnews.net/node/21549",
+     "publisher": "The Business Standard",
+     "date": "2019-11"
+    }
+   ],
+   "asOf": "2019-11",
+   "confidence": "high"
+  },
+  {
+   "title": "Maximum one pillion",
+   "detail": "Carrying more than two people (rider + one) is an offence with the same Tk 10,000 / 3-month penalty.",
+   "sources": [
+    {
+     "title": "Penalties for violating rules under the new Road Transport Act",
+     "url": "https://www.tbsnews.net/node/21549",
+     "publisher": "The Business Standard",
+     "date": "2019-11"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "title": "'No helmet, no fuel'",
+   "detail": "Announced nationwide by the Road Transport minister on 15 May 2024: riders and pillions without helmets are to be refused fuel at pumps. Enforcement varies by area.",
+   "sources": [
+    {
+     "title": "Bikers without helmet will not get fuel",
+     "url": "https://en.ittefaq.com.bd/8815/bikers-without-helmet-will-not-get-fuel",
+     "publisher": "The Daily Ittefaq (English)",
+     "date": "2024-05-15"
+    }
+   ],
+   "asOf": "2024-05-15",
+   "confidence": "medium"
+  },
+  {
+   "title": "BSTI helmet standard",
+   "detail": "BSTI standard BDS 1136:2022 covers motorcycle helmets, but the law only says 'proper' helmet and (per TBS) BSTI lacked a testing lab, so a BSTI-certified helmet is not strictly enforced. Buy a certified (BSTI/DOT/ECE) full- or open-face helmet anyway.",
+   "sources": [
+    {
+     "title": "How effective is Bangladesh's own motorcycle helmet standard",
+     "url": "https://www.bikebd.com/blog/how-effective-is-bangladeshs-own-motorcycle-helmet-standard",
+     "publisher": "BikeBD"
+    },
+    {
+     "title": "Bikers' safety takes backseat with no rule to grade helmets",
+     "url": "https://www.tbsnews.net/node/366583",
+     "publisher": "The Business Standard"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "title": "Key penalties to know",
+   "detail": "Riding without a licence: Tk 25,000 or 6 months or both. Unregistered bike / no number plate: Tk 50,000 or 6 months or both. Illegal modifications (exhaust, brakes etc.): up to Tk 3 lakh. Wrong-way riding: Tk 10,000 / 3 months.",
+   "sources": [
+    {
+     "title": "Penalties for violating rules under the new Road Transport Act",
+     "url": "https://www.tbsnews.net/node/21549",
+     "publisher": "The Business Standard",
+     "date": "2019-11"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "title": "Not transferring ownership",
+   "detail": "Keeping a bought bike in the seller's name: Tk 5,000 fine (first offence), Tk 10,000 (repeat) under the Road Transport Act (s.74 per bdnews24).",
+   "sources": [
+    {
+     "title": "Motorcycle ownership transfer (Bangla)",
+     "url": "https://bangla.bdnews24.com/lifestyle/Jenerakun/74366df2801b",
+     "publisher": "bdnews24.com",
+     "date": "2026-08-26"
+    }
+   ],
+   "asOf": "2026-08-26",
+   "confidence": "medium"
+  },
+  {
+   "title": "Dhaka Elevated Expressway: motorcycles banned",
+   "detail": "Motorcycles and three-wheelers are not permitted on the Dhaka Elevated Expressway (speeds up to 80 km/h).",
+   "sources": [
+    {
+     "title": "Motorcycles, three-wheelers banned on Dhaka Elevated Expressway",
+     "url": "https://www.dhakatribune.com/bangladesh/dhaka/319966/motorcycles-three-wheelers-banned-on-dhaka",
+     "publisher": "Dhaka Tribune",
+     "date": "2023-07-08"
+    }
+   ],
+   "asOf": "2023-07-08",
+   "confidence": "high"
+  },
+  {
+   "title": "Padma Bridge: motorcycles allowed with conditions",
+   "detail": "Banned from 27 Jun 2022 after a fatal crash; allowed again from 20 Apr 2023: designated/service lane, 60 km/h limit, max 2 people, helmets required, no stopping or photos on the bridge. Toll payable (amount not verified here).",
+   "sources": [
+    {
+     "title": "Motorcycles allowed to ply on Padma Bridge from Thursday",
+     "url": "https://en.prothomalo.com/bangladesh/rbjde07nzk",
+     "publisher": "Prothom Alo English",
+     "date": "2023-04-18"
+    },
+    {
+     "title": "Motorcycles ply Padma Bridge once again",
+     "url": "https://www.tbsnews.net/node/619670",
+     "publisher": "The Business Standard",
+     "date": "2023-04-20"
+    }
+   ],
+   "asOf": "2023-04-20",
+   "confidence": "medium"
+  },
+  {
+   "title": "Ride-sharing on motorcycles",
+   "detail": "Governed by Ride-Sharing Service Guideline 2017 (in force 8 Mar 2018): only personal vehicles can be enlisted and must have up-to-date papers; from 2019 bikes ridden for Dhaka ride-sharing must be registered in Dhaka metro. Commercial riding generally needs a professional licence.",
+   "sources": [
+    {
+     "title": "Ride-Sharing Service in Capital: Govt to shut door on outside vehicles",
+     "url": "https://www.thedailystar.net/backpage/news/govt-shuts-door-outside-vehicles-1697077",
+     "publisher": "The Daily Star",
+     "date": "2019-02-04"
+    },
+    {
+     "title": "BRTA starts registering ride-sharing firms",
+     "url": "https://d11.thedailystar.net/backpage/news/brta-starts-registering-ride-sharing-firms-1765546",
+     "publisher": "The Daily Star"
+    }
+   ],
+   "asOf": "2019-02-04",
+   "confidence": "medium"
+  }
+ ],
+ "usedChecklist": [
+  {
+   "title": "Match the blue book / DRC to the seller",
+   "detail": "The name on the Registration Certificate (old blue book) or Digital Registration Certificate must match the seller's NID. If not, the seller isn't the legal owner - insist on transfer from the registered owner."
+  },
+  {
+   "title": "Check chassis and engine numbers",
+   "detail": "Compare the chassis (frame) number stamped on the steering head and the engine number on the crankcase with the DRC. Look for re-stamping, grinding marks, fresh paint or welding around the numbers."
+  },
+  {
+   "title": "Verify registration and dues online",
+   "detail": "Use the BRTA Service Portal (bsp.brta.gov.bd) dues/fees lookup by registration number to confirm the bike exists in BRTA records and see unpaid tax-token/fees. Match the RFID number plate to the DRC."
+  },
+  {
+   "title": "Tax token validity",
+   "detail": "Check the tax token expiry. Unpaid years plus the one-time Tk 1,150 Financial Assistance Fund (if not paid) will become your bill. Bikes that completed 10 years of road tax only need a Tk 23 'tax-free' token every 5 years."
+  },
+  {
+   "title": "Loan / hire-purchase clearance",
+   "detail": "If the DRC shows a bank/leasing hire-purchase entry, get the lender's loan-clearance letter; BRTA won't transfer without it (hire-purchase removal fee Tk 1,000 per 2022 rules)."
+  },
+  {
+   "title": "Ownership transfer at BRTA",
+   "detail": "Seller signs TTO form and sales receipt (Tk 10 revenue stamp) and a sale affidavit with photo; buyer signs TO + TTO forms, a buyer affidavit on non-judicial stamp (BikeBD: Tk 300), specimen signature form with 3 stamp photos; attach original DRC/blue book and both NIDs; pay fee and apply via BSP. BikeBD's (older, 2014-based) figure is Tk 2,665 if already on digital registration; confirm current fee on BSP before paying."
+  },
+  {
+   "title": "Accident damage signs",
+   "detail": "Look for bent/re-welded frame, misaligned handlebar vs front wheel, uneven fork tubes or oil leaks from fork seals, scraped bar ends/levers/footpegs, mismatched or new paint on only some panels, and pulling to one side on a straight test ride."
+  },
+  {
+   "title": "Flood / water damage signs",
+   "detail": "Check for silt or rust inside the headlight, tail lamp, under the seat and in switch housings; corroded wiring connectors; milky engine oil; rust on fasteners that should be clean. Dhaka monsoon waterlogging makes this common."
+  },
+  {
+   "title": "Odometer tampering",
+   "detail": "Compare odometer to wear: worn footpeg rubbers, seat foam, grips, chain/sprocket condition, brake disc lip. Ask for service-centre records (authorised service centres log km). Digital clusters can also be reset."
+  },
+  {
+   "title": "Mechanical test ride",
+   "detail": "Cold start, idle stability, smoke colour, clutch slip, gear engagement, brake feel and ABS (if fitted), electrical items. Ride long enough to warm up."
+  },
+  {
+   "title": "Legal ride-away",
+   "detail": "Don't ride the bike until the transfer is filed in your name and you hold a valid licence; carry DRC, tax token and licence (or temporary authorisation)."
+  }
+ ],
+ "usedChecklistSources": [
+  {
+   "title": "BRTA - মালিকানা বদলী (ownership transfer documents)",
+   "url": "https://brta.gov.bd/site/page/67a3c40f-6cbb-4340-9873-2c8ba48f7e85/",
+   "publisher": "BRTA",
+   "date": "2026-06-30"
+  },
+  {
+   "title": "BSP - ownership transfer application",
+   "url": "https://bsp.brta.gov.bd/v/vehicleTransferOwnership/applicationForTransferOwnershipIndex",
+   "publisher": "BRTA"
+  },
+  {
+   "title": "BSP - registered vehicle fees / dues lookup",
+   "url": "https://bsp.brta.gov.bd/registeredVehicleFeesIndex?lan=en",
+   "publisher": "BRTA"
+  },
+  {
+   "title": "Motorcycle ownership transfer process Bangladesh",
+   "url": "https://bikebd.com/blog/motorcycle-ownership-transfer-process-bangladesh",
+   "publisher": "BikeBD",
+   "date": "2026-10-05"
+  },
+  {
+   "title": "Motorcycle ownership transfer (Bangla)",
+   "url": "https://bangla.bdnews24.com/lifestyle/Jenerakun/74366df2801b",
+   "publisher": "bdnews24.com",
+   "date": "2026-08-26"
+  },
+  {
+   "title": "What To Do When The Motorcycle Tax Token Validity Exceeds 10 Years?",
+   "url": "https://www.bikebd.com/bn/blog/what-to-do-when-the-motorcycle-tax-token-validity-exceeds-10-years",
+   "publisher": "BikeBD",
+   "date": "2025-11-29"
+  },
+  {
+   "title": "BRTA - Road Transport Rules 2022, Schedule-1 fees (Bangladesh Gazette Extraordinary, 27 Dec 2022), via brta.gov.bd 'বিভিন্ন ফি'",
+   "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-brta/2024/12/2e6d2c3e81cd4418882881f35e0e95bd.pdf",
+   "publisher": "BRTA / Govt of Bangladesh",
+   "date": "2022-12-27"
+  }
+ ],
+ "usedChecklistConfidence": "high for paperwork (BRTA page updated 30 Jun 2026); inspection tips are general practice guidance",
+ "communities": [
+  {
+   "name": "BikeBD",
+   "url": "https://www.bikebd.com",
+   "kind": "website / news & prices",
+   "verified": "site live 2026-10-06"
+  },
+  {
+   "name": "BikeBD (YouTube)",
+   "url": "https://www.youtube.com/@BikeBD",
+   "kind": "YouTube",
+   "verified": "channel live; BD motorcycle reviews and news"
+  },
+  {
+   "name": "BikeBD Official (Facebook group)",
+   "url": "https://www.facebook.com/groups/bikebdofficial/",
+   "kind": "Facebook group",
+   "verified": "linked from bikebd.com; page resolves"
+  },
+  {
+   "name": "BikeBD (Facebook page)",
+   "url": "https://www.facebook.com/bikebangladesh",
+   "kind": "Facebook page",
+   "verified": "resolves, title 'BikeBD'"
+  },
+  {
+   "name": "BD BikerZ",
+   "url": "https://www.facebook.com/bdbikerz",
+   "kind": "Facebook page / riding club (est. 2007)",
+   "verified": "resolves, title 'BD BikerZ'; history per BikeBD"
+  },
+  {
+   "name": "BIKE Lover Bachelor (BLB)",
+   "url": "https://www.youtube.com/@BikeLoverBachelor",
+   "kind": "YouTube",
+   "verified": "channel live; bike vlogs and reviews (Bangladeshi creator - confidence medium)"
+  },
+  {
+   "name": "Yamaha Motorcycles Bangladesh - ACI Motors",
+   "url": "https://www.youtube.com/@yamahabangladesh",
+   "kind": "YouTube (brand)",
+   "verified": "channel live"
+  },
+  {
+   "name": "Moto Mechanic | Dhaka",
+   "url": "https://www.facebook.com/MotoMechanicBD",
+   "kind": "Facebook page (servicing)",
+   "verified": "resolves"
+  },
+  {
+   "name": "BRTA Service Portal",
+   "url": "https://bsp.brta.gov.bd/",
+   "kind": "official resource",
+   "verified": "official"
+  }
+ ],
+ "communitiesNotes": "Yamaha Riders Club (25,000+ riders per The Daily Star) is active but its official URL was not confirmed, so it's left out. bikevaly.com now redirects to BikeBD."
+}
