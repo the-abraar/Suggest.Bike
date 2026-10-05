@@ -9,14 +9,14 @@ Things only you can do: decisions, accounts, money, relationships and work out i
 - [ ] **Spot-check prices in person or by phone.** Call or visit 3–4 showrooms (Uttara Motors/Bajaj, ACI/Yamaha, BHL/Honda, Rancon/Suzuki, IFAD/Royal Enfield). Check the 10 most-viewed bikes against our numbers. Showroom offers move faster than any website.
 - [ ] **Get a real BRTA registration receipt** for a 150cc and, if you can, a 350cc bike. Ask a friend who registered recently, or a dealer. This replaces the "medium/low confidence" totals.
 - [ ] **Legal footer.** Add a short disclaimer, a privacy note (we only use the browser's own storage, no tracking yet) and a contact email. A trademark note too: brand names are used for identification only.
-- [ ] **Contact channel.** Set up `hello@…` or a Facebook page so people can report wrong prices. That feedback loop is the moat.
+- [ ] **Create the `hello@suugest.bike` mailbox.** Every "Report wrong price" link on the site sends mail there (change it in `src/lib/site.ts`). Also consider a Facebook page. That feedback loop is the moat.
 
 ## Data you're best placed to collect
 
 - [ ] **Talk to 10–20 mechanics** (Bangshal, Mirpur, Jatrabari, and one or two district towns). Ask which engines they're comfortable with, which parts are hard to find, and typical labour rates. This turns "mechanic familiarity" from an estimate into the site's unique data.
 - [ ] **Owner mileage survey.** A Google Form shared in BD bike Facebook groups: model, city/highway split, kmpl, problems. Even 300 responses would make the mileage numbers defensible.
-- [ ] **Dealer and service-centre counts per brand per division.** Needed for the "I live outside Dhaka" weighting in the matchmaker.
-- [ ] **Photos.** Either shoot bikes at showrooms (with permission) or get press kits from distributors. Get written permission to use them.
+- [ ] **Verify the dealer and service-centre numbers** in `src/data/networks.json` with each distributor. The matchmaker's "I live outside Dhaka" weighting depends on them.
+- [ ] **More photos.** The site now uses only freely licensed Wikimedia Commons photos (with credit) and falls back to illustrations elsewhere. For full coverage, either shoot bikes at showrooms (with permission) or get press kits from distributors. Get written permission to use them.
 
 ## Growth
 

@@ -1,5 +1,5 @@
 import { getBike } from "./bikes";
-import type { Bike } from "./types";
+import type { BikeLite } from "./types";
 
 /** The comparisons Bangladeshi buyers argue about most. */
 export const POPULAR_COMPARISONS: [string, string][] = [
@@ -14,4 +14,4 @@ export const POPULAR_COMPARISONS: [string, string][] = [
 ];
 
 export const popularPairs = () =>
-  POPULAR_COMPARISONS.map(([a, b]) => [getBike(a), getBike(b)] as const).filter((p): p is readonly [Bike, Bike] => !!p[0] && !!p[1]);
+  POPULAR_COMPARISONS.map(([a, b]) => [getBike(a), getBike(b)] as const).filter((p): p is readonly [BikeLite, BikeLite] => !!p[0] && !!p[1]);

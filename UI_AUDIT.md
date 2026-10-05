@@ -25,6 +25,35 @@ One critical bug was found and **fixed during the audit**: the mobile menu opene
 
 ---
 
+## Resolution (2026-10-06, same day)
+
+Every item below has been addressed on `feat/suggest-bike-v1`. Data-dependent fixes ship with the data collected so far; where data is partial, the UI degrades gracefully.
+
+| ID | Fix |
+| --- | --- |
+| C1 | Mobile menu overlay rendered outside `<header>` |
+| H1 | Full Bangla: every interface string, all 76 bike write-ups (`bn` field), the buyer's guide (`guide.bn.json`), "লাখ" in prices, Bangla score hints |
+| H2 | Search matches Bangla script, Bangla digits and common misspellings via per-bike `aliases` ("পালসার", "এপাচি", "apachi", "gixer") |
+| H3 | EMI everywhere: "Monthly (EMI)" budget mode in the quiz, "≈ ৳X/month on 12-month card EMI" on bike, compare, cost and Quick pick, and a new guide section `#emi` |
+| H4 | New quiz step "Where will you ride and service it?" (Dhaka / big city / district town / village). It weights the brand's service network and mistri familiarity, and bike pages show the brand network (`src/data/networks.json`). *Network data is still empty: dealer counts weren't verified, so the step currently falls back to mechanic/parts scores and bike pages say "not verified yet".* |
+| H5 | Monthly-cost card moved directly under the hero on phones |
+| H6 | Used-only classics and 2-strokes are penalised unless the rider wants fun or style. A "Nothing new fits ৳X — cheapest new is…" banner was added. ৳1 lakh + used + commute now returns used examples of current commuters first |
+| M1 | Freely licensed Wikimedia Commons photos with author/license credit and a Photo/Illustration toggle on bike pages. 28 of 76 bikes have a photo, each hand-checked against the model; the rest show the illustration |
+| M2 | bikroy.com used asking prices (≈1-yr and ≈3-yr old) for 40 current models: shown on bike and compare pages, and the matchmaker can recommend a used example when new is over budget |
+| M3 | Quick pick defaults to geared bikes, with an explicit "Scooter" chip |
+| M4 | "Price checked <month>" pill, "Offer running" badge, "Report wrong price" link |
+| M5 | "approx" tags on mileage, parts prices and the cost model, plus clearer score disclaimers |
+| M6 | Native share sheet (with copy fallback) on bike, compare and results pages; static OG share images for every bike and the site |
+| M7 | Client pages load a slim index; long text only loads where it's shown (server-rendered detail pages, fetched per bike on compare) |
+| L1 | Hero Honda brand chip reads "Hero Honda (used)" |
+| L2 | Scooters show "Drive belt" / "Clutch shoes" instead of chain/clutch plates |
+| L3 | Language toggle reads "বাংলা" / "EN" |
+| L4 | Compare text rows stack per bike on phones |
+| L5 | Caption colour raised to ≥ 4.5:1 contrast in both themes |
+| L6 | "Report a mistake" in the footer and a per-bike correction email (`hello@suugest.bike` — the owner must create this mailbox) |
+
+---
+
 ## What already works for BD buyers
 
 | Area | Why it works here |

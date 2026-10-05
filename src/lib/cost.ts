@@ -1,5 +1,5 @@
 import guide from "@/data/guide.json";
-import type { Bike, Category } from "./types";
+import type { BikeLite, Category } from "./types";
 import { avgMileage } from "./bikes";
 
 export const FUEL = {
@@ -48,9 +48,14 @@ export const DEFAULT_COST_INPUT: CostInput = {
 };
 
 /** Fraction of purchase price kept per year, driven by the resale score (5 → 0.86/yr, 10 → 0.92/yr). */
-export const yearlyRetention = (b: Bike) => 0.8 + b.scores.resale * 0.012;
+/** The fields the cost model reads — satisfied by both full and slim bike records. */
+export type CostBike = Pick<BikeLite, "mileageKmpl" | "serviceIntervalKm" | "avgServiceCostBDT" | "engine" | "status" | "priceBDT" | "scores" | "category"> & {
+  parts: Pick<BikeLite["parts"][number], "name" | "priceBDT">[];
+};
 
-export function ownershipCost(b: Bike, inp: CostInput) {
+export const yearlyRetention = (b: CostBike) => 0.8 + b.scores.resale * 0.012;
+
+export function ownershipCost(b: CostBike, inp: CostInput) {
   const km = inp.kmPerDay * 365 * inp.years;
   const fuel = (km / avgMileage(b)) * inp.fuelPrice;
 
@@ -98,3 +103,9 @@ export function ownershipCost(b: Bike, inp: CostInput) {
 }
 
 export type CostBreakdown = ReturnType<typeof ownershipCost>;
+
+/**
+ * Card EMI as sold at BD showrooms: the price split over N months, usually 0% for 3–12 months
+ * with partner-bank credit cards (bank processing fees vary). We show the plain split and say so.
+ */
+export const emiMonthly = (price: number, months = 12) => Math.ceil(price / months / 10) * 10;

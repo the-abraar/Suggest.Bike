@@ -1,0 +1,1135 @@
+{
+ "meta": {
+  "title": "বাংলাদেশে মোটরসাইকেল রাখা: নিয়ম ও খরচ",
+  "compiledOn": "2026-10-06",
+  "currency": "BDT",
+  "disclaimer": "ফি ও নিয়ম বদলায়; টাকা দেওয়ার আগে সবসময় brta.gov.bd / bsp.brta.gov.bd অথবা আপনার বিআরটিএ সার্কেল অফিসে মিলিয়ে নিন। যেসব তথ্যের পাশে confidence 'medium' বা 'low' লেখা, সেগুলো সেকেন্ডারি সোর্স বা পরস্পরবিরোধী খবর থেকে নেওয়া।",
+  "sourceIndex": {
+   "gazette2022": {
+    "title": "BRTA - Road Transport Rules 2022, Schedule-1 fees (Bangladesh Gazette Extraordinary, 27 Dec 2022), via brta.gov.bd 'বিভিন্ন ফি'",
+    "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-brta/2024/12/2e6d2c3e81cd4418882881f35e0e95bd.pdf",
+    "publisher": "BRTA / Govt of Bangladesh",
+    "date": "2022-12-27"
+   },
+   "brtaFeesPage": {
+    "title": "BRTA - বিভিন্ন ফি (fees page)",
+    "url": "https://brta.gov.bd/pages/static-pages/6922dcac933eb65569e11838",
+    "publisher": "BRTA"
+   },
+   "dnpMemo": {
+    "title": "Road Division memo 35.020.031.00.00.025.2011-431: RFID number plate & DRC prices (via brta.gov.bd 'ডিএনপি ও ডিআরসি ফি')",
+    "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-brta/2024/12/f910dfd1b03241d1907f6cbe46201ccc.pdf",
+    "publisher": "Road Transport & Highways Division",
+    "date": "2012-10-23"
+   },
+   "brtaRegPage": {
+    "title": "BRTA - মোটরযানের নিবন্ধন (registration process & documents)",
+    "url": "https://brta.gov.bd/pages/static-pages/6922dba7933eb65569e0b9c1",
+    "publisher": "BRTA",
+    "date": "2026-06-30"
+   },
+   "brtaTaxTokenPage": {
+    "title": "BRTA - ট্যাক্স টোকেন নবায়ন",
+    "url": "https://brta.gov.bd/pages/static-pages/6922e0ab933eb65569e281ad",
+    "publisher": "BRTA",
+    "date": "2022-03-10"
+   },
+   "brtaTransferPage": {
+    "title": "BRTA - মালিকানা বদলী (ownership transfer documents)",
+    "url": "https://brta.gov.bd/site/page/67a3c40f-6cbb-4340-9873-2c8ba48f7e85/",
+    "publisher": "BRTA",
+    "date": "2026-06-30"
+   },
+   "brtaDLPage": {
+    "title": "BRTA - ড্রাইভিং লাইসেন্স পাওয়ার প্রক্রিয়া (licence process & fees)",
+    "url": "https://brta.gov.bd/pages/static-pages/6922e0e7933eb65569e2919e",
+    "publisher": "BRTA",
+    "date": "2026-06-30"
+   },
+   "brtaDLPage2": {
+    "title": "BRTA - ড্রাইভিং লাইসেন্স (learner -> written/oral/field test)",
+    "url": "https://brta.gov.bd/pages/static-pages/6922e12b933eb65569e2aa50",
+    "publisher": "BRTA",
+    "date": "2023-05-17"
+   },
+   "bsp": {
+    "title": "BRTA Service Portal (BSP)",
+    "url": "https://bsp.brta.gov.bd/",
+    "publisher": "BRTA"
+   },
+   "bspFees": {
+    "title": "BSP - registered vehicle fees / dues lookup",
+    "url": "https://bsp.brta.gov.bd/registeredVehicleFeesIndex?lan=en",
+    "publisher": "BRTA"
+   },
+   "bspTransfer": {
+    "title": "BSP - ownership transfer application",
+    "url": "https://bsp.brta.gov.bd/v/vehicleTransferOwnership/applicationForTransferOwnershipIndex",
+    "publisher": "BRTA"
+   },
+   "dsFeeHalved": {
+    "title": "Bike registration fee halved",
+    "url": "https://www.thedailystar.net/business/news/bike-registration-fee-halved-2038333",
+    "publisher": "The Daily Star",
+    "date": "2021-02-03"
+   },
+   "deshibikerReg": {
+    "title": "Bike Registration Fees in Bangladesh (2, 5, 10 years)",
+    "url": "https://deshibiker.com/bike-registration-fees-in-bd/",
+    "publisher": "DeshiBiker",
+    "date": "2025-05-11"
+   },
+   "deshibikerTax": {
+    "title": "How Much is the Road Tax of a Motorcycle in Bangladesh?",
+    "url": "https://deshibiker.com/road-tax-of-a-motorcycle-in-bd/",
+    "publisher": "DeshiBiker",
+    "date": "2025-05-11"
+   },
+   "pdts": {
+    "title": "Motorcycle Registration Fees in Bangladesh by CC [2025 Update]",
+    "url": "https://pdts.com.bd/blogs/30",
+    "publisher": "PDTS",
+    "date": "2024-06-25"
+   },
+   "bikebdReg": {
+    "title": "Motorcycle Registration Procedure In Bangladesh",
+    "url": "https://www.bikebd.com/blog/motorcycle-registration-procedure-in-bangladesh",
+    "publisher": "BikeBD",
+    "date": "2026-10-05"
+   },
+   "bikebd10yr": {
+    "title": "What To Do When The Motorcycle Tax Token Validity Exceeds 10 Years?",
+    "url": "https://www.bikebd.com/bn/blog/what-to-do-when-the-motorcycle-tax-token-validity-exceeds-10-years",
+    "publisher": "BikeBD",
+    "date": "2025-11-29"
+   },
+   "bikebdDL": {
+    "title": "How To Get A Motorcycle Driving License - Details and Cost",
+    "url": "https://bikebd.com/blog/driving-license",
+    "publisher": "BikeBD",
+    "date": "2026-10-05"
+   },
+   "bikebdTransfer": {
+    "title": "Motorcycle ownership transfer process Bangladesh",
+    "url": "https://bikebd.com/blog/motorcycle-ownership-transfer-process-bangladesh",
+    "publisher": "BikeBD",
+    "date": "2026-10-05"
+   },
+   "bdnewsTransfer": {
+    "title": "Motorcycle ownership transfer (Bangla)",
+    "url": "https://bangla.bdnews24.com/lifestyle/Jenerakun/74366df2801b",
+    "publisher": "bdnews24.com",
+    "date": "2026-08-26"
+   },
+   "dsAITDropped": {
+    "title": "Govt may drop planned wealth tax, bike and rickshaw AIT",
+    "url": "https://www.thedailystar.net/business/economy/news/govt-may-drop-planned-wealth-tax-bike-and-rickshaw-ait-4190076",
+    "publisher": "The Daily Star",
+    "date": "2026-06-04"
+   },
+   "dtFuelOct": {
+    "title": "Fuel prices unchanged for October",
+    "url": "https://www.dhakatribune.com/bangladesh/power-energy/421056/fuel-prices-unchanged-for-october",
+    "publisher": "Dhaka Tribune",
+    "date": "2026-09-30"
+   },
+   "bdnewsFuel": {
+    "title": "Fuel prices (30 Sep 2026)",
+    "url": "https://bdnews24.com/business/f3ub8nrf1p",
+    "publisher": "bdnews24.com",
+    "date": "2026-09-30"
+   },
+   "unbFuel": {
+    "title": "Fuel prices rise up to nearly 36% between January and September 2026",
+    "url": "https://www.unb.com.bd/category/Bangladesh/fuel-prices-rise-up-to-nearly-36-between-january-and-september-2026/195927",
+    "publisher": "UNB"
+   },
+   "paloCc375": {
+    "title": "Import of 375cc motorcycles on the cards, questions over new policy",
+    "url": "https://en.prothomalo.com/business/c7d38h8nz8",
+    "publisher": "Prothom Alo English",
+    "date": "2026-06"
+   },
+   "dsBn375": {
+    "title": "দেশে চালানো যাবে ৩৭৫ সিসি পর্যন্ত মোটরসাইকেল",
+    "url": "https://bangla.thedailystar.net/news/bangladesh/news-522546",
+    "publisher": "The Daily Star Bangla",
+    "date": "2023-10-11"
+   },
+   "dhakatimesIPO": {
+    "title": "দেশে ৩৭৫ সিসি পর্যন্ত মোটরসাইকেল আমদানির সুযোগ, গেজেট প্রকাশ",
+    "url": "https://www.dhakatimes24.com/2026/08/25/411300",
+    "publisher": "Dhaka Times",
+    "date": "2026-08-25"
+   },
+   "deshrupantorIPO": {
+    "title": "১৬৫ সিসির বেশি বাইক আমদানি করা যাবে না",
+    "url": "https://www.deshrupantor.com/715706/",
+    "publisher": "Desh Rupantor",
+    "date": "2026-08-26"
+   },
+   "banglatribuneIPO": {
+    "title": "এলসির বাইরে মূল্যসীমা ছাড়াই পণ্য আমদানি, বদলে গেলো আমদানি নীতির কাঠামো",
+    "url": "https://www.banglatribune.com/964670",
+    "publisher": "Bangla Tribune",
+    "date": "2026-08"
+   },
+   "feIPO": {
+    "title": "BB issues import policy implementation guidelines",
+    "url": "https://thefinancialexpress.com.bd/bangladesh/bb-issues-import-policy-implementation-guidelines",
+    "publisher": "The Financial Express",
+    "date": "2026-09-13"
+   },
+   "ds500cc": {
+    "title": "Up to 500cc motorbikes can be made locally",
+    "url": "https://www.thedailystar.net/business/economy/news/500cc-bikes-can-be-made-locally-3012596",
+    "publisher": "The Daily Star"
+   },
+   "tbsInsurance": {
+    "title": "IDRA motor insurance sees low response amid high premiums, non-compulsory rules",
+    "url": "https://www.tbsnews.net/node/1357826",
+    "publisher": "The Business Standard",
+    "date": "2026-02-10"
+   },
+   "paloInsurance": {
+    "title": "Insurance for bike, other vehicles set to be mandatory again",
+    "url": "https://en.prothomalo.com/bangladesh/gzl00ewg0c",
+    "publisher": "Prothom Alo English",
+    "date": "2024-03-15"
+   },
+   "tbsPenalties": {
+    "title": "Penalties for violating rules under the new Road Transport Act",
+    "url": "https://www.tbsnews.net/node/21549",
+    "publisher": "The Business Standard",
+    "date": "2019-11"
+   },
+   "ittefaqHelmet": {
+    "title": "Bikers without helmet will not get fuel",
+    "url": "https://en.ittefaq.com.bd/8815/bikers-without-helmet-will-not-get-fuel",
+    "publisher": "The Daily Ittefaq (English)",
+    "date": "2024-05-15"
+   },
+   "bikebdHelmetStd": {
+    "title": "How effective is Bangladesh's own motorcycle helmet standard",
+    "url": "https://www.bikebd.com/blog/how-effective-is-bangladeshs-own-motorcycle-helmet-standard",
+    "publisher": "BikeBD"
+   },
+   "tbsHelmetGrade": {
+    "title": "Bikers' safety takes backseat with no rule to grade helmets",
+    "url": "https://www.tbsnews.net/node/366583",
+    "publisher": "The Business Standard"
+   },
+   "dtExpressway": {
+    "title": "Motorcycles, three-wheelers banned on Dhaka Elevated Expressway",
+    "url": "https://www.dhakatribune.com/bangladesh/dhaka/319966/motorcycles-three-wheelers-banned-on-dhaka",
+    "publisher": "Dhaka Tribune",
+    "date": "2023-07-08"
+   },
+   "paloPadma": {
+    "title": "Motorcycles allowed to ply on Padma Bridge from Thursday",
+    "url": "https://en.prothomalo.com/bangladesh/rbjde07nzk",
+    "publisher": "Prothom Alo English",
+    "date": "2023-04-18"
+   },
+   "tbsPadma": {
+    "title": "Motorcycles ply Padma Bridge once again",
+    "url": "https://www.tbsnews.net/node/619670",
+    "publisher": "The Business Standard",
+    "date": "2023-04-20"
+   },
+   "dsRideshare": {
+    "title": "Ride-Sharing Service in Capital: Govt to shut door on outside vehicles",
+    "url": "https://www.thedailystar.net/backpage/news/govt-shuts-door-outside-vehicles-1697077",
+    "publisher": "The Daily Star",
+    "date": "2019-02-04"
+   },
+   "dsRideshareReg": {
+    "title": "BRTA starts registering ride-sharing firms",
+    "url": "https://d11.thedailystar.net/backpage/news/brta-starts-registering-ride-sharing-firms-1765546",
+    "publisher": "The Daily Star"
+   }
+  }
+ },
+ "registration": {
+  "asOf": "2026-10-06",
+  "summary": "বিআরটিএর আইনি রেজিস্ট্রেশন ফি মাত্র দুই ধাপে: 100cc পর্যন্ত ৳2,000, 100cc-এর বেশি হলে ৳3,000 (সড়ক পরিবহন বিধিমালা 2022)। 125cc, 150cc, 250cc বা 350cc-এর জন্য আলাদা কোনো রেজিস্ট্রেশন ধাপ নেই, তাই 100cc-এর বেশি সব বাইকের বিআরটিএ প্যাকেজ একই। শোরুম দামের ওপর ক্রেতাকে দিতে হয়: রেজিস্ট্রেশন ফি + পরিদর্শন ফি + ডিজিটাল রেজিস্ট্রেশন সার্টিফিকেট (DRC) + RFID রেট্রো-রিফ্লেক্টিভ নম্বর প্লেট + রোড ট্যাক্স (ট্যাক্স টোকেন, 2 বছর বা 10 বছরের) + এককালীন আর্থিক সহায়তা তহবিল (ট্রাস্টি বোর্ড) ফি + বিআরটিএ সেবা ফির ওপর 15% ভ্যাট। ডিলাররা সাধারণত এটা 'রেজিস্ট্রেশন প্যাকেজ' হিসেবে নেয় এবং সার্ভিস চার্জ যোগ করতে পারে।",
+  "bands": [
+   {
+    "label": "~100cc (100cc পর্যন্ত)",
+    "ccMin": 0,
+    "ccMax": 100,
+    "totalBDT": 10664,
+    "totalBDT10yr": 19664,
+    "totalNote": "সেকেন্ডারি সোর্সের প্যাকেজ মোট (DeshiBiker, মে 2025): 2 বছরের ট্যাক্স টোকেনসহ ৳10,664; 10 বছরের ট্যাক্স টোকেনসহ ৳19,664। PDTS (জুন 2024) 90 কেজির বেশি ও 100cc পর্যন্ত বাইকের জন্য ৳10,441 / 19,441 এবং 90 কেজির কম বাইকের জন্য ৳9,291 / 13,891 দেখায়, তাই মোটামুটি ৳9,300-10,700 (2 বছর) বা ৳13,900-19,700 (10 বছর) ধরে রাখুন।",
+    "confidence": "medium",
+    "breakdown": [
+     {
+      "item": "বিআরটিএ রেজিস্ট্রেশন ফি (সড়ক পরিবহন বিধিমালা 2022, তফসিল-1 ক্রমিক 21-ক)",
+      "amountBDT": 2000,
+      "confidence": "high"
+     },
+     {
+      "item": "যানবাহন পরিদর্শন ফি (তফসিল-1 ক্রমিক 32)",
+      "amountBDT": 800,
+      "confidence": "high"
+     },
+     {
+      "item": "ডিজিটাল রেজিস্ট্রেশন সার্টিফিকেট (DRC / স্মার্ট কার্ড ব্লু বুক)",
+      "amountBDT": 540,
+      "confidence": "high"
+     },
+     {
+      "item": "RFID রেট্রো-রিফ্লেক্টিভ নম্বর প্লেট (2012 সালের স্মারক অনুযায়ী এক প্লেটের দর; BikeBD-ও 2,200 দেখায়)",
+      "amountBDT": 2200,
+      "confidence": "medium"
+     },
+     {
+      "item": "রোড ট্যাক্স / ট্যাক্স টোকেন, 2 বছর (DeshiBiker অনুযায়ী ভ্যাটসহ)",
+      "amountBDT": 1150,
+      "confidence": "medium"
+     },
+     {
+      "item": "রোড ট্যাক্স / ট্যাক্স টোকেন, 10 বছরের একবারে অগ্রিম (2 বছরের বিকল্প)",
+      "amountBDT": 5750,
+      "confidence": "medium"
+     },
+     {
+      "item": "আর্থিক সহায়তা তহবিল (ট্রাস্টি বোর্ড) এককালীন ফি",
+      "amountBDT": 1150,
+      "confidence": "medium"
+     },
+     {
+      "item": "বিআরটিএ সেবা ফির ওপর 15% ভ্যাট (রেজিস্ট্রেশন, পরিদর্শন, DRC, প্লেট)",
+      "amountBDT": 831,
+      "confidence": "medium",
+      "note": "হিসাব: 2,000+800+540+2,200-এর 15%; সরকারি অংশগুলো যোগ করলে প্রায় ৳8,671 (2 বছর) হয়, আর বাজারের প্রায় ৳10,664 মোটের সঙ্গে এই ফারাকের ব্যাখ্যা কোনো সোর্সে পাওয়া যায়নি।"
+     }
+    ]
+   },
+   {
+    "label": "~125cc",
+    "ccMin": 101,
+    "ccMax": 125,
+    "totalBDT": 11764,
+    "totalBDT10yr": 20964,
+    "totalNote": "100cc-এর বেশি সব বাইকের মতোই একই বিআরটিএ প্যাকেজ। DeshiBiker (মে 2025): ৳11,764 (2 বছর) / ৳20,964 (10 বছর)। PDTS 10 বছরের জন্য ৳20,764 দেখায় (সম্ভবত টাইপো; 11,764 + 4 x 2,300 = 20,964)।",
+    "confidence": "medium",
+    "breakdownRef": "above100cc"
+   },
+   {
+    "label": "~150-165cc",
+    "ccMin": 126,
+    "ccMax": 165,
+    "totalBDT": 11764,
+    "totalBDT10yr": 20964,
+    "totalNote": "100cc-এর বেশির মতোই। 2026-27 অর্থবছরের আলোচনার পর থেকে 150cc-এর বেশি বাইকের মালিকদের টিআইএন (TIN) থাকা লাগবে বলে ধরা হচ্ছে (ডেইলি স্টার, 4 জুন 2026) - ডিলারের কাছে জেনে নিন।",
+    "confidence": "medium",
+    "breakdownRef": "above100cc"
+   },
+   {
+    "label": "~250cc",
+    "ccMin": 166,
+    "ccMax": 250,
+    "totalBDT": 11764,
+    "totalBDT10yr": 20964,
+    "totalNote": "রেজিস্ট্রেশন ফির তালিকায় 100cc-এর ওপরে আলাদা কোনো ধাপ নেই, তাই বিআরটিএর চার্জ 100cc-এর বেশির প্যাকেজের মতোই হওয়ার কথা। শুধু 250cc রেজিস্ট্রেশনের খরচ ভেঙে দেখানো কোনো সোর্স পাওয়া যায়নি; ডিলারের প্যাকেজ আলাদা হতে পারে।",
+    "confidence": "low",
+    "breakdownRef": "above100cc"
+   },
+   {
+    "label": "~350cc",
+    "ccMin": 251,
+    "ccMax": 375,
+    "totalBDT": 11764,
+    "totalBDT10yr": 20964,
+    "totalNote": "100cc-এর বেশির মতো একই আইনি ধাপ। কেবল দেশে তৈরি/সংযোজিত 375cc পর্যন্ত বাইকই রেজিস্ট্রেশন করা যায় (ccPolicy দেখুন)। কিছু ব্র্যান্ড (যেমন IFAD-এর মাধ্যমে Royal Enfield) 2 বছরের ফ্রি রেজিস্ট্রেশনের অফার দিয়েছে। শুধু 350cc রেজিস্ট্রেশনের খরচ ভেঙে দেখানো কোনো সোর্স পাওয়া যায়নি।",
+    "confidence": "low",
+    "breakdownRef": "above100cc"
+   }
+  ],
+  "breakdowns": {
+   "above100cc": [
+    {
+     "item": "বিআরটিএ রেজিস্ট্রেশন ফি (সড়ক পরিবহন বিধিমালা 2022, তফসিল-1 ক্রমিক 21-খ)",
+     "amountBDT": 3000,
+     "confidence": "high"
+    },
+    {
+     "item": "যানবাহন পরিদর্শন ফি (তফসিল-1 ক্রমিক 32)",
+     "amountBDT": 800,
+     "confidence": "high"
+    },
+    {
+     "item": "ডিজিটাল রেজিস্ট্রেশন সার্টিফিকেট (DRC)",
+     "amountBDT": 540,
+     "confidence": "high"
+    },
+    {
+     "item": "RFID রেট্রো-রিফ্লেক্টিভ নম্বর প্লেট",
+     "amountBDT": 2200,
+     "confidence": "medium"
+    },
+    {
+     "item": "রোড ট্যাক্স / ট্যাক্স টোকেন, 2 বছর (ভ্যাটসহ)",
+     "amountBDT": 2300,
+     "confidence": "medium"
+    },
+    {
+     "item": "রোড ট্যাক্স / ট্যাক্স টোকেন, 10 বছরের একবারে অগ্রিম (2 বছরের বিকল্প)",
+     "amountBDT": 11500,
+     "confidence": "medium"
+    },
+    {
+     "item": "আর্থিক সহায়তা তহবিল (ট্রাস্টি বোর্ড) এককালীন ফি",
+     "amountBDT": 1150,
+     "confidence": "medium"
+    },
+    {
+     "item": "বিআরটিএ সেবা ফির ওপর 15% ভ্যাট (রেজিস্ট্রেশন, পরিদর্শন, DRC, প্লেট)",
+     "amountBDT": 981,
+     "confidence": "medium",
+     "note": "হিসাব: 3,000+800+540+2,200-এর 15%। সরকারি অংশগুলো যোগ করলে প্রায় ৳10,971 (2 বছর); বাজারে দাম চাওয়া হয় প্রায় ৳11,764, ব্যাখ্যাহীন প্রায় ৳800 ফারাকটা অন্য কোনো চার্জ বা রাউন্ডিং হতে পারে।"
+    }
+   ]
+  },
+  "fitness": "বাস্তবে মোটরসাইকেলের জন্য নিয়মিত ফিটনেস সার্টিফিকেট নবায়ন করতে হয় না; রেজিস্ট্রেশনের সঙ্গেই বিআরটিএ ফিটনেস সার্টিফিকেট দেয়। গেজেটের বার্ষিক ফিটনেস ফি (৳800) সাধারণভাবে হালকা যানবাহনের জন্য প্রযোজ্য - ব্যক্তিগত মোটরসাইকেল থেকে এটা নেওয়া হয় কি না, সে বিষয়ে নিশ্চয়তা কম।",
+  "changes2024to2026": [
+   {
+    "date": "2021-02",
+    "change": "রেজিস্ট্রেশন ফি ৳4,200 থেকে কমে ৳2,000 (100cc পর্যন্ত) এবং ৳5,600 থেকে কমে ৳3,000 (100cc-এর বেশি)। সড়ক পরিবহন বিধিমালা 2022-এর তফসিল-1-এ এটা অন্তর্ভুক্ত।",
+    "source": {
+     "title": "Bike registration fee halved",
+     "url": "https://www.thedailystar.net/business/news/bike-registration-fee-halved-2038333",
+     "publisher": "The Daily Star",
+     "date": "2021-02-03"
+    },
+    "confidence": "high"
+   },
+   {
+    "date": "2023",
+    "change": "৳1,150 এককালীন আর্থিক সহায়তা তহবিল (ট্রাস্টি বোর্ড) ফি যোগ হয়েছে; 2023-এর আগে রেজিস্ট্রেশন করা মালিকরা পরের ট্যাক্স টোকেন নবায়নের সময় এটা দেন।",
+    "source": {
+     "title": "How Much is the Road Tax of a Motorcycle in Bangladesh?",
+     "url": "https://deshibiker.com/road-tax-of-a-motorcycle-in-bd/",
+     "publisher": "DeshiBiker",
+     "date": "2025-05-11"
+    },
+    "confidence": "medium"
+   },
+   {
+    "date": "ongoing",
+    "change": "10 বছরের ট্যাক্স টোকেন নিয়ম: মোটরসাইকেলের রোড ট্যাক্স সর্বোচ্চ 10 বছর দিতে হয় (100cc-এর বেশি হলে একবারে প্রায় ৳11,500, অথবা প্রতি 2 বছরে ৳2,300)। 10 বছর পর বাইকটি 'ট্যাক্স-ফ্রি' টোকেন পায়, যা প্রতি 5 বছরে ব্যাংকে মাত্র ৳23 জমা দিয়ে নবায়ন করতে হয়।",
+    "source": {
+     "title": "What To Do When The Motorcycle Tax Token Validity Exceeds 10 Years?",
+     "url": "https://www.bikebd.com/bn/blog/what-to-do-when-the-motorcycle-tax-token-validity-exceeds-10-years",
+     "publisher": "BikeBD",
+     "date": "2025-11-29"
+    },
+    "confidence": "medium"
+   },
+   {
+    "date": "2026-06-04",
+    "change": "2026-27 অর্থবছরের বাজেটে মোটরসাইকেলের ওপর প্রথমবারের মতো বার্ষিক অগ্রিম আয়কর (AIT) প্রস্তাব করা হয়েছিল (শুরুতে 111-125cc-এ ৳2,000, 126-165cc-এ ৳5,000, 165cc-এর বেশি হলে ৳10,000), কিন্তু প্রতিবাদের পর তা বাদ দেওয়া হয়। মোটরসাইকেলে এখন কোনো AIT চালু নেই; তবে 150cc-এর বেশি বাইকের মালিকদের টিআইএন (TIN) লাগবে।",
+    "source": {
+     "title": "Govt may drop planned wealth tax, bike and rickshaw AIT",
+     "url": "https://www.thedailystar.net/business/economy/news/govt-may-drop-planned-wealth-tax-bike-and-rickshaw-ait-4190076",
+     "publisher": "The Daily Star",
+     "date": "2026-06-04"
+    },
+    "confidence": "high"
+   }
+  ],
+  "process": [
+   "ডিলারের কাছ থেকে নিন: বিক্রয় সনদ, বিল অব এন্ট্রি/ইনভয়েস (বা CKD গেট পাস), ভ্যাটের কাগজ (মূসক-11), কাস্টমস/সংযোজনের কাগজপত্র",
+   "বিআরটিএ সার্কেল অফিসে বা অনলাইনে আবেদন করুন; বিআরটিএ যাচাই করে অ্যাসেসমেন্ট স্লিপ দেবে",
+   "অনুমোদিত ব্যাংকে বা অনলাইনে (BSP-র মাধ্যমে বিকাশ ইত্যাদি) ফি দিন",
+   "বিআরটিএর পরিদর্শনের জন্য বাইকটি হাজির করুন",
+   "রেজিস্ট্রেশন অনুমোদন হলে প্রাপ্তিস্বীকারপত্র, ফিটনেস সার্টিফিকেট ও ট্যাক্স টোকেন দেওয়া হয়",
+   "DRC-র জন্য এসএমএস পেলে বায়োমেট্রিক (ছবি, স্বাক্ষর, আঙুলের ছাপ) দিন",
+   "এসএমএস পেলে DRC ও RFID নম্বর প্লেট সংগ্রহ করুন (BikeBD: সাধারণত ~1 মাসের মধ্যে)"
+  ],
+  "sources": [
+   {
+    "title": "BRTA - Road Transport Rules 2022, Schedule-1 fees (Bangladesh Gazette Extraordinary, 27 Dec 2022), via brta.gov.bd 'বিভিন্ন ফি'",
+    "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-brta/2024/12/2e6d2c3e81cd4418882881f35e0e95bd.pdf",
+    "publisher": "BRTA / Govt of Bangladesh",
+    "date": "2022-12-27"
+   },
+   {
+    "title": "BRTA - বিভিন্ন ফি (fees page)",
+    "url": "https://brta.gov.bd/pages/static-pages/6922dcac933eb65569e11838",
+    "publisher": "BRTA"
+   },
+   {
+    "title": "Road Division memo 35.020.031.00.00.025.2011-431: RFID number plate & DRC prices (via brta.gov.bd 'ডিএনপি ও ডিআরসি ফি')",
+    "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-brta/2024/12/f910dfd1b03241d1907f6cbe46201ccc.pdf",
+    "publisher": "Road Transport & Highways Division",
+    "date": "2012-10-23"
+   },
+   {
+    "title": "BRTA - মোটরযানের নিবন্ধন (registration process & documents)",
+    "url": "https://brta.gov.bd/pages/static-pages/6922dba7933eb65569e0b9c1",
+    "publisher": "BRTA",
+    "date": "2026-06-30"
+   },
+   {
+    "title": "Bike Registration Fees in Bangladesh (2, 5, 10 years)",
+    "url": "https://deshibiker.com/bike-registration-fees-in-bd/",
+    "publisher": "DeshiBiker",
+    "date": "2025-05-11"
+   },
+   {
+    "title": "How Much is the Road Tax of a Motorcycle in Bangladesh?",
+    "url": "https://deshibiker.com/road-tax-of-a-motorcycle-in-bd/",
+    "publisher": "DeshiBiker",
+    "date": "2025-05-11"
+   },
+   {
+    "title": "Motorcycle Registration Fees in Bangladesh by CC [2025 Update]",
+    "url": "https://pdts.com.bd/blogs/30",
+    "publisher": "PDTS",
+    "date": "2024-06-25"
+   },
+   {
+    "title": "Motorcycle Registration Procedure In Bangladesh",
+    "url": "https://www.bikebd.com/blog/motorcycle-registration-procedure-in-bangladesh",
+    "publisher": "BikeBD",
+    "date": "2026-10-05"
+   },
+   {
+    "title": "What To Do When The Motorcycle Tax Token Validity Exceeds 10 Years?",
+    "url": "https://www.bikebd.com/bn/blog/what-to-do-when-the-motorcycle-tax-token-validity-exceeds-10-years",
+    "publisher": "BikeBD",
+    "date": "2025-11-29"
+   },
+   {
+    "title": "Bike registration fee halved",
+    "url": "https://www.thedailystar.net/business/news/bike-registration-fee-halved-2038333",
+    "publisher": "The Daily Star",
+    "date": "2021-02-03"
+   },
+   {
+    "title": "Govt may drop planned wealth tax, bike and rickshaw AIT",
+    "url": "https://www.thedailystar.net/business/economy/news/govt-may-drop-planned-wealth-tax-bike-and-rickshaw-ait-4190076",
+    "publisher": "The Daily Star",
+    "date": "2026-06-04"
+   }
+  ],
+  "confidence": "medium - statutory fee slabs are confirmed from the gazette; package totals and road-tax amounts come from secondary guides that disagree slightly. BikeBD's itemised table (Oct 2026) still shows pre-2021 registration fees (4,200/5,600), so it was not used for totals."
+ },
+ "licence": {
+  "asOf": "2026-10-06",
+  "eligibility": {
+   "minAgeNonProfessional": 18,
+   "minAgeProfessional": 21,
+   "minEducation": "অষ্টম শ্রেণি পাস",
+   "other": "মানসিক ও শারীরিকভাবে সুস্থ হতে হবে; BSP অ্যাকাউন্ট খুলতে NID লাগবে"
+  },
+  "types": [
+   {
+    "type": "শিক্ষানবিশ (লার্নার) লাইসেন্স",
+    "feeBDT": 518,
+    "feeNote": "1টি ক্যাটাগরি (যেমন শুধু মোটরসাইকেল) ৳518; 2টি ক্যাটাগরি (যেমন মোটরসাইকেল + গাড়ি) ৳748। অনলাইনে দিতে হয়। BikeBD পুরনো ৳345/518 উল্লেখ করে - বিআরটিএর পেজই নির্ভরযোগ্য।",
+    "fee2CategoriesBDT": 748,
+    "validity": "BSP থেকে সঙ্গে সঙ্গে প্রিন্ট করা যায়; পরীক্ষার আগে 2-3 মাস অনুশীলনের পরামর্শ দেয় বিআরটিএ",
+    "confidence": "high"
+   },
+   {
+    "type": "স্মার্ট কার্ড - অপেশাদার",
+    "feeBDT": 4497,
+    "validityYears": 10,
+    "postalDeliveryBDT": 60,
+    "confidence": "high"
+   },
+   {
+    "type": "স্মার্ট কার্ড - পেশাদার (বাণিজ্যিকভাবে চালাতে লাগে)",
+    "feeBDT": 2772,
+    "validityYears": 5,
+    "postalDeliveryBDT": 60,
+    "extra": "ডোপ টেস্টের রিপোর্ট আপলোড করতে হবে",
+    "confidence": "high"
+   }
+  ],
+  "documents": [
+   "আবেদনকারীর ছবি (≤150KB, 300x300)",
+   "নিবন্ধিত চিকিৎসকের মেডিকেল সার্টিফিকেট (বিআরটিএর ফরমে)",
+   "NID-র স্ক্যান কপি",
+   "বর্তমান ঠিকানা NID-র সঙ্গে না মিললে ইউটিলিটি বিল",
+   "শিক্ষাগত সনদ (অষ্টম শ্রেণি বা তার বেশি)",
+   "স্মার্ট কার্ডের জন্য: পাস সিলসহ লার্নার লাইসেন্সের স্ক্যান; ডোপ টেস্ট রিপোর্ট (শুধু পেশাদার)"
+  ],
+  "exam": {
+   "components": [
+    "লিখিত পরীক্ষা",
+    "মৌখিক (ভাইভা) পরীক্ষা",
+    "মাঠ/ব্যবহারিক চালনা পরীক্ষা"
+   ],
+   "notes": "লার্নার লাইসেন্সে দেওয়া তারিখে বিআরটিএ সার্কেলের পরীক্ষাকেন্দ্রে পরীক্ষা হয়। পরীক্ষার আগে বায়োমেট্রিক নিয়ে আঙুলের ছাপ NID সার্ভারের সঙ্গে মেলানো হয়। ফল 1 কর্মদিবসের মধ্যে অনলাইনে দেওয়া হয় ও এসএমএসে জানানো হয়। লার্নার লাইসেন্সের মূল কপি আর একটা কলম সঙ্গে নিন।"
+  },
+  "steps": [
+   {
+    "step": 1,
+    "title": "BSP অ্যাকাউন্ট খুলুন",
+    "detail": "NID দিয়ে bsp.brta.gov.bd-তে রেজিস্টার করুন; বিভাগ/জেলা/থানা ঠিক করুন (এটা দিয়েই আপনার বিআরটিএ সার্কেল ঠিক হয়)।"
+   },
+   {
+    "step": 2,
+    "title": "লার্নার লাইসেন্সের আবেদন করুন",
+    "detail": "ছবি, মেডিকেল সার্টিফিকেট, NID, ইউটিলিটি বিল, শিক্ষাগত সনদ আপলোড করুন; অনলাইনে ৳518 (1 ক্যাটাগরি) বা ৳748 (2 ক্যাটাগরি) দিন; সঙ্গে সঙ্গে লার্নার লাইসেন্স প্রিন্ট করুন।"
+   },
+   {
+    "step": 3,
+    "title": "অনুশীলন করে পরীক্ষা দিন",
+    "detail": "নির্ধারিত তারিখে: বায়োমেট্রিক, তারপর লিখিত, মৌখিক ও মাঠ পরীক্ষা। BikeBD জানায়, পরীক্ষার তারিখ সাধারণত 3-6 মাস পরে পড়ে (কখনো আগেও)।"
+   },
+   {
+    "step": 4,
+    "title": "স্মার্ট কার্ডের আবেদন করুন",
+    "detail": "পাস সিলসহ লার্নার লাইসেন্স আপলোড করুন, অনলাইনে ৳4,497 (অপেশাদার, 10 বছর) বা ৳2,772 (পেশাদার, 5 বছর) + ৳60 ডাক খরচ দিন। ব্যাংকের কাউন্টারে টাকা জমা আর নেওয়া হয় না।"
+   },
+   {
+    "step": 5,
+    "title": "অস্থায়ী অনুমতিপত্র নিয়ে চালান",
+    "detail": "অনুমোদনের পর BSP থেকে স্বয়ংক্রিয়ভাবে তৈরি অস্থায়ী অনুমতিপত্র (Temporary Authorization) প্রিন্ট করুন এবং কার্ড না আসা পর্যন্ত (ল্যামিনেট করে) সঙ্গে রাখুন।"
+   },
+   {
+    "step": 6,
+    "title": "ডাকে স্মার্ট কার্ড বুঝে নিন",
+    "detail": "আপনার ঠিকানায় পাঠানো হয়; BikeBD জানায়, সাধারণত 3-4 মাস লাগে। এখন পুলিশ ভেরিফিকেশন লাগে না।"
+   }
+  ],
+  "typicalTimeline": "শুরু থেকে শেষ পর্যন্ত মোটামুটি 4-9 মাস (2-3 মাস অনুশীলন/পরীক্ষার অপেক্ষা + 3-4 মাস কার্ড ছাপা); এর মধ্যে অস্থায়ী অনুমতিপত্র দিয়ে বৈধভাবে চালাতে পারবেন।",
+  "statutoryBaseFees": "গেজেটের মূল ফি (সড়ক পরিবহন বিধিমালা 2022): লার্নার ৳250, দক্ষতা পরীক্ষা প্রতিবার ৳200, লাইসেন্স ইস্যু ৳300, বার্ষিক লাইসেন্স ফি ৳300; ওপরে বিআরটিএর প্রকাশিত মোট ফিতে এগুলোর সঙ্গে ভ্যাট/কার্ড চার্জ ধরা আছে।",
+  "sources": [
+   {
+    "title": "BRTA - ড্রাইভিং লাইসেন্স পাওয়ার প্রক্রিয়া (licence process & fees)",
+    "url": "https://brta.gov.bd/pages/static-pages/6922e0e7933eb65569e2919e",
+    "publisher": "BRTA",
+    "date": "2026-06-30"
+   },
+   {
+    "title": "BRTA - ড্রাইভিং লাইসেন্স (learner -> written/oral/field test)",
+    "url": "https://brta.gov.bd/pages/static-pages/6922e12b933eb65569e2aa50",
+    "publisher": "BRTA",
+    "date": "2023-05-17"
+   },
+   {
+    "title": "BRTA - Road Transport Rules 2022, Schedule-1 fees (Bangladesh Gazette Extraordinary, 27 Dec 2022), via brta.gov.bd 'বিভিন্ন ফি'",
+    "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-brta/2024/12/2e6d2c3e81cd4418882881f35e0e95bd.pdf",
+    "publisher": "BRTA / Govt of Bangladesh",
+    "date": "2022-12-27"
+   },
+   {
+    "title": "How To Get A Motorcycle Driving License - Details and Cost",
+    "url": "https://bikebd.com/blog/driving-license",
+    "publisher": "BikeBD",
+    "date": "2026-10-05"
+   },
+   {
+    "title": "BRTA Service Portal (BSP)",
+    "url": "https://bsp.brta.gov.bd/",
+    "publisher": "BRTA"
+   }
+  ],
+  "confidence": "high for fees and documents (BRTA page updated 30 Jun 2026); medium for timeline"
+ },
+ "ccPolicy": {
+  "asOf": "2026-10-06",
+  "currentRule": "রেজিস্ট্রেশন: দেশে তৈরি/সংযোজিত হলে বিআরটিএ 375cc পর্যন্ত মোটরসাইকেল রেজিস্ট্রেশন করে (সড়ক পরিবহন ও মহাসড়ক বিভাগের সিদ্ধান্ত, অক্টোবর 2023)। পুরোপুরি তৈরি (CBU) আমদানি: আগে থেকে 165cc-তে সীমিত। দেশি নির্মাতারা 500cc পর্যন্ত বাইক বানাতে যন্ত্রাংশ/যন্ত্রপাতি আমদানি করতে পারে।",
+  "maxCcForRegularBuyersRegistrable": 375,
+  "maxCcCbuImportLegacy": 165,
+  "maxCcLocalManufacturePermitted": 500,
+  "history": [
+   {
+    "period": "2000-এর দশকের শুরু পর্যন্ত",
+    "rule": "ইঞ্জিনের ক্ষমতায় কোনো সীমা ছিল না"
+   },
+   {
+    "period": "2000-এর দশকের শুরুতে",
+    "rule": "নিরাপত্তার কারণে (দ্রুতগতির বাইক নিয়ে উদ্বেগ) 150cc সীমা চালু হয়; পরে বাড়িয়ে 165cc করা হয়"
+   },
+   {
+    "period": "2018-2022",
+    "rule": "বিক্রি/রেজিস্ট্রেশনে 165cc সীমা; শিল্পখাত সীমা বাড়ানোর দাবি জানায়; 2018 সালের মোটরসাইকেল শিল্প নীতিমালা",
+    "source": {
+     "title": "Import of 375cc motorcycles on the cards, questions over new policy",
+     "url": "https://en.prothomalo.com/business/c7d38h8nz8",
+     "publisher": "Prothom Alo English",
+     "date": "2026-06"
+    }
+   },
+   {
+    "period": "2022-2023",
+    "rule": "সরকার দেশে 500cc পর্যন্ত বাইক তৈরির অনুমোদন দেয় (যেমন Asian Motorbikes-এর মাধ্যমে Kawasaki); IFAD দেশে Royal Enfield 350cc সংযোজন করে",
+    "source": {
+     "title": "Up to 500cc motorbikes can be made locally",
+     "url": "https://www.thedailystar.net/business/economy/news/500cc-bikes-can-be-made-locally-3012596",
+     "publisher": "The Daily Star"
+    }
+   },
+   {
+    "period": "2023-10-11",
+    "rule": "দেশে তৈরি 375cc পর্যন্ত মোটরসাইকেল রেজিস্ট্রেশন করে চালানোর অনুমতি",
+    "source": {
+     "title": "দেশে চালানো যাবে ৩৭৫ সিসি পর্যন্ত মোটরসাইকেল",
+     "url": "https://bangla.thedailystar.net/news/bangladesh/news-522546",
+     "publisher": "The Daily Star Bangla",
+     "date": "2023-10-11"
+    }
+   },
+   {
+    "period": "2026-08-24",
+    "rule": "আমদানি নীতি আদেশ 2026-2029 জারি (মেয়াদ 31 ডিসেম্বর 2029 পর্যন্ত)। মোটরসাইকেল নিয়ে খবরগুলো পরস্পরবিরোধী: ঢাকা টাইমস (25 আগস্ট 2026) বলছে এখন 375cc পর্যন্ত CBU আমদানি করা যাবে; দেশ রূপান্তর (26 আগস্ট 2026) ও বাংলা ট্রিবিউন বলছে, খসড়ায় 375cc প্রস্তাব থাকলেও চূড়ান্ত আদেশে 165cc-এর বেশি CBU আমদানির নিষেধাজ্ঞা বহাল আছে (পুলিশ বাদে)।",
+    "source": [
+     {
+      "title": "দেশে ৩৭৫ সিসি পর্যন্ত মোটরসাইকেল আমদানির সুযোগ, গেজেট প্রকাশ",
+      "url": "https://www.dhakatimes24.com/2026/08/25/411300",
+      "publisher": "Dhaka Times",
+      "date": "2026-08-25"
+     },
+     {
+      "title": "১৬৫ সিসির বেশি বাইক আমদানি করা যাবে না",
+      "url": "https://www.deshrupantor.com/715706/",
+      "publisher": "Desh Rupantor",
+      "date": "2026-08-26"
+     },
+     {
+      "title": "এলসির বাইরে মূল্যসীমা ছাড়াই পণ্য আমদানি, বদলে গেলো আমদানি নীতির কাঠামো",
+      "url": "https://www.banglatribune.com/964670",
+      "publisher": "Bangla Tribune",
+      "date": "2026-08"
+     },
+     {
+      "title": "BB issues import policy implementation guidelines",
+      "url": "https://thefinancialexpress.com.bd/bangladesh/bb-issues-import-policy-implementation-guidelines",
+      "publisher": "The Financial Express",
+      "date": "2026-09-13"
+     }
+    ],
+    "confidence": "low"
+   }
+  ],
+  "importDutyNotes": "250cc-এর বেশি আমদানির ওপর শুল্ক প্রথম প্রস্তাব করা হয়েছিল আগের একটি বাজেটে (প্রথম আলো)। মোটরসাইকেলের বর্তমান CBU শুল্কহার এই গবেষণায় যাচাই করা হয়নি - নিশ্চয়তা কম; এনবিআরের কাস্টমস ট্যারিফ (HS 8711) দেখে নিন।",
+  "sources": [
+   {
+    "title": "দেশে চালানো যাবে ৩৭৫ সিসি পর্যন্ত মোটরসাইকেল",
+    "url": "https://bangla.thedailystar.net/news/bangladesh/news-522546",
+    "publisher": "The Daily Star Bangla",
+    "date": "2023-10-11"
+   },
+   {
+    "title": "Import of 375cc motorcycles on the cards, questions over new policy",
+    "url": "https://en.prothomalo.com/business/c7d38h8nz8",
+    "publisher": "Prothom Alo English",
+    "date": "2026-06"
+   },
+   {
+    "title": "দেশে ৩৭৫ সিসি পর্যন্ত মোটরসাইকেল আমদানির সুযোগ, গেজেট প্রকাশ",
+    "url": "https://www.dhakatimes24.com/2026/08/25/411300",
+    "publisher": "Dhaka Times",
+    "date": "2026-08-25"
+   },
+   {
+    "title": "১৬৫ সিসির বেশি বাইক আমদানি করা যাবে না",
+    "url": "https://www.deshrupantor.com/715706/",
+    "publisher": "Desh Rupantor",
+    "date": "2026-08-26"
+   },
+   {
+    "title": "এলসির বাইরে মূল্যসীমা ছাড়াই পণ্য আমদানি, বদলে গেলো আমদানি নীতির কাঠামো",
+    "url": "https://www.banglatribune.com/964670",
+    "publisher": "Bangla Tribune",
+    "date": "2026-08"
+   },
+   {
+    "title": "BB issues import policy implementation guidelines",
+    "url": "https://thefinancialexpress.com.bd/bangladesh/bb-issues-import-policy-implementation-guidelines",
+    "publisher": "The Financial Express",
+    "date": "2026-09-13"
+   },
+   {
+    "title": "Up to 500cc motorbikes can be made locally",
+    "url": "https://www.thedailystar.net/business/economy/news/500cc-bikes-can-be-made-locally-3012596",
+    "publisher": "The Daily Star"
+   }
+  ],
+  "confidence": "high for 375cc locally-made registration rule; low for CBU import status after IPO 2026-29 (conflicting reports)"
+ },
+ "fuel": {
+  "octane": 165,
+  "petrol": 160,
+  "diesel": 135,
+  "kerosene": 155,
+  "unit": "টাকা প্রতি লিটার",
+  "asOf": "2026-10-01",
+  "effectiveFrom": "2026-09-20",
+  "note": "অক্টোবর 2026-এ দাম 20 সেপ্টেম্বর 2026-এর সমন্বয়ের মতোই আছে, তখন সব জ্বালানির দাম লিটারে ৳20 বাড়ানো হয়েছিল। জ্বালানি ও খনিজ সম্পদ বিভাগ প্রতি মাসে দাম পর্যালোচনা করে (2024 সালে স্বয়ংক্রিয় ফর্মুলাভিত্তিক দাম চালু হয়), তবে অক্টোবরের সিদ্ধান্তে বলা হয়েছে 'উপযুক্ত কর্তৃপক্ষের অনুমোদনক্রমে অপরিবর্তিত রাখা হলো'। ইউএনবি জানিয়েছে, জানুয়ারি থেকে সেপ্টেম্বর 2026-এর মধ্যে দাম প্রায় 36% পর্যন্ত বেড়েছে।",
+  "source": {
+   "title": "Fuel prices unchanged for October",
+   "url": "https://www.dhakatribune.com/bangladesh/power-energy/421056/fuel-prices-unchanged-for-october",
+   "publisher": "Dhaka Tribune",
+   "date": "2026-09-30"
+  },
+  "sources": [
+   {
+    "title": "Fuel prices unchanged for October",
+    "url": "https://www.dhakatribune.com/bangladesh/power-energy/421056/fuel-prices-unchanged-for-october",
+    "publisher": "Dhaka Tribune",
+    "date": "2026-09-30"
+   },
+   {
+    "title": "Fuel prices (30 Sep 2026)",
+    "url": "https://bdnews24.com/business/f3ub8nrf1p",
+    "publisher": "bdnews24.com",
+    "date": "2026-09-30"
+   },
+   {
+    "title": "Fuel prices rise up to nearly 36% between January and September 2026",
+    "url": "https://www.unb.com.bd/category/Bangladesh/fuel-prices-rise-up-to-nearly-36-between-january-and-september-2026/195927",
+    "publisher": "UNB"
+   }
+  ],
+  "confidence": "high"
+ },
+ "insurance": {
+  "asOf": "2026-10-06",
+  "thirdPartyMandatory": false,
+  "summary": "মোটরযান অধ্যাদেশ 1983 অনুযায়ী থার্ড-পার্টি মোটর বিমা বাধ্যতামূলক ছিল, কিন্তু সড়ক পরিবহন আইন 2018-তে তা ঐচ্ছিক হয়ে যায় (নভেম্বর 2019 থেকে কার্যকর; ডিসেম্বর 2020 থেকে কার্যত উঠে যায়)। মন্ত্রিসভা (12 মার্চ 2024) এটা আবার বাধ্যতামূলক করতে সর্বোচ্চ ৳3,000 জরিমানার বিধানসহ সংশোধনী নীতিগতভাবে অনুমোদন করে, তবে ফেব্রুয়ারি 2026 পর্যন্ত এটা বাধ্যতামূলক হয়নি। আইডিআরএ আগস্ট 2025 থেকে এক বছরের পাইলট হিসেবে 'মোটর লায়াবিলিটি ইন্স্যুরেন্স' নামে থার্ড-পার্টি বিমা আবার চালু করেছে।",
+  "thirdParty": {
+   "exampleAnnualPremiumBDT": 1006,
+   "exampleFor": "150cc মোটরসাইকেল (আইডিআরএ মোটর লায়াবিলিটি পাইলট)",
+   "coverage": [
+    {
+     "item": "প্রতি ব্যক্তির মৃত্যু / স্থায়ী সম্পূর্ণ অক্ষমতা",
+     "amountBDT": 200000
+    },
+    {
+     "item": "গুরুতর আঘাত",
+     "amountBDT": 20000
+    },
+    {
+     "item": "অন্যের গাড়ি/সম্পত্তির ক্ষতি",
+     "amountBDT": 60000
+    },
+    {
+     "item": "আইনি/সালিশি খরচ",
+     "amountBDT": 10000
+    }
+   ],
+   "source": {
+    "title": "IDRA motor insurance sees low response amid high premiums, non-compulsory rules",
+    "url": "https://www.tbsnews.net/node/1357826",
+    "publisher": "The Business Standard",
+    "date": "2026-02-10"
+   },
+   "confidence": "high"
+  },
+  "comprehensive": {
+   "typicalRange": "2026 সালের কোনো নির্ভরযোগ্য রেট পাওয়া যায়নি। কম্প্রিহেনসিভ বিমা (নিজের বাইকের ক্ষতি + চুরি) সাধারণ বিমা কোম্পানিগুলো বাইকের বিমাকৃত মূল্যের শতাংশ হিসেবে বিক্রি করে; কোম্পানির কাছে কোটেশন চেয়ে নিন।",
+   "minBDT": null,
+   "maxBDT": null,
+   "confidence": "low"
+  },
+  "sources": [
+   {
+    "title": "IDRA motor insurance sees low response amid high premiums, non-compulsory rules",
+    "url": "https://www.tbsnews.net/node/1357826",
+    "publisher": "The Business Standard",
+    "date": "2026-02-10"
+   },
+   {
+    "title": "Insurance for bike, other vehicles set to be mandatory again",
+    "url": "https://en.prothomalo.com/bangladesh/gzl00ewg0c",
+    "publisher": "Prothom Alo English",
+    "date": "2024-03-15"
+   }
+  ],
+  "confidence": "high for legal status and pilot premium; low for comprehensive pricing"
+ },
+ "laws": [
+  {
+   "title": "চালক ও আরোহী দুজনেরই হেলমেট বাধ্যতামূলক",
+   "detail": "সড়ক পরিবহন আইন 2018 অনুযায়ী চালক ও আরোহী দুজনকেই সঠিক হেলমেট পরতে হবে। হেলমেট ছাড়া চালালে বা একজনের বেশি আরোহী নিলে: সর্বোচ্চ ৳10,000 জরিমানা বা সর্বোচ্চ 3 মাসের কারাদণ্ড বা দুটোই (সঙ্গে ডিমেরিট পয়েন্ট)।",
+   "sources": [
+    {
+     "title": "Penalties for violating rules under the new Road Transport Act",
+     "url": "https://www.tbsnews.net/node/21549",
+     "publisher": "The Business Standard",
+     "date": "2019-11"
+    }
+   ],
+   "asOf": "2019-11",
+   "confidence": "high"
+  },
+  {
+   "title": "সর্বোচ্চ একজন আরোহী",
+   "detail": "দুজনের বেশি (চালক + একজন) নিয়ে চালানো অপরাধ, শাস্তি একই: ৳10,000 / 3 মাস।",
+   "sources": [
+    {
+     "title": "Penalties for violating rules under the new Road Transport Act",
+     "url": "https://www.tbsnews.net/node/21549",
+     "publisher": "The Business Standard",
+     "date": "2019-11"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "title": "'হেলমেট নেই, তেল নেই'",
+   "detail": "15 মে 2024 সড়ক পরিবহনমন্ত্রী সারা দেশে ঘোষণা দেন: হেলমেট ছাড়া চালক ও আরোহীকে পাম্পে তেল দেওয়া হবে না। এলাকাভেদে প্রয়োগ আলাদা।",
+   "sources": [
+    {
+     "title": "Bikers without helmet will not get fuel",
+     "url": "https://en.ittefaq.com.bd/8815/bikers-without-helmet-will-not-get-fuel",
+     "publisher": "The Daily Ittefaq (English)",
+     "date": "2024-05-15"
+    }
+   ],
+   "asOf": "2024-05-15",
+   "confidence": "medium"
+  },
+  {
+   "title": "বিএসটিআই হেলমেট মান",
+   "detail": "বিএসটিআইয়ের BDS 1136:2022 মান মোটরসাইকেল হেলমেটের জন্য, কিন্তু আইনে শুধু 'সঠিক' হেলমেটের কথা বলা আছে এবং (টিবিএস অনুযায়ী) বিএসটিআইয়ের পরীক্ষাগার ছিল না, তাই বিএসটিআই-সনদপ্রাপ্ত হেলমেটের বিষয়টি কড়াভাবে প্রয়োগ হয় না। তবু সনদপ্রাপ্ত (BSTI/DOT/ECE) ফুল-ফেস বা ওপেন-ফেস হেলমেটই কিনুন।",
+   "sources": [
+    {
+     "title": "How effective is Bangladesh's own motorcycle helmet standard",
+     "url": "https://www.bikebd.com/blog/how-effective-is-bangladeshs-own-motorcycle-helmet-standard",
+     "publisher": "BikeBD"
+    },
+    {
+     "title": "Bikers' safety takes backseat with no rule to grade helmets",
+     "url": "https://www.tbsnews.net/node/366583",
+     "publisher": "The Business Standard"
+    }
+   ],
+   "confidence": "medium"
+  },
+  {
+   "title": "যে জরিমানাগুলো জানা দরকার",
+   "detail": "লাইসেন্স ছাড়া চালালে: ৳25,000 বা 6 মাস বা দুটোই। রেজিস্ট্রেশন ছাড়া বাইক / নম্বর প্লেট নেই: ৳50,000 বা 6 মাস বা দুটোই। অবৈধ পরিবর্তন (এক্সজস্ট, ব্রেক ইত্যাদি): সর্বোচ্চ ৳3 লাখ। উল্টো পথে চালালে: ৳10,000 / 3 মাস।",
+   "sources": [
+    {
+     "title": "Penalties for violating rules under the new Road Transport Act",
+     "url": "https://www.tbsnews.net/node/21549",
+     "publisher": "The Business Standard",
+     "date": "2019-11"
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "title": "মালিকানা বদল না করা",
+   "detail": "কেনা বাইক বিক্রেতার নামে রেখে দিলে: সড়ক পরিবহন আইন অনুযায়ী ৳5,000 জরিমানা (প্রথমবার), ৳10,000 (আবার করলে) (বিডিনিউজ24 অনুযায়ী ধারা 74)।",
+   "sources": [
+    {
+     "title": "Motorcycle ownership transfer (Bangla)",
+     "url": "https://bangla.bdnews24.com/lifestyle/Jenerakun/74366df2801b",
+     "publisher": "bdnews24.com",
+     "date": "2026-08-26"
+    }
+   ],
+   "asOf": "2026-08-26",
+   "confidence": "medium"
+  },
+  {
+   "title": "ঢাকা এলিভেটেড এক্সপ্রেসওয়ে: মোটরসাইকেল নিষিদ্ধ",
+   "detail": "ঢাকা এলিভেটেড এক্সপ্রেসওয়েতে (গতি ঘণ্টায় 80 কিমি পর্যন্ত) মোটরসাইকেল ও তিন চাকার যান চলতে দেওয়া হয় না।",
+   "sources": [
+    {
+     "title": "Motorcycles, three-wheelers banned on Dhaka Elevated Expressway",
+     "url": "https://www.dhakatribune.com/bangladesh/dhaka/319966/motorcycles-three-wheelers-banned-on-dhaka",
+     "publisher": "Dhaka Tribune",
+     "date": "2023-07-08"
+    }
+   ],
+   "asOf": "2023-07-08",
+   "confidence": "high"
+  },
+  {
+   "title": "পদ্মা সেতু: শর্তসাপেক্ষে মোটরসাইকেল চলতে পারে",
+   "detail": "একটি প্রাণঘাতী দুর্ঘটনার পর 27 জুন 2022 থেকে নিষিদ্ধ ছিল; 20 এপ্রিল 2023 থেকে আবার চলতে দেওয়া হচ্ছে: নির্দিষ্ট/সার্ভিস লেন, ঘণ্টায় 60 কিমি গতিসীমা, সর্বোচ্চ 2 জন, হেলমেট বাধ্যতামূলক, সেতুর ওপর থামা বা ছবি তোলা যাবে না। টোল দিতে হয় (পরিমাণ এখানে যাচাই করা হয়নি)।",
+   "sources": [
+    {
+     "title": "Motorcycles allowed to ply on Padma Bridge from Thursday",
+     "url": "https://en.prothomalo.com/bangladesh/rbjde07nzk",
+     "publisher": "Prothom Alo English",
+     "date": "2023-04-18"
+    },
+    {
+     "title": "Motorcycles ply Padma Bridge once again",
+     "url": "https://www.tbsnews.net/node/619670",
+     "publisher": "The Business Standard",
+     "date": "2023-04-20"
+    }
+   ],
+   "asOf": "2023-04-20",
+   "confidence": "medium"
+  },
+  {
+   "title": "মোটরসাইকেলে রাইড শেয়ারিং",
+   "detail": "রাইড শেয়ারিং সার্ভিস নীতিমালা 2017 (কার্যকর 8 মার্চ 2018) অনুযায়ী চলে: শুধু ব্যক্তিগত গাড়ি তালিকাভুক্ত করা যায় এবং কাগজপত্র হালনাগাদ থাকতে হবে; 2019 থেকে ঢাকায় রাইড শেয়ারিংয়ে চালানো বাইককে ঢাকা মেট্রোতে রেজিস্ট্রেশন করা থাকতে হবে। বাণিজ্যিকভাবে চালাতে সাধারণত পেশাদার লাইসেন্স লাগে।",
+   "sources": [
+    {
+     "title": "Ride-Sharing Service in Capital: Govt to shut door on outside vehicles",
+     "url": "https://www.thedailystar.net/backpage/news/govt-shuts-door-outside-vehicles-1697077",
+     "publisher": "The Daily Star",
+     "date": "2019-02-04"
+    },
+    {
+     "title": "BRTA starts registering ride-sharing firms",
+     "url": "https://d11.thedailystar.net/backpage/news/brta-starts-registering-ride-sharing-firms-1765546",
+     "publisher": "The Daily Star"
+    }
+   ],
+   "asOf": "2019-02-04",
+   "confidence": "medium"
+  }
+ ],
+ "usedChecklist": [
+  {
+   "title": "ব্লু বুক / DRC-র সঙ্গে বিক্রেতাকে মিলিয়ে নিন",
+   "detail": "রেজিস্ট্রেশন সার্টিফিকেট (পুরনো ব্লু বুক) বা ডিজিটাল রেজিস্ট্রেশন সার্টিফিকেটের নাম বিক্রেতার NID-র সঙ্গে মিলতে হবে। না মিললে বিক্রেতা আইনগত মালিক নন - নিবন্ধিত মালিকের কাছ থেকেই মালিকানা বদল করার জন্য জোর দিন।"
+  },
+  {
+   "title": "চেসিস ও ইঞ্জিন নম্বর দেখুন",
+   "detail": "স্টিয়ারিং হেডে খোদাই করা চেসিস (ফ্রেম) নম্বর আর ক্র্যাংককেসের ইঞ্জিন নম্বর DRC-র সঙ্গে মেলান। নম্বরের আশপাশে নতুন করে খোদাই, ঘষার দাগ, নতুন রং বা ঝালাইয়ের চিহ্ন আছে কি না দেখুন।"
+  },
+  {
+   "title": "অনলাইনে রেজিস্ট্রেশন ও বকেয়া যাচাই করুন",
+   "detail": "বিআরটিএ সার্ভিস পোর্টালে (bsp.brta.gov.bd) রেজিস্ট্রেশন নম্বর দিয়ে বকেয়া/ফি খুঁজে দেখুন - বাইকটি বিআরটিএর রেকর্ডে আছে কি না এবং ট্যাক্স টোকেন/ফি বকেয়া আছে কি না বোঝা যাবে। RFID নম্বর প্লেট DRC-র সঙ্গে মিলিয়ে নিন।"
+  },
+  {
+   "title": "ট্যাক্স টোকেনের মেয়াদ",
+   "detail": "ট্যাক্স টোকেনের মেয়াদ কবে শেষ দেখুন। বকেয়া বছরগুলো আর (না দেওয়া থাকলে) ৳1,150 এককালীন আর্থিক সহায়তা তহবিল ফি আপনাকেই দিতে হবে। যেসব বাইকের 10 বছরের রোড ট্যাক্স দেওয়া শেষ, সেগুলোর শুধু প্রতি 5 বছরে ৳23-এর 'ট্যাক্স-ফ্রি' টোকেন লাগে।"
+  },
+  {
+   "title": "লোন / হায়ার-পারচেজ ক্লিয়ারেন্স",
+   "detail": "DRC-তে কোনো ব্যাংক/লিজিং কোম্পানির হায়ার-পারচেজ এন্ট্রি থাকলে ঋণদাতার লোন ক্লিয়ারেন্স চিঠি নিন; এটা ছাড়া বিআরটিএ মালিকানা বদল করবে না (2022 সালের বিধিমালা অনুযায়ী হায়ার-পারচেজ বাতিলের ফি ৳1,000)।"
+  },
+  {
+   "title": "বিআরটিএতে মালিকানা বদল",
+   "detail": "বিক্রেতা TTO ফরম ও বিক্রয় রসিদে (৳10 রেভিনিউ স্ট্যাম্পসহ) এবং ছবিসহ বিক্রয় হলফনামায় সই করবেন; ক্রেতা TO + TTO ফরম, নন-জুডিশিয়াল স্ট্যাম্পে ক্রেতার হলফনামা (BikeBD: ৳300) এবং 3 কপি স্ট্যাম্প সাইজ ছবিসহ নমুনা স্বাক্ষর ফরমে সই করবেন; মূল DRC/ব্লু বুক ও দুজনের NID সংযুক্ত করুন; ফি দিয়ে BSP-র মাধ্যমে আবেদন করুন। BikeBD-র (পুরনো, 2014 ভিত্তিক) হিসাবে ডিজিটাল রেজিস্ট্রেশন থাকলে ফি ৳2,665; টাকা দেওয়ার আগে BSP-তে বর্তমান ফি মিলিয়ে নিন।"
+  },
+  {
+   "title": "দুর্ঘটনার ক্ষতির লক্ষণ",
+   "detail": "বাঁকা/নতুন করে ঝালাই করা ফ্রেম, সামনের চাকার সঙ্গে হ্যান্ডেলবার সোজা না থাকা, ফর্ক টিউব অসমান বা ফর্ক সিল দিয়ে তেল চোঁয়ানো, বার-এন্ড/লিভার/ফুটপেগে ঘষার দাগ, শুধু কিছু প্যানেলে আলাদা বা নতুন রং, আর সোজা রাস্তায় টেস্ট রাইডে এক পাশে টানা - এসব খেয়াল করুন।"
+  },
+  {
+   "title": "বন্যা / পানিতে ডোবার লক্ষণ",
+   "detail": "হেডলাইট, টেইল লাইট, সিটের নিচে ও সুইচের খোপে কাদা বা মরিচা; ক্ষয়ে যাওয়া তারের কানেক্টর; দুধের মতো ঘোলা ইঞ্জিন অয়েল; যেসব নাট-বোল্ট পরিষ্কার থাকার কথা সেগুলোতে মরিচা আছে কি না দেখুন। বর্ষায় ঢাকার জলাবদ্ধতার কারণে এটা প্রায়ই দেখা যায়।"
+  },
+  {
+   "title": "ওডোমিটার কারসাজি",
+   "detail": "ওডোমিটারের সঙ্গে ক্ষয় মিলিয়ে দেখুন: ফুটপেগের রাবার, সিটের ফোম, গ্রিপ, চেইন/স্প্রকেটের অবস্থা, ব্রেক ডিস্কের কিনারা। সার্ভিস সেন্টারের রেকর্ড চান (অনুমোদিত সার্ভিস সেন্টার কিলোমিটার লিখে রাখে)। ডিজিটাল মিটারও রিসেট করা যায়।"
+  },
+  {
+   "title": "যান্ত্রিক টেস্ট রাইড",
+   "detail": "ঠান্ডা অবস্থায় স্টার্ট, আইডলিং ঠিক থাকে কি না, ধোঁয়ার রং, ক্লাচ স্লিপ, গিয়ার ঠিকমতো পড়ে কি না, ব্রেকের অনুভূতি ও ABS (থাকলে), বৈদ্যুতিক জিনিসপত্র। ইঞ্জিন গরম হওয়া পর্যন্ত চালিয়ে দেখুন।"
+  },
+  {
+   "title": "বৈধভাবে বাইক নিয়ে যাওয়া",
+   "detail": "আপনার নামে মালিকানা বদলের আবেদন জমা না হওয়া পর্যন্ত এবং বৈধ লাইসেন্স না থাকলে বাইক চালাবেন না; DRC, ট্যাক্স টোকেন ও লাইসেন্স (বা অস্থায়ী অনুমতিপত্র) সঙ্গে রাখুন।"
+  }
+ ],
+ "usedChecklistSources": [
+  {
+   "title": "BRTA - মালিকানা বদলী (ownership transfer documents)",
+   "url": "https://brta.gov.bd/site/page/67a3c40f-6cbb-4340-9873-2c8ba48f7e85/",
+   "publisher": "BRTA",
+   "date": "2026-06-30"
+  },
+  {
+   "title": "BSP - ownership transfer application",
+   "url": "https://bsp.brta.gov.bd/v/vehicleTransferOwnership/applicationForTransferOwnershipIndex",
+   "publisher": "BRTA"
+  },
+  {
+   "title": "BSP - registered vehicle fees / dues lookup",
+   "url": "https://bsp.brta.gov.bd/registeredVehicleFeesIndex?lan=en",
+   "publisher": "BRTA"
+  },
+  {
+   "title": "Motorcycle ownership transfer process Bangladesh",
+   "url": "https://bikebd.com/blog/motorcycle-ownership-transfer-process-bangladesh",
+   "publisher": "BikeBD",
+   "date": "2026-10-05"
+  },
+  {
+   "title": "Motorcycle ownership transfer (Bangla)",
+   "url": "https://bangla.bdnews24.com/lifestyle/Jenerakun/74366df2801b",
+   "publisher": "bdnews24.com",
+   "date": "2026-08-26"
+  },
+  {
+   "title": "What To Do When The Motorcycle Tax Token Validity Exceeds 10 Years?",
+   "url": "https://www.bikebd.com/bn/blog/what-to-do-when-the-motorcycle-tax-token-validity-exceeds-10-years",
+   "publisher": "BikeBD",
+   "date": "2025-11-29"
+  },
+  {
+   "title": "BRTA - Road Transport Rules 2022, Schedule-1 fees (Bangladesh Gazette Extraordinary, 27 Dec 2022), via brta.gov.bd 'বিভিন্ন ফি'",
+   "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-brta/2024/12/2e6d2c3e81cd4418882881f35e0e95bd.pdf",
+   "publisher": "BRTA / Govt of Bangladesh",
+   "date": "2022-12-27"
+  }
+ ],
+ "usedChecklistConfidence": "high for paperwork (BRTA page updated 30 Jun 2026); inspection tips are general practice guidance",
+ "communities": [
+  {
+   "name": "BikeBD",
+   "url": "https://www.bikebd.com",
+   "kind": "ওয়েবসাইট / খবর ও দাম",
+   "verified": "সাইট চালু 2026-10-06"
+  },
+  {
+   "name": "BikeBD (YouTube)",
+   "url": "https://www.youtube.com/@BikeBD",
+   "kind": "ইউটিউব",
+   "verified": "চ্যানেল চালু; বাংলাদেশের মোটরসাইকেল রিভিউ ও খবর"
+  },
+  {
+   "name": "BikeBD Official (Facebook group)",
+   "url": "https://www.facebook.com/groups/bikebdofficial/",
+   "kind": "ফেসবুক গ্রুপ",
+   "verified": "bikebd.com থেকে লিংক দেওয়া; পেজ খোলে"
+  },
+  {
+   "name": "BikeBD (Facebook page)",
+   "url": "https://www.facebook.com/bikebangladesh",
+   "kind": "ফেসবুক পেজ",
+   "verified": "খোলে, শিরোনাম 'BikeBD'"
+  },
+  {
+   "name": "BD BikerZ",
+   "url": "https://www.facebook.com/bdbikerz",
+   "kind": "ফেসবুক পেজ / রাইডিং ক্লাব (প্রতিষ্ঠা 2007)",
+   "verified": "খোলে, শিরোনাম 'BD BikerZ'; ইতিহাস BikeBD অনুযায়ী"
+  },
+  {
+   "name": "BIKE Lover Bachelor (BLB)",
+   "url": "https://www.youtube.com/@BikeLoverBachelor",
+   "kind": "ইউটিউব",
+   "verified": "চ্যানেল চালু; বাইক ভ্লগ ও রিভিউ (বাংলাদেশি নির্মাতা - নিশ্চয়তা মাঝারি)"
+  },
+  {
+   "name": "Yamaha Motorcycles Bangladesh - ACI Motors",
+   "url": "https://www.youtube.com/@yamahabangladesh",
+   "kind": "ইউটিউব (ব্র্যান্ড)",
+   "verified": "চ্যানেল চালু"
+  },
+  {
+   "name": "Moto Mechanic | Dhaka",
+   "url": "https://www.facebook.com/MotoMechanicBD",
+   "kind": "ফেসবুক পেজ (সার্ভিসিং)",
+   "verified": "খোলে"
+  },
+  {
+   "name": "BRTA Service Portal",
+   "url": "https://bsp.brta.gov.bd/",
+   "kind": "সরকারি রিসোর্স",
+   "verified": "সরকারি"
+  }
+ ],
+ "communitiesNotes": "ইয়ামাহা রাইডার্স ক্লাব (দ্য ডেইলি স্টার অনুযায়ী 25,000-এর বেশি রাইডার) সক্রিয়, তবে এর অফিশিয়াল লিংক নিশ্চিত করা যায়নি, তাই রাখা হয়নি। bikevaly.com এখন BikeBD-তে নিয়ে যায়।"
+}

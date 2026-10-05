@@ -84,7 +84,7 @@ export function Header() {
             <button
               className="grid h-10 w-10 place-items-center rounded-xl text-ink hover:bg-surface-2 lg:hidden"
               onClick={() => setOpen((o) => !o)}
-              aria-label="Menu"
+              aria-label={t("nav.menu")}
               aria-expanded={open}
             >
               {open ? <X size={20} /> : <Menu size={20} />}
@@ -123,11 +123,11 @@ function LangToggle() {
   return (
     <button
       onClick={() => setLang(lang === "en" ? "bn" : "en")}
-      className="grid h-10 min-w-10 place-items-center rounded-xl px-2 text-[13px] font-semibold text-ink-2 hover:bg-surface-2"
+      className="grid h-10 min-w-10 place-items-center rounded-xl px-2.5 text-[13.5px] font-semibold text-ink-2 hover:bg-surface-2"
       aria-label={lang === "en" ? "বাংলায় দেখুন" : "Switch to English"}
       title={lang === "en" ? "বাংলায় দেখুন" : "Switch to English"}
     >
-      {lang === "en" ? "বাং" : "EN"}
+      {lang === "en" ? "বাংলা" : "EN"}
     </button>
   );
 }
@@ -146,7 +146,7 @@ function ThemeToggle() {
     setTheme(next);
   };
   return (
-    <button onClick={flip} className="grid h-10 w-10 place-items-center rounded-xl text-ink-2 hover:bg-surface-2" aria-label="Toggle dark mode">
+    <button onClick={flip} className="grid h-10 w-10 place-items-center rounded-xl text-ink-2 hover:bg-surface-2" aria-label="Toggle dark mode / ডার্ক মোড">
       {theme === "dark" ? <Sun size={19} /> : <Moon size={19} />}
     </button>
   );

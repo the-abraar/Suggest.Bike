@@ -7,19 +7,28 @@ import { BIKES, CATEGORIES, ccLabel, formatLakh, fullName } from "@/lib/bikes";
 import { useLang } from "@/lib/i18n";
 import { BikeArt } from "./BikeArt";
 
-const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "");
+// Keeps Latin letters, digits and Bangla script; Bangla digits are folded to Latin so "এন১৬০" matches "n160".
+const BN_DIGITS = "০১২৩৪৫৬৭৮৯";
+const norm = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/[০-৯]/g, (d) => String(BN_DIGITS.indexOf(d)))
+    .replace(/[^a-z0-9\u0980-\u09ff]+/g, "");
 
 export function searchBikes(q: string, limit = 7) {
   const n = norm(q);
   if (!n) return [];
-  const words = q.toLowerCase().split(/\s+/).filter(Boolean).map(norm);
+  const words = q.toLowerCase().split(/\s+/).filter(Boolean).map(norm).filter(Boolean);
   return BIKES.map((b) => {
-    const hay = norm(`${b.brand}${b.model}${b.variant ?? ""}${b.category}${Math.round(b.engine.cc)}cc`);
+    const aliases = (b.aliases ?? []).map(norm);
+    const hay = norm(`${b.brand}${b.model}${b.variant ?? ""}${b.category}${Math.round(b.engine.cc)}cc`) + aliases.join("|");
     const name = norm(fullName(b));
     let score = 0;
     if (norm(b.model).startsWith(n)) score += 6;
     if (name.startsWith(n)) score += 5;
     if (name.includes(n)) score += 3;
+    if (aliases.some((a) => a.startsWith(n))) score += 4;
+    else if (aliases.some((a) => a.includes(n))) score += 2;
     if (words.every((w) => hay.includes(w))) score += 2;
     return { b, score };
   })
@@ -31,7 +40,7 @@ export function searchBikes(q: string, limit = 7) {
 
 export function SearchBox({ compact = false, autoFocus = false, large = false }: { compact?: boolean; autoFocus?: boolean; large?: boolean }) {
   const router = useRouter();
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [q, setQ] = useState("");
   const [open, setOpen] = useState(false);
   const [idx, setIdx] = useState(0);
@@ -120,7 +129,9 @@ export function SearchBox({ compact = false, autoFocus = false, large = false }:
           className="absolute left-0 right-0 top-[calc(100%+8px)] z-50 overflow-hidden rounded-2xl border border-line bg-surface shadow-lg animate-fade"
         >
           {results.length === 0 ? (
-            <p className="px-4 py-5 text-sm text-muted">No bikes match “{q}”. Try a brand like Yamaha or a model like Apache.</p>
+            <p className="px-4 py-5 text-sm text-muted">
+              {lang === "bn" ? `“${q}” এর সাথে কোনো বাইক মেলেনি। ইয়ামাহা বা অ্যাপাচির মতো নাম লিখে দেখুন।` : `No bikes match “${q}”. Try a brand like Yamaha or a model like Apache.`}
+            </p>
           ) : (
             results.map((b, i) => (
               <button
@@ -137,10 +148,10 @@ export function SearchBox({ compact = false, autoFocus = false, large = false }:
                 <span className="min-w-0 flex-1">
                   <span className="block truncate text-[14.5px] font-medium text-ink">{fullName(b)}</span>
                   <span className="block text-[12.5px] text-muted">
-                    {ccLabel(b)} · {CATEGORIES[b.category].en}
+                    {ccLabel(b)} · {lang === "bn" ? CATEGORIES[b.category].bn : CATEGORIES[b.category].en}
                   </span>
                 </span>
-                <span className="text-[13.5px] font-semibold text-ink-2 tnum">{formatLakh(b.priceBDT)}</span>
+                <span className="text-[13.5px] font-semibold text-ink-2 tnum">{formatLakh(b.priceBDT, lang)}</span>
               </button>
             ))
           )}

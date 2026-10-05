@@ -3,13 +3,13 @@
 import Link from "next/link";
 import { Suspense, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { ArrowRight, Info } from "lucide-react";
+import { Info } from "lucide-react";
 import { BIKES, formatBDT, formatLakh, fullName, getBike } from "@/lib/bikes";
-import { DEFAULT_COST_INPUT, FUEL, ownershipCost, registrationFor, type CostInput } from "@/lib/cost";
-import { L } from "@/lib/i18n";
+import { DEFAULT_COST_INPUT, FUEL, emiMonthly, ownershipCost, registrationFor, type CostInput } from "@/lib/cost";
+import { useLang, useTx } from "@/lib/i18n";
 import { BikeArt } from "@/components/BikeArt";
 import { searchBikes } from "@/components/SearchBox";
-import type { Bike } from "@/lib/types";
+import type { BikeLite } from "@/lib/types";
 
 export default function CostPage() {
   return (
@@ -20,17 +20,19 @@ export default function CostPage() {
 }
 
 const SEGMENTS = [
-  { k: "fuel", label: "Fuel", color: "var(--brand)" },
-  { k: "service", label: "Servicing", color: "#4f8fd6" },
-  { k: "wear", label: "Wear parts", color: "#d99a2b" },
-  { k: "paperwork", label: "BRTA paperwork", color: "#8b6fd1" },
-  { k: "insurance", label: "Insurance", color: "#2bb3a8" },
-  { k: "depreciation", label: "Resale loss", color: "var(--signal)" },
+  { k: "fuel", en: "Fuel", bn: "তেল", color: "var(--brand)" },
+  { k: "service", en: "Servicing", bn: "সার্ভিসিং", color: "#4f8fd6" },
+  { k: "wear", en: "Wear parts", bn: "ক্ষয়যোগ্য পার্টস", color: "#d99a2b" },
+  { k: "paperwork", en: "BRTA paperwork", bn: "BRTA কাগজপত্র", color: "#8b6fd1" },
+  { k: "insurance", en: "Insurance", bn: "ইন্স্যুরেন্স", color: "#2bb3a8" },
+  { k: "depreciation", en: "Resale loss", bn: "রিসেল লস", color: "var(--signal)" },
 ] as const;
 
 function Cost() {
   const params = useSearchParams();
-  const [bike, setBike] = useState<Bike>(() => getBike("bajaj-pulsar-n160") ?? BIKES[0]);
+  const { lang } = useLang();
+  const tx = useTx();
+  const [bike, setBike] = useState<BikeLite>(() => getBike("bajaj-pulsar-n160") ?? BIKES[0]);
   const [inp, setInp] = useState<CostInput>(DEFAULT_COST_INPUT);
 
   useEffect(() => {
@@ -40,8 +42,9 @@ function Cost() {
 
   const c = useMemo(() => ownershipCost(bike, inp), [bike, inp]);
   const set = <K extends keyof CostInput>(k: K, v: CostInput[K]) => setInp((x) => ({ ...x, [k]: v }));
+  const months = inp.years * 12;
 
-  const cheaper = useMemo(
+  const others = useMemo(
     () =>
       BIKES.filter((b) => b.id !== bike.id && b.status === "on-sale" && b.category === bike.category)
         .map((b) => ({ b, c: ownershipCost(b, inp) }))
@@ -50,21 +53,19 @@ function Cost() {
     [bike, inp],
   );
 
-  const pick = (b: Bike) => {
+  const pick = (b: BikeLite) => {
     setBike(b);
     window.history.replaceState(null, "", `?bike=${b.id}`);
   };
 
   return (
     <div className="container-x pt-10">
-      <h1 className="text-[32px] font-semibold tracking-[-0.03em] text-ink sm:text-[40px]">
-        <L en="What will it really cost?" bn="আসলে কত খরচ হবে?" />
-      </h1>
+      <h1 className="text-[32px] font-semibold tracking-[-0.03em] text-ink sm:text-[40px]">{tx("What will it really cost?", "আসলে কত খরচ হবে?")}</h1>
       <p className="mt-1.5 max-w-2xl text-[15.5px] text-muted">
-        <L
-          en="The sticker price is just the start. Fuel, servicing, chains and tyres, BRTA paperwork and what you lose at resale — all in one honest monthly number."
-          bn="শোরুমের দাম শুধু শুরু। তেল, সার্ভিস, চেইন-টায়ার, BRTA কাগজপত্র আর বিক্রির সময় যা হারাবেন — সব মিলিয়ে একটা সৎ মাসিক সংখ্যা।"
-        />
+        {tx(
+          "The sticker price is just the start. Fuel, servicing, chains and tyres, BRTA paperwork and what you lose at resale — all in one honest monthly number.",
+          "শোরুমের দাম শুধু শুরু। তেল, সার্ভিস, চেইন-টায়ার, BRTA কাগজপত্র আর বিক্রির সময় যা হারাবেন — সব মিলিয়ে একটা সৎ মাসিক সংখ্যা।",
+        )}
       </p>
 
       <div className="mt-10 grid grid-cols-[minmax(0,1fr)] gap-8 lg:grid-cols-[380px_minmax(0,1fr)]">
@@ -72,47 +73,51 @@ function Cost() {
         <div className="card h-fit space-y-7 p-6 lg:sticky lg:top-24">
           <BikePicker bike={bike} onPick={pick} />
 
-          <Field label="Riding per day" value={`${inp.kmPerDay} km`}>
-            <Range min={5} max={150} step={5} value={inp.kmPerDay} onChange={(v) => set("kmPerDay", v)} label="Kilometres per day" />
-            <p className="mt-1 text-[12px] text-faint">≈ {(inp.kmPerDay * 30).toLocaleString("en-IN")} km a month. Pathao riders often do 100+.</p>
+          <Field label={tx("Riding per day", "দিনে কতটা চালাবেন")} value={`${inp.kmPerDay} km`}>
+            <Range min={5} max={150} step={5} value={inp.kmPerDay} onChange={(v) => set("kmPerDay", v)} label={tx("Kilometres per day", "দিনে কত কিলোমিটার")} />
+            <p className="mt-1 text-[12px] text-faint">
+              {tx(`≈ ${(inp.kmPerDay * 30).toLocaleString("en-IN")} km a month. Pathao riders often do 100+.`, `মাসে ≈ ${(inp.kmPerDay * 30).toLocaleString("en-IN")} km। পাঠাও রাইডাররা প্রায়ই দিনে 100+ চালান।`)}
+            </p>
           </Field>
 
-          <Field label="How long you'll keep it">
+          <Field label={tx("How long you'll keep it", "কতদিন রাখবেন")}>
             <div className="grid grid-cols-5 gap-1 rounded-xl bg-surface-2 p-1">
               {[1, 2, 3, 4, 5].map((y) => (
                 <button
                   key={y}
                   onClick={() => set("years", y)}
+                  aria-pressed={inp.years === y}
                   className={`h-9 rounded-lg text-[14px] font-medium transition-all ${inp.years === y ? "bg-surface text-ink shadow-sm" : "text-muted hover:text-ink"}`}
                 >
-                  {y} yr
+                  {y} {tx("yr", "বছর")}
                 </button>
               ))}
             </div>
           </Field>
 
-          <Field label="Octane price" value={`৳${inp.fuelPrice}/L`}>
-            <Range min={120} max={220} step={1} value={inp.fuelPrice} onChange={(v) => set("fuelPrice", v)} label="Fuel price" />
+          <Field label={tx("Octane price", "অকটেনের দাম")} value={`৳${inp.fuelPrice}/L`}>
+            <Range min={120} max={220} step={1} value={inp.fuelPrice} onChange={(v) => set("fuelPrice", v)} label={tx("Fuel price", "তেলের দাম")} />
             <p className="mt-1 text-[12px] text-faint">
-              Govt price is ৳{FUEL.octane}/L ({FUEL.asOf}).{" "}
+              {tx(`Govt price is ৳${FUEL.octane}/L (${FUEL.asOf}).`, `সরকারি দাম ৳${FUEL.octane}/লিটার (${FUEL.asOf})।`)}{" "}
               {inp.fuelPrice !== FUEL.octane && (
                 <button className="font-medium text-brand hover:underline" onClick={() => set("fuelPrice", FUEL.octane)}>
-                  Reset
+                  {tx("Reset", "রিসেট")}
                 </button>
               )}
             </p>
           </Field>
 
           {bike.status === "on-sale" && (
-            <Field label="Road tax">
+            <Field label={tx("Road tax", "রোড ট্যাক্স")}>
               <div className="grid grid-cols-2 gap-1 rounded-xl bg-surface-2 p-1">
                 {(["10yr", "2yr"] as const).map((p) => (
                   <button
                     key={p}
                     onClick={() => set("taxPlan", p)}
+                    aria-pressed={inp.taxPlan === p}
                     className={`h-9 rounded-lg text-[13.5px] font-medium transition-all ${inp.taxPlan === p ? "bg-surface text-ink shadow-sm" : "text-muted hover:text-ink"}`}
                   >
-                    {p === "10yr" ? "10 years upfront" : "Every 2 years"}
+                    {p === "10yr" ? tx("10 years upfront", "১০ বছর একবারে") : tx("Every 2 years", "প্রতি ২ বছরে")}
                   </button>
                 ))}
               </div>
@@ -120,8 +125,18 @@ function Cost() {
           )}
 
           <div className="space-y-1">
-            <Switch on={inp.insurance} onChange={(v) => set("insurance", v)} label="Third-party insurance" sub="Optional in BD · ~৳1,006/yr" />
-            <Switch on={inp.includeDepreciation} onChange={(v) => set("includeDepreciation", v)} label="Count resale loss" sub="What the bike loses in value" />
+            <Switch
+              on={inp.insurance}
+              onChange={(v) => set("insurance", v)}
+              label={tx("Third-party insurance", "থার্ড-পার্টি ইন্স্যুরেন্স")}
+              sub={tx("Optional in BD · ~৳1,006/yr", "বাংলাদেশে ঐচ্ছিক · বছরে ~৳1,006")}
+            />
+            <Switch
+              on={inp.includeDepreciation}
+              onChange={(v) => set("includeDepreciation", v)}
+              label={tx("Count resale loss", "রিসেল লস ধরুন")}
+              sub={tx("What the bike loses in value", "বাইকের দাম যতটা কমে")}
+            />
           </div>
         </div>
 
@@ -131,27 +146,25 @@ function Cost() {
             <div className="grid gap-6 p-6 sm:grid-cols-[1fr_auto] sm:p-8">
               <div>
                 <p className="text-[14px] text-muted">
-                  {fullName(bike)} · {inp.years} {inp.years === 1 ? "year" : "years"} · {c.km.toLocaleString("en-IN")} km
+                  {fullName(bike)} · {inp.years} {tx(inp.years === 1 ? "year" : "years", "বছর")} · {c.km.toLocaleString("en-IN")} km
                 </p>
                 <p className="mt-2 text-[48px] font-semibold leading-none tracking-[-0.03em] text-ink tnum sm:text-[60px]">{formatBDT(c.perMonth)}</p>
-                <p className="mt-2 text-[15px] text-muted">
-                  <L en="per month, all-in" bn="প্রতি মাসে, সব মিলিয়ে" />
-                </p>
+                <p className="mt-2 text-[15px] text-muted">{tx("per month, all-in", "প্রতি মাসে, সব মিলিয়ে")}</p>
               </div>
               <div className="grid grid-cols-3 gap-6 sm:grid-cols-1 sm:gap-4 sm:text-right">
-                <Kpi k="Total" v={formatLakh(c.total)} />
-                <Kpi k="Per km" v={`৳${c.perKm.toFixed(2)}`} />
-                <Kpi k="Running only / mo" v={formatBDT(c.runningPerMonth)} />
+                <Kpi k={tx("Total", "মোট")} v={formatLakh(c.total, lang)} />
+                <Kpi k={tx("Per km", "প্রতি km")} v={`৳${c.perKm.toFixed(2)}`} />
+                <Kpi k={tx("Running only / mo", "শুধু চলার খরচ / মাস")} v={formatBDT(c.runningPerMonth)} />
               </div>
             </div>
 
             {/* stacked bar */}
             <div className="px-6 pb-6 sm:px-8 sm:pb-8">
-              <div className="flex h-4 overflow-hidden rounded-full bg-surface-3">
+              <div className="flex h-4 overflow-hidden rounded-full bg-surface-3" role="img" aria-label={tx("Cost breakdown", "খরচের ভাগ")}>
                 {SEGMENTS.map((s) => {
                   const v = c[s.k];
                   if (!v) return null;
-                  return <div key={s.k} title={`${s.label}: ${formatBDT(v)}`} style={{ width: `${(v / c.total) * 100}%`, background: s.color }} className="h-full transition-all duration-500 first:rounded-l-full last:rounded-r-full" />;
+                  return <div key={s.k} title={`${tx(s.en, s.bn)}: ${formatBDT(v)}`} style={{ width: `${(v / c.total) * 100}%`, background: s.color }} className="h-full transition-all duration-500" />;
                 })}
               </div>
               <div className="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-2">
@@ -161,10 +174,14 @@ function Cost() {
                     <div key={s.k} className={`flex items-center justify-between gap-3 text-[14.5px] ${v ? "" : "opacity-40"}`}>
                       <span className="flex items-center gap-2.5 text-ink-2">
                         <span className="h-2.5 w-2.5 rounded-full" style={{ background: s.color }} />
-                        {s.label}
+                        {tx(s.en, s.bn)}
                       </span>
                       <span className="font-medium text-ink tnum">
-                        {formatBDT(v)} <span className="text-[12.5px] font-normal text-faint">· {formatBDT(v / (inp.years * 12))}/mo</span>
+                        {formatBDT(v)}{" "}
+                        <span className="text-[12.5px] font-normal text-faint">
+                          · {formatBDT(v / months)}
+                          {tx("/mo", "/মাস")}
+                        </span>
                       </span>
                     </div>
                   );
@@ -174,18 +191,24 @@ function Cost() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-3">
-            <Fact k="Buy today" v={formatBDT(c.onRoad)} sub={bike.status === "on-sale" ? `ex-showroom + ${formatBDT(c.onRoad - bike.priceBDT)} BRTA` : "used price, plus transfer fee"} />
-            <Fact k={`Worth after ${inp.years} yr`} v={formatBDT(c.resaleValue)} sub="estimated, decent condition" />
-            <Fact k="Fuel per month" v={`${Math.round(c.km / (inp.years * 12) / ((bike.mileageKmpl[0] + bike.mileageKmpl[1]) / 2))} L`} sub={`at ${bike.mileageKmpl[0]}–${bike.mileageKmpl[1]} kmpl`} />
+            <Fact
+              k={tx("Buy today", "আজ কিনলে")}
+              v={formatBDT(c.onRoad)}
+              sub={bike.status === "on-sale" ? tx(`ex-showroom + ${formatBDT(c.onRoad - bike.priceBDT)} BRTA`, `শোরুম মূল্য + ${formatBDT(c.onRoad - bike.priceBDT)} BRTA`) : tx("used price, plus transfer fee", "পুরনো দাম, সাথে মালিকানা বদলের ফি")}
+            />
+            <Fact
+              k={tx("Or on 12-month EMI", "অথবা ১২ মাসের কিস্তিতে")}
+              v={bike.status === "on-sale" ? `${formatBDT(emiMonthly(bike.priceBDT))}${tx("/mo", "/মাস")}` : "—"}
+              sub={tx("0% card EMI where offered, plus BRTA upfront", "যেখানে ০% কার্ড কিস্তি আছে; BRTA খরচ শুরুতেই")}
+            />
+            <Fact k={tx(`Worth after ${inp.years} yr`, `${inp.years} বছর পর দাম`)} v={formatBDT(c.resaleValue)} sub={tx("estimated, decent condition", "আনুমানিক, ভালো অবস্থায়")} />
           </div>
 
-          {cheaper.length > 0 && (
+          {others.length > 0 && (
             <div className="card p-6">
-              <h2 className="text-[17px] font-semibold tracking-tight text-ink">
-                <L en="Same style, compared on the same terms" bn="একই ধরনের বাইক, একই হিসাবে" />
-              </h2>
+              <h2 className="text-[17px] font-semibold tracking-tight text-ink">{tx("Same style, compared on the same terms", "একই ধরনের বাইক, একই হিসাবে")}</h2>
               <div className="mt-4 divide-y divide-line">
-                {cheaper.map(({ b, c: cc }) => {
+                {others.map(({ b, c: cc }) => {
                   const diff = cc.perMonth - c.perMonth;
                   return (
                     <button key={b.id} onClick={() => pick(b)} className="flex w-full items-center gap-4 py-3 text-left transition-colors hover:bg-surface-2/50">
@@ -193,8 +216,11 @@ function Cost() {
                         <BikeArt bike={b} shadow={false} className="h-full w-full" />
                       </span>
                       <span className="min-w-0 flex-1 truncate text-[14.5px] font-medium text-ink">{fullName(b)}</span>
-                      <span className="text-[14.5px] font-semibold text-ink tnum">{formatBDT(cc.perMonth)}/mo</span>
-                      <span className={`w-24 text-right text-[13px] font-medium tnum ${diff < 0 ? "text-good" : "text-signal"}`}>
+                      <span className="text-[14.5px] font-semibold text-ink tnum">
+                        {formatBDT(cc.perMonth)}
+                        {tx("/mo", "/মাস")}
+                      </span>
+                      <span className={`w-20 text-right text-[13px] font-medium tnum sm:w-24 ${diff < 0 ? "text-good" : "text-signal"}`}>
                         {diff < 0 ? "−" : "+"}
                         {formatBDT(Math.abs(diff))}
                       </span>
@@ -207,11 +233,15 @@ function Cost() {
 
           <p className="flex gap-2 text-[12.5px] leading-relaxed text-faint">
             <Info size={14} className="mt-0.5 shrink-0" />
-            Fuel uses the middle of the real-world mileage range. Wear parts assume a chain set every 18,000 km, brake pads every 10,000 km, tyres every 25,000 km and a clutch every 30,000 km. Resale uses our resale score
-            (≈ {Math.round((1 - (0.8 + bike.scores.resale * 0.012)) * 100)}% value lost per year for this bike). Registration: {registrationFor(bike.engine.cc).label}, from BRTA fee schedules.{" "}
-            <Link href="/guide/#registration" className="text-brand hover:underline">
-              Breakdown
-            </Link>
+            <span>
+              {tx(
+                `Fuel uses the middle of the real-world mileage range. Wear parts assume a chain set every 18,000 km, brake pads every 10,000 km, tyres every 25,000 km and a clutch every 30,000 km; service and parts prices are estimates. Resale uses our resale score (≈ ${Math.round((1 - (0.8 + bike.scores.resale * 0.012)) * 100)}% value lost per year for this bike). Registration: ${registrationFor(bike.engine.cc).label}, from BRTA fee schedules.`,
+                `তেলের হিসাব আসল মাইলেজের মাঝামাঝি ধরে। ক্ষয়যোগ্য পার্টস: প্রতি 18,000 km-এ চেইন সেট, 10,000 km-এ ব্রেক প্যাড, 25,000 km-এ টায়ার, 30,000 km-এ ক্লাচ; সার্ভিস ও পার্টসের দাম আনুমানিক। রিসেল আমাদের রিসেল স্কোর থেকে (এই বাইকে বছরে ≈ ${Math.round((1 - (0.8 + bike.scores.resale * 0.012)) * 100)}% দাম কমে)। রেজিস্ট্রেশন: BRTA ফি তালিকা থেকে।`,
+              )}{" "}
+              <Link href="/guide/#registration" className="text-brand hover:underline">
+                {tx("Breakdown", "বিস্তারিত")}
+              </Link>
+            </span>
           </p>
         </div>
       </div>
@@ -219,13 +249,15 @@ function Cost() {
   );
 }
 
-function BikePicker({ bike, onPick }: { bike: Bike; onPick: (b: Bike) => void }) {
+function BikePicker({ bike, onPick }: { bike: BikeLite; onPick: (b: BikeLite) => void }) {
+  const { lang } = useLang();
+  const tx = useTx();
   const [q, setQ] = useState("");
   const [open, setOpen] = useState(false);
   const results = useMemo(() => searchBikes(q, 6), [q]);
   return (
     <div className="relative">
-      <p className="mb-2 text-[13px] font-medium text-ink-2">Bike</p>
+      <p className="mb-2 text-[13px] font-medium text-ink-2">{tx("Bike", "বাইক")}</p>
       {!open ? (
         <button onClick={() => setOpen(true)} className="flex w-full items-center gap-3 rounded-xl border border-line-strong p-2.5 text-left transition-colors hover:border-ink/30">
           <span className="h-10 w-16 shrink-0">
@@ -235,7 +267,7 @@ function BikePicker({ bike, onPick }: { bike: Bike; onPick: (b: Bike) => void })
             <span className="block truncate text-[14.5px] font-semibold text-ink">{fullName(bike)}</span>
             <span className="block text-[12.5px] text-muted tnum">{formatBDT(bike.priceBDT)}</span>
           </span>
-          <span className="text-[12.5px] font-medium text-brand">Change</span>
+          <span className="text-[12.5px] font-medium text-brand">{tx("Change", "বদলান")}</span>
         </button>
       ) : (
         <>
@@ -252,7 +284,8 @@ function BikePicker({ bike, onPick }: { bike: Bike; onPick: (b: Bike) => void })
               }
               if (e.key === "Escape") setOpen(false);
             }}
-            placeholder="Search a bike…"
+            placeholder={tx("Search a bike…", "বাইক খুঁজুন…")}
+            aria-label={tx("Search a bike", "বাইক খুঁজুন")}
             className="input h-[62px]"
           />
           {results.length > 0 && (
@@ -268,7 +301,7 @@ function BikePicker({ bike, onPick }: { bike: Bike; onPick: (b: Bike) => void })
                   className="flex w-full items-center gap-3 px-3 py-2.5 text-left hover:bg-surface-2"
                 >
                   <span className="min-w-0 flex-1 truncate text-[14px] font-medium text-ink">{fullName(b)}</span>
-                  <span className="text-[13px] text-muted tnum">{formatLakh(b.priceBDT)}</span>
+                  <span className="text-[13px] text-muted tnum">{formatLakh(b.priceBDT, lang)}</span>
                 </button>
               ))}
             </div>

@@ -7,25 +7,41 @@ import {
   ArrowLeft,
   ArrowRight,
   Briefcase,
+  Building2,
   Check,
-  Copy,
   Flame,
   Gauge,
+  Home as HomeIcon,
+  Info,
   Mountain,
   RotateCcw,
   Route,
   Scale,
   Sparkles,
+  Store,
+  Trees,
   TriangleAlert,
   Users,
 } from "lucide-react";
-import { DEFAULT_ANSWERS, decodeAnswers, encodeAnswers, matchBikes, type Answers, type Priority, type Use } from "@/lib/match";
-import { CATEGORIES, ccLabel, formatBDT, formatLakh, fullName } from "@/lib/bikes";
-import { ownershipCost, DEFAULT_COST_INPUT } from "@/lib/cost";
-import { L, useLang } from "@/lib/i18n";
+import {
+  DEFAULT_ANSWERS,
+  EMI_MONTHS,
+  anyNewFits,
+  cheapestNew,
+  decodeAnswers,
+  encodeAnswers,
+  matchBikes,
+  type Answers,
+  type Priority,
+  type Use,
+  type Where,
+} from "@/lib/match";
+import { CATEGORIES, ccLabel, formatBDT, formatLakh, fullName, tagline } from "@/lib/bikes";
+import { ownershipCost, DEFAULT_COST_INPUT, emiMonthly } from "@/lib/cost";
+import { useLang, useTx } from "@/lib/i18n";
 import { useStore } from "@/lib/store";
 import { BikeArt } from "@/components/BikeArt";
-import { CompareButton, SaveButton } from "@/components/ui";
+import { CompareButton, SaveButton, ShareButton } from "@/components/ui";
 
 type Opt<T> = { id: T; en: string; bn: string; sub?: string; subBn?: string; icon?: React.ReactNode };
 
@@ -38,6 +54,13 @@ const USES: Opt<Use>[] = [
   { id: "fun", en: "Speed, style & fun", bn: "স্পিড, স্টাইল ও মজা", sub: "I want to enjoy every ride", subBn: "প্রতিটা রাইড উপভোগ করতে চাই", icon: <Flame size={20} /> },
 ];
 
+const WHERES: Opt<Where>[] = [
+  { id: "dhaka", en: "Dhaka", bn: "ঢাকা", sub: "Every brand's showroom is near", subBn: "সব ব্র্যান্ডের শোরুম কাছেই", icon: <Building2 size={20} /> },
+  { id: "city", en: "Another big city", bn: "অন্য বড় শহর", sub: "Chattogram, Sylhet, Khulna, Rajshahi…", subBn: "চট্টগ্রাম, সিলেট, খুলনা, রাজশাহী…", icon: <Store size={20} /> },
+  { id: "town", en: "District or upazila town", bn: "জেলা বা উপজেলা শহর", sub: "Service network matters more", subBn: "সার্ভিস নেটওয়ার্ক বেশি গুরুত্বপূর্ণ", icon: <HomeIcon size={20} /> },
+  { id: "village", en: "Village", bn: "গ্রাম", sub: "Local mistri + tough roads", subBn: "লোকাল মিস্ত্রি + কঠিন রাস্তা", icon: <Trees size={20} /> },
+];
+
 const PRIORITIES: Opt<Priority>[] = [
   { id: "mileage", en: "Fuel economy", bn: "মাইলেজ" },
   { id: "maintenance", en: "Cheap, easy maintenance", bn: "সহজ ও সস্তা মেইনটেন্যান্স" },
@@ -48,7 +71,7 @@ const PRIORITIES: Opt<Priority>[] = [
   { id: "style", en: "Looks & style", bn: "লুক ও স্টাইল" },
 ];
 
-const STEPS = 6;
+const STEPS = 7;
 
 export default function MatchPage() {
   return (
@@ -60,6 +83,7 @@ export default function MatchPage() {
 
 function Matchmaker() {
   const params = useSearchParams();
+  const tx = useTx();
   const [a, setA] = useState<Answers>(DEFAULT_ANSWERS);
   const [step, setStep] = useState(0); // 0..STEPS-1 = questions, STEPS = results
   const [loaded, setLoaded] = useState(false);
@@ -68,7 +92,7 @@ function Matchmaker() {
     const decoded = decodeAnswers(params);
     if (decoded) {
       setA(decoded);
-      setStep(params.get("r") === "1" ? STEPS : 2);
+      setStep(params.get("r") === "1" ? STEPS : 3);
     }
     setLoaded(true);
   }, [params]);
@@ -82,23 +106,38 @@ function Matchmaker() {
   const set = <K extends keyof Answers>(k: K, v: Answers[K]) => setA((x) => ({ ...x, [k]: v }));
 
   if (!loaded) return <div className="min-h-[70vh]" />;
-  if (step === STEPS) return <Results a={a} onEdit={(s) => setStep(s)} onRestart={() => { setA(DEFAULT_ANSWERS); setStep(0); window.history.replaceState(null, "", window.location.pathname); }} />;
+  if (step === STEPS)
+    return (
+      <Results
+        a={a}
+        onEdit={(s) => setStep(s)}
+        onRestart={() => {
+          setA(DEFAULT_ANSWERS);
+          setStep(0);
+          window.history.replaceState(null, "", window.location.pathname);
+        }}
+      />
+    );
 
   const next = () => setStep((s) => Math.min(STEPS, s + 1));
   const back = () => setStep((s) => Math.max(0, s - 1));
+  const pickAndNext = <K extends keyof Answers>(k: K, v: Answers[K]) => {
+    set(k, v);
+    setTimeout(next, 180);
+  };
 
   return (
     <div className="container-x max-w-3xl pb-10 pt-10 sm:pt-14">
       {/* progress */}
       <div className="flex items-center justify-between text-[13px] text-muted">
         <span>
-          <L en="Question" bn="প্রশ্ন" /> <span className="font-semibold text-ink tnum">{step + 1}</span> / {STEPS}
+          {tx("Question", "প্রশ্ন")} <span className="font-semibold text-ink tnum">{step + 1}</span> / {STEPS}
         </span>
         <button onClick={() => setStep(STEPS)} className="font-medium text-brand hover:underline">
-          <L en="Skip to results" bn="সরাসরি ফলাফল" />
+          {tx("Skip to results", "সরাসরি ফলাফল")}
         </button>
       </div>
-      <div className="mt-3 flex gap-1.5">
+      <div className="mt-3 flex gap-1.5" aria-hidden>
         {Array.from({ length: STEPS }).map((_, i) => (
           <div key={i} className="h-1 flex-1 overflow-hidden rounded-full bg-surface-3">
             <div className={`h-full rounded-full bg-brand transition-all duration-500 ${i <= step ? "w-full" : "w-0"}`} />
@@ -109,34 +148,44 @@ function Matchmaker() {
       <div key={step} className="mt-10 animate-rise">
         {step === 0 && <BudgetStep a={a} set={set} />}
         {step === 1 && (
-          <Question title={<L en="What will you mostly use it for?" bn="মূলত কী কাজে ব্যবহার করবেন?" />}>
+          <Question title={tx("What will you mostly use it for?", "মূলত কী কাজে ব্যবহার করবেন?")}>
             <div className="grid gap-3 sm:grid-cols-2">
               {USES.map((u) => (
-                <OptionCard key={u.id} active={a.use === u.id} onClick={() => { set("use", u.id); setTimeout(next, 180); }} icon={u.icon} opt={u} />
+                <OptionCard key={u.id} active={a.use === u.id} onClick={() => pickAndNext("use", u.id)} icon={u.icon} opt={u} />
               ))}
             </div>
           </Question>
         )}
         {step === 2 && (
-          <Question title={<L en="Gears or gearless?" bn="গিয়ার নাকি গিয়ারলেস?" />} sub={<L en="Scooters are easier in jams; geared bikes go further on highways." bn="জ্যামে স্কুটার সহজ; হাইওয়েতে গিয়ার বাইক ভালো।" />}>
-            <div className="grid gap-3 sm:grid-cols-3">
-              {(
-                [
-                  { id: "no", en: "Geared motorcycle", bn: "গিয়ার মোটরসাইকেল", sub: "Classic choice, more control", subBn: "সাধারণ পছন্দ, বেশি নিয়ন্ত্রণ" },
-                  { id: "yes", en: "Scooter", bn: "স্কুটার", sub: "No clutch, storage, easy", subBn: "ক্লাচ নেই, স্টোরেজ, সহজ" },
-                  { id: "either", en: "Show me both", bn: "দুটোই দেখান", sub: "I'm open", subBn: "আমি খোলা মনে আছি" },
-                ] as Opt<Answers["gearless"]>[]
-              ).map((o) => (
-                <OptionCard key={o.id} active={a.gearless === o.id} onClick={() => { set("gearless", o.id); setTimeout(next, 180); }} opt={o} />
+          <Question
+            title={tx("Where will you ride and service it?", "কোথায় চালাবেন ও সার্ভিস করাবেন?")}
+            sub={tx("Outside the big cities, a brand's workshop network and the local mistri matter more than specs.", "বড় শহরের বাইরে স্পেকের চেয়ে ব্র্যান্ডের ওয়ার্কশপ আর লোকাল মিস্ত্রি বেশি গুরুত্বপূর্ণ।")}
+          >
+            <div className="grid gap-3 sm:grid-cols-2">
+              {WHERES.map((w) => (
+                <OptionCard key={w.id} active={a.where === w.id} onClick={() => pickAndNext("where", w.id)} icon={w.icon} opt={w} />
               ))}
             </div>
           </Question>
         )}
         {step === 3 && (
-          <Question title={<L en="Tell us about you" bn="আপনার সম্পর্কে বলুন" />} sub={<L en="So we can check you'll reach the ground and won't be overwhelmed." bn="যাতে পা মাটিতে পৌঁছায় আর বাইকটা সামলাতে পারেন।" />}>
-            <p className="mb-3 text-[14px] font-medium text-ink-2">
-              <L en="Your height" bn="আপনার উচ্চতা" />
-            </p>
+          <Question title={tx("Gears or gearless?", "গিয়ার নাকি গিয়ারলেস?")} sub={tx("Scooters are easier in jams; geared bikes go further on highways.", "জ্যামে স্কুটার সহজ; হাইওয়েতে গিয়ার বাইক ভালো।")}>
+            <div className="grid gap-3 sm:grid-cols-3">
+              {(
+                [
+                  { id: "no", en: "Geared motorcycle", bn: "গিয়ার মোটরসাইকেল", sub: "Classic choice, more control", subBn: "সাধারণ পছন্দ, বেশি নিয়ন্ত্রণ" },
+                  { id: "yes", en: "Scooter", bn: "স্কুটার", sub: "No clutch, storage, easy", subBn: "ক্লাচ নেই, স্টোরেজ, সহজ" },
+                  { id: "either", en: "Show me both", bn: "দুটোই দেখান", sub: "I'm open", subBn: "দুটোতেই রাজি" },
+                ] as Opt<Answers["gearless"]>[]
+              ).map((o) => (
+                <OptionCard key={o.id} active={a.gearless === o.id} onClick={() => pickAndNext("gearless", o.id)} opt={o} />
+              ))}
+            </div>
+          </Question>
+        )}
+        {step === 4 && (
+          <Question title={tx("Tell us about you", "আপনার সম্পর্কে বলুন")} sub={tx("So we can check you'll reach the ground and won't be overwhelmed.", "যাতে পা মাটিতে পৌঁছায় আর বাইকটা সামলাতে পারেন।")}>
+            <p className="mb-3 text-[14px] font-medium text-ink-2">{tx("Your height", "আপনার উচ্চতা")}</p>
             <div className="grid gap-3 sm:grid-cols-3">
               {(
                 [
@@ -148,9 +197,7 @@ function Matchmaker() {
                 <OptionCard key={o.id} compact active={a.height === o.id} onClick={() => set("height", o.id)} opt={o} />
               ))}
             </div>
-            <p className="mb-3 mt-8 text-[14px] font-medium text-ink-2">
-              <L en="Riding experience" bn="চালানোর অভিজ্ঞতা" />
-            </p>
+            <p className="mb-3 mt-8 text-[14px] font-medium text-ink-2">{tx("Riding experience", "চালানোর অভিজ্ঞতা")}</p>
             <div className="grid gap-3 sm:grid-cols-3">
               {(
                 [
@@ -164,23 +211,23 @@ function Matchmaker() {
             </div>
           </Question>
         )}
-        {step === 4 && (
-          <Question title={<L en="How often will someone ride behind you?" bn="পেছনে কত ঘন ঘন কেউ বসবে?" />}>
+        {step === 5 && (
+          <Question title={tx("How often will someone ride behind you?", "পেছনে কত ঘন ঘন কেউ বসবে?")}>
             <div className="grid gap-3 sm:grid-cols-3">
               {(
                 [
                   { id: "rarely", en: "Rarely", bn: "কদাচিৎ", sub: "Mostly solo", subBn: "বেশিরভাগ একা" },
                   { id: "sometimes", en: "Sometimes", bn: "মাঝে মাঝে", sub: "Friends, weekends", subBn: "বন্ধু, ছুটির দিন" },
-                  { id: "daily", en: "Every day", bn: "প্রতিদিন", sub: "Spouse, kids, passengers", subBn: "স্ত্রী/স্বামী, বাচ্চা, যাত্রী" },
+                  { id: "daily", en: "Every day", bn: "প্রতিদিন", sub: "Spouse, kids, passengers", subBn: "স্বামী/স্ত্রী, বাচ্চা, যাত্রী" },
                 ] as Opt<Answers["pillion"]>[]
               ).map((o) => (
-                <OptionCard key={o.id} active={a.pillion === o.id} onClick={() => { set("pillion", o.id); setTimeout(next, 180); }} opt={o} />
+                <OptionCard key={o.id} active={a.pillion === o.id} onClick={() => pickAndNext("pillion", o.id)} opt={o} />
               ))}
             </div>
           </Question>
         )}
-        {step === 5 && (
-          <Question title={<L en="What matters most?" bn="সবচেয়ে গুরুত্বপূর্ণ কী?" />} sub={<L en="Pick up to three." bn="সর্বোচ্চ তিনটি বাছুন।" />}>
+        {step === 6 && (
+          <Question title={tx("What matters most?", "সবচেয়ে গুরুত্বপূর্ণ কী?")} sub={tx("Pick up to three.", "সর্বোচ্চ তিনটি বাছুন।")}>
             <div className="flex flex-wrap gap-2">
               {PRIORITIES.map((p) => {
                 const on = a.priorities.includes(p.id);
@@ -189,13 +236,14 @@ function Matchmaker() {
                   <button
                     key={p.id}
                     disabled={full}
+                    aria-pressed={on}
                     onClick={() => set("priorities", on ? a.priorities.filter((x) => x !== p.id) : [...a.priorities, p.id])}
                     className={`inline-flex h-12 items-center gap-2 rounded-xl border px-4 text-[15px] font-medium transition-all disabled:opacity-40 ${
                       on ? "border-brand bg-brand-soft text-brand" : "border-line-strong bg-surface text-ink-2 hover:border-ink/30"
                     }`}
                   >
                     {on && <Check size={16} />}
-                    <L en={p.en} bn={p.bn} />
+                    {tx(p.en, p.bn)}
                   </button>
                 );
               })}
@@ -206,15 +254,15 @@ function Matchmaker() {
 
       <div className="mt-12 flex items-center justify-between border-t border-line pt-6">
         <button onClick={back} className={`btn-ghost ${step === 0 ? "invisible" : ""}`}>
-          <ArrowLeft size={17} /> <L en="Back" bn="পেছনে" />
+          <ArrowLeft size={17} /> {tx("Back", "পেছনে")}
         </button>
         {step < STEPS - 1 ? (
           <button onClick={next} className="btn-primary px-6">
-            <L en="Continue" bn="পরবর্তী" /> <ArrowRight size={17} />
+            {tx("Continue", "পরবর্তী")} <ArrowRight size={17} />
           </button>
         ) : (
           <button onClick={next} className="btn-primary px-6">
-            <Sparkles size={17} /> <L en="Show my matches" bn="আমার ম্যাচ দেখান" />
+            <Sparkles size={17} /> {tx("Show my matches", "আমার ম্যাচ দেখান")}
           </button>
         )}
       </div>
@@ -255,36 +303,86 @@ function OptionCard<T>({ opt, active, onClick, icon, compact }: { opt: Opt<T>; a
 }
 
 function BudgetStep({ a, set }: { a: Answers; set: <K extends keyof Answers>(k: K, v: Answers[K]) => void }) {
-  const min = 50000;
-  const max = 700000;
-  const fill = ((a.budget - min) / (max - min)) * 100;
+  const { lang } = useLang();
+  const tx = useTx();
+  const monthly = a.payMode === "monthly";
+  const [min, max, step] = monthly ? [5000, 60000, 500] : [50000, 700000, 5000];
+  const value = monthly ? a.monthly : a.budget;
+  const fill = ((value - min) / (max - min)) * 100;
+  const setValue = (v: number) => {
+    if (monthly) {
+      set("monthly", v);
+      set("budget", v * EMI_MONTHS);
+    } else {
+      set("budget", v);
+      set("monthly", emiMonthly(v));
+    }
+  };
+  const presets = monthly ? [8000, 12000, 18000, 25000, 40000] : [130000, 180000, 250000, 350000, 500000];
+
   return (
-    <Question title={<L en="What's your budget?" bn="আপনার বাজেট কত?" />} sub={<L en="The most you'd pay for the bike itself. We'll add registration separately." bn="শুধু বাইকের জন্য সর্বোচ্চ কত দেবেন। রেজিস্ট্রেশন আলাদা।" />}>
+    <Question
+      title={tx("What's your budget?", "আপনার বাজেট কত?")}
+      sub={tx("The most you'd pay for the bike itself. We'll add registration separately.", "শুধু বাইকের জন্য সর্বোচ্চ কত দেবেন। রেজিস্ট্রেশন আলাদা।")}
+    >
+      <div className="mb-4 grid grid-cols-2 gap-1 rounded-xl bg-surface-2 p-1 sm:w-fit">
+        {(["total", "monthly"] as const).map((m) => (
+          <button
+            key={m}
+            onClick={() => set("payMode", m)}
+            aria-pressed={a.payMode === m}
+            className={`h-10 rounded-lg px-4 text-[14px] font-medium transition-all ${a.payMode === m ? "bg-surface text-ink shadow-sm" : "text-muted hover:text-ink"}`}
+          >
+            {m === "total" ? tx("Full price", "পুরো দাম") : tx("Monthly (EMI)", "মাসিক (কিস্তি)")}
+          </button>
+        ))}
+      </div>
       <div className="card p-6 sm:p-8">
-        <p className="text-center text-[44px] font-semibold tracking-[-0.03em] text-ink tnum sm:text-[56px]">{formatBDT(a.budget)}</p>
-        <p className="text-center text-[14px] text-muted">{formatLakh(a.budget)}</p>
+        <p className="text-center text-[44px] font-semibold tracking-[-0.03em] text-ink tnum sm:text-[56px]">
+          {formatBDT(value)}
+          {monthly && <span className="text-[20px] font-medium text-muted">{tx("/mo", "/মাস")}</span>}
+        </p>
+        <p className="text-center text-[14px] text-muted">
+          {monthly
+            ? tx(`× ${EMI_MONTHS} months = bikes up to ${formatLakh(a.budget, lang)}`, `× ${EMI_MONTHS} মাস = ${formatLakh(a.budget, lang)} পর্যন্ত বাইক`)
+            : formatLakh(a.budget, lang)}
+        </p>
         <input
           type="range"
           className="range mt-6"
           min={min}
           max={max}
-          step={5000}
-          value={a.budget}
-          aria-label="Budget"
+          step={step}
+          value={value}
+          aria-label={tx("Budget", "বাজেট")}
           style={{ ["--fill" as string]: `${fill}%` }}
-          onChange={(e) => set("budget", Number(e.target.value))}
+          onChange={(e) => setValue(Number(e.target.value))}
         />
         <div className="mt-4 flex flex-wrap justify-center gap-2">
-          {[130000, 180000, 250000, 350000, 500000].map((v) => (
-            <button key={v} className="chip" data-active={a.budget === v} onClick={() => set("budget", v)}>
-              {formatLakh(v)}
+          {presets.map((v) => (
+            <button key={v} className="chip" data-active={value === v} onClick={() => setValue(v)}>
+              {monthly ? `${formatBDT(v)}${tx("/mo", "/মাস")}` : formatLakh(v, lang)}
             </button>
           ))}
         </div>
+        {monthly && (
+          <p className="mx-auto mt-5 flex max-w-md gap-2 text-[12.5px] leading-relaxed text-muted">
+            <Info size={14} className="mt-0.5 shrink-0" />
+            {tx(
+              "Most showrooms offer 0% EMI for up to 12 months on partner-bank credit cards; banks may add a processing fee. Without a credit card, ask about the dealer's own installment plan.",
+              "বেশিরভাগ শোরুমে পার্টনার ব্যাংকের ক্রেডিট কার্ডে ১২ মাস পর্যন্ত ০% কিস্তি পাওয়া যায়; ব্যাংক প্রসেসিং ফি নিতে পারে। ক্রেডিট কার্ড না থাকলে ডিলারের নিজস্ব কিস্তি সুবিধা জিজ্ঞেস করুন।",
+            )}
+          </p>
+        )}
       </div>
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
         <OptionCard compact active={a.condition === "new"} onClick={() => set("condition", "new")} opt={{ id: "new", en: "Brand new only", bn: "শুধু নতুন", sub: "Warranty, free services", subBn: "ওয়ারেন্টি, ফ্রি সার্ভিস" }} />
-        <OptionCard compact active={a.condition === "any"} onClick={() => set("condition", "any")} opt={{ id: "any", en: "Open to used classics", bn: "পুরনো ক্লাসিকও চলবে", sub: "CG125, RX100 and other legends", subBn: "CG125, RX100 ইত্যাদি" }} />
+        <OptionCard
+          compact
+          active={a.condition === "any"}
+          onClick={() => set("condition", "any")}
+          opt={{ id: "any", en: "Open to used", bn: "পুরনো হলেও চলবে", sub: "1–3 year old bikes from bikroy prices", subBn: "bikroy-এর দামে ১–৩ বছরের পুরনো বাইক" }}
+        />
       </div>
     </Question>
   );
@@ -294,41 +392,34 @@ function BudgetStep({ a, set }: { a: Answers; set: <K extends keyof Answers>(k: 
 
 function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) => void; onRestart: () => void }) {
   const { lang } = useLang();
+  const tx = useTx();
   const { compare, toggleCompare, clearCompare } = useStore();
   const matches = useMemo(() => matchBikes(a, 6), [a]);
-  const [copied, setCopied] = useState(false);
   const [top, ...rest] = matches;
   const use = USES.find((u) => u.id === a.use)!;
+  const where = WHERES.find((w) => w.id === a.where)!;
+  const noNew = !anyNewFits(a);
+  const cheapest = cheapestNew(a);
 
-  const share = async () => {
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1800);
-    } catch {}
-  };
   const compareTop3 = () => {
     clearCompare();
     matches.slice(0, 3).forEach((m) => toggleCompare(m.bike.id));
   };
+  const usedLabel = (age: 1 | 3) => (age === 1 ? tx("Used · ~1 year old", "পুরনো · ~১ বছর") : tx("Used · ~3 years old", "পুরনো · ~৩ বছর"));
 
   return (
     <div className="container-x pb-10 pt-10">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="eyebrow mb-2">
-            <L en="Your matches" bn="আপনার ম্যাচ" />
-          </p>
+          <p className="eyebrow mb-2">{tx("Your matches", "আপনার ম্যাচ")}</p>
           <h1 className="text-[30px] font-semibold tracking-[-0.03em] text-ink sm:text-[40px]">
-            {top ? <L en="Here's what we'd buy in your shoes." bn="আপনার জায়গায় থাকলে আমরা এগুলো কিনতাম।" /> : <L en="Nothing fits — yet." bn="কিছু মিলছে না — এখনো।" />}
+            {top ? tx("Here's what we'd buy in your shoes.", "আপনার জায়গায় থাকলে আমরা এগুলো কিনতাম।") : tx("Nothing fits — yet.", "কিছু মিলছে না — এখনো।")}
           </h1>
         </div>
         <div className="flex gap-2">
-          <button onClick={share} className="btn-secondary h-10 px-3.5 text-[14px]">
-            {copied ? <Check size={16} /> : <Copy size={16} />} {copied ? "Link copied" : "Share"}
-          </button>
+          <ShareButton title={tx("My bike matches — Suggest.Bike", "আমার বাইক ম্যাচ — Suggest.Bike")} text={top ? fullName(top.bike) : undefined} className="border border-line-strong bg-surface" />
           <button onClick={onRestart} className="btn-ghost h-10 px-3.5 text-[14px]">
-            <RotateCcw size={16} /> <L en="Start over" bn="আবার শুরু" />
+            <RotateCcw size={16} /> {tx("Start over", "আবার শুরু")}
           </button>
         </div>
       </div>
@@ -336,23 +427,45 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
       {/* answers summary */}
       <div className="mt-6 flex flex-wrap gap-2">
         <EditChip onClick={() => onEdit(0)}>
-          ≤ {formatLakh(a.budget)} · {a.condition === "new" ? "new" : "new or used"}
+          {a.payMode === "monthly" ? `${formatBDT(a.monthly)}${tx("/mo EMI", "/মাস কিস্তি")}` : `≤ ${formatLakh(a.budget, lang)}`} · {a.condition === "new" ? tx("new", "নতুন") : tx("new or used", "নতুন বা পুরনো")}
         </EditChip>
         <EditChip onClick={() => onEdit(1)}>{lang === "bn" ? use.bn : use.en}</EditChip>
-        <EditChip onClick={() => onEdit(2)}>{a.gearless === "yes" ? "Scooter" : a.gearless === "no" ? "Geared" : "Geared or scooter"}</EditChip>
-        <EditChip onClick={() => onEdit(3)}>
-          {{ short: "Under 5′5″", medium: "5′5″–5′9″", tall: "Over 5′9″" }[a.height]} · {{ first: "first bike", some: "some experience", pro: "experienced" }[a.experience]}
+        <EditChip onClick={() => onEdit(2)}>{lang === "bn" ? where.bn : where.en}</EditChip>
+        <EditChip onClick={() => onEdit(3)}>{a.gearless === "yes" ? tx("Scooter", "স্কুটার") : a.gearless === "no" ? tx("Geared", "গিয়ার") : tx("Geared or scooter", "গিয়ার বা স্কুটার")}</EditChip>
+        <EditChip onClick={() => onEdit(4)}>
+          {lang === "bn"
+            ? `${{ short: "৫′৫″ এর কম", medium: "৫′৫″–৫′৯″", tall: "৫′৯″ এর বেশি" }[a.height]} · ${{ first: "প্রথম বাইক", some: "কিছু অভিজ্ঞতা", pro: "অভিজ্ঞ" }[a.experience]}`
+            : `${{ short: "Under 5′5″", medium: "5′5″–5′9″", tall: "Over 5′9″" }[a.height]} · ${{ first: "first bike", some: "some experience", pro: "experienced" }[a.experience]}`}
         </EditChip>
-        <EditChip onClick={() => onEdit(4)}>Pillion: {a.pillion}</EditChip>
-        {a.priorities.length > 0 && <EditChip onClick={() => onEdit(5)}>{a.priorities.join(", ")}</EditChip>}
+        <EditChip onClick={() => onEdit(5)}>
+          {tx("Pillion", "পিলিয়ন")}: {lang === "bn" ? { rarely: "কদাচিৎ", sometimes: "মাঝে মাঝে", daily: "প্রতিদিন" }[a.pillion] : a.pillion}
+        </EditChip>
+        {a.priorities.length > 0 && <EditChip onClick={() => onEdit(6)}>{a.priorities.map((p) => tx(PRIORITIES.find((x) => x.id === p)!.en, PRIORITIES.find((x) => x.id === p)!.bn)).join(", ")}</EditChip>}
       </div>
+
+      {noNew && cheapest && (
+        <div className="mt-6 flex flex-wrap items-center gap-3 rounded-2xl border border-warn/30 bg-warn-soft p-4 text-[14.5px] text-ink-2">
+          <Info size={18} className="shrink-0 text-warn" />
+          <span className="min-w-0 flex-1">
+            {tx(
+              `Nothing new fits ${formatLakh(a.budget, lang)}. The cheapest new option is the ${fullName(cheapest)} at ${formatBDT(cheapest.priceBDT)}${a.condition === "new" ? " — or allow used bikes." : "."}`,
+              `${formatLakh(a.budget, lang)}-এ নতুন কিছু মেলে না। সবচেয়ে কম দামের নতুন বাইক ${fullName(cheapest)} — ${formatBDT(cheapest.priceBDT)}${a.condition === "new" ? "। অথবা পুরনো বাইকও দেখুন।" : "।"}`,
+            )}
+          </span>
+          <Link href={`/bikes/${cheapest.id}/`} className="text-[13.5px] font-medium text-brand hover:underline">
+            {tx("See it", "দেখুন")}
+          </Link>
+        </div>
+      )}
 
       {!top ? (
         <div className="card mt-10 px-6 py-16 text-center">
-          <p className="text-[17px] font-semibold text-ink">No bikes fit all of that.</p>
-          <p className="mt-1 text-[14.5px] text-muted">Try raising the budget, allowing used bikes, or choosing “show me both”.</p>
+          <p className="text-[17px] font-semibold text-ink">{tx("No bikes fit all of that.", "সব শর্তে কোনো বাইক মেলেনি।")}</p>
+          <p className="mt-1 text-[14.5px] text-muted">
+            {tx("Try raising the budget, allowing used bikes, or choosing “show me both”.", "বাজেট বাড়ান, পুরনো বাইক চালু করুন, অথবা “দুটোই দেখান” বেছে নিন।")}
+          </p>
           <button className="btn-primary mt-6" onClick={() => onEdit(0)}>
-            Adjust budget
+            {tx("Adjust budget", "বাজেট বদলান")}
           </button>
         </div>
       ) : (
@@ -360,42 +473,48 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
           {/* Top match */}
           <div className="card mt-8 grid grid-cols-[minmax(0,1fr)] overflow-hidden shadow-md lg:grid-cols-[1.1fr_1fr]">
             <div className="relative bg-surface-2/70 p-6 sm:p-10">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-brand px-3 py-1 text-[12.5px] font-semibold text-brand-ink">
-                <Sparkles size={13} /> <L en="Best match" bn="সেরা ম্যাচ" />
-              </span>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-brand px-3 py-1 text-[12.5px] font-semibold text-brand-ink">
+                  <Sparkles size={13} /> {tx("Best match", "সেরা ম্যাচ")}
+                </span>
+                {top.used && <span className="rounded-full bg-warn-soft px-3 py-1 text-[12.5px] font-semibold text-warn">{usedLabel(top.used.age)}</span>}
+              </div>
               <BikeArt bike={top.bike} className="mx-auto mt-4 w-full max-w-[480px] animate-rise" />
             </div>
             <div className="flex flex-col p-6 sm:p-8">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="text-[13px] font-medium text-muted">
-                    {top.bike.brand} · {ccLabel(top.bike)} · {CATEGORIES[top.bike.category].en}
+                    {top.bike.brand} · {ccLabel(top.bike)} · {lang === "bn" ? CATEGORIES[top.bike.category].bn : CATEGORIES[top.bike.category].en}
                   </p>
                   <h2 className="mt-1 text-[30px] font-semibold leading-tight tracking-tight text-ink">{top.bike.model}</h2>
                 </div>
                 <MatchRing value={top.score} />
               </div>
-              <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{top.bike.tagline}</p>
+              <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{tagline(top.bike, lang)}</p>
               <ul className="mt-5 space-y-2.5">
                 {top.reasons.map((r) => (
-                  <li key={r} className="flex gap-2.5 text-[14.5px] text-ink-2">
-                    <Check size={17} className="mt-0.5 shrink-0 text-good" /> {r}
+                  <li key={r.en} className="flex gap-2.5 text-[14.5px] text-ink-2">
+                    <Check size={17} className="mt-0.5 shrink-0 text-good" /> {r[lang]}
                   </li>
                 ))}
                 {top.warnings.map((w) => (
-                  <li key={w} className="flex gap-2.5 text-[14.5px] text-ink-2">
-                    <TriangleAlert size={16} className="mt-0.5 shrink-0 text-warn" /> {w}
+                  <li key={w.en} className="flex gap-2.5 text-[14.5px] text-ink-2">
+                    <TriangleAlert size={16} className="mt-0.5 shrink-0 text-warn" /> {w[lang]}
                   </li>
                 ))}
               </ul>
               <div className="mt-6 grid grid-cols-3 gap-4 border-t border-line pt-5">
-                <MiniStat k="Price" v={formatLakh(top.bike.priceBDT)} />
-                <MiniStat k="Mileage" v={`${top.bike.mileageKmpl[0]}–${top.bike.mileageKmpl[1]}`} />
-                <MiniStat k="Running/mo" v={formatBDT(ownershipCost(top.bike, { ...DEFAULT_COST_INPUT, includeDepreciation: false }).runningPerMonth)} />
+                <MiniStat k={top.used ? tx("Used price", "পুরনো দাম") : tx("Price", "দাম")} v={formatLakh(top.price, lang)} />
+                <MiniStat k={tx("Mileage", "মাইলেজ")} v={`${top.bike.mileageKmpl[0]}–${top.bike.mileageKmpl[1]}`} />
+                <MiniStat
+                  k={top.used ? tx("Running/mo", "চলার খরচ/মাস") : tx("EMI/mo", "কিস্তি/মাস")}
+                  v={formatBDT(top.used ? ownershipCost(top.bike, { ...DEFAULT_COST_INPUT, includeDepreciation: false }).runningPerMonth : emiMonthly(top.price))}
+                />
               </div>
               <div className="mt-6 flex flex-wrap gap-2">
                 <Link href={`/bikes/${top.bike.id}/`} className="btn-primary">
-                  <L en="See full details" bn="বিস্তারিত দেখুন" /> <ArrowRight size={16} />
+                  {tx("See full details", "বিস্তারিত দেখুন")} <ArrowRight size={16} />
                 </Link>
                 <CompareButton id={top.bike.id} />
                 <SaveButton id={top.bike.id} withLabel />
@@ -407,11 +526,9 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
           {rest.length > 0 && (
             <>
               <div className="mt-12 flex flex-wrap items-end justify-between gap-3">
-                <h2 className="text-[22px] font-semibold tracking-tight text-ink">
-                  <L en="Also great for you" bn="আপনার জন্য আরও ভালো" />
-                </h2>
+                <h2 className="text-[22px] font-semibold tracking-tight text-ink">{tx("Also great for you", "আপনার জন্য আরও ভালো")}</h2>
                 <Link href={`/compare/?bikes=${matches.slice(0, 3).map((m) => m.bike.id).join(",")}`} onClick={compareTop3} className="btn-secondary h-10 px-4 text-[14px]">
-                  <Scale size={16} /> <L en="Compare top 3" bn="সেরা ৩টি তুলনা" />
+                  <Scale size={16} /> {tx("Compare top 3", "সেরা ৩টি তুলনা")}
                 </Link>
               </div>
               <div className="mt-5 grid gap-3">
@@ -426,19 +543,28 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
                     <div className="min-w-0">
                       <div className="flex flex-wrap items-baseline gap-x-3">
                         <h3 className="text-[17px] font-semibold text-ink">{fullName(m.bike)}</h3>
-                        <span className="text-[13px] font-semibold text-brand tnum">{m.score}% match</span>
+                        <span className="text-[13px] font-semibold text-brand tnum">
+                          {m.score}% {tx("match", "ম্যাচ")}
+                        </span>
+                        {m.used && <span className="rounded-full bg-warn-soft px-2 py-0.5 text-[11.5px] font-semibold text-warn">{usedLabel(m.used.age)}</span>}
                       </div>
-                      <p className="mt-1 text-[13.5px] text-muted">
-                        {m.reasons.slice(0, 2).join(" · ")}
-                      </p>
+                      <p className="mt-1 text-[13.5px] text-muted">{m.reasons.slice(0, 2).map((r) => r[lang]).join(" · ")}</p>
                       {m.warnings[0] && (
                         <p className="mt-1 flex items-center gap-1.5 text-[13px] text-warn">
-                          <TriangleAlert size={13} /> {m.warnings[0]}
+                          <TriangleAlert size={13} className="shrink-0" /> {m.warnings[0][lang]}
                         </p>
                       )}
                     </div>
                     <div className="col-span-2 flex items-center justify-between gap-3 sm:col-span-1 sm:flex-col sm:items-end">
-                      <span className="text-[18px] font-semibold text-ink tnum">{formatLakh(m.bike.priceBDT)}</span>
+                      <span className="text-right">
+                        <span className="block text-[18px] font-semibold text-ink tnum">{formatLakh(m.price, lang)}</span>
+                        {!m.used && (
+                          <span className="block text-[12px] text-muted tnum">
+                            {formatBDT(emiMonthly(m.price))}
+                            {tx("/mo EMI", "/মাস কিস্তি")}
+                          </span>
+                        )}
+                      </span>
                       <CompareButton id={m.bike.id} size="sm" />
                     </div>
                   </Link>
@@ -447,7 +573,11 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
             </>
           )}
           <p className="mt-8 text-[13px] text-faint">
-            {compare.length > 0 ? `${compare.length} in your compare tray. ` : ""}Rankings are computed from our 11 ownership scores, your answers and current prices — no brand pays for placement.
+            {compare.length > 0 ? tx(`${compare.length} in your compare tray. `, `তুলনার তালিকায় ${compare.length}টি। `) : ""}
+            {tx(
+              "Rankings are computed from our 11 ownership scores, your answers and current prices — no brand pays for placement. EMI shown as a plain 12-month split.",
+              "র‍্যাঙ্কিং আমাদের ১১টি মালিকানা স্কোর, আপনার উত্তর আর বর্তমান দাম থেকে হিসাব করা — কোনো ব্র্যান্ড টাকা দিয়ে জায়গা কেনে না। কিস্তি দেখানো হয়েছে ১২ মাসে সমান ভাগ করে।",
+            )}
           </p>
         </>
       )}
@@ -456,10 +586,11 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
 }
 
 function EditChip({ children, onClick }: { children: React.ReactNode; onClick: () => void }) {
+  const tx = useTx();
   return (
-    <button onClick={onClick} className="chip h-9 gap-2 pr-2.5" title="Edit">
+    <button onClick={onClick} className="chip h-9 gap-2 pr-2.5">
       {children}
-      <span className="text-[11.5px] font-semibold text-brand">Edit</span>
+      <span className="text-[11.5px] font-semibold text-brand">{tx("Edit", "বদলান")}</span>
     </button>
   );
 }
@@ -477,7 +608,7 @@ function MatchRing({ value }: { value: number }) {
   const r = 26;
   const c = 2 * Math.PI * r;
   return (
-    <div className="relative h-[68px] w-[68px] shrink-0" aria-label={`${value}% match`}>
+    <div className="relative h-[68px] w-[68px] shrink-0" aria-label={`${value}%`}>
       <svg viewBox="0 0 64 64" className="h-full w-full -rotate-90">
         <circle cx="32" cy="32" r={r} fill="none" stroke="var(--surface-3)" strokeWidth="6" />
         <circle

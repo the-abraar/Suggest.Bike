@@ -11,7 +11,7 @@
   --ink: #0f1613;
   --ink-2: #2b3530;
   --muted: #5f6b65;
-  --faint: #8b958f;
+  --faint: #646f69;   /* ≥4.5:1 on --bg and --surface for small captions */
   --line: #e4e6e0;
   --line-strong: #d3d7cf;
 
@@ -46,7 +46,7 @@
   --ink: #edf2ef;
   --ink-2: #cfd8d3;
   --muted: #94a39b;
-  --faint: #6c7a73;
+  --faint: #849189;
   --line: #222c27;
   --line-strong: #2f3b35;
 

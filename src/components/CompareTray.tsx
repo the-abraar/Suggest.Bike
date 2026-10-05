@@ -10,7 +10,7 @@ import { BikeArt } from "./BikeArt";
 
 export function CompareTray() {
   const { compare, toggleCompare, clearCompare, ready } = useStore();
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const pathname = usePathname();
   if (!ready || compare.length === 0 || pathname?.startsWith("/compare")) return null;
   const bikes = compare.map(getBike).filter((b) => !!b);
@@ -28,14 +28,14 @@ export function CompareTray() {
               <button
                 onClick={() => toggleCompare(b.id)}
                 className="grid h-6 w-6 place-items-center rounded-lg text-muted hover:bg-surface-3 hover:text-ink"
-                aria-label={`Remove ${b.model}`}
+                aria-label={lang === "bn" ? `${b.model} সরান` : `Remove ${b.model}`}
               >
                 <X size={14} />
               </button>
             </span>
           ))}
           {bikes.length < MAX_COMPARE && (
-            <span className="hidden shrink-0 text-[12.5px] text-faint sm:inline">{bikes.length === 1 ? "Add 1–2 more to compare" : "Add one more (optional)"}</span>
+            <span className="hidden shrink-0 text-[12.5px] text-faint sm:inline">{lang === "bn" ? (bikes.length === 1 ? "তুলনার জন্য আরও ১–২টি যোগ করুন" : "চাইলে আরও একটি যোগ করুন") : bikes.length === 1 ? "Add 1–2 more to compare" : "Add one more (optional)"}</span>
           )}
         </div>
         <button onClick={clearCompare} className="btn-ghost h-10 px-3 text-[13.5px]">

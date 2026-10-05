@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { Check, Heart, Plus } from "lucide-react";
-import type { Bike } from "@/lib/types";
+import { useState } from "react";
+import { Check, Heart, Plus, Share2 } from "lucide-react";
+import type { BikeLite } from "@/lib/types";
 import { CATEGORIES, ccLabel, formatLakh } from "@/lib/bikes";
 import { useStore } from "@/lib/store";
 import { useLang } from "@/lib/i18n";
@@ -32,7 +33,7 @@ export function CompareButton({ id, size = "md" }: { id: string; size?: "sm" | "
 
 export function SaveButton({ id, withLabel = false }: { id: string; withLabel?: boolean }) {
   const { saved, toggleSaved, ready } = useStore();
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const on = ready && saved.includes(id);
   return (
     <button
@@ -42,7 +43,7 @@ export function SaveButton({ id, withLabel = false }: { id: string; withLabel?: 
         toggleSaved(id);
       }}
       aria-pressed={on}
-      aria-label={on ? "Remove from saved" : "Save bike"}
+      aria-label={on ? (lang === "bn" ? "সেভ থেকে সরান" : "Remove from saved") : lang === "bn" ? "বাইক সেভ করুন" : "Save bike"}
       className={`inline-flex items-center justify-center gap-1.5 rounded-lg transition-colors ${
         withLabel ? "h-10 px-3.5 text-[14px] font-medium" : "h-8 w-8"
       } ${on ? "text-signal" : "text-faint hover:text-ink"} ${withLabel ? "bg-surface-2 hover:bg-surface-3" : "hover:bg-surface-2"}`}
@@ -53,7 +54,48 @@ export function SaveButton({ id, withLabel = false }: { id: string; withLabel?: 
   );
 }
 
-export function BikeCard({ bike, footer, badge }: { bike: Bike; footer?: React.ReactNode; badge?: React.ReactNode }) {
+/** Uses the phone's share sheet (Messenger, WhatsApp, Facebook…) and falls back to copying the link. */
+export function ShareButton({ title, text, className = "" }: { title: string; text?: string; className?: string }) {
+  const { lang } = useLang();
+  const [copied, setCopied] = useState(false);
+  const share = async () => {
+    const url = window.location.href;
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, text, url });
+        return;
+      } catch {
+        // dismissed — fall through to copy
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {}
+  };
+  return (
+    <button onClick={share} className={`inline-flex h-10 items-center gap-1.5 rounded-lg bg-surface-2 px-3.5 text-[14px] font-medium text-ink-2 hover:bg-surface-3 ${className}`}>
+      {copied ? <Check size={16} /> : <Share2 size={16} />}
+      {copied ? (lang === "bn" ? "লিংক কপি হয়েছে" : "Link copied") : lang === "bn" ? "শেয়ার" : "Share"}
+    </button>
+  );
+}
+
+/** Marks a number as an editorial estimate rather than a sourced figure. */
+export function Approx({ className = "" }: { className?: string }) {
+  const { lang } = useLang();
+  return (
+    <span
+      className={`ml-1 inline-flex cursor-help items-center rounded px-1 py-px align-middle text-[10.5px] font-semibold uppercase tracking-wide text-muted ring-1 ring-line-strong ${className}`}
+      title={lang === "bn" ? "আনুমানিক — মালিকদের অভিজ্ঞতা ও বাজার থেকে, মাপা নয়" : "Estimate — based on owner reports and market prices, not measured"}
+    >
+      {lang === "bn" ? "আনুমানিক" : "approx"}
+    </span>
+  );
+}
+
+export function BikeCard({ bike, footer, badge }: { bike: BikeLite; footer?: React.ReactNode; badge?: React.ReactNode }) {
   const { lang, t } = useLang();
   return (
     <Link
@@ -61,10 +103,13 @@ export function BikeCard({ bike, footer, badge }: { bike: Bike; footer?: React.R
       className="group card relative flex flex-col overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-md"
     >
       <div className="relative bg-surface-2/60 px-5 pt-5">
-        <div className="absolute left-4 top-4 z-10 flex gap-1.5">
+        <div className="absolute left-4 top-4 z-10 flex flex-wrap gap-1.5 pr-10">
           {badge}
           {bike.status === "used-only" && (
             <span className="rounded-full bg-warn-soft px-2 py-0.5 text-[11.5px] font-semibold text-warn">{t("common.usedOnly")}</span>
+          )}
+          {bike.hasOffer && (
+            <span className="rounded-full bg-signal-soft px-2 py-0.5 text-[11.5px] font-semibold text-signal">{lang === "bn" ? "অফার চলছে" : "Offer running"}</span>
           )}
         </div>
         <div className="absolute right-3 top-3 z-10">
@@ -80,10 +125,10 @@ export function BikeCard({ bike, footer, badge }: { bike: Bike; footer?: React.R
           <h3 className="mt-0.5 text-[17px] font-semibold tracking-tight text-ink">{bike.model}</h3>
         </div>
         <div className="mt-auto flex items-end justify-between gap-3">
-          <div>
-            <p className="text-[19px] font-semibold tracking-tight text-ink tnum">{formatLakh(bike.priceBDT)}</p>
+          <div className="min-w-0">
+            <p className="text-[19px] font-semibold tracking-tight text-ink tnum">{formatLakh(bike.priceBDT, lang)}</p>
             <p className="whitespace-nowrap text-[12.5px] text-muted tnum">
-              {bike.mileageKmpl[0]}–{bike.mileageKmpl[1]} kmpl · {bike.powerPS} PS
+              ~{bike.mileageKmpl[0]}–{bike.mileageKmpl[1]} kmpl · {bike.powerPS} PS
             </p>
           </div>
           <CompareButton id={bike.id} size="sm" />
@@ -109,17 +154,7 @@ export function ScoreBar({ value, label, hint, tone = "brand" }: { value: number
   );
 }
 
-export function Stat({ label, value, sub }: { label: string; value: React.ReactNode; sub?: React.ReactNode }) {
-  return (
-    <div className="min-w-0">
-      <p className="text-[12.5px] text-muted">{label}</p>
-      <p className="mt-0.5 truncate text-[17px] font-semibold tracking-tight text-ink tnum">{value}</p>
-      {sub && <p className="text-[12px] text-faint">{sub}</p>}
-    </div>
-  );
-}
-
-export function SectionHead({ eyebrow, title, sub, action }: { eyebrow?: string; title: React.ReactNode; sub?: React.ReactNode; action?: React.ReactNode }) {
+export function SectionHead({ eyebrow, title, sub, action }: { eyebrow?: React.ReactNode; title: React.ReactNode; sub?: React.ReactNode; action?: React.ReactNode }) {
   return (
     <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
       <div className="max-w-2xl">

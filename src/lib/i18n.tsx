@@ -11,6 +11,7 @@ const DICT = {
   "nav.cost": { en: "True cost", bn: "আসল খরচ" },
   "nav.guide": { en: "Buyer's guide", bn: "ক্রেতা গাইড" },
   "nav.saved": { en: "Saved", bn: "সংরক্ষিত" },
+  "nav.menu": { en: "Menu", bn: "মেনু" },
 
   "home.kicker": { en: "Bangladesh's motorcycle decision engine", bn: "বাংলাদেশের মোটরসাইকেল সিদ্ধান্তের প্ল্যাটফর্ম" },
   "home.title1": { en: "Don't buy a bike", bn: "বাইক কেনার আগে" },
@@ -80,6 +81,12 @@ export function LangProvider({ children }: { children: ReactNode }) {
 }
 
 export const useLang = () => useContext(LangContext);
+
+/** Inline translator for strings that aren't worth a dictionary key: tx("Price", "দাম"). */
+export function useTx() {
+  const { lang } = useLang();
+  return useCallback((en: string, bn: string) => (lang === "bn" ? bn : en), [lang]);
+}
 
 /** For server components: <T k="nav.match" /> */
 export function T({ k }: { k: DictKey }) {

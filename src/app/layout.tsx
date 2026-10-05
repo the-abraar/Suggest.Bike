@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Hind_Siliguri } from "next/font/google";
 import "./globals.css";
-import { LangProvider } from "@/lib/i18n";
+import { L, LangProvider } from "@/lib/i18n";
 import { StoreProvider } from "@/lib/store";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -40,7 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <LangProvider>
           <StoreProvider>
             <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] btn-primary">
-              Skip to content
+              <L en="Skip to content" bn="মূল অংশে যান" />
             </a>
             <Header />
             <main id="main">{children}</main>

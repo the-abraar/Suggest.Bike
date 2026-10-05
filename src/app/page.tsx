@@ -6,8 +6,8 @@ import { ArrowRight, BadgeCheck, Fuel, Gauge, ShieldCheck, Sparkles, Wallet, Wre
 import { BIKES, BRANDS, CATEGORIES, PRICE_BANDS, formatBDT, formatLakh, fullName } from "@/lib/bikes";
 import { matchBikes, DEFAULT_ANSWERS, encodeAnswers, type Use } from "@/lib/match";
 import { popularPairs } from "@/lib/curated";
-import { FUEL, ownershipCost, DEFAULT_COST_INPUT, registrationFor } from "@/lib/cost";
-import { useLang, L } from "@/lib/i18n";
+import { FUEL, ownershipCost, DEFAULT_COST_INPUT, registrationFor, emiMonthly } from "@/lib/cost";
+import { useLang, useTx, L } from "@/lib/i18n";
 import { BikeArt } from "@/components/BikeArt";
 import { SearchBox } from "@/components/SearchBox";
 import { BikeCard, SectionHead } from "@/components/ui";
@@ -22,7 +22,8 @@ const QUICK_USES: { id: Use; en: string; bn: string }[] = [
 ];
 
 export default function Home() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
+  const tx = useTx();
   const onSale = BIKES.filter((b) => b.status === "on-sale");
 
   return (
@@ -64,7 +65,7 @@ export default function Home() {
         <div className="container-x grid grid-cols-2 gap-y-6 py-7 md:grid-cols-4">
           <TrustStat value={String(onSale.length)} label={<L en="bikes on sale, tracked" bn="টি বাইক বিক্রি হচ্ছে" />} />
           <TrustStat value={String(BRANDS.length)} label={<L en="brands in Bangladesh" bn="টি ব্র্যান্ড" />} />
-          <TrustStat value={`৳${FUEL.octane}/L`} label={<L en={`octane price, ${monthName(FUEL.asOf)}`} bn="অকটেনের বর্তমান দাম" />} />
+          <TrustStat value={`৳${FUEL.octane}/L`} label={<L en={`octane price, ${monthName(FUEL.asOf)}`} bn="অকটেনের বর্তমান সরকারি দাম" />} />
           <TrustStat value="0" label={<L en="paid placements. Ever." bn="টি পেইড র‍্যাঙ্কিং। কখনো না।" />} />
         </div>
       </section>
@@ -72,7 +73,7 @@ export default function Home() {
       {/* ---------------- Budget bands ---------------- */}
       <section className="container-x mt-20">
         <SectionHead
-          eyebrow="Shop by budget"
+          eyebrow={tx("Shop by budget", "বাজেট অনুযায়ী")}
           title={<L en="What can my money buy?" bn="আমার বাজেটে কী পাব?" />}
           sub={<L en="Ex-showroom prices. Add roughly ৳12–21k for BRTA registration." bn="শোরুম মূল্য। BRTA রেজিস্ট্রেশনের জন্য আরও ১২–২১ হাজার টাকা ধরুন।" />}
         />
@@ -87,12 +88,12 @@ export default function Home() {
                 className="group card flex flex-col p-4 transition-all hover:-translate-y-0.5 hover:border-line-strong hover:shadow-md sm:p-5"
               >
                 <div className="flex flex-wrap items-baseline justify-between gap-x-2">
-                  <h3 className="text-[15px] font-semibold tracking-tight text-ink sm:text-[17px]">{band.label}</h3>
-                  <span className="text-[13px] text-muted tnum">{inBand.length} bikes</span>
+                  <h3 className="text-[15px] font-semibold tracking-tight text-ink sm:text-[17px]">{lang === "bn" ? band.labelBn : band.label}</h3>
+                  <span className="text-[13px] text-muted tnum">{tx(`${inBand.length} bikes`, `${inBand.length}টি বাইক`)}</span>
                 </div>
                 {art && <BikeArt bike={art} className="my-3 w-full transition-transform duration-300 group-hover:scale-[1.04]" />}
                 <p className="mt-auto hidden text-[13px] text-muted sm:block">
-                  e.g. {inBand.slice(0, 3).map((b) => b.model).join(", ")}
+                  {tx("e.g.", "যেমন")} {inBand.slice(0, 3).map((b) => b.model).join(", ")}
                 </p>
               </Link>
             );
@@ -103,7 +104,7 @@ export default function Home() {
       {/* ---------------- Why ---------------- */}
       <section className="container-x mt-24">
         <SectionHead
-          eyebrow="Why Suggest.Bike"
+          eyebrow={tx("Why Suggest.Bike", "কেন Suggest.Bike")}
           title={<L en="The things showrooms won't tell you" bn="যে কথা শোরুম বলবে না" />}
           sub={
             <L
@@ -131,7 +132,7 @@ export default function Home() {
       {/* ---------------- Popular comparisons ---------------- */}
       <section className="container-x mt-24">
         <SectionHead
-          eyebrow="Head to head"
+          eyebrow={tx("Head to head", "মুখোমুখি")}
           title={<L en="The debates everyone has" bn="যে তর্ক সবাই করে" />}
           action={
             <Link href="/compare/" className="btn-ghost text-brand">
@@ -155,7 +156,7 @@ export default function Home() {
               </div>
               <div className="flex items-center justify-between gap-2 p-3 sm:p-4">
                 <p className="text-[13px] font-medium leading-snug text-ink sm:text-[14px]">
-                  {a.model} <span className="text-faint">vs</span> {b.model}
+                  {a.model} <span className="text-faint">{tx("vs", "বনাম")}</span> {b.model}
                 </p>
                 <ArrowRight size={16} className="hidden shrink-0 text-faint transition-transform sm:block group-hover:translate-x-0.5 group-hover:text-brand" />
               </div>
@@ -166,7 +167,7 @@ export default function Home() {
 
       {/* ---------------- Categories ---------------- */}
       <section className="container-x mt-24">
-        <SectionHead eyebrow="Browse by style" title={<L en="What kind of rider are you?" bn="আপনি কেমন রাইডার?" />} />
+        <SectionHead eyebrow={tx("Browse by style", "ধরন অনুযায়ী")} title={<L en="What kind of rider are you?" bn="আপনি কেমন রাইডার?" />} />
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {(Object.keys(CATEGORIES) as Category[]).map((c) => {
             const list = BIKES.filter((b) => b.category === c);
@@ -185,7 +186,7 @@ export default function Home() {
                   </h3>
                   <span className="text-[12.5px] text-muted tnum">{list.length}</span>
                 </div>
-                <p className="mt-1 text-[12.5px] leading-snug text-muted">{CATEGORIES[c].blurb}</p>
+                <p className="mt-1 text-[12.5px] leading-snug text-muted">{lang === "bn" ? CATEGORIES[c].blurbBn : CATEGORIES[c].blurb}</p>
               </Link>
             );
           })}
@@ -196,14 +197,14 @@ export default function Home() {
       <section className="container-x mt-24">
         <div className="card grid grid-cols-[minmax(0,1fr)] gap-10 overflow-hidden p-8 sm:p-10 lg:grid-cols-[1fr_1.2fr]">
           <div>
-            <p className="eyebrow mb-3">Before you pay</p>
+            <p className="eyebrow mb-3">{tx("Before you pay", "টাকা দেওয়ার আগে")}</p>
             <h2 className="text-[28px] font-semibold tracking-tight text-ink">
               <L en="The paperwork, decoded." bn="কাগজপত্র, সহজ ভাষায়।" />
             </h2>
             <p className="mt-3 text-[15.5px] leading-relaxed text-muted">
               <L
-                en="BRTA registration, the 10-year tax token, smart licence fees, the 375cc rule, and an 11-point checklist for buying used without getting cheated."
-                bn="BRTA রেজিস্ট্রেশন, ১০ বছরের ট্যাক্স টোকেন, স্মার্ট লাইসেন্স ফি, ৩৭৫সিসি নিয়ম, আর ঠকে না গিয়ে পুরনো বাইক কেনার ১১টি চেকলিস্ট।"
+                en="BRTA registration, the 10-year tax token, smart licence fees, the 375cc rule, paying in EMI, and an 11-point checklist for buying used without getting cheated."
+                bn="BRTA রেজিস্ট্রেশন, ১০ বছরের ট্যাক্স টোকেন, স্মার্ট লাইসেন্স ফি, ৩৭৫সিসি নিয়ম, কিস্তিতে কেনা, আর ঠকে না গিয়ে পুরনো বাইক কেনার ১১টি চেকলিস্ট।"
               />
             </p>
             <Link href="/guide/" className="btn-primary mt-6">
@@ -250,10 +251,13 @@ function monthName(iso: string) {
 /* Hero card: live, three-second recommendation */
 function QuickPick() {
   const { lang } = useLang();
+  const tx = useTx();
   const [budget, setBudget] = useState(250000);
   const [use, setUse] = useState<Use>("commute");
-  const answers = { ...DEFAULT_ANSWERS, budget, use, gearless: "either" as const };
-  const top = useMemo(() => matchBikes(answers, 3), [budget, use]); // eslint-disable-line react-hooks/exhaustive-deps
+  const [scooter, setScooter] = useState(false);
+  // Geared by default: most BD buyers mean a motorcycle; scooters are one tap away.
+  const answers = { ...DEFAULT_ANSWERS, budget, use, gearless: scooter ? ("yes" as const) : ("no" as const) };
+  const top = useMemo(() => matchBikes(answers, 3), [budget, use, scooter]); // eslint-disable-line react-hooks/exhaustive-deps
   const min = 100000;
   const max = 700000;
   const fill = ((budget - min) / (max - min)) * 100;
@@ -261,19 +265,17 @@ function QuickPick() {
   return (
     <div className="card animate-rise p-5 shadow-lg sm:p-6" style={{ animationDelay: "120ms" }}>
       <div className="flex items-center justify-between">
-        <p className="text-[14px] font-semibold text-ink">
-          <L en="Quick pick" bn="দ্রুত সাজেশন" />
-        </p>
+        <p className="text-[14px] font-semibold text-ink">{tx("Quick pick", "দ্রুত সাজেশন")}</p>
         <span className="inline-flex items-center gap-1 text-[12px] font-medium text-good">
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-good" /> <L en="Live" bn="লাইভ" />
+          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-good" /> {tx("Live", "লাইভ")}
         </span>
       </div>
       <div className="mt-4">
         <div className="flex items-baseline justify-between">
           <label htmlFor="qp-budget" className="text-[13px] text-muted">
-            <L en="My budget" bn="আমার বাজেট" />
+            {tx("My budget", "আমার বাজেট")}
           </label>
-          <span className="text-[22px] font-semibold tracking-tight text-ink tnum">{formatLakh(budget)}</span>
+          <span className="text-[22px] font-semibold tracking-tight text-ink tnum">{formatLakh(budget, lang)}</span>
         </div>
         <input
           id="qp-budget"
@@ -286,13 +288,19 @@ function QuickPick() {
           style={{ ["--fill" as string]: `${fill}%` }}
           onChange={(e) => setBudget(Number(e.target.value))}
         />
+        <p className="text-right text-[11.5px] text-faint tnum">
+          {tx(`≈ ${formatBDT(emiMonthly(budget))}/mo on 12-month EMI`, `১২ মাসের কিস্তিতে ≈ ${formatBDT(emiMonthly(budget))}/মাস`)}
+        </p>
       </div>
-      <div className="mt-3 flex flex-wrap gap-1.5">
+      <div className="mt-2 flex flex-wrap gap-1.5">
         {QUICK_USES.map((u) => (
           <button key={u.id} className="chip" data-active={use === u.id} onClick={() => setUse(u.id)}>
             {lang === "bn" ? u.bn : u.en}
           </button>
         ))}
+        <button className="chip" data-active={scooter} onClick={() => setScooter((x) => !x)} aria-pressed={scooter}>
+          {tx("Scooter", "স্কুটার")}
+        </button>
       </div>
       <div className="mt-5 space-y-2">
         {top.map((m, i) => {
@@ -309,22 +317,29 @@ function QuickPick() {
               </span>
               <span className="min-w-0 flex-1">
                 <span className="block truncate text-[14.5px] font-semibold text-ink">{fullName(m.bike)}</span>
-                <span className="block truncate text-[12.5px] text-muted">{m.reasons[0]}</span>
+                <span className="block truncate text-[12.5px] text-muted">{m.reasons[0]?.[lang]}</span>
               </span>
               <span className="text-right">
-                <span className="block text-[14px] font-semibold text-ink tnum">{formatLakh(m.bike.priceBDT)}</span>
-                <span className="block text-[11.5px] text-muted tnum">~{formatBDT(monthly)}/mo</span>
+                <span className="block text-[14px] font-semibold text-ink tnum">{formatLakh(m.price, lang)}</span>
+                <span className="block text-[11.5px] text-muted tnum">
+                  ~{formatBDT(monthly)}
+                  {tx("/mo to run", "/মাস চালাতে")}
+                </span>
               </span>
             </Link>
           );
         })}
-        {top.length === 0 && <p className="py-6 text-center text-[14px] text-muted">Nothing new at this budget — try the used market in the full matcher.</p>}
+        {top.length === 0 && (
+          <p className="py-6 text-center text-[14px] text-muted">
+            {tx("Nothing new at this budget — try the full matcher, which includes used bikes.", "এই বাজেটে নতুন কিছু নেই — পুরো ম্যাচারে পুরনো বাইকও দেখুন।")}
+          </p>
+        )}
       </div>
       <Link
-        href={`/match/?${encodeAnswers({ ...answers, gearless: "either" })}`}
+        href={`/match/?${encodeAnswers(answers)}`}
         className="mt-4 flex items-center justify-center gap-1.5 rounded-xl bg-surface-2 py-2.5 text-[13.5px] font-medium text-ink-2 transition-colors hover:bg-surface-3"
       >
-        <L en="Refine with 5 more questions" bn="আরও ৫টি প্রশ্নে ঠিক করুন" /> <ArrowRight size={15} />
+        {tx("Refine with a few more questions", "আরও কয়েকটি প্রশ্নে ঠিক করুন")} <ArrowRight size={15} />
       </Link>
     </div>
   );
@@ -359,18 +374,20 @@ function GuideFact({ k, v, href }: { k: string; v: React.ReactNode; href: string
 }
 
 function TopPicks() {
+  const { lang } = useLang();
+  const tx = useTx();
   const picks = [
-    { id: "hero-splendor-plus", badge: "Cheapest to run" },
-    { id: "bajaj-pulsar-n160", badge: "Best all-rounder" },
-    { id: "yamaha-fzs-fi-v4", badge: "Safest resale" },
-    { id: "royal-enfield-hunter-350", badge: "Most character" },
+    { id: "hero-splendor-plus", badge: "Cheapest to run", badgeBn: "চালাতে সবচেয়ে সস্তা" },
+    { id: "bajaj-pulsar-n160", badge: "Best all-rounder", badgeBn: "সেরা অলরাউন্ডার" },
+    { id: "yamaha-fzs-fi-v4", badge: "Safest resale", badgeBn: "রিসেলে সবচেয়ে নিরাপদ" },
+    { id: "royal-enfield-hunter-350", badge: "Most character", badgeBn: "সবচেয়ে বেশি চরিত্র" },
   ]
     .map((p) => ({ ...p, bike: BIKES.find((b) => b.id === p.id) }))
     .filter((p) => p.bike);
   return (
     <section className="container-x mt-24">
       <SectionHead
-        eyebrow="Editor's shortlist"
+        eyebrow={tx("Editor's shortlist", "আমাদের বাছাই")}
         title={<L en="If you made us choose" bn="আমাদের পছন্দ" />}
         action={
           <Link href="/bikes/" className="btn-ghost text-brand">
@@ -386,7 +403,7 @@ function TopPicks() {
             badge={
               <span className="inline-flex items-center gap-1 rounded-full bg-brand px-2 py-0.5 text-[11.5px] font-semibold text-brand-ink">
                 {p.badge === "Safest resale" ? <ShieldCheck size={12} /> : <BadgeCheck size={12} />}
-                {p.badge}
+                {lang === "bn" ? p.badgeBn : p.badge}
               </span>
             }
           />

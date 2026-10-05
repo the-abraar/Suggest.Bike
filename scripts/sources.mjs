@@ -23,7 +23,7 @@ out.push(
 );
 
 // Domain summary
-const allUrls = bikes.flatMap((b) => [b.priceSource, ...b.sources]).filter((u) => u?.startsWith("http"));
+const allUrls = bikes.flatMap((b) => [b.priceSource, ...b.sources, ...(b.usedPrice?.sources ?? [])]).filter((u) => u?.startsWith("http"));
 const counts = {};
 for (const u of allUrls) counts[host(u)] = (counts[host(u)] || 0) + 1;
 out.push("## Bike data — by website", "", "| Site | References |", "| --- | ---: |");
@@ -42,6 +42,22 @@ for (const brand of brands) {
     out.push(`  - Price: ${b.priceSource}`);
     const rest = [...new Set(b.sources)].filter((u) => u !== b.priceSource);
     rest.forEach((u) => out.push(`  - ${u}`));
+    if (b.usedPrice) {
+      const { y1, y3, asOf, sources } = b.usedPrice;
+      const fmt = (n) => (n ? `৳${n.toLocaleString("en-IN")}` : "—");
+      out.push(`  - Used asking prices (${asOf}): ~1 yr ${fmt(y1)}, ~3 yr ${fmt(y3)} — ${sources.join(", ")}`);
+    }
+    if (b.image) out.push(`  - Photo: ${b.image.author}, ${b.image.license} — ${b.image.sourcePage}`);
+  }
+  out.push("");
+}
+
+// Brand networks
+const networks = read("../src/data/networks.json");
+if (Object.keys(networks).length) {
+  out.push("## Dealer & service networks", "");
+  for (const [brand, n] of Object.entries(networks)) {
+    out.push(`- **${brand}** (${n.distributor}; confidence ${n.confidence}, ${n.asOf}): ${n.sources.join(", ") || "no source"}`);
   }
   out.push("");
 }

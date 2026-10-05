@@ -1,4 +1,4 @@
-// Shape of every record in src/data/bikes.json.
+// Shape of every record in src/data/bikes.json (the source of truth; edit this file, then `npm run data`).
 export type Category =
   | "commuter"      // 100-125cc daily runners (Platina, Livo, Saluto, Discover)
   | "street"        // 150-165cc everyday naked/street (Pulsar, Apache, FZ, Gixxer, Hornet)
@@ -57,6 +57,54 @@ export interface Bike {
   avgServiceCostBDT: number;    // typical periodic service at dealer incl. engine oil
   parts: Part[];            // EXACTLY these 5 names, approx BD market price: "Brake pads/shoes (front)", "Chain & sprocket set", "Air filter", "Engine oil change", "Clutch plate set"
   sources: string[];        // URLs you actually consulted for this bike (2-5)
+  // ---- Optional enrichments ----
+  bn?: BikeBn;              // Bangla versions of the editorial text
+  aliases?: string[];       // extra search terms: Bangla spellings, common misspellings ("পালসার", "apachi")
+  usedPrice?: UsedPrice;    // used-market asking prices for on-sale models
+  image?: BikeImage;        // freely licensed photo (Wikimedia Commons), shown with credit
 }
 
+export interface BikeBn {
+  tagline: string;
+  feel: string;
+  quirks: string;
+  braking: string;
+  mechanicNote: string;
+  pros: string[];
+  cons: string[];
+  bestFor: string[];
+  priceNote?: string | null;
+  partNotes?: (string | null)[];
+}
+
+export interface UsedPrice { y1: number | null; y3: number | null; listingsSeen?: number; asOf: string; sources: string[] }
+
+export interface BikeImage { src: string; author: string; license: string; licenseUrl?: string; sourcePage: string }
+
 export type ScoreKey = keyof Bike["scores"];
+
+/**
+ * What every client page gets (src/data/generated/bikes.index.json).
+ * Long-form text lives in per-bike files under public/data/bikes/ and is passed to the detail page at build time.
+ */
+export type BikeLite = Omit<
+  Bike,
+  "feel" | "quirks" | "braking" | "mechanicNote" | "pros" | "cons" | "bestFor" | "sources" | "priceNote" | "priceSource" | "tyres" | "suspension" | "bn" | "parts"
+> & {
+  taglineBn?: string;
+  parts: Pick<Part, "name" | "priceBDT" | "availability">[];
+  hasOffer: boolean;
+};
+
+export interface BrandNetwork {
+  distributor: string;
+  showrooms: number | null;
+  serviceCentres: number | null;
+  divisions: string[];
+  allDivisions: boolean | null;
+  dealerLocatorUrl: string | null;
+  note: string;
+  asOf: string;
+  sources: string[];
+  confidence: "high" | "medium" | "low";
+}

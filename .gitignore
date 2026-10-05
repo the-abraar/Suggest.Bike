@@ -4,3 +4,5 @@ out
 next-env.d.ts
 *.tsbuildinfo
 .DS_Store
+src/data/generated
+public/data/bikes
