@@ -1,5 +1,7 @@
 # Todo — agent
 
+See also `UI_AUDIT.md` for ranked UX issues (H1–H6, M1–M7) that feed into this list.
+
 Work an AI coding agent can pick up without the owner. Ordered by impact. Each item names the files involved and what "done" means. Run `node scripts/validate-data.mjs`, `npx tsc --noEmit` and `npm run build` before calling anything done. If data changes, run `node scripts/sources.mjs` too.
 
 ## P0 — Trust and correctness
