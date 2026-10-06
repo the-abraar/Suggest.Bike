@@ -8,7 +8,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 
 | Site | References |
 | --- | ---: |
-| bikebd.com | 189 |
+| bikebd.com | 192 |
 | bikroy.com | 65 |
 | suzuki.com.bd | 15 |
 | bdhonda.com | 8 |
@@ -20,6 +20,8 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 | bikewale.com | 3 |
 | dhakatribune.com | 2 |
 | online91.thedailystar.net | 1 |
+| suzukicycles.org | 1 |
+| motorcyclebd.com | 1 |
 | amarujala.com | 1 |
 
 ## Bike data — per bike
@@ -279,6 +281,11 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://www.bikebd.com/price/suzuki-gixxer-sf-250
   - Used asking prices (2026-10): ~1 yr ৳3,55,000, ~3 yr — — https://bikroy.com/bn/motorcycles-and-scooters/suzuki-gixxer-sf-250
   - Photo: ShunyaIshiwatari, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Suzuki_Gixxer_Sf250_%E3%83%88%E3%83%AA%E3%83%88%E3%83%B3%E3%83%96%E3%83%AB%E3%83%BC.jpg
+- **V-Strom SX 250** — ৳4,49,000 as of 2026-10
+  - Price: https://www.bikebd.com/price/suzuki-v-strom-sx
+  - https://www.bikebd.com/price/suzuki-v-strom-sx/specifications
+  - https://suzukicycles.org/V-Strom/V-Strom-250SX.shtml
+  - https://www.motorcyclebd.com/suzuki-v-strom-sx-250/
 - **GSX-R150** (ABS) — ৳5,29,950 as of 2026-10
   - Price: https://www.suzuki.com.bd/
   - https://www.bikebd.com/price/suzuki-gsxr-price-in-bangladesh

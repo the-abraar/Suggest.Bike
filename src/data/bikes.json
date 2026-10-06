@@ -8638,39 +8638,43 @@
    "Riders upgrading from a 150",
    "Long-distance commutes"
   ],
-  "serviceIntervalKm": 3000,
-  "avgServiceCostBDT": 2500,
+  "serviceIntervalKm": 2500,
+  "avgServiceCostBDT": 5000,
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
-    "priceBDT": 1600,
+    "priceBDT": 1800,
     "availability": "common"
    },
    {
     "name": "Chain & sprocket set",
-    "priceBDT": 7000,
+    "priceBDT": 7500,
     "availability": "common"
    },
    {
     "name": "Air filter",
-    "priceBDT": 1500,
+    "priceBDT": 1800,
     "availability": "dealer-only"
    },
    {
     "name": "Engine oil change",
-    "priceBDT": 2600,
-    "availability": "everywhere"
+    "priceBDT": 3200,
+    "availability": "everywhere",
+    "note": "About 2.4 L of Suzuki Ecstar semi/full synthetic (৳900–1,550/L)."
    },
    {
     "name": "Clutch plate set",
-    "priceBDT": 5500,
+    "priceBDT": 6000,
     "availability": "dealer-only"
    }
   ],
   "sources": [
    "https://www.suzuki.com.bd/",
    "https://www.bikebd.com/price/suzuki-gixxer-250",
-   "https://www.suzuki.com.bd/news/suzuki-bangladesh-unveils-motogp-inspired-fastest-250cc-bikes-the-suzuki-gixxer-250-and-gixxer-sf-250-qx80cbtw"
+   "https://www.suzuki.com.bd/news/suzuki-bangladesh-unveils-motogp-inspired-fastest-250cc-bikes-the-suzuki-gixxer-250-and-gixxer-sf-250-qx80cbtw",
+   "https://www.rokomari.com/product/358551/suzuki-ecstar-r5000-10w-40-mineral-1-liter",
+   "https://bongshal.com/product/suzuki-ecstar-10w-40-4t-engine-oil",
+   "https://www.bikepartsbd.com/product/suzuki-gixxer-front-brake-pads/"
   ],
   "bn": {
    "tagline": "বাংলাদেশের লিগ্যাল মার্কেটে সবচেয়ে ভ্যালু-ফর-মানি 250।",
@@ -8699,7 +8703,7 @@
     null,
     null,
     null,
-    null,
+    "প্রায় 2.4 লিটার Suzuki Ecstar সেমি/ফুল সিনথেটিক (লিটার ৳900–1,550)।",
     null
    ]
   },
@@ -8803,38 +8807,42 @@
    "Long weekend rides",
    "Value-focused sport-bike buyers"
   ],
-  "serviceIntervalKm": 3000,
-  "avgServiceCostBDT": 2600,
+  "serviceIntervalKm": 2500,
+  "avgServiceCostBDT": 5000,
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
-    "priceBDT": 1600,
+    "priceBDT": 1800,
     "availability": "common"
    },
    {
     "name": "Chain & sprocket set",
-    "priceBDT": 7000,
+    "priceBDT": 7500,
     "availability": "common"
    },
    {
     "name": "Air filter",
-    "priceBDT": 1500,
+    "priceBDT": 1800,
     "availability": "dealer-only"
    },
    {
     "name": "Engine oil change",
-    "priceBDT": 2600,
-    "availability": "everywhere"
+    "priceBDT": 3200,
+    "availability": "everywhere",
+    "note": "About 2.4 L of Suzuki Ecstar semi/full synthetic (৳900–1,550/L)."
    },
    {
     "name": "Clutch plate set",
-    "priceBDT": 5500,
+    "priceBDT": 6000,
     "availability": "dealer-only"
    }
   ],
   "sources": [
    "https://www.suzuki.com.bd/",
-   "https://www.bikebd.com/price/suzuki-gixxer-sf-250"
+   "https://www.bikebd.com/price/suzuki-gixxer-sf-250",
+   "https://www.rokomari.com/product/358551/suzuki-ecstar-r5000-10w-40-mineral-1-liter",
+   "https://bongshal.com/product/suzuki-ecstar-10w-40-4t-engine-oil",
+   "https://www.bikepartsbd.com/product/suzuki-gixxer-front-brake-pads/"
   ],
   "bn": {
    "tagline": "R15-এর চেয়ে কম দামে আসল 250cc স্পোর্ট-ট্যুরার।",
@@ -8863,7 +8871,7 @@
     null,
     null,
     null,
-    null,
+    "প্রায় 2.4 লিটার Suzuki Ecstar সেমি/ফুল সিনথেটিক (লিটার ৳900–1,550)।",
     null
    ]
   },
@@ -8892,6 +8900,175 @@
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
    "sourcePage": "https://commons.wikimedia.org/wiki/File:Suzuki_Gixxer_Sf250_%E3%83%88%E3%83%AA%E3%83%88%E3%83%B3%E3%83%96%E3%83%AB%E3%83%BC.jpg"
   }
+ },
+ {
+  "id": "suzuki-v-strom-sx-250",
+  "brand": "Suzuki",
+  "model": "V-Strom SX 250",
+  "category": "adventure",
+  "status": "on-sale",
+  "priceBDT": 449000,
+  "priceNote": "Launched at about ৳4,20,000–4,50,000 depending on launch offer; BikeBD lists ৳4,49,000. Not yet on suzuki.com.bd's price list.",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://www.bikebd.com/price/suzuki-v-strom-sx",
+  "distributor": "Rancon Motorbikes Ltd",
+  "engine": {
+   "cc": 249,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "oil",
+   "valves": 4,
+   "fuel": "fi"
+  },
+  "powerPS": 26.5,
+  "powerRpm": 9300,
+  "torqueNm": 22.2,
+  "torqueRpm": 7300,
+  "gears": 6,
+  "topSpeedKmh": 140,
+  "mileageKmpl": [
+   30,
+   35
+  ],
+  "weightKg": 167,
+  "seatHeightMm": 835,
+  "groundClearanceMm": 205,
+  "fuelTankL": 12,
+  "brakes": {
+   "front": "disc",
+   "rear": "disc",
+   "abs": "dual"
+  },
+  "tubeless": true,
+  "tyres": {
+   "front": "100/90-19",
+   "rear": "140/70-17"
+  },
+  "suspension": {
+   "front": "Telescopic fork",
+   "rear": "Monoshock"
+  },
+  "scores": {
+   "reliability": 8,
+   "mechanicFamiliarity": 5,
+   "partsAvailability": 5,
+   "resale": 6,
+   "comfort": 8,
+   "cityHandling": 6,
+   "highway": 9,
+   "pillion": 8,
+   "offroad": 6,
+   "performance": 8,
+   "beginnerFriendly": 6
+  },
+  "tagline": "The Gixxer 250 engine in a tall, comfortable touring body.",
+  "feel": "Upright seat, wide bars and a 19-inch front wheel make it calm and comfortable on long highway runs and broken roads; the 250 engine pulls smoothly at 90–110 km/h.",
+  "quirks": "Tall 835 mm seat is hard for shorter riders. 167 kg feels heavy pushing through Dhaka jams. 19-inch front tyre is not stocked in local tyre shops. Brand-new model in BD, so the used market and long-term owner reports are still thin.",
+  "braking": "Dual-channel ABS with front and rear discs gives confident stops on wet or broken highway surfaces.",
+  "mechanicNote": "Shares its oil-cooled 249cc engine with the Gixxer 250, so Rancon service centres already know it; body panels, screen and 19-inch tyre are dealer-only.",
+  "pros": [
+   "Comfortable long-distance riding position",
+   "Dual ABS",
+   "205 mm ground clearance for bad roads",
+   "Proven Gixxer 250 engine"
+  ],
+  "cons": [
+   "Tall seat",
+   "Heavy in city traffic",
+   "19-inch front tyre hard to source",
+   "New model, untested resale"
+  ],
+  "bestFor": [
+   "Highway touring",
+   "Long rides with a pillion",
+   "Rough rural roads"
+  ],
+  "serviceIntervalKm": 2500,
+  "avgServiceCostBDT": 5000,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 1800,
+    "availability": "common"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 7500,
+    "availability": "common"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 1800,
+    "availability": "dealer-only"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 3200,
+    "availability": "everywhere",
+    "note": "About 2.4 L of Suzuki Ecstar semi/full synthetic (৳900–1,550/L)."
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 6000,
+    "availability": "dealer-only"
+   }
+  ],
+  "sources": [
+   "https://www.bikebd.com/price/suzuki-v-strom-sx",
+   "https://www.bikebd.com/price/suzuki-v-strom-sx/specifications",
+   "https://suzukicycles.org/V-Strom/V-Strom-250SX.shtml",
+   "https://www.motorcyclebd.com/suzuki-v-strom-sx-250/",
+   "https://www.rokomari.com/product/358551/suzuki-ecstar-r5000-10w-40-mineral-1-liter",
+   "https://bongshal.com/product/suzuki-ecstar-10w-40-4t-engine-oil",
+   "https://www.bikepartsbd.com/product/suzuki-gixxer-front-brake-pads/"
+  ],
+  "bn": {
+   "tagline": "Gixxer 250-এর ইঞ্জিন, লম্বা আর আরামদায়ক ট্যুরিং বডিতে।",
+   "feel": "সোজা বসার পজিশন, চওড়া হ্যান্ডেল আর 19-ইঞ্চি সামনের চাকা মিলিয়ে লম্বা হাইওয়ে আর ভাঙা রাস্তায় শান্ত আর আরামের; 90–110 কিমি/ঘণ্টায় 250 ইঞ্জিন মসৃণভাবে টানে।",
+   "quirks": "835 mm সিট খাটো রাইডারদের জন্য উঁচু। ঢাকার জ্যামে 167 কেজি ভারী লাগে। 19-ইঞ্চি সামনের টায়ার লোকাল দোকানে পাওয়া যায় না। বাংলাদেশে একদম নতুন মডেল, তাই রিসেল মার্কেট আর লম্বা সময়ের ওনার রিভিউ এখনো কম।",
+   "braking": "সামনে-পেছনে ডিস্ক আর ডুয়াল-চ্যানেল ABS ভেজা বা ভাঙা হাইওয়েতে ভরসা দেয়।",
+   "mechanicNote": "Gixxer 250-এর একই অয়েল-কুলড 249cc ইঞ্জিন, তাই Rancon সার্ভিস সেন্টার এটা চেনে; বডি প্যানেল, উইন্ডস্ক্রিন আর 19-ইঞ্চি টায়ার শুধু ডিলারে।",
+   "pros": [
+    "লম্বা রাইডে আরামের পজিশন",
+    "ডুয়াল ABS",
+    "খারাপ রাস্তার জন্য 205 mm গ্রাউন্ড ক্লিয়ারেন্স",
+    "পরীক্ষিত Gixxer 250 ইঞ্জিন"
+   ],
+   "cons": [
+    "সিট উঁচু",
+    "শহরের জ্যামে ভারী",
+    "19-ইঞ্চি সামনের টায়ার পাওয়া কঠিন",
+    "নতুন মডেল, রিসেল অজানা"
+   ],
+   "bestFor": [
+    "হাইওয়ে ট্যুরিং",
+    "পিলিয়ন নিয়ে লম্বা রাইড",
+    "গ্রামের খারাপ রাস্তা"
+   ],
+   "priceNote": "লঞ্চ অফার অনুযায়ী প্রায় ৳4,20,000–4,50,000; BikeBD-তে ৳4,49,000। suzuki.com.bd-র দামের তালিকায় এখনো নেই।",
+   "partNotes": [
+    null,
+    null,
+    null,
+    "প্রায় 2.4 লিটার Suzuki Ecstar সেমি/ফুল সিনথেটিক (লিটার ৳900–1,550)।",
+    null
+   ]
+  },
+  "aliases": [
+   "ভি-স্ট্রম",
+   "ভি স্ট্রম ২৫০",
+   "ভিস্ট্রম",
+   "সুজুকি ভি স্ট্রম",
+   "v strom",
+   "vstrom",
+   "v-storm",
+   "vstorm",
+   "v strom sx",
+   "vstrom 250",
+   "v-strom 250 sx",
+   "250sx"
+  ],
+  "tyrePairBDT": 15000
  },
  {
   "id": "suzuki-gsx-r150",

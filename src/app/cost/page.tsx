@@ -5,7 +5,7 @@ import { Suspense, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Info } from "lucide-react";
 import { BIKES, formatBDT, formatLakh, fullName, getBike } from "@/lib/bikes";
-import { DEFAULT_COST_INPUT, FUEL, emiMonthly, ownershipCost, registrationFor, type CostInput } from "@/lib/cost";
+import { DEFAULT_COST_INPUT, FUEL, WEAR_KM, defaultUsedPrice, emiMonthly, hiddenRepairRate, ownershipCost, registrationFor, type CostInput } from "@/lib/cost";
 import { useLang, useTx } from "@/lib/i18n";
 import { BikeArt } from "@/components/BikeArt";
 import { searchBikes } from "@/components/SearchBox";
@@ -23,6 +23,8 @@ const SEGMENTS = [
   { k: "fuel", en: "Fuel", bn: "তেল", color: "var(--brand)" },
   { k: "service", en: "Servicing", bn: "সার্ভিসিং", color: "#4f8fd6" },
   { k: "wear", en: "Wear parts", bn: "ক্ষয়যোগ্য পার্টস", color: "#d99a2b" },
+  { k: "upkeep", en: "Washing & parking", bn: "ধোয়া ও পার্কিং", color: "#c46f9e" },
+  { k: "hiddenRepairs", en: "Hidden used-bike repairs", bn: "পুরনো বাইকের লুকানো মেরামত", color: "#7a8a3a" },
   { k: "paperwork", en: "BRTA paperwork", bn: "BRTA কাগজপত্র", color: "#8b6fd1" },
   { k: "insurance", en: "Insurance", bn: "ইন্স্যুরেন্স", color: "#2bb3a8" },
   { k: "depreciation", en: "Resale loss", bn: "রিসেল লস", color: "var(--signal)" },
@@ -34,13 +36,17 @@ function Cost() {
   const tx = useTx();
   const [bike, setBike] = useState<BikeLite>(() => getBike("bajaj-pulsar-n160") ?? BIKES[0]);
   const [inp, setInp] = useState<CostInput>(DEFAULT_COST_INPUT);
+  // Price typed in for the selected used bike; null = typical market price. Not shared with the comparison list.
+  const [paid, setPaid] = useState<number | null>(null);
 
   useEffect(() => {
     const b = getBike(params.get("bike") || "");
     if (b) setBike(b);
+    if (params.get("used") === "1") setInp((x) => ({ ...x, used: true }));
   }, [params]);
 
-  const c = useMemo(() => ownershipCost(bike, inp), [bike, inp]);
+  const c = useMemo(() => ownershipCost(bike, { ...inp, usedPrice: paid ?? undefined }), [bike, inp, paid]);
+  const usedOnly = bike.status === "used-only";
   const set = <K extends keyof CostInput>(k: K, v: CostInput[K]) => setInp((x) => ({ ...x, [k]: v }));
   const months = inp.years * 12;
 
@@ -53,9 +59,15 @@ function Cost() {
     [bike, inp],
   );
 
+  const syncUrl = (b: BikeLite, used: boolean) => window.history.replaceState(null, "", `?bike=${b.id}${used ? "&used=1" : ""}`);
   const pick = (b: BikeLite) => {
     setBike(b);
-    window.history.replaceState(null, "", `?bike=${b.id}`);
+    setPaid(null);
+    syncUrl(b, inp.used);
+  };
+  const setUsed = (used: boolean) => {
+    set("used", used);
+    syncUrl(bike, used);
   };
 
   return (
@@ -72,6 +84,55 @@ function Cost() {
         {/* inputs */}
         <div className="card h-fit space-y-7 p-6 lg:sticky lg:top-24">
           <BikePicker bike={bike} onPick={pick} />
+
+          {!usedOnly && (
+            <Field label={tx("Buying", "কিনছেন")}>
+              <div className="grid grid-cols-2 gap-1 rounded-xl bg-surface-2 p-1">
+                {([false, true] as const).map((u) => (
+                  <button
+                    key={String(u)}
+                    onClick={() => setUsed(u)}
+                    aria-pressed={inp.used === u}
+                    className={`h-9 rounded-lg text-[13.5px] font-medium transition-all ${inp.used === u ? "bg-surface text-ink shadow-sm" : "text-muted hover:text-ink"}`}
+                  >
+                    {u ? tx("Used", "পুরনো") : tx("New", "নতুন")}
+                  </button>
+                ))}
+              </div>
+            </Field>
+          )}
+
+          {c.buyingUsed && (
+            <Field label={tx("Price you're paying", "যে দামে কিনছেন")}>
+              <input
+                type="number"
+                inputMode="numeric"
+                min={0}
+                step={1000}
+                className="input h-11 tnum"
+                value={paid ?? defaultUsedPrice(bike)}
+                aria-label={tx("Used bike price in taka", "পুরনো বাইকের দাম (টাকা)")}
+                onChange={(e) => setPaid(e.target.value === "" ? 0 : Math.max(0, Number(e.target.value)))}
+              />
+              <p className="mt-1 text-[12px] text-faint">
+                {paid === null
+                  ? usedOnly
+                    ? tx("Typical price for a decent one.", "ভালো অবস্থার একটার সাধারণ দাম।")
+                    : tx("Typical asking price for a ~3-year-old one. Type what the seller wants.", "~৩ বছরের পুরনো একটার সাধারণ চাওয়া দাম। বিক্রেতা যা চাইছেন সেটা লিখুন।")
+                  : (
+                    <button className="font-medium text-brand hover:underline" onClick={() => setPaid(null)}>
+                      {tx("Reset to typical price", "সাধারণ দামে ফেরত যান")}
+                    </button>
+                  )}
+              </p>
+              <p className="mt-2 rounded-lg bg-surface-2 px-3 py-2 text-[12.5px] leading-snug text-ink-2">
+                {tx(
+                  `+${Math.round(hiddenRepairRate(bike) * 100)}% (${formatBDT(c.hiddenRepairs)}) set aside for problems a used bike hides until later. ${bike.engine.cooling === "air" ? "5% because a simple air-cooled engine is cheap to put right." : "10% because an oil- or liquid-cooled engine costs more to fix."}`,
+                  `পুরনো বাইকের যে সমস্যাগুলো পরে বের হয় তার জন্য +${Math.round(hiddenRepairRate(bike) * 100)}% (${formatBDT(c.hiddenRepairs)}) আলাদা রাখা হয়েছে। ${bike.engine.cooling === "air" ? "সাধারণ এয়ার-কুলড ইঞ্জিন ঠিক করতে খরচ কম, তাই 5%।" : "অয়েল বা লিকুইড-কুলড ইঞ্জিন সারাতে খরচ বেশি, তাই 10%।"}`,
+                )}
+              </p>
+            </Field>
+          )}
 
           <Field label={tx("Riding per day", "দিনে কতটা চালাবেন")} value={`${inp.kmPerDay} km`}>
             <Range min={5} max={150} step={5} value={inp.kmPerDay} onChange={(v) => set("kmPerDay", v)} label={tx("Kilometres per day", "দিনে কত কিলোমিটার")} />
@@ -107,7 +168,14 @@ function Cost() {
             </p>
           </Field>
 
-          {bike.status === "on-sale" && (
+          <Field label={tx("Washing, parking & small fixes", "ধোয়া, পার্কিং ও ছোটখাটো খরচ")} value={`${formatBDT(inp.upkeepPerMonth)}${tx("/mo", "/মাস")}`}>
+            <Range min={0} max={5000} step={100} value={inp.upkeepPerMonth} onChange={(v) => set("upkeepPerMonth", v)} label={tx("Washing and parking per month", "মাসে ধোয়া ও পার্কিং")} />
+            <p className="mt-1 text-[12px] text-faint">
+              {tx("Paid garage parking in Dhaka is often ৳1,500–3,000 a month.", "ঢাকায় গ্যারেজ পার্কিং প্রায়ই মাসে ৳1,500–3,000।")}
+            </p>
+          </Field>
+
+          {!c.buyingUsed && (
             <Field label={tx("Road tax", "রোড ট্যাক্স")}>
               <div className="grid grid-cols-2 gap-1 rounded-xl bg-surface-2 p-1">
                 {(["10yr", "2yr"] as const).map((p) => (
@@ -148,8 +216,24 @@ function Cost() {
                 <p className="text-[14px] text-muted">
                   {fullName(bike)} · {inp.years} {tx(inp.years === 1 ? "year" : "years", "বছর")} · {c.km.toLocaleString("en-IN")} km
                 </p>
-                <p className="mt-2 text-[48px] font-semibold leading-none tracking-[-0.03em] text-ink tnum sm:text-[60px]">{formatBDT(c.perMonth)}</p>
-                <p className="mt-2 text-[15px] text-muted">{tx("per month, all-in", "প্রতি মাসে, সব মিলিয়ে")}</p>
+                <div className="mt-2 flex flex-wrap items-end gap-x-10 gap-y-5">
+                  <div>
+                    <p className="text-[48px] font-semibold leading-none tracking-[-0.03em] text-ink tnum sm:text-[60px]">{formatBDT(c.pocketPerMonth)}</p>
+                    <p className="mt-2 text-[15px] text-muted">{tx("from your pocket each month", "প্রতি মাসে পকেট থেকে যাবে")}</p>
+                  </div>
+                  {inp.includeDepreciation && (
+                    <div>
+                      <p className="text-[30px] font-semibold leading-none tracking-[-0.02em] text-ink-2 tnum sm:text-[36px]">{formatBDT(c.perMonth)}</p>
+                      <p className="mt-2 text-[15px] text-muted">{tx("true cost, with resale loss", "আসল খরচ, রিসেল লস সহ")}</p>
+                    </div>
+                  )}
+                </div>
+                <p className="mt-3 max-w-md text-[12.5px] leading-snug text-faint">
+                  {tx(
+                    `Pocket money = fuel, servicing, wear parts, washing/parking, ${c.buyingUsed ? "hidden used-bike repairs" : "BRTA papers"} and insurance. It leaves out only the value the bike loses, which you never pay in cash.`,
+                    `পকেট খরচ = তেল, সার্ভিসিং, ক্ষয়যোগ্য পার্টস, ধোয়া/পার্কিং, ${c.buyingUsed ? "পুরনো বাইকের লুকানো মেরামত" : "BRTA কাগজ"} ও ইন্স্যুরেন্স। শুধু বাইকের দাম কমে যাওয়াটা বাদ, যেটা নগদে দিতে হয় না।`,
+                  )}
+                </p>
               </div>
               <div className="grid grid-cols-3 gap-6 sm:grid-cols-1 sm:gap-4 sm:text-right">
                 <Kpi k={tx("Total", "মোট")} v={formatLakh(c.total, lang)} />
@@ -194,19 +278,19 @@ function Cost() {
             <Fact
               k={tx("Buy today", "আজ কিনলে")}
               v={formatBDT(c.onRoad)}
-              sub={bike.status === "on-sale" ? tx(`ex-showroom + ${formatBDT(c.onRoad - bike.priceBDT)} BRTA`, `শোরুম মূল্য + ${formatBDT(c.onRoad - bike.priceBDT)} BRTA`) : tx("used price, plus transfer fee", "পুরনো দাম, সাথে মালিকানা বদলের ফি")}
+              sub={!c.buyingUsed ? tx(`ex-showroom + ${formatBDT(c.onRoad - bike.priceBDT)} BRTA`, `শোরুম মূল্য + ${formatBDT(c.onRoad - bike.priceBDT)} BRTA`) : tx("used price, plus transfer fee", "পুরনো দাম, সাথে মালিকানা বদলের ফি")}
             />
             <Fact
               k={tx("Or on 12-month EMI", "অথবা ১২ মাসের কিস্তিতে")}
-              v={bike.status === "on-sale" ? `${formatBDT(emiMonthly(bike.priceBDT))}${tx("/mo", "/মাস")}` : "—"}
-              sub={tx("0% card EMI where offered, plus BRTA upfront", "যেখানে ০% কার্ড কিস্তি আছে; BRTA খরচ শুরুতেই")}
+              v={!c.buyingUsed ? `${formatBDT(emiMonthly(bike.priceBDT))}${tx("/mo", "/মাস")}` : "—"}
+              sub={c.buyingUsed ? tx("No card EMI on a private sale", "ব্যক্তিগত বিক্রিতে কার্ড কিস্তি নেই") : tx("0% card EMI where offered, plus BRTA upfront", "যেখানে ০% কার্ড কিস্তি আছে; BRTA খরচ শুরুতেই")}
             />
             <Fact k={tx(`Worth after ${inp.years} yr`, `${inp.years} বছর পর দাম`)} v={formatBDT(c.resaleValue)} sub={tx("estimated, decent condition", "আনুমানিক, ভালো অবস্থায়")} />
           </div>
 
           {others.length > 0 && (
             <div className="card p-6">
-              <h2 className="text-[17px] font-semibold tracking-tight text-ink">{tx("Same style, compared on the same terms", "একই ধরনের বাইক, একই হিসাবে")}</h2>
+              <h2 className="text-[17px] font-semibold tracking-tight text-ink">{c.buyingUsed && !usedOnly ? tx("Same style, also bought used, on the same terms", "একই ধরনের বাইক, পুরনো কিনলে, একই হিসাবে") : tx("Same style, compared on the same terms", "একই ধরনের বাইক, একই হিসাবে")}</h2>
               <div className="mt-4 divide-y divide-line">
                 {others.map(({ b, c: cc }) => {
                   const diff = cc.perMonth - c.perMonth;
@@ -235,8 +319,8 @@ function Cost() {
             <Info size={14} className="mt-0.5 shrink-0" />
             <span>
               {tx(
-                `Fuel uses the middle of the real-world mileage range. Wear parts assume a chain set every 18,000 km, brake pads every 10,000 km, tyres every 25,000 km and a clutch every 30,000 km; service and parts prices are estimates. Resale uses our resale score (≈ ${Math.round((1 - (0.8 + bike.scores.resale * 0.012)) * 100)}% value lost per year for this bike). Registration: ${registrationFor(bike.engine.cc).label}, from BRTA fee schedules.`,
-                `তেলের হিসাব আসল মাইলেজের মাঝামাঝি ধরে। ক্ষয়যোগ্য পার্টস: প্রতি 18,000 km-এ চেইন সেট, 10,000 km-এ ব্রেক প্যাড, 25,000 km-এ টায়ার, 30,000 km-এ ক্লাচ; সার্ভিস ও পার্টসের দাম আনুমানিক। রিসেল আমাদের রিসেল স্কোর থেকে (এই বাইকে বছরে ≈ ${Math.round((1 - (0.8 + bike.scores.resale * 0.012)) * 100)}% দাম কমে)। রেজিস্ট্রেশন: BRTA ফি তালিকা থেকে।`,
+                `Fuel uses the middle of the real-world mileage range. Servicing (oil, oil filter, labour) every ${bike.serviceIntervalKm.toLocaleString("en-IN")} km and at least twice a year. Wear parts are counted as they wear, on the short side of owner reports: front pads every ${WEAR_KM.frontPads.toLocaleString("en-IN")} km, rear every ${WEAR_KM.rearPads.toLocaleString("en-IN")} km, chain set every ${WEAR_KM.chain.toLocaleString("en-IN")} km plus lube, tyres every ${WEAR_KM.tyres.toLocaleString("en-IN")} km, air filter and spark plug, clutch every ${WEAR_KM.clutch.toLocaleString("en-IN")} km, battery every 2 years. Prices are estimates, rounded up.${c.buyingUsed ? ` Used: ${Math.round(hiddenRepairRate(bike) * 100)}% of the price paid is added for hidden problems, spread over the months you own it.` : ""} Resale uses our resale score (≈ ${Math.round((1 - (0.8 + bike.scores.resale * 0.012)) * 100)}% value lost per year for this bike). Registration: ${registrationFor(bike.engine.cc).label}, from BRTA fee schedules.`,
+                `তেলের হিসাব আসল মাইলেজের মাঝামাঝি ধরে। সার্ভিসিং (মবিল, অয়েল ফিল্টার, মজুরি) প্রতি ${bike.serviceIntervalKm.toLocaleString("en-IN")} km-এ, বছরে অন্তত দুবার। ক্ষয়যোগ্য পার্টস যতটা ক্ষয় হয় ততটা ধরা, ওনারদের অভিজ্ঞতার কম দিকটা নিয়ে: সামনের প্যাড ${WEAR_KM.frontPads.toLocaleString("en-IN")} km, পেছনের ${WEAR_KM.rearPads.toLocaleString("en-IN")} km, চেইন সেট ${WEAR_KM.chain.toLocaleString("en-IN")} km আর লুব, টায়ার ${WEAR_KM.tyres.toLocaleString("en-IN")} km, এয়ার ফিল্টার ও স্পার্ক প্লাগ, ক্লাচ ${WEAR_KM.clutch.toLocaleString("en-IN")} km, ব্যাটারি ২ বছরে। দাম আনুমানিক, উপরের দিকে ধরা।${c.buyingUsed ? ` পুরনো বাইক: লুকানো সমস্যার জন্য কেনা দামের ${Math.round(hiddenRepairRate(bike) * 100)}% যোগ করা, মালিকানার মাসগুলোতে ভাগ করে।` : ""} রিসেল আমাদের রিসেল স্কোর থেকে (এই বাইকে বছরে ≈ ${Math.round((1 - (0.8 + bike.scores.resale * 0.012)) * 100)}% দাম কমে)। রেজিস্ট্রেশন: BRTA ফি তালিকা থেকে।`,
               )}{" "}
               <Link href="/guide/#registration" className="text-brand hover:underline">
                 {tx("Breakdown", "বিস্তারিত")}

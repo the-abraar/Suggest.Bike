@@ -514,6 +514,8 @@ function MonthlyCard({ bike }: { bike: Bike }) {
     { k: tx("Fuel", "তেল"), v: c.fuel / months },
     { k: tx("Service", "সার্ভিস"), v: c.service / months },
     { k: tx("Wear parts", "ক্ষয়যোগ্য পার্টস"), v: c.wear / months },
+    { k: tx("Washing & parking", "ধোয়া ও পার্কিং"), v: c.upkeep / months },
+    ...(c.hiddenRepairs ? [{ k: tx("Hidden used-bike repairs", "পুরনো বাইকের লুকানো মেরামত"), v: c.hiddenRepairs / months }] : []),
   ];
   return (
     <div className="card p-5 shadow-md">

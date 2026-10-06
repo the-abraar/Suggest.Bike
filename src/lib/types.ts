@@ -54,7 +54,8 @@ export interface Bike {
   cons: string[];           // 2-4 short
   bestFor: string[];        // e.g. ["Daily Dhaka commute", "First bike", "Ride-sharing (Pathao/Uber)"]
   serviceIntervalKm: number;    // typical
-  avgServiceCostBDT: number;    // typical periodic service at dealer incl. engine oil
+  avgServiceCostBDT: number;    // typical periodic service at dealer: engine oil, oil filter, labour
+  tyrePairBDT?: number;         // front + rear tyre price when the category default is wrong (odd sizes, e.g. a 19-inch front)
   parts: Part[];            // EXACTLY these 5 names, approx BD market price: "Brake pads/shoes (front)", "Chain & sprocket set", "Air filter", "Engine oil change", "Clutch plate set"
   sources: string[];        // URLs you actually consulted for this bike (2-5)
   // ---- Optional enrichments ----
