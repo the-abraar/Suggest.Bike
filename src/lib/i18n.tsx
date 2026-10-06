@@ -9,6 +9,7 @@ const DICT = {
   "nav.browse": { en: "All bikes", bn: "সব বাইক" },
   "nav.compare": { en: "Compare", bn: "তুলনা" },
   "nav.cost": { en: "True cost", bn: "আসল খরচ" },
+  "nav.fund": { en: "Bike fund", bn: "বাইক ফান্ড" },
   "nav.guide": { en: "Buyer's guide", bn: "ক্রেতা গাইড" },
   "nav.saved": { en: "Saved", bn: "সংরক্ষিত" },
   "nav.menu": { en: "Menu", bn: "মেনু" },

@@ -14,6 +14,7 @@ const NAV: { href: string; k: DictKey }[] = [
   { href: "/bikes/", k: "nav.browse" },
   { href: "/compare/", k: "nav.compare" },
   { href: "/cost/", k: "nav.cost" },
+  { href: "/fund/", k: "nav.fund" },
   { href: "/guide/", k: "nav.guide" },
 ];
 
@@ -54,7 +55,7 @@ export function Header() {
               <Link
                 key={n.href}
                 href={n.href}
-                className={`rounded-lg px-3 py-2 text-[14.5px] font-medium transition-colors ${
+                className={`whitespace-nowrap rounded-lg px-2.5 py-2 text-[14px] font-medium transition-colors xl:px-3 xl:text-[14.5px] ${
                   active(n.href) ? "text-ink bg-surface-2" : "text-muted hover:text-ink"
                 }`}
               >
@@ -64,7 +65,7 @@ export function Header() {
           </nav>
 
           <div className="ml-auto flex items-center gap-1.5">
-            <div className="hidden w-64 md:block xl:w-72">
+            <div className="hidden w-64 md:block lg:hidden xl:block xl:w-60 2xl:w-72">
               <SearchBox compact />
             </div>
             <Link

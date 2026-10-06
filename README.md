@@ -12,6 +12,7 @@
 | `/bikes/[id]` | Detail page for each of the 76 bikes: verdict, riding feel, quirks, 11 ownership scores, parts and service prices, full specs, monthly cost, similar bikes and sources |
 | `/compare` | Compare up to 3 bikes side by side. Winners get a crown, plus quick verdicts (cheaper to run, quicker, easier to maintain…) |
 | `/cost` | True cost of ownership: fuel, servicing, wear parts, BRTA paperwork, insurance and resale loss, as an all-in monthly figure |
+| `/fund` | Bike fund: the bike "downloads" as you save (ported from TakaTalks' dream-loader viz), with ETA, a downloadable 4:5 poster, cash vs 0% card EMI vs loan (upfront cash, instalment, interest, budget fit), ways to get there sooner and saving habits. Shareable URL. |
 | `/guide` | Buyer's guide: BRTA registration costs, the 10-year tax token, smart licence steps and fees, the 375cc rule, road rules, an 11-point used-bike checklist and rider communities |
 | `/saved` | Shortlist of hearted bikes, stored on the device |
 
@@ -56,7 +57,7 @@ Edit `priceBDT`, `priceAsOf` and `priceSource` in `bikes.json`, run the validato
 src/
   app/            routes (App Router, static export)
   components/     BikeArt (illustrations drawn in code), Header, SearchBox, CompareTray, ui
-  lib/            bikes (data helpers), match (recommendation engine), cost (ownership model), i18n, store
+  lib/            bikes (data helpers), match (recommendation engine), cost (ownership model), fund (savings/EMI/loan maths), i18n, store
   data/           bikes.json, guide.json
 prototypes/       the original TSX sketches this grew from
 ```

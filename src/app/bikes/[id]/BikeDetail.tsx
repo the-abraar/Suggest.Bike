@@ -159,6 +159,11 @@ export function BikeDetail({ bike }: { bike: Bike }) {
                   </Link>
                 </p>
               )}
+              <p className="mt-1.5 text-[14px]">
+                <Link href={`/fund/?bike=${bike.id}${used ? "&used=1" : ""}`} className="font-medium text-brand hover:underline">
+                  {tx("Saving up for it? See how close you are →", "এর জন্য জমাচ্ছেন? কতটা কাছে দেখুন →")}
+                </Link>
+              </p>
               {txt.priceNote && <p className="mt-2 text-[13.5px] leading-relaxed text-muted">{txt.priceNote}</p>}
               <p className="mt-2 text-[12px] text-faint">
                 {bike.priceSource.startsWith("http") && (
