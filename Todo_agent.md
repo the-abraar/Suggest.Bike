@@ -41,3 +41,7 @@ Work an AI coding agent can pick up without the owner. Ordered by impact. Each i
 - [x] ~~**Performance.**~~ *Done: slim index plus per-bike files.* `bikes.json` (≈200 KB) ships to every client page. Split it into a slim list index plus per-bike details loaded on the detail page.
 - [ ] **Data pipeline.** Write a script that re-scrapes BikeBD price pages monthly and opens a PR with the diffs. Fold in `scripts/validate-data.mjs`.
 - [ ] **Analytics hooks** (privacy-friendly, e.g. Plausible/Umami) for quiz completion, most-compared pairs and the cost calculator. Waiting on the owner to choose a provider.
+
+## Documentation
+
+- [ ] **Write a PRD in ASD-STE100 format.** Cover the matchmaker, compare, cost and guide features and the data pipeline: problem, users, goals and non-goals, functional and non-functional requirements, constraints and success metrics. Follow ASD-STE100 (Simplified Technical English): use only approved words and their approved meanings, keep procedural sentences to 20 words or fewer and descriptive sentences to 25 or fewer, write one instruction per sentence, use the active voice, and use the imperative for procedures. Save it as `PRD.md`.
