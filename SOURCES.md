@@ -18,6 +18,9 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 | tbsnews.net | 4 |
 | en.ittefaq.com.bd | 4 |
 | bikewale.com | 3 |
+| rokomari.com | 3 |
+| bongshal.com | 3 |
+| bikepartsbd.com | 3 |
 | dhakatribune.com | 2 |
 | online91.thedailystar.net | 1 |
 | suzukicycles.org | 1 |
@@ -275,10 +278,16 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - Price: https://www.suzuki.com.bd/
   - https://www.bikebd.com/price/suzuki-gixxer-250
   - https://www.suzuki.com.bd/news/suzuki-bangladesh-unveils-motogp-inspired-fastest-250cc-bikes-the-suzuki-gixxer-250-and-gixxer-sf-250-qx80cbtw
+  - https://www.rokomari.com/product/358551/suzuki-ecstar-r5000-10w-40-mineral-1-liter
+  - https://bongshal.com/product/suzuki-ecstar-10w-40-4t-engine-oil
+  - https://www.bikepartsbd.com/product/suzuki-gixxer-front-brake-pads/
   - Used asking prices (2026-10): ~1 yr ৳3,40,000, ~3 yr — — https://bikroy.com/bn/motorcycles-and-scooters/suzuki-gixxer-250
 - **Gixxer SF 250** — ৳4,29,950 as of 2026-10
   - Price: https://www.suzuki.com.bd/
   - https://www.bikebd.com/price/suzuki-gixxer-sf-250
+  - https://www.rokomari.com/product/358551/suzuki-ecstar-r5000-10w-40-mineral-1-liter
+  - https://bongshal.com/product/suzuki-ecstar-10w-40-4t-engine-oil
+  - https://www.bikepartsbd.com/product/suzuki-gixxer-front-brake-pads/
   - Used asking prices (2026-10): ~1 yr ৳3,55,000, ~3 yr — — https://bikroy.com/bn/motorcycles-and-scooters/suzuki-gixxer-sf-250
   - Photo: ShunyaIshiwatari, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Suzuki_Gixxer_Sf250_%E3%83%88%E3%83%AA%E3%83%88%E3%83%B3%E3%83%96%E3%83%AB%E3%83%BC.jpg
 - **V-Strom SX 250** — ৳4,49,000 as of 2026-10
@@ -286,6 +295,9 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://www.bikebd.com/price/suzuki-v-strom-sx/specifications
   - https://suzukicycles.org/V-Strom/V-Strom-250SX.shtml
   - https://www.motorcyclebd.com/suzuki-v-strom-sx-250/
+  - https://www.rokomari.com/product/358551/suzuki-ecstar-r5000-10w-40-mineral-1-liter
+  - https://bongshal.com/product/suzuki-ecstar-10w-40-4t-engine-oil
+  - https://www.bikepartsbd.com/product/suzuki-gixxer-front-brake-pads/
 - **GSX-R150** (ABS) — ৳5,29,950 as of 2026-10
   - Price: https://www.suzuki.com.bd/
   - https://www.bikebd.com/price/suzuki-gsxr-price-in-bangladesh
