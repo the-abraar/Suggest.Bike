@@ -27,9 +27,9 @@ export function DiagnosisPreview() {
         <p className="mt-2 max-w-2xl text-[14.5px] leading-relaxed text-muted">{tx("Here is what we're building. Today your files stay on your phone and only the sound statistics above are real. Below is a mock-up with made-up findings.", "আমরা যা বানাচ্ছি তা এখানে। আজ আপনার ফাইল ফোনেই থাকে, আর উপরের শব্দের পরিসংখ্যানই শুধু আসল। নিচে বানানো ফলাফলসহ একটি মকআপ।")}</p>
       </div>
 
-      <div role="tablist" className="flex border-y border-line">
+      <div role="tablist" className="grid grid-cols-2 border-y border-line sm:grid-cols-4">
         {tabs.map(({ id, icon: Icon, label }) => (
-          <button key={id} role="tab" aria-selected={tab === id} onClick={() => setTab(id)} className={`flex flex-1 items-center justify-center gap-1.5 px-2 py-3 text-[13px] font-semibold transition-colors ${tab === id ? "bg-brand-soft text-brand" : "text-muted hover:bg-surface-2"}`}>
+          <button key={id} role="tab" aria-selected={tab === id} onClick={() => setTab(id)} className={`flex items-center justify-center gap-1.5 px-2 py-3 text-[13px] font-semibold transition-colors ${tab === id ? "bg-brand-soft text-brand" : "text-muted hover:bg-surface-2"}`}>
             <Icon size={15} aria-hidden /><span className="truncate">{label}</span>
           </button>
         ))}
