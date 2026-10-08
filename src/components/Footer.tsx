@@ -28,6 +28,7 @@ export function Footer() {
           <FLink href="/compare/">{t("nav.compare")}</FLink>
           <FLink href="/cost/">{t("nav.cost")}</FLink>
           <FLink href="/fund/">{t("nav.fund")}</FLink>
+          <FLink href="/labs/">{t("nav.labs")}</FLink>
           <FLink href="/saved/">{t("nav.saved")}</FLink>
         </FooterCol>
         <FooterCol title={tx("Browse", "ব্রাউজ")}>
