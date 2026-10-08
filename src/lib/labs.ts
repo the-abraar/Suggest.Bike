@@ -1,8 +1,8 @@
 // Registry of experimental tools shown on /labs. Each tool lives in its own folder under src/app/labs/<slug>/.
 export interface LabTool {
-  slug: "check" | "listing-check" | "finder";
+  slug: "check" | "negotiate" | "listing-check" | "finder";
   href: string;
-  icon: "shield" | "scale" | "radar";
+  icon: "shield" | "wrench" | "scale" | "radar";
   title: { en: string; bn: string };
   blurb: { en: string; bn: string };
   /** "preview" = usable in the browser today; "soon" = page shows the plan only. */
@@ -18,6 +18,17 @@ export const LAB_TOOLS: LabTool[] = [
     blurb: {
       en: "Pick the model you're eyeing. Get a checklist made for that bike, then add photos, video or engine sound for a value estimate.",
       bn: "যে মডেলটি দেখছেন সেটি বেছে নিন। সেই বাইকের জন্য চেকলিস্ট পাবেন, আর ছবি, ভিডিও বা ইঞ্জিনের শব্দ দিলে দামের আন্দাজ পাবেন।",
+    },
+    status: "preview",
+  },
+  {
+    slug: "negotiate",
+    href: "/labs/negotiate/",
+    icon: "wrench",
+    title: { en: "Second-hand bike check", bn: "সেকেন্ড-হ্যান্ড বাইক যাচাই" },
+    blurb: {
+      en: "Pick the model, tap each part as you inspect it, and see how much you can knock off the price. Expected price included.",
+      bn: "মডেল বেছে নিন, পরীক্ষার সময় প্রতিটি অংশে ট্যাপ করুন, আর দেখুন দাম কতটা কমানো যায়। প্রত্যাশিত দামসহ।",
     },
     status: "preview",
   },
