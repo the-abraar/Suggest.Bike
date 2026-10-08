@@ -1,0 +1,7 @@
+# Holds phone numbers. Never commit.
+data/
+KILL
+.env
+.dev.vars
+.wrangler/
+wrangler.toml

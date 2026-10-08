@@ -1,0 +1,17 @@
+# Copy to wrangler.toml (git-ignored) and fill in. Reference only: this Worker is not deployed.
+name = "suggest-bike-finder"
+main = "index.ts"
+compatibility_date = "2026-01-01"
+
+[vars]
+# Exactly one origin. Requests from anywhere else are rejected.
+SITE_ORIGIN = "https://suugest.bike"
+
+[[kv_namespaces]]
+binding = "FINDER_KV"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"   # npx wrangler kv namespace create FINDER_KV
+
+# Secrets are NOT set here. Use:
+#   npx wrangler secret put ADMIN_TOKEN
+#   npx wrangler secret put WHATSAPP_VERIFY_TOKEN
+#   npx wrangler secret put WHATSAPP_APP_SECRET

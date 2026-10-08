@@ -1,0 +1,50 @@
+[
+  {
+    "id": "fx-1",
+    "createdAt": "2026-10-01T10:00:00.000Z",
+    "consentAt": "2026-10-01T10:00:00.000Z",
+    "model": "Yamaha RX 115",
+    "colours": ["maroon"],
+    "yearMin": 1995,
+    "yearMax": 2002,
+    "maxBudget": 160000,
+    "papers": "clean",
+    "condition": "any",
+    "districts": ["dhaka", "chattogram"],
+    "mustHaves": ["original-sleeve"],
+    "custom": "Original silencer if possible",
+    "whatsapp": "+8801712345678",
+    "consent": true,
+    "lang": "en"
+  },
+  {
+    "id": "fx-2",
+    "createdAt": "2026-10-02T10:00:00.000Z",
+    "model": "Pulsar 150",
+    "colours": [],
+    "maxBudget": 100000,
+    "papers": "any",
+    "condition": "any",
+    "districts": [],
+    "mustHaves": [],
+    "custom": "",
+    "whatsapp": "+8801812345678",
+    "consent": false,
+    "lang": "bn"
+  },
+  {
+    "id": "fx-3-expired",
+    "createdAt": "2026-06-01T10:00:00.000Z",
+    "consentAt": "2026-06-01T10:00:00.000Z",
+    "model": "CG 125",
+    "colours": [],
+    "papers": "any",
+    "condition": "any",
+    "districts": [],
+    "mustHaves": [],
+    "custom": "",
+    "whatsapp": "+8801912345678",
+    "consent": true,
+    "lang": "en"
+  }
+]

@@ -1,0 +1,61 @@
+[
+  {
+    "source": "fixtures",
+    "url": "https://example.test/ad/rx115-maroon-dhaka",
+    "title": "Yamaha RX 115 1998 maroon, Dhaka",
+    "description": "Deep red original paint, blue book clear, original sleeve never rebored. Single owner. Mirpur.",
+    "priceBDT": 155000,
+    "year": 1998,
+    "km": 41000,
+    "district": "Dhaka"
+  },
+  {
+    "source": "fixtures",
+    "url": "https://example.test/ad/rx115-maroon-dhaka/?utm=dup",
+    "title": "Yamaha RX 115 1998 maroon, Dhaka (repost)",
+    "description": "Same bike reposted.",
+    "priceBDT": 155000,
+    "district": "Dhaka"
+  },
+  {
+    "source": "fixtures",
+    "url": "https://example.test/ad/rx115-blue-ctg",
+    "title": "আরএক্স ১১৫ ইয়ামাহা, চট্টগ্রাম",
+    "description": "নীল রং। ব্লু বুক ঠিক আছে।",
+    "priceBDT": 140000,
+    "year": 2001,
+    "district": "চট্টগ্রাম"
+  },
+  {
+    "source": "fixtures",
+    "url": "https://example.test/ad/rx115-rebored",
+    "title": "RX115 maroon rebored engine",
+    "description": "Rebored, new piston. Dhaka.",
+    "priceBDT": 120000,
+    "year": 1999,
+    "district": "Dhaka"
+  },
+  {
+    "source": "fixtures",
+    "url": "https://example.test/ad/rx115-expensive",
+    "title": "Yamaha rx115 maroon showroom condition",
+    "description": "All original. Blue book clear.",
+    "priceBDT": 230000,
+    "year": 2000,
+    "district": "Dhaka"
+  },
+  {
+    "source": "fixtures",
+    "url": "https://example.test/ad/rx1150-not-a-bike",
+    "title": "RX1150 something else",
+    "priceBDT": 90000,
+    "district": "Dhaka"
+  },
+  {
+    "source": "fixtures",
+    "url": "https://example.test/ad/pulsar",
+    "title": "Bajaj Pulsar 150 black",
+    "priceBDT": 130000,
+    "district": "Dhaka"
+  }
+]
