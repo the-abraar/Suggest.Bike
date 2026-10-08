@@ -11,6 +11,7 @@ import { ShareButton } from "@/components/ui";
 import { buildChecklist, decodeTicks, encodeTicks, trust, type CheckItem, type Severity, type Tick, type Ticks, type Verdict } from "@/lib/usedcheck/checklist";
 import type { Bike, BikeLite } from "@/lib/types";
 import { MediaZone } from "./MediaZone";
+import { DiagnosisPreview } from "./DiagnosisPreview";
 import { ValuePanel, type ValueForm } from "./ValuePanel";
 
 export function CheckView() {
@@ -190,6 +191,7 @@ function Check_() {
       <div className="mt-6 space-y-6">
         <ValuePanel bike={bike} form={form} onChange={setForm} problems={problems} coverage={tr.coverage} nowYear={nowYear} />
         <MediaZone shots={shots} items={items} />
+        <DiagnosisPreview />
       </div>
     </div>
   );

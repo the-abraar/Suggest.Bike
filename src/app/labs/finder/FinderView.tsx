@@ -6,6 +6,7 @@ import { ExperimentalBadge, ExperimentalBanner } from "@/components/Experimental
 import { Segmented } from "@/components/form";
 import { searchBikes } from "@/components/SearchBox";
 import { SectionHead } from "@/components/ui";
+import { FlowPreview } from "./FlowPreview";
 import { formatLakh, fullName } from "@/lib/bikes";
 import { useLang, useTx } from "@/lib/i18n";
 import { SITE } from "@/lib/site";
@@ -156,6 +157,8 @@ export function FinderView() {
           </div>
         )}
       </div>
+
+      <div className="mb-6"><FlowPreview /></div>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_380px]">
         <form onSubmit={submit} noValidate className="card space-y-6 p-5 sm:p-6">

@@ -128,9 +128,6 @@ export function MediaZone({ shots, items }: { shots: Shot[]; items: CheckItem[] 
         <h2 id="media-h" className="text-[19px] font-semibold tracking-tight text-ink">
           {tx("Photos, video and engine sound", "ছবি, ভিডিও ও ইঞ্জিনের শব্দ")}
         </h2>
-        <span className="inline-flex items-center gap-1 rounded-full bg-surface-2 px-2 py-0.5 text-[11.5px] font-semibold text-muted">
-          {tx("AI photo and sound diagnosis: coming soon", "AI ছবি ও শব্দ বিশ্লেষণ: শীঘ্রই আসছে")}
-        </span>
       </div>
 
       <div className="mt-3 flex gap-3 rounded-xl border border-good/40 bg-good-soft p-3.5 text-[14px] leading-relaxed text-ink-2" role="note">
