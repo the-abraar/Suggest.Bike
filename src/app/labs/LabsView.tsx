@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Radar, Scale, ShieldCheck } from "lucide-react";
+import { ArrowRight, Radar, Scale, ShieldCheck, Wrench } from "lucide-react";
 import { ExperimentalBadge } from "@/components/Experimental";
 import { SectionHead } from "@/components/ui";
 import { useTx } from "@/lib/i18n";
 import { LAB_TOOLS } from "@/lib/labs";
 
-const ICONS = { shield: ShieldCheck, scale: Scale, radar: Radar };
+const ICONS = { shield: ShieldCheck, wrench: Wrench, scale: Scale, radar: Radar };
 
 export function LabsView() {
   const tx = useTx();
@@ -22,7 +22,7 @@ export function LabsView() {
           "সেকেন্ড-হ্যান্ড বাজারের জন্য নতুন টুল। এগুলো পরীক্ষামূলক, তাই কিছু ত্রুটি থাকতে পারে। ভুল জানালে আমরা ঠিক করব।",
         )}
       />
-      <div className="grid gap-5 md:grid-cols-3">
+      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
         {LAB_TOOLS.map((tool) => {
           const Icon = ICONS[tool.icon];
           return (

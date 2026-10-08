@@ -18,7 +18,7 @@ export function registrationFor(cc: number) {
 const ROAD_TAX_2YR = (cc: number) => (cc <= 100 ? 1000 * 1.15 : 2300);
 const THIRD_PARTY_INSURANCE = guide.insurance.thirdParty.exampleAnnualPremiumBDT;
 
-const TYRE_PAIR: Record<Category, number> = {
+export const TYRE_PAIR: Record<Category, number> = {
   commuter: 5200,
   scooter: 5500,
   street: 7500,
