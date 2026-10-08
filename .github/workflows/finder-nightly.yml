@@ -1,0 +1,60 @@
+# Bike finder: nightly search. DISABLED BY DEFAULT.
+#
+# What it does today: runs `finder/run.ts` as a DRY RUN. It prints the match report and sends nothing.
+# The schedule is 18:00 UTC = 00:00 Asia/Dhaka (Bangladesh is UTC+6, no daylight saving).
+#
+# To turn it on for real (owner steps, see finder/README.md):
+#   1. Deploy the Worker in finder/worker and note its URL.
+#   2. Repository secrets: FINDER_API (Worker URL), FINDER_ADMIN_TOKEN.
+#   3. Repository variable FINDER_ENABLED = true   (until then the job is skipped on schedule).
+#   4. For real WhatsApp messages: secrets WHATSAPP_TOKEN, WHATSAPP_PHONE_ID, WHATSAPP_TEMPLATE,
+#      and variable FINDER_LIVE = 1. Without FINDER_LIVE=1 it stays a dry run.
+#   5. For Bikroy: variable FINDER_BIKROY = 1, ONLY after reviewing Bikroy's terms of service.
+# Kill switch: set variable FINDER_DISABLE_BIKROY = 1, or set FINDER_ENABLED to anything but true.
+name: finder-nightly
+
+on:
+  schedule:
+    - cron: "0 18 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: finder-nightly
+  cancel-in-progress: false
+
+jobs:
+  run:
+    # Scheduled runs need the FINDER_ENABLED switch; manual runs always work (still a dry run unless FINDER_LIVE=1).
+    if: ${{ github.event_name == 'workflow_dispatch' || vars.FINDER_ENABLED == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Self-test
+        run: npx tsx finder/test.mjs
+      - name: Run the finder
+        env:
+          FINDER_API: ${{ secrets.FINDER_API }}
+          FINDER_ADMIN_TOKEN: ${{ secrets.FINDER_ADMIN_TOKEN }}
+          FINDER_LIVE: ${{ vars.FINDER_LIVE }}
+          FINDER_BIKROY: ${{ vars.FINDER_BIKROY }}
+          FINDER_DISABLE_BIKROY: ${{ vars.FINDER_DISABLE_BIKROY }}
+          WHATSAPP_TOKEN: ${{ secrets.WHATSAPP_TOKEN }}
+          WHATSAPP_PHONE_ID: ${{ secrets.WHATSAPP_PHONE_ID }}
+          WHATSAPP_TEMPLATE: ${{ secrets.WHATSAPP_TEMPLATE }}
+          WHATSAPP_TEMPLATE_BN: ${{ secrets.WHATSAPP_TEMPLATE_BN }}
+        run: |
+          if [ -z "$FINDER_API" ]; then
+            echo "No FINDER_API secret: running the fixtures demo (dry run)."
+            npx tsx finder/run.ts --dry-run --fixtures
+          else
+            npx tsx finder/run.ts
+          fi
