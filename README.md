@@ -14,6 +14,7 @@
 | `/cost` | True cost of ownership: fuel, servicing, wear parts, BRTA paperwork, insurance and resale loss, as an all-in monthly figure |
 | `/fund` | Bike fund: the bike "downloads" as you save (ported from TakaTalks' dream-loader viz), with ETA, a downloadable 4:5 poster, cash vs 0% card EMI vs loan (upfront cash, instalment, interest, budget fit), ways to get there sooner and saving habits. Shareable URL. |
 | `/guide` | Buyer's guide: BRTA registration costs, the 10-year tax token, smart licence steps and fees, the 375cc rule, road rules, an 11-point used-bike checklist and rider communities |
+| `/labs` | **Experimental.** Labs hub. `/labs/check` is a used-bike checklist made for your model, with a value estimate and photo, video and engine-sound capture (analysed in the browser only). `/labs/listing-check` scores a Bikroy or Facebook listing plus what the seller said. `/labs/finder` is a bike-finder request form, coming soon. Its nightly agent and WhatsApp alerts are in `finder/` (see `finder/README.md`). |
 | `/saved` | Shortlist of hearted bikes, stored on the device |
 
 Also included: English/বাংলা toggle, light and dark themes (following the system), a compare tray, a `/` keyboard shortcut for search, an SEO sitemap and robots.txt, and Product JSON-LD on every bike page.

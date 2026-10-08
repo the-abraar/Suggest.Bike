@@ -11,7 +11,9 @@
     "preview": "npx --yes serve@14 out -l 3000",
     "pretypecheck": "node scripts/build-data.mjs && tsx scripts/build-art.tsx",
     "typecheck": "tsc --noEmit",
-    "validate": "node scripts/validate-data.mjs"
+    "validate": "node scripts/validate-data.mjs",
+    "finder": "tsx finder/run.ts",
+    "finder:test": "tsx finder/test.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.52.0",
