@@ -1,0 +1,24 @@
+{
+  "_note": "Keyword patterns for the free-text parser. This is plain keyword matching (regular expressions on lower-cased text), not AI. English, Bangla script and Banglish (Bangla in Latin letters). Matched against text where Bangla digits are already converted to 0-9.",
+  "signals": {
+    "advance": ["advance", "\\bbayna\\b", "বায়না", "অ্যাডভান্স", "এডভান্স", "আগাম", "token money", "booking money", "age taka", "আগে টাকা", "টাকা পাঠান", "taka pathan", "taka pathaiya", "taka dite hobe", "টাকা দিতে হবে"],
+    "wallet": ["bkash", "b-kash", "বিকাশ", "nagad", "নগদ", "rocket", "রকেট", "upay"],
+    "walletFirst": ["(bkash|b-kash|nagad|rocket|upay|বিকাশ|নগদ|রকেট)[^.\\n]{0,40}(age|first|before|আগে|পাঠান|pathan|pathaiya|পাঠিয়ে|send|পাঠাতে)", "(age|first|before|আগে|পাঠান|pathan|pathaiya|send)[^.\\n]{0,40}(bkash|b-kash|nagad|rocket|upay|বিকাশ|নগদ|রকেট)"],
+    "noPaper": ["papers?\\s*(nai|nei|nay|chara|hara|lost)", "kagoj\\s*(nai|nei|nay|chara|hara)", "কাগজ\\s*(নেই|নাই|ছাড়া|হারিয়ে)", "পেপার\\s*(নেই|নাই|ছাড়া)", "blue\\s*book\\s*(nai|nei|nay|lost|hariye|missing|chara)", "ব্লু\\s*বুক\\s*(নেই|নাই|হারিয়ে|ছাড়া)", "\\bno\\s*(papers?|blue\\s*book|bluebook|registration)\\b", "without\\s*(papers?|blue\\s*book|bluebook)", "রেজিস্ট্রেশন\\s*(নেই|নাই|ছাড়া)"],
+    "paperProcessing": ["papers?\\s*(is\\s*|are\\s*)?(under\\s*)?process", "papers?\\s*process(ing)?\\s*(e|a)\\b", "process(ing)?\\s*e\\s*ache", "কাগজ[^.\\n]{0,12}প্রসেস", "পেপার[^.\\n]{0,12}প্রসেস", "প্রসেসিং", "registration\\s*(is\\s*)?(under\\s*)?process", "blue\\s*book\\s*(under\\s*)?process", "bluebook\\s*(under\\s*)?process", "number\\s*plate\\s*(under\\s*)?process", "রেজিস্ট্রেশন[^.\\n]{0,12}প্রসেস"],
+    "urgent": ["urgent", "জরুরি", "জরুরী", "emergency", "today only", "\\baj\\s*i\\b", "আজই", "ekhoni", "এখনই", "first\\s*come", "many\\s*(buyers?|customers?)", "onek\\s*(buyers?|customers?)", "অনেক\\s*(ক্রেতা|কাস্টমার)", "must\\s*sell", "sell\\s*today", "shobar\\s*age", "other\\s*customers?", "অন্য\\s*কাস্টমার", "taratari", "তাড়াতাড়ি"],
+    "courier": ["courier", "কুরিয়ার", "sundarban", "সুন্দরবন", "sa\\s*paribahan", "home\\s*delivery", "delivery\\s*(dibo|debo|available)", "ডেলিভারি", "pathaiya\\s*dibo", "পাঠিয়ে\\s*দিব", "পাঠিয়ে\\s*দেব", "\\bcargo\\b", "\\bparcel\\b", "dhaka\\s*(er|r)\\s*baire", "ঢাকার\\s*বাইরে"],
+    "refusesInspection": ["no\\s*mechanic", "mechanic\\s*(dite|debo|ante)\\s*(parbo\\s*na|debo\\s*na|dibo\\s*na)", "mechanic\\s*(ante|anben)\\s*na", "মেকানিক\\s*না", "মেকানিক\\s*(আনা|আনতে|দেখাতে)[^.\\n]{0,10}(না|যাবে\\s*না)", "no\\s*test\\s*ride", "test\\s*ride\\s*(nai|debo\\s*na|dibo\\s*na)", "টেস্ট\\s*রাইড\\s*(নেই|নাই|দেব\\s*না|দিব\\s*না)", "check\\s*korte\\s*(debo|dibo)\\s*na", "চেক\\s*করতে\\s*দেব\\s*না", "no\\s*inspection", "no\\s*checking"],
+    "refusesPaperPhoto": ["papers?\\s*photo\\s*(debo|dibo)\\s*na", "photo\\s*(debo|dibo)\\s*na", "ছবি\\s*(দেব|দিব)\\s*না", "কাগজের\\s*ছবি\\s*(দেব|দিব)\\s*না", "paper\\s*dekhabo\\s*na"],
+    "oddMeeting": ["at\\s*night", "\\braate\\b", "রাতে", "nirjon", "নির্জন", "highway\\s*(e|a|side)", "হাইওয়ে", "faka\\s*jaiga", "ফাঁকা", "isolated", "bus\\s*stand\\s*e"],
+    "govTransfer": ["(army|police|bgb|military|navy|ansar|rab)[^.\\n]{0,40}(transfer|posting|bodli|badli|sell)", "(সেনা|পুলিশ|আর্মি|বিজিবি)[^.\\n]{0,40}(বদলি|পোস্টিং|বিক্রি)", "বদলি\\s*হয়ে", "transfer\\s*hoye"],
+    "noPhotos": ["no\\s*photos?\\b", "photo\\s*nai", "ছবি\\s*(নেই|নাই)", "real\\s*photo\\s*(nai|nei|debo\\s*na)", "pic\\s*(nai|nei)"],
+    "dealer": ["showroom", "dealer", "শোরুম", "ডিলার", "we\\s*(sell|have)\\s*(many|all)", "all\\s*models?\\s*available", "exchange\\s*(korte|available|offer)", "এক্সচেঞ্জ"],
+    "claimsOwner": ["personal\\s*use", "নিজের\\s*(ব্যবহার|বাইক)", "my\\s*own\\s*bike", "first\\s*owner", "one\\s*hand", "single\\s*owner", "ফার্স্ট\\s*ওনার", "ওয়ান\\s*হ্যান্ড", "nijer\\s*bike", "nijer\\s*use"],
+    "inspectionOk": ["mechanic\\s*(check|dekhaite|dekhate|anben|ante)\\s*(ok|paren|parben|korte\\s*paren)", "check\\s*kore\\s*(nin|nen|nite\\s*paren)", "চেক\\s*করে\\s*নিন", "চেক\\s*করে\\s*নেবেন", "inspection\\s*(ok|welcome|allowed)", "test\\s*ride\\s*(ok|available|dite\\s*parbo|debo)", "টেস্ট\\s*রাইড\\s*(ঠিক\\s*আছে|দেওয়া\\s*যাবে|দেব)", "মেকানিক\\s*(দেখিয়ে|এনে)\\s*(নিতে\\s*পারেন|নিন)"],
+    "papersOk": ["(all|full|sob|shob)\\s*(papers?|kagoj|documents?)\\s*(clear|ok|ready|available|updated|thik|ache)", "papers?\\s*(clear|ok|ready|updated)", "সব\\s*(কাগজ|পেপার)\\s*(ঠিক|ক্লিয়ার|আছে|হালনাগাদ)", "কাগজ\\s*(ঠিক|ক্লিয়ার)\\s*আছে", "ব্লু\\s*বুক\\s*(আছে|ঠিক)", "blue\\s*book\\s*(ache|ready|available|clear|ok)", "smart\\s*card\\s*(ache|ready|available)", "ট্যাক্স\\s*টোকেন\\s*(হালনাগাদ|ঠিক|আছে)", "tax\\s*token\\s*(updated|ok|ache|valid)"]
+  },
+  "currencyMarkers": "(?:tk\\.?|taka|bdt|৳|টাকা|/-)",
+  "priceContextBefore": "(price|dam|dor|দাম|দর|asking|only|মূল্য)",
+  "notPriceContextBefore": "(advance|বায়না|আগাম|token|booking|bkash|nagad|বিকাশ|নগদ|emi|installment|কিস্তি|down\\s*payment|downpayment)"
+}
