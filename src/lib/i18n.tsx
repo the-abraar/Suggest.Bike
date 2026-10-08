@@ -11,6 +11,7 @@ const DICT = {
   "nav.cost": { en: "True cost", bn: "আসল খরচ" },
   "nav.fund": { en: "Bike fund", bn: "বাইক ফান্ড" },
   "nav.guide": { en: "Buyer's guide", bn: "ক্রেতা গাইড" },
+  "nav.labs": { en: "Labs", bn: "ল্যাবস" },
   "nav.saved": { en: "Saved", bn: "সংরক্ষিত" },
   "nav.menu": { en: "Menu", bn: "মেনু" },
 
