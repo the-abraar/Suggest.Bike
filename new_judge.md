@@ -207,3 +207,9 @@ Plan: (R) data research: Pulsar N160, second sources, more EVs, BRTA EV fee; (H)
 - **EVs: none added.** The only other Walton model with seat height published (Takyon 1.00) has an implausible weight and specs copied from the 25TD.
 - **BRTA EV fee found:** Road Transport Rules 2022, Schedule-1 item 21: ≤5 kW Tk 2,000 (same as ≤100cc), >5 kW Tk 3,000. Now in `guide.registration.ev` (EN+BN); a test fails if an EV over 5 kW is added without a code branch. EV tax token is assumed to match ≤100cc (not covered in the gazette page read).
 - Not checked: dead links (`--check-urls` not run). The worklist's hand-written notes section will be lost if it is regenerated.
+
+#### Round 3, L: Bangla remaining + small fixes (merged `b7fe5f4`; full `check.sh` on merged main: all 6 steps pass; 194 sitemap URLs)
+- **Bangla twins** for privacy, terms, disclaimer, saved and feedback: `lang="bn"`, Bangla titles, hreflang both ways; links on BN pages stay in `/bn/`. Merge: `sitemap.ts` and `site.ts` conflicted with H (the `/changes` twin); I kept both and left `/bn/saved/` out of the sitemap, as `/saved/` is (per-device page).
+- **Bangla JSON-LD** description on `/bn/` bike pages. **Bangla OG images skipped on purpose:** satori (next/og) does no complex-script shaping, so Bangla conjuncts would render broken, and the only Bangla font is woff2, which satori can't read. Recorded as a `shortcut:` in `src/app/bn/bikes/[id]/page.tsx`.
+- **Header** gains Dealers/ডিলার and Method/পদ্ধতি (the 2xl search box was narrowed so the row fits at 1536 px). **Quiz event** `match-results` fires once per completed quiz (not for shared links); privacy text updated. **Slider:** total minimum ৳30,000, EMI ৳2,000/mo. **Offer `availability` removed** (no evidence for InStock); tests updated.
+- The agent's QA on 7 pages × 3 widths was clean. Not checked: dark mode, the event with analytics on.

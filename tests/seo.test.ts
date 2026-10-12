@@ -13,11 +13,11 @@ test("langHref maps EN and BN twins and keeps query and hash", () => {
   assert.equal(langHref("/bn/compare/?bikes=a,b#engine", "en"), "/compare/?bikes=a,b#engine");
   assert.equal(langHref("/bikes/bajaj-pulsar-n160/", "bn"), "/bn/bikes/bajaj-pulsar-n160/");
   assert.equal(langHref("/bn/bikes/bajaj-pulsar-n160/", "bn"), "/bn/bikes/bajaj-pulsar-n160/");
+  for (const p of ["privacy", "terms", "disclaimer", "saved", "feedback"]) assert.equal(langHref(`/${p}/`, "bn"), `/bn/${p}/`);
 });
 
 test("langHref leaves pages without a Bangla twin and non-paths alone", () => {
-  assert.equal(langHref("/saved/", "bn"), "/saved/");
-  assert.equal(langHref("/privacy/", "bn"), "/privacy/");
+  assert.equal(langHref("/nope/", "bn"), "/nope/");
   assert.equal(langHref("/bikes/a/b/", "bn"), "/bikes/a/b/");
   assert.equal(langHref("/bnx/", "en"), "/bnx/");
   assert.equal(langHref("mailto:x@y.z", "bn"), "mailto:x@y.z");
@@ -38,5 +38,8 @@ test("Product JSON-LD has an Offer only for bikes on sale", () => {
   assert.equal(offer?.["@type"], "Offer");
   assert.equal(offer?.price, onSale.priceBDT);
   assert.equal(offer?.priceCurrency, "BDT");
+  assert.equal("availability" in offer!, false); // no stock data, so no InStock claim
   assert.equal("offers" in productJsonLd(used), false);
+  assert.equal(productJsonLd(onSale).description, onSale.tagline);
+  assert.equal(productJsonLd(onSale, "bn").description, onSale.bn?.tagline ?? onSale.tagline);
 });

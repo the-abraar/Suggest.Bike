@@ -12,6 +12,8 @@ const DICT = {
   "nav.compare": { en: "Compare", bn: "তুলনা" },
   "nav.cost": { en: "True cost", bn: "আসল খরচ" },
   "nav.guide": { en: "Buyer's guide", bn: "ক্রেতা গাইড" },
+  "nav.dealers": { en: "Dealers", bn: "ডিলার" },
+  "nav.method": { en: "Method", bn: "পদ্ধতি" },
   "nav.saved": { en: "Saved", bn: "সংরক্ষিত" },
   "nav.menu": { en: "Menu", bn: "মেনু" },
 

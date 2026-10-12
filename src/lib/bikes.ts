@@ -104,7 +104,8 @@ export const mileageText = (b: Pick<BikeLite, "engine" | "mileageKmpl" | "ev">) 
 export const ccLabel =(b: Pick<BikeLite, "engine">) => (isEv(b) ? "Electric" : `${Math.round(b.engine.cc)}cc`);
 
 /** schema.org Product for a bike page. Only bikes on sale with a price carry an Offer; used-only bikes have no seller or list price. */
-export function productJsonLd(b: Pick<Bike, "id" | "brand" | "model" | "tagline" | "status" | "priceBDT" | "distributor">) {
+// Product has no inLanguage in schema.org, so the /bn/ twin only swaps in the Bangla description.
+export function productJsonLd(b: Pick<Bike, "id" | "brand" | "model" | "tagline" | "status" | "priceBDT" | "distributor" | "bn">, lang: "en" | "bn" = "en") {
   const url = `${SITE.url}/bikes/${b.id}/`;
   return {
     "@context": "https://schema.org",
@@ -112,7 +113,7 @@ export function productJsonLd(b: Pick<Bike, "id" | "brand" | "model" | "tagline"
     name: fullName(b),
     brand: { "@type": "Brand", name: b.brand },
     category: "Motorcycle",
-    description: b.tagline,
+    description: (lang === "bn" && b.bn?.tagline) || b.tagline,
     url,
     image: `${url}og.png`,
     ...(b.status === "on-sale" && b.priceBDT > 0 && {
@@ -120,7 +121,6 @@ export function productJsonLd(b: Pick<Bike, "id" | "brand" | "model" | "tagline"
         "@type": "Offer",
         price: b.priceBDT,
         priceCurrency: "BDT",
-        availability: "https://schema.org/InStock",
         itemCondition: "https://schema.org/NewCondition",
         url, // our page, which cites the price source; pointing at bikebd would hand it the click
         ...(b.distributor && { seller: { "@type": "Organization", name: b.distributor } }),
