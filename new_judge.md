@@ -150,3 +150,43 @@ Usage before: 5-hour 41%, 7-day 52%. Planned: (D) Bangla `/bn/` routes for all m
 - **JSON-LD `Offer`** on on-sale bikes (price, BDT, InStock, NewCondition, distributor as seller). I changed the Offer `url` from the price source (usually bikebd) to our own bike page, so rich results don't hand the click to the competitor.
 - **EV:** compare shows motor kW, km/charge and kWh; no carb, kmpl or litres, and no mileage/tank markers. Match and cost use EV wording.
 - Remaining: no Bangla for the legal, saved and feedback pages; the JSON-LD description and the OG image text are English; "InStock" is assumed; not yet browser-tested.
+
+#### Round 2, Q: real-browser QA and page weight (merged `db4fe7e`; full `check.sh` on main: all 6 steps pass)
+- **A bug no earlier check caught:** the inline theme/language script in `layout.tsx` threw `Invalid regular expression flags` on every page (a template literal swallowed the `\/` escapes), so saved dark mode and Bangla preferences never applied before first paint. Fixed with `String.raw`.
+- `qa.mjs` now covers the current site: 18 pages × 375/768/1280 = 54 runs, **0 overflow, 0 axe serious/critical, 0 console errors**.
+- **Interaction checks 14/14 pass** (Playwright, 375): quiz in total and EMI mode (on-road, bands, stretch), the ৳40,000 budget empty state (3 cheapest), the EN→বাংলা toggle keeping query and hash, and owner-report validation plus the mailto fallback.
+- Other fixes: the compare page no longer marks petrol tank range "higher" than EV range; `/cost#pay` table focusable; method tag contrast; dealer date no longer wraps; unused Geist Mono preload dropped; bike photo gets `fetchPriority="high"`.
+- **Page weight** (375, 1.6 Mbps/150 ms RTT, 4× CPU, cold): JS 238-302 KB compressed, CSS 11 KB, fonts 182 KB; **LCP 1.2-3.2 s** (worst: bike page 3.19 s). JS is mostly framework; no small fix.
+- My follow-up: the EV owner form no longer asks for km/l (range goes in the note).
+- Unverified: dark mode (it could never apply before this fix), `/bn/` page weight, a real form endpoint. Bike photos could be WebP at 800px (~half the size).
+
+---
+
+## Where each criticism stands now (2026-10-13)
+
+| Criticism | Status |
+|---|---|
+| §1 Downstream of BikeBD | **Reduced.** bikebd share 87% → 64%; Offer/rich results point to our own pages; 17 official sources. Still the main source for 53 bikes. |
+| §1 "Honest" rests on nothing | **Partly fixed.** `/method` tags every number as sourced, calculated or editorial; scores shown as bands with a link to the method; owner-report form. Scores are still editorial until the mistri panel runs. |
+| §1 No face | **Fixed in code.** Editor byline and contact on `/method` and About. A real face/photo is the owner's call. |
+| §2.1 Can't be found | **Fixed in code.** 92 server-rendered `/bn/` pages, `lang="bn"`, hreflang, 188-URL sitemap, pre-rendered pages. Ranking still has to be earned. |
+| §2.2 Can't be shared | **Fixed.** 84 real PNG OG images. |
+| §2.4 Dead end at intent | **Partly fixed.** `/dealers` + "Where to buy" from official sources (5 brands with locator + hotline). No showroom lead deals yet (owner). |
+| §2.5 No reason to return | **Open.** Alerts need a backend; only "re-checked monthly" + feedback. |
+| §3 Matcher (all 9 points) | **Fixed** (on-road ceiling, no upsell, EMI tenure/down payment, bands, height+weight, gearless, 2-stroke, empty state, used haircut), with tests. "Who is riding" skipped (doesn't map onto the weights). |
+| §4 Data gaps | **Mostly fixed.** 83 bikes, 1 verified EV, 13 bikes with variants, +6 budget Chinese, Zontes re-sourced, outliers noted or corrected, gates on outliers and fuel/electricity age. Only 1 EV; 7 new bikes are single-source. |
+| §5 Bloat | **Fixed.** Labs, finder, fund and crowns removed; `src` 11.9k → ~6k LOC before the new features. |
+| §6 Blind | **Ready, switched off.** GoatCounter and the form endpoint go live once the owner creates the accounts. |
+| §6 Offer, tests vs truth, fuel constant | **Fixed.** Offer added; the data gate checks outliers and fuel/electricity freshness. |
+| §6 Real device | **Open (owner).** Headless Chromium only. |
+| §7 Corner cases | <45k budget, rideshare (pointer to app rules), showroom offers (dealer prompt): handled. Buying for others: reworded. CNG/car: out of scope. |
+
+**Score: ~72% (was ~60%).** Product and quality are now launch-grade; the cap is everything code can't do: real users, analytics switched on, a lawyer, the mistri panel, real phones.
+
+### Owner-only next steps, in order
+1. Push `main` (it deploys via `deploy.yml`) and open the live site on a real Android phone and an iPhone, light and dark mode.
+2. Create the Formspree form → `FORM_ENDPOINT`, and GoatCounter → `GOATCOUNTER_CODE` in `src/lib/site.ts`.
+3. Call each dealer hotline once (`Todo_owner.md`); ask Runner about Vespa/Aprilia.
+4. Lawyer review of `/privacy`, `/terms`, `/disclaimer`.
+5. Run the mistri panel (`docs/mistri-panel.md`).
+6. Soft-launch in two Facebook groups; read the analytics and owner reports after 2 weeks; fix data where people look.

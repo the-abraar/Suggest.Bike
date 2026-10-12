@@ -510,7 +510,7 @@ function BuyAndReport({ bike }: { bike: Bike }) {
         <details className="rounded-2xl border border-line bg-surface p-4">
           <summary className="cursor-pointer text-[14.5px] font-medium text-brand">{tx("Report my on-road price and real mileage", "আমার অন-রোড দাম ও আসল মাইলেজ জানাই")}</summary>
           <div className="mt-4">
-            <FeedbackForm kind="owner" bike={{ id: bike.id, name: fullName(bike) }} />
+            <FeedbackForm kind="owner" bike={{ id: bike.id, name: fullName(bike), ev: bike.engine.fuel === "electric" }} />
           </div>
         </details>
         <p className="mt-2 text-[12.5px] text-faint">

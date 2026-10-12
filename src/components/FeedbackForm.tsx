@@ -16,7 +16,7 @@ const ERR: Record<string, [string, string]> = {
 };
 
 /** Feedback or "I own this" report. Posts JSON to FORM_ENDPOINT; with no endpoint it opens a prefilled email. */
-export function FeedbackForm({ kind, bike }: { kind: ReportKind; bike?: { id: string; name: string } }) {
+export function FeedbackForm({ kind, bike }: { kind: ReportKind; bike?: { id: string; name: string; ev?: boolean } }) {
   const tx = useTx();
   const [r, setR] = useState<ReportInput>({ message: "", email: "", onRoadBDT: "", showroom: "", month: "", kmpl: "" });
   const [errs, setErrs] = useState<string[]>([]);
@@ -57,10 +57,13 @@ export function FeedbackForm({ kind, bike }: { kind: ReportKind; bike?: { id: st
             {tx("On-road price you paid (৳)", "আপনার দেওয়া অন-রোড দাম (৳)")}
             <input type="number" inputMode="numeric" min={LIMITS.onRoadMin} max={LIMITS.onRoadMax} value={r.onRoadBDT} onChange={set("onRoadBDT")} className="input mt-2 w-full" />
           </label>
-          <label className={field}>
-            {tx("Real mileage (km/l)", "আসল মাইলেজ (কিমি/লি)")}
-            <input type="number" inputMode="decimal" min={LIMITS.kmplMin} max={LIMITS.kmplMax} step="0.5" value={r.kmpl} onChange={set("kmpl")} className="input mt-2 w-full" />
-          </label>
+          {/* EV owners give their range in the note; km/l limits don't apply */}
+          {!bike?.ev && (
+            <label className={field}>
+              {tx("Real mileage (km/l)", "আসল মাইলেজ (কিমি/লি)")}
+              <input type="number" inputMode="decimal" min={LIMITS.kmplMin} max={LIMITS.kmplMax} step="0.5" value={r.kmpl} onChange={set("kmpl")} className="input mt-2 w-full" />
+            </label>
+          )}
           <label className={field}>
             {tx("Showroom or district", "শোরুম বা জেলা")}
             <input maxLength={LIMITS.showroom} value={r.showroom} onChange={set("showroom")} className="input mt-2 w-full" />
