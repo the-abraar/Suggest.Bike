@@ -200,3 +200,10 @@ Plan: (R) data research: Pulsar N160, second sources, more EVs, BRTA EV fee; (H)
 - Bike pages show "৳X since <month> · was ৳Y in <month>" or "unchanged since"; `/changes` and `/bn/changes` list 13 events (8 added, 2 up, 2 down, 1 removed), with hreflang, sitemap and footer links. The copy says dates are when our data changed.
 - CI: `fetch-depth: 0` in both workflows; `setup-python` removed from `check.yml`; `deploy.yml` now runs `npm run typecheck` (the bare `tsc` would have had no generated JSON on a fresh checkout).
 - Limits: all history is from Oct 2026 so far; Zontes shows as removed and re-added (true to history); variant prices are not tracked.
+
+#### Round 3, R: data research (merged `3cfb039`; on merged main: validate passes with 0 problems, 34/34 tests pass)
+- **Pulsar N160 was not swapped.** Bajaj BD's own variant pages: Single Seat ৳2,42,000, Twin Disc ৳2,42,600, DC ABS 26 mm fork ৳2,73,600, dual-channel ABS USD ৳2,88,000; bikebd matches. The plain URL is the USD variant, which caused the confusion. Each variant now cites its official page; the Single Seat variant was added.
+- **Second sources:** Zontes ZT155-U (TBS) and Runner Bolt 165R (TBS + Daily Star) match, but those are launch-era articles. Haojue KA135/TR150/DR160 and Lifan K19/Glint 100 are still bikebd-only (no official price page; motorcyclevalley lists them as "not available"). bikebd share now 63%.
+- **EVs: none added.** The only other Walton model with seat height published (Takyon 1.00) has an implausible weight and specs copied from the 25TD.
+- **BRTA EV fee found:** Road Transport Rules 2022, Schedule-1 item 21: ≤5 kW Tk 2,000 (same as ≤100cc), >5 kW Tk 3,000. Now in `guide.registration.ev` (EN+BN); a test fails if an EV over 5 kW is added without a code branch. EV tax token is assumed to match ≤100cc (not covered in the gazette page read).
+- Not checked: dead links (`--check-urls` not run). The worklist's hand-written notes section will be lost if it is regenerated.
