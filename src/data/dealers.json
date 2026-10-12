@@ -1,0 +1,162 @@
+{
+  "_note": "Official distributor data only. Every hotline appears on sourceUrl as of checked. Never add a number or address that is not on an official distributor page.",
+  "brands": {
+    "Bajaj": {
+      "distributor": "Uttara Motors Ltd",
+      "site": "https://www.bajajauto.com/en-bd",
+      "locator": "https://www.bajajauto.com/en-bd/store-locator",
+      "hotline": "09678-333888",
+      "sourceUrl": "https://www.bajajauto.com/en-bd/store-locator",
+      "checked": "2026-10-13",
+      "note": "The locator filters showrooms by district (about 64).",
+      "noteBn": "শোরুম খোঁজার পাতায় জেলা ধরে খোঁজা যায় (প্রায় ৬৪টি)।"
+    },
+    "TVS": {
+      "distributor": "TVS Auto Bangladesh Ltd",
+      "site": "https://bangladesh.tvsmotor.com/en/",
+      "locator": "https://bangladesh.tvsmotor.com/en/dealers-location",
+      "hotline": null,
+      "sourceUrl": "https://bangladesh.tvsmotor.com/en/dealers-location",
+      "checked": "2026-10-13"
+    },
+    "Hero": {
+      "distributor": "HMCL Niloy Bangladesh Ltd",
+      "site": "https://www.heromotocorp.com/en-bd/",
+      "locator": "https://www.heromotocorp.com/en-bd/dealers.html",
+      "hotline": "09611 566666",
+      "sourceUrl": "https://www.heromotocorp.com/en-bd/",
+      "checked": "2026-10-13",
+      "note": "Labelled \"Niloy Hero Care\". Service centres are listed on a separate page.",
+      "noteBn": "\"Niloy Hero Care\" নামে দেওয়া। সার্ভিস সেন্টারের তালিকা আলাদা পাতায়।"
+    },
+    "Honda": {
+      "distributor": "Bangladesh Honda Private Limited (BHL)",
+      "site": "https://bdhonda.com",
+      "locator": "https://bdhonda.com/dealer-locator",
+      "hotline": "08000430430",
+      "sourceUrl": "https://bdhonda.com",
+      "checked": "2026-10-13"
+    },
+    "Yamaha": {
+      "distributor": "ACI Motors Ltd",
+      "site": "https://www.yamahabd.com",
+      "locator": null,
+      "hotline": "16533",
+      "sourceUrl": "https://www.yamahabd.com",
+      "checked": "2026-10-13",
+      "note": "The site has no working dealer list; call the hotline for the nearest showroom.",
+      "noteBn": "সাইটে কাজ করা ডিলার তালিকা নেই; কাছের শোরুম জানতে হটলাইনে ফোন করুন।"
+    },
+    "Suzuki": {
+      "distributor": "Rancon Motor Bikes Ltd",
+      "site": "https://www.suzuki.com.bd",
+      "locator": "https://www.suzuki.com.bd/dealer",
+      "hotline": "16638",
+      "sourceUrl": "https://www.suzuki.com.bd",
+      "checked": "2026-10-13"
+    },
+    "Royal Enfield": {
+      "distributor": "IFAD Motors Ltd",
+      "site": "https://www.royalenfield.com/bd/en/home/",
+      "locator": "https://www.royalenfield.com/bd/en/locate-us/dealers/",
+      "hotline": null,
+      "sourceUrl": "https://ifadgroup.com/ifad-motors-ltd",
+      "checked": "2026-10-13"
+    },
+    "KTM": {
+      "distributor": "Runner Automobiles PLC",
+      "site": "https://www.ktm.com/en-bd.html",
+      "locator": "https://www.ktm.com/en-bd/find-a-dealer.html",
+      "hotline": null,
+      "sourceUrl": "https://www.ktm.com/en-bd/find-a-dealer.html",
+      "checked": "2026-10-13"
+    },
+    "Runner": {
+      "distributor": "Runner Automobiles PLC",
+      "site": "https://runnerautomobiles.com/",
+      "locator": null,
+      "hotline": null,
+      "sourceUrl": "https://runnerautomobiles.com/",
+      "checked": "2026-10-13"
+    },
+    "Vespa": {
+      "distributor": "Runner Automobiles PLC",
+      "site": "https://runnerautomobiles.com/",
+      "locator": null,
+      "hotline": null,
+      "sourceUrl": "https://runnerautomobiles.com/",
+      "checked": "2026-10-13",
+      "note": "Distributor not confirmed on an official page; confirm before visiting.",
+      "noteBn": "অফিশিয়াল পাতায় ডিস্ট্রিবিউটর নিশ্চিত নয়; যাওয়ার আগে নিশ্চিত হোন।"
+    },
+    "Aprilia": {
+      "distributor": "Runner Automobiles PLC",
+      "site": "https://runnerautomobiles.com/",
+      "locator": null,
+      "hotline": null,
+      "sourceUrl": "https://runnerautomobiles.com/",
+      "checked": "2026-10-13",
+      "note": "Distributor not confirmed on an official page; confirm before visiting.",
+      "noteBn": "অফিশিয়াল পাতায় ডিস্ট্রিবিউটর নিশ্চিত নয়; যাওয়ার আগে নিশ্চিত হোন।"
+    },
+    "Lifan": {
+      "distributor": "Rasel Industries Ltd",
+      "site": "https://raselindustry.com/",
+      "locator": "https://raselindustry.com/distribution-network/",
+      "hotline": "+8801971834488",
+      "sourceUrl": "https://raselindustry.com/",
+      "checked": "2026-10-13",
+      "districts": [
+        "Dhaka",
+        "Narayanganj",
+        "Gazipur",
+        "Narsingdi",
+        "Manikganj",
+        "Faridpur",
+        "Comilla",
+        "Chattogram",
+        "Cox's Bazar",
+        "Feni",
+        "Lakshmipur",
+        "Natore",
+        "Naogaon",
+        "Pabna",
+        "Sirajganj",
+        "Joypurhat",
+        "Khulna",
+        "Jessore",
+        "Kushtia",
+        "Bagerhat",
+        "Satkhira",
+        "Sylhet",
+        "Brahmanbaria",
+        "Panchagarh",
+        "Rangpur",
+        "Mymensingh",
+        "Jamalpur",
+        "Tangail",
+        "Barishal",
+        "Madaripur",
+        "Barguna"
+      ]
+    },
+    "GPX": {
+      "distributor": "Speedoz Ltd",
+      "site": "https://speedoz.com.bd/",
+      "locator": null,
+      "hotline": "01990-400600",
+      "sourceUrl": "https://speedoz.com.bd/",
+      "checked": "2026-10-13"
+    },
+    "Haojue": {
+      "distributor": "Karnaphuli Group",
+      "site": "https://www.karnaphuli.com/areas-of-activities/motor-cycles",
+      "locator": null,
+      "hotline": "08 000 333 333",
+      "sourceUrl": "https://www.karnaphuli.com/areas-of-activities/motor-cycles",
+      "checked": "2026-10-13",
+      "note": "Group customer-care line, not a motorcycle-only number.",
+      "noteBn": "গ্রুপের সাধারণ গ্রাহকসেবা নম্বর, শুধু মোটরসাইকেলের নয়।"
+    }
+  }
+}

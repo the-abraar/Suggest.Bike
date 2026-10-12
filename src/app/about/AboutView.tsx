@@ -63,11 +63,17 @@ export function AboutView() {
           {tx("There are no sponsored rankings and no affiliate deals with dealers.", "কোনো স্পনসরড র‍্যাঙ্কিং নেই, ডিলারদের সাথে কোনো কমিশন চুক্তিও নেই।")}
         </p>
         <p>
+          <strong className="text-ink">{tx("Who makes this.", "কে বানায়।")}</strong>{" "}
+          {tx(`Made and edited by ${SITE.editor}. Every number's source, and which ones are editorial estimates, is on the`, `বানান ও সম্পাদনা করেন ${SITE.editor}। প্রতিটি সংখ্যার উৎস, আর কোনগুলো সম্পাদকীয় অনুমান, তা আছে`)}{" "}
+          <Link href="/method/" className="text-brand underline underline-offset-2">{tx("method page", "পদ্ধতির পাতায়")}</Link>.
+        </p>
+        <p>
           {tx("Spotted a wrong price or spec? That's the fastest way to make this better for everyone —", "ভুল দাম বা স্পেক দেখেছেন? সবার জন্য এটা ভালো করার সবচেয়ে দ্রুত উপায় —")}{" "}
+          <Link href="/feedback/" className="text-brand underline underline-offset-2">{tx("send feedback (no account needed)", "মতামত পাঠান (অ্যাকাউন্ট লাগবে না)")}</Link>
+          {" · "}
           <a href={`mailto:${SITE.contactEmail}`} className="text-brand underline underline-offset-2">
             {SITE.contactEmail}
           </a>
-          .
         </p>
       </div>
       <Link href="/match/" className="btn-primary mt-10">
