@@ -346,7 +346,7 @@ function PayCompare({ price, brta, used }: { price: number; brta: number; used: 
   return (
     <div id="pay" className="card scroll-mt-24 p-6">
       <h2 className="text-[17px] font-semibold tracking-tight text-ink">{tx("Cash, card EMI or loan", "নগদ, কার্ড কিস্তি না লোন")}</h2>
-      <div className="mt-4 overflow-x-auto">
+      <div className="mt-4 overflow-x-auto" tabIndex={0} role="region" aria-label={tx("Payment options table", "পেমেন্টের বিকল্পের টেবিল")}>
         <table className="w-full min-w-[420px] text-left text-[14px] tnum">
           <thead className="text-[12.5px] text-muted">
             <tr>

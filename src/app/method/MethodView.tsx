@@ -85,7 +85,7 @@ const ROWS: Row[] = [
 ];
 
 const KIND: Record<Row["kind"], [string, string, string]> = {
-  sourced: ["Sourced", "উৎসসহ", "bg-good/15 text-good"],
+  sourced: ["Sourced", "উৎসসহ", "bg-good-soft text-good"],
   derived: ["Calculated", "হিসাব করা", "bg-brand/15 text-brand"],
   estimate: ["Editorial estimate", "সম্পাদকীয় অনুমান", "bg-warn-soft text-warn"],
 };

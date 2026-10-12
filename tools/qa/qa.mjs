@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 import fs from 'fs';
 
 const BASE = process.env.BASE || 'http://localhost:4173';
-const PAGES = (process.env.PAGES || '/,/bikes/,/bikes/bajaj-ct100/,/match/,/compare/,/cost/,/saved/,/about/,/privacy/,/terms/,/disclaimer/,/guide/').split(',');
+const PAGES = (process.env.PAGES || '/,/match/,/bikes/,/bikes/bajaj-ct100/,/bikes/walton-takyon-fusion-25td/,/bikes/bajaj-pulsar-n160/,/compare/?bikes=walton-takyon-fusion-25td,bajaj-ct100,/cost/,/cost/#pay,/guide/,/method/,/dealers/,/about/,/feedback/,/bn/,/bn/match/,/bn/bikes/bajaj-ct100/,/bn/compare/').split(/,(?=\/)/); // split only before a path, so ?bikes=a,b survives
 const SIZES = { 375: 812, 768: 1024, 1280: 800 };
 const WIDTHS = (process.env.WIDTHS || '375,768,1280').split(',').map(Number);
 const MAX_TILES = 4;
@@ -36,7 +36,7 @@ for (const w of WIDTHS) {
     // Viewport-sized tiles: first screen, then one per extra viewport height.
     const total = await pg.evaluate(() => document.documentElement.scrollHeight);
     const tiles = Math.min(MAX_TILES, Math.max(1, Math.ceil(total / h)));
-    const name = (p.replace(/^\/|\/$/g, '').replace(/\//g, '_') || 'home') + '_' + w;
+    const name = (p.replace(/^\/|\/$/g, '').replace(/[^a-z0-9-]+/gi, '_') || 'home') + '_' + w;
     for (let t = 0; t < tiles; t++) {
       await pg.evaluate((y) => window.scrollTo(0, y), t * h);
       await pg.waitForTimeout(150);

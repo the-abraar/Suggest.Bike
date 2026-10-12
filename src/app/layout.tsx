@@ -9,8 +9,8 @@ import { CompareTray } from "@/components/CompareTray";
 import { GOATCOUNTER_CODE, OG_BASE, SITE } from "@/lib/site";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
-const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
-const bangla = Hind_Siliguri({ subsets: ["bengali"], weight: ["400", "500", "600", "700"], variable: "--font-bangla", display: "swap" });
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap", preload: false }); // no font-mono text today; skip the preload
+const bangla = Hind_Siliguri({ subsets: ["bengali"], weight: ["400", "500", "600", "700"], variable: "--font-bangla", display: "swap" }); // keep preloaded: ৳ is in the Bengali block, so English pages need it too
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -29,7 +29,7 @@ export const viewport: Viewport = {
 };
 
 // Runs before paint so the saved/system theme never flashes.
-const themeScript = `(function(){try{var t=localStorage.getItem('sb-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t;var l=localStorage.getItem('sb-lang');if(l)document.documentElement.lang=l;if(/^\/bn(\/|$)/.test(location.pathname))document.documentElement.lang='bn'}catch(e){}})()`;
+const themeScript = String.raw`(function(){try{var t=localStorage.getItem('sb-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t;var l=localStorage.getItem('sb-lang');if(l)document.documentElement.lang=l;if(/^\/bn(\/|$)/.test(location.pathname))document.documentElement.lang='bn'}catch(e){}})()`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

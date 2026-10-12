@@ -65,7 +65,7 @@ export function DealerCard({ brand, d, compact = false }: { brand: string; d: De
         </p>
       )}
       <p className="mt-2 text-[12px] text-faint">
-        {tx("Source", "উৎস")}: <a href={d.sourceUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{new URL(d.sourceUrl).hostname}</a> · {tx("checked", "যাচাই")} {d.checked}
+        {tx("Source", "উৎস")}: <a href={d.sourceUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{new URL(d.sourceUrl).hostname}</a> · <span className="whitespace-nowrap">{tx("checked", "যাচাই")} {d.checked}</span>
       </p>
     </section>
   );

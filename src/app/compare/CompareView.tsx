@@ -282,7 +282,7 @@ function Table({ bikes }: { bikes: BikeLite[] }) {
           label: anyEv ? tx("Range per tank / charge", "এক ট্যাংক / চার্জে রেঞ্জ") : tx("Range per tank", "এক ট্যাংকে রেঞ্জ"),
           values: bikes.map((b) => `≈ ${range(b)} km`),
           nums: bikes.map(range),
-          better: "high",
+          better: anyEv && bikes.some((b) => !b.ev) ? null : "high", // a tank and a charge are not comparable
         },
       ],
     },
@@ -462,17 +462,18 @@ function Skeleton() {
 /** Quick verdicts from measured numbers only (price, running cost, power, mileage). */
 function Verdict({ bikes }: { bikes: BikeLite[] }) {
   const tx = useTx();
-  const pick = (f: (b: BikeLite) => number, high = true) => {
-    const vals = bikes.map(f);
+  const petrol = bikes.filter((b) => !b.ev);
+  const pick = (f: (b: BikeLite) => number, high = true, list = bikes) => {
+    const vals = list.map(f);
     const best = high ? Math.max(...vals) : Math.min(...vals);
     if (vals.every((v) => v === best)) return null;
-    return bikes[vals.indexOf(best)];
+    return list[vals.indexOf(best)];
   };
   const items = [
     { k: tx("Cheaper to buy", "কিনতে সস্তা"), b: pick((b) => b.priceBDT, false) },
     { k: tx("Cheaper to run", "চালাতে সস্তা"), b: pick((b) => ownershipCost(b, DEFAULT_COST_INPUT).runningPerMonth, false) },
     { k: tx("Quicker", "বেশি দ্রুত"), b: pick((b) => b.powerPS / b.weightKg) },
-    { k: tx("Better mileage", "মাইলেজ বেশি"), b: pick(avgMileage) },
+    { k: tx("Better mileage", "মাইলেজ বেশি"), b: petrol.length > 1 ? pick(avgMileage, true, petrol) : null }, // kmpl means nothing for an EV
   ].filter((x) => x.b);
 
   return (
