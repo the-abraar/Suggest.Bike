@@ -149,11 +149,12 @@ export function ownershipCost(b: CostBike, inp: CostInput) {
     resaleValue,
     running,
     total,
-    perMonth: total / months,
-    runningPerMonth: running / months,
+    // Guard zero years / zero km so the UI never shows Infinity or NaN.
+    perMonth: months > 0 ? total / months : 0,
+    runningPerMonth: months > 0 ? running / months : 0,
     /** Cash you actually spend each month: everything except resale loss (registration spread over the period). */
-    pocketPerMonth: (running + paperwork) / months,
-    perKm: total / km,
+    pocketPerMonth: months > 0 ? (running + paperwork) / months : 0,
+    perKm: km > 0 ? total / km : 0,
     buyingUsed,
     price,
     onRoad: price + (buyingUsed ? 0 : inp.taxPlan === "10yr" ? reg.totalBDT10yr : reg.totalBDT),

@@ -35,7 +35,7 @@ export function CompareTray() {
             </span>
           ))}
           {bikes.length < MAX_COMPARE && (
-            <span className="hidden shrink-0 text-[12.5px] text-faint sm:inline">{lang === "bn" ? (bikes.length === 1 ? "তুলনার জন্য আরও ১–২টি যোগ করুন" : "চাইলে আরও একটি যোগ করুন") : bikes.length === 1 ? "Add 1–2 more to compare" : "Add one more (optional)"}</span>
+            <span className="hidden shrink-0 text-[12.5px] text-muted sm:inline">{lang === "bn" ? (bikes.length === 1 ? "তুলনার জন্য আরও ১–২টি যোগ করুন" : "চাইলে আরও একটি যোগ করুন") : bikes.length === 1 ? "Add 1–2 more to compare" : "Add one more (optional)"}</span>
           )}
         </div>
         <button onClick={clearCompare} className="btn-ghost h-10 px-3 text-[13.5px]">

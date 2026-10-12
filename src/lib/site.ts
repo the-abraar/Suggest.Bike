@@ -1,3 +1,7 @@
+/** Prefilled GitHub issue: a feedback path for phones with no mail client. Needs a GitHub account. */
+export const issueUrl = (title: string, body = "") =>
+  `https://github.com/the-abraar/Suggest.Bike/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
+
 export const SITE = {
   name: "Suggest.Bike",
   url: "https://suggest.bike",

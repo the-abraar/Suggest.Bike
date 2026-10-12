@@ -64,7 +64,7 @@ export function AboutView() {
         </p>
         <p>
           {tx("Spotted a wrong price or spec? That's the fastest way to make this better for everyone —", "ভুল দাম বা স্পেক দেখেছেন? সবার জন্য এটা ভালো করার সবচেয়ে দ্রুত উপায় —")}{" "}
-          <a href={`mailto:${SITE.contactEmail}`} className="text-brand hover:underline">
+          <a href={`mailto:${SITE.contactEmail}`} className="text-brand underline underline-offset-2">
             {SITE.contactEmail}
           </a>
           .

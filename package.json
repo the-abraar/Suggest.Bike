@@ -13,7 +13,9 @@
     "typecheck": "tsc --noEmit",
     "validate": "node scripts/validate-data.mjs",
     "finder": "tsx finder/run.ts",
-    "finder:test": "tsx finder/test.mjs"
+    "finder:test": "tsx finder/test.mjs",
+    "test": "tsx --test tests/*.test.ts && npm run finder:test",
+    "audit:prices": "node scripts/price-audit.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.52.0",

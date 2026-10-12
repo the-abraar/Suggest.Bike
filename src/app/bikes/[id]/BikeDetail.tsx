@@ -13,14 +13,16 @@ import {
   formatBDT,
   formatLakh,
   fullName,
+  HAS_NETWORKS,
   networkFor,
   partLabel,
   similarBikes,
 } from "@/lib/bikes";
 import { DEFAULT_COST_INPUT, emiMonthly, ownershipCost, registrationFor } from "@/lib/cost";
 import { useLang, useTx } from "@/lib/i18n";
-import { SITE } from "@/lib/site";
+import { SITE, issueUrl } from "@/lib/site";
 import type { Bike, Part, ScoreKey } from "@/lib/types";
+import { EstimateBadge } from "@/components/Experimental";
 import { BikeArt } from "@/components/BikeArt";
 import { Approx, BikeCard, CompareButton, SaveButton, ScoreBar, ShareButton } from "@/components/ui";
 
@@ -57,11 +59,11 @@ export function BikeDetail({ bike }: { bike: Bike }) {
   };
   const hasOffer = /offer|discount|campaign|cashback/i.test(bike.priceNote ?? "");
   const net = networkFor(bike.brand);
-  const reportHref = `mailto:${SITE.contactEmail}?subject=${encodeURIComponent(`Price/spec correction: ${fullName(bike)}`)}&body=${encodeURIComponent(
-    `Bike: ${fullName(bike)} (${bike.id})\nPrice on Suggest.Bike: ${formatBDT(bike.priceBDT)} (checked ${bike.priceAsOf})\n\nWhat's wrong / correct value:\n\nWhere you saw it (showroom, link):\n`,
-  )}`;
+  const reportBody = `Bike: ${fullName(bike)} (${bike.id})\nPage: ${SITE.url}/bikes/${bike.id}/\nPrice on Suggest.Bike: ${formatBDT(bike.priceBDT)} (checked ${bike.priceAsOf})\n\nWhat's wrong / correct value:\n\nWhere you saw it (showroom, link):\n`;
+  const reportTitle = `Price/spec correction: ${fullName(bike)}`;
+    const reportHref = `mailto:${SITE.contactEmail}?subject=${encodeURIComponent(reportTitle)}&body=${encodeURIComponent(reportBody)}`;
   const keySpecs: [string, string, string?][] = [
-    [tx("Real mileage", "আসল মাইলেজ"), `${bike.mileageKmpl[0]}–${bike.mileageKmpl[1]}`, "kmpl"],
+    [tx("Real mileage (estimate)", "আসল মাইলেজ (অনুমান)"), `${bike.mileageKmpl[0]}–${bike.mileageKmpl[1]}`, "kmpl"],
     [tx("Engine", "ইঞ্জিন"), `${Math.round(bike.engine.cc)}`, "cc"],
     [tx("Power", "পাওয়ার"), `${bike.powerPS}`, "PS"],
     [tx("Torque", "টর্ক"), `${bike.torqueNm}`, "Nm"],
@@ -154,13 +156,13 @@ export function BikeDetail({ bike }: { bike: Bike }) {
                 <p className="mt-2 text-[14px] text-ink-2">
                   {tx("or about", "অথবা প্রায়")} <strong className="font-semibold text-ink tnum">{formatBDT(emiMonthly(bike.priceBDT))}</strong>
                   {tx("/month on 12-month card EMI", "/মাস — ১২ মাসের কার্ড কিস্তিতে")}{" "}
-                  <Link href="/guide/#emi" className="text-[12.5px] text-brand hover:underline">
+                  <Link href="/guide/#emi" className="text-[12.5px] text-brand underline underline-offset-2">
                     {tx("how EMI works", "কিস্তি কীভাবে কাজ করে")}
                   </Link>
                 </p>
               )}
               <p className="mt-1.5 text-[14px]">
-                <Link href={`/fund/?bike=${bike.id}${used ? "&used=1" : ""}`} className="font-medium text-brand hover:underline">
+                <Link href={`/fund/?bike=${bike.id}${used ? "&used=1" : ""}`} className="font-medium text-brand underline underline-offset-2">
                   {tx("Saving up for it? See how close you are →", "এর জন্য জমাচ্ছেন? কতটা কাছে দেখুন →")}
                 </Link>
               </p>
@@ -180,6 +182,10 @@ export function BikeDetail({ bike }: { bike: Bike }) {
                 {" · "}
                 <a href={reportHref} className="inline-flex items-center gap-1 underline decoration-line-strong underline-offset-2 hover:text-ink">
                   <Flag size={11} /> {tx("Report wrong price", "ভুল দাম জানান")}
+                </a>
+                {" · "}
+                <a href={issueUrl(reportTitle, reportBody)} target="_blank" rel="noopener noreferrer" className="underline decoration-line-strong underline-offset-2 hover:text-ink">
+                  {tx("or on GitHub", "অথবা GitHub-এ")}
                 </a>
               </p>
 
@@ -270,7 +276,7 @@ export function BikeDetail({ bike }: { bike: Bike }) {
           </Section>
 
           <Section
-            title={tx("Owning it in Bangladesh", "বাংলাদেশে মালিকানা")}
+            title={<>{tx("Owning it in Bangladesh", "বাংলাদেশে মালিকানা")}<EstimateBadge /></>}
             sub={tx(
               "Scored 1–10 by Suggest.Bike from owner reports, Bangladeshi bike sites and rider communities. These are editorial judgements, not lab measurements.",
               "মালিকদের অভিজ্ঞতা, দেশি বাইক সাইট ও রাইডার কমিউনিটি থেকে Suggest.Bike-এর ১–১০ স্কোর। এগুলো আমাদের মূল্যায়ন, ল্যাবে মাপা নয়।",
@@ -289,7 +295,7 @@ export function BikeDetail({ bike }: { bike: Bike }) {
                   <p className="mt-1 text-[14.5px] leading-relaxed text-ink-2">{txt.mechanicNote}</p>
                 </div>
               </div>
-              <div className="flex gap-3 rounded-2xl bg-surface-2 p-4">
+              {HAS_NETWORKS && <div className="flex gap-3 rounded-2xl bg-surface-2 p-4">
                 <MapPin size={19} className="mt-0.5 shrink-0 text-brand" />
                 <div className="min-w-0">
                   <p className="text-[13px] font-semibold text-ink">{tx(`${bike.brand} network in Bangladesh`, `বাংলাদেশে ${bike.brand}-এর নেটওয়ার্ক`)}</p>
@@ -309,7 +315,7 @@ export function BikeDetail({ bike }: { bike: Bike }) {
                         {net.dealerLocatorUrl && (
                           <>
                             {" · "}
-                            <a href={net.dealerLocatorUrl} target="_blank" rel="noopener noreferrer" className="text-brand hover:underline">
+                            <a href={net.dealerLocatorUrl} target="_blank" rel="noopener noreferrer" className="text-brand underline underline-offset-2">
                               {tx("Find a dealer", "ডিলার খুঁজুন")}
                             </a>
                           </>
@@ -320,7 +326,7 @@ export function BikeDetail({ bike }: { bike: Bike }) {
                     <p className="mt-1 text-[14.5px] text-ink-2">{tx("We haven't verified this brand's network yet.", "এই ব্র্যান্ডের নেটওয়ার্ক এখনো যাচাই করা হয়নি।")}</p>
                   )}
                 </div>
-              </div>
+              </div>}
             </div>
           </Section>
 
@@ -333,7 +339,7 @@ export function BikeDetail({ bike }: { bike: Bike }) {
               </div>
               <p className="mt-2 text-[12.5px] text-faint">
                 {tx("Checked", "যাচাই")} {monthLabel(bike.usedPrice.asOf, lang)} ·{" "}
-                <Link href="/guide/#used" className="text-brand hover:underline">
+                <Link href="/guide/#used" className="text-brand underline underline-offset-2">
                   {tx("11 checks before buying used", "পুরনো কেনার আগে ১১টি চেক")}
                 </Link>
               </p>
@@ -341,7 +347,7 @@ export function BikeDetail({ bike }: { bike: Bike }) {
           )}
 
           <Section
-            title={tx("Parts & service prices", "পার্টস ও সার্ভিসের দাম")}
+            title={<>{tx("Parts & service prices", "পার্টস ও সার্ভিসের দাম")}<EstimateBadge /></>}
             sub={tx("Approximate Dhaka market prices. District prices are usually within ±15%.", "আনুমানিক ঢাকার বাজারদর। জেলায় সাধারণত ±১৫%।")}
           >
             <div className="overflow-hidden rounded-2xl border border-line bg-surface">
@@ -475,7 +481,7 @@ function SpecTable({ bike }: { bike: Bike }) {
     [tx("Max torque", "সর্বোচ্চ টর্ক"), `${bike.torqueNm} Nm${bike.torqueRpm ? ` @ ${bike.torqueRpm.toLocaleString()} rpm` : ""}`],
     [tx("Gearbox", "গিয়ারবক্স"), bike.gears === 0 ? tx("CVT automatic", "CVT অটোমেটিক") : tx(`${bike.gears}-speed manual`, `${bike.gears}-স্পিড ম্যানুয়াল`)],
     [tx("Top speed", "সর্বোচ্চ গতি"), bike.topSpeedKmh ? tx(`${bike.topSpeedKmh} km/h (approx.)`, `${bike.topSpeedKmh} km/h (আনুমানিক)`) : undefined],
-    [tx("Real-world mileage", "আসল মাইলেজ"), `${bike.mileageKmpl[0]}–${bike.mileageKmpl[1]} kmpl`],
+    [tx("Real-world mileage (estimate)", "আসল মাইলেজ (অনুমান)"), `${bike.mileageKmpl[0]}–${bike.mileageKmpl[1]} kmpl`],
     [tx("Range on a full tank", "ফুল ট্যাংকে রেঞ্জ"), `≈ ${Math.round(bike.fuelTankL * bike.mileageKmpl[0])}–${Math.round(bike.fuelTankL * bike.mileageKmpl[1])} km`],
     [tx("Kerb weight", "কার্ব ওজন"), `${bike.weightKg} kg`],
     [tx("Seat height", "সিটের উচ্চতা"), `${bike.seatHeightMm} mm`],

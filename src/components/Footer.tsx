@@ -4,13 +4,13 @@ import Link from "next/link";
 import { Logo } from "./Logo";
 import { T, useLang } from "@/lib/i18n";
 import { BIKES, CATEGORIES } from "@/lib/bikes";
-import { SITE } from "@/lib/site";
+import { SITE, issueUrl } from "@/lib/site";
 import type { Category } from "@/lib/types";
 
 export function Footer() {
   const { t, lang } = useLang();
   const tx = (en: string, bn: string) => (lang === "bn" ? bn : en);
-  const latest = BIKES.map((b) => b.priceAsOf).sort().at(-1);
+  const latest = BIKES.map((b) => b.priceAsOf).sort()[0]; // oldest, so stale prices are not hidden by fresh ones
   return (
     <footer className="mt-24 border-t border-line bg-surface">
       <div className="container-x grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
@@ -20,7 +20,7 @@ export function Footer() {
             <T k="footer.tag" />
           </p>
           <p className="text-[12.5px] text-faint">
-            {lang === "bn" ? `${BIKES.length}টি বাইক · দাম সর্বশেষ যাচাই ${latest}` : `${BIKES.length} bikes · prices last checked ${latest}`}
+            {lang === "bn" ? `${BIKES.length}টি বাইক · সবচেয়ে পুরনো দাম যাচাই ${latest}` : `${BIKES.length} bikes · oldest price checked ${latest}`}
           </p>
         </div>
         <FooterCol title={tx("Decide", "সিদ্ধান্ত")}>
@@ -49,6 +49,9 @@ export function Footer() {
             <a href={`mailto:${SITE.contactEmail}?subject=${encodeURIComponent("Suggest.Bike feedback")}`} className="text-[14px] text-ink-2 transition-colors hover:text-brand">
               {tx("Report a mistake", "ভুল জানান")}
             </a>
+            <a href={issueUrl("Suggest.Bike feedback", "Page: \n\nWhat's wrong:\n")} target="_blank" rel="noopener noreferrer" className="ml-2 text-[13px] text-faint hover:text-brand">
+              {tx("(GitHub)", "(GitHub)")}
+            </a>
           </li>
         </FooterCol>
       </div>
@@ -60,6 +63,11 @@ export function Footer() {
               "independent, not affiliated with any manufacturer or dealer. Brand names are used only to identify bikes.",
               "স্বাধীন, কোনো নির্মাতা বা ডিলারের সাথে যুক্ত নয়। ব্র্যান্ডের নাম শুধু বাইক চেনাতে ব্যবহার করা হয়েছে।",
             )}
+          </span>
+          <span className="flex shrink-0 gap-4">
+            <Link href="/privacy/" className="hover:text-brand">{tx("Privacy", "গোপনীয়তা")}</Link>
+            <Link href="/terms/" className="hover:text-brand">{tx("Terms", "শর্ত")}</Link>
+            <Link href="/disclaimer/" className="hover:text-brand">{tx("Disclaimer", "দায়মুক্তি")}</Link>
           </span>
           <span className="shrink-0">{tx("Made in Bangladesh", "বাংলাদেশে তৈরি")} 🇧🇩</span>
         </div>

@@ -1,5 +1,5 @@
 import type { BikeLite } from "./types";
-import { BIKES, avgMileage, formatBDT, networkReach } from "./bikes";
+import { BIKES, HAS_NETWORKS, avgMileage, formatBDT, networkReach } from "./bikes";
 
 export type Use = "commute" | "mixed" | "highway" | "rough" | "rideshare" | "fun";
 export type Priority = "mileage" | "maintenance" | "performance" | "comfort" | "resale" | "safety" | "style";
@@ -97,7 +97,7 @@ const WHERE_WEIGHTS: Record<Where, Partial<Record<Feature, number>>> = {
 function weights(a: Answers) {
   const w: Partial<Record<Feature, number>> = { ...USE_WEIGHTS[a.use], budgetFit: 2.2 };
   const add = (f: Feature, n: number) => (w[f] = (w[f] ?? 0) + n);
-  Object.entries(WHERE_WEIGHTS[a.where]).forEach(([f, n]) => add(f as Feature, n!));
+  Object.entries(WHERE_WEIGHTS[HAS_NETWORKS ? a.where : "dhaka"]).forEach(([f, n]) => add(f as Feature, n!));
   a.priorities.forEach((p) => add(p, 2.6));
   if (a.pillion === "daily") add("pillion", 2.5);
   if (a.pillion === "sometimes") add("pillion", 1);
@@ -206,7 +206,7 @@ export function matchBikes(a: Answers, limit = 6): Match[] {
     if (used) s -= used.age === 3 ? 0.05 : 0.025;
     if (b.scores.partsAvailability <= 5) warnings.push({ en: "Parts are mostly dealer-only — expect waits", bn: "পার্টস মূলত ডিলারেই পাওয়া যায় — অপেক্ষা করতে হতে পারে" });
     if (b.scores.mechanicFamiliarity <= 4) warnings.push({ en: "Few mechanics outside the dealer know it well", bn: "ডিলারের বাইরে খুব কম মিস্ত্রি এটা ভালো চেনে" });
-    if ((a.where === "town" || a.where === "village") && networkReach(b.brand) < 0.45) {
+    if (HAS_NETWORKS && (a.where === "town" || a.where === "village") && networkReach(b.brand) < 0.45) {
       s -= 0.05;
       warnings.push({ en: `Small ${b.brand} network outside big cities`, bn: `বড় শহরের বাইরে ${b.brand}-এর নেটওয়ার্ক ছোট` });
     }

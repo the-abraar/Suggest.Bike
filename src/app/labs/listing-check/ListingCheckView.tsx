@@ -12,7 +12,7 @@ import { rankListings } from "@/lib/listingcheck/compare";
 import { platformName } from "@/lib/listingcheck/summary";
 import { parseListingText } from "@/lib/listingcheck/text";
 import type { Behaviours, Listing, Platform } from "@/lib/listingcheck/types";
-import { ExperimentalBadge, ExperimentalBanner } from "./Experimental";
+import { ExperimentalBadge, ExperimentalBanner } from "@/components/Experimental";
 import { Check, Choice, Field, NumInput, Section } from "./controls";
 import { ResultPanel, VerdictBadge, useBi } from "./Result";
 
@@ -154,7 +154,8 @@ export function ListingCheckView() {
       </div>
 
       {/* listing tabs */}
-      <div className="mt-6 flex flex-wrap items-center gap-2" role="tablist" aria-label={tx("Listings", "বিজ্ঞাপন")}>
+      <div className="mt-6 flex flex-wrap items-center gap-2">
+        <div className="contents" role="tablist" aria-label={tx("Listings", "বিজ্ঞাপন")}>
         {listings.map((l, i) => {
           const r = results[i];
           return (
@@ -171,6 +172,7 @@ export function ListingCheckView() {
             </button>
           );
         })}
+        </div>
         {listings.length < MAX && (
           <button type="button" onClick={addListing} className="btn-ghost h-10 px-3 text-[14px]">
             <Plus size={16} />

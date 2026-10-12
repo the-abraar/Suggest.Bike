@@ -9,7 +9,7 @@
 | `/` | Home page with a live "Quick pick" (budget slider and riding style give the top 3 instantly), budget bands, popular match-ups and the editor's shortlist |
 | `/match` | A 6-question matchmaker that ranks every bike for you and explains why. Results have a shareable URL. |
 | `/bikes` | Browse all bikes. Filter by style, budget, brand, ABS and FI; sort by rating, price, mileage, power or ease of maintenance |
-| `/bikes/[id]` | Detail page for each of the 76 bikes: verdict, riding feel, quirks, 11 ownership scores, parts and service prices, full specs, monthly cost, similar bikes and sources |
+| `/bikes/[id]` | Detail page for each of the 77 bikes: verdict, riding feel, quirks, 11 ownership scores, parts and service prices, full specs, monthly cost, similar bikes and sources |
 | `/compare` | Compare up to 3 bikes side by side. Winners get a crown, plus quick verdicts (cheaper to run, quicker, easier to maintain…) |
 | `/cost` | True cost of ownership: fuel, servicing, wear parts, BRTA paperwork, insurance and resale loss, as an all-in monthly figure |
 | `/fund` | Bike fund: the bike "downloads" as you save (ported from TakaTalks' dream-loader viz), with ETA, a downloadable 4:5 poster, cash vs 0% card EMI vs loan (upfront cash, instalment, interest, budget fit), ways to get there sooner and saving habits. Shareable URL. |

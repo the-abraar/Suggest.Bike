@@ -66,7 +66,7 @@ export function Header() {
           </nav>
 
           <div className="ml-auto flex items-center gap-1.5">
-            <div className="hidden w-64 md:block lg:hidden xl:block xl:w-60 2xl:w-72">
+            <div className="hidden w-64 md:block lg:hidden xl:block xl:w-40 2xl:w-72">
               <SearchBox compact />
             </div>
             <Link

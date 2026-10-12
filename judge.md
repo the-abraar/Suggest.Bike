@@ -1,0 +1,254 @@
+# Launch-readiness judgement: Suggest.Bike
+
+> **Current go-to-market score: 60%.** The verdict below is the original 2026-10-12 audit. See *Update 8* at the bottom for the current score, gaps and next steps, and `../GO_TO_MARKET_SCORECARD.md`.
+
+Audited 2026-10-12 against `main` @ `d56bb02`. Checks run: `npm run validate` (77 bikes, 0 problems), `npx tsc --noEmit` (0 errors), `npm run build` (173 static pages, OK), `npx tsx finder/test.mjs` (10/10). Also checked live DNS, GitHub Pages and Bikroy.
+
+## Verdict
+
+**About 55% ready.** The code is in good shape: it builds cleanly, the static export is solid, and the UI audit items are closed. As a content site it is **about 80% ready for a soft launch**. As a real product it is **about 35% ready**. The main gaps:
+
+- **It is not live.** The domain is still parked at Namecheap.
+- **No legal pages.** There is no privacy policy, terms or disclaimer, even though the site gives money and legal (BRTA) advice and records microphone audio.
+- **The main selling points are unverified.** Mileage, mechanic scores, parts prices and the service network are editorial guesses. `networks.json` is `{}`, yet a quiz step depends on it.
+- **No data refresh.** Nothing keeps prices fresh, and about 87% of price sources point to one competitor, BikeBD.
+- **No business basics.** There are no analytics, no feedback system beyond `mailto:`, and no business model.
+- **The Bike finder is not a working product.** Its scraper returns nothing against live Bikroy, and its ToS position is unreviewed.
+
+Fix blockers 1 to 4 below, hide the finder, and the site can soft-launch in about 1 to 2 weeks.
+
+---
+
+## Critical blockers (ranked)
+
+### 1. The site is not deployed or reachable
+- **Evidence:**
+  - `dig suggest.bike` returns `192.64.119.138`.
+  - `http://suggest.bike` returns `302` from `X-Served-By: Namecheap URL Forward`.
+  - `www` is a CNAME to `parkingpage.namecheap.com`.
+  - The GitHub Pages API shows `cname: suggest.bike` and `https_enforced: false`.
+  - The `deploy` workflow succeeded (run 38222157807), so the build is published but unreachable.
+- **Why it blocks launch:** nobody can reach the site.
+- **Fix:**
+  1. In Namecheap, delete the URL-redirect and parking records.
+  2. Add the 4 GitHub `A` records and `www` CNAME `the-abraar.github.io.` (README table).
+  3. Wait for GitHub to verify the domain, then tick **Enforce HTTPS**.
+  4. Verify the domain at the GitHub account level, so nobody can take over the Pages domain.
+  5. Add an uptime check (UptimeRobot, free) on `/` and `/sitemap.xml`.
+
+### 2. No legal pages: privacy, terms or disclaimer
+- **Evidence:**
+  - `src/app/` has no `privacy`, `terms` or `disclaimer` route.
+  - `Footer.tsx` has only a trademark line.
+  - The "Legal footer" item in `Todo_owner.md` is unchecked.
+  - The site gives cost, EMI, loan and legal advice (BRTA fees, the 375cc rule).
+  - `/labs/check` records microphone audio (`MediaZone.tsx:378`).
+  - `/labs/finder` collects WhatsApp numbers.
+  - Wikimedia CC BY-SA photos carry licence obligations.
+- **Why it blocks launch:** liability for wrong prices, advice or legal-fee figures. Collecting phone numbers without a privacy notice runs against Meta's WhatsApp Business Policy (a privacy policy URL is required) and Bangladesh's 2025 personal-data rules (verify current status). It also makes the site look untrustworthy.
+- **Fix:**
+  1. Add static `/privacy/`, `/terms/` and `/disclaimer/` pages in EN and BN. Cover what is stored, that it stays in `localStorage` only, that mic analysis runs in the browser, what the finder collects, the 65-day retention, deletion on request, and that prices and estimates are not advice.
+  2. Link them from the footer, the finder consent box and the labs pages.
+  3. Add them to `sitemap.ts`.
+  4. Get a one-time lawyer review in BD before the finder goes live.
+
+### 3. Data accuracy on the core selling points is unverified, and nothing keeps it fresh
+- **Evidence:**
+  - The README says mileage, scores, parts and service prices are "**editorial estimates** … not measured".
+  - `src/data/networks.json` is `{}`, yet the "Where will you ride" quiz step (`src/lib/match.ts`) and the bike-page network box depend on it.
+  - The `Todo_agent.md` P0 list of shaky specs is entirely open: Hornet 2.0 power, Stryker, Discover tank, Saluto FI, XSR155 ABS, SP160 ABS, Vespa FI, and conflicting prices for Gixxer Monotone, X-Blade, Ray ZR and R15 V4.
+  - `ktm-duke-125` and `ktm-rc-125` are marked `on-sale` with a "still in stock?" question open.
+  - `zontes-zt155-u` has `priceAsOf: 2026-02`, 8 months old.
+  - Registration for 250–350cc is "low confidence", and the CBU >165cc import policy is "conflicting" (`guide.json`).
+  - `scripts/validate-data.mjs` checks shape only. It does not check `priceAsOf` age, source URLs or `bn` completeness.
+  - `Footer.tsx` shows the **newest** `priceAsOf` ("prices last checked …"), which hides the stale ones.
+- **Why it blocks launch:** the whole pitch is "honest, BD-specific answers". In BD Facebook groups, one wrong price or ABS claim gets screenshotted and kills trust (`UI_AUDIT.md` M5 makes the same point). Prices move monthly with showroom offers.
+- **Fix:**
+  1. **Now:** resolve the P0 list. Set the KTM 125s to `used-only` or confirm stock. Re-price Zontes. Hide the network box and the quiz "Where" weighting until `networks.json` has data; do not show "not verified yet" as a feature.
+  2. **Staleness gate:** in `validate-data.mjs`, fail if `priceAsOf` is more than 60 days old or `priceSource` is missing, and warn if older than 30 days. Run `npm run validate` in `deploy.yml` before the build.
+  3. **Footer:** show the oldest date, or "N prices older than 30 days".
+  4. **Monthly refresh:** a scheduled GitHub Action fetches distributor price pages (Bajaj/Uttara, ACI/Yamaha, BHL/Honda, Rancon/Suzuki, Hero, Runner), diffs them against `bikes.json` and opens a PR. A human approves it. Owner showroom calls cover the top 10 bikes (`Todo_owner.md`).
+  5. **Owner data collection:** the mileage survey (aim for 300 responses) and 10–20 mechanic interviews. Add a per-field `confidence` value and show it.
+
+### 4. Price data provenance: most prices come from one competitor
+- **Evidence:**
+  - `priceSource` hosts: bikebd.com 67 of 77; distributor sites 6; bikroy 4.
+  - `SOURCES.md`: 192 references to bikebd.com.
+  - Used prices (40 bikes) come from bikroy listings.
+  - The repo is **public** (`gh api … visibility: public`), and full records ship at `public/data/bikes/*.json`.
+- **Why it blocks launch:** individual facts are not copyrightable. Systematically copying a competitor's compiled database is still a ToS and database-right risk, and a reputational one: BikeBD is the incumbent and can call it out publicly. Being one hop behind BikeBD also means the data is always staler than theirs.
+- **Fix:**
+  1. Re-source each `priceSource` to the official distributor page or a dated distributor price list (photo or PDF). Keep BikeBD only as a cross-check reference.
+  2. Read the BikeBD and Bikroy ToS. If either forbids reuse, drop those as sources, or ask for permission or a partnership.
+  3. Accept that the dataset is public. The moat is freshness plus owner-verified data, not secrecy. Consider making the repo private, since the data is published on the site anyway.
+
+### 5. Bike finder: a public "coming soon" page with no working backend, a broken scraper and an unclear legal basis
+- **Evidence:**
+  - `finder/README.md`: "nothing here is live".
+  - `FinderView.tsx:19` runs in preview mode when `NEXT_PUBLIC_FINDER_ENDPOINT` is unset. The fallback is a `mailto:` that puts the user's WhatsApp number in an email (`FinderView.tsx:115–126`).
+  - **Scraper is broken live:** `bikroy.ts:94,102` requests `/en/ads/bangladesh/motorbikes-scooters?query=…`. Bikroy answers `301 → /motorcycles-and-scooters`, which drops the query, and `parseBikroyHtml` finds **0** `/ad/` links (the page is JS-rendered).
+  - Bikroy `robots.txt` disallows `/*?*query=` for Bingbot, which shows they don't want search-URL crawling. Their ToS is unreviewed.
+  - The Worker is not deployed (`finder/worker/index.ts:2`). There is no WhatsApp Business account or approved template.
+  - The opt-out cannot be reversed: the Worker returns 409 "message us from WhatsApp to resume", but the webhook only handles STOP (`index.ts:108,131`). The STOP confirmation reply is a TODO (`:135`). There is no user-facing delete endpoint.
+  - The raw phone number is stored in the `req:` record (`index.ts:112`), despite the hashed key.
+  - `/labs/finder/` is in `sitemap.ts` and the nav.
+- **Why it blocks launch:** this blocks the finder only, not the site. Shipping it live as-is would mean scraping that is likely against ToS, a feature that returns nothing, and PII collection without a privacy policy.
+- **Fix:**
+  1. **For launch:** remove `/labs/finder/` from the sitemap and nav, or turn it into a plain waitlist (a model and district only, no phone number) until steps 2–5 are done.
+  2. Replace scraping with legal supply. In order of preference: (a) a Bikroy partner or affiliate feed (ask them), (b) a "paste a listing link" flow, (c) sellers posting directly to Suggest.Bike. If Bikroy grants permission, rewrite the adapter against their real URL and data format and add a live contract test.
+  3. Deploy the Worker. Add a Cloudflare Rate Limiting rule and Turnstile on `POST /requests`. Add `RESUME` handling and a STOP confirmation reply. Add `DELETE /requests?phone=` with an OTP over WhatsApp.
+  4. Set up a verified Meta Business account and approved EN and BN Utility templates, then do a dry run for 2 weeks with staff numbers only.
+  5. Only then set `FINDER_ENABLED`, `FINDER_LIVE` and `NEXT_PUBLIC_FINDER_ENDPOINT`.
+
+---
+
+## Major gaps
+
+1. **No analytics, so success cannot be measured.**
+   - Evidence: nothing in `src/` (grep for `analytics`, `plausible` or `gtag` finds nothing); the owner todo is unchecked.
+   - Fix: add Cloudflare Web Analytics or Plausible (one script tag in `layout.tsx`). Track these events: quiz completed, compare pair, cost-calculator use, "report wrong price" click, share. Mention it in `/privacy`.
+2. **Bangla is invisible to Google.**
+   - Evidence: the language toggle is client-side only (`localStorage sb-lang`), `<html lang="en">` is fixed (`layout.tsx:35`), there are no `/bn/` routes and no `hreflang`. Most BD queries are in Bangla or Banglish ("pulsar n160 dam koto").
+   - Fix: generate `/bn/...` static routes from the same components with server-rendered `bn` text, add `alternates.languages` (hreflang) both ways, and add the BN URLs to the sitemap.
+3. **Client pages have no SEO metadata.**
+   - Evidence: `/`, `/bikes`, `/match`, `/compare`, `/cost` and `/saved` all render the default title, and `rel="canonical"` count is 0 in `out/index.html`, `out/bikes/`, `out/compare/` and `out/match/`. This matches the open P2 item in `Todo_agent.md`.
+   - Fix: split each page into a server `page.tsx` that exports `metadata` (title, description, canonical) and a client `*View.tsx`, the same pattern as `about/` and `guide/`.
+4. **Share images may fail on GitHub Pages.**
+   - Evidence: the OG images are extension-less (`out/opengraph-image`, `out/bikes/*/opengraph-image`). `public/.htaccess` forces `image/png`, but that file only works on Apache; **GitHub Pages ignores it** and serves them as `application/octet-stream`. Facebook and Messenger previews are the growth loop (`UI_AUDIT.md` M6).
+   - Fix: test with the Facebook Sharing Debugger after DNS is live. If previews fail, emit `.png` files at build time (`scripts/build-art.tsx`) and point `openGraph.images` at them, or host on Cloudflare Pages and set a `_headers` rule.
+5. **Product JSON-LD misrepresents the site as a seller.**
+   - Evidence: `bikes/[id]/page.tsx:33` emits an `Offer` with `InStock` and no seller, URL or image. Google may flag it as invalid merchant-listing markup.
+   - Fix: drop `offers`, or use `AggregateOffer` with `offerCount` and no availability. Add `image` (the photo or OG URL).
+6. **Feedback works only through `mailto:`.**
+   - Evidence: the feedback links in `BikeDetail.tsx:60`, `Footer.tsx:49` and the listing-check scam report are all `mailto:`. On many Android phones in BD there is no mail client, so the tap does nothing. MX records exist (Namecheap eforward), but the `hello@` forward is unverified.
+   - Fix: confirm the `hello@` forward. Add a small form posting to the same Worker (`POST /feedback`, stored in KV) or to a Google Form, plus a Facebook page or Messenger link. Review it weekly.
+7. **No tests on the decision engines, and CI doesn't gate.**
+   - Evidence: the only tests are `finder/test.mjs`. There are none for `src/lib/match.ts`, `cost.ts`, `fund.ts`, `listingcheck/engine.ts`, `negotiate/parts.ts` or `usedcheck/value.ts`. `deploy.yml` runs only `npm ci && npm run build`, with no validate step.
+   - Fix:
+     1. Add `npm run validate` and `npm run typecheck` steps to `deploy.yml`.
+     2. Add one `scripts/selftest.mjs` (node:assert, run with tsx) covering the H6 persona (৳1 lakh + used + commute must not put a 2-stroke at #1), the budget ceiling, `gearless:"no"` (no scooters), the 2yr vs 10yr tax maths and `emiMonthly`.
+     3. Add a curl smoke test of every route against `out/`, served locally.
+8. **No business model, and a public promise that limits it.**
+   - Evidence: `AboutView.tsx` promises "no sponsored rankings and no affiliate deals with dealers", and `Todo_owner.md` "decide the business model" is unchecked.
+   - Fix: choose a model before traffic arrives. The best fit is clearly labelled sponsorship plus disclosed dealer or insurance lead referrals, kept outside the ranking code. Write a public "how we make money" section on `/about`. Re-word the promise to "money never touches rankings" so it allows disclosed referrals.
+9. **No distribution.**
+   - Evidence: no Facebook page, no social links, no content calendar (`Todo_owner.md` Growth is all unchecked).
+   - Fix: create a Facebook page first. Post weekly "true monthly cost of the top 5 150cc bikes" image cards that link to bike pages. Seed 3–5 BD bike groups and offer creators the compare and cost links.
+10. **EV gap.** The schema can't describe electric bikes (`types.ts`: cc, carb/FI), and EVs are a growing segment in BD (Revoo, Walton). Add `powertrain` with battery, range and charge-time fields after launch.
+11. **Docs and repo drift.**
+    - `README.md:12` says 76 bikes; there are 77.
+    - `HANDOFF.md` expects "about 165 pages"; there are 173. It also points at a dead scratchpad path.
+    - Three stale agent worktrees sit in `.claude/worktrees/`.
+    - `src/app/labs/listing-check/Experimental.tsx` duplicates `src/components/Experimental.tsx`.
+    - Fix: update the docs, prune the worktrees with `git worktree prune`, and delete the duplicate file.
+
+---
+
+## Launch path (in order)
+
+1. **Days 1–2:** point the DNS at GitHub Pages, enforce HTTPS, verify the domain, add an uptime monitor. Confirm the `hello@suggest.bike` forward works.
+2. **Days 1–3:** pull or hide `/labs/finder/` (sitemap and nav). Hide the network box and the "Where" weighting until `networks.json` is filled. Mark KTM 125s and the other uncertain bikes correctly.
+3. **Days 2–4:** add the `/privacy`, `/terms` and `/disclaimer` pages (EN and BN) and link them everywhere. Fix the Product JSON-LD.
+4. **Days 2–7:** fix the data. Resolve the P0 shaky-spec list. Re-source prices to distributors. Call showrooms for the top 10 bikes. Add the staleness gate to `validate-data.mjs` and run validate and typecheck in `deploy.yml`.
+5. **Days 4–7:** add analytics, the feedback form and server metadata or canonicals for client pages. Verify OG previews in the Facebook debugger, and switch to `.png` files if needed.
+6. **Day 7:** run the engine self-test and the route smoke test. **Soft launch:** a Facebook page plus 2–3 group posts. Watch analytics and corrections for 2 weeks.
+7. **Weeks 2–4:** a monthly price-refresh Action that opens PRs; the owner mileage survey and mechanic interviews; per-field `confidence`; `/bn/` routes with hreflang.
+8. **Month 2:** decide and publish the business model; start sponsorship or referral talks. Finder v2 only with a legal listing supply (partner feed, paste-link or seller posts), the deployed Worker with Turnstile and deletion, and an approved WhatsApp template.
+9. **Ongoing:** a monthly review of fuel prices, new launches and discontinued models, plus a weekly corrections triage.
+
+
+---
+
+## Progress log (2026-10-12, Claude session)
+
+**Done:** nothing changed in this session. No edits made.
+
+**Next, in value order:**
+1. Blocker 1: fix DNS (delete the Namecheap redirect, add the 4 GitHub A records and the www CNAME, enforce HTTPS). Owner-only, no code.
+2. Blocker 2: add `/privacy`, `/terms`, `/disclaimer` in EN and BN, and link them from `Footer.tsx`. I held back because the text needs the owner's review.
+3. Hide the finder (`/labs/finder`) until the scraper works.
+4. Fill `networks.json` or remove the quiz step that depends on it.
+
+
+### Update 2 (supersedes "nothing changed" above; agent-made, not reviewed by a human)
+
+**Done (agent reported `tsc --noEmit` clean and `npm run build` OK; not re-run by me, not viewed in a browser):** `/privacy`, `/terms`, `/disclaimer` added in EN and BN (`src/components/LegalView.tsx`, three thin `page.tsx` wrappers), linked from the footer and added to the sitemap. The finder is removed from the sitemap and the `/labs` list and set `noindex`; code kept. Contact uses the existing `SITE.contactEmail`.
+
+**Still open:**
+1. A Bangladesh lawyer must review the legal texts (`TODO(owner)` in `LegalView.tsx`).
+2. `/labs/finder/` is still reachable by URL, and has no consent box linking to the privacy page.
+3. Legal pages not linked from the header.
+4. Blocker 1 (DNS and HTTPS) is untouched and is owner-only.
+
+
+### Update 3 (agent-made; results are the agents' own reports unless stated)
+
+**Done (agent reported validate, tsc, build and finder tests 10/10 all pass; not viewed in a browser):** the finder consent checkbox already existed; a link to `/privacy` was added inside its label. Privacy and Terms links in `ExperimentalBanner`. `HAS_NETWORKS` flag in `src/lib/bikes.ts`: while `networks.json` is empty the quiz skips the network step, results chip and network weighting are off, and the "small network" warning and bike-page network box are hidden. New `EstimateBadge` ("Editorial estimate", EN and BN) on the Owning and Parts sections; mileage labels say "(estimate)"; the footer shows the oldest price date.
+
+**Still open:** DNS (owner-only); lawyer review of the legal text; the P0 spec list; stale KTM and Zontes prices; re-sourcing prices away from BikeBD; `validate-data.mjs` age check and `deploy.yml` gates; labs pages that do not use `ExperimentalBanner` have no legal links.
+
+
+### Update 4 (agent-made; agents' own reports, not yet independently re-run)
+
+**Done (agent reported tsc, finder tests 10 checks, and build pass):** `scripts/validate-data.mjs` checks price age from `priceAsOf` (warn over 90 days, fail over 180; `PRICE_WARN_DAYS` and `PRICE_FAIL_DAYS` override) and warns when one domain supplies over 50% of price sources. `deploy.yml` runs validate, `tsc --noEmit` and finder tests before build.
+
+**ACTION NEEDED:** `npm run validate` now exits 1, so deploy is blocked, because `zontes-zt155-u` has `priceAsOf` 2026-02 (253 days old). Re-source it. Setting `PRICE_FAIL_DAYS=300` also clears it but lets the staleness through. KTM is not stale (this supersedes the earlier KTM note). **Source concentration:** bikebd.com supplies 67 of 77 price sources (87%); suzuki.com.bd 5, bikroy.com 4, bdhonda.com 1. The agent only read the headings of blockers 3-8, so some code-side items there may remain.
+
+
+### Update 5 (agent-made, round 6; agents' own reports unless marked)
+
+**Done (agent runs: tsc, finder tests 10/10, build all pass; `validate` fails only on the known stale bike):** `npm run validate` now prints how to re-source on a stale-price failure. Server `page.tsx` with title, description and canonical added for `/`, `/bikes`, `/match`, `/compare`, `/cost`, `/saved` (client code moved to `*View.tsx`). **Product JSON-LD `Offer` removed** (adds `url` and `image`), which may affect price rich results. Prefilled GitHub-issue feedback link (needs a GitHub account) next to mailto in `BikeDetail` and footer. `ExperimentalBanner` links Privacy, Terms, Disclaimer on all four labs pages. Duplicate `listing-check/Experimental.tsx` deleted; README bike count fixed to 77.
+
+**Still open:** DNS (owner-only); lawyer review; re-source `zontes-zt155-u` (deploy gate fails until then); re-source away from BikeBD (87%); analytics and `/bn/` routes with hreflang (need a provider choice and a large build); a feedback form or endpoint (needs a backend); OG PNG output (test on the live host); engine self-tests; mobile layout checked from CSS only, not in a browser.
+
+
+### Update 6 (agent-made: independent verification, security review, fixes; agents' own reports unless marked)
+
+**Independent re-run confirmed:** `tsc`, finder tests (10 checks), build; `validate` exits 1 only on `zontes-zt155-u` (253 days old), and warns that bikebd.com supplies 87% of price sources. No changes this round.
+
+
+### Update 7 (agent-made, priority round; agents' own reports unless marked)
+
+**Done (agent runs: `npm test` 31 new engine tests plus 10 finder checks; `tsc` clean; build passes, 176 pages; `validate` fails only on `zontes-zt155-u`; not re-run by me):**
+- **Tests:** `tests/engines.test.ts` (31 cases) covers match, cost, EMI, BRTA and fund, listingcheck (Bangla digits), the used-bike audio analyser and negotiate. **Bug found and fixed:** `ownershipCost` in `src/lib/cost.ts` returned Infinity for cost per km when km was 0 and for per-month figures when years was 0; it now returns 0.
+- **Price audit:** `npm run audit:prices` (`--out`, `--check-urls`, `--stale-days`, `--outlier`); worklist written to `docs/price-resourcing-worklist.md`. Of 77 bikes: 1 stale (`zontes-zt155-u`, 253 days); 67 sourced from bikebd.com (87%); 23 bikes have no source on another domain; **15 price outliers more than 40% from their category median** (worst: `yamaha-aerox-155` +116%, `aprilia-sxr-160` +81%, `honda-cbr150r` +64%), which may be data errors or genuine premium models. Only 4 of 72 unique price URLs were link-checked (all reachable).
+- **Real-browser QA** (Playwright and axe-core in the scratchpad `qa_sb`, built site served locally, 18 pages at 375, 768 and 1280 px): the agent's final re-run shows 0 horizontal overflow, 0 console errors and 0 axe serious or critical violations. Fixes: header overflow by 14 px at 1280 px on every page (`Header.tsx` search box `xl:w-40`); red text contrast (light-theme `--signal` darkened to `#c42b22`); inline links in about, cost and fund now underlined; zero-value rows on `/cost` no longer dimmed; compare-tray hint text colour; `/labs/listing-check` "Add another" button moved out of `role="tablist"`.
+- I looked at 3 of the screenshots myself (home and a bike page at 375 px, quiz step): no obvious breakage; the full-page captures are too small to judge fine detail.
+
+**Still open:** DNS (owner-only); lawyer review of the legal texts; re-source `zontes-zt155-u` (deploy gate blocks until fixed) and review the 15 outliers; re-source away from BikeBD; analytics and `/bn/` routes with hreflang; OG PNG output; a feedback form needs a backend; `ERR_ABORTED` requests were filtered out as prefetch cancellations and not investigated; language toggle checked on only the home page by the agent; the `Under 5'5"` option in the quiz showed a check mark and raised card in one screenshot, probably a leftover hover or focus state, unconfirmed; real-device testing; the finder remains hidden and its scraper does not work.
+
+
+---
+
+## Update 8: go-to-market scoring (2026-10-12)
+
+**Score: 60% (was 55%).** Stage: Soft-launch candidate, blocked on owner tasks.
+
+**Cap:** 65: not reachable (domain parked) and the deploy gate is red.
+
+**Dimension scores (0-10):** Product 8, Quality 7, Security 8, Legal 5, Market 2, Ops 3, Honesty 7. Rubric and the other five projects: `../GO_TO_MARKET_SCORECARD.md`.
+
+**Basis and limits:** my judgement from this file's audit, the agents' reports, and independent re-runs of tests and builds. No real-device, real-user or real-host testing has happened, and nothing is committed. Agent-written code has had no human review. Treat the score as +/- 10 points.
+
+### Gaps and flaws, ranked
+
+1. **Not live.** DNS still points at a parking page; HTTPS not enforced; no uptime check.
+2. **Deploy gate is red** until `zontes-zt155-u` (253 days old) is re-sourced or the threshold is deliberately changed.
+3. **Data trust.** 87% of price sources are one site (bikebd.com); 23 bikes have no second source; 15 prices are more than 40% off their category median (worst: `yamaha-aerox-155` +116%, `aprilia-sxr-160` +81%, `honda-cbr150r` +64%). Mileage, mechanic scores, parts prices and service networks are editorial estimates (now labelled).
+4. **Legal.** Privacy, terms and disclaimer exist in EN and BN but no lawyer has reviewed them; they give cost, loan and BRTA advice and the mic check records audio in-browser.
+5. **No way to learn anything.** No analytics, no feedback backend (only mailto and a GitHub-issue link that needs an account), no business model.
+6. **Finder is hidden, not fixed.** Its scraper returns nothing against live Bikroy; its terms-of-service position is unreviewed. It is still reachable by URL.
+7. **Product JSON-LD `Offer` was removed**, so price rich results will not appear.
+8. **Never tested on a real phone.** Checks ran in headless Chromium; one quiz option looked selected in a screenshot (probably leftover hover or focus, unconfirmed).
+9. No Bangla `/bn/` routes with hreflang; no OG images.
+
+### What to do next, in order
+
+1. **You:** fix DNS (delete the Namecheap redirect and parking records, add the 4 GitHub A records and the www CNAME), wait for GitHub to verify, enforce HTTPS, verify the domain at the account level, add an uptime check.
+2. **You:** re-source `zontes-zt155-u` from an official or dated source and update `priceBDT`, `priceSource`, `priceAsOf`; then go through `docs/price-resourcing-worklist.md` (the 15 outliers first). Do not edit data to pass the check.
+3. **You:** get a Bangladesh lawyer to review `/privacy`, `/terms`, `/disclaimer` (see the `TODO(owner)` in `LegalView.tsx`).
+4. **You:** commit and push; open the site on a real Android phone and an iPhone and walk the quiz, a bike page, `/cost` and `/labs/check`.
+5. **Code:** add privacy-respecting analytics once a provider is chosen; a feedback path that does not need a GitHub account; `/bn/` routes with hreflang; OG images after testing on the live host.
+6. **Code or content:** a second source for the 23 single-source bikes; extend `validate-data.mjs` to fail on outliers needing a note.
+7. **Decide:** a business model (affiliate, listings, ads) and whether to keep the finder at all.
+8. **Soft launch:** after steps 1-4, launch to a small audience, watch what people use, then fix data where users look.

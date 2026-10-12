@@ -23,7 +23,7 @@ export function LabsView() {
         )}
       />
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-        {LAB_TOOLS.map((tool) => {
+        {LAB_TOOLS.filter((t) => t.slug !== "finder" /* hidden until launch-ready, see judge.md */).map((tool) => {
           const Icon = ICONS[tool.icon];
           return (
             <Link key={tool.slug} href={tool.href} className="card group flex flex-col gap-4 p-6 transition-all hover:-translate-y-0.5 hover:border-line-strong hover:shadow-md">

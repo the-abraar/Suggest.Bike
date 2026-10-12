@@ -169,7 +169,7 @@ function Fund() {
               </>
             )}
             {" · "}
-            <Link href={`/bikes/${bike.id}/`} className="text-brand hover:underline">
+            <Link href={`/bikes/${bike.id}/`} className="text-brand underline underline-offset-2">
               {tx("Bike details", "বাইকের বিস্তারিত")}
             </Link>
           </p>
@@ -194,11 +194,11 @@ function Fund() {
                 `Prices are ex-showroom (or a typical ~3-year-old asking price when buying used). Running costs come from our ownership model at ${DEFAULT_COST_INPUT.kmPerDay} km a day: fuel, servicing, wear parts and washing/parking. Card EMI is the plain split of the price; loan instalments use a reducing balance. Loan rate, down payment and fees are example terms — banks and dealers differ, so ask for the total payable in writing. Nothing here is financial advice.`,
                 `দাম শোরুম মূল্য (পুরনো কিনলে ~৩ বছরের পুরনো একটার সাধারণ চাওয়া দাম)। চালানোর খরচ আমাদের মালিকানা হিসাব থেকে, দিনে ${DEFAULT_COST_INPUT.kmPerDay} km ধরে: তেল, সার্ভিসিং, ক্ষয়যোগ্য পার্টস আর ধোয়া/পার্কিং। কার্ড কিস্তি মানে দামকে সমান ভাগ; লোনের কিস্তি রিডিউসিং ব্যালান্সে। লোনের সুদ, ডাউন পেমেন্ট আর ফি উদাহরণ মাত্র — ব্যাংক ও ডিলারভেদে আলাদা, তাই মোট কত দিতে হবে লিখিতভাবে নিন। এটা আর্থিক পরামর্শ নয়।`,
               )}{" "}
-              <Link href="/guide/#emi" className="text-brand hover:underline">
+              <Link href="/guide/#emi" className="text-brand underline underline-offset-2">
                 {tx("How EMI works", "কিস্তি কীভাবে কাজ করে")}
               </Link>
               {" · "}
-              <Link href={`/cost/?bike=${bike.id}${buyingUsed && !usedOnly ? "&used=1" : ""}`} className="text-brand hover:underline">
+              <Link href={`/cost/?bike=${bike.id}${buyingUsed && !usedOnly ? "&used=1" : ""}`} className="text-brand underline underline-offset-2">
                 {tx("Full running cost", "চালানোর পুরো খরচ")}
               </Link>
             </span>

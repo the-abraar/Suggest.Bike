@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FlaskConical } from "lucide-react";
 import { useTx } from "@/lib/i18n";
 
@@ -29,7 +30,25 @@ export function ExperimentalBanner({ children }: { children?: React.ReactNode })
               "ফলাফল একটি দিকনির্দেশনা, চূড়ান্ত রায় নয়। টাকা দেওয়ার আগে নিজে বাইক দেখুন ও কাগজপত্র যাচাই করুন।",
             )}
         </p>
+        <p className="mt-2 text-[13px]">
+          <Link href="/privacy/" className="font-medium text-brand underline">{tx("Privacy", "গোপনীয়তা")}</Link>
+          {" · "}
+          <Link href="/terms/" className="font-medium text-brand underline">{tx("Terms", "শর্তাবলি")}</Link>
+          {" · "}
+          <Link href="/disclaimer/" className="font-medium text-brand underline">{tx("Disclaimer", "দায়মুক্তি")}</Link>
+        </p>
       </div>
     </div>
+  );
+}
+
+/** Marks figures that are editorial estimates, not measured or distributor-verified. */
+export function EstimateBadge({ className = "" }: { className?: string }) {
+  const tx = useTx();
+  return (
+    <span className={`ml-2 inline-flex items-center gap-1 rounded-full bg-warn-soft px-2 py-0.5 align-middle text-[11.5px] font-semibold text-warn ${className}`}>
+      <FlaskConical size={11} aria-hidden />
+      {tx("Editorial estimate", "সম্পাদকীয় অনুমান")}
+    </span>
   );
 }

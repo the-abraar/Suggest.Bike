@@ -6,3 +6,6 @@ next-env.d.ts
 .DS_Store
 src/data/generated
 public/data/bikes
+tools/qa/shots
+tools/qa/node_modules
+.claude/worktrees/

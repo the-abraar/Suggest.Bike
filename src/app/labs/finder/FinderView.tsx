@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { CalendarClock, CheckCircle2, CircleHelp, Lock, Mail, MessageCircle, Radar, Search, ShieldAlert, Trash2, XCircle } from "lucide-react";
 import { ExperimentalBadge, ExperimentalBanner } from "@/components/Experimental";
@@ -307,7 +308,8 @@ export function FinderView() {
                   {tx(
                     `I agree that Suggest.Bike may message me on this WhatsApp number about bikes that match this request, at most one message a day, for up to ${REQUEST_TTL_DAYS} days. I can stop any time by replying STOP.`,
                     `আমি সম্মত যে এই অনুরোধের সাথে মেলে এমন বাইকের বিষয়ে Suggest.Bike এই হোয়াটসঅ্যাপ নম্বরে আমাকে মেসেজ পাঠাতে পারে, দিনে সর্বোচ্চ একটি, সর্বোচ্চ ${REQUEST_TTL_DAYS} দিন। যেকোনো সময় STOP লিখে রিপ্লাই দিলে বন্ধ হবে।`,
-                  )}
+                  )}{" "}
+                  <Link href="/privacy/" className="font-medium text-brand underline">{tx("Privacy policy", "গোপনীয়তা নীতি")}</Link>
                 </span>
               </label>
               {err("consent")}

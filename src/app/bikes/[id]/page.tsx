@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { fullName, formatBDT, ccLabel } from "@/lib/bikes";
 import { ALL_IDS, getFullBike } from "@/lib/bikes.server";
+import { SITE } from "@/lib/site";
 import { BikeDetail } from "./BikeDetail";
 
 export const dynamicParams = false;
@@ -30,7 +31,8 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
     brand: { "@type": "Brand", name: bike.brand },
     category: "Motorcycle",
     description: bike.tagline,
-    offers: { "@type": "Offer", priceCurrency: "BDT", price: bike.priceBDT, availability: bike.status === "on-sale" ? "https://schema.org/InStock" : "https://schema.org/Discontinued" },
+    url: `${SITE.url}/bikes/${bike.id}/`,
+    image: `${SITE.url}/bikes/${bike.id}/opengraph-image`,
   };
   return (
     <>

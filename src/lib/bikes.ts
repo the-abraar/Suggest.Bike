@@ -80,6 +80,8 @@ export function partLabel(b: Pick<BikeLite, "gears">, name: string, lang: "en" |
 export const tagline = (b: Pick<BikeLite, "tagline" | "taglineBn">, lang: "en" | "bn") => (lang === "bn" && b.taglineBn ? b.taglineBn : b.tagline);
 
 export const NETWORKS = networks as Record<string, BrandNetwork>;
+/** False while networks.json is empty: network UI and weighting must hide, not invent values. */
+export const HAS_NETWORKS = Object.keys(NETWORKS).length > 0;
 export const networkFor = (brand: string): BrandNetwork | undefined => NETWORKS[brand];
 
 /** 0–1: how easy it is to find a showroom/workshop outside Dhaka. Unknown brands are treated as small networks. */

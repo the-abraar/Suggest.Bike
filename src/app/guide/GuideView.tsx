@@ -39,7 +39,7 @@ export function GuideView() {
           "Fees and rules in Bangladesh change often and are rarely written down in one place. We read the BRTA schedules, gazettes and news so you don't have to. Always confirm on",
           "বাংলাদেশে ফি আর নিয়ম প্রায়ই বদলায়, আর এক জায়গায় লেখা থাকে না। BRTA-র তালিকা, গেজেট আর খবর আমরা পড়েছি যাতে আপনাকে পড়তে না হয়। টাকা দেওয়ার আগে সবসময় যাচাই করুন",
         )}{" "}
-        <a href="https://bsp.brta.gov.bd/" target="_blank" rel="noopener noreferrer" className="text-brand hover:underline">
+        <a href="https://bsp.brta.gov.bd/" target="_blank" rel="noopener noreferrer" className="text-brand underline underline-offset-2">
           bsp.brta.gov.bd
         </a>
         {tx(" before paying.", "-এ।")}
