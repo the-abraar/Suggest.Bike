@@ -1,8 +1,4 @@
 # Apache (Namecheap shared hosting) settings for the static export in out/.
-# Serve generated share images with the right type (the files have no extension).
-<FilesMatch "^opengraph-image$">
-  ForceType image/png
-</FilesMatch>
 ErrorDocument 404 /404.html
 <IfModule mod_expires.c>
   ExpiresActive On

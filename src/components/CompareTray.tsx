@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/LangLink";
 import { usePathname } from "next/navigation";
 import { ArrowRight, X } from "lucide-react";
 import { getBike } from "@/lib/bikes";

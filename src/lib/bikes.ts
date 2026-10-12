@@ -1,6 +1,7 @@
 import raw from "@/data/generated/bikes.index.json";
 import networks from "@/data/networks.json";
-import type { BikeLite, BrandNetwork, Category, ScoreKey } from "./types";
+import type { Bike, BikeLite, BrandNetwork, Category, ScoreKey } from "./types";
+import { SITE } from "./site";
 
 /** Slim records for client pages. Full records: lib/bikes.server.ts (build time) or /data/bikes/<id>.json (runtime). */
 export const BIKES: BikeLite[] = (raw as unknown as BikeLite[])
@@ -101,6 +102,32 @@ export const isEv = (b: Pick<BikeLite, "engine">) => b.engine.fuel === "electric
 export const mileageText = (b: Pick<BikeLite, "engine" | "mileageKmpl" | "ev">) =>
   b.ev ? `${b.ev.realRangeKm[0]}–${b.ev.realRangeKm[1]} km/charge` : `${b.mileageKmpl[0]}–${b.mileageKmpl[1]} kmpl`;
 export const ccLabel =(b: Pick<BikeLite, "engine">) => (isEv(b) ? "Electric" : `${Math.round(b.engine.cc)}cc`);
+
+/** schema.org Product for a bike page. Only bikes on sale with a price carry an Offer; used-only bikes have no seller or list price. */
+export function productJsonLd(b: Pick<Bike, "id" | "brand" | "model" | "tagline" | "status" | "priceBDT" | "priceSource" | "distributor">) {
+  const url = `${SITE.url}/bikes/${b.id}/`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: fullName(b),
+    brand: { "@type": "Brand", name: b.brand },
+    category: "Motorcycle",
+    description: b.tagline,
+    url,
+    image: `${url}og.png`,
+    ...(b.status === "on-sale" && b.priceBDT > 0 && {
+      offers: {
+        "@type": "Offer",
+        price: b.priceBDT,
+        priceCurrency: "BDT",
+        availability: "https://schema.org/InStock",
+        itemCondition: "https://schema.org/NewCondition",
+        url: b.priceSource, // where this ex-showroom price is published
+        ...(b.distributor && { seller: { "@type": "Organization", name: b.distributor } }),
+      },
+    }),
+  };
+}
 
 /** One overall number used for sorting "best rated". */
 export function overall(b: BikeLite) {

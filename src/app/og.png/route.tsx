@@ -1,14 +1,13 @@
 import { ImageResponse } from "next/og";
 import art from "@/data/generated/art.json";
 
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
-export const alt = "Suggest.Bike — find the right motorcycle in Bangladesh";
+// A route handler, not opengraph-image.tsx: static export writes that one without an extension, so GitHub Pages serves it as octet-stream.
+const size = { width: 1200, height: 630 };
 export const dynamic = "force-static";
 
 const SHOW = ["bajaj-pulsar-n160", "yamaha-r15-v4", "royal-enfield-hunter-350"];
 
-export default function Image() {
+export function GET() {
   const a = art as Record<string, string>;
   return new ImageResponse(
     (

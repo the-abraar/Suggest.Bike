@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import { Suspense, useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import Link from "@/components/LangLink";
+import { useEffect, useMemo, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -52,7 +51,7 @@ import guide from "@/data/guide.json";
 import { useLang, useTx } from "@/lib/i18n";
 import { useStore } from "@/lib/store";
 import { BikeArt } from "@/components/BikeArt";
-import { CompareButton, SaveButton, ShareButton } from "@/components/ui";
+import { CompareButton, SaveButton, ShareButton, WithSearchParams } from "@/components/ui";
 
 type Opt<T> = { id: T; en: string; bn: string; sub?: string; subBn?: string; icon?: React.ReactNode };
 
@@ -86,19 +85,15 @@ const STEPS = 7;
 const WHERE_STEP = 2; // skipped while networks.json is empty (HAS_NETWORKS false)
 
 export function MatchView() {
-  return (
-    <Suspense>
-      <Matchmaker />
-    </Suspense>
-  );
+  return <WithSearchParams render={(params) => <Matchmaker params={params} />} />;
 }
 
-function Matchmaker() {
-  const params = useSearchParams();
+function Matchmaker({ params }: { params: URLSearchParams }) {
   const tx = useTx();
   const [a, setA] = useState<Answers>(DEFAULT_ANSWERS);
   const [step, setStep] = useState(0); // 0..STEPS-1 = questions, STEPS = results
-  const [loaded, setLoaded] = useState(false);
+  // Only a shared link (answers in the URL) waits for the effect; the static HTML gets step 1.
+  const [loaded, setLoaded] = useState(() => !params.toString());
 
   useEffect(() => {
     const decoded = decodeAnswers(params);
@@ -585,7 +580,11 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
               </ul>
               <div className="mt-6 grid grid-cols-3 gap-4 border-t border-line pt-5">
                 <MiniStat k={top.used ? tx("Bikroy asking", "Bikroy-তে চাওয়া দাম") : tx("On-road", "অন-রোড")} v={formatLakh(top.onRoad, lang)} />
-                <MiniStat k={tx("Mileage", "মাইলেজ")} v={`${top.bike.mileageKmpl[0]}–${top.bike.mileageKmpl[1]}`} />
+                {top.bike.ev ? (
+                  <MiniStat k={tx("Range/charge", "রেঞ্জ/চার্জ")} v={`${top.bike.ev.realRangeKm[0]}–${top.bike.ev.realRangeKm[1]} km`} />
+                ) : (
+                  <MiniStat k={tx("Mileage", "মাইলেজ")} v={`${top.bike.mileageKmpl[0]}–${top.bike.mileageKmpl[1]}`} />
+                )}
                 <MiniStat
                   k={top.used ? tx("Running/mo", "চলার খরচ/মাস") : tx("EMI/mo", "কিস্তি/মাস")}
                   v={formatBDT(top.used ? ownershipCost(top.bike, { ...DEFAULT_COST_INPUT, includeDepreciation: false }).runningPerMonth : perMonth(top, a))}

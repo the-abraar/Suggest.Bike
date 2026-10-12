@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/LangLink";
 import { ArrowUpRight, CheckCircle2, CreditCard, ExternalLink, FileText, Info, Scale, ShieldAlert, Users } from "lucide-react";
 import guideEn from "@/data/guide.json";
 import guideBn from "@/data/guide.bn.json";

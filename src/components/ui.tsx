@@ -1,13 +1,29 @@
 "use client";
 
-import Link from "next/link";
-import { useState } from "react";
+import Link from "@/components/LangLink";
+import { Suspense, useState, type ReactNode } from "react";
+import { useSearchParams } from "next/navigation";
 import { Check, Heart, Plus, Share2 } from "lucide-react";
 import type { BikeLite } from "@/lib/types";
 import { CATEGORIES, ccLabel, formatLakh, mileageText } from "@/lib/bikes";
 import { useStore } from "@/lib/store";
 import { useLang } from "@/lib/i18n";
 import { BikeArt } from "./BikeArt";
+
+/**
+ * Renders a page that reads the query string. The static export prerenders the fallback, i.e. the page with no
+ * query string, so the HTML carries real content (Bangla on /bn/) instead of an empty Suspense boundary.
+ */
+export function WithSearchParams({ render }: { render: (params: URLSearchParams) => ReactNode }) {
+  return (
+    <Suspense fallback={render(new URLSearchParams())}>
+      <ReadSearchParams render={render} />
+    </Suspense>
+  );
+}
+function ReadSearchParams({ render }: { render: (params: URLSearchParams) => ReactNode }) {
+  return render(useSearchParams());
+}
 
 export function CompareButton({ id, size = "md" }: { id: string; size?: "sm" | "md" }) {
   const { compare, toggleCompare, ready } = useStore();

@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
-import { Suspense, useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import Link from "@/components/LangLink";
+import { WithSearchParams } from "@/components/ui";
+import { useEffect, useMemo, useState } from "react";
 import { Info } from "lucide-react";
 import { BIKES, formatBDT, formatLakh, fullName, getBike } from "@/lib/bikes";
 import { DEFAULT_COST_INPUT, FUEL, WEAR_KM, defaultUsedPrice, emiMonthly, hiddenRepairRate, ownershipCost, registrationFor, type CostInput } from "@/lib/cost";
@@ -13,11 +13,7 @@ import { BikePicker, Field, Range, Switch } from "@/components/form";
 import type { BikeLite } from "@/lib/types";
 
 export function CostView() {
-  return (
-    <Suspense>
-      <Cost />
-    </Suspense>
-  );
+  return <WithSearchParams render={(params) => <Cost params={params} />} />;
 }
 
 const SEGMENTS = [
@@ -31,8 +27,7 @@ const SEGMENTS = [
   { k: "depreciation", en: "Resale loss", bn: "রিসেল লস", color: "var(--signal)" },
 ] as const;
 
-function Cost() {
-  const params = useSearchParams();
+function Cost({ params }: { params: URLSearchParams }) {
   const { lang } = useLang();
   const tx = useTx();
   const [bike, setBike] = useState<BikeLite>(() => getBike("bajaj-pulsar-n160") ?? BIKES[0]);
@@ -322,8 +317,8 @@ function Cost() {
             <Info size={14} className="mt-0.5 shrink-0" />
             <span>
               {tx(
-                `Fuel uses the middle of the real-world mileage range. Servicing (oil, oil filter, labour) every ${bike.serviceIntervalKm.toLocaleString("en-IN")} km and at least twice a year. Wear parts are counted as they wear, on the short side of owner reports: front pads every ${WEAR_KM.frontPads.toLocaleString("en-IN")} km, rear every ${WEAR_KM.rearPads.toLocaleString("en-IN")} km, chain set every ${WEAR_KM.chain.toLocaleString("en-IN")} km plus lube, tyres every ${WEAR_KM.tyres.toLocaleString("en-IN")} km, air filter and spark plug, clutch every ${WEAR_KM.clutch.toLocaleString("en-IN")} km, battery every 2 years. Prices are estimates, rounded up.${c.buyingUsed ? ` Used: ${Math.round(hiddenRepairRate(bike) * 100)}% of the price paid is added for hidden problems, spread over the months you own it.` : ""} Resale uses our resale score (≈ ${Math.round((1 - (0.8 + bike.scores.resale * 0.012)) * 100)}% value lost per year for this bike). Registration: ${registrationFor(bike.engine.cc).label}, from BRTA fee schedules.`,
-                `তেলের হিসাব আসল মাইলেজের মাঝামাঝি ধরে। সার্ভিসিং (মবিল, অয়েল ফিল্টার, মজুরি) প্রতি ${bike.serviceIntervalKm.toLocaleString("en-IN")} km-এ, বছরে অন্তত দুবার। ক্ষয়যোগ্য পার্টস যতটা ক্ষয় হয় ততটা ধরা, ওনারদের অভিজ্ঞতার কম দিকটা নিয়ে: সামনের প্যাড ${WEAR_KM.frontPads.toLocaleString("en-IN")} km, পেছনের ${WEAR_KM.rearPads.toLocaleString("en-IN")} km, চেইন সেট ${WEAR_KM.chain.toLocaleString("en-IN")} km আর লুব, টায়ার ${WEAR_KM.tyres.toLocaleString("en-IN")} km, এয়ার ফিল্টার ও স্পার্ক প্লাগ, ক্লাচ ${WEAR_KM.clutch.toLocaleString("en-IN")} km, ব্যাটারি ২ বছরে। দাম আনুমানিক, উপরের দিকে ধরা।${c.buyingUsed ? ` পুরনো বাইক: লুকানো সমস্যার জন্য কেনা দামের ${Math.round(hiddenRepairRate(bike) * 100)}% যোগ করা, মালিকানার মাসগুলোতে ভাগ করে।` : ""} রিসেল আমাদের রিসেল স্কোর থেকে (এই বাইকে বছরে ≈ ${Math.round((1 - (0.8 + bike.scores.resale * 0.012)) * 100)}% দাম কমে)। রেজিস্ট্রেশন: BRTA ফি তালিকা থেকে।`,
+                `${bike.ev ? "Electricity uses the middle of the real range per charge, at the BERC home tariff plus 15% charging loss (estimate); EVs skip the chain, clutch, air filter, spark plug and 12 V battery items below." : "Fuel uses the middle of the real-world mileage range."} Servicing (oil, oil filter, labour) every ${bike.serviceIntervalKm.toLocaleString("en-IN")} km and at least twice a year. Wear parts are counted as they wear, on the short side of owner reports: front pads every ${WEAR_KM.frontPads.toLocaleString("en-IN")} km, rear every ${WEAR_KM.rearPads.toLocaleString("en-IN")} km, chain set every ${WEAR_KM.chain.toLocaleString("en-IN")} km plus lube, tyres every ${WEAR_KM.tyres.toLocaleString("en-IN")} km, air filter and spark plug, clutch every ${WEAR_KM.clutch.toLocaleString("en-IN")} km, battery every 2 years. Prices are estimates, rounded up.${c.buyingUsed ? ` Used: ${Math.round(hiddenRepairRate(bike) * 100)}% of the price paid is added for hidden problems, spread over the months you own it.` : ""} Resale uses our resale score (≈ ${Math.round((1 - (0.8 + bike.scores.resale * 0.012)) * 100)}% value lost per year for this bike). Registration: ${registrationFor(bike.engine.cc).label}, from BRTA fee schedules.`,
+                `${bike.ev ? "বিদ্যুতের হিসাব প্রতি চার্জে আসল রেঞ্জের মাঝামাঝি ধরে, BERC-এর বাসার রেট আর ১৫% চার্জিং লস (অনুমান) যোগ করে; নিচের চেইন, ক্লাচ, এয়ার ফিল্টার, স্পার্ক প্লাগ ও ১২ V ব্যাটারি EV-তে ধরা হয় না।" : "তেলের হিসাব আসল মাইলেজের মাঝামাঝি ধরে।"} সার্ভিসিং (মবিল, অয়েল ফিল্টার, মজুরি) প্রতি ${bike.serviceIntervalKm.toLocaleString("en-IN")} km-এ, বছরে অন্তত দুবার। ক্ষয়যোগ্য পার্টস যতটা ক্ষয় হয় ততটা ধরা, ওনারদের অভিজ্ঞতার কম দিকটা নিয়ে: সামনের প্যাড ${WEAR_KM.frontPads.toLocaleString("en-IN")} km, পেছনের ${WEAR_KM.rearPads.toLocaleString("en-IN")} km, চেইন সেট ${WEAR_KM.chain.toLocaleString("en-IN")} km আর লুব, টায়ার ${WEAR_KM.tyres.toLocaleString("en-IN")} km, এয়ার ফিল্টার ও স্পার্ক প্লাগ, ক্লাচ ${WEAR_KM.clutch.toLocaleString("en-IN")} km, ব্যাটারি ২ বছরে। দাম আনুমানিক, উপরের দিকে ধরা।${c.buyingUsed ? ` পুরনো বাইক: লুকানো সমস্যার জন্য কেনা দামের ${Math.round(hiddenRepairRate(bike) * 100)}% যোগ করা, মালিকানার মাসগুলোতে ভাগ করে।` : ""} রিসেল আমাদের রিসেল স্কোর থেকে (এই বাইকে বছরে ≈ ${Math.round((1 - (0.8 + bike.scores.resale * 0.012)) * 100)}% দাম কমে)। রেজিস্ট্রেশন: BRTA ফি তালিকা থেকে।`,
               )}{" "}
               <Link href="/guide/#registration" className="text-brand underline underline-offset-2">
                 {tx("Breakdown", "বিস্তারিত")}

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/LangLink";
 import { Logo } from "./Logo";
 import { T, useLang } from "@/lib/i18n";
 import { BIKES, CATEGORIES } from "@/lib/bikes";

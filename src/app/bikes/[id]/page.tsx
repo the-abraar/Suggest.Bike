@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { fullName, formatBDT, ccLabel, mileageText } from "@/lib/bikes";
+import { fullName, formatBDT, ccLabel, mileageText, productJsonLd } from "@/lib/bikes";
 import { ALL_IDS, getFullBike } from "@/lib/bikes.server";
-import { SITE } from "@/lib/site";
+import { langAlternates, OG_BASE } from "@/lib/site";
 import { BikeDetail } from "./BikeDetail";
 
 export const dynamicParams = false;
@@ -17,26 +17,18 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   if (!b) return {};
   const title = `${fullName(b)} price in Bangladesh, real mileage & review`;
   const description = `${fullName(b)} (${ccLabel(b)}) costs ${formatBDT(b.priceBDT)} in Bangladesh. Real-world ${mileageText(b)}, parts prices, mechanic familiarity and true monthly cost. ${b.tagline}`;
-  return { title, description, alternates: { canonical: `/bikes/${b.id}/`, languages: { en: `/bikes/${b.id}/`, bn: `/bn/bikes/${b.id}/`, "x-default": `/bikes/${b.id}/` } }, openGraph: { title, description } };
+  const images = [{ url: `/bikes/${b.id}/og.png`, width: 1200, height: 630, alt: fullName(b) }];
+  return { title, description, alternates: langAlternates(`/bikes/${b.id}/`), openGraph: { ...OG_BASE, title, description, images } };
 }
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const bike = getFullBike(id);
   if (!bike) notFound();
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: fullName(bike),
-    brand: { "@type": "Brand", name: bike.brand },
-    category: "Motorcycle",
-    description: bike.tagline,
-    url: `${SITE.url}/bikes/${bike.id}/`,
-    image: `${SITE.url}/bikes/${bike.id}/opengraph-image`,
-  };
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {/* safe-html: JSON.stringify of build-time bike data */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd(bike)) }} />
       <BikeDetail bike={bike} />
     </>
   );

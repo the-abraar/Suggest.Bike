@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/LangLink";
 import { Heart, Scale } from "lucide-react";
 import { getBike } from "@/lib/bikes";
 import { useStore } from "@/lib/store";

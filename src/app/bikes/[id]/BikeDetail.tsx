@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/LangLink";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { AlertTriangle, ArrowRight, Calculator, Check, ChevronRight, ExternalLink, Flag, Info, MapPin, Minus, Wrench } from "lucide-react";
@@ -20,7 +20,7 @@ import {
 } from "@/lib/bikes";
 import { DEFAULT_COST_INPUT, emiMonthly, ownershipCost, registrationFor } from "@/lib/cost";
 import { useLang, useTx } from "@/lib/i18n";
-import { SITE, issueUrl } from "@/lib/site";
+import { SITE, issueUrl, langHref } from "@/lib/site";
 import type { Bike, Part, ScoreKey } from "@/lib/types";
 import { EstimateBadge } from "@/components/Experimental";
 import { FeedbackForm } from "@/components/FeedbackForm";
@@ -469,12 +469,12 @@ export function BikeDetail({ bike }: { bike: Bike }) {
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    router.push(`/compare/?bikes=${bike.id},${s.id}`);
+                    router.push(langHref(`/compare/?bikes=${bike.id},${s.id}`, lang));
                   }}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
                       e.preventDefault();
-                      router.push(`/compare/?bikes=${bike.id},${s.id}`);
+                      router.push(langHref(`/compare/?bikes=${bike.id},${s.id}`, lang));
                     }
                   }}
                   className="-mx-5 -mb-5 mt-1 flex cursor-pointer items-center justify-between border-t border-line px-5 py-3 text-[13px] font-medium text-brand hover:bg-surface-2"

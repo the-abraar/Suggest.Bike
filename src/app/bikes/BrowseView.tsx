@@ -1,11 +1,10 @@
 "use client";
 
-import { Suspense, useEffect, useMemo, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { SlidersHorizontal, X } from "lucide-react";
 import { BIKES, BRANDS, CATEGORIES, PRICE_BANDS, avgMileage, brandLabel, overall } from "@/lib/bikes";
 import { L, useLang, useTx } from "@/lib/i18n";
-import { BikeCard } from "@/components/ui";
+import { BikeCard, WithSearchParams } from "@/components/ui";
 import { searchBikes } from "@/components/SearchBox";
 import type { Category } from "@/lib/types";
 
@@ -33,15 +32,10 @@ type Filters = {
 const EMPTY: Filters = { q: "", cats: [], price: "", brands: [], abs: false, fi: false, includeUsed: true, sort: "recommended" };
 
 export function BrowseView() {
-  return (
-    <Suspense>
-      <Browse />
-    </Suspense>
-  );
+  return <WithSearchParams render={(params) => <Browse params={params} />} />;
 }
 
-function Browse() {
-  const params = useSearchParams();
+function Browse({ params }: { params: URLSearchParams }) {
   const { lang } = useLang();
   const tx = useTx();
   const [f, setF] = useState<Filters>(EMPTY);

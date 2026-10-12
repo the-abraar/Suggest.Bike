@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import { langAlternates } from "@/lib/site";
 import { HomeView } from "./HomeView";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/", languages: { en: "/", bn: "/bn/", "x-default": "/" } },
+  alternates: langAlternates("/"),
 };
 
 export default function Page() {

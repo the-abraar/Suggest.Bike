@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/LangLink";
 import { SCORE_LABELS } from "@/lib/bikes";
 import { FUEL } from "@/lib/cost";
 import { useLang, useTx } from "@/lib/i18n";

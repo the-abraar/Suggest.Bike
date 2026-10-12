@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/LangLink";
 import { ExternalLink, Phone } from "lucide-react";
 import { useTx } from "@/lib/i18n";
 import { DEALERS, telHref, type Dealer } from "@/lib/dealers";

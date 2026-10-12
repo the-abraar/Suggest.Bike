@@ -1,10 +1,9 @@
 "use client";
 
-import Link from "next/link";
-import { Suspense, useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import Link from "@/components/LangLink";
+import { useEffect, useMemo, useState } from "react";
 import { Plus, Search, X } from "lucide-react";
-import { BIKES, SCORE_LABELS, avgMileage, ccLabel, formatBDT, formatLakh, fullName, getBike, partLabel, tagline } from "@/lib/bikes";
+import { BIKES, SCORE_LABELS, avgMileage, ccLabel, formatBDT, formatLakh, fullName, getBike, mileageText, partLabel, tagline } from "@/lib/bikes";
 import { DEFAULT_COST_INPUT, emiMonthly, ownershipCost, registrationFor } from "@/lib/cost";
 import { popularPairs } from "@/lib/curated";
 import { useStore, MAX_COMPARE } from "@/lib/store";
@@ -12,18 +11,13 @@ import { useLang, useTx } from "@/lib/i18n";
 import type { Bike, BikeLite, ScoreKey } from "@/lib/types";
 import { BikeArt } from "@/components/BikeArt";
 import { searchBikes } from "@/components/SearchBox";
-import { Approx, ShareButton } from "@/components/ui";
+import { Approx, ShareButton, WithSearchParams } from "@/components/ui";
 
 export function CompareView() {
-  return (
-    <Suspense>
-      <Compare />
-    </Suspense>
-  );
+  return <WithSearchParams render={(params) => <Compare params={params} />} />;
 }
 
-function Compare() {
-  const params = useSearchParams();
+function Compare({ params }: { params: URLSearchParams }) {
   const { lang } = useLang();
   const tx = useTx();
   const { compare, toggleCompare, clearCompare, ready } = useStore();
@@ -221,6 +215,9 @@ function Table({ bikes }: { bikes: BikeLite[] }) {
   const costs = bikes.map((b) => ownershipCost(b, DEFAULT_COST_INPUT));
   const cols = { gridTemplateColumns: `repeat(${bikes.length}, minmax(0, 1fr))` };
   const abs = lang === "bn" ? ({ none: "ABS নেই", single: "১-চ্যানেল ABS", dual: "২-চ্যানেল ABS", cbs: "CBS" } as const) : ({ none: "no ABS", single: "1-ch ABS", dual: "2-ch ABS", cbs: "CBS" } as const);
+  // EVs: their mileageKmpl and fuelTankL are derived petrol-cost equivalents, so show range and battery instead.
+  const anyEv = bikes.some((b) => b.ev);
+  const range = (b: BikeLite) => Math.round(b.ev ? (b.ev.realRangeKm[0] + b.ev.realRangeKm[1]) / 2 : b.fuelTankL * avgMileage(b));
   const drum = (t: "disc" | "drum") => (t === "disc" ? tx("Disc", "ডিস্ক") : tx("Drum", "ড্রাম"));
 
   const blocks: { title: React.ReactNode; rows: RowSpec[] }[] = [
@@ -260,7 +257,7 @@ function Table({ bikes }: { bikes: BikeLite[] }) {
     {
       title: tx("Engine & performance", "ইঞ্জিন ও পারফরম্যান্স"),
       rows: [
-        { label: tx("Engine", "ইঞ্জিন"), values: bikes.map((b) => `${ccLabel(b)} · ${b.engine.fuel === "fi" ? "FI" : tx("Carb", "কার্ব")} · ${b.engine.cooling}-cooled`) },
+        { label: tx("Engine", "ইঞ্জিন"), values: bikes.map((b) => (b.ev ? tx(`Electric · ${b.ev.motorW / 1000} kW motor`, `ইলেকট্রিক · ${b.ev.motorW / 1000} kW মোটর`) : `${ccLabel(b)} · ${b.engine.fuel === "fi" ? "FI" : tx("Carb", "কার্ব")} · ${b.engine.cooling}-cooled`)) },
         { label: tx("Power", "পাওয়ার"), values: bikes.map((b) => `${b.powerPS} PS`), nums: bikes.map((b) => b.powerPS), better: "high" },
         { label: tx("Torque", "টর্ক"), values: bikes.map((b) => `${b.torqueNm} Nm`), nums: bikes.map((b) => b.torqueNm), better: "high" },
         {
@@ -273,18 +270,18 @@ function Table({ bikes }: { bikes: BikeLite[] }) {
         {
           label: (
             <>
-              {tx("Real-world mileage", "আসল মাইলেজ")}
+              {anyEv ? tx("Real-world mileage / range", "আসল মাইলেজ / রেঞ্জ") : tx("Real-world mileage", "আসল মাইলেজ")}
               <Approx />
             </>
           ),
-          values: bikes.map((b) => `${b.mileageKmpl[0]}–${b.mileageKmpl[1]} kmpl`),
-          nums: bikes.map(avgMileage),
+          values: bikes.map(mileageText),
+          nums: bikes.map((b) => (b.ev ? null : avgMileage(b))),
           better: "high",
         },
         {
-          label: tx("Range per tank", "এক ট্যাংকে রেঞ্জ"),
-          values: bikes.map((b) => `≈ ${Math.round(b.fuelTankL * avgMileage(b))} km`),
-          nums: bikes.map((b) => Math.round(b.fuelTankL * avgMileage(b))),
+          label: anyEv ? tx("Range per tank / charge", "এক ট্যাংক / চার্জে রেঞ্জ") : tx("Range per tank", "এক ট্যাংকে রেঞ্জ"),
+          values: bikes.map((b) => `≈ ${range(b)} km`),
+          nums: bikes.map(range),
           better: "high",
         },
       ],
@@ -306,7 +303,12 @@ function Table({ bikes }: { bikes: BikeLite[] }) {
           nums: bikes.map((b) => b.groundClearanceMm ?? null),
           better: "high",
         },
-        { label: tx("Fuel tank", "ফুয়েল ট্যাংক"), values: bikes.map((b) => `${b.fuelTankL} L`), nums: bikes.map((b) => b.fuelTankL), better: "high" },
+        {
+          label: anyEv ? tx("Fuel tank / battery", "ফুয়েল ট্যাংক / ব্যাটারি") : tx("Fuel tank", "ফুয়েল ট্যাংক"),
+          values: bikes.map((b) => (b.ev ? `${b.ev.batteryKWh} kWh` : `${b.fuelTankL} L`)),
+          nums: bikes.map((b) => (b.ev ? null : b.fuelTankL)),
+          better: "high",
+        },
         {
           label: tx("Brakes", "ব্রেক"),
           values: bikes.map((b) => `${drum(b.brakes.front)}/${drum(b.brakes.rear)} · ${abs[b.brakes.abs]}`),

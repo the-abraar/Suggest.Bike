@@ -3,16 +3,16 @@ import { ALL_IDS, getFullBike } from "@/lib/bikes.server";
 import { CATEGORIES, ccLabel, mileageText } from "@/lib/bikes";
 import art from "@/data/generated/art.json";
 
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
-export const alt = "Bike on Suggest.Bike";
+// Route handler so the export writes og.png with an extension (see app/og.png/route.tsx).
+const size = { width: 1200, height: 630 };
 export const dynamic = "force-static";
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return ALL_IDS.map((id) => ({ id }));
 }
 
-export default async function Image({ params }: { params: Promise<{ id: string }> }) {
+export async function GET(_req: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const b = getFullBike(id)!;
   return new ImageResponse(

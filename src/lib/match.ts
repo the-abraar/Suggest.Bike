@@ -157,10 +157,10 @@ const REACH_LIMIT = { short: 800, medium: 830, tall: Infinity };
 const reach = (b: BikeLite) => b.seatHeightMm + Math.max(0, b.weightKg - 130) * 0.5;
 
 const FEATURE_REASON: Record<Feature, (b: BikeLite) => Txt> = {
-  mileage: (b) => ({
-    en: `Real-world ${b.mileageKmpl[0]}–${b.mileageKmpl[1]} kmpl keeps fuel bills low`,
-    bn: `বাস্তবে ${b.mileageKmpl[0]}–${b.mileageKmpl[1]} kmpl — তেলের খরচ কম`,
-  }),
+  mileage: (b) =>
+    b.ev
+      ? { en: `Real-world ${b.ev.realRangeKm[0]}–${b.ev.realRangeKm[1]} km per charge; electricity costs far less than petrol`, bn: `বাস্তবে প্রতি চার্জে ${b.ev.realRangeKm[0]}–${b.ev.realRangeKm[1]} কিমি; বিদ্যুতের খরচ তেলের চেয়ে অনেক কম` }
+      : { en: `Real-world ${b.mileageKmpl[0]}–${b.mileageKmpl[1]} kmpl keeps fuel bills low`, bn: `বাস্তবে ${b.mileageKmpl[0]}–${b.mileageKmpl[1]} kmpl — তেলের খরচ কম` },
   maintenance: (b) =>
     b.scores.mechanicFamiliarity >= 8
       ? { en: "Any local mechanic can service it; parts are everywhere", bn: "যেকোনো লোকাল মিস্ত্রি সার্ভিস করতে পারে; পার্টস সব জায়গায় পাওয়া যায়" }

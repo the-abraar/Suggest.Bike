@@ -5,6 +5,7 @@ import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { Search } from "lucide-react";
 import { BIKES, CATEGORIES, ccLabel, formatLakh, fullName } from "@/lib/bikes";
 import { useLang } from "@/lib/i18n";
+import { langHref } from "@/lib/site";
 import { BikeArt } from "./BikeArt";
 
 // Keeps Latin letters, digits and Bangla script; Bangla digits are folded to Latin so "এন১৬০" matches "n160".
@@ -74,7 +75,7 @@ export function SearchBox({ compact = false, autoFocus = false, large = false }:
     setOpen(false);
     setQ("");
     inputRef.current?.blur();
-    router.push(`/bikes/${id}/`);
+    router.push(langHref(`/bikes/${id}/`, lang));
   };
 
   return (

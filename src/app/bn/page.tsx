@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import { langAlternates, OG_BN } from "@/lib/site";
 import { HomeView } from "../HomeView";
 
 export const metadata: Metadata = {
   title: { absolute: "Suggest.Bike — বাংলাদেশে সঠিক মোটরসাইকেল খুঁজুন" },
-  alternates: { canonical: "/bn/", languages: { en: "/", bn: "/bn/", "x-default": "/" } },
-  openGraph: { locale: "bn_BD" },
+  description: "বাংলাদেশের মোটরসাইকেল সিদ্ধান্তের প্ল্যাটফর্ম — বাজেট অনুযায়ী সঠিক বাইক খুঁজুন, আসল মাইলেজ, পার্টসের দাম, মিস্ত্রির পরিচিতি ও আসল মাসিক খরচ তুলনা করুন।",
+  alternates: langAlternates("/", "bn"),
+  openGraph: OG_BN,
 };
 
 export default function Page() {

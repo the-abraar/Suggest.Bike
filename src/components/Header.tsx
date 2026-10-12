@@ -1,12 +1,13 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/LangLink";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Heart, Menu, Moon, Sun, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { useLang, type DictKey } from "@/lib/i18n";
 import { useStore } from "@/lib/store";
+import { langHref } from "@/lib/site";
 import { SearchBox } from "./SearchBox";
 
 const NAV: { href: string; k: DictKey }[] = [
@@ -35,7 +36,7 @@ export function Header() {
     document.body.style.overflow = open ? "hidden" : "";
   }, [open]);
 
-  const active = (href: string) => pathname?.startsWith(href.replace(/\/$/, "")) ?? false;
+  const active = (href: string) => langHref(pathname ?? "/", "en").startsWith(href.replace(/\/$/, ""));
 
   return (
     <>
@@ -121,14 +122,14 @@ export function Header() {
 function LangToggle() {
   const { lang, setLang } = useLang();
   const router = useRouter();
-  const pathname = usePathname();
-  const onBn = /^\/bn(\/|$)/.test(pathname);
   return (
     <button
       onClick={() => {
-        if (!onBn) return setLang(lang === "en" ? "bn" : "en");
-        setLang("en"); // leave the /bn copy for its English twin
-        router.push(pathname.replace(/^\/bn/, "") || "/");
+        const next = lang === "en" ? "bn" : "en";
+        const here = location.pathname + location.search + location.hash;
+        const twin = langHref(here, next);
+        setLang(next);
+        if (twin !== here) router.push(twin); // go to the twin URL; pages without one switch in place
       }}
       className="grid h-10 min-w-10 place-items-center rounded-xl px-2.5 text-[13.5px] font-semibold text-ink-2 hover:bg-surface-2"
       aria-label={lang === "en" ? "বাংলায় দেখুন" : "Switch to English"}

@@ -8,6 +8,7 @@
     "dev": "next dev",
     "prebuild": "node scripts/build-data.mjs && tsx scripts/build-art.tsx",
     "build": "next build",
+    "postbuild": "node scripts/bn-lang.mjs",
     "preview": "npx --yes serve@14 out -l 3000",
     "pretypecheck": "node scripts/build-data.mjs && tsx scripts/build-art.tsx",
     "typecheck": "tsc --noEmit",
