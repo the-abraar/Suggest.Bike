@@ -129,3 +129,15 @@ Planned, in parallel worktrees: (A) matcher logic, (B) cut bloat, (C) data and g
 - `docs/mistri-panel.md` protocol (6 mechanics, 3 scores, ৳2,000 per session, median published when ≥5 have rated); owner TODOs added to `Todo_owner.md`.
 - Merge: `LegalView.tsx` conflicted; kept the new messages and analytics lines and dropped the finder lines. Added `/method`, `/dealers` and `/bn/method` to the sitemap myself.
 - Skipped: price alerts (need a backend), the quiz-completed event, a Header nav entry. Only the Honda and Suzuki hotlines were checked first-hand; the rest came via a research subagent and are listed for the owner to call.
+
+#### Round 1, C: data and gates (merged `d6f013d`; full `check.sh` on merged main: all 6 steps pass)
+- **76 → 83 bikes.** Zontes ZT155-U is back (৳3,49,000, bikebd, Oct 2026), plus 6 budget Chinese models (Runner Bolt 165R, Haojue KA135 and TR150, Lifan K19 and Glint 100, sourced from bikebd only) and **1 EV**: Walton Takyon Fusion 25TD (৳1,61,999, waltonbd.com). Only one EV: other Walton models don't publish seat height or torque, and Yadea, Revoo and Akij specs contradict themselves. Nothing was invented.
+- EV schema: `engine.fuel: "electric"` + an `ev {motorW, batteryKWh, rangeKm, realRangeKm, chargeHours}` block. Cost uses electricity at Tk 9.10/kWh (BERC 201-300 slab, cited) + 15% charging loss (estimate); EVs skip chain, clutch, filter and battery wear items.
+- **Outliers:** 18 (the new bikes shifted the medians), each with a note in `docs/price-resourcing-worklist.md`. Two **corrected** from Royal Enfield BD: Classic 350 ৳4,32,500 → ৳4,47,700, Meteor 350 ৳4,83,000 → ৳4,76,000. CBR150R, Gixxer 250 and NS125 confirmed on official pages.
+- **Variants** (with a source per price) on 13 bikes, shown as a table on the bike page.
+- **bikebd share of headline prices: 87% → 64%** (17 bikes now cite official distributor pages).
+- **Gate:** an outlier needs a note of ≥40 characters; fuel and electricity `asOf` fail after 45 days; new EV and variant checks.
+- Left for later: the compare page shows a derived kmpl and a "Carb" label for the EV (fixing in round 2); EV registration falls in the ≤100cc BRTA band (no EV fee schedule found); the 7 new petrol bikes have one source each; Bajaj's own N160 prices look swapped; Yamaha, Hero and TVS hide prices.
+
+### Round 2 (started 2026-10-13 01:5x)
+Usage before: 5-hour 41%, 7-day 52%. Planned: (D) Bangla `/bn/` routes for all main pages with hreflang, OG images, JSON-LD `Offer`, EV display fixes on compare; then (Q) real-browser QA + page weight on the merged site.
