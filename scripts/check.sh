@@ -19,7 +19,7 @@ step "stray files" stray
 step "unsafe HTML" scripts/lint-innerhtml.sh
 if [ "$FAST" = 0 ]; then
   step "validate data" npm run --silent validate
-  step "tests (engines + finder)" npm test --silent
+  step "tests (engines)" npm test --silent
   step "build" npm run --silent build
 fi
 echo; printf '%-30s | %s\n' step result; printf '%-30s-+-%s\n' "------------------------------" ------

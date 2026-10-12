@@ -7,7 +7,7 @@ import { BikeArt } from "@/components/BikeArt";
 import { searchBikes } from "@/components/SearchBox";
 import type { BikeLite } from "@/lib/types";
 
-/** Form controls shared by the calculator pages (/cost, /fund). */
+/** Form controls shared by the calculator page (/cost). */
 
 export function BikePicker({ bike, onPick }: { bike: BikeLite; onPick: (b: BikeLite) => void }) {
   const { lang } = useLang();
@@ -111,40 +111,5 @@ export function Switch({ on, onChange, label, sub }: { on: boolean; onChange: (v
         <span className={`absolute left-0 top-0.5 h-5 w-5 rounded-full bg-white shadow-sm transition-transform ${on ? "translate-x-[18px]" : "translate-x-0.5"}`} />
       </span>
     </button>
-  );
-}
-
-
-/** Taka amount box; shows the lakh-grouped value underneath as you type. */
-export function MoneyInput({ value, onChange, label, step = 1000 }: { value: number; onChange: (v: number) => void; label: string; step?: number }) {
-  return (
-    <input
-      type="number"
-      inputMode="numeric"
-      min={0}
-      step={step}
-      className="input h-11 tnum"
-      value={value}
-      aria-label={label}
-      onChange={(e) => onChange(e.target.value === "" ? 0 : Math.max(0, Number(e.target.value)))}
-    />
-  );
-}
-
-/** Pill-style single choice, as used for New/Used and tenure pickers. */
-export function Segmented<T extends string | number | boolean>({ options, value, onChange }: { options: { v: T; label: string }[]; value: T; onChange: (v: T) => void }) {
-  return (
-    <div className="grid gap-1 rounded-xl bg-surface-2 p-1" style={{ gridTemplateColumns: `repeat(${options.length}, minmax(0, 1fr))` }}>
-      {options.map((o) => (
-        <button
-          key={String(o.v)}
-          onClick={() => onChange(o.v)}
-          aria-pressed={value === o.v}
-          className={`h-9 rounded-lg text-[13.5px] font-medium transition-all ${value === o.v ? "bg-surface text-ink shadow-sm" : "text-muted hover:text-ink"}`}
-        >
-          {o.label}
-        </button>
-      ))}
-    </div>
   );
 }

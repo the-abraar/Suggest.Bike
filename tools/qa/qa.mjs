@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 import fs from 'fs';
 
 const BASE = process.env.BASE || 'http://localhost:4173';
-const PAGES = (process.env.PAGES || '/,/bikes/,/bikes/bajaj-ct100/,/match/,/compare/,/cost/,/saved/,/about/,/privacy/,/terms/,/disclaimer/,/labs/,/labs/check/,/labs/finder/,/labs/listing-check/,/labs/negotiate/,/guide/,/fund/').split(',');
+const PAGES = (process.env.PAGES || '/,/bikes/,/bikes/bajaj-ct100/,/match/,/compare/,/cost/,/saved/,/about/,/privacy/,/terms/,/disclaimer/,/guide/').split(',');
 const SIZES = { 375: 812, 768: 1024, 1280: 800 };
 const WIDTHS = (process.env.WIDTHS || '375,768,1280').split(',').map(Number);
 const MAX_TILES = 4;

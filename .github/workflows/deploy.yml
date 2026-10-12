@@ -27,7 +27,7 @@ jobs:
       - run: npm ci
       - run: npm run validate
       - run: npx tsc --noEmit
-      - run: npx tsx finder/test.mjs
+      - run: npm test
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:

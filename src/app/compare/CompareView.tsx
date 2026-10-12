@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Suspense, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { Crown, Plus, Search, X } from "lucide-react";
+import { Plus, Search, X } from "lucide-react";
 import { BIKES, SCORE_LABELS, avgMileage, ccLabel, formatBDT, formatLakh, fullName, getBike, partLabel, tagline } from "@/lib/bikes";
 import { DEFAULT_COST_INPUT, emiMonthly, ownershipCost, registrationFor } from "@/lib/cost";
 import { popularPairs } from "@/lib/curated";
@@ -63,7 +63,7 @@ function Compare() {
               : tx("Compare bikes", "বাইক তুলনা")}
           </h1>
           <p className="mt-1.5 text-[15.5px] text-muted">
-            {tx("Side by side, including the things spec sheets leave out. Winners are highlighted.", "পাশাপাশি তুলনা — স্পেক শিটে যা থাকে না সেটাও। বিজয়ী হাইলাইট করা।")}
+            {tx("Side by side, including the things spec sheets leave out. The lowest and highest measured values are marked.", "পাশাপাশি তুলনা — স্পেক শিটে যা থাকে না সেটাও। মাপা মানগুলোর সর্বনিম্ন ও সর্বোচ্চ চিহ্নিত।")}
           </p>
         </div>
         {bikes.length >= 2 && <ShareButton title={`${bikes.map((b) => b.model).join(" vs ")} — Suggest.Bike`} className="border border-line-strong bg-surface" />}
@@ -185,7 +185,8 @@ function EmptyState({ onPick }: { onPick: (ids: string[]) => void }) {
 
 type Better = "high" | "low" | null;
 
-function winners(values: (number | null)[], better: Better) {
+/** Marks the lowest (better="low") or highest value. Only for measured specs, never editorial scores. */
+function extremes(values: (number | null)[], better: Better) {
   if (!better) return values.map(() => false);
   const nums = values.filter((v): v is number => v !== null);
   if (nums.length < 2) return values.map(() => false);
@@ -244,8 +245,6 @@ function Table({ bikes }: { bikes: BikeLite[] }) {
         {
           label: tx("True cost / month incl. resale loss (3 yrs)", "আসল খরচ / মাস, রিসেল লসসহ (৩ বছর)"),
           values: costs.map((c) => formatBDT(c.perMonth)),
-          nums: costs.map((c) => Math.round(c.perMonth)),
-          better: "low",
         },
         {
           label: tx("Used price, ~1 year old (bikroy)", "পুরনো দাম, ~১ বছর (bikroy)"),
@@ -311,24 +310,26 @@ function Table({ bikes }: { bikes: BikeLite[] }) {
         {
           label: tx("Brakes", "ব্রেক"),
           values: bikes.map((b) => `${drum(b.brakes.front)}/${drum(b.brakes.rear)} · ${abs[b.brakes.abs]}`),
-          nums: bikes.map((b) => ({ none: 0, cbs: 1, single: 2, dual: 3 })[b.brakes.abs] * 2 + (b.brakes.front === "disc" ? 1 : 0)),
-          better: "high",
         },
         {
           label: tx("Tyres", "টায়ার"),
           values: bikes.map((b) => (b.tubeless ? tx("Tubeless", "টিউবলেস") : tx("Tube-type", "টিউব"))),
-          nums: bikes.map((b) => (b.tubeless ? 1 : 0)),
-          better: "high",
         },
       ],
     },
     {
-      title: tx("Ownership scores", "মালিকানা স্কোর"),
+      title: (
+        <>
+          {tx("Ownership scores", "মালিকানা স্কোর")}
+          <span className="mt-0.5 block text-[12.5px] font-normal text-muted">
+            {tx("Editorial scores, not measurements: no winner declared.", "সম্পাদকীয় স্কোর, মাপা নয়: কোনো বিজয়ী ঘোষণা নেই।")}{" "}
+            <Link href="/method/" className="text-brand underline underline-offset-2">{tx("See method", "পদ্ধতি দেখুন")}</Link>
+          </span>
+        </>
+      ),
       rows: (Object.keys(SCORE_LABELS) as ScoreKey[]).map((k) => ({
         label: lang === "bn" ? SCORE_LABELS[k].bn : SCORE_LABELS[k].en,
         hint: lang === "bn" ? SCORE_LABELS[k].hintBn : SCORE_LABELS[k].hint,
-        nums: bikes.map((b) => b.scores[k]),
-        better: "high" as const,
         values: bikes.map((b) => (
           <span key={b.id} className="flex w-full items-center gap-2.5">
             <span className="w-9 shrink-0">{b.scores[k]}/10</span>
@@ -351,21 +352,14 @@ function Table({ bikes }: { bikes: BikeLite[] }) {
           ? partLabel(bikes[0], p.name, lang)
           : bikes.map((b) => partLabel(b, p.name, lang)).join(" / "),
         values: bikes.map((b) => (b.parts[idx] ? formatBDT(b.parts[idx].priceBDT) : "—")),
-        nums: bikes.map((b) => b.parts[idx]?.priceBDT ?? null),
-        better: "low" as const,
       })),
     },
   ];
 
-  const tally = bikes.map(() => 0);
-  const winMap = blocks.map((bl) =>
-    bl.rows.map((r) => {
-      const w = r.nums ? winners(r.nums, r.better ?? null) : r.values.map(() => false);
-      w.forEach((x, i) => x && (tally[i] += 1));
-      return w;
-    }),
-  );
-  const leader = tally.indexOf(Math.max(...tally));
+  const markMap = blocks.map((bl) => bl.rows.map((r) => (r.nums ? extremes(r.nums, r.better ?? null) : r.values.map(() => false))));
+  const two = bikes.length === 2;
+  const markLabel = (better: Better) =>
+    better === "low" ? tx(two ? "↓ lower" : "↓ lowest", two ? "↓ কম" : "↓ সবচেয়ে কম") : tx(two ? "↑ higher" : "↑ highest", two ? "↑ বেশি" : "↑ সবচেয়ে বেশি");
 
   const text = (b: BikeLite, k: "feel" | "quirks" | "mechanicNote") => {
     const f = full[b.id];
@@ -380,7 +374,7 @@ function Table({ bikes }: { bikes: BikeLite[] }) {
 
   return (
     <>
-      <Verdict bikes={bikes} tally={tally} leader={leader} />
+      <Verdict bikes={bikes} />
 
       <div className="mt-8 grid gap-4" style={cols}>
         {bikes.map((b) => (
@@ -400,11 +394,11 @@ function Table({ bikes }: { bikes: BikeLite[] }) {
               </p>
               <div className="grid gap-4" style={cols}>
                 {r.values.map((v, i) => {
-                  const win = winMap[bi][ri][i];
+                  const mark = markMap[bi][ri][i];
                   return (
-                    <div key={i} className={`flex items-center gap-1.5 text-[14px] tnum sm:text-[15px] ${win ? "font-semibold text-good" : "text-ink"}`}>
+                    <div key={i} className={`flex flex-wrap items-center gap-x-1.5 text-[14px] tnum text-ink sm:text-[15px] ${mark ? "font-semibold" : ""}`}>
                       {v}
-                      {win && <Crown size={14} className="shrink-0" aria-label={tx("Winner", "বিজয়ী")} />}
+                      {mark && <span className="text-[12px] font-medium text-muted">{markLabel(r.better ?? null)}</span>}
                     </div>
                   );
                 })}
@@ -463,7 +457,8 @@ function Skeleton() {
   );
 }
 
-function Verdict({ bikes, tally, leader }: { bikes: BikeLite[]; tally: number[]; leader: number }) {
+/** Quick verdicts from measured numbers only (price, running cost, power, mileage). */
+function Verdict({ bikes }: { bikes: BikeLite[] }) {
   const tx = useTx();
   const pick = (f: (b: BikeLite) => number, high = true) => {
     const vals = bikes.map(f);
@@ -472,28 +467,15 @@ function Verdict({ bikes, tally, leader }: { bikes: BikeLite[]; tally: number[];
     return bikes[vals.indexOf(best)];
   };
   const items = [
+    { k: tx("Cheaper to buy", "কিনতে সস্তা"), b: pick((b) => b.priceBDT, false) },
     { k: tx("Cheaper to run", "চালাতে সস্তা"), b: pick((b) => ownershipCost(b, DEFAULT_COST_INPUT).runningPerMonth, false) },
     { k: tx("Quicker", "বেশি দ্রুত"), b: pick((b) => b.powerPS / b.weightKg) },
-    { k: tx("Easier to maintain", "মেইনটেন্যান্স সহজ"), b: pick((b) => b.scores.mechanicFamiliarity + b.scores.partsAvailability + b.scores.reliability) },
-    { k: tx("Better resale", "রিসেল ভালো"), b: pick((b) => b.scores.resale) },
-    { k: tx("Comfier with a pillion", "পিলিয়নসহ আরামদায়ক"), b: pick((b) => b.scores.pillion + b.scores.comfort) },
-    { k: tx("Better on bad roads", "খারাপ রাস্তায় ভালো"), b: pick((b) => b.scores.offroad) },
+    { k: tx("Better mileage", "মাইলেজ বেশি"), b: pick(avgMileage) },
   ].filter((x) => x.b);
 
   return (
-    <section className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-4 lg:grid-cols-[1fr_1.4fr]">
-      <div className="card flex flex-col justify-center p-6 text-brand-ink" style={{ background: "var(--brand)" }}>
-        <p className="text-[13px] font-medium opacity-80">{tx("Wins the most categories", "সবচেয়ে বেশি ক্যাটাগরিতে জয়ী")}</p>
-        <p className="mt-1 text-[26px] font-semibold tracking-tight">{fullName(bikes[leader])}</p>
-        <p className="mt-1 text-[14px] opacity-80 tnum">{bikes.map((b, i) => `${b.model} ${tally[i]}`).join("  ·  ")}</p>
-        <p className="mt-4 text-[13px] leading-relaxed opacity-80">
-          {tx(
-            "Counting wins isn't everything — read the quick verdicts to see which wins matter to you.",
-            "শুধু জয় গোনা যথেষ্ট নয় — আপনার কাছে কোনটা গুরুত্বপূর্ণ দেখুন।",
-          )}
-        </p>
-      </div>
-      <div className="card grid gap-px overflow-hidden bg-line sm:grid-cols-2">
+    <section className="mt-8">
+      <div className="card grid gap-px overflow-hidden bg-line sm:grid-cols-2 lg:grid-cols-4">
         {items.map((x) => (
           <div key={x.k} className="bg-surface p-4">
             <p className="text-[12.5px] text-muted">{x.k}</p>
