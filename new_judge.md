@@ -194,3 +194,9 @@ Usage before: 5-hour 41%, 7-day 52%. Planned: (D) Bangla `/bn/` routes for all m
 ### Round 3 (2026-10-13 03:50): closing the code-closable gaps
 The owner asked for all 12 items plus research, then commit and push. Usage before: 5-hour 44%, 7-day 53%.
 Plan: (R) data research: Pulsar N160, second sources, more EVs, BRTA EV fee; (H) price history from git + a "what changed" page + CI checkout depth + Python removed from `check.yml`; (L) Bangla legal/saved/feedback, Bangla JSON-LD and OG, header nav, quiz event, slider minimum, InStock. Then (P): dark mode QA, interaction checks in `tools/qa`, WebP photos, `/bn/` page weight.
+
+#### Round 3, H: price history (merged `04d9fa5`; agent's `check.sh`: all 6 steps pass)
+- `scripts/build-history.ts` walks `git log --follow` of `bikes.json`; `src/lib/history.ts` `diffSnapshots` (unit-tested) records a point only when `priceBDT` changes. A shallow clone or missing git prints a warning and falls back to current prices (tested).
+- Bike pages show "৳X since <month> · was ৳Y in <month>" or "unchanged since"; `/changes` and `/bn/changes` list 13 events (8 added, 2 up, 2 down, 1 removed), with hreflang, sitemap and footer links. The copy says dates are when our data changed.
+- CI: `fetch-depth: 0` in both workflows; `setup-python` removed from `check.yml`; `deploy.yml` now runs `npm run typecheck` (the bare `tsc` would have had no generated JSON on a fresh checkout).
+- Limits: all history is from Oct 2026 so far; Zontes shows as removed and re-added (true to history); variant prices are not tracked.
