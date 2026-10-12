@@ -911,9 +911,9 @@
   "category": "street",
   "status": "on-sale",
   "priceBDT": 273600,
-  "priceNote": "Base N160 ৳2,37,000; Twin Disc Carburetor ৳2,42,600; Dual ABS with gold USD fork ৳2,88,000. Official Bajaj BD blog listed ৳2,79,500 in Jan 2025.",
-  "priceAsOf": "2026-09",
-  "priceSource": "https://www.bikebd.com/brand/bajaj",
+  "priceNote": "Bajaj BD pages (Oct 2026): Single Seat with single-channel ABS ৳2,42,000; Twin Disc carburettor ৳2,42,600; Fi dual-channel ABS with 26 mm telescopic fork ৳2,73,600 (the headline price); dual-channel ABS with 37 mm USD fork ৳2,88,000. bikebd's Sep 2026 list matches. The prices are not swapped: Bajaj's page named plain \"Pulsar N160\" is the top USD-fork variant.",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://www.bajajauto.com/en-bd/bikes/pulsar-n160-dc-abs",
   "distributor": "Uttara Motors Ltd",
   "assembledInBD": true,
   "engine": {
@@ -1018,7 +1018,11 @@
   "sources": [
    "https://www.bikebd.com/price/new-bajaj-pulsar-n160",
    "https://www.bajajauto.com/en-bd/blogs/blog-pulsar-n160-price",
-   "https://www.bikebd.com/brand/bajaj"
+   "https://www.bikebd.com/brand/bajaj",
+   "https://www.bajajauto.com/en-bd/bikes/pulsar-n160-dc-abs",
+   "https://www.bajajauto.com/en-bd/bikes/pulsar-n160",
+   "https://www.bajajauto.com/en-bd/bikes/pulsar-n160-single-seat",
+   "https://www.bajajauto.com/en-bd/bikes/pulsar-n160-td"
   ],
   "bn": {
    "tagline": "বুদ্ধিমানের মডার্ন 160 — ডুয়াল-চ্যানেল ABS আর পালসারের মতো কম খরচ।",
@@ -1072,6 +1076,14 @@
   },
   "variants": [
    {
+    "name": "Single Seat (single-channel ABS)",
+    "priceBDT": 242000,
+    "abs": "single",
+    "frontDisc": true,
+    "rearDisc": true,
+    "priceSource": "https://www.bajajauto.com/en-bd/bikes/pulsar-n160-single-seat"
+   },
+   {
     "name": "Twin Disc (carburettor)",
     "priceBDT": 242600,
     "frontDisc": true,
@@ -1079,20 +1091,20 @@
     "priceSource": "https://www.bajajauto.com/en-bd/bikes/pulsar-n160-td"
    },
    {
-    "name": "Fi ABS (Dual Channel)",
+    "name": "Fi ABS (Dual Channel, 26 mm telescopic fork)",
     "priceBDT": 273600,
     "abs": "dual",
     "frontDisc": true,
     "rearDisc": true,
-    "priceSource": "https://www.bikebd.com/brand/bajaj"
+    "priceSource": "https://www.bajajauto.com/en-bd/bikes/pulsar-n160-dc-abs"
    },
    {
-    "name": "Dual Channel ABS, gold USD fork",
+    "name": "Dual Channel ABS, 37 mm USD fork",
     "priceBDT": 288000,
     "abs": "dual",
     "frontDisc": true,
     "rearDisc": true,
-    "priceSource": "https://www.bikebd.com/brand/bajaj"
+    "priceSource": "https://www.bajajauto.com/en-bd/bikes/pulsar-n160"
    }
   ]
  },
@@ -12827,7 +12839,7 @@
   "category": "naked",
   "status": "on-sale",
   "priceBDT": 349000,
-  "priceNote": "ZT155-U1 ৳3,79,000; ZT155-G1 ৳3,89,000; ZT155-GK ৳4,39,000 (bikebd Zontes brand list, updated Sep 2026). bikebd names both Moto Solution BD and Mototech Industry Bangladesh as distributors.",
+  "priceNote": "ZT155-U1 ৳3,79,000; ZT155-G1 ৳3,89,000; ZT155-GK ৳4,39,000 (bikebd Zontes brand list, updated Sep 2026). bikebd names both Moto Solution BD and Mototech Industry Bangladesh as distributors. TBS reported the same ৳3,49,000 at the March 2021 launch (Mototech Industry with Moto Solution).",
   "priceAsOf": "2026-10",
   "priceSource": "https://www.bikebd.com/price/zontes-zt155-u",
   "distributor": "Moto Solution BD Ltd",
@@ -12930,7 +12942,8 @@
   "sources": [
    "https://www.bikebd.com/price/zontes-zt155-u",
    "https://www.bikebd.com/price/zontes-zt155-u/specifications",
-   "https://www.bikebd.com/brand/zontes"
+   "https://www.bikebd.com/brand/zontes",
+   "https://www.tbsnews.net/feature/wheels/zontes-enters-bangladesh-premium-motorcycles-222703"
   ],
   "bn": {
    "tagline": "টেকনোলজিতে ঠাসা চায়নিজ প্রিমিয়াম 155 — কি-লেস, TFT, ডুয়াল-ABS।",
@@ -13091,7 +13104,9 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/runner-bolt-165r-price-in-bangladesh",
-   "https://www.bikebd.com/price/runner-bolt-165r-price-in-bangladesh/specifications"
+   "https://www.bikebd.com/price/runner-bolt-165r-price-in-bangladesh/specifications",
+   "https://www.tbsnews.net/feature/wheels/runner-launches-bolt-165-r-124528",
+   "https://www.thedailystar.net/toggle/news/new-bike-week-1955401"
   ],
   "bn": {
    "tagline": "125cc-র দামে USD ফর্ক আর দুই চাকায় ডিস্কসহ 165cc কার্ব স্ট্রিট বাইক।",
@@ -13120,7 +13135,8 @@
    "রানার বোল্ট",
    "runner bolt",
    "bolt 165"
-  ]
+  ],
+  "priceNote": "Unchanged from the August 2020 launch price of ৳1,69,000 reported by TBS and The Daily Star; Runner publishes no current price list online."
  },
  {
   "status": "on-sale",
