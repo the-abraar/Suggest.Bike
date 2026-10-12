@@ -321,7 +321,7 @@
    "city 100"
   ],
   "image": {
-   "src": "/bikes/bajaj-ct100.jpg",
+   "src": "/bikes/bajaj-ct100.webp",
    "author": "Cherubino",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -679,7 +679,7 @@
    ]
   },
   "image": {
-   "src": "/bikes/bajaj-pulsar-ns125.jpg",
+   "src": "/bikes/bajaj-pulsar-ns125.webp",
    "author": "Kolomoiskii",
    "license": "CC0",
    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
@@ -862,7 +862,7 @@
    ]
   },
   "image": {
-   "src": "/bikes/bajaj-pulsar-150.jpg",
+   "src": "/bikes/bajaj-pulsar-150.webp",
    "author": "CAPTAIN RAJU",
    "license": "CC0",
    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
@@ -2249,7 +2249,7 @@
    ]
   },
   "image": {
-   "src": "/bikes/tvs-raider-125.jpg",
+   "src": "/bikes/tvs-raider-125.webp",
    "author": "MotorideSA",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -2616,7 +2616,7 @@
    ]
   },
   "image": {
-   "src": "/bikes/tvs-apache-rtr-160-4v.jpg",
+   "src": "/bikes/tvs-apache-rtr-160-4v.webp",
    "author": "Ganesh Mohan T",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -2820,7 +2820,7 @@
    ]
   },
   "image": {
-   "src": "/bikes/tvs-ntorq-125.jpg",
+   "src": "/bikes/tvs-ntorq-125.webp",
    "author": "M.parvage",
    "license": "CC BY 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
@@ -3969,7 +3969,7 @@
    "expulse"
   ],
   "image": {
-   "src": "/bikes/hero-xpulse-200-4v.jpg",
+   "src": "/bikes/hero-xpulse-200-4v.webp",
    "author": "MotorideSA",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -5123,7 +5123,7 @@
    ]
   },
   "image": {
-   "src": "/bikes/honda-sp160.jpg",
+   "src": "/bikes/honda-sp160.webp",
    "author": "Ganesh Mohan T",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -5485,7 +5485,7 @@
    ]
   },
   "image": {
-   "src": "/bikes/honda-hornet-2-0.jpg",
+   "src": "/bikes/honda-hornet-2-0.webp",
    "author": "Birmallow",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -5807,7 +5807,7 @@
    "cbr150"
   ],
   "image": {
-   "src": "/bikes/honda-cbr150r.jpg",
+   "src": "/bikes/honda-cbr150r.webp",
    "author": "Chanokchon",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -6479,7 +6479,7 @@
    ]
   },
   "image": {
-   "src": "/bikes/yamaha-fzs-fi-v4.jpg",
+   "src": "/bikes/yamaha-fzs-fi-v4.webp",
    "author": "Ganesh Mohan T",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -7287,7 +7287,7 @@
    ]
   },
   "image": {
-   "src": "/bikes/yamaha-r15-v3.jpg",
+   "src": "/bikes/yamaha-r15-v3.webp",
    "author": "Akshayanil919",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -7459,7 +7459,7 @@
    ]
   },
   "image": {
-   "src": "/bikes/yamaha-mt-15-v2.jpg",
+   "src": "/bikes/yamaha-mt-15-v2.webp",
    "author": "Ganesh Mohan T",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -7620,7 +7620,7 @@
    "yamaha xsr"
   ],
   "image": {
-   "src": "/bikes/yamaha-xsr155.jpg",
+   "src": "/bikes/yamaha-xsr155.webp",
    "author": "Bonel14",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -7944,7 +7944,7 @@
    "yamaha aerox"
   ],
   "image": {
-   "src": "/bikes/yamaha-aerox-155.jpg",
+   "src": "/bikes/yamaha-aerox-155.webp",
    "author": "Chanokchon",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -8433,7 +8433,7 @@
    ]
   },
   "image": {
-   "src": "/bikes/suzuki-gixxer-monotone.jpg",
+   "src": "/bikes/suzuki-gixxer-monotone.webp",
    "author": "XalD",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -8608,7 +8608,7 @@
    ]
   },
   "image": {
-   "src": "/bikes/suzuki-gixxer-fi-abs.jpg",
+   "src": "/bikes/suzuki-gixxer-fi-abs.webp",
    "author": "NahidHossain",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -9158,7 +9158,7 @@
    ]
   },
   "image": {
-   "src": "/bikes/suzuki-gixxer-sf-250.jpg",
+   "src": "/bikes/suzuki-gixxer-sf-250.webp",
    "author": "ShunyaIshiwatari",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -9499,7 +9499,7 @@
    ]
   },
   "image": {
-   "src": "/bikes/suzuki-gsx-r150.jpg",
+   "src": "/bikes/suzuki-gsx-r150.webp",
    "author": "Haysnawri10",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -9846,7 +9846,7 @@
    ]
   },
   "image": {
-   "src": "/bikes/royal-enfield-hunter-350.jpg",
+   "src": "/bikes/royal-enfield-hunter-350.webp",
    "author": "Pintu dasaundhi",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -10036,7 +10036,7 @@
    ]
   },
   "image": {
-   "src": "/bikes/royal-enfield-classic-350.jpg",
+   "src": "/bikes/royal-enfield-classic-350.webp",
    "author": "Billyinthedarbies",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -10213,7 +10213,7 @@
    ]
   },
   "image": {
-   "src": "/bikes/royal-enfield-bullet-350.jpg",
+   "src": "/bikes/royal-enfield-bullet-350.webp",
    "author": "kishjar? from Moscow, Russia (Flickr)",
    "license": "CC BY 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
@@ -10403,7 +10403,7 @@
    ]
   },
   "image": {
-   "src": "/bikes/royal-enfield-meteor-350.jpg",
+   "src": "/bikes/royal-enfield-meteor-350.webp",
    "author": "UliBe43",
    "license": "CC0",
    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
@@ -10604,7 +10604,7 @@
    ]
   },
   "image": {
-   "src": "/bikes/ktm-duke-125.jpg",
+   "src": "/bikes/ktm-duke-125.webp",
    "author": "Corvettec6r",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -12346,7 +12346,7 @@
    "honda cg 125"
   ],
   "image": {
-   "src": "/bikes/honda-cg125.jpg",
+   "src": "/bikes/honda-cg125.webp",
    "author": "SEDJRO SETONDJI",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -12508,7 +12508,7 @@
    "yamha rx100"
   ],
   "image": {
-   "src": "/bikes/yamaha-rx100.jpg",
+   "src": "/bikes/yamaha-rx100.webp",
    "author": "Udaya kumar",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -12667,7 +12667,7 @@
    "rxk"
   ],
   "image": {
-   "src": "/bikes/yamaha-rx-115.jpg",
+   "src": "/bikes/yamaha-rx-115.webp",
    "author": "Ali zeb",
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -12825,7 +12825,7 @@
    "hero cbz"
   ],
   "image": {
-   "src": "/bikes/hero-honda-cbz.jpg",
+   "src": "/bikes/hero-honda-cbz.webp",
    "author": "Sonachalam 2k Ramalingame",
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",

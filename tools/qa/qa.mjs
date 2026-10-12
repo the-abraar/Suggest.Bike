@@ -3,20 +3,24 @@ import AxeBuilder from '@axe-core/playwright';
 import fs from 'fs';
 
 const BASE = process.env.BASE || 'http://localhost:4173';
-const PAGES = (process.env.PAGES || '/,/match/,/bikes/,/bikes/bajaj-ct100/,/bikes/walton-takyon-fusion-25td/,/bikes/bajaj-pulsar-n160/,/compare/?bikes=walton-takyon-fusion-25td,bajaj-ct100,/cost/,/cost/#pay,/guide/,/method/,/dealers/,/about/,/feedback/,/bn/,/bn/match/,/bn/bikes/bajaj-ct100/,/bn/compare/').split(/,(?=\/)/); // split only before a path, so ?bikes=a,b survives
+const PAGES = (process.env.PAGES || '/,/match/,/bikes/,/bikes/bajaj-ct100/,/bikes/walton-takyon-fusion-25td/,/bikes/bajaj-pulsar-n160/,/compare/?bikes=walton-takyon-fusion-25td,bajaj-ct100,/cost/,/cost/#pay,/guide/,/method/,/dealers/,/about/,/feedback/,/bn/,/bn/match/,/bn/bikes/bajaj-ct100/,/bn/compare/,/changes/,/bn/changes/,/bn/privacy/').split(/,(?=\/)/); // split only before a path, so ?bikes=a,b survives
 const SIZES = { 375: 812, 768: 1024, 1280: 800 };
 const WIDTHS = (process.env.WIDTHS || '375,768,1280').split(',').map(Number);
 const MAX_TILES = 4;
+// SCHEME=dark emulates the OS dark setting; SCHEME=dark-saved keeps the OS light and sets the header toggle's saved choice.
+const SCHEME = process.env.SCHEME || 'light';
+const OUT = `shots/${SCHEME}`;
 
-fs.rmSync('shots', { recursive: true, force: true });
-fs.mkdirSync('shots', { recursive: true });
+fs.rmSync(OUT, { recursive: true, force: true });
+fs.mkdirSync(OUT, { recursive: true });
 const index = [];
 let bad = 0;
 const br = await chromium.launch();
 
 for (const w of WIDTHS) {
   const h = SIZES[w] ?? 800;
-  const ctx = await br.newContext({ viewport: { width: w, height: h } });
+  const ctx = await br.newContext({ viewport: { width: w, height: h }, colorScheme: SCHEME === 'dark' ? 'dark' : 'light' });
+  if (SCHEME === 'dark-saved') await ctx.addInitScript(() => localStorage.setItem('sb-theme', 'dark'));
   for (const p of PAGES) {
     const pg = await ctx.newPage();
     const errs = [];
@@ -26,6 +30,8 @@ for (const w of WIDTHS) {
     pg.on('response', (r) => { if (r.status() >= 400) errs.push(`http ${r.status()}: ${r.url().slice(0, 100)}`); });
     await pg.goto(BASE + p, { waitUntil: 'networkidle' });
     await pg.waitForTimeout(500);
+    const theme = await pg.evaluate(() => document.documentElement.dataset.theme);
+    if (theme !== (SCHEME === 'light' ? 'light' : 'dark')) errs.push(`theme: got ${theme} for ${SCHEME}`);
 
     const ov = await pg.evaluate(() => (document.documentElement.scrollWidth > innerWidth ? document.documentElement.scrollWidth : 0));
     await pg.waitForTimeout(1500);
@@ -40,7 +46,7 @@ for (const w of WIDTHS) {
     for (let t = 0; t < tiles; t++) {
       await pg.evaluate((y) => window.scrollTo(0, y), t * h);
       await pg.waitForTimeout(150);
-      await pg.screenshot({ path: `shots/${name}_t${t + 1}.png` }); // viewport only, not fullPage
+      await pg.screenshot({ path: `${OUT}/${name}_t${t + 1}.png` }); // viewport only, not fullPage
     }
     const errsU = [...new Set(errs)];
     if (ov || ax.length || errsU.length) bad++;
@@ -50,6 +56,6 @@ for (const w of WIDTHS) {
   await ctx.close();
 }
 await br.close();
-fs.writeFileSync('shots/index.txt', 'page | width | tiles | overflow | axe | console\n' + index.join('\n') + '\n');
+fs.writeFileSync(`${OUT}/index.txt`, 'page | width | tiles | overflow | axe | console\n' + index.join('\n') + '\n');
 console.log(index.join('\n'));
 process.exit(bad ? 1 : 0);

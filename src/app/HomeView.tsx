@@ -312,7 +312,8 @@ function QuickPick() {
               className="group flex items-center gap-3 rounded-xl border border-transparent p-2 transition-colors hover:border-line hover:bg-surface-2"
             >
               <span className="w-5 text-center text-[13px] font-semibold text-faint tnum">{i + 1}</span>
-              <span className="h-12 w-20 shrink-0">
+              {/* hidden on phones so the bike name is not cut to one word */}
+              <span className="hidden h-12 w-20 shrink-0 sm:block">
                 <BikeArt bike={m.bike} shadow={false} className="h-full w-full" />
               </span>
               <span className="min-w-0 flex-1">

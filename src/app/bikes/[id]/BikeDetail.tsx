@@ -110,7 +110,7 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
             <figure className="relative overflow-hidden rounded-3xl bg-surface-2/70">
               {bike.image && showPhoto ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={bike.image.src} alt={`${fullName(bike)} photo`} className="aspect-[5/3] w-full object-cover animate-fade" loading="eager" fetchPriority="high" />
+                <img src={bike.image.src} alt={`${fullName(bike)} photo`} width={800} height={480} className="aspect-[5/3] w-full object-cover animate-fade" loading="eager" fetchPriority="high" />
               ) : (
                 <div className="p-6 sm:p-10">
                   <BikeArt bike={bike} className="mx-auto w-full max-w-[560px] animate-rise" />

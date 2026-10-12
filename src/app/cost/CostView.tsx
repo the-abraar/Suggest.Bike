@@ -294,7 +294,8 @@ function Cost({ params }: { params: URLSearchParams }) {
                   const diff = cc.perMonth - c.perMonth;
                   return (
                     <button key={b.id} onClick={() => pick(b)} className="flex w-full items-center gap-4 py-3 text-left transition-colors hover:bg-surface-2/50">
-                      <span className="h-10 w-16 shrink-0">
+                      {/* hidden on phones so the bike name is not cut to one letter */}
+                      <span className="hidden h-10 w-16 shrink-0 sm:block">
                         <BikeArt bike={b} shadow={false} className="h-full w-full" />
                       </span>
                       <span className="min-w-0 flex-1 truncate text-[14.5px] font-medium text-ink">{fullName(b)}</span>
@@ -347,7 +348,7 @@ function PayCompare({ price, brta, used }: { price: number; brta: number; used: 
     <div id="pay" className="card scroll-mt-24 p-6">
       <h2 className="text-[17px] font-semibold tracking-tight text-ink">{tx("Cash, card EMI or loan", "নগদ, কার্ড কিস্তি না লোন")}</h2>
       <div className="mt-4 overflow-x-auto" tabIndex={0} role="region" aria-label={tx("Payment options table", "পেমেন্টের বিকল্পের টেবিল")}>
-        <table className="w-full min-w-[420px] text-left text-[14px] tnum">
+        <table className="w-full min-w-[420px] text-left text-[14px] tnum [&_tr>*:not(:last-child)]:pr-3">
           <thead className="text-[12.5px] text-muted">
             <tr>
               <th className="py-2 font-medium" scope="col">{tx("Way to pay", "কীভাবে")}</th>
