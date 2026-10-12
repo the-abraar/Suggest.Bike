@@ -105,3 +105,9 @@ The owner said "make the decisions and keep building". Each is reversible via gi
 ### Round 1 (2026-10-13, started)
 
 Planned, in parallel worktrees: (A) matcher logic, (B) cut bloat, (C) data and gates, (E) trust and purchase journey (method page, dealers, feedback, owner reports, analytics hooks). Round 2: (D) Bangla routes, OG images, JSON-LD Offer, and a real-browser QA pass with page-weight numbers.
+
+#### Round 1, B: cut bloat (merged `6c51f78`)
+- Deleted `/labs` (hub, check, finder, listing-check, negotiate) and their libs/data/tests, the `finder/` worker and its nightly workflow, `prototypes/`, `/fund` (loader, poster, `src/components/fund/`), the Experimental badges, and the mic/finder text and 65-day retention line in privacy.
+- `/cost#pay` now has a compact cash vs 0% card EMI (12 mo) vs loan (14%, 24 mo, 30% down) table; `fund.ts` keeps only `loanEmi` and `payPaths` (tested).
+- Compare: no crowns or "wins most"; measured rows get ↓/↑ markers; editorial rows show values only, with a link to `/method`; four score-only verdicts were removed.
+- `src/` went from 11,929 to 5,991 LOC. `check.sh` passed in the agent's worktree (15 tests, 246 pages). Not browser-checked. `check.yml` still sets up Python (unused).
