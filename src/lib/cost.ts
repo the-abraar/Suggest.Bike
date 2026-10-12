@@ -101,7 +101,9 @@ export function ownershipCost(b: CostBike, inp: CostInput) {
   const hiddenRepairs = buyingUsed ? price * hiddenRepairRate(b) : 0;
 
   const km = inp.kmPerDay * 365 * inp.years;
-  const fuel = (km / avgMileage(b)) * inp.fuelPrice;
+  // EVs: build-data derives their mileage as a petrol-cost equivalent at the current octane price, so the octane slider must not move it.
+  const ev = b.engine.fuel === "electric";
+  const fuel = (km / avgMileage(b)) * (ev ? FUEL.octane : inp.fuelPrice);
 
   const months = inp.years * 12;
   const W = WEAR_KM;
@@ -113,11 +115,12 @@ export function ownershipCost(b: CostBike, inp: CostInput) {
   const part = (needle: string) => b.parts.find((p) => p.name.toLowerCase().includes(needle))?.priceBDT;
   const pad = part("brake") ?? 600;
   const brakes = (km / W.frontPads) * pad + (km / W.rearPads) * (b.brakes.rear === "disc" ? pad : pad * 0.6);
-  const chain = (km / W.chain) * (part("chain") ?? 2500) + (b.gears > 0 ? (km / 1000) * W.chainLubePer1000 : 0);
+  // EVs (hub-motor): no chain, clutch, air filter, spark plug or 12 V battery. shortcut: traction-battery wear is not modelled; add it once a BD replacement price is sourced.
+  const chain = ev ? 0 : (km / W.chain) * (part("chain") ?? 2500) + (b.gears > 0 ? (km / 1000) * W.chainLubePer1000 : 0);
   const tyres = (km / W.tyres) * (b.tyrePairBDT ?? TYRE_PAIR[b.category]);
-  const clutch = (km / W.clutch) * (part("clutch") ?? 1800);
-  const filters = (km / W.airFilter) * (part("air filter") ?? 600) + (km / W.sparkPlug) * SPARK_PLUG(b.engine.cc);
-  const battery = (months / W.batteryMonths) * BATTERY(b.engine.cc);
+  const clutch = ev ? 0 : (km / W.clutch) * (part("clutch") ?? 1800);
+  const filters = ev ? 0 : (km / W.airFilter) * (part("air filter") ?? 600) + (km / W.sparkPlug) * SPARK_PLUG(b.engine.cc);
+  const battery = ev ? 0 : (months / W.batteryMonths) * BATTERY(b.engine.cc);
   const wear = brakes + chain + tyres + clutch + filters + battery;
   const upkeep = inp.upkeepPerMonth * months;
 

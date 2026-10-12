@@ -763,6 +763,19 @@
   "unit": "টাকা প্রতি লিটার",
   "asOf": "2026-10-01",
   "effectiveFrom": "2026-09-20",
+  "electricity": {
+   "tkPerKWh": 9.1,
+   "unit": "টাকা প্রতি kWh",
+   "slab": "আবাসিক মাসে 201-300 ইউনিট (বাসায় EV চার্জের বাড়তি ইউনিট সাধারণত এই ধাপে পড়ে)",
+   "asOf": "2026-10-13",
+   "effectiveFrom": "2026-06",
+   "note": "জুন 2026-এর বিল থেকে BERC-এর আবাসিক খুচরা দাম: 76-200 ইউনিট ৳8.50, 201-300 ৳9.10, 301-400 ৳9.62, 401-600 ৳15.01, 600-এর বেশি ৳17.35। 4 জুন 2026-এ শুধু লাইফলাইন (৳4.63) ও 0-75 ইউনিট (৳5.26) আগের দামে ফেরানো হয়। আগস্ট 2026-এর পাইকারি দাম কমানোয় খুচরা দাম বদলায়নি। EV-র খরচে চার্জিং লসের জন্য 15% যোগ করা হয়েছে (অনুমান)।",
+   "sources": [
+    { "title": "Bangladesh hikes retail electricity price (slab table)", "url": "https://bdnews24.com/economy/9efadd3c57ad", "publisher": "bdnews24.com", "date": "2026-06-03" },
+    { "title": "BERC withdraws excess power tariff for up to 75 units", "url": "https://www.dhakatribune.com/bangladesh/power-energy/411765/berc-withdraws-excess-power-tariff-for-up-to-75", "publisher": "Dhaka Tribune", "date": "2026-06-04" },
+    { "title": "Wholesale power price cut; retail rates unchanged", "url": "https://observerbd.com/news/589536", "publisher": "The Daily Observer", "date": "2026-08-23" }
+   ]
+  },
   "note": "অক্টোবর 2026-এ দাম 20 সেপ্টেম্বর 2026-এর সমন্বয়ের মতোই আছে, তখন সব জ্বালানির দাম লিটারে ৳20 বাড়ানো হয়েছিল। জ্বালানি ও খনিজ সম্পদ বিভাগ প্রতি মাসে দাম পর্যালোচনা করে (2024 সালে স্বয়ংক্রিয় ফর্মুলাভিত্তিক দাম চালু হয়), তবে অক্টোবরের সিদ্ধান্তে বলা হয়েছে 'উপযুক্ত কর্তৃপক্ষের অনুমোদনক্রমে অপরিবর্তিত রাখা হলো'। ইউএনবি জানিয়েছে, জানুয়ারি থেকে সেপ্টেম্বর 2026-এর মধ্যে দাম প্রায় 36% পর্যন্ত বেড়েছে।",
   "source": {
    "title": "Fuel prices unchanged for October",

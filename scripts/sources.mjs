@@ -31,6 +31,11 @@ Object.entries(counts)
   .sort((a, b) => b[1] - a[1])
   .forEach(([h, n]) => out.push(`| ${h} | ${n} |`));
 out.push("");
+// Where the headline price itself comes from (one per bike).
+const primary = {};
+for (const b of bikes) primary[host(b.priceSource)] = (primary[host(b.priceSource)] ?? 0) + 1;
+out.push("**Primary price source** (the `priceSource` of each bike): " +
+  Object.entries(primary).sort((a, b) => b[1] - a[1]).map(([h, n]) => `${h} ${n} (${Math.round((100 * n) / bikes.length)}%)`).join(", ") + ".", "");
 
 // Per bike
 out.push("## Bike data — per bike", "");
@@ -64,7 +69,7 @@ if (Object.keys(networks).length) {
 
 // Guide
 out.push("## Buyer's guide (BRTA, licence, fuel, laws)", "", `Compiled ${guide.meta.compiledOn}. ${guide.meta.disclaimer}`, "");
-for (const s of Object.values(guide.meta.sourceIndex)) {
+for (const s of [...Object.values(guide.meta.sourceIndex), ...(guide.fuel.electricity?.sources ?? [])]) {
   out.push(`- ${s.title} — ${s.publisher ?? ""}${s.date ? `, ${s.date}` : ""}  \n  ${s.url}`);
 }
 out.push("");

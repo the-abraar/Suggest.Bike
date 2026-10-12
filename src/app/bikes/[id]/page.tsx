@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { fullName, formatBDT, ccLabel } from "@/lib/bikes";
+import { fullName, formatBDT, ccLabel, mileageText } from "@/lib/bikes";
 import { ALL_IDS, getFullBike } from "@/lib/bikes.server";
 import { SITE } from "@/lib/site";
 import { BikeDetail } from "./BikeDetail";
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const b = getFullBike(id);
   if (!b) return {};
   const title = `${fullName(b)} price in Bangladesh, real mileage & review`;
-  const description = `${fullName(b)} (${ccLabel(b)}) costs ${formatBDT(b.priceBDT)} in Bangladesh. Real-world ${b.mileageKmpl[0]}–${b.mileageKmpl[1]} kmpl, parts prices, mechanic familiarity and true monthly cost. ${b.tagline}`;
+  const description = `${fullName(b)} (${ccLabel(b)}) costs ${formatBDT(b.priceBDT)} in Bangladesh. Real-world ${mileageText(b)}, parts prices, mechanic familiarity and true monthly cost. ${b.tagline}`;
   return { title, description, alternates: { canonical: `/bikes/${b.id}/`, languages: { en: `/bikes/${b.id}/`, bn: `/bn/bikes/${b.id}/`, "x-default": `/bikes/${b.id}/` } }, openGraph: { title, description } };
 }
 
