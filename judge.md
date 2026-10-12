@@ -252,3 +252,12 @@ Fix blockers 1 to 4 below, hide the finder, and the site can soft-launch in abou
 6. **Code or content:** a second source for the 23 single-source bikes; extend `validate-data.mjs` to fail on outliers needing a note.
 7. **Decide:** a business model (affiliate, listings, ads) and whether to keep the finder at all.
 8. **Soft launch:** after steps 1-4, launch to a small audience, watch what people use, then fix data where users look.
+
+### Update 9 (2026-10-12, stopped at the 70% usage ceiling)
+
+**Done this round:** retro guardrails (`scripts/check.sh`, pre-commit hook `.githooks/pre-commit`, CI workflow, `AGENTS.md`, `CODING_STANDARDS.md`); orphaned worktrees removed (Suggest.Bike); all work committed and pushed to `origin/main`. Usage mirror `../usage.md` is live (status line writes the 5-hour and 7-day percentages); read it before starting a round.
+
+**I was in the middle of:** nothing half-done. The last action was this log. No uncommitted work remains apart from this file.
+
+**Not verified:** the GitHub CI workflows have never run; the pre-commit hook has never blocked a real commit; no real-device, real-user or real-host testing.
+**Next, first:** `zontes-zt155-u` re-source (deploy workflow gates on `npm run validate`, so pushes to `main` will fail that gate until fixed); DNS; lawyer review; then the other items in Update 8.
