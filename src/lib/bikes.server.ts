@@ -1,5 +1,5 @@
 import "server-only";
-import raw from "@/data/bikes.json";
+import raw from "@/data/generated/bikes.full.json"; // EV mileage/tank derived by scripts/build-data.mjs
 import type { Bike } from "./types";
 
 /** Full records, including long-form text and Bangla. Only for server components (rendered at build time). */

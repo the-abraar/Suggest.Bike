@@ -62,7 +62,18 @@ export function BikeDetail({ bike }: { bike: Bike }) {
   const reportBody = `Bike: ${fullName(bike)} (${bike.id})\nPage: ${SITE.url}/bikes/${bike.id}/\nPrice on Suggest.Bike: ${formatBDT(bike.priceBDT)} (checked ${bike.priceAsOf})\n\nWhat's wrong / correct value:\n\nWhere you saw it (showroom, link):\n`;
   const reportTitle = `Price/spec correction: ${fullName(bike)}`;
     const reportHref = `mailto:${SITE.contactEmail}?subject=${encodeURIComponent(reportTitle)}&body=${encodeURIComponent(reportBody)}`;
-  const keySpecs: [string, string, string?][] = [
+  const ev = bike.ev;
+  const braking: [string, string] = [tx("Braking", "ব্রেকিং"), bike.brakes.abs === "none" ? tx("No ABS", "ABS নেই") : bike.brakes.abs === "cbs" ? "CBS" : bike.brakes.abs === "dual" ? tx("2-ch ABS", "২-চ্যানেল ABS") : tx("1-ch ABS", "১-চ্যানেল ABS")];
+  const keySpecs: [string, string, string?][] = ev ? [
+    [tx("Real range (estimate)", "আসল রেঞ্জ (অনুমান)"), `${ev.realRangeKm[0]}–${ev.realRangeKm[1]}`, "km"],
+    [tx("Motor", "মোটর"), `${ev.motorW / 1000}`, "kW"],
+    [tx("Battery", "ব্যাটারি"), `${ev.batteryKWh}`, "kWh"],
+    [tx("Charge time", "চার্জ সময়"), `${ev.chargeHours}`, tx("h", "ঘণ্টা")],
+    [tx("Weight", "ওজন"), `${bike.weightKg}`, "kg"],
+    [tx("Seat height", "সিটের উচ্চতা"), `${bike.seatHeightMm}`, "mm"],
+    [tx("Top speed", "সর্বোচ্চ গতি"), `${bike.topSpeedKmh ?? "?"}`, "km/h"],
+    braking,
+  ] : [
     [tx("Real mileage (estimate)", "আসল মাইলেজ (অনুমান)"), `${bike.mileageKmpl[0]}–${bike.mileageKmpl[1]}`, "kmpl"],
     [tx("Engine", "ইঞ্জিন"), `${Math.round(bike.engine.cc)}`, "cc"],
     [tx("Power", "পাওয়ার"), `${bike.powerPS}`, "PS"],
@@ -70,7 +81,7 @@ export function BikeDetail({ bike }: { bike: Bike }) {
     [tx("Weight", "ওজন"), `${bike.weightKg}`, "kg"],
     [tx("Seat height", "সিটের উচ্চতা"), `${bike.seatHeightMm}`, "mm"],
     [tx("Fuel tank", "ফুয়েল ট্যাংক"), `${bike.fuelTankL}`, "L"],
-    [tx("Braking", "ব্রেকিং"), bike.brakes.abs === "none" ? tx("No ABS", "ABS নেই") : bike.brakes.abs === "cbs" ? "CBS" : bike.brakes.abs === "dual" ? tx("2-ch ABS", "২-চ্যানেল ABS") : tx("1-ch ABS", "১-চ্যানেল ABS")],
+    braking,
   ];
 
   return (
@@ -167,6 +178,26 @@ export function BikeDetail({ bike }: { bike: Bike }) {
                 </Link>
               </p>
               {txt.priceNote && <p className="mt-2 text-[13.5px] leading-relaxed text-muted">{txt.priceNote}</p>}
+              {bike.variants && bike.variants.length > 0 && (
+                <table className="mt-3 w-full max-w-md text-[13px]">
+                  <caption className="mb-1 text-left text-[12px] font-medium text-muted">{tx("Variants and prices", "ভ্যারিয়েন্ট ও দাম")}</caption>
+                  <tbody>
+                    {bike.variants.map((v) => (
+                      <tr key={v.name} className="border-t border-line">
+                        <th scope="row" className="py-1.5 pr-3 text-left font-normal text-ink-2">
+                          {v.name}
+                          {v.abs && v.abs !== "none" && <span className="ml-1.5 text-[11.5px] text-muted">{absLabel({ brakes: { ...bike.brakes, abs: v.abs } }, lang)}</span>}
+                        </th>
+                        <td className="py-1.5 text-right font-semibold text-ink tnum">
+                          <a href={v.priceSource} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                            {formatBDT(v.priceBDT)}
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
               <p className="mt-2 text-[12px] text-faint">
                 {bike.priceSource.startsWith("http") && (
                   <a href={bike.priceSource} target="_blank" rel="noopener noreferrer" className="underline decoration-line-strong underline-offset-2 hover:text-ink">
@@ -473,7 +504,22 @@ function SpecTable({ bike }: { bike: Bike }) {
   const { lang } = useLang();
   const tx = useTx();
   const e = bike.engine;
-  const rows: [string, string | undefined][] = [
+  const ev = bike.ev;
+  const rows: [string, string | undefined][] = ev ? [
+    [tx("Motor", "মোটর"), tx(`${ev.motorW} W rated${ev.peakMotorW ? `, ${ev.peakMotorW} W peak` : ""}`, `${ev.motorW} W রেটেড${ev.peakMotorW ? `, ${ev.peakMotorW} W পিক` : ""}`)],
+    [tx("Battery", "ব্যাটারি"), `${ev.battery} (${ev.batteryKWh} kWh)`],
+    [tx("Claimed range", "দাবি করা রেঞ্জ"), `${ev.rangeKm} km`],
+    [tx("Real range (estimate)", "আসল রেঞ্জ (অনুমান)"), `${ev.realRangeKm[0]}–${ev.realRangeKm[1]} km`],
+    [tx("Charge time", "চার্জ সময়"), tx(`${ev.chargeHours} hours`, `${ev.chargeHours} ঘণ্টা`)],
+    [tx("Max torque", "সর্বোচ্চ টর্ক"), `${bike.torqueNm} Nm`],
+    [tx("Top speed", "সর্বোচ্চ গতি"), bike.topSpeedKmh ? `${bike.topSpeedKmh} km/h` : undefined],
+    [tx("Kerb weight", "কার্ব ওজন"), `${bike.weightKg} kg`],
+    [tx("Seat height", "সিটের উচ্চতা"), `${bike.seatHeightMm} mm`],
+    [tx("Ground clearance", "গ্রাউন্ড ক্লিয়ারেন্স"), bike.groundClearanceMm ? `${bike.groundClearanceMm} mm` : undefined],
+    [tx("Brakes", "ব্রেক"), `${brakeLabel(bike, lang)} · ${absLabel(bike, lang)}`],
+    [tx("Tyres", "টায়ার"), bike.tyres ? `${bike.tyres.front} / ${bike.tyres.rear}, ${bike.tubeless ? tx("tubeless", "টিউবলেস") : tx("tube-type", "টিউব")}` : undefined],
+    [tx("Distributor", "ডিস্ট্রিবিউটর"), bike.distributor],
+  ] : [
     [tx("Engine", "ইঞ্জিন"), `${e.cc}cc, ${e.cylinders}-cylinder, ${e.stroke}-stroke${e.valves ? `, ${e.valves}-valve` : ""}`],
     [tx("Cooling", "কুলিং"), lang === "bn" ? { air: "এয়ার-কুলড", oil: "অয়েল-কুলড", liquid: "লিকুইড-কুলড" }[e.cooling] : { air: "Air-cooled", oil: "Oil-cooled", liquid: "Liquid-cooled" }[e.cooling]],
     [tx("Fuel system", "ফুয়েল সিস্টেম"), e.fuel === "fi" ? tx("Fuel injection", "ফুয়েল ইনজেকশন") : tx("Carburettor", "কার্বুরেটর")],

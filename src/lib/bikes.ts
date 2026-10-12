@@ -96,7 +96,11 @@ export function networkReach(brand: string) {
 /** Brands whose every model is used-only (e.g. "Hero Honda") get a "(used)" suffix in filters. */
 export const brandLabel = (brand: string) => (BIKES.filter((b) => b.brand === brand).every((b) => b.status === "used-only") ? `${brand} (used)` : brand);
 
-export const ccLabel = (b: Pick<BikeLite, "engine">) => `${Math.round(b.engine.cc)}cc`;
+export const isEv = (b: Pick<BikeLite, "engine">) => b.engine.fuel === "electric";
+/** "40–45 kmpl", or for EVs the real range per charge (their mileageKmpl is a derived petrol-cost equivalent, not for display). */
+export const mileageText = (b: Pick<BikeLite, "engine" | "mileageKmpl" | "ev">) =>
+  b.ev ? `${b.ev.realRangeKm[0]}–${b.ev.realRangeKm[1]} km/charge` : `${b.mileageKmpl[0]}–${b.mileageKmpl[1]} kmpl`;
+export const ccLabel =(b: Pick<BikeLite, "engine">) => (isEv(b) ? "Electric" : `${Math.round(b.engine.cc)}cc`);
 
 /** One overall number used for sorting "best rated". */
 export function overall(b: BikeLite) {
@@ -118,7 +122,8 @@ export function similarBikes(b: Pick<BikeLite, "id" | "priceBDT" | "engine" | "c
   return BIKES.filter((x) => x.id !== b.id)
     .map((x) => {
       const priceGap = Math.abs(Math.log(x.priceBDT / b.priceBDT));
-      const ccGap = Math.abs(Math.log(x.engine.cc / b.engine.cc));
+      // EVs have cc 0: treat them as ~110cc scooters so the log stays finite.
+      const ccGap = Math.abs(Math.log((x.engine.cc || 110) / (b.engine.cc || 110)));
       const cat = x.category === b.category ? 0 : 0.35;
       return { x, d: priceGap * 1.2 + ccGap + cat + (x.status !== b.status ? 0.3 : 0) };
     })

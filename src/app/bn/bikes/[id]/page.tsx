@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const b = getFullBike(id);
   if (!b) return {};
   const title = `${fullName(b)} বাংলাদেশে দাম, আসল মাইলেজ ও রিভিউ`;
-  const description = `${fullName(b)}-এর দাম ${formatBDT(b.priceBDT)}। আসল মাইলেজ ${b.mileageKmpl[0]}–${b.mileageKmpl[1]} কিমি/লি, পার্টসের দাম, মিস্ত্রির মতামত ও মাসিক খরচ।`;
+  const description = `${fullName(b)}-এর দাম ${formatBDT(b.priceBDT)}। ${b.ev ? `আসল রেঞ্জ ${b.ev.realRangeKm[0]}–${b.ev.realRangeKm[1]} কিমি/চার্জ` : `আসল মাইলেজ ${b.mileageKmpl[0]}–${b.mileageKmpl[1]} কিমি/লি`},পার্টসের দাম, মিস্ত্রির মতামত ও মাসিক খরচ।`;
   return {
     title,
     description,

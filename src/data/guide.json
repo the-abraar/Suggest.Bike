@@ -763,6 +763,19 @@
   "unit": "BDT per litre",
   "asOf": "2026-10-01",
   "effectiveFrom": "2026-09-20",
+  "electricity": {
+   "tkPerKWh": 9.1,
+   "unit": "BDT per kWh",
+   "slab": "Residential 201-300 units/month (the slab a typical home's extra EV charging lands in)",
+   "asOf": "2026-10-13",
+   "effectiveFrom": "2026-06",
+   "note": "BERC residential retail tariff from the June 2026 bill: 76-200 units Tk 8.50, 201-300 Tk 9.10, 301-400 Tk 9.62, 401-600 Tk 15.01, above 600 Tk 17.35. The 4 June 2026 rollback restored only the lifeline (Tk 4.63) and 0-75 unit (Tk 5.26) slabs. The August 2026 wholesale cut left retail rates unchanged. EV running cost adds 15% for charging losses (estimate).",
+   "sources": [
+    { "title": "Bangladesh hikes retail electricity price (slab table)", "url": "https://bdnews24.com/economy/9efadd3c57ad", "publisher": "bdnews24.com", "date": "2026-06-03" },
+    { "title": "BERC withdraws excess power tariff for up to 75 units", "url": "https://www.dhakatribune.com/bangladesh/power-energy/411765/berc-withdraws-excess-power-tariff-for-up-to-75", "publisher": "Dhaka Tribune", "date": "2026-06-04" },
+    { "title": "Wholesale power price cut; retail rates unchanged", "url": "https://observerbd.com/news/589536", "publisher": "The Daily Observer", "date": "2026-08-23" }
+   ]
+  },
   "note": "October 2026 prices unchanged from the 20 Sep 2026 revision, when every fuel was raised by Tk 20/litre. Prices are reviewed monthly by the Energy and Mineral Resources Division (automatic formula-based pricing introduced 2024), but the October decision was announced as 'retained with approval of the appropriate authority'. UNB reports prices rose up to ~36% between Jan and Sep 2026.",
   "source": {
    "title": "Fuel prices unchanged for October",

@@ -20,20 +20,23 @@ export interface Bike {
   status: "on-sale" | "used-only";   // used-only = discontinued, bought on used market (CG125, RX100)
   priceBDT: number;         // current official ex-showroom price in BD (Taka). For used-only: typical used market price for decent condition.
   priceNote?: string;       // e.g. "Single-channel ABS variant ৳2,99,000"
-  priceAsOf: string;        // "2026-09" — month of the source you found
+  outlierNote?: string;     // why the price is >40% from its category median (checked against a second source); validate gate
+  priceAsOf: string;       // "2026-09" — month of the source you found
   priceSource: string;      // URL where you saw the price (official site, bikebd.com, bikevaly.com etc.). Never invent.
   distributor?: string;     // BD distributor/assembler e.g. "Uttara Motors", "ACI Motors", "Bangladesh Honda Private Ltd (BHL)"
   assembledInBD?: boolean;
-  engine: { cc: number; cylinders: number; stroke: 2 | 4; cooling: "air" | "oil" | "liquid"; valves?: number; fuel: "carb" | "fi" };
+  engine: { cc: number; cylinders: number; stroke: 0 | 2 | 4; cooling: "air" | "oil" | "liquid"; valves?: number; fuel: "carb" | "fi" | "electric" }; // electric: cc, cylinders, stroke are 0
+  ev?: EvSpec;              // required when engine.fuel is "electric"
+  variants?: Variant[];     // other BD variants with a different verified price (ABS/non-ABS, disc/drum, carb/FI)
   powerPS: number; powerRpm?: number;
   torqueNm: number; torqueRpm?: number;
   gears: number;            // 0 for CVT scooters
   topSpeedKmh?: number;
-  mileageKmpl: [number, number]; // REAL-WORLD BD range as reported by owners/test reviews (not claimed), e.g. [40, 45]
+  mileageKmpl: [number, number]; // REAL-WORLD BD range as reported by owners/test reviews (not claimed), e.g. [40, 45]. EVs: omit in bikes.json; build-data derives a petrol-cost equivalent
   weightKg: number;         // kerb weight
   seatHeightMm: number;
   groundClearanceMm?: number;
-  fuelTankL: number;
+  fuelTankL: number;        // EVs: omit in bikes.json; build-data derives it so tank x mileage = real range
   brakes: { front: "disc" | "drum"; rear: "disc" | "drum"; abs: "none" | "single" | "dual" | "cbs" };
   tubeless: boolean;
   tyres?: { front: string; rear: string };  // "100/80-17"
@@ -65,6 +68,11 @@ export interface Bike {
   image?: BikeImage;        // freely licensed photo (Wikimedia Commons), shown with credit
 }
 
+/** Electric two-wheelers. Claimed figures come from the cited source; realRangeKm is an editorial estimate. */
+export interface EvSpec { motorW: number; peakMotorW?: number; batteryKWh: number; battery: string; rangeKm: number; realRangeKm: [number, number]; chargeHours: number }
+
+export interface Variant { name: string; priceBDT: number; abs?: "none" | "single" | "dual" | "cbs"; frontDisc?: boolean; rearDisc?: boolean; priceSource: string }
+
 export interface BikeBn {
   tagline: string;
   feel: string;
@@ -90,7 +98,7 @@ export type ScoreKey = keyof Bike["scores"];
  */
 export type BikeLite = Omit<
   Bike,
-  "feel" | "quirks" | "braking" | "mechanicNote" | "pros" | "cons" | "bestFor" | "sources" | "priceNote" | "priceSource" | "tyres" | "suspension" | "bn" | "parts"
+  "feel" | "quirks" | "braking" | "mechanicNote" | "pros" | "cons" | "bestFor" | "sources" | "priceNote" | "priceSource" | "tyres" | "suspension" | "bn" | "parts" | "variants" | "outlierNote"
 > & {
   taglineBn?: string;
   parts: Pick<Part, "name" | "priceBDT" | "availability">[];

@@ -15,10 +15,28 @@ for (const b of bikes) {
   if (!CATS.includes(b.category)) e(`bad category ${b.category}`);
   if (!["on-sale", "used-only"].includes(b.status)) e("bad status");
   if (!Number.isFinite(b.priceBDT) || b.priceBDT < 20000 || b.priceBDT > 3000000) e(`implausible price ${b.priceBDT}`);
-  if (!(b.engine?.cc > 40 && b.engine.cc < 1000)) e("bad cc");
-  for (const k of ["powerPS", "torqueNm", "weightKg", "seatHeightMm", "fuelTankL", "serviceIntervalKm", "avgServiceCostBDT"])
+  const isEv = b.engine?.fuel === "electric";
+  if (isEv) {
+    // EVs: no cc, kmpl or tank in the data (build-data derives a petrol-cost equivalent); the ev block must be complete.
+    if (b.engine.cc !== 0 || "mileageKmpl" in b || "fuelTankL" in b) e("electric: engine.cc must be 0 and mileageKmpl/fuelTankL omitted");
+    const v = b.ev ?? {};
+    for (const k of ["motorW", "batteryKWh", "rangeKm", "chargeHours"]) if (!(typeof v[k] === "number" && v[k] > 0)) e(`electric: missing ev.${k}`);
+    if (!(typeof v.battery === "string" && v.battery.length > 3)) e("electric: missing ev.battery");
+    if (!(Array.isArray(v.realRangeKm) && v.realRangeKm[0] > 0 && v.realRangeKm[1] >= v.realRangeKm[0] && v.realRangeKm[1] <= v.rangeKm)) e("electric: bad ev.realRangeKm (must not exceed claimed rangeKm)");
+  } else {
+    if (!(b.engine?.cc > 40 && b.engine.cc < 1000)) e("bad cc");
+    if (!["carb", "fi"].includes(b.engine?.fuel)) e(`bad engine.fuel ${b.engine?.fuel}`);
+    if (b.ev) e("ev block on a non-electric bike");
+    if (!(Array.isArray(b.mileageKmpl) && b.mileageKmpl[0] > 10 && b.mileageKmpl[1] >= b.mileageKmpl[0] && b.mileageKmpl[1] < 110)) e("bad mileage");
+  }
+  for (const k of ["powerPS", "torqueNm", "weightKg", "seatHeightMm", ...(isEv ? [] : ["fuelTankL"]), "serviceIntervalKm", "avgServiceCostBDT"])
     if (!(typeof b[k] === "number" && b[k] > 0)) e(`missing ${k}`);
-  if (!(Array.isArray(b.mileageKmpl) && b.mileageKmpl[0] > 10 && b.mileageKmpl[1] >= b.mileageKmpl[0] && b.mileageKmpl[1] < 110)) e("bad mileage");
+  for (const v of b.variants ?? []) {
+    if (!(typeof v.name === "string" && v.name.length > 1)) e("variant without name");
+    if (!(Number.isFinite(v.priceBDT) && v.priceBDT > 20000 && Math.abs(v.priceBDT - b.priceBDT) / b.priceBDT < 0.5)) e(`variant ${v.name}: implausible price ${v.priceBDT}`);
+    if (v.abs !== undefined && !["none", "single", "dual", "cbs"].includes(v.abs)) e(`variant ${v.name}: bad abs`);
+    try { new URL(v.priceSource); } catch { e(`variant ${v.name}: bad priceSource`); }
+  }
   for (const s of SCORES) if (!Number.isInteger(b.scores?.[s]) || b.scores[s] < 1 || b.scores[s] > 10) e(`bad score ${s}`);
   for (const k of ["tagline", "feel", "quirks", "braking", "mechanicNote"]) if (typeof b[k] !== "string" || b[k].length < 10) e(`thin ${k}`);
   for (const k of ["pros", "cons", "bestFor", "parts", "sources"]) if (!Array.isArray(b[k]) || !b[k].length) e(`empty ${k}`);
@@ -40,9 +58,19 @@ const med = {};
 for (const c of CATS) { const p = bikes.filter((b) => b.category === c).map((b) => b.priceBDT); if (p.length) med[c] = median(p); }
 for (const b of bikes) {
   const dev = (b.priceBDT - med[b.category]) / med[b.category];
-  if (Math.abs(dev) > 0.4 && !(typeof b.priceNote === "string" && b.priceNote.length >= 20))
-    errors.push(`${b.id}: price ${Math.round(dev * 100)}% from ${b.category} median but priceNote is missing; explain it in priceNote`);
+  const why = b.outlierNote ?? b.priceNote;
+  if (Math.abs(dev) > 0.4 && !(typeof why === "string" && why.length >= 40))
+    errors.push(`${b.id}: price ${Math.round(dev * 100)}% from ${b.category} median with no explanation; say why in outlierNote (or priceNote), after checking a second source`);
 }
+// Fuel price: the cost page multiplies by it, so a stale figure skews every running cost. Same for the electricity tariff (EVs).
+const guide = JSON.parse(readFileSync(new URL("../src/data/guide.json", import.meta.url)));
+const FUEL_DAYS = +(process.env.FUEL_FAIL_DAYS ?? 45);
+for (const [name, asOf] of [["fuel", guide.fuel?.asOf], ["electricity tariff", guide.fuel?.electricity?.asOf]]) {
+  const age = Math.floor((Date.now() - Date.parse(asOf)) / 864e5);
+  if (!(age >= -1)) /* -1: asOf is a Bangladesh date, the clock may be UTC */ errors.push(`guide.json ${name}: bad asOf ${asOf}`);
+  else if (age > FUEL_DAYS) errors.push(`guide.json ${name}: asOf ${asOf} is ${age}d old (fail >${FUEL_DAYS}d); re-check the official price and update the value and asOf`);
+}
+if (!(guide.fuel?.electricity?.tkPerKWh > 0)) errors.push("guide.json fuel.electricity.tkPerKWh missing (EV running cost)");
 for (const [d, n] of Object.entries(domains))
   if (n / bikes.length > 0.5) warnings.push(`source concentration: ${d} supplies ${n}/${bikes.length} (${Math.round((100 * n) / bikes.length)}%) of price sources`);
 warnings.forEach((w) => console.log("WARN", w));

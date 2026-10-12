@@ -20,7 +20,7 @@ export function CostView() {
 }
 
 const SEGMENTS = [
-  { k: "fuel", en: "Fuel", bn: "তেল", color: "var(--brand)" },
+  { k: "fuel", en: "Fuel or electricity", bn: "তেল বা বিদ্যুৎ", color: "var(--brand)" },
   { k: "service", en: "Servicing", bn: "সার্ভিসিং", color: "#4f8fd6" },
   { k: "wear", en: "Wear parts", bn: "ক্ষয়যোগ্য পার্টস", color: "#d99a2b" },
   { k: "upkeep", en: "Washing & parking", bn: "ধোয়া ও পার্কিং", color: "#c46f9e" },

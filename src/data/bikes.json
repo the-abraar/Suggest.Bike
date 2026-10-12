@@ -8,8 +8,8 @@
   "status": "on-sale",
   "priceBDT": 134350,
   "priceNote": "Platina 110 H-Gear also sold (around ৳1,40,000).",
-  "priceAsOf": "2026-09",
-  "priceSource": "https://www.bikebd.com/price/bajaj-platina-es",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://www.bajajauto.com/en-bd/bikes/platina-100-es",
   "distributor": "Uttara Motors Ltd",
   "assembledInBD": true,
   "engine": {
@@ -114,6 +114,7 @@
    }
   ],
   "sources": [
+   "https://www.bajajauto.com/en-bd/bikes/platina-100-es",
    "https://www.bikebd.com/price/bajaj-platina-es",
    "https://www.bikebd.com/brand/bajaj",
    "https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh"
@@ -170,8 +171,8 @@
   "category": "commuter",
   "status": "on-sale",
   "priceBDT": 120100,
-  "priceAsOf": "2026-09",
-  "priceSource": "https://www.bikebd.com/price/bajaj-ct-100-price-in-bangladesh",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://www.bajajauto.com/en-bd/bikes/ct-100-es",
   "distributor": "Uttara Motors Ltd",
   "assembledInBD": true,
   "engine": {
@@ -274,6 +275,7 @@
    }
   ],
   "sources": [
+   "https://www.bajajauto.com/en-bd/bikes/ct-100-es",
    "https://www.bikebd.com/price/bajaj-ct-100-price-in-bangladesh",
    "https://www.bikebd.com/brand/bajaj",
    "https://www.banglamotor.net/bajaj-ct100-es.html"
@@ -335,8 +337,8 @@
   "status": "on-sale",
   "priceBDT": 162000,
   "priceNote": "Discover 110 Disc ৳1,49,600.",
-  "priceAsOf": "2026-09",
-  "priceSource": "https://www.bikebd.com/price/discover-125-price-in-bangladesh",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://www.bajajauto.com/en-bd/bikes/discover-125-disc",
   "distributor": "Uttara Motors Ltd",
   "assembledInBD": true,
   "engine": {
@@ -435,6 +437,7 @@
    }
   ],
   "sources": [
+   "https://www.bajajauto.com/en-bd/bikes/discover-125-disc",
    "https://www.bikebd.com/price/discover-125-price-in-bangladesh",
    "https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh"
   ],
@@ -489,7 +492,21 @@
     "https://bikroy.com/bn/motorcycles-and-scooters/bajaj-discover-125-2025",
     "https://bikroy.com/bn/motorcycles-and-scooters/bajaj-discover-125-2023"
    ]
-  }
+  },
+  "variants": [
+   {
+    "name": "Drum",
+    "priceBDT": 120500,
+    "frontDisc": false,
+    "priceSource": "https://www.bikebd.com/brand/bajaj"
+   },
+   {
+    "name": "Disc",
+    "priceBDT": 162000,
+    "frontDisc": true,
+    "priceSource": "https://www.bajajauto.com/en-bd/bikes/discover-125-disc"
+   }
+  ]
  },
  {
   "id": "bajaj-pulsar-ns125",
@@ -499,7 +516,7 @@
   "status": "on-sale",
   "priceBDT": 169850,
   "priceAsOf": "2026-10",
-  "priceSource": "https://www.bikebd.com/price/bajaj-pulsar-ns-125",
+  "priceSource": "https://www.bajajauto.com/en-bd/bikes/pulsar-ns125",
   "distributor": "Uttara Motors Ltd",
   "assembledInBD": true,
   "engine": {
@@ -603,6 +620,7 @@
    }
   ],
   "sources": [
+   "https://www.bajajauto.com/en-bd/bikes/pulsar-ns125",
    "https://www.bikebd.com/price/bajaj-pulsar-ns-125",
    "https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh",
    "https://www.bajajauto.com/en-bd/blogs/pulsar-ns125-built-for-busy-bangladesh-streets",
@@ -667,7 +685,8 @@
    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "sourcePage": "https://commons.wikimedia.org/wiki/File:Bajaj_pulsar_NS_125.jpg"
   },
-  "priceNote": "Entry 125cc naked bike priced below the naked category median, which is pulled up by 150-250cc imports."
+  "priceNote": "Entry 125cc naked bike priced below the naked category median, which is pulled up by 150-250cc imports.",
+  "outlierNote": "A 125cc naked bike below a naked median pulled up by 155-250cc imports; price confirmed on Bajaj BD's own page (Oct 2026)."
  },
  {
   "id": "bajaj-pulsar-150",
@@ -678,8 +697,8 @@
   "status": "on-sale",
   "priceBDT": 205200,
   "priceNote": "Single Disc ABS ৳2,10,000; Twin Disc ৳2,17,000; Twin Disc ABS ৳2,31,100.",
-  "priceAsOf": "2026-09",
-  "priceSource": "https://www.bikebd.com/price/pulsar-150-price-in-bangladesh",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://www.bajajauto.com/en-bd/bikes/pulsar-150-sd",
   "distributor": "Uttara Motors Ltd",
   "assembledInBD": true,
   "engine": {
@@ -784,6 +803,7 @@
    }
   ],
   "sources": [
+   "https://www.bajajauto.com/en-bd/bikes/pulsar-150-sd",
    "https://www.bikebd.com/price/pulsar-150-price-in-bangladesh",
    "https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh"
   ],
@@ -847,7 +867,41 @@
    "license": "CC0",
    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "sourcePage": "https://commons.wikimedia.org/wiki/File:Bajaj_Pulsar_150_motorcycle_with_a_cat_sitting_on_the_seat_in_2025.02.jpg"
-  }
+  },
+  "variants": [
+   {
+    "name": "Single Disc",
+    "priceBDT": 205200,
+    "abs": "none",
+    "frontDisc": true,
+    "rearDisc": false,
+    "priceSource": "https://www.bajajauto.com/en-bd/bikes/pulsar-150-sd"
+   },
+   {
+    "name": "Single Disc ABS",
+    "priceBDT": 210000,
+    "abs": "single",
+    "frontDisc": true,
+    "rearDisc": false,
+    "priceSource": "https://www.bajajauto.com/en-bd/bikes/pulsar-150-sd-abs"
+   },
+   {
+    "name": "Twin Disc",
+    "priceBDT": 217000,
+    "abs": "none",
+    "frontDisc": true,
+    "rearDisc": true,
+    "priceSource": "https://www.bajajauto.com/en-bd/bikes/pulsar-150-td"
+   },
+   {
+    "name": "Twin Disc ABS",
+    "priceBDT": 231100,
+    "abs": "single",
+    "frontDisc": true,
+    "rearDisc": true,
+    "priceSource": "https://www.bajajauto.com/en-bd/bikes/pulsar-150-td-abs"
+   }
+  ]
  },
  {
   "id": "bajaj-pulsar-n160",
@@ -1015,7 +1069,32 @@
    "sources": [
     "https://bikroy.com/bn/motorcycles-and-scooters/bajaj-pulsar-n160"
    ]
-  }
+  },
+  "variants": [
+   {
+    "name": "Twin Disc (carburettor)",
+    "priceBDT": 242600,
+    "frontDisc": true,
+    "rearDisc": true,
+    "priceSource": "https://www.bajajauto.com/en-bd/bikes/pulsar-n160-td"
+   },
+   {
+    "name": "Fi ABS (Dual Channel)",
+    "priceBDT": 273600,
+    "abs": "dual",
+    "frontDisc": true,
+    "rearDisc": true,
+    "priceSource": "https://www.bikebd.com/brand/bajaj"
+   },
+   {
+    "name": "Dual Channel ABS, gold USD fork",
+    "priceBDT": 288000,
+    "abs": "dual",
+    "frontDisc": true,
+    "rearDisc": true,
+    "priceSource": "https://www.bikebd.com/brand/bajaj"
+   }
+  ]
  },
  {
   "id": "bajaj-avenger-160",
@@ -2332,7 +2411,28 @@
     "https://bikroy.com/bn/motorcycles-and-scooters/tvs-apache-rtr-160-2v-2025",
     "https://bikroy.com/bn/motorcycles-and-scooters/tvs-apache-rtr-160-2v-2023"
    ]
-  }
+  },
+  "variants": [
+   {
+    "name": "Single Disc",
+    "priceBDT": 189999,
+    "abs": "none",
+    "frontDisc": true,
+    "priceSource": "https://www.bikebd.com/brand/tvs"
+   },
+   {
+    "name": "ABS",
+    "priceBDT": 194999,
+    "abs": "single",
+    "frontDisc": true,
+    "priceSource": "https://www.bikebd.com/brand/tvs"
+   },
+   {
+    "name": "Refresh (X-Connect)",
+    "priceBDT": 199900,
+    "priceSource": "https://www.bikebd.com/price/rtr-160-2v-refresh"
+   }
+  ]
  },
  {
   "id": "tvs-apache-rtr-160-4v",
@@ -2509,7 +2609,34 @@
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
    "sourcePage": "https://commons.wikimedia.org/wiki/File:Apache_RTR_160_4V.jpg"
-  }
+  },
+  "variants": [
+   {
+    "name": "Double Disc",
+    "priceBDT": 214999,
+    "frontDisc": true,
+    "rearDisc": true,
+    "priceSource": "https://www.bikebd.com/brand/tvs"
+   },
+   {
+    "name": "4V (base)",
+    "priceBDT": 219900,
+    "priceSource": "https://www.bikebd.com/brand/tvs"
+   },
+   {
+    "name": "Single Channel ABS",
+    "priceBDT": 247900,
+    "abs": "single",
+    "frontDisc": true,
+    "rearDisc": true,
+    "priceSource": "https://www.bikebd.com/brand/tvs"
+   },
+   {
+    "name": "Fi",
+    "priceBDT": 274900,
+    "priceSource": "https://www.bikebd.com/brand/tvs"
+   }
+  ]
  },
  {
   "id": "tvs-ntorq-125",
@@ -3484,7 +3611,24 @@
    "sources": [
     "https://bikroy.com/bn/motorcycles-and-scooters/hero-hunk-150r"
    ]
-  }
+  },
+  "variants": [
+   {
+    "name": "Dual Disc",
+    "priceBDT": 196000,
+    "abs": "none",
+    "frontDisc": true,
+    "rearDisc": true,
+    "priceSource": "https://www.bikebd.com/brand/hero"
+   },
+   {
+    "name": "Dual Disc ABS",
+    "priceBDT": 207000,
+    "frontDisc": true,
+    "rearDisc": true,
+    "priceSource": "https://www.bikebd.com/brand/hero"
+   }
+  ]
  },
  {
   "id": "hero-thriller-160r-4v",
@@ -4146,7 +4290,7 @@
   "priceBDT": 111000,
   "priceNote": "Shine 100 DX (newer styling, digital meter) ৳1,17,000. Current refreshed model launched by BHL on 16 Nov 2025.",
   "priceAsOf": "2026-10",
-  "priceSource": "https://www.bikebd.com/price/honda-shine-100",
+  "priceSource": "https://www.bdhonda.com/products/shine100",
   "distributor": "Bangladesh Honda Private Limited (BHL)",
   "assembledInBD": true,
   "engine": {
@@ -4246,6 +4390,7 @@
    }
   ],
   "sources": [
+   "https://www.bdhonda.com/products/shine100",
    "https://www.bikebd.com/price/honda-shine-100",
    "https://www.bikebd.com/price/honda-shine-100-dlx",
    "https://bdhonda.com/media-center/pr-details/280"
@@ -4300,7 +4445,7 @@
   "status": "on-sale",
   "priceBDT": 125000,
   "priceAsOf": "2026-10",
-  "priceSource": "https://www.bikebd.com/price/honda-dream-110-price-in-bangladesh",
+  "priceSource": "https://www.bdhonda.com/products/dream110",
   "distributor": "Bangladesh Honda Private Limited (BHL)",
   "assembledInBD": true,
   "engine": {
@@ -4399,6 +4544,7 @@
    }
   ],
   "sources": [
+   "https://www.bdhonda.com/products/dream110",
    "https://www.bikebd.com/price/honda-dream-110-price-in-bangladesh",
    "https://www.bdhonda.com/product/dream-110/index"
   ],
@@ -4454,7 +4600,7 @@
   "priceBDT": 145000,
   "priceNote": "Drum variant also listed by BHL; disc CBS is the common pick.",
   "priceAsOf": "2026-10",
-  "priceSource": "https://www.bikebd.com/price/honda-livo-price-in-bd",
+  "priceSource": "https://www.bdhonda.com/products/livo",
   "distributor": "Bangladesh Honda Private Limited (BHL)",
   "assembledInBD": true,
   "engine": {
@@ -4557,6 +4703,7 @@
    }
   ],
   "sources": [
+   "https://www.bdhonda.com/products/livo",
    "https://www.bikebd.com/price/honda-livo-price-in-bd",
    "https://www.bdhonda.com/product/livo/index"
   ],
@@ -4608,7 +4755,23 @@
    "sources": [
     "https://bikroy.com/bn/motorcycles-and-scooters/honda-livo"
    ]
-  }
+  },
+  "variants": [
+   {
+    "name": "Drum CBS",
+    "priceBDT": 125000,
+    "abs": "cbs",
+    "frontDisc": false,
+    "priceSource": "https://www.bikebd.com/brand/honda"
+   },
+   {
+    "name": "Disc CBS",
+    "priceBDT": 145000,
+    "abs": "cbs",
+    "frontDisc": true,
+    "priceSource": "https://www.bdhonda.com/products/livo"
+   }
+  ]
  },
  {
   "id": "honda-sp125",
@@ -4620,7 +4783,7 @@
   "priceBDT": 167000,
   "priceNote": "Refreshed SP125 introduced Feb 2026; first BHL 125 with PGM-FI (BS-VI) since Nov 2023.",
   "priceAsOf": "2026-10",
-  "priceSource": "https://www.bikebd.com/price/honda-sp125-dlx",
+  "priceSource": "https://www.bdhonda.com/products/sp125",
   "distributor": "Bangladesh Honda Private Limited (BHL)",
   "assembledInBD": true,
   "engine": {
@@ -4723,6 +4886,7 @@
    }
   ],
   "sources": [
+   "https://www.bdhonda.com/products/sp125",
    "https://www.bikebd.com/price/honda-sp125-dlx",
    "https://www.bikebd.com/blog/honda-sp125-mileage-technology",
    "https://www.dhakatribune.com/business/331429/honda-launches-its-first-bs-vi-motorcycle"
@@ -4787,7 +4951,7 @@
   "priceBDT": 225000,
   "priceNote": "Single-disc variant ৳1,99,000 (some dealers quote ৳1,97,000).",
   "priceAsOf": "2026-10",
-  "priceSource": "https://www.bikebd.com/price/honda-sp160",
+  "priceSource": "https://www.bdhonda.com/products/sp160",
   "distributor": "Bangladesh Honda Private Limited (BHL)",
   "assembledInBD": true,
   "engine": {
@@ -4890,6 +5054,7 @@
    }
   ],
   "sources": [
+   "https://www.bdhonda.com/products/sp160",
    "https://www.bikebd.com/price/honda-sp160",
    "https://www.bikebd.com/price/honda-sp160-single-disc",
    "https://www.bikebd.com/blog/honda-sp-160-launched-in-bangladesh",
@@ -4951,7 +5116,24 @@
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
    "sourcePage": "https://commons.wikimedia.org/wiki/File:Honda_SP160.jpg"
-  }
+  },
+  "variants": [
+   {
+    "name": "Single Disc",
+    "priceBDT": 199000,
+    "abs": "none",
+    "frontDisc": true,
+    "rearDisc": false,
+    "priceSource": "https://www.bdhonda.com/products/sp160"
+   },
+   {
+    "name": "Double Disc ABS",
+    "priceBDT": 225000,
+    "frontDisc": true,
+    "rearDisc": true,
+    "priceSource": "https://www.bdhonda.com/products/sp160"
+   }
+  ]
  },
  {
   "id": "honda-x-blade-160",
@@ -4963,7 +5145,7 @@
   "priceBDT": 240000,
   "priceNote": "Listed ৳2,40,000; Oct 2026 'Dey Goal' campaign price ৳2,36,000 and some listings show ৳2,35,000.",
   "priceAsOf": "2026-10",
-  "priceSource": "https://www.bikebd.com/blog/honda-special-world-cup-discounts",
+  "priceSource": "https://www.bdhonda.com/products/xblade",
   "distributor": "Bangladesh Honda Private Limited (BHL)",
   "assembledInBD": true,
   "engine": {
@@ -5066,6 +5248,7 @@
    }
   ],
   "sources": [
+   "https://www.bdhonda.com/products/xblade",
    "https://www.bikebd.com/price/honda-x-blade-160-fi-abs",
    "https://www.bikebd.com/blog/honda-special-world-cup-discounts",
    "https://bdhonda.com/media-center/pr-details/191"
@@ -5130,7 +5313,7 @@
   "priceBDT": 289000,
   "priceNote": "Grey colour ৳2,79,000; Oct 2026 'Dey Goal' offer ৳2,81,000 (৳8,000 cashback).",
   "priceAsOf": "2026-10",
-  "priceSource": "https://www.bikebd.com/price/honda-hornet-2-0",
+  "priceSource": "https://www.bdhonda.com/products/hornet20",
   "distributor": "Bangladesh Honda Private Limited (BHL)",
   "assembledInBD": true,
   "engine": {
@@ -5233,6 +5416,7 @@
    }
   ],
   "sources": [
+   "https://www.bdhonda.com/products/hornet20",
    "https://www.bikebd.com/price/honda-hornet-2-0",
    "https://www.bikebd.com/blog/honda-special-world-cup-discounts",
    "https://bikewale.com/honda-bikes/hornet/reviews/page/2"
@@ -5462,7 +5646,7 @@
   "priceBDT": 650000,
   "priceNote": "Indonesian-built CBR150R sold by BHL; price has climbed from ৳5,38,000 (2021 launch), and as a fully-faired imported sportbike it sits well above the 150-165cc sport median.",
   "priceAsOf": "2026-10",
-  "priceSource": "https://www.bikebd.com/price/new-honda-cbr150r",
+  "priceSource": "https://www.bdhonda.com/products/cbr150r",
   "distributor": "Bangladesh Honda Private Limited (BHL)",
   "assembledInBD": false,
   "engine": {
@@ -5565,6 +5749,7 @@
    }
   ],
   "sources": [
+   "https://www.bdhonda.com/products/cbr150r",
    "https://www.bikebd.com/price/new-honda-cbr150r",
    "https://bikebd.com/blog/2021-honda-cbr150-r-officially-launched",
    "https://www.bdhonda.com/product/cbr-150r/index"
@@ -5615,7 +5800,8 @@
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
    "sourcePage": "https://commons.wikimedia.org/wiki/File:2021_Honda_CBR150R_ABS.jpg"
-  }
+  },
+  "outlierNote": "Imported Indonesian fully-faired CBR150R; price confirmed on BHL's own page (bdhonda.com, ৳650,000, Oct 2026)."
  },
  {
   "id": "honda-dio",
@@ -6439,7 +6625,8 @@
    "fz s hybrid",
    "fz hybrid",
    "yamaha hybrid"
-  ]
+  ],
+  "outlierNote": "BD's first hybrid 150cc, priced above the conventional FZS V4 and Gixxer that set the street median; Yamaha BD's page lists ৳3,49,500 (launch price) vs bikebd's ৳3,47,500."
  },
  {
   "id": "yamaha-fz-x",
@@ -6717,7 +6904,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/yamaha-fz-25",
-   "https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/"
+   "https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/",
+   "https://www.yamahabd.com/products/yamaha-fz-25/"
   ],
   "bn": {
    "tagline": "স্পোর্টবাইকের কষ্ট ছাড়া হাইওয়েতে আরামে ক্রুজ করার 250।",
@@ -6757,7 +6945,8 @@
    "fz 25",
    "fz 250",
    "yamaha fz25"
-  ]
+  ],
+  "outlierNote": "A 250cc bike in a street category dominated by 125-160cc bikes; Yamaha BD's page shows ৳3,99,000 against bikebd's ৳4,02,000, so it is genuinely premium, not a data error."
  },
  {
   "id": "yamaha-r15-v4",
@@ -8249,7 +8438,7 @@
   "priceBDT": 282950,
   "priceNote": "Gixxer FI Disc (no ABS) ৳2,51,950. Rancon news has older prices (FI ABS ৳2,66,950).",
   "priceAsOf": "2026-10",
-  "priceSource": "https://www.bikebd.com/price/suzuki-gixxer-abs-price-in-bangladesh",
+  "priceSource": "https://suzuki.com.bd/product/gixxer",
   "distributor": "Rancon Motorbikes Ltd",
   "assembledInBD": true,
   "engine": {
@@ -8352,6 +8541,7 @@
    }
   ],
   "sources": [
+   "https://suzuki.com.bd/product/gixxer",
    "https://www.bikebd.com/price/suzuki-gixxer-abs-price-in-bangladesh",
    "https://www.bikebd.com/price/suzuki-gixxer-fi-disc",
    "https://www.suzuki.com.bd/"
@@ -8411,7 +8601,32 @@
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
    "sourcePage": "https://commons.wikimedia.org/wiki/File:Suzuki_Gixxer_155cc_DD_black_edition.jpg"
-  }
+  },
+  "variants": [
+   {
+    "name": "Carburettor, Double Disc",
+    "priceBDT": 237950,
+    "abs": "none",
+    "frontDisc": true,
+    "rearDisc": true,
+    "priceSource": "https://suzuki.com.bd/product/gixxer"
+   },
+   {
+    "name": "Fuel Injection, Double Disc",
+    "priceBDT": 251950,
+    "abs": "none",
+    "frontDisc": true,
+    "rearDisc": true,
+    "priceSource": "https://suzuki.com.bd/product/gixxer"
+   },
+   {
+    "name": "Fuel Injection, Double Disc ABS",
+    "priceBDT": 282950,
+    "frontDisc": true,
+    "rearDisc": true,
+    "priceSource": "https://suzuki.com.bd/product/gixxer"
+   }
+  ]
  },
  {
   "id": "suzuki-gixxer-sf-fi-abs",
@@ -8423,7 +8638,7 @@
   "priceBDT": 332950,
   "priceNote": "Gixxer SF FI Disc (no ABS) ৳3,19,950.",
   "priceAsOf": "2026-10",
-  "priceSource": "https://www.bikebd.com/price/suzuki-gixxer-sf-price-in-bangladesh",
+  "priceSource": "https://suzuki.com.bd/product/gixxer-sf",
   "distributor": "Rancon Motorbikes Ltd",
   "assembledInBD": true,
   "engine": {
@@ -8526,6 +8741,7 @@
    }
   ],
   "sources": [
+   "https://suzuki.com.bd/product/gixxer-sf",
    "https://www.bikebd.com/price/suzuki-gixxer-sf-price-in-bangladesh",
    "https://www.suzuki.com.bd/"
   ],
@@ -8577,7 +8793,20 @@
    "sources": [
     "https://bikroy.com/bn/motorcycles-and-scooters/suzuki-gixxer-sf"
    ]
-  }
+  },
+  "variants": [
+   {
+    "name": "SF FI Disc (no ABS)",
+    "priceBDT": 319950,
+    "abs": "none",
+    "priceSource": "https://www.bikebd.com/brand/suzuki"
+   },
+   {
+    "name": "SF FI ABS",
+    "priceBDT": 332950,
+    "priceSource": "https://suzuki.com.bd/product/gixxer-sf"
+   }
+  ]
  },
  {
   "id": "suzuki-gixxer-250",
@@ -8746,7 +8975,8 @@
     "https://bikroy.com/bn/motorcycles-and-scooters/suzuki-gixxer-250"
    ]
   },
-  "priceNote": "A 250cc bike in a street category dominated by 125-160cc bikes; Suzuki BD lists it from ৳3,79,950 (launch article Dec 2024 said ৳3,99,950), and the SF 250 is higher."
+  "priceNote": "A 250cc bike in a street category dominated by 125-160cc bikes; Suzuki BD lists it from ৳3,79,950 (launch article Dec 2024 said ৳3,99,950), and the SF 250 is higher.",
+  "outlierNote": "A 250cc bike in a street category dominated by 125-160cc bikes; price confirmed on Suzuki BD's own price list (Oct 2026)."
  },
  {
   "id": "suzuki-gixxer-sf-250",
@@ -9442,7 +9672,7 @@
   "priceBDT": 371500,
   "priceNote": "Rebel Blue/Red/Black dual-channel ABS ৳3,71,500; base Hunter 350 (Retro, single-channel ABS, rear drum) listed at ৳3,46,500. Launched Oct 2024 at ~৳3.4 lakh.",
   "priceAsOf": "2026-10",
-  "priceSource": "https://bikebd.com/price/royal-enfield-hunter-350-abs",
+  "priceSource": "https://www.royalenfield.com/bd/en/motorcycles/hunter-350/",
   "distributor": "IFAD Motors Ltd",
   "assembledInBD": true,
   "engine": {
@@ -9547,6 +9777,7 @@
    }
   ],
   "sources": [
+   "https://www.royalenfield.com/bd/en/motorcycles/hunter-350/",
    "https://bikebd.com/price/royal-enfield-hunter-350-abs",
    "https://bikebd.com/brand/royal-enfield",
    "https://en.ittefaq.com.bd/9332/bangladesh-welcomes-royal-enfield"
@@ -9608,19 +9839,31 @@
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
    "sourcePage": "https://commons.wikimedia.org/wiki/File:Hunter_350_side_view_India_Model.png"
-  }
+  },
+  "variants": [
+   {
+    "name": "Hunter 350 (base)",
+    "priceBDT": 346500,
+    "priceSource": "https://www.bikebd.com/brand/royal-enfield"
+   },
+   {
+    "name": "Rebel Blue/Red/Black (dual-channel ABS)",
+    "priceBDT": 371500,
+    "abs": "dual",
+    "priceSource": "https://www.royalenfield.com/bd/en/motorcycles/hunter-350/"
+   }
+  ]
  },
  {
   "id": "royal-enfield-classic-350",
   "brand": "Royal Enfield",
   "model": "Classic 350",
-  "variant": "Halcyon (Single Channel ABS)",
   "category": "classic",
   "status": "on-sale",
-  "priceBDT": 432500,
-  "priceNote": "Halcyon Green/Black ৳4,32,500; Classic 350 Dark (Gun Metal Grey/Stealth Black) ৳4,47,700; Chrome Red/Bronze ৳4,83,000.",
-  "priceAsOf": "2026-09",
-  "priceSource": "https://bikebd.com/brand/royal-enfield",
+  "priceBDT": 447700,
+  "priceNote": "Royal Enfield's BD page lists ৳4,47,700 for all six colours (Oct 2026). bikebd's older list still shows Halcyon ৳4,32,500 and Chrome ৳4,83,000; confirm the colour price at the showroom.",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://www.royalenfield.com/bd/en/motorcycles/classic-350/",
   "distributor": "IFAD Motors Ltd",
   "assembledInBD": true,
   "engine": {
@@ -9725,6 +9968,7 @@
    }
   ],
   "sources": [
+   "https://www.royalenfield.com/bd/en/motorcycles/classic-350/",
    "https://bikebd.com/brand/royal-enfield",
    "https://bikebd.com/price/royal-enfield-classic-350-halcon-greenblack",
    "https://en.ittefaq.com.bd/9332/bangladesh-welcomes-royal-enfield"
@@ -9752,7 +9996,7 @@
     "যারা চটপটে হ্যান্ডলিংয়ের চেয়ে স্টাইল আর আরাম বেশি চান",
     "লম্বা উইকেন্ড রাইড"
    ],
-   "priceNote": "Halcyon Green/Black ৳4,32,500; Classic 350 Dark (Gun Metal Grey/Stealth Black) ৳4,47,700; Chrome Red/Bronze ৳4,83,000।",
+   "priceNote": "Royal Enfield-এর বাংলাদেশ পেজে ছয়টি রঙেরই দাম ৳4,47,700 (অক্টোবর 2026)। bikebd-র পুরনো তালিকায় এখনো Halcyon ৳4,32,500 আর Chrome ৳4,83,000; শোরুমে রঙ অনুযায়ী দাম মিলিয়ে নিন।",
    "partNotes": [
     null,
     null,
@@ -9796,7 +10040,7 @@
   "priceBDT": 417500,
   "priceNote": "Single listed variant in BD; launched at ~৳4.1 lakh in Oct 2024.",
   "priceAsOf": "2026-10",
-  "priceSource": "https://bikebd.com/price/royal-enfield-bullet-350",
+  "priceSource": "https://www.royalenfield.com/bd/en/motorcycles/bullet-350/",
   "distributor": "IFAD Motors Ltd",
   "assembledInBD": true,
   "engine": {
@@ -9901,6 +10145,7 @@
    }
   ],
   "sources": [
+   "https://www.royalenfield.com/bd/en/motorcycles/bullet-350/",
    "https://bikebd.com/price/royal-enfield-bullet-350",
    "https://bikebd.com/brand/royal-enfield",
    "https://en.ittefaq.com.bd/9332/bangladesh-welcomes-royal-enfield"
@@ -9961,19 +10206,30 @@
    "license": "CC BY 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
    "sourcePage": "https://commons.wikimedia.org/wiki/File:Royal_Enfield_Bullet_350_(54832566003).jpg"
-  }
+  },
+  "variants": [
+   {
+    "name": "Standard Maroon",
+    "priceBDT": 417500,
+    "priceSource": "https://www.royalenfield.com/bd/en/motorcycles/bullet-350/"
+   },
+   {
+    "name": "Black Gold",
+    "priceBDT": 437500,
+    "priceSource": "https://www.royalenfield.com/bd/en/motorcycles/bullet-350/"
+   }
+  ]
  },
  {
   "id": "royal-enfield-meteor-350",
   "brand": "Royal Enfield",
   "model": "Meteor 350",
-  "variant": "Stellar",
   "category": "cruiser",
   "status": "on-sale",
-  "priceBDT": 483000,
-  "priceNote": "Stellar ৳4,83,000; Supernova ৳5,08,000. bikebd also lists a base Meteor 350 (Fireball) at ৳4,35,000 but marks it not currently available.",
-  "priceAsOf": "2026-09",
-  "priceSource": "https://bikebd.com/brand/royal-enfield",
+  "priceBDT": 476000,
+  "priceNote": "Royal Enfield's BD page (Oct 2026): from ৳4,76,000; Stellar Matt Grey ৳4,88,000; Aurora Red ৳4,94,000; Supernova Black ৳5,13,000. bikebd's ৳4,35,000-5,08,000 list is older.",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://www.royalenfield.com/bd/en/motorcycles/meteor-350/",
   "distributor": "IFAD Motors Ltd",
   "assembledInBD": true,
   "engine": {
@@ -10078,6 +10334,7 @@
    }
   ],
   "sources": [
+   "https://www.royalenfield.com/bd/en/motorcycles/meteor-350/",
    "https://bikebd.com/brand/royal-enfield",
    "https://bikebd.com/price/royal-enfield-meteor-350",
    "https://en.ittefaq.com.bd/9332/bangladesh-welcomes-royal-enfield"
@@ -10105,7 +10362,7 @@
     "পিলিয়ন নিয়ে লং রাইড",
     "কম উচ্চতার রাইডার যারা বড় বাইক চান"
    ],
-   "priceNote": "Stellar ৳4,83,000; Supernova ৳5,08,000। bikebd বেস Meteor 350 (Fireball) ৳4,35,000-এ লিস্ট করেছে, তবে বর্তমানে পাওয়া যাচ্ছে না বলে দেখাচ্ছে।",
+   "priceNote": "Royal Enfield-এর বাংলাদেশ পেজ (অক্টোবর 2026): শুরু ৳4,76,000; Stellar Matt Grey ৳4,88,000; Aurora Red ৳4,94,000; Supernova Black ৳5,13,000। bikebd-র ৳4,35,000-5,08,000 তালিকা পুরনো।",
    "partNotes": [
     null,
     null,
@@ -10139,7 +10396,30 @@
    "license": "CC0",
    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "sourcePage": "https://commons.wikimedia.org/wiki/File:Royal_Enfield_Meteor_2021-2.jpg"
-  }
+  },
+  "variants": [
+   {
+    "name": "Base",
+    "priceBDT": 476000,
+    "priceSource": "https://www.royalenfield.com/bd/en/motorcycles/meteor-350/"
+   },
+   {
+    "name": "Stellar Matt Grey",
+    "priceBDT": 488000,
+    "priceSource": "https://www.royalenfield.com/bd/en/motorcycles/meteor-350/"
+   },
+   {
+    "name": "Aurora Red",
+    "priceBDT": 494000,
+    "priceSource": "https://www.royalenfield.com/bd/en/motorcycles/meteor-350/"
+   },
+   {
+    "name": "Supernova Black",
+    "priceBDT": 513000,
+    "priceSource": "https://www.royalenfield.com/bd/en/motorcycles/meteor-350/"
+   }
+  ],
+  "outlierNote": "A 350cc imported cruiser; the cruiser median is set by 150-165cc budget cruisers. Price confirmed on Royal Enfield's own BD page (Oct 2026), which supersedes bikebd's older ৳4,83,000."
  },
  {
   "id": "ktm-duke-125",
@@ -12539,5 +12819,1001 @@
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
    "sourcePage": "https://commons.wikimedia.org/wiki/File:Hero_Honda_CBZ_1999_Blue1.jpg"
   }
+ },
+ {
+  "id": "zontes-zt155-u",
+  "brand": "Zontes",
+  "model": "ZT155 U",
+  "category": "naked",
+  "status": "on-sale",
+  "priceBDT": 349000,
+  "priceNote": "ZT155-U1 ৳3,79,000; ZT155-G1 ৳3,89,000; ZT155-GK ৳4,39,000 (bikebd Zontes brand list, updated Sep 2026). bikebd names both Moto Solution BD and Mototech Industry Bangladesh as distributors.",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://www.bikebd.com/price/zontes-zt155-u",
+  "distributor": "Moto Solution BD Ltd",
+  "assembledInBD": true,
+  "engine": {
+   "cc": 155,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "liquid",
+   "fuel": "fi"
+  },
+  "powerPS": 18.8,
+  "powerRpm": 9250,
+  "torqueNm": 16,
+  "torqueRpm": 7500,
+  "gears": 6,
+  "topSpeedKmh": 130,
+  "mileageKmpl": [
+   35,
+   42
+  ],
+  "weightKg": 126,
+  "seatHeightMm": 790,
+  "fuelTankL": 12.5,
+  "brakes": {
+   "front": "disc",
+   "rear": "disc",
+   "abs": "dual"
+  },
+  "tubeless": true,
+  "suspension": {
+   "front": "USD fork",
+   "rear": "Adjustable monoshock"
+  },
+  "scores": {
+   "reliability": 6,
+   "mechanicFamiliarity": 3,
+   "partsAvailability": 3,
+   "resale": 4,
+   "comfort": 7,
+   "cityHandling": 6,
+   "highway": 7,
+   "pillion": 6,
+   "offroad": 4,
+   "performance": 7,
+   "beginnerFriendly": 6
+  },
+  "tagline": "The tech-loaded Chinese premium 155 — keyless, TFT, dual-ABS.",
+  "feel": "Refined 4-valve liquid-cooled engine, comfortable upright ADV-street posture and a feature list (keyless ignition, TFT, adjustable screen) no Japanese 150 matches.",
+  "quirks": "Priced near Japanese/Indian ABS 150-160s that hold value far better; small distributor means parts for electronics and body panels can take weeks; owners on forums worry about long-term electrical reliability in BD heat and rain.",
+  "braking": "Twin discs with dual-channel ABS — excellent for the class.",
+  "mechanicNote": "Service is essentially dealer-only through Moto Solution BD; very few local mechanics have worked on Zontes engines or electronics.",
+  "pros": [
+   "Dual-channel ABS",
+   "Premium features (keyless, TFT)",
+   "Strong, smooth 4V engine",
+   "Comfortable for touring"
+  ],
+  "cons": [
+   "Expensive for a Chinese brand",
+   "Weak resale",
+   "Small service/parts network",
+   "Electronics complexity"
+  ],
+  "bestFor": [
+   "Feature-hungry buyers",
+   "Highway touring",
+   "Riders who keep bikes long-term"
+  ],
+  "serviceIntervalKm": 3000,
+  "avgServiceCostBDT": 2500,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 1200,
+    "availability": "dealer-only"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 4000,
+    "availability": "dealer-only"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 800,
+    "availability": "dealer-only"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 1500,
+    "availability": "everywhere",
+    "note": "~1.3 L fully synthetic"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 3000,
+    "availability": "rare"
+   }
+  ],
+  "sources": [
+   "https://www.bikebd.com/price/zontes-zt155-u",
+   "https://www.bikebd.com/price/zontes-zt155-u/specifications",
+   "https://www.bikebd.com/brand/zontes"
+  ],
+  "bn": {
+   "tagline": "টেকনোলজিতে ঠাসা চায়নিজ প্রিমিয়াম 155 — কি-লেস, TFT, ডুয়াল-ABS।",
+   "feel": "রিফাইন্ড 4-ভাল্ভ লিকুইড-কুলড ইঞ্জিন, আরামদায়ক সোজা ADV-স্ট্রিট পজিশন, আর এমন ফিচার লিস্ট (কি-লেস ইগনিশন, TFT, অ্যাডজাস্টেবল স্ক্রিন) যা কোনো জাপানি 150-এ নেই।",
+   "quirks": "দাম জাপানি/ইন্ডিয়ান ABS 150-160-এর কাছাকাছি, যেগুলোর রিসেল অনেক ভালো থাকে; ডিস্ট্রিবিউটর ছোট, তাই ইলেকট্রনিক্স আর বডি প্যানেলের পার্টস আসতে কয়েক সপ্তাহ লাগতে পারে; ফোরামে ওনাররা BD-র গরম আর বৃষ্টিতে লম্বা সময় ইলেকট্রিক্যাল নির্ভরযোগ্যতা নিয়ে চিন্তিত।",
+   "braking": "দুই চাকায় ডিস্ক আর ডুয়াল-চ্যানেল ABS — এই ক্লাসে দারুণ।",
+   "mechanicNote": "সার্ভিস কার্যত শুধু Moto Solution BD-র ডিলারেই; Zontes ইঞ্জিন বা ইলেকট্রনিক্সে কাজ করেছে এমন লোকাল মেকানিক খুবই কম।",
+   "pros": [
+    "ডুয়াল-চ্যানেল ABS",
+    "প্রিমিয়াম ফিচার (কি-লেস, TFT)",
+    "শক্তিশালী, স্মুথ 4V ইঞ্জিন",
+    "ট্যুরিংয়ে আরামদায়ক"
+   ],
+   "cons": [
+    "চায়নিজ ব্র্যান্ড হিসেবে দামি",
+    "রিসেল দুর্বল",
+    "সার্ভিস/পার্টস নেটওয়ার্ক ছোট",
+    "ইলেকট্রনিক্স জটিল"
+   ],
+   "bestFor": [
+    "ফিচার-প্রেমী ক্রেতা",
+    "হাইওয়ে ট্যুরিং",
+    "যারা বাইক অনেকদিন রাখেন"
+   ],
+   "priceNote": "ZT155-U1 ৳3,79,000; ZT155-G1 ৳3,89,000; ZT155-GK ৳4,39,000 (bikebd-র Zontes তালিকা, সেপ্টেম্বর 2026)।",
+   "partNotes": [
+    null,
+    null,
+    null,
+    "~1.3 L ফুলি সিনথেটিক",
+    null
+   ]
+  },
+  "aliases": [
+   "জনটেস",
+   "জন্টেস জেডটি155",
+   "জনটেস 155",
+   "zontes",
+   "zt155",
+   "zontes 155",
+   "zt 155 u",
+   "zontes zt155u"
+  ],
+  "groundClearanceMm": 185,
+  "tyres": {
+   "front": "110/70-17",
+   "rear": "130/70-17"
+  }
+ },
+ {
+  "status": "on-sale",
+  "priceAsOf": "2026-10",
+  "id": "runner-bolt-165r",
+  "brand": "Runner",
+  "model": "Bolt 165R",
+  "category": "street",
+  "priceBDT": 169000,
+  "priceSource": "https://www.bikebd.com/price/runner-bolt-165r-price-in-bangladesh",
+  "distributor": "Runner Automobiles Limited",
+  "engine": {
+   "cc": 164.74,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "air",
+   "valves": 2,
+   "fuel": "carb"
+  },
+  "powerPS": 13.4,
+  "powerRpm": 7500,
+  "torqueNm": 14,
+  "torqueRpm": 6500,
+  "gears": 5,
+  "topSpeedKmh": 120,
+  "mileageKmpl": [
+   33,
+   40
+  ],
+  "weightKg": 150,
+  "seatHeightMm": 790,
+  "groundClearanceMm": 170,
+  "fuelTankL": 12,
+  "brakes": {
+   "front": "disc",
+   "rear": "disc",
+   "abs": "none"
+  },
+  "tubeless": true,
+  "tyres": {
+   "front": "100/80-17",
+   "rear": "130/70-17"
+  },
+  "suspension": {
+   "front": "USD fork",
+   "rear": "Monoshock"
+  },
+  "scores": {
+   "reliability": 5,
+   "mechanicFamiliarity": 5,
+   "partsAvailability": 5,
+   "resale": 3,
+   "comfort": 6,
+   "cityHandling": 6,
+   "highway": 5,
+   "pillion": 6,
+   "offroad": 4,
+   "performance": 5,
+   "beginnerFriendly": 6
+  },
+  "tagline": "A 165cc carb street bike with USD fork and twin discs at a 125cc price.",
+  "feel": "Simple air-cooled carburettor engine in a sporty naked body with a USD fork and a fat 130-section rear tyre; it looks bigger than its price.",
+  "quirks": "No ABS or CBS despite discs at both ends. bikebd's own spec table and review disagree on top speed and seat height, so test-ride before trusting the brochure. Resale on Runner's 150-165cc bikes is weak.",
+  "braking": "Disc front and rear, but no ABS or CBS, so brake progressively in the wet.",
+  "mechanicNote": "Runner has its own showroom and service network; the carb engine is simple enough for local mechanics, but body panels and the USD fork parts come through Runner.",
+  "pros": [
+   "Low price for 165cc",
+   "Twin disc brakes",
+   "USD fork and wide rear tyre",
+   "Simple carb engine"
+  ],
+  "cons": [
+   "No ABS or CBS",
+   "Weak resale",
+   "Specs on listings are inconsistent"
+  ],
+  "bestFor": [
+   "Budget buyers wanting a 150-165cc look",
+   "City commuting",
+   "Riders who keep bikes long-term"
+  ],
+  "serviceIntervalKm": 2000,
+  "avgServiceCostBDT": 1200,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 600,
+    "availability": "common"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 2800,
+    "availability": "common"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 450,
+    "availability": "common"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 900,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 1600,
+    "availability": "common"
+   }
+  ],
+  "sources": [
+   "https://www.bikebd.com/price/runner-bolt-165r-price-in-bangladesh",
+   "https://www.bikebd.com/price/runner-bolt-165r-price-in-bangladesh/specifications"
+  ],
+  "bn": {
+   "tagline": "125cc-র দামে USD ফর্ক আর দুই চাকায় ডিস্কসহ 165cc কার্ব স্ট্রিট বাইক।",
+   "feel": "সাধারণ এয়ার-কুলড কার্বুরেটর ইঞ্জিন, স্পোর্টি নেকেড বডি, USD ফর্ক আর মোটা 130 সেকশনের পেছনের টায়ার; দামের তুলনায় বড় দেখায়।",
+   "quirks": "দুই চাকায় ডিস্ক থাকলেও ABS বা CBS নেই। bikebd-র স্পেক টেবিল আর রিভিউতে টপ স্পিড ও সিটের উচ্চতা মেলে না, তাই কেনার আগে টেস্ট রাইড দিন। Runner-এর 150-165cc বাইকের রিসেল দুর্বল।",
+   "braking": "সামনে-পেছনে ডিস্ক, কিন্তু ABS বা CBS নেই, ভেজা রাস্তায় ধীরে ব্রেক করুন।",
+   "mechanicNote": "Runner-এর নিজস্ব শোরুম ও সার্ভিস নেটওয়ার্ক আছে; কার্ব ইঞ্জিন লোকাল মেকানিক সহজেই সামলাতে পারেন, তবে বডি প্যানেল আর USD ফর্কের পার্টস Runner থেকে আনতে হয়।",
+   "pros": [
+    "165cc হিসেবে কম দাম",
+    "দুই চাকায় ডিস্ক",
+    "USD ফর্ক আর চওড়া পেছনের টায়ার",
+    "সাধারণ কার্ব ইঞ্জিন"
+   ],
+   "cons": [
+    "ABS বা CBS নেই",
+    "রিসেল দুর্বল",
+    "লিস্টিংয়ে স্পেক অসঙ্গত"
+   ],
+   "bestFor": [
+    "কম বাজেটে 150-165cc লুক",
+    "শহরে যাতায়াত",
+    "যারা বাইক অনেকদিন রাখেন"
+   ]
+  },
+  "aliases": [
+   "রানার বোল্ট",
+   "runner bolt",
+   "bolt 165"
+  ]
+ },
+ {
+  "status": "on-sale",
+  "priceAsOf": "2026-10",
+  "id": "haojue-ka135",
+  "brand": "Haojue",
+  "model": "KA135",
+  "category": "commuter",
+  "priceBDT": 122000,
+  "priceSource": "https://www.bikebd.com/price/haojue-ka",
+  "distributor": "Karnaphuli Motors Ltd",
+  "engine": {
+   "cc": 135,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "air",
+   "valves": 2,
+   "fuel": "carb"
+  },
+  "powerPS": 10.8,
+  "powerRpm": 8000,
+  "torqueNm": 11.3,
+  "torqueRpm": 6000,
+  "gears": 5,
+  "topSpeedKmh": 100,
+  "mileageKmpl": [
+   42,
+   50
+  ],
+  "weightKg": 126,
+  "seatHeightMm": 770,
+  "groundClearanceMm": 178,
+  "fuelTankL": 13.3,
+  "brakes": {
+   "front": "disc",
+   "rear": "drum",
+   "abs": "none"
+  },
+  "tubeless": true,
+  "tyres": {
+   "front": "2.75-18",
+   "rear": "90/90-16"
+  },
+  "suspension": {
+   "front": "Telescopic",
+   "rear": "Twin shock"
+  },
+  "scores": {
+   "reliability": 6,
+   "mechanicFamiliarity": 6,
+   "partsAvailability": 5,
+   "resale": 3,
+   "comfort": 6,
+   "cityHandling": 7,
+   "highway": 4,
+   "pillion": 6,
+   "offroad": 5,
+   "performance": 4,
+   "beginnerFriendly": 8
+  },
+  "tagline": "A 135cc Chinese commuter priced against Indian 110-125s.",
+  "feel": "Relaxed, light commuter with a slightly bigger engine than the 110-125cc norm and an upright seat; built for daily errands, not speed.",
+  "quirks": "Small brand presence in BD, so resale is weak and parts outside the distributor's network can take time. bikebd's spec table and review disagree on tank size and mileage (45-50 vs 55 kmpl).",
+  "braking": "Front disc and rear drum without CBS: adequate at commuter speeds.",
+  "mechanicNote": "Sold through Karnaphuli Motors; the carb single is conventional, so local mechanics can do routine work, but genuine parts come via the distributor.",
+  "pros": [
+   "Low price for 135cc",
+   "Front disc, tubeless tyres",
+   "Light and easy to ride"
+  ],
+  "cons": [
+   "Weak resale",
+   "Thin dealer and parts network",
+   "Listing specs inconsistent"
+  ],
+  "bestFor": [
+   "Budget daily commute",
+   "First bike",
+   "Short city trips"
+  ],
+  "serviceIntervalKm": 2000,
+  "avgServiceCostBDT": 900,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 450,
+    "availability": "common"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 2200,
+    "availability": "common"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 350,
+    "availability": "common"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 700,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 1400,
+    "availability": "common"
+   }
+  ],
+  "sources": [
+   "https://www.bikebd.com/price/haojue-ka",
+   "https://www.bikebd.com/price/haojue-ka/specifications"
+  ],
+  "bn": {
+   "tagline": "ইন্ডিয়ান 110-125cc-র দামে 135cc চায়নিজ কমিউটার।",
+   "feel": "হালকা, আরামদায়ক কমিউটার, 110-125cc-র চেয়ে একটু বড় ইঞ্জিন আর সোজা হয়ে বসার সিট; প্রতিদিনের কাজের জন্য, গতির জন্য নয়।",
+   "quirks": "বাংলাদেশে ব্র্যান্ডের উপস্থিতি কম, তাই রিসেল দুর্বল আর ডিস্ট্রিবিউটরের বাইরে পার্টস পেতে সময় লাগতে পারে। bikebd-র স্পেক টেবিল আর রিভিউতে ট্যাংক ও মাইলেজ মেলে না (45-50 বনাম 55 kmpl)।",
+   "braking": "সামনে ডিস্ক, পেছনে ড্রাম, CBS নেই: কমিউটার গতিতে যথেষ্ট।",
+   "mechanicNote": "Karnaphuli Motors বিক্রি করে; সাধারণ কার্ব ইঞ্জিন, লোকাল মেকানিক রুটিন কাজ পারেন, তবে আসল পার্টস ডিস্ট্রিবিউটর থেকে আসে।",
+   "pros": [
+    "135cc হিসেবে কম দাম",
+    "সামনে ডিস্ক, টিউবলেস টায়ার",
+    "হালকা, চালানো সহজ"
+   ],
+   "cons": [
+    "রিসেল দুর্বল",
+    "ডিলার ও পার্টস নেটওয়ার্ক ছোট",
+    "লিস্টিংয়ের স্পেক অসঙ্গত"
+   ],
+   "bestFor": [
+    "কম বাজেটে প্রতিদিনের যাতায়াত",
+    "প্রথম বাইক",
+    "শহরে ছোট পথ"
+   ]
+  },
+  "aliases": [
+   "হাওজুয়ে",
+   "haojue ka",
+   "ka 135"
+  ]
+ },
+ {
+  "status": "on-sale",
+  "priceAsOf": "2026-10",
+  "id": "haojue-tr150",
+  "brand": "Haojue",
+  "model": "TR150",
+  "category": "cruiser",
+  "priceBDT": 144000,
+  "priceSource": "https://www.bikebd.com/price/haojue-tr",
+  "distributor": "Karnaphuli Motors Ltd",
+  "outlierNote": "Budget Chinese 149cc carb cruiser; the cruiser median is set by the Avenger 160 and Meteor 350, so it sits far below it. Price checked on bikebd's model and spec pages (Oct 2026).",
+  "engine": {
+   "cc": 149,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "air",
+   "valves": 2,
+   "fuel": "carb"
+  },
+  "powerPS": 11.3,
+  "powerRpm": 8000,
+  "torqueNm": 11.4,
+  "torqueRpm": 6500,
+  "gears": 5,
+  "topSpeedKmh": 110,
+  "mileageKmpl": [
+   33,
+   40
+  ],
+  "weightKg": 145,
+  "seatHeightMm": 725,
+  "groundClearanceMm": 157,
+  "fuelTankL": 11.5,
+  "brakes": {
+   "front": "disc",
+   "rear": "drum",
+   "abs": "none"
+  },
+  "tubeless": true,
+  "tyres": {
+   "front": "90/90-18",
+   "rear": "110/90-16"
+  },
+  "suspension": {
+   "front": "Telescopic",
+   "rear": "Twin shock"
+  },
+  "scores": {
+   "reliability": 5,
+   "mechanicFamiliarity": 5,
+   "partsAvailability": 4,
+   "resale": 3,
+   "comfort": 7,
+   "cityHandling": 6,
+   "highway": 4,
+   "pillion": 7,
+   "offroad": 3,
+   "performance": 4,
+   "beginnerFriendly": 8
+  },
+  "tagline": "The cheapest way into a low-seat cruiser riding position.",
+  "feel": "Low 725 mm seat, laid-back cruiser posture and a soft, unhurried 149cc engine; easy for shorter riders to flat-foot.",
+  "quirks": "Low ground clearance (157 mm) scrapes on speed breakers with a pillion. Small brand presence means weak resale and slower parts. bikebd's review and spec table disagree on top speed and mileage.",
+  "braking": "Front disc, rear drum, no ABS or CBS.",
+  "mechanicNote": "Sold through Karnaphuli Motors; the carb engine is conventional, but cruiser-specific body and trim parts are distributor-only.",
+  "pros": [
+   "Low seat height",
+   "Cheap for a cruiser",
+   "Relaxed riding position"
+  ],
+  "cons": [
+   "Low ground clearance",
+   "Weak resale",
+   "Thin parts network"
+  ],
+  "bestFor": [
+   "Shorter riders",
+   "Relaxed city riding",
+   "Riders with a pillion at low speed"
+  ],
+  "serviceIntervalKm": 2000,
+  "avgServiceCostBDT": 1000,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 500,
+    "availability": "common"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 2500,
+    "availability": "common"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 400,
+    "availability": "common"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 800,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 1500,
+    "availability": "common"
+   }
+  ],
+  "sources": [
+   "https://www.bikebd.com/price/haojue-tr",
+   "https://www.bikebd.com/price/haojue-tr/specifications"
+  ],
+  "bn": {
+   "tagline": "নিচু সিটের ক্রুজার পজিশনে যাওয়ার সবচেয়ে সস্তা উপায়।",
+   "feel": "নিচু 725 mm সিট, আরামদায়ক ক্রুজার ভঙ্গি আর ধীরস্থির 149cc ইঞ্জিন; খাটো রাইডারের দুই পা সহজে মাটিতে পৌঁছায়।",
+   "quirks": "গ্রাউন্ড ক্লিয়ারেন্স কম (157 mm), পিলিয়নসহ স্পিড ব্রেকারে ঘষা লাগে। ব্র্যান্ড ছোট, তাই রিসেল দুর্বল আর পার্টস ধীরে আসে। bikebd-র রিভিউ আর স্পেক টেবিলে টপ স্পিড ও মাইলেজ মেলে না।",
+   "braking": "সামনে ডিস্ক, পেছনে ড্রাম, ABS বা CBS নেই।",
+   "mechanicNote": "Karnaphuli Motors বিক্রি করে; কার্ব ইঞ্জিন সাধারণ, তবে ক্রুজারের বডি ও ট্রিম পার্টস শুধু ডিস্ট্রিবিউটরে।",
+   "pros": [
+    "নিচু সিট",
+    "ক্রুজার হিসেবে সস্তা",
+    "আরামদায়ক বসার ভঙ্গি"
+   ],
+   "cons": [
+    "গ্রাউন্ড ক্লিয়ারেন্স কম",
+    "রিসেল দুর্বল",
+    "পার্টস নেটওয়ার্ক ছোট"
+   ],
+   "bestFor": [
+    "খাটো রাইডার",
+    "শহরে ধীরে চালানো",
+    "কম গতিতে পিলিয়নসহ"
+   ]
+  },
+  "aliases": [
+   "হাওজুয়ে টিআর",
+   "haojue tr",
+   "tr 150"
+  ]
+ },
+ {
+  "status": "on-sale",
+  "priceAsOf": "2026-10",
+  "id": "lifan-k19",
+  "brand": "Lifan",
+  "model": "K19",
+  "category": "cruiser",
+  "priceBDT": 295000,
+  "priceSource": "https://www.bikebd.com/price/lifan-k19",
+  "priceNote": "bikebd's variant table also shows ৳2,85,000 for one variant.",
+  "distributor": "Rasel Industries Ltd",
+  "engine": {
+   "cc": 165,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "liquid",
+   "valves": 2,
+   "fuel": "fi"
+  },
+  "powerPS": 17.2,
+  "powerRpm": 8000,
+  "torqueNm": 17,
+  "torqueRpm": 6500,
+  "gears": 6,
+  "topSpeedKmh": 110,
+  "mileageKmpl": [
+   35,
+   42
+  ],
+  "weightKg": 150,
+  "seatHeightMm": 710,
+  "groundClearanceMm": 155,
+  "fuelTankL": 14,
+  "brakes": {
+   "front": "disc",
+   "rear": "disc",
+   "abs": "none"
+  },
+  "tubeless": true,
+  "tyres": {
+   "front": "110/90-16",
+   "rear": "130/90-15"
+  },
+  "suspension": {
+   "front": "Telescopic",
+   "rear": "Twin shock"
+  },
+  "scores": {
+   "reliability": 5,
+   "mechanicFamiliarity": 4,
+   "partsAvailability": 4,
+   "resale": 3,
+   "comfort": 7,
+   "cityHandling": 6,
+   "highway": 6,
+   "pillion": 7,
+   "offroad": 3,
+   "performance": 5,
+   "beginnerFriendly": 7
+  },
+  "tagline": "A liquid-cooled, fuel-injected 165cc cruiser for Avenger money.",
+  "feel": "Very low 710 mm seat, fat 15-inch rear tyre and a smoother liquid-cooled FI engine than the air-cooled budget cruisers.",
+  "quirks": "No ABS. Liquid cooling and FI mean fewer local mechanics are comfortable with it. bikebd's page is inconsistent (gear count, rear brake and engine size differ between spec table and article), so confirm the spec at the showroom.",
+  "braking": "Discs listed at both ends in bikebd's spec table (its article mentions a rear drum), no ABS.",
+  "mechanicNote": "Rasel Industries handles sales and service; coolant and FI work is best left to the dealer.",
+  "pros": [
+   "Very low seat",
+   "Liquid-cooled FI engine",
+   "Comfortable for two"
+  ],
+  "cons": [
+   "No ABS",
+   "Weak resale",
+   "Dealer-dependent servicing"
+  ],
+  "bestFor": [
+   "Shorter riders",
+   "Relaxed highway cruising",
+   "Riding two-up"
+  ],
+  "serviceIntervalKm": 3000,
+  "avgServiceCostBDT": 1800,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 800,
+    "availability": "dealer-only"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 3500,
+    "availability": "dealer-only"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 600,
+    "availability": "dealer-only"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 1200,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 2500,
+    "availability": "rare"
+   }
+  ],
+  "sources": [
+   "https://www.bikebd.com/price/lifan-k19",
+   "https://www.bikebd.com/price/lifan-k19/specifications"
+  ],
+  "bn": {
+   "tagline": "Avenger-এর দামে লিকুইড-কুলড, ফুয়েল-ইনজেকটেড 165cc ক্রুজার।",
+   "feel": "খুব নিচু 710 mm সিট, মোটা 15 ইঞ্চি পেছনের টায়ার আর এয়ার-কুলড বাজেট ক্রুজারের চেয়ে স্মুথ লিকুইড-কুলড FI ইঞ্জিন।",
+   "quirks": "ABS নেই। লিকুইড কুলিং আর FI-এর কারণে কম লোকাল মেকানিক এতে স্বচ্ছন্দ। bikebd-র পেজে অসঙ্গতি আছে (গিয়ার সংখ্যা, পেছনের ব্রেক আর ইঞ্জিন সাইজ), তাই শোরুমে স্পেক মিলিয়ে নিন।",
+   "braking": "bikebd-র স্পেক টেবিলে দুই চাকায় ডিস্ক (আর্টিকেলে পেছনে ড্রাম), ABS নেই।",
+   "mechanicNote": "Rasel Industries বিক্রি ও সার্ভিস দেয়; কুল্যান্ট আর FI-এর কাজ ডিলারেই করানো ভালো।",
+   "pros": [
+    "খুব নিচু সিট",
+    "লিকুইড-কুলড FI ইঞ্জিন",
+    "দুজনের জন্য আরামদায়ক"
+   ],
+   "cons": [
+    "ABS নেই",
+    "রিসেল দুর্বল",
+    "সার্ভিস ডিলারনির্ভর"
+   ],
+   "bestFor": [
+    "খাটো রাইডার",
+    "আরামে হাইওয়ে ক্রুজিং",
+    "দুজনে চড়া"
+   ],
+   "priceNote": "bikebd-র ভ্যারিয়েন্ট টেবিলে একটি ভ্যারিয়েন্ট ৳2,85,000-ও দেখায়।"
+  },
+  "aliases": [
+   "লিফান কে19",
+   "lifan k19",
+   "k 19"
+  ]
+ },
+ {
+  "status": "on-sale",
+  "priceAsOf": "2026-10",
+  "id": "lifan-glint-100",
+  "brand": "Lifan",
+  "model": "Glint 100",
+  "category": "commuter",
+  "priceBDT": 86000,
+  "priceSource": "https://www.bikebd.com/price/lifan-glint-100",
+  "distributor": "Rasel Industries Ltd",
+  "outlierNote": "Budget Chinese 99cc commuter, the cheapest new bike in the list; Indian and Japanese 100-125cc commuters set the median. Price checked on bikebd's model and spec pages (Oct 2026).",
+  "engine": {
+   "cc": 98.74,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "air",
+   "valves": 2,
+   "fuel": "carb"
+  },
+  "powerPS": 8.2,
+  "powerRpm": 7500,
+  "torqueNm": 7.8,
+  "torqueRpm": 6000,
+  "gears": 4,
+  "topSpeedKmh": 90,
+  "mileageKmpl": [
+   45,
+   52
+  ],
+  "weightKg": 108,
+  "seatHeightMm": 810,
+  "groundClearanceMm": 160,
+  "fuelTankL": 12,
+  "brakes": {
+   "front": "disc",
+   "rear": "drum",
+   "abs": "none"
+  },
+  "tubeless": false,
+  "tyres": {
+   "front": "2.75-17",
+   "rear": "3.00-17"
+  },
+  "suspension": {
+   "front": "Telescopic",
+   "rear": "Dual spring"
+  },
+  "scores": {
+   "reliability": 5,
+   "mechanicFamiliarity": 6,
+   "partsAvailability": 5,
+   "resale": 2,
+   "comfort": 5,
+   "cityHandling": 7,
+   "highway": 3,
+   "pillion": 5,
+   "offroad": 4,
+   "performance": 3,
+   "beginnerFriendly": 8
+  },
+  "tagline": "The lowest new-bike price in the list, for errands and short commutes.",
+  "feel": "Light 108 kg 100cc commuter with a 4-speed gearbox; easy around town, out of breath on highways.",
+  "quirks": "Tube-type tyres. Resale for Chinese 100cc commuters is poor. bikebd's overview and spec table disagree on torque and mileage. Check the seat height (bikebd lists both 775 and 810 mm) on a test ride.",
+  "braking": "Front disc, rear drum, no CBS.",
+  "mechanicNote": "Rasel Industries sells and services Lifan; the simple carb 100cc engine is familiar territory for local mechanics.",
+  "pros": [
+   "Lowest price",
+   "Light and easy",
+   "Front disc"
+  ],
+  "cons": [
+   "Tube-type tyres",
+   "Very weak resale",
+   "Slow on highways"
+  ],
+  "bestFor": [
+   "Tight budgets",
+   "Short city errands",
+   "Learning to ride"
+  ],
+  "serviceIntervalKm": 2000,
+  "avgServiceCostBDT": 800,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 400,
+    "availability": "common"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 1800,
+    "availability": "common"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 300,
+    "availability": "common"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 600,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 1200,
+    "availability": "common"
+   }
+  ],
+  "sources": [
+   "https://www.bikebd.com/price/lifan-glint-100",
+   "https://www.bikebd.com/price/lifan-glint-100/specifications"
+  ],
+  "bn": {
+   "tagline": "তালিকায় সবচেয়ে কম দামের নতুন বাইক, ছোট কাজ আর কাছের যাতায়াতের জন্য।",
+   "feel": "হালকা 108 kg-এর 100cc কমিউটার, 4-স্পিড গিয়ার; শহরে সহজ, হাইওয়েতে হাঁপিয়ে যায়।",
+   "quirks": "টিউব টায়ার। চায়নিজ 100cc কমিউটারের রিসেল খারাপ। bikebd-র ওভারভিউ আর স্পেক টেবিলে টর্ক ও মাইলেজ মেলে না। সিটের উচ্চতা (bikebd-তে 775 ও 810 mm দুটোই) টেস্ট রাইডে দেখে নিন।",
+   "braking": "সামনে ডিস্ক, পেছনে ড্রাম, CBS নেই।",
+   "mechanicNote": "Rasel Industries বিক্রি ও সার্ভিস দেয়; সাধারণ কার্ব 100cc ইঞ্জিন লোকাল মেকানিকের চেনা।",
+   "pros": [
+    "সবচেয়ে কম দাম",
+    "হালকা ও সহজ",
+    "সামনে ডিস্ক"
+   ],
+   "cons": [
+    "টিউব টায়ার",
+    "রিসেল খুব দুর্বল",
+    "হাইওয়েতে ধীর"
+   ],
+   "bestFor": [
+    "কম বাজেট",
+    "শহরে ছোট কাজ",
+    "চালানো শেখা"
+   ]
+  },
+  "aliases": [
+   "লিফান গ্লিন্ট",
+   "lifan glint",
+   "glint 100"
+  ]
+ },
+ {
+  "status": "on-sale",
+  "priceAsOf": "2026-10",
+  "assembledInBD": true,
+  "id": "walton-takyon-fusion-25td",
+  "brand": "Walton",
+  "model": "Takyon Fusion 25TD",
+  "category": "scooter",
+  "priceBDT": 161999,
+  "priceSource": "https://waltonbd.com/takyon-fusion-25td",
+  "distributor": "Walton",
+  "engine": {
+   "cc": 0,
+   "cylinders": 0,
+   "stroke": 0,
+   "cooling": "air",
+   "fuel": "electric"
+  },
+  "ev": {
+   "motorW": 1200,
+   "peakMotorW": 1500,
+   "batteryKWh": 2.74,
+   "battery": "72V 38Ah graphene lead-acid (Walton also lists 1,872 Wh; 72 x 38 = 2,736 Wh is used here, the higher figure)",
+   "rangeKm": 110,
+   "realRangeKm": [
+    70,
+    90
+   ],
+   "chargeHours": 7
+  },
+  "powerPS": 1.6,
+  "torqueNm": 88,
+  "gears": 0,
+  "topSpeedKmh": 65,
+  "weightKg": 141,
+  "seatHeightMm": 770,
+  "groundClearanceMm": 170,
+  "brakes": {
+   "front": "disc",
+   "rear": "disc",
+   "abs": "none"
+  },
+  "tubeless": true,
+  "tyres": {
+   "front": "110/70-12",
+   "rear": "120/70-12"
+  },
+  "scores": {
+   "reliability": 5,
+   "mechanicFamiliarity": 3,
+   "partsAvailability": 5,
+   "resale": 3,
+   "comfort": 6,
+   "cityHandling": 8,
+   "highway": 2,
+   "pillion": 5,
+   "offroad": 2,
+   "performance": 3,
+   "beginnerFriendly": 9
+  },
+  "tagline": "A BRTA-registrable electric scooter from Walton that charges at home for a few taka per day.",
+  "feel": "Silent, twist-and-go 1.2 kW hub motor with a 65 km/h top speed; brisk off the line in traffic, out of its depth on highways.",
+  "quirks": "Walton quotes 100-110 km range in Eco mode; expect less with a pillion, in Normal mode or as the lead-acid battery ages (Walton rates it at 600-800 charge cycles). Charging takes 6-8 hours. The heavy 65 kg battery makes it a 141 kg scooter.",
+  "braking": "Discs front and rear, no ABS or CBS.",
+  "mechanicNote": "Service and battery replacement go through Walton's own service centres; local mechanics can do tyres and brakes but not motor or controller faults.",
+  "pros": [
+   "Very low running cost",
+   "Silent, no gears",
+   "Discs both ends",
+   "BRTA-registrable"
+  ],
+  "cons": [
+   "6-8 hour charge",
+   "Lead-acid battery wears out",
+   "Not for highways",
+   "Dealer-only electrics"
+  ],
+  "bestFor": [
+   "Short city commutes",
+   "Riders with home charging",
+   "Cutting fuel costs"
+  ],
+  "serviceIntervalKm": 3000,
+  "avgServiceCostBDT": 500,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 600,
+    "availability": "dealer-only"
+   }
+  ],
+  "sources": [
+   "https://waltonbd.com/takyon-fusion-25td",
+   "https://waltonbd.com/takyon",
+   "https://www.waltondigitech.com/news/countrys-first-brta-approved-walton-e-bike-hits-market-km-cost-10-15-paisa",
+   "https://www.dhakatribune.com/business/408101/walton-offers-up-to-tk9-600-discount-on-takyon"
+  ],
+  "bn": {
+   "tagline": "Walton-এর BRTA রেজিস্ট্রেশনযোগ্য ইলেকট্রিক স্কুটার, বাসায় চার্জ দিলে দিনে কয়েক টাকা খরচ।",
+   "feel": "নিঃশব্দ, টুইস্ট-অ্যান্ড-গো 1.2 kW হাব মোটর, সর্বোচ্চ 65 km/h; জ্যামে শুরুতে চটপটে, হাইওয়ের জন্য নয়।",
+   "quirks": "Walton ইকো মোডে 100-110 km রেঞ্জ বলে; পিলিয়নসহ, নরমাল মোডে বা লেড-অ্যাসিড ব্যাটারি পুরনো হলে কম পাবেন (Walton 600-800 চার্জ সাইকেল বলে)। চার্জে 6-8 ঘণ্টা লাগে। 65 kg ব্যাটারির কারণে স্কুটারটির ওজন 141 kg।",
+   "braking": "সামনে-পেছনে ডিস্ক, ABS বা CBS নেই।",
+   "mechanicNote": "সার্ভিস আর ব্যাটারি বদল Walton-এর নিজস্ব সার্ভিস সেন্টারে; লোকাল মেকানিক টায়ার-ব্রেক পারেন, মোটর বা কন্ট্রোলারের সমস্যা নয়।",
+   "pros": [
+    "চালানোর খরচ খুব কম",
+    "নিঃশব্দ, গিয়ার নেই",
+    "দুই চাকায় ডিস্ক",
+    "BRTA রেজিস্ট্রেশনযোগ্য"
+   ],
+   "cons": [
+    "চার্জে 6-8 ঘণ্টা",
+    "লেড-অ্যাসিড ব্যাটারি ক্ষয় হয়",
+    "হাইওয়ের জন্য নয়",
+    "ইলেকট্রিক কাজ শুধু ডিলারে"
+   ],
+   "bestFor": [
+    "শহরে ছোট যাতায়াত",
+    "যাদের বাসায় চার্জের সুবিধা আছে",
+    "তেলের খরচ কমাতে"
+   ]
+  },
+  "aliases": [
+   "ওয়ালটন টাকিয়ন",
+   "walton takyon",
+   "takyon 25td",
+   "electric scooter",
+   "ইলেকট্রিক স্কুটার",
+   "ev"
+  ]
  }
 ]

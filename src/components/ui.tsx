@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Check, Heart, Plus, Share2 } from "lucide-react";
 import type { BikeLite } from "@/lib/types";
-import { CATEGORIES, ccLabel, formatLakh } from "@/lib/bikes";
+import { CATEGORIES, ccLabel, formatLakh, mileageText } from "@/lib/bikes";
 import { useStore } from "@/lib/store";
 import { useLang } from "@/lib/i18n";
 import { BikeArt } from "./BikeArt";
@@ -128,7 +128,7 @@ export function BikeCard({ bike, footer, badge }: { bike: BikeLite; footer?: Rea
           <div className="min-w-0">
             <p className="text-[19px] font-semibold tracking-tight text-ink tnum">{formatLakh(bike.priceBDT, lang)}</p>
             <p className="whitespace-nowrap text-[12.5px] text-muted tnum">
-              ~{bike.mileageKmpl[0]}–{bike.mileageKmpl[1]} kmpl · {bike.powerPS} PS
+              ~{mileageText(bike)} · {bike.powerPS} PS
             </p>
           </div>
           <CompareButton id={bike.id} size="sm" />

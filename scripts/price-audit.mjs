@@ -78,6 +78,17 @@ out.push("# Price re-sourcing worklist", "",
   "|---|---|---|---:|---|---:|---|---:|---:|---|");
 for (const r of rows)
   out.push(`| ${r.id} | ${r.cat} | ${r.status} | ${r.price.toLocaleString("en-US")} | ${r.asOf} | ${r.age ?? "?"} | ${r.d} | ${r.dev >= 0 ? "+" : ""}${Math.round(r.dev * 100)}% | ${r.other} | ${r.flags.join(", ") || "-"} |`);
+// Outcome per outlier: the outlierNote (or priceNote) that the validate gate accepts as the explanation.
+const byId = Object.fromEntries(bikes.map((b) => [b.id, b]));
+const outliers = rows.filter((r) => r.flags.includes("outlier"));
+if (outliers.length) {
+  out.push("", "## Outlier review", "", "Each outlier must carry `outlierNote` (or a `priceNote`) after a second-source check; `npm run validate` fails otherwise.", "",
+    "| Bike id | vs cat. median | Price source | Explanation |", "|---|---:|---|---|");
+  for (const r of outliers) {
+    const b = byId[r.id];
+    out.push(`| ${r.id} | ${r.dev >= 0 ? "+" : ""}${Math.round(r.dev * 100)}% | ${r.d} | ${(b.outlierNote ?? b.priceNote ?? "MISSING").replace(/\|/g, "/")} |`);
+  }
+}
 if (Object.keys(urlResult).length) {
   out.push("", "## Link check results", "", "| URL | Result |", "|---|---|");
   for (const [u, r] of Object.entries(urlResult)) out.push(`| ${u} | ${r} |`);
