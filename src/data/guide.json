@@ -252,7 +252,13 @@
  },
  "registration": {
   "asOf": "2026-10-06",
-  "summary": "BRTA's statutory registration fee is only two slabs: up to 100cc = Tk 2,000, above 100cc = Tk 3,000 (Road Transport Rules 2022). There is no separate registration slab for 125cc vs 150cc vs 250cc vs 350cc, so all >100cc bikes pay the same BRTA package. The buyer pays on top of ex-showroom price: registration fee + inspection + digital registration certificate (DRC) + RFID retro-reflective number plate + road tax (tax token, 2-year or 10-year) + a one-time Financial Assistance Fund (Trustee Board) fee + 15% VAT on BRTA service fees. Dealers usually collect this as a 'registration package' and may add a service charge.",
+  "summary": "BRTA's statutory registration fee is only two slabs: up to 100cc = Tk 2,000, above 100cc = Tk 3,000 (Road Transport Rules 2022). Electric bikes use the same slabs by motor power: up to 5 kW = Tk 2,000, above 5 kW = Tk 3,000. There is no separate registration slab for 125cc vs 150cc vs 250cc vs 350cc, so all >100cc bikes pay the same BRTA package. The buyer pays on top of ex-showroom price: registration fee + inspection + digital registration certificate (DRC) + RFID retro-reflective number plate + road tax (tax token, 2-year or 10-year) + a one-time Financial Assistance Fund (Trustee Board) fee + 15% VAT on BRTA service fees. Dealers usually collect this as a 'registration package' and may add a service charge.",
+  "ev": {
+   "motorKWMax": 5,
+   "note": "Electric motorcycles and scooters use the same two slabs, set by rated motor power instead of cc: motor up to 5 kW = Tk 2,000 (Sch.1 item 21-ka, same as up to 100cc), above 5 kW = Tk 3,000 (item 21-kha). Every EV listed here is rated 5 kW or less, so it gets the up-to-100cc package. The other package items (inspection, DRC, plate, Trustee fee) are not cc-based; the gazette page read does not cover road tax for EVs, so the up-to-100cc tax token is assumed (confidence medium).",
+   "source": "gazette2022",
+   "checked": "2026-10-13"
+  },
   "bands": [
    {
     "label": "~100cc (up to 100cc)",
@@ -264,7 +270,7 @@
     "confidence": "medium",
     "breakdown": [
      {
-      "item": "BRTA registration fee (Road Transport Rules 2022, Sch.1 item 21-ka)",
+      "item": "BRTA registration fee (Road Transport Rules 2022, Sch.1 item 21-ka; also electric motor up to 5 kW)",
       "amountBDT": 2000,
       "confidence": "high"
      },
@@ -350,7 +356,7 @@
   "breakdowns": {
    "above100cc": [
     {
-     "item": "BRTA registration fee (Road Transport Rules 2022, Sch.1 item 21-kha)",
+     "item": "BRTA registration fee (Road Transport Rules 2022, Sch.1 item 21-kha; also electric motor above 5 kW)",
      "amountBDT": 3000,
      "confidence": "high"
     },

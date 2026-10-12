@@ -8,17 +8,17 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 
 | Site | References |
 | --- | ---: |
-| bikebd.com | 189 |
+| bikebd.com | 188 |
 | bikroy.com | 65 |
 | bdhonda.com | 24 |
+| bajajauto.com | 23 |
 | suzuki.com.bd | 19 |
-| bajajauto.com | 18 |
 | motorcyclevalley.com | 11 |
 | motorcyclebd.com | 8 |
 | heromotocorp.com | 8 |
 | royalenfield.com | 8 |
 | motorcycle.com.bd | 6 |
-| tbsnews.net | 4 |
+| tbsnews.net | 6 |
 | en.ittefaq.com.bd | 4 |
 | bikewale.com | 3 |
 | dhakatribune.com | 3 |
@@ -38,9 +38,10 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 | suzukicycles.org | 1 |
 | amarujala.com | 1 |
 | bdbiker.com | 1 |
+| thedailystar.net | 1 |
 | waltondigitech.com | 1 |
 
-**Primary price source** (the `priceSource` of each bike): bikebd.com 53 (64%), bdhonda.com 9 (11%), suzuki.com.bd 7 (8%), bajajauto.com 5 (6%), royalenfield.com 4 (5%), bikroy.com 4 (5%), waltonbd.com 1 (1%).
+**Primary price source** (the `priceSource` of each bike): bikebd.com 52 (63%), bdhonda.com 9 (11%), suzuki.com.bd 7 (8%), bajajauto.com 6 (7%), royalenfield.com 4 (5%), bikroy.com 4 (5%), waltonbd.com 1 (1%).
 
 ## Bike data — per bike
 
@@ -84,10 +85,14 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh
   - Used asking prices (2026-10): ~1 yr ৳1,70,000, ~3 yr ৳1,50,000 — https://bikroy.com/bn/motorcycles-and-scooters/bajaj-pulsar-150, https://bikroy.com/bn/motorcycles-and-scooters/bajaj-pulsar-150-2025, https://bikroy.com/bn/motorcycles-and-scooters/bajaj-pulsar-150-2023
   - Photo: CAPTAIN RAJU, CC0 — https://commons.wikimedia.org/wiki/File:Bajaj_Pulsar_150_motorcycle_with_a_cat_sitting_on_the_seat_in_2025.02.jpg
-- **Pulsar N160** (Fi ABS (Dual Channel)) — ৳2,73,600 as of 2026-09
-  - Price: https://www.bikebd.com/brand/bajaj
+- **Pulsar N160** (Fi ABS (Dual Channel)) — ৳2,73,600 as of 2026-10
+  - Price: https://www.bajajauto.com/en-bd/bikes/pulsar-n160-dc-abs
   - https://www.bikebd.com/price/new-bajaj-pulsar-n160
   - https://www.bajajauto.com/en-bd/blogs/blog-pulsar-n160-price
+  - https://www.bikebd.com/brand/bajaj
+  - https://www.bajajauto.com/en-bd/bikes/pulsar-n160
+  - https://www.bajajauto.com/en-bd/bikes/pulsar-n160-single-seat
+  - https://www.bajajauto.com/en-bd/bikes/pulsar-n160-td
   - Used asking prices (2026-10): ~1 yr ৳2,25,000, ~3 yr ৳2,10,000 — https://bikroy.com/bn/motorcycles-and-scooters/bajaj-pulsar-n160
 - **Avenger Street 160** (ABS) — ৳2,74,000 as of 2026-09
   - Price: https://www.bikebd.com/price/bajaj-avenger-160-abs
@@ -316,6 +321,8 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 - **Bolt 165R** — ৳1,69,000 as of 2026-10
   - Price: https://www.bikebd.com/price/runner-bolt-165r-price-in-bangladesh
   - https://www.bikebd.com/price/runner-bolt-165r-price-in-bangladesh/specifications
+  - https://www.tbsnews.net/feature/wheels/runner-launches-bolt-165-r-124528
+  - https://www.thedailystar.net/toggle/news/new-bike-week-1955401
 
 ### Suzuki
 
@@ -507,6 +514,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - Price: https://www.bikebd.com/price/zontes-zt155-u
   - https://www.bikebd.com/price/zontes-zt155-u/specifications
   - https://www.bikebd.com/brand/zontes
+  - https://www.tbsnews.net/feature/wheels/zontes-enters-bangladesh-premium-motorcycles-222703
 
 ## Buyer's guide (BRTA, licence, fuel, laws)
 
