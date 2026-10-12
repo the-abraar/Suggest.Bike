@@ -213,3 +213,19 @@ Plan: (R) data research: Pulsar N160, second sources, more EVs, BRTA EV fee; (H)
 - **Bangla JSON-LD** description on `/bn/` bike pages. **Bangla OG images skipped on purpose:** satori (next/og) does no complex-script shaping, so Bangla conjuncts would render broken, and the only Bangla font is woff2, which satori can't read. Recorded as a `shortcut:` in `src/app/bn/bikes/[id]/page.tsx`.
 - **Header** gains Dealers/ডিলার and Method/পদ্ধতি (the 2xl search box was narrowed so the row fits at 1536 px). **Quiz event** `match-results` fires once per completed quiz (not for shared links); privacy text updated. **Slider:** total minimum ৳30,000, EMI ৳2,000/mo. **Offer `availability` removed** (no evidence for InStock); tests updated.
 - The agent's QA on 7 pages × 3 widths was clean. Not checked: dark mode, the event with analytics on.
+
+#### Round 3, P: dark mode, interaction checks, WebP, `/bn/` weight (merged `0893f56`; full `check.sh` on merged main: all 6 steps pass)
+- **QA:** 21 pages × 3 widths in light, OS-dark and saved-dark: 189 runs, **0 overflow, 0 axe serious/critical, 0 console errors**. `qa.mjs` now fails if `data-theme` doesn't match the scheme under test. No dark-mode bugs found; the dark 375 tiles were read by the agent.
+- **Fixed at 375 (both themes):** Quick pick and cost "Same style" names were truncated to "Hero …" / one letter (bike art hidden below `sm`); `#pay` table cells ran together (padding added).
+- **`tools/qa/interact.mjs`** (`npm run interact`): **24/24 pass**: quiz total/EMI, the ৳40k empty state via the slider, the language toggle, owner form validation and mailto, header links (desktop, Bangla, mobile menu), `/changes`, price history, the EV form without km/l.
+- **WebP:** 28 photos, 4.50 MB → 2.49 MB (−45%), via the rerunnable `scripts/webp-photos.mjs`; the JPGs were deleted (the OG route uses illustrations).
+- **Page weight** (375, 1.6 Mbps/150 ms, 4× CPU): `/bn/` pages LCP 0.84-1.20 s; bike pages LCP 2.81-2.88 s (EN was 3.19 s); JS 239-307 KB; Bangla pages +25-33 KB font. Table in `tools/qa/README.md`.
+- Unverified: real phones; dark tiles at 768/1280 looked at by axe only; 27 of 28 WebP photos not eyeballed; the `#pay` table still scrolls sideways at 375.
+
+---
+
+## Status after round 3 (2026-10-13)
+
+Changes since the round 2 table: §2.5 "no reason to return" is **partly fixed** (price history on every bike + `/changes`, no backend; alerts still need one). §2.1 Bangla coverage is **complete** for every page except the OG images (satori can't shape Bangla). §4: BRTA EV fee **sourced**; N160 **verified**; 5 budget bikes still single-source; still 1 EV. §6 real device: **open (owner)**. Dark mode: **verified headless**.
+
+**Score: ~75%.** What's left is owner-only: real phones, Formspree + GoatCounter accounts, dealer calls, lawyer, mistri panel, real users. See "Owner-only next steps" above.
