@@ -190,3 +190,7 @@ Usage before: 5-hour 41%, 7-day 52%. Planned: (D) Bangla `/bn/` routes for all m
 4. Lawyer review of `/privacy`, `/terms`, `/disclaimer`.
 5. Run the mistri panel (`docs/mistri-panel.md`).
 6. Soft-launch in two Facebook groups; read the analytics and owner reports after 2 weeks; fix data where people look.
+
+### Round 3 (2026-10-13 03:50): closing the code-closable gaps
+The owner asked for all 12 items plus research, then commit and push. Usage before: 5-hour 44%, 7-day 53%.
+Plan: (R) data research: Pulsar N160, second sources, more EVs, BRTA EV fee; (H) price history from git + a "what changed" page + CI checkout depth + Python removed from `check.yml`; (L) Bangla legal/saved/feedback, Bangla JSON-LD and OG, header nav, quiz event, slider minimum, InStock. Then (P): dark mode QA, interaction checks in `tools/qa`, WebP photos, `/bn/` page weight.
