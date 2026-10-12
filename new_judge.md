@@ -120,3 +120,12 @@ Planned, in parallel worktrees: (A) matcher logic, (B) cut bloat, (C) data and g
 - 2-stroke and used-only classics get −0.30 for commute and rideshare unless fun/style is picked. **Empty state** shows the 3 cheapest options with the gap. **Used** prices are labelled as Bikroy asking prices and given a 5% haircut. "Where you live" now says it isn't used yet. Rideshare tells users to check the app's own rules (no invented rules).
 - Skipped "who is riding": it doesn't map onto the weights, so the step was reworded to "Tell us about the rider".
 - Risks: the band cut-offs, the 10% rate and the 5% haircut are estimates; not browser-checked at phone width.
+
+#### Round 1, E: trust and the purchase journey (merged `8f0b7ca`; on merged main, tsc passes and 25 tests pass)
+- **`/method` (+ `/bn/method`):** how every number is made, each tagged sourced / calculated / editorial, with sources, update cadence and how to correct it. "Who makes this": Abrar (The-Abraar), `hello@suggest.bike`. Linked from the footer, bike pages (under the scores) and About.
+- **Score bands** on bike pages (`ScoreBar`: Strong / OK / Weak, with the raw /10 in small text) plus an "Editorial estimate — how we score" link.
+- **`/dealers`** from `src/data/dealers.json`, official sources only, with `sourceUrl` and `checked` on each brand. Locator + hotline: Bajaj, Hero, Honda, Suzuki, Lifan (31 districts). Hotline only: Yamaha, GPX, Haojue. Locator only: TVS, Royal Enfield, KTM. Site link only: Runner, Vespa, Aprilia (the last two are flagged "confirm before visiting"). Bike pages get a "Where to buy" block, "Prices are re-checked monthly" and an "I own this bike" report form.
+- **`FeedbackForm`** (feedback + owner reports) posts to `FORM_ENDPOINT`, or falls back to a prefilled email; validation lives in `src/lib/report.ts`, tested. **GoatCounter** stays inert until `GOATCOUNTER_CODE` is set; privacy text updated in EN and BN.
+- `docs/mistri-panel.md` protocol (6 mechanics, 3 scores, ৳2,000 per session, median published when ≥5 have rated); owner TODOs added to `Todo_owner.md`.
+- Merge: `LegalView.tsx` conflicted; kept the new messages and analytics lines and dropped the finder lines. Added `/method`, `/dealers` and `/bn/method` to the sitemap myself.
+- Skipped: price alerts (need a backend), the quiz-completed event, a Header nav entry. Only the Honda and Suzuki hotlines were checked first-hand; the rest came via a research subagent and are listed for the owner to call.

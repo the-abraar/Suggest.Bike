@@ -11,7 +11,14 @@ Things only you can do: decisions, accounts, money, relationships and work out i
 - [ ] **Legal footer.** Add a short disclaimer, a privacy note (we only use the browser's own storage, no tracking yet) and a contact email. A trademark note too: brand names are used for identification only.
 - [ ] **Create the `hello@suggest.bike` mailbox.** Every "Report wrong price" link on the site sends mail there (change it in `src/lib/site.ts`). Also consider a Facebook page. That feedback loop is the moat.
 
+- [ ] **Create a Formspree form** (free tier, formspree.io) sending to `hello@suggest.bike`, then paste its URL (`https://formspree.io/f/xxxx`) into `FORM_ENDPOINT` in `src/lib/site.ts`. Until then the feedback and "I own this" forms open a prefilled email, which fails on phones without a mail app.
+- [ ] **Create a GoatCounter account** (goatcounter.com, free for non-commercial use, no cookies) with the code `suggestbike`, then set `GOATCOUNTER_CODE` in `src/lib/site.ts`. The privacy page already covers it ("if enabled"). Form submits are counted as `form-feedback` / `form-owner` events.
+- [ ] **Confirm the distributor hotlines** in `src/data/dealers.json` by calling each one once, and ask Runner whether it distributes Vespa and Aprilia (not confirmed on an official page). Update `checked`.
+
 ## Data you're best placed to collect
+
+- [ ] **Recruit a named mistri panel** (protocol: `docs/mistri-panel.md`). 5–8 mechanics, paid per session, named on `/method` with their consent. This is what turns the mechanic, parts and reliability scores from one editor's guess into published data.
+- [ ] **Approach showrooms for lead deals** only after there is traffic to show (GoatCounter numbers). Pitch: a disclosed "Ask this showroom" button on bike pages, paid per lead, kept separate from rankings (see Growth). Start with one distributor that already has a showroom locator (Bajaj/Uttara, Honda/BHL, Suzuki/Rancon). Disclose any deal on `/method`.
 
 - [ ] **Talk to 10–20 mechanics** (Bangshal, Mirpur, Jatrabari, and one or two district towns). Ask which engines they're comfortable with, which parts are hard to find, and typical labour rates. This turns "mechanic familiarity" from an estimate into the site's unique data.
 - [ ] **Owner mileage survey.** A Google Form shared in BD bike Facebook groups: model, city/highway split, kmpl, problems. Even 300 responses would make the mileage numbers defensible.
@@ -29,7 +36,7 @@ Things only you can do: decisions, accounts, money, relationships and work out i
   - Insurance/EMI partner referrals
 
   Never let money touch the matchmaker ranking.
-- [ ] **Pick an analytics provider** (privacy-friendly: Plausible, Umami or Cloudflare Web Analytics). Then the agent can wire up event tracking.
+- [x] **Pick an analytics provider.** GoatCounter is wired in (see "Create a GoatCounter account" above).
 
 ## Later
 

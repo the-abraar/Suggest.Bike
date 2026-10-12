@@ -23,6 +23,9 @@ import { useLang, useTx } from "@/lib/i18n";
 import { SITE, issueUrl } from "@/lib/site";
 import type { Bike, Part, ScoreKey } from "@/lib/types";
 import { EstimateBadge } from "@/components/Experimental";
+import { FeedbackForm } from "@/components/FeedbackForm";
+import { AskShowroom, DealerCard } from "@/app/dealers/DealersView";
+import { dealerFor } from "@/lib/dealers";
 import { BikeArt } from "@/components/BikeArt";
 import { Approx, BikeCard, CompareButton, SaveButton, ScoreBar, ShareButton } from "@/components/ui";
 
@@ -138,6 +141,7 @@ export function BikeDetail({ bike }: { bike: Bike }) {
                   <span className="h-1.5 w-1.5 rounded-full bg-good" />
                   {tx("Price checked", "দাম যাচাই")} {monthLabel(bike.priceAsOf, lang)}
                 </span>
+                <span className="text-[12px] text-muted">{tx("Re-checked monthly", "প্রতি মাসে আবার যাচাই")}</span>
                 {hasOffer && <span className="rounded-full bg-signal-soft px-2.5 py-1 text-[12px] font-semibold text-signal">{tx("Offer running", "অফার চলছে")}</span>}
               </div>
               <div className="mt-3 flex flex-wrap items-end gap-x-8 gap-y-3">
@@ -287,6 +291,10 @@ export function BikeDetail({ bike }: { bike: Bike }) {
                 <ScoreBar key={k} value={bike.scores[k]} label={lang === "bn" ? SCORE_LABELS[k].bn : SCORE_LABELS[k].en} hint={lang === "bn" ? SCORE_LABELS[k].hintBn : SCORE_LABELS[k].hint} />
               ))}
             </div>
+            <p className="mt-4 text-[12.5px] text-muted">
+              {tx("Strong 8–10 · OK 5–7 · Weak 1–4. Editorial estimate —", "ভালো ৮–১০ · মাঝারি ৫–৭ · দুর্বল ১–৪। সম্পাদকীয় অনুমান —")}{" "}
+              <Link href="/method/" className="text-brand underline underline-offset-2">{tx("how we score", "আমরা কীভাবে স্কোর করি")}</Link>
+            </p>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               <div className="flex gap-3 rounded-2xl bg-surface-2 p-4">
                 <Wrench size={19} className="mt-0.5 shrink-0 text-brand" />
@@ -393,6 +401,8 @@ export function BikeDetail({ bike }: { bike: Bike }) {
             </div>
           </Section>
 
+          <BuyAndReport bike={bike} />
+
           <Section title={tx("Full specifications", "সম্পূর্ণ স্পেসিফিকেশন")}>
             <SpecTable bike={bike} />
           </Section>
@@ -446,6 +456,37 @@ export function BikeDetail({ bike }: { bike: Bike }) {
         </div>
       </section>
     </div>
+  );
+}
+
+/** "Where to buy" from official distributor data, plus the owner report form. */
+function BuyAndReport({ bike }: { bike: Bike }) {
+  const tx = useTx();
+  const dealer = dealerFor(bike.brand);
+  return (
+    <>
+      {bike.status !== "used-only" && (
+        <Section title={tx("Where to buy", "কোথায় কিনবেন")} sub={tx("From the official distributor's own website only.", "শুধু অফিশিয়াল ডিস্ট্রিবিউটরের নিজের ওয়েবসাইট থেকে।")}>
+          {dealer ? <DealerCard brand={bike.brand} d={dealer} compact /> : <p className="text-[14.5px] text-ink-2">{tx("We have not verified an official distributor for this brand.", "এই ব্র্যান্ডের অফিশিয়াল ডিস্ট্রিবিউটর এখনো যাচাই করা হয়নি।")}</p>}
+          <AskShowroom />
+          <p className="mt-3 text-[13px] text-muted">
+            {tx("Prices are re-checked monthly. Seen a different price at a showroom?", "দাম প্রতি মাসে আবার যাচাই করা হয়। শোরুমে অন্য দাম দেখেছেন?")}{" "}
+            <Link href="/dealers/" className="text-brand underline underline-offset-2">{tx("All distributors", "সব ডিস্ট্রিবিউটর")}</Link>
+          </p>
+        </Section>
+      )}
+      <Section title={tx("I own this bike", "আমার এই বাইক আছে")} sub={tx("Report what you really paid on-road, where, when, and the mileage you get. No account needed; this is how our numbers get corrected.", "অন-রোডে আসলে কত দিয়েছেন, কোথায়, কবে, আর কত মাইলেজ পান জানান। অ্যাকাউন্ট লাগবে না; এভাবেই আমাদের সংখ্যা ঠিক হয়।")}>
+        <details className="rounded-2xl border border-line bg-surface p-4">
+          <summary className="cursor-pointer text-[14.5px] font-medium text-brand">{tx("Report my on-road price and real mileage", "আমার অন-রোড দাম ও আসল মাইলেজ জানাই")}</summary>
+          <div className="mt-4">
+            <FeedbackForm kind="owner" bike={{ id: bike.id, name: fullName(bike) }} />
+          </div>
+        </details>
+        <p className="mt-2 text-[12.5px] text-faint">
+          <Link href="/method/" className="underline underline-offset-2">{tx("How reports are used", "রিপোর্ট কীভাবে ব্যবহার হয়")}</Link>
+        </p>
+      </Section>
+    </>
   );
 }
 

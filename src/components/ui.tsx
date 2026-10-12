@@ -139,13 +139,20 @@ export function BikeCard({ bike, footer, badge }: { bike: BikeLite; footer?: Rea
   );
 }
 
+/** Editorial scores are too coarse for 1-point differences, so they are shown as bands (see /method). */
+export const scoreBand = (v: number): [string, string] => (v >= 8 ? ["Strong", "ভালো"] : v >= 5 ? ["OK", "মাঝারি"] : ["Weak", "দুর্বল"]);
+
 export function ScoreBar({ value, label, hint, tone = "brand" }: { value: number; label: string; hint?: string; tone?: "brand" | "muted" }) {
-  const color = tone === "muted" ? "bg-ink/25" : value >= 8 ? "bg-good" : value >= 6 ? "bg-brand" : value >= 4 ? "bg-warn" : "bg-signal";
+  const { lang } = useLang();
+  const color = tone === "muted" ? "bg-ink/25" : value >= 8 ? "bg-good" : value >= 5 ? "bg-brand" : "bg-warn";
+  const band = scoreBand(value);
   return (
     <div title={hint}>
       <div className="mb-1.5 flex items-baseline justify-between gap-3">
         <span className="text-[13.5px] text-ink-2">{label}</span>
-        <span className="text-[13.5px] font-semibold text-ink tnum">{value}/10</span>
+        <span className="text-[13.5px] font-semibold text-ink">
+          {lang === "bn" ? band[1] : band[0]} <span className="text-[11.5px] font-normal text-faint tnum">{value}/10</span>
+        </span>
       </div>
       <div className="h-1.5 overflow-hidden rounded-full bg-surface-3">
         <div className={`h-full rounded-full ${color} animate-grow`} style={{ width: `${value * 10}%` }} />
