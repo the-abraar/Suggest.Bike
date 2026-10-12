@@ -111,3 +111,12 @@ Planned, in parallel worktrees: (A) matcher logic, (B) cut bloat, (C) data and g
 - `/cost#pay` now has a compact cash vs 0% card EMI (12 mo) vs loan (14%, 24 mo, 30% down) table; `fund.ts` keeps only `loanEmi` and `payPaths` (tested).
 - Compare: no crowns or "wins most"; measured rows get ↓/↑ markers; editorial rows show values only, with a link to `/method`; four score-only verdicts were removed.
 - `src/` went from 11,929 to 5,991 LOC. `check.sh` passed in the agent's worktree (15 tests, 246 pages). Not browser-checked. `check.yml` still sets up Python (unused).
+
+#### Round 1, A: matcher (merged `9350e2b`; on merged main, tsc passes and the tests are listed below)
+- The budget is now an **on-road ceiling** (ex-showroom plus the 2-year BRTA registration from `registrationFor`); the 1.06 cap is gone. Up to 2 labelled **stretch** picks (≤10% over). Results show the on-road breakdown and the fee's as-of date.
+- `budgetFit` was removed, so **cheaper bikes are no longer penalised**; ties go to the cheaper bike.
+- **EMI** asks for down payment and tenure (3-36 months); 0% up to 12 months, flat 10%/yr beyond (marked as an estimate in the UI, `APPROX/UNVERIFIED` in code).
+- Scores shown as **bands** (Great 88+, Good 78+, Possible). **Height** uses seat height + 0.5 mm per kg over 130 kg (short >800, medium >830). **Gearless** defaults to "either", and the other options are labelled as filters.
+- 2-stroke and used-only classics get −0.30 for commute and rideshare unless fun/style is picked. **Empty state** shows the 3 cheapest options with the gap. **Used** prices are labelled as Bikroy asking prices and given a 5% haircut. "Where you live" now says it isn't used yet. Rideshare tells users to check the app's own rules (no invented rules).
+- Skipped "who is riding": it doesn't map onto the weights, so the step was reworded to "Tell us about the rider".
+- Risks: the band cut-offs, the 10% rate and the 5% haircut are estimates; not browser-checked at phone width.
