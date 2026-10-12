@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Heart, Menu, Moon, Sun, X } from "lucide-react";
 import { Logo } from "./Logo";
@@ -122,9 +122,16 @@ export function Header() {
 
 function LangToggle() {
   const { lang, setLang } = useLang();
+  const router = useRouter();
+  const pathname = usePathname();
+  const onBn = /^\/bn(\/|$)/.test(pathname);
   return (
     <button
-      onClick={() => setLang(lang === "en" ? "bn" : "en")}
+      onClick={() => {
+        if (!onBn) return setLang(lang === "en" ? "bn" : "en");
+        setLang("en"); // leave the /bn copy for its English twin
+        router.push(pathname.replace(/^\/bn/, "") || "/");
+      }}
       className="grid h-10 min-w-10 place-items-center rounded-xl px-2.5 text-[13.5px] font-semibold text-ink-2 hover:bg-surface-2"
       aria-label={lang === "en" ? "বাংলায় দেখুন" : "Switch to English"}
       title={lang === "en" ? "বাংলায় দেখুন" : "Switch to English"}

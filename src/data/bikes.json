@@ -275,7 +275,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/bajaj-ct-100-price-in-bangladesh",
-   "https://www.bikebd.com/brand/bajaj"
+   "https://www.bikebd.com/brand/bajaj",
+   "https://www.banglamotor.net/bajaj-ct100-es.html"
   ],
   "bn": {
    "tagline": "সবচেয়ে কম দামে নতুন বাজাজ — কোনো ঝামেলা ছাড়া খাটুনির বাইক।",
@@ -496,8 +497,8 @@
   "model": "Pulsar NS125",
   "category": "naked",
   "status": "on-sale",
-  "priceBDT": 179850,
-  "priceAsOf": "2026-09",
+  "priceBDT": 169850,
+  "priceAsOf": "2026-10",
   "priceSource": "https://www.bikebd.com/price/bajaj-pulsar-ns-125",
   "distributor": "Uttara Motors Ltd",
   "assembledInBD": true,
@@ -603,7 +604,10 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/bajaj-pulsar-ns-125",
-   "https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh"
+   "https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh",
+   "https://www.bajajauto.com/en-bd/blogs/pulsar-ns125-built-for-busy-bangladesh-streets",
+   "https://www.motorcycle.com.bd/bajaj-pulsar-ns125/",
+   "https://www.motorcyclebd.com/specs/bajaj-pulsar-ns125/"
   ],
   "bn": {
    "tagline": "125cc-এর দামে NS-এর লুক আর পেরিমিটার ফ্রেম।",
@@ -662,7 +666,8 @@
    "license": "CC0",
    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "sourcePage": "https://commons.wikimedia.org/wiki/File:Bajaj_pulsar_NS_125.jpg"
-  }
+  },
+  "priceNote": "Entry 125cc naked bike priced below the naked category median, which is pulled up by 150-250cc imports."
  },
  {
   "id": "bajaj-pulsar-150",
@@ -1451,7 +1456,9 @@
   "sources": [
    "https://www.bikebd.com/price/bajaj-pulsar-f250-abs-2024",
    "https://www.bikebd.com/price/pulsar-f250",
-   "https://www.bikebd.com/brand/bajaj"
+   "https://www.bikebd.com/brand/bajaj",
+   "https://mrp.com.bd/product/bajaj-pulsar-f250/",
+   "https://deshibiker.com/baja-pulsar-f250/"
   ],
   "bn": {
    "tagline": "N250-এর হাফ-ফেয়ারিং ট্যুরার যমজ ভাই — হাইওয়ে রাইডারদের জন্য বাতাস থেকে সুরক্ষা।",
@@ -1617,7 +1624,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/tvs-metro-plus-price-in-bangladesh",
-   "https://www.bikebd.com/brand/tvs"
+   "https://www.bikebd.com/brand/tvs",
+   "https://www.bikestall.com/bike/tvs-metro-plus"
   ],
   "bn": {
    "tagline": "বাংলাদেশি কমিউটার আর রাইড শেয়ার রাইডারদের জন্য TVS-এর ভরসার 110।",
@@ -1781,7 +1789,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/tvs-radeon-price-in-bangladesh",
-   "https://www.bikebd.com/brand/tvs"
+   "https://www.bikebd.com/brand/tvs",
+   "https://www.motorcycle.com.bd/tvs-radeon-110/"
   ],
   "bn": {
    "tagline": "লম্বা নরম সিটওয়ালা আরামদায়ক 110, গ্রামের রাস্তার জন্য দারুণ।",
@@ -1848,7 +1857,7 @@
   "powerRpm": 8000,
   "torqueNm": 10.8,
   "torqueRpm": 6000,
-  "gears": 5,
+  "gears": 4,
   "topSpeedKmh": 100,
   "mileageKmpl": [
    50,
@@ -1927,7 +1936,9 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/tvs-stryker-price-in-bangladesh",
-   "https://www.bikebd.com/brand/tvs"
+   "https://www.bikebd.com/brand/tvs",
+   "https://www.motorcyclebd.com/tvs-stryker-125/",
+   "https://www.motorcycle.com.bd/tvs-stryker-125-cc/"
   ],
   "bn": {
    "tagline": "110-এর চেয়ে সামান্য বেশি দামে ফ্রন্ট ডিস্কওয়ালা বাজেট 125।",
@@ -2268,7 +2279,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/rtr-160-2v-refresh",
-   "https://www.bikebd.com/brand/tvs"
+   "https://www.bikebd.com/brand/tvs",
+   "https://deshibiker.com/tvs-apache-rtr-160-2v-xonnect-edition/"
   ],
   "bn": {
    "tagline": "Pulsar 150-এর দামে হালকা, চটপটে Apache হ্যান্ডলিং।",
@@ -2437,7 +2449,8 @@
   "sources": [
    "https://www.bikebd.com/price/new-tvs-apache-rtr-160-4v-single-channel-abs",
    "https://www.bikebd.com/price/tvs-apache-rtr-160-4v-fi",
-   "https://www.bikebd.com/brand/tvs"
+   "https://www.bikebd.com/brand/tvs",
+   "https://www.motorcyclebd.com/tvs-apache-rtr-160-4v-smartxconnect-abs/"
   ],
   "bn": {
    "tagline": "বাইকপ্রেমীদের 160 — শার্প হ্যান্ডলিং আর রেভ করতে ভালোবাসা ইঞ্জিন।",
@@ -2613,7 +2626,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/tvs-ntorq-125",
-   "https://www.bikebd.com/brand/tvs"
+   "https://www.bikebd.com/brand/tvs",
+   "https://www.motorcyclebd.com/tvs-ntorq-125/"
   ],
   "bn": {
    "tagline": "স্পোর্টি স্কুটার — দ্রুত, ফিচারে ভরা আর গিয়ার ছাড়া।",
@@ -3330,9 +3344,9 @@
    "valves": 2,
    "fuel": "carb"
   },
-  "powerPS": 14.4,
+  "powerPS": 14.3,
   "powerRpm": 8500,
-  "torqueNm": 12.8,
+  "torqueNm": 12.6,
   "torqueRpm": 6500,
   "gears": 5,
   "topSpeedKmh": 115,
@@ -3418,7 +3432,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/hero-hunk-150-price-in-bangladesh",
-   "https://www.bikebd.com/price/hero-hunk-150r-xtec"
+   "https://www.bikebd.com/price/hero-hunk-150r-xtec",
+   "https://www.heromotocorp.com/en-bd/products/premium/hunk-150r-price-in-bangladesh.html"
   ],
   "bn": {
    "tagline": "বাংলাদেশের জন্য বানানো Hero-র আরামদায়ক, ঝামেলাহীন 150।",
@@ -4077,7 +4092,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/hero-xoom-125r",
-   "https://www.bikebd.com/brand/hero"
+   "https://www.bikebd.com/brand/hero",
+   "https://www.heromotocorp.com/en-bd/products/scooter/xoom-125r-fi-price-in-bangladesh.html"
   ],
   "bn": {
    "tagline": "বাংলাদেশের রাস্তার জন্য বড় 14-ইঞ্চি চাকার স্পোর্টি 125 স্কুটার।",
@@ -4876,7 +4892,9 @@
   "sources": [
    "https://www.bikebd.com/price/honda-sp160",
    "https://www.bikebd.com/price/honda-sp160-single-disc",
-   "https://www.bikebd.com/blog/honda-sp-160-launched-in-bangladesh"
+   "https://www.bikebd.com/blog/honda-sp-160-launched-in-bangladesh",
+   "https://www.motobikebd.com/bikes/honda-sp160",
+   "https://www.motorcyclevalley.com/overview/honda-sp-160/"
   ],
   "bn": {
    "tagline": "কমিউটারের মতো ভদ্র, কিন্তু হাইওয়েতেও চলার দম আছে — এমন একটা 160।",
@@ -5123,9 +5141,9 @@
    "valves": 2,
    "fuel": "fi"
   },
-  "powerPS": 17.03,
+  "powerPS": 16.6,
   "powerRpm": 8500,
-  "torqueNm": 16.1,
+  "torqueNm": 15.9,
   "torqueRpm": 6000,
   "gears": 5,
   "topSpeedKmh": 128,
@@ -5442,7 +5460,7 @@
   "category": "sport",
   "status": "on-sale",
   "priceBDT": 650000,
-  "priceNote": "Indonesian-built CBR150R sold by BHL; price has climbed from ৳5,38,000 (2021 launch).",
+  "priceNote": "Indonesian-built CBR150R sold by BHL; price has climbed from ৳5,38,000 (2021 launch), and as a fully-faired imported sportbike it sits well above the 150-165cc sport median.",
   "priceAsOf": "2026-10",
   "priceSource": "https://www.bikebd.com/price/new-honda-cbr150r",
   "distributor": "Bangladesh Honda Private Limited (BHL)",
@@ -6594,8 +6612,8 @@
   "model": "FZ25",
   "category": "street",
   "status": "on-sale",
-  "priceBDT": 390000,
-  "priceNote": "May 2026 offer price ৳3,98,000 after ৳12,000 discount shown elsewhere; prices vary by dealer stock.",
+  "priceBDT": 402000,
+  "priceNote": "A 250cc bike (ACI-imported) listed in a street category dominated by 125-160cc bikes, so it sits far above the median; prices vary by dealer stock and offers.",
   "priceAsOf": "2026-10",
   "priceSource": "https://www.bikebd.com/price/yamaha-fz-25",
   "distributor": "ACI Motors Ltd",
@@ -6749,7 +6767,7 @@
   "category": "sport",
   "status": "on-sale",
   "priceBDT": 610000,
-  "priceNote": "Racing Blue ~৳6,06,000; Intensity White ৳6,60,000; R15M ৳6,25,000; R15M TFT ~৳6,78,000 (May 2026).",
+  "priceNote": "Imported 155cc fully-faired sportbike with VVA, quick-shifter and traction control, priced far above the sport median; Racing Blue ~৳6,06,000, Intensity White ৳6,60,000, R15M ৳6,25,000, R15M TFT ~৳6,78,000 (May 2026).",
   "priceAsOf": "2026-10",
   "priceSource": "https://www.bikebd.com/price/r15-v4-price-in-bangladesh",
   "distributor": "ACI Motors Ltd",
@@ -7082,7 +7100,7 @@
   "category": "naked",
   "status": "on-sale",
   "priceBDT": 535000,
-  "priceNote": "Older MT-15 (V1) stock still listed at ৳4,60,000.",
+  "priceNote": "Imported 155cc VVA naked bike from ACI, priced well above the naked median; older MT-15 (V1) stock still listed at ৳4,60,000.",
   "priceAsOf": "2026-10",
   "priceSource": "https://www.bikebd.com/price/yamaha-mt-15-version-20",
   "distributor": "ACI Motors Ltd",
@@ -7254,7 +7272,7 @@
   "category": "classic",
   "status": "on-sale",
   "priceBDT": 545000,
-  "priceNote": "Launched by ACI on 20 March (price unchanged since launch per BikeBD).",
+  "priceNote": "Launched by ACI on 20 March at an unchanged price; imported neo-retro 155cc priced like the R15 platform it shares, far above the used-heavy classic median.",
   "priceAsOf": "2026-10",
   "priceSource": "https://www.bikebd.com/price/yamaha-xsr-155-price-in-bangladesh",
   "distributor": "ACI Motors Ltd",
@@ -7523,7 +7541,10 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/yamaha-ray-zr-125-price-in-bangladesh",
-   "https://www.bikebd.com/brand/yamaha"
+   "https://www.bikebd.com/brand/yamaha",
+   "https://www.motorcycle.com.bd/yamaha-ray-zr-street-rally-125-fi/",
+   "https://www.motorcyclefair.com/yamaha-ray-zr-street-rally-125-fi/",
+   "https://www.motorcyclebd.com/yamaha-ray-zr-street-rally-125-fi/"
   ],
   "bn": {
    "tagline": "জ্যামে ভরা ঢাকার জন্য হালকা, স্পোর্টি একটা 125 স্কুটার।",
@@ -7573,7 +7594,7 @@
   "category": "scooter",
   "status": "on-sale",
   "priceBDT": 525000,
-  "priceNote": "Launched Nov 2023 at ৳5,30,000.",
+  "priceNote": "Launched Nov 2023 at ৳5,30,000; a 155cc maxi-scooter with ABS and VVA priced far above the common 110-125cc scooters.",
   "priceAsOf": "2026-10",
   "priceSource": "https://www.bikebd.com/price/yamaha-aerox-155",
   "distributor": "ACI Motors Ltd",
@@ -8724,7 +8745,8 @@
    "sources": [
     "https://bikroy.com/bn/motorcycles-and-scooters/suzuki-gixxer-250"
    ]
-  }
+  },
+  "priceNote": "A 250cc bike in a street category dominated by 125-160cc bikes; Suzuki BD lists it from ৳3,79,950 (launch article Dec 2024 said ৳3,99,950), and the SF 250 is higher."
  },
  {
   "id": "suzuki-gixxer-sf-250",
@@ -10567,7 +10589,9 @@
   ],
   "sources": [
    "https://bikebd.com/price/bullet-100-v2",
-   "https://bikebd.com/brand/runner"
+   "https://bikebd.com/brand/runner",
+   "https://www.motorcycle.com.bd/runner-bullet-100-v2/",
+   "https://banglarbike.com/bike-brands/runner/runner-bullet-100-v2/"
   ],
   "bn": {
    "tagline": "সবচেয়ে টাইট বাজেটের জন্য বাংলাদেশে তৈরি 100cc।",
@@ -10618,7 +10642,7 @@
   "category": "street",
   "status": "on-sale",
   "priceBDT": 167000,
-  "priceNote": "Original Knight Rider ৳1,59,000.",
+  "priceNote": "Original Knight Rider ৳1,59,000. Other BD sites list ৳1,49,000–1,59,000.",
   "priceAsOf": "2026-09",
   "priceSource": "https://bikebd.com/brand/runner",
   "distributor": "Runner Automobiles Ltd",
@@ -10721,7 +10745,9 @@
   ],
   "sources": [
    "https://bikebd.com/price/runner-knight-rider-v2",
-   "https://bikebd.com/brand/runner"
+   "https://bikebd.com/brand/runner",
+   "https://www.bikestall.com/bike/runner-knight-rider-v2-price-in-bd",
+   "https://www.motorcyclefair.com/runner-knight-rider-v2/"
   ],
   "bn": {
    "tagline": "125cc-র দামে 150cc-র লুক — সাথে লোকাল ব্র্যান্ডের কিছু ছাড় দিতে হয়।",
@@ -10773,7 +10799,7 @@
   "category": "sport",
   "status": "on-sale",
   "priceBDT": 228000,
-  "priceNote": "EFI ৳2,28,000; Carburetor version ৳2,14,000.",
+  "priceNote": "EFI ৳2,28,000 (a carbureted KPR 165R also exists); a budget Chinese-brand sport bike priced far below imported Japanese and Indian sport bikes.",
   "priceAsOf": "2026-10",
   "priceSource": "https://www.bikebd.com/price/lifan-kpr-165-price-in-bangladesh",
   "distributor": "Rasel Industries Ltd",
@@ -10878,7 +10904,8 @@
   "sources": [
    "https://www.bikebd.com/price/lifan-kpr-165-price-in-bangladesh",
    "https://bikebd.com/blog/lifan-kpr-165r-carb-2000km-user-review",
-   "https://bikebd.com/price/lifan-kpr-165r-carburetor"
+   "https://bikebd.com/price/lifan-kpr-165r-carburetor",
+   "https://banglarbike.com/bike-brands/lifan/lifan-kpr-165r-efi/"
   ],
   "bn": {
    "tagline": "টাকা প্রতি সবচেয়ে বেশি পাওয়ার আর ফেয়ারিং — যদি চায়নিজ বাইকের কম্প্রোমাইজগুলো মেনে নিতে পারেন।",
@@ -10930,7 +10957,7 @@
   "category": "adventure",
   "status": "on-sale",
   "priceBDT": 285000,
-  "priceNote": "2-valve KPT 150 listed at ৳2,60,000.",
+  "priceNote": "2-valve KPT 150 listed at ৳2,60,000. Other BD sites list ৳3,05,000–3,30,000; listings disagree on availability.",
   "priceAsOf": "2026-10",
   "priceSource": "https://bikebd.com/price/lifan-kpt150-4v",
   "distributor": "Rasel Industries Ltd",
@@ -11033,7 +11060,9 @@
   ],
   "sources": [
    "https://bikebd.com/price/lifan-kpt150-4v",
-   "https://bikebd.com/price/lifan-kpt-150"
+   "https://bikebd.com/price/lifan-kpt-150",
+   "https://banglarbike.com/bike-brands/lifan/lifan-kpt150-4v-price-in-bangladesh/",
+   "https://www.motorcyclebd.com/lifan-kpt-150-4v/"
   ],
   "bn": {
    "tagline": "৳3 লাখের নিচে ডুয়াল-চ্যানেল ABS সহ বাজেট অ্যাডভেঞ্চার-ট্যুরার।",
@@ -11191,7 +11220,9 @@
   ],
   "sources": [
    "https://bikebd.com/price/gpx-demon-gr165r",
-   "https://bikebd.com/brand/gpx"
+   "https://bikebd.com/brand/gpx",
+   "https://www.motorcyclevalley.com/overview/gpx-demon-gr165r/",
+   "https://mrp.com.bd/product/gpx-demon-gr165r/"
   ],
   "bn": {
    "tagline": "থাইল্যান্ডে তৈরি ফেয়ারড 165, USD ফর্ক সহ — টাকার তুলনায় শো-অফ অনেক।",
@@ -11345,7 +11376,9 @@
   ],
   "sources": [
    "https://bikebd.com/price/gpx-demon-gr165rr",
-   "https://bikebd.com/brand/gpx"
+   "https://bikebd.com/brand/gpx",
+   "https://www.motorcyclebd.com/gpx-demon-gr165rr/",
+   "https://www.motorcyclevalley.com/overview/gpx-demon-gr165rr/"
   ],
   "bn": {
    "tagline": "ফুল-ফেয়ারিং রেসার স্টাইল আর ডুয়াল-চ্যানেল ABS, দাম R15-এর সাথে টক্কর দেয়।",
@@ -11553,7 +11586,7 @@
   "category": "scooter",
   "status": "on-sale",
   "priceBDT": 350000,
-  "priceNote": "Non-CBS VXL 125 ৳3,20,000; VXL 150 ৳3,50,000; SXL 150 ৳2,99,000.",
+  "priceNote": "Premium Italian-brand lifestyle scooter built on a steel monocoque; CBS VXL 125 ৳3,50,000 (a ৳3,20,000 variant is also listed) versus the cheaper commuter-style scooter median. Other BD sites list about ৳2,81,000–2,98,000.",
   "priceAsOf": "2026-10",
   "priceSource": "https://bikebd.com/price/vespa-vxl-125-cbs",
   "distributor": "Runner Automobiles Ltd",
@@ -11657,7 +11690,8 @@
   ],
   "sources": [
    "https://bikebd.com/price/vespa-vxl-125-cbs",
-   "https://www.bikebd.com/brand/vespa"
+   "https://www.bikebd.com/brand/vespa",
+   "https://www.motorcycle.com.bd/vespa-vxl-125/"
   ],
   "bn": {
    "tagline": "স্টাইল স্টেটমেন্ট স্কুটার — ইতালিয়ান লুক, স্টিল বডি, প্রিমিয়াম দাম।",
@@ -11817,7 +11851,8 @@
   ],
   "sources": [
    "https://bikebd.com/price/aprilia-sxr-160",
-   "https://bikebd.com/brand/aprilia"
+   "https://bikebd.com/brand/aprilia",
+   "https://bdbiker.com/price/aprilia-sxr-160-fi-abs"
   ],
   "bn": {
    "tagline": "যারা গিয়ার বদলাতে চান না, তাদের জন্য আরামদায়ক ম্যাক্সি-স্টাইল স্কুটার।",
@@ -11860,7 +11895,8 @@
    "sxr160",
    "aprillia",
    "aprilia scooter"
-  ]
+  ],
+  "priceNote": "Italian-brand maxi-scooter sold by Runner at a premium over typical 110-125cc Bangladeshi scooters, so it sits well above the scooter median."
  },
  {
   "id": "honda-cg125",
@@ -11869,7 +11905,7 @@
   "category": "classic",
   "status": "used-only",
   "priceBDT": 50000,
-  "priceNote": "Bikroy listings mostly ৳35,000-55,000 for local-used examples; very rough units ~৳20,000, clean Japanese-era bikes can ask more.",
+  "priceNote": "Used-only classic priced on the used market; Bikroy listings mostly ৳35,000-55,000 for local-used examples, very rough units ~৳20,000, clean Japanese-era bikes can ask more.",
   "priceAsOf": "2026-10",
   "priceSource": "https://bikroy.com/en/ads/c/bangladesh/motorbikes-scooters/used/honda/cg125",
   "engine": {
@@ -12032,7 +12068,7 @@
   "category": "classic",
   "status": "used-only",
   "priceBDT": 80000,
-  "priceNote": "Bikroy asks range ৳28,000 (rough) to ৳1,10,000 (restored/modified); fresh-condition examples typically ৳70,000-90,000.",
+  "priceNote": "Used-only classic priced on the used market; Bikroy asks range ৳20,000 (rough) to ৳1,10,000 (restored/modified), fresh-condition examples typically ৳70,000-90,000 while the median ask is ~৳45,000.",
   "priceAsOf": "2026-10",
   "priceSource": "https://bikroy.com/bn/ads/bangladesh/motorbikes-scooters/yamaha/rx",
   "engine": {
@@ -12194,7 +12230,7 @@
   "category": "classic",
   "status": "used-only",
   "priceBDT": 75000,
-  "priceNote": "Few listings: ৳50,000 for a 2001 local-used unit up to ৳1,55,000 for an original 1992 Japanese example with full papers.",
+  "priceNote": "Used-only classic priced on the used market; few listings, from ৳50,000 for a 2001 local-used unit up to ৳1,55,000 for an original 1992 Japanese example with full papers.",
   "priceAsOf": "2026-10",
   "priceSource": "https://bikroy.com/bn/motorcycles-and-scooters/yamaha-rx-115",
   "engine": {
@@ -12353,7 +12389,7 @@
   "category": "street",
   "status": "used-only",
   "priceBDT": 45000,
-  "priceNote": "Bikroy listings for CBZ / CBZ Xtreme-era bikes mostly ৳40,000-65,000 depending on year and condition.",
+  "priceNote": "Discontinued, used-only bike priced on the used market, far below new-bike prices; Bikroy listings for CBZ / CBZ Xtreme-era bikes mostly ৳40,000-85,000 depending on year and condition.",
   "priceAsOf": "2026-10",
   "priceSource": "https://bikroy.com/bn/motorcycles-and-scooters/hero-honda-cbz",
   "engine": {

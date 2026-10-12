@@ -34,7 +34,7 @@ Work an AI coding agent can pick up without the owner. Ordered by impact. Each i
 
 ## P2 — Engineering
 
-- [ ] **Per-bike Bangla URLs** (`/bn/bikes/[id]`) so Google indexes the Bangla pages. Today the language is client-side only.
+- [x] **Per-bike Bangla URLs** (`/bn/bikes/[id]`) *(done 2026-10-13)* so Google indexes the Bangla pages. Today the language is client-side only.
 - [ ] **Static OG/meta for client pages.** `/`, `/bikes`, `/match`, `/compare`, `/cost` and `/saved` are client components with only the layout's default metadata. Split them into a server `page.tsx` (with metadata) plus a client view.
 - [ ] **Tests.** Unit-test `matchBikes` (budget ceiling, no scooters when `gearless:"no"`, the seat-height penalty), `ownershipCost` (renewal maths for the 2-year plan) and `formatLakh`. Playwright smoke test for every route at 390px and 1440px, failing on horizontal overflow.
 - [ ] **Accessibility pass.** Keyboard-only run through the quiz, compare add-slot and search combobox. Check focus rings, colour contrast of `text-faint` (likely under 4.5:1), and the switch markup in `/bikes` (a button nested in a label).

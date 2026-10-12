@@ -28,7 +28,7 @@ export const viewport: Viewport = {
 };
 
 // Runs before paint so the saved/system theme never flashes.
-const themeScript = `(function(){try{var t=localStorage.getItem('sb-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t;var l=localStorage.getItem('sb-lang');if(l)document.documentElement.lang=l}catch(e){}})()`;
+const themeScript = `(function(){try{var t=localStorage.getItem('sb-theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t;var l=localStorage.getItem('sb-lang');if(l)document.documentElement.lang=l;if(/^\/bn(\/|$)/.test(location.pathname))document.documentElement.lang='bn'}catch(e){}})()`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

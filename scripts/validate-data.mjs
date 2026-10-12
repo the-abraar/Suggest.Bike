@@ -34,6 +34,15 @@ for (const b of bikes) {
   else if (age > WARN_DAYS) warnings.push(`${b.id}: price ${age}d old (priceAsOf ${b.priceAsOf}, warn >${WARN_DAYS}d)`);
   try { const d = new URL(b.priceSource).hostname.replace(/^www\./, ""); domains[d] = (domains[d] ?? 0) + 1; } catch { errors.push(`${b.id}: bad priceSource`); }
 }
+// Outliers: price more than 40% from the category median must explain itself in priceNote.
+const median = (a) => { const s = [...a].sort((x, y) => x - y), m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
+const med = {};
+for (const c of CATS) { const p = bikes.filter((b) => b.category === c).map((b) => b.priceBDT); if (p.length) med[c] = median(p); }
+for (const b of bikes) {
+  const dev = (b.priceBDT - med[b.category]) / med[b.category];
+  if (Math.abs(dev) > 0.4 && !(typeof b.priceNote === "string" && b.priceNote.length >= 20))
+    errors.push(`${b.id}: price ${Math.round(dev * 100)}% from ${b.category} median but priceNote is missing; explain it in priceNote`);
+}
 for (const [d, n] of Object.entries(domains))
   if (n / bikes.length > 0.5) warnings.push(`source concentration: ${d} supplies ${n}/${bikes.length} (${Math.round((100 * n) / bikes.length)}%) of price sources`);
 warnings.forEach((w) => console.log("WARN", w));

@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
 
 export type Lang = "en" | "bn";
@@ -58,14 +59,21 @@ type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: (k: DictKey) => string }
 const LangContext = createContext<Ctx>({ lang: "en", setLang: () => {}, t: (k) => DICT[k].en });
 
 export function LangProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("en");
+  // /bn/... pages are the indexable Bangla copy: the URL decides the language there, not localStorage.
+  const onBn = /^\/bn(\/|$)/.test(usePathname());
+  const [lang, setLangState] = useState<Lang>(onBn ? "bn" : "en");
 
   useEffect(() => {
+    if (onBn) {
+      setLangState("bn");
+      try { localStorage.setItem("sb-lang", "bn"); } catch {} // keep Bangla when the reader follows an English-URL link
+      return;
+    }
     try {
       const saved = localStorage.getItem("sb-lang");
       if (saved === "bn" || saved === "en") setLangState(saved);
     } catch {}
-  }, []);
+  }, [onBn]);
 
   useEffect(() => {
     document.documentElement.lang = lang;

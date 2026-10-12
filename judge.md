@@ -261,3 +261,9 @@ Fix blockers 1 to 4 below, hide the finder, and the site can soft-launch in abou
 
 **Not verified:** the GitHub CI workflows have never run; the pre-commit hook has never blocked a real commit; no real-device, real-user or real-host testing.
 **Next, first:** `zontes-zt155-u` re-source (deploy workflow gates on `npm run validate`, so pushes to `main` will fail that gate until fixed); DNS; lawyer review; then the other items in Update 8.
+
+### Update 10 (2026-10-13)
+
+**Done:** dropped `zontes-zt155-u` (deploy gate green); `validate-data.mjs` now fails on a >40% category-median price outlier with no `priceNote` (all 15 now have one; FZ25 and NS125 prices corrected from fetched BikeBD pages); 21 of 23 single-source bikes now have a second-domain source (URLs fetched and checked for the model name; `haojue-dr160`, `hero-honda-cbz` still single-source); Hornet 2.0, Hunk 150R power/torque and Stryker gears corrected (BikeBD only, medium confidence); `/bn/` and `/bn/bikes/[id]/` Bangla routes with hreflang (sitemap too); `/feedback/` form.
+**Not verified:** second-source pages were checked for status and model name only, not for matching price. Vespa VXL, Knight Rider V2 and KPT 150 4V differ from other sites by more than 5%; noted in `priceNote`, prices unchanged. `/feedback/` falls back to mailto until `NEXT_PUBLIC_FEEDBACK_ENDPOINT` is set at build time (owner: pick Formspree/Web3Forms/Worker). `/bn/` pages use the client i18n layer on the English-URL internal links; Bangla `<html lang>` is set by script. Not tested in a real browser.
+**Still open (P0):** Metro Plus weight, Discover 125 tank, XSR155 ABS, Access 125 brakes, SP160 single-disc ABS, Stryker seat height/tank, RC 125 stock, price conflicts (Gixxer Monotone, X-Blade, Ray ZR 125, R15 V4 BS7).

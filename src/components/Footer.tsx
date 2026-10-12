@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Logo } from "./Logo";
 import { T, useLang } from "@/lib/i18n";
 import { BIKES, CATEGORIES } from "@/lib/bikes";
-import { SITE, issueUrl } from "@/lib/site";
 import type { Category } from "@/lib/types";
 
 export function Footer() {
@@ -45,14 +44,7 @@ export function Footer() {
           <FLink href="/guide/#used">{tx("Buying used", "পুরনো বাইক কেনা")}</FLink>
           <FLink href="/guide/#rules">{tx("Road rules", "রাস্তার নিয়ম")}</FLink>
           <FLink href="/about/">{tx("How we rate", "আমরা কীভাবে রেট করি")}</FLink>
-          <li>
-            <a href={`mailto:${SITE.contactEmail}?subject=${encodeURIComponent("Suggest.Bike feedback")}`} className="text-[14px] text-ink-2 transition-colors hover:text-brand">
-              {tx("Report a mistake", "ভুল জানান")}
-            </a>
-            <a href={issueUrl("Suggest.Bike feedback", "Page: \n\nWhat's wrong:\n")} target="_blank" rel="noopener noreferrer" className="ml-2 text-[13px] text-faint hover:text-brand">
-              {tx("(GitHub)", "(GitHub)")}
-            </a>
-          </li>
+          <FLink href="/feedback/">{tx("Report a mistake", "ভুল জানান")}</FLink>
         </FooterCol>
       </div>
       <div className="border-t border-line">

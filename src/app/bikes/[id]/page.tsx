@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   if (!b) return {};
   const title = `${fullName(b)} price in Bangladesh, real mileage & review`;
   const description = `${fullName(b)} (${ccLabel(b)}) costs ${formatBDT(b.priceBDT)} in Bangladesh. Real-world ${b.mileageKmpl[0]}–${b.mileageKmpl[1]} kmpl, parts prices, mechanic familiarity and true monthly cost. ${b.tagline}`;
-  return { title, description, alternates: { canonical: `/bikes/${b.id}/` }, openGraph: { title, description } };
+  return { title, description, alternates: { canonical: `/bikes/${b.id}/`, languages: { en: `/bikes/${b.id}/`, bn: `/bn/bikes/${b.id}/`, "x-default": `/bikes/${b.id}/` } }, openGraph: { title, description } };
 }
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
