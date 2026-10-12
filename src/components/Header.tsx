@@ -16,6 +16,8 @@ const NAV: { href: string; k: DictKey }[] = [
   { href: "/compare/", k: "nav.compare" },
   { href: "/cost/", k: "nav.cost" },
   { href: "/guide/", k: "nav.guide" },
+  { href: "/dealers/", k: "nav.dealers" },
+  { href: "/method/", k: "nav.method" },
 ];
 
 export function Header() {
@@ -65,7 +67,7 @@ export function Header() {
           </nav>
 
           <div className="ml-auto flex items-center gap-1.5">
-            <div className="hidden w-64 md:block lg:hidden xl:block xl:w-40 2xl:w-72">
+            <div className="hidden w-64 md:block lg:hidden xl:block xl:w-40">
               <SearchBox compact />
             </div>
             <Link

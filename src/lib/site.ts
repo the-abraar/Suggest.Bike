@@ -25,7 +25,7 @@ export function track(event: string) {
 }
 
 // EN paths that have a server-rendered Bangla twin under /bn/ (Decision 8 in new_judge.md).
-const BN_TWIN = /^\/(?:(?:bikes(?:\/[^/]+)?|match|compare|cost|guide|dealers|method|about)\/?)?$/;
+const BN_TWIN = /^\/(?:(?:bikes(?:\/[^/]+)?|match|compare|cost|guide|dealers|method|about|privacy|terms|disclaimer|saved|feedback)\/?)?$/;
 
 /** Internal href in `lang`: adds or strips the /bn prefix, keeping ?query and #hash. Pages without a Bangla twin keep the English URL. */
 export function langHref(href: string, lang: "en" | "bn"): string {

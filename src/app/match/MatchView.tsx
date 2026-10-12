@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "@/components/LangLink";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -52,6 +52,7 @@ import { useLang, useTx } from "@/lib/i18n";
 import { useStore } from "@/lib/store";
 import { BikeArt } from "@/components/BikeArt";
 import { CompareButton, SaveButton, ShareButton, WithSearchParams } from "@/components/ui";
+import { track } from "@/lib/site";
 
 type Opt<T> = { id: T; en: string; bn: string; sub?: string; subBn?: string; icon?: React.ReactNode };
 
@@ -94,11 +95,13 @@ function Matchmaker({ params }: { params: URLSearchParams }) {
   const [step, setStep] = useState(0); // 0..STEPS-1 = questions, STEPS = results
   // Only a shared link (answers in the URL) waits for the effect; the static HTML gets step 1.
   const [loaded, setLoaded] = useState(() => !params.toString());
+  const tracked = useRef(false); // one "match-results" event per completed quiz; a shared results link is not one
 
   useEffect(() => {
     const decoded = decodeAnswers(params);
     if (decoded) {
       setA(decoded);
+      tracked.current = params.get("r") === "1";
       setStep(params.get("r") === "1" ? STEPS : 3);
     }
     setLoaded(true);
@@ -108,6 +111,10 @@ function Matchmaker({ params }: { params: URLSearchParams }) {
     if (!loaded) return;
     window.scrollTo({ top: 0, behavior: "smooth" });
     if (step === STEPS) window.history.replaceState(null, "", `?${encodeAnswers(a)}&r=1`);
+    if (step === STEPS && !tracked.current) {
+      tracked.current = true;
+      track("match-results");
+    }
   }, [step]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const set = <K extends keyof Answers>(k: K, v: Answers[K]) => setA((x) => ({ ...x, [k]: v }));
@@ -121,6 +128,7 @@ function Matchmaker({ params }: { params: URLSearchParams }) {
         onRestart={() => {
           setA(DEFAULT_ANSWERS);
           setStep(0);
+          tracked.current = false;
           window.history.replaceState(null, "", window.location.pathname);
         }}
       />
@@ -322,7 +330,7 @@ function BudgetStep({ a, set }: { a: Answers; set: <K extends keyof Answers>(k: 
   const { lang } = useLang();
   const tx = useTx();
   const monthly = a.payMode === "monthly";
-  const [min, max, step] = monthly ? [5000, 60000, 500] : [50000, 700000, 5000];
+  const [min, max, step] = monthly ? [2000, 60000, 500] : [30000, 700000, 5000];
   const value = monthly ? a.monthly : a.budget;
   const fill = ((value - min) / (max - min)) * 100;
   const setEmi = (e: Partial<Pick<Answers, "monthly" | "down" | "tenure">>) => {
