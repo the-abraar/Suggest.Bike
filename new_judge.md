@@ -141,3 +141,12 @@ Planned, in parallel worktrees: (A) matcher logic, (B) cut bloat, (C) data and g
 
 ### Round 2 (started 2026-10-13 01:5x)
 Usage before: 5-hour 41%, 7-day 52%. Planned: (D) Bangla `/bn/` routes for all main pages with hreflang, OG images, JSON-LD `Offer`, EV display fixes on compare; then (Q) real-browser QA + page weight on the merged site.
+
+#### Round 2, D: Bangla SEO, OG images, Offer, EV display (merged `da1443e`; full `check.sh` on main: all 6 steps pass)
+- **Bangla twins**, server-rendered for home, bikes, every bike page, match, compare, cost, guide, dealers, method and about (92 `/bn/` pages); each has a Bangla `<title>` and description. `scripts/bn-lang.mjs` runs after build and sets `lang="bn"` on every `/bn/` page (it fails the build if one is missing). Canonical + hreflang (en, bn, x-default) on both versions; the sitemap has 188 URLs.
+- **The toggle navigates** to the twin URL (`LangLink` / `langHref`), keeping the query string and hash. Someone who saved Bangla as their language is redirected to the Bangla twin.
+- **Pages that were empty before JS** (browse, compare, cost, match step 1) now pre-render (`WithSearchParams`).
+- **OG images:** 84 real `og.png` files (they used to be extension-less files that GitHub Pages serves as octet-stream); every page has an absolute `og:image`.
+- **JSON-LD `Offer`** on on-sale bikes (price, BDT, InStock, NewCondition, distributor as seller). I changed the Offer `url` from the price source (usually bikebd) to our own bike page, so rich results don't hand the click to the competitor.
+- **EV:** compare shows motor kW, km/charge and kWh; no carb, kmpl or litres, and no mileage/tank markers. Match and cost use EV wording.
+- Remaining: no Bangla for the legal, saved and feedback pages; the JSON-LD description and the OG image text are English; "InStock" is assumed; not yet browser-tested.

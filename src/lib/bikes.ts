@@ -104,7 +104,7 @@ export const mileageText = (b: Pick<BikeLite, "engine" | "mileageKmpl" | "ev">) 
 export const ccLabel =(b: Pick<BikeLite, "engine">) => (isEv(b) ? "Electric" : `${Math.round(b.engine.cc)}cc`);
 
 /** schema.org Product for a bike page. Only bikes on sale with a price carry an Offer; used-only bikes have no seller or list price. */
-export function productJsonLd(b: Pick<Bike, "id" | "brand" | "model" | "tagline" | "status" | "priceBDT" | "priceSource" | "distributor">) {
+export function productJsonLd(b: Pick<Bike, "id" | "brand" | "model" | "tagline" | "status" | "priceBDT" | "distributor">) {
   const url = `${SITE.url}/bikes/${b.id}/`;
   return {
     "@context": "https://schema.org",
@@ -122,7 +122,7 @@ export function productJsonLd(b: Pick<Bike, "id" | "brand" | "model" | "tagline"
         priceCurrency: "BDT",
         availability: "https://schema.org/InStock",
         itemCondition: "https://schema.org/NewCondition",
-        url: b.priceSource, // where this ex-showroom price is published
+        url, // our page, which cites the price source; pointing at bikebd would hand it the click
         ...(b.distributor && { seller: { "@type": "Organization", name: b.distributor } }),
       },
     }),
