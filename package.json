@@ -12,9 +12,7 @@
     "pretypecheck": "node scripts/build-data.mjs && tsx scripts/build-art.tsx",
     "typecheck": "tsc --noEmit",
     "validate": "node scripts/validate-data.mjs",
-    "finder": "tsx finder/run.ts",
-    "finder:test": "tsx finder/test.mjs",
-    "test": "tsx --test tests/*.test.ts && npm run finder:test",
+    "test": "tsx --test tests/*.test.ts",
     "audit:prices": "node scripts/price-audit.mjs"
   },
   "dependencies": {

@@ -4,13 +4,7 @@ import assert from "node:assert/strict";
 import { BIKES, HAS_NETWORKS, getBike } from "../src/lib/bikes";
 import { matchBikes, anyNewFits, cheapestNew, encodeAnswers, decodeAnswers, DEFAULT_ANSWERS, type Answers } from "../src/lib/match";
 import { emiMonthly, registrationFor, yearlyRetention, defaultUsedPrice, ownershipCost, DEFAULT_COST_INPUT, type CostBike } from "../src/lib/cost";
-import { loanEmi, monthsToGoal, progress } from "../src/lib/fund";
-import { normaliseText, parseListingText, extractPrice, extractKm, extractYear } from "../src/lib/listingcheck/text";
-import { assess, emptyListing, BASE_SCORE } from "../src/lib/listingcheck/engine";
-import { valueIndex, rankListings } from "../src/lib/listingcheck/compare";
-import { priceBand, valueAtAge, kmAdjust } from "../src/lib/listingcheck/price";
-import { analyseSamples } from "../src/lib/usedcheck/audio";
-import { negotiate, deduction } from "../src/lib/negotiate/parts";
+import { loanEmi, payPaths } from "../src/lib/fund";
 
 const A = (o: Partial<Answers> = {}): Answers => ({ ...DEFAULT_ANSWERS, ...o });
 const bike = (id: string) => getBike(id)! as unknown as CostBike & typeof BIKES[number];
@@ -90,13 +84,15 @@ test("loanEmi: zero-interest split, known answer, monotonic, guards", () => {
   assert.equal(loanEmi(0, 10, 12), 0);
   assert.equal(loanEmi(1000, 10, 0), 0);
 });
-test("fund: monthsToGoal and progress", () => {
-  assert.equal(monthsToGoal(100000, 100000, 0), 0);
-  assert.equal(monthsToGoal(100000, 0, 10000), 10);
-  assert.equal(monthsToGoal(100000, 0, 0), null);
-  assert.ok(monthsToGoal(100000, 0, 10000, 8)! <= 10);
-  assert.equal(progress(5, 0), 0);
-  assert.equal(progress(150, 100), 1);
+test("payPaths: cash is cheapest, card adds only the fee, loan adds interest; zero terms are safe", () => {
+  const p = payPaths({ price: 120000, brta: 10000, cardMonths: 12, feePct: 2, loanDownPct: 30, loanPct: 14, loanMonths: 24 });
+  assert.equal(p.cash.total, 130000);
+  assert.equal(p.card.emi, 10000);
+  assert.equal(p.card.extra, 2400);
+  assert.ok(p.loan.extra > p.card.extra && p.loan.total > p.card.total);
+  assert.equal(p.loan.upfront, 36000 + 10000 + 84000 * 0.02);
+  const z = payPaths({ price: 0, brta: 0, cardMonths: 0, feePct: 0, loanDownPct: 0, loanPct: 0, loanMonths: 0 });
+  for (const k of ["cash", "card", "loan"] as const) assert.ok(Number.isFinite(z[k].total) && z[k].total === 0, k);
 });
 test("BRTA: registrationFor picks the right band and totals grow with size", () => {
   assert.equal(registrationFor(100).totalBDT, 10664);
@@ -144,167 +140,4 @@ test("cost: all bikes produce finite non-negative totals; zero km/years do not y
     for (const k of ["perKm", "perMonth", "runningPerMonth", "pocketPerMonth"] as const) assert.ok(Number.isFinite(r[k]), `${JSON.stringify(o)} ${k}`);
   }
   assert.equal(ownershipCost(bike("bajaj-platina-100"), { ...DEFAULT_COST_INPUT, kmPerDay: 0 }).fuel, 0);
-});
-
-// ---------------- listingcheck ----------------
-test("normaliseText: Bangla digits, thousands separators, case", () => {
-  assert.equal(normaliseText("১২৩৪৫৬৭৮৯০"), "1234567890");
-  assert.equal(normaliseText("১,২৫,০০০ ABC"), "125000 abc");
-  assert.equal(normaliseText(""), "");
-});
-test("parse: price/km/year in English, Bangla digits and units", () => {
-  const p = parseListingText("দাম ১,২৫,০০০ টাকা, ৪৫০০ কিমি, মডেল ২০২২", 2026);
-  assert.deepEqual([p.price, p.km, p.year], [125000, 4500, 2022]);
-  assert.equal(extractPrice(normaliseText("১.২ লাখ")), 120000);
-  assert.equal(extractPrice("85k tk"), 85000);
-  assert.equal(extractPrice("85000 tk"), 85000);
-  assert.equal(extractKm("12k km"), 12000);
-  assert.equal(extractKm(normaliseText("১২ হাজার কিমি")), 12000);
-  assert.equal(extractYear("registered 1975", 2026), null); // before 1985
-  assert.equal(extractYear("model 2019, bought 2021", 2026), 2019); // keyword wins
-});
-test("parse: empty/garbage input is safe; km and year are not mistaken for price", () => {
-  const e = parseListingText("", 2026);
-  assert.deepEqual([e.price, e.km, e.year, e.signals.length], [null, null, null, 0]);
-  assert.equal(parseListingText(undefined as unknown as string, 2026).price, null);
-  assert.equal(parseListingText("2022 model 12000 km", 2026).price, null);
-  assert.equal(parseListingText("only 500 tk", 2026).price, null); // below the 15,000 floor
-});
-test("parse: advance/bKash wording is flagged and the advance amount is not the price", () => {
-  const p = parseListingText("advance bkash 5000 then 90000 tk", 2026);
-  assert.equal(p.price, 90000);
-  assert.ok(p.signals.some((s) => s.id === "advance"));
-});
-test("priceBand thresholds are ordered and monotonic", () => {
-  const order = ["far-below", "below", "fair", "above", "far-above"];
-  let prev = -1;
-  for (let d = -80; d <= 80; d += 1) {
-    const i = order.indexOf(priceBand(d));
-    assert.ok(i >= prev);
-    prev = i;
-  }
-  assert.equal(priceBand(-30), "far-below");
-  assert.equal(priceBand(0), "fair");
-  assert.equal(priceBand(22), "far-above");
-});
-test("valueAtAge / kmAdjust: value falls with age, floor at 20%, km effect capped", () => {
-  const b = bike("bajaj-platina-100");
-  let prev = Infinity;
-  for (let age = 0; age <= 20; age++) {
-    const v = valueAtAge(b, age).v;
-    assert.ok(v <= prev + 1e-6, `age ${age}`);
-    assert.ok(v >= b.priceBDT * 0.2 - 1e-6);
-    prev = v;
-  }
-  assert.equal(kmAdjust(3, null), 1);
-  assert.ok(kmAdjust(3, 100000) >= 0.85 && kmAdjust(3, 100000) < 1);
-  assert.ok(kmAdjust(3, 0) <= 1.08 + 1e-9 && kmAdjust(3, 0) > 1);
-});
-test("assess: empty listing = base score; advance forces Skip; unknown bike has no price band", () => {
-  const empty = assess(emptyListing("a", "A"), null, { nowYear: 2026 });
-  assert.equal(empty.score, BASE_SCORE);
-  assert.equal(empty.price.known, false);
-  const scam = emptyListing("b", "B");
-  scam.text = "send advance by bkash first";
-  const s = assess(scam, null, { nowYear: 2026 });
-  assert.ok(s.score <= 34);
-  assert.equal(s.verdict, "skip");
-  const flagged = emptyListing("c", "C");
-  flagged.behaviours.wantsAdvance = true;
-  assert.ok(assess(flagged, null, { nowYear: 2026 }).score <= 34);
-});
-test("assess: a far-below price is penalised relative to a fair price", () => {
-  const b = bike("bajaj-pulsar-150") ?? BIKES.find((x) => x.status === "on-sale")!;
-  const mid = assess({ ...emptyListing("m", "M"), bikeId: b.id, year: 2023, askingBDT: null }, b, { nowYear: 2026 }).price.fairMid;
-  const at = (asking: number) => assess({ ...emptyListing("x", "X"), bikeId: b.id, year: 2023, askingBDT: asking }, b, { nowYear: 2026 });
-  const fair = at(mid), cheap = at(Math.round(mid * 0.4));
-  assert.equal(fair.price.band, "fair");
-  assert.equal(cheap.price.band, "far-below");
-  assert.ok(cheap.score < fair.score);
-  assert.ok(cheap.score <= 69); // one high flag: never "Worth"
-});
-test("valueIndex / rankListings: bounds, far-below cap, risk dominates, empty list", () => {
-  const mk = (score: number, deltaPct: number | null, band: string, known = true) => ({ score, price: { known, deltaPct, band } }) as never;
-  assert.equal(valueIndex(mk(60, null, "unknown", false)), 40);
-  assert.equal(valueIndex(mk(60, 0, "fair")), 50);
-  assert.equal(valueIndex(mk(60, -100, "far-below")), 50); // scam-pattern cap
-  assert.equal(valueIndex(mk(60, -20, "below")), 80);
-  assert.equal(valueIndex(mk(60, 500, "far-above")), 0);
-  assert.ok(valueIndex(mk(60, -10, "fair")) > valueIndex(mk(60, 5, "fair")));
-  assert.deepEqual(rankListings([]), []);
-  const r = rankListings([mk(40, -20, "below"), mk(80, 0, "fair"), mk(80, 15, "above")]);
-  assert.deepEqual(r.map((x) => x.rank), [3, 1, 2]);
-  assert.equal(new Set(r.map((x) => x.rank)).size, r.length);
-});
-
-// ---------------- usedcheck audio ----------------
-const tone = (hz: number, sec: number, amp: number, sr = 8000) => Float32Array.from({ length: sr * sec }, (_, i) => amp * Math.sin((2 * Math.PI * hz * i) / sr));
-test("analyseSamples: steady 100 Hz tone", () => {
-  const r = analyseSamples(tone(100, 20, 0.5), 8000);
-  assert.equal(r.steadiness, "steady");
-  assert.ok(r.steadinessCv < 0.05);
-  assert.ok(Math.abs(r.dominantHz! - 100) <= 4);
-  assert.ok(r.bands.low > 0.9);
-  assert.ok(Math.abs(r.bands.low + r.bands.mid + r.bands.high - 1) < 1e-6);
-  assert.equal(r.flags.length, 0);
-  assert.ok(r.rmsSeries.length <= 120 && r.rmsSeries.every((v) => v >= 0 && v <= 1));
-});
-test("analyseSamples: band placement follows frequency", () => {
-  assert.ok(analyseSamples(tone(600, 10, 0.4), 8000).bands.mid > 0.9);
-  assert.ok(analyseSamples(tone(3000, 10, 0.4), 8000).bands.high > 0.9);
-});
-test("analyseSamples: pulsing amplitude is less steady than constant", () => {
-  const sr = 8000, x = tone(120, 20, 1);
-  for (let i = 0; i < x.length; i++) x[i] *= 0.5 + 0.45 * Math.sign(Math.sin((2 * Math.PI * 1.7 * i) / sr)); // 1.7 Hz surge
-  const r = analyseSamples(x, sr);
-  assert.ok(r.steadinessCv > 0.15);
-  assert.notEqual(r.steadiness, "steady");
-});
-test("analyseSamples: silence and empty are too-quiet and never throw; short clip and clipping are flagged", () => {
-  for (const x of [new Float32Array(0), new Float32Array(8000 * 20)]) {
-    const r = analyseSamples(x, 8000);
-    assert.equal(r.steadiness, "too-quiet");
-    assert.equal(r.dominantHz, null);
-    assert.ok(r.flags.some((f) => f.id === "quiet"));
-    assert.ok(Number.isFinite(r.steadinessCv));
-  }
-  assert.ok(analyseSamples(tone(100, 3, 0.5), 8000).flags.some((f) => f.id === "short"));
-  const loud = analyseSamples(tone(100, 20, 1), 8000);
-  assert.ok(loud.clippedPct > 0.5 && loud.flags.some((f) => f.id === "clip"));
-});
-test("analyseSamples: only the first 60 s are analysed", () => {
-  const r = analyseSamples(tone(100, 70, 0.5, 4000), 4000);
-  assert.equal(r.analysedSec, 60);
-  assert.ok(r.durationSec > 60 && r.flags.some((f) => f.id === "trimmed"));
-});
-
-// ---------------- negotiate ----------------
-test("negotiate: no problems => ask nothing; deductions are monotonic ok<worn<bad", () => {
-  const b = bike("bajaj-platina-100");
-  const fair = 100000;
-  const n0 = negotiate(b, {}, fair);
-  assert.equal(n0.total, 0);
-  assert.equal(n0.target, fair);
-  assert.equal(n0.askOff, 0);
-  assert.equal(n0.walk, false);
-  const ids = ["frontTyre", "rearTyre", "brakes", "chain", "clutch", "engine", "fork", "shock", "electrics", "body", "service"] as const;
-  for (const id of ids) {
-    assert.equal(deduction(b, id, "ok", fair), null);
-    const w = deduction(b, id, "worn", fair)!.amount, d = deduction(b, id, "bad", fair)!.amount;
-    assert.ok(w > 0 && d >= w, `${id}: worn ${w} bad ${d}`);
-  }
-});
-test("negotiate: ordering openAt <= target <= walkAbove <= fair; floor holds; walk-away items", () => {
-  const b = bike("bajaj-platina-100");
-  const n = negotiate(b, { chain: "worn", brakes: "bad", engine: "worn" }, 100000);
-  assert.ok(n.total > 0);
-  assert.ok(n.openAt <= n.target && n.target <= n.walkAbove && n.walkAbove <= 100000);
-  assert.ok(Math.abs(n.settleOff - Math.round((n.askOff * 0.65) / 500) * 500) <= 500);
-  const everything = negotiate(b, { engine: "bad", electrics: "bad", fork: "bad", shock: "bad", body: "bad" }, 40000);
-  assert.ok(everything.target >= Math.max(5000, 40000 * 0.12));
-  const walk = negotiate(b, { frame: "bad" }, 100000);
-  assert.equal(walk.walk, true);
-  assert.equal(walk.total, 0); // walk-away items are not priced into the ask
-  assert.equal(negotiate(b, { papers: "bad" }, 100000).walk, true);
-  assert.ok(Number.isFinite(negotiate(b, { chain: "bad" }, 0).target)); // zero fair price
 });

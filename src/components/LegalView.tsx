@@ -5,18 +5,15 @@ import { SITE } from "@/lib/site";
 
 type Doc = { title: [string, string]; items: [string, string][][] };
 
-// TODO(owner): these texts are plain-language drafts, NOT legal advice. Have a Bangladesh lawyer review them before launch and before the finder goes live.
+// TODO(owner): these texts are plain-language drafts, NOT legal advice. Have a Bangladesh lawyer review them before launch.
 const DOCS: Record<"privacy" | "terms" | "disclaimer", Doc> = {
   privacy: {
     title: ["Privacy", "গোপনীয়তা"],
     items: [
       [
         ["On your device only. Your saved bikes, comparisons and quiz answers are kept in your browser's localStorage. We do not have accounts and we do not receive this data. Clearing your browser data removes it.", "শুধু আপনার ডিভাইসে। সেভ করা বাইক, তুলনা ও কুইজের উত্তর আপনার ব্রাউজারের localStorage-এ থাকে। আমাদের কোনো অ্যাকাউন্ট নেই এবং এই তথ্য আমরা পাই না। ব্রাউজারের ডেটা মুছলে এগুলোও মুছে যায়।"],
-        ["Microphone. The used-bike check can analyse engine sound. The analysis runs inside your browser; the audio is not uploaded to us.", "মাইক্রোফোন। পুরনো বাইক যাচাইয়ে ইঞ্জিনের শব্দ বিশ্লেষণ করা যায়। বিশ্লেষণ আপনার ব্রাউজারের ভেতরেই হয়; অডিও আমাদের কাছে আপলোড হয় না।"],
       ],
       [
-        ["Bike finder. If you use the finder (not yet available), we collect the WhatsApp number you give and the description of the bike you want, so we can message you about matches.", "বাইক ফাইন্ডার। ফাইন্ডার ব্যবহার করলে (এখনো চালু হয়নি) আপনার দেওয়া হোয়াটসঅ্যাপ নম্বর ও কোন বাইক চান তার বিবরণ আমরা সংগ্রহ করব, যাতে মিল পেলে জানাতে পারি।"],
-        ["Retention. Finder requests and numbers are kept for 65 days and then deleted.", "সংরক্ষণ। ফাইন্ডারের অনুরোধ ও নম্বর ৬৫ দিন রাখা হয়, তারপর মুছে ফেলা হয়।"],
         ["Deletion. You can ask us to delete your data at any time using the contact below.", "মুছে ফেলা। যেকোনো সময় নিচের যোগাযোগ ঠিকানায় জানালে আপনার তথ্য মুছে দেওয়া হবে।"],
       ],
       [["Contact: ", "যোগাযোগ: "]],
@@ -43,7 +40,7 @@ const DOCS: Record<"privacy" | "terms" | "disclaimer", Doc> = {
         ["Prices, EMI, running-cost and resale figures here are estimates for planning, not quotes or financial advice. Showroom prices and offers change often; confirm with the seller before paying.", "এখানকার দাম, কিস্তি, চালানোর খরচ ও রিসেলের অঙ্ক পরিকল্পনার আন্দাজ, কোনো কোটেশন বা আর্থিক পরামর্শ নয়। শোরুমের দাম ও অফার প্রায়ই বদলায়; টাকা দেওয়ার আগে বিক্রেতার কাছে নিশ্চিত হোন।"],
         ["Mileage, mechanic and parts scores are editorial estimates, not lab measurements.", "মাইলেজ, মিস্ত্রি ও পার্টসের স্কোর সম্পাদকীয় আন্দাজ, ল্যাবে মাপা নয়।"],
         ["Registration, BRTA, licence and import-rule information is a general guide, not legal advice. Check with BRTA or a qualified professional.", "রেজিস্ট্রেশন, BRTA, লাইসেন্স ও আমদানি নিয়মের তথ্য সাধারণ নির্দেশিকা, আইনি পরামর্শ নয়। BRTA বা যোগ্য পেশাজীবীর কাছে যাচাই করুন।"],
-        ["Used-bike checks and engine-sound analysis are aids only and cannot replace inspection by a qualified mechanic.", "পুরনো বাইক যাচাই ও ইঞ্জিনের শব্দ বিশ্লেষণ শুধু সহায়ক; যোগ্য মিস্ত্রির পরীক্ষার বিকল্প নয়।"],
+        ["The used-bike checklist is an aid only and cannot replace inspection by a qualified mechanic.", "পুরনো বাইকের চেকলিস্ট শুধু সহায়ক; যোগ্য মিস্ত্রির পরীক্ষার বিকল্প নয়।"],
         ["Photos from Wikimedia Commons are used under CC BY-SA with credit to their authors.", "Wikimedia Commons-এর ছবি CC BY-SA লাইসেন্সে লেখকদের ক্রেডিটসহ ব্যবহার করা হয়েছে।"],
       ],
     ],

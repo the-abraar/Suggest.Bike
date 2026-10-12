@@ -162,8 +162,8 @@ export function BikeDetail({ bike }: { bike: Bike }) {
                 </p>
               )}
               <p className="mt-1.5 text-[14px]">
-                <Link href={`/fund/?bike=${bike.id}${used ? "&used=1" : ""}`} className="font-medium text-brand underline underline-offset-2">
-                  {tx("Saving up for it? See how close you are →", "এর জন্য জমাচ্ছেন? কতটা কাছে দেখুন →")}
+                <Link href={`/cost/?bike=${bike.id}${used ? "&used=1" : ""}#pay`} className="font-medium text-brand underline underline-offset-2">
+                  {tx("Cash, card EMI or loan? Compare what each costs →", "নগদ, কার্ড কিস্তি না লোন? কোনটায় কত খরচ দেখুন →")}
                 </Link>
               </p>
               {txt.priceNote && <p className="mt-2 text-[13.5px] leading-relaxed text-muted">{txt.priceNote}</p>}
