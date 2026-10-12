@@ -35,12 +35,19 @@ npm run build      # writes plain HTML/CSS/JS to ./out
 npm run preview    # serves ./out locally to check it
 ```
 
-Upload the contents of `out/` to any static host:
+Live at **https://suggest.bike** on GitHub Pages. Every push to `main` runs `.github/workflows/deploy.yml`, which builds and publishes `out/`. `public/CNAME` holds the custom domain.
 
-- **Namecheap shared hosting:** in cPanel, open File Manager → `public_html/` and upload everything inside `out/`.
-- **Netlify / Cloudflare Pages / Vercel:** set the build command to `npm run build` and the output directory to `out`.
+DNS (Namecheap → Advanced DNS; delete the parking records and the URL redirect first):
 
-Before going live, set the final domain in `src/lib/site.ts`. It's used for canonical URLs and the sitemap.
+| Type  | Host | Value                  |
+|-------|------|------------------------|
+| A     | @    | 185.199.108.153        |
+| A     | @    | 185.199.109.153        |
+| A     | @    | 185.199.110.153        |
+| A     | @    | 185.199.111.153        |
+| CNAME | www  | the-abraar.github.io.  |
+
+The domain lives in `src/lib/site.ts` (canonical URLs, sitemap) and `public/CNAME`. Change both if it ever moves.
 
 ## Data
 

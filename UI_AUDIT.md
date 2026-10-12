@@ -50,7 +50,7 @@ Every item below has been addressed on `feat/suggest-bike-v1`. Data-dependent fi
 | L3 | Language toggle reads "বাংলা" / "EN" |
 | L4 | Compare text rows stack per bike on phones |
 | L5 | Caption colour raised to ≥ 4.5:1 contrast in both themes |
-| L6 | "Report a mistake" in the footer and a per-bike correction email (`hello@suugest.bike` — the owner must create this mailbox) |
+| L6 | "Report a mistake" in the footer and a per-bike correction email (`hello@suggest.bike` — the owner must create this mailbox) |
 
 ---
 

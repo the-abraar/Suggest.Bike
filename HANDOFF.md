@@ -5,7 +5,7 @@ Read this first if you are picking up the work. Last updated 2026-10-06 by the a
 > **Status: complete.** All audit items are fixed and the branch is pushed. 28 photos were merged after a visual check. `networks.json` stays `{}` because the network research never landed; that is now an owner/agent todo, not a blocker. The steps below are kept as a record and as a re-verification checklist.
 
 ## What this project is
-Suggest.Bike is a Bangladesh motorcycle buying-decision website. It's a Next.js 16 App Router static export (`npm run build` → `out/`) using Tailwind v4, with no backend. The owner's domain is `suugest.bike` (Namecheap). Hard rule from the owner: **never publish Claude "Artifacts" for this repo.** Demos run locally (`npx serve out -l 3000`).
+Suggest.Bike is a Bangladesh motorcycle buying-decision website. It's a Next.js 16 App Router static export (`npm run build` → `out/`) using Tailwind v4, with no backend. The owner's domain is `suggest.bike` (Namecheap). Hard rule from the owner: **never publish Claude "Artifacts" for this repo.** Demos run locally (`npx serve out -l 3000`).
 
 ## The current task (owner's words: "Fix all then push again")
 Fix every issue in `UI_AUDIT.md` (C1, H1–H6, M1–M7, L1–L6). Then commit and push the branch `feat/suggest-bike-v1` to `origin` (github.com/the-abraar/Suggest.Bike). Nothing had been pushed before this task. Push the branch; **don't merge to main or open a PR unless asked.**
@@ -32,7 +32,7 @@ Fix every issue in `UI_AUDIT.md` (C1, H1–H6, M1–M7, L1–L6). Then commit an
 | L3 | Language toggle | Done: shows "বাংলা" / "EN" | |
 | L4 | Compare text on mobile | Done: stacked per bike below the `sm` breakpoint | |
 | L5 | Contrast | Done: `--faint` is 4.87:1 light, 5.9:1 dark | `globals.css` |
-| L6 | Feedback path | Done: footer "Report a mistake" plus per-bike mailto to `SITE.contactEmail` (`hello@suugest.bike`; owner must create the mailbox) | `src/lib/site.ts` |
+| L6 | Feedback path | Done: footer "Report a mistake" plus per-bike mailto to `SITE.contactEmail` (`hello@suggest.bike`; owner must create the mailbox) | `src/lib/site.ts` |
 
 ## Remaining steps
 1. **Merge the photo and network research** once these exist in the scratchpad (`/private/tmp/claude-501/-Users-blackbird-Everything-dev-2-Ongoing-Suggest-Bike/df82efaa-7a7e-4b22-ade6-780466a93002/scratchpad/research/`):

@@ -5,7 +5,7 @@ compatibility_date = "2026-01-01"
 
 [vars]
 # Exactly one origin. Requests from anywhere else are rejected.
-SITE_ORIGIN = "https://suugest.bike"
+SITE_ORIGIN = "https://suggest.bike"
 
 [[kv_namespaces]]
 binding = "FINDER_KV"

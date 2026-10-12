@@ -15,7 +15,7 @@ import type { SourceAdapter } from "../types";
  */
 
 const BASE = "https://bikroy.com";
-export const USER_AGENT = "SuggestBikeFinder/0.1 (+https://suugest.bike; hello@suugest.bike) polite-bot";
+export const USER_AGENT = "SuggestBikeFinder/0.1 (+https://suggest.bike; hello@suggest.bike) polite-bot";
 const DELAY_MS = Number(process.env.FINDER_FETCH_DELAY_MS ?? 4000);
 const MAX_PAGES = 2;
 

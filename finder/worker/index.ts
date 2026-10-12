@@ -23,7 +23,7 @@ interface KV {
 
 export interface Env {
   FINDER_KV: KV;
-  /** e.g. https://suugest.bike  (exactly one origin) */
+  /** e.g. https://suggest.bike  (exactly one origin) */
   SITE_ORIGIN: string;
   ADMIN_TOKEN: string;
   WHATSAPP_VERIFY_TOKEN: string;

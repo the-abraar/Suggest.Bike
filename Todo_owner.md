@@ -4,12 +4,12 @@ Things only you can do: decisions, accounts, money, relationships and work out i
 
 ## Before launch
 
-- [ ] **Decide the domain spelling.** You bought `suugest.bike` (double "u"); the brand on the site reads "suggest.bike". Either buy `suggest.bike` too and redirect one to the other, or rebrand to match. Then set `src/lib/site.ts → SITE.url`.
-- [ ] **Hosting.** Static files only. Namecheap shared hosting works: upload `out/` to `public_html/`. Free and faster alternatives: Cloudflare Pages or Netlify (Cloudflare has edge servers close to Bangladesh). Turn on HTTPS.
+- [x] **Domain.** `suggest.bike` (Namecheap), set in `src/lib/site.ts → SITE.url`.
+- [ ] **Hosting.** GitHub Pages via `.github/workflows/deploy.yml` (every push to `main` deploys `out/`). Point Namecheap DNS at GitHub (README → Deploy), then tick "Enforce HTTPS" in repo Settings → Pages.
 - [ ] **Spot-check prices in person or by phone.** Call or visit 3–4 showrooms (Uttara Motors/Bajaj, ACI/Yamaha, BHL/Honda, Rancon/Suzuki, IFAD/Royal Enfield). Check the 10 most-viewed bikes against our numbers. Showroom offers move faster than any website.
 - [ ] **Get a real BRTA registration receipt** for a 150cc and, if you can, a 350cc bike. Ask a friend who registered recently, or a dealer. This replaces the "medium/low confidence" totals.
 - [ ] **Legal footer.** Add a short disclaimer, a privacy note (we only use the browser's own storage, no tracking yet) and a contact email. A trademark note too: brand names are used for identification only.
-- [ ] **Create the `hello@suugest.bike` mailbox.** Every "Report wrong price" link on the site sends mail there (change it in `src/lib/site.ts`). Also consider a Facebook page. That feedback loop is the moat.
+- [ ] **Create the `hello@suggest.bike` mailbox.** Every "Report wrong price" link on the site sends mail there (change it in `src/lib/site.ts`). Also consider a Facebook page. That feedback loop is the moat.
 
 ## Data you're best placed to collect
 
