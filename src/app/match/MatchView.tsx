@@ -25,19 +25,30 @@ import {
 } from "lucide-react";
 import {
   DEFAULT_ANSWERS,
-  EMI_MONTHS,
+  EMI_FLAT_RATE,
+  EMI_TENURES,
+  STRETCH,
+  USED_HAIRCUT,
   anyNewFits,
   cheapestNew,
+  cheapestPicks,
   decodeAnswers,
+  emiBudget,
+  emiFor,
   encodeAnswers,
   matchBikes,
+  onRoadPrice,
+  stretchPicks,
   type Answers,
+  type Band,
+  type Match,
   type Priority,
   type Use,
   type Where,
 } from "@/lib/match";
 import { CATEGORIES, HAS_NETWORKS, ccLabel, formatBDT, formatLakh, fullName, tagline } from "@/lib/bikes";
 import { ownershipCost, DEFAULT_COST_INPUT, emiMonthly } from "@/lib/cost";
+import guide from "@/data/guide.json";
 import { useLang, useTx } from "@/lib/i18n";
 import { useStore } from "@/lib/store";
 import { BikeArt } from "@/components/BikeArt";
@@ -177,9 +188,9 @@ function Matchmaker() {
             <div className="grid gap-3 sm:grid-cols-3">
               {(
                 [
-                  { id: "no", en: "Geared motorcycle", bn: "গিয়ার মোটরসাইকেল", sub: "Classic choice, more control", subBn: "সাধারণ পছন্দ, বেশি নিয়ন্ত্রণ" },
-                  { id: "yes", en: "Scooter", bn: "স্কুটার", sub: "No clutch, storage, easy", subBn: "ক্লাচ নেই, স্টোরেজ, সহজ" },
-                  { id: "either", en: "Show me both", bn: "দুটোই দেখান", sub: "I'm open", subBn: "দুটোতেই রাজি" },
+                  { id: "either", en: "Show me both", bn: "দুটোই দেখান", sub: "I'm open — ranked together", subBn: "দুটোতেই রাজি — একসাথে র‍্যাঙ্ক" },
+                  { id: "no", en: "Geared only", bn: "শুধু গিয়ার", sub: "Filter: hides all scooters", subBn: "ফিল্টার: সব স্কুটার বাদ" },
+                  { id: "yes", en: "Scooters only", bn: "শুধু স্কুটার", sub: "Filter: hides geared bikes", subBn: "ফিল্টার: গিয়ার বাইক বাদ" },
                 ] as Opt<Answers["gearless"]>[]
               ).map((o) => (
                 <OptionCard key={o.id} active={a.gearless === o.id} onClick={() => pickAndNext("gearless", o.id)} opt={o} />
@@ -188,8 +199,14 @@ function Matchmaker() {
           </Question>
         )}
         {step === 4 && (
-          <Question title={tx("Tell us about you", "আপনার সম্পর্কে বলুন")} sub={tx("So we can check you'll reach the ground and won't be overwhelmed.", "যাতে পা মাটিতে পৌঁছায় আর বাইকটা সামলাতে পারেন।")}>
-            <p className="mb-3 text-[14px] font-medium text-ink-2">{tx("Your height", "আপনার উচ্চতা")}</p>
+          <Question
+            title={tx("Tell us about the rider", "যিনি চালাবেন তাঁর সম্পর্কে বলুন")}
+            sub={tx(
+              "Buying for a parent, partner or teen? Answer for them. We check they'll reach the ground and won't be overwhelmed.",
+              "বাবা-মা, জীবনসঙ্গী বা কিশোরের জন্য কিনছেন? তাঁর হয়ে উত্তর দিন। আমরা দেখি পা মাটিতে পৌঁছায় কি না আর বাইকটা সামলাতে পারবেন কি না।",
+            )}
+          >
+            <p className="mb-3 text-[14px] font-medium text-ink-2">{tx("Rider's height", "চালকের উচ্চতা")}</p>
             <div className="grid gap-3 sm:grid-cols-3">
               {(
                 [
@@ -201,7 +218,7 @@ function Matchmaker() {
                 <OptionCard key={o.id} compact active={a.height === o.id} onClick={() => set("height", o.id)} opt={o} />
               ))}
             </div>
-            <p className="mb-3 mt-8 text-[14px] font-medium text-ink-2">{tx("Riding experience", "চালানোর অভিজ্ঞতা")}</p>
+            <p className="mb-3 mt-8 text-[14px] font-medium text-ink-2">{tx("Rider's experience", "চালকের অভিজ্ঞতা")}</p>
             <div className="grid gap-3 sm:grid-cols-3">
               {(
                 [
@@ -313,11 +330,16 @@ function BudgetStep({ a, set }: { a: Answers; set: <K extends keyof Answers>(k: 
   const [min, max, step] = monthly ? [5000, 60000, 500] : [50000, 700000, 5000];
   const value = monthly ? a.monthly : a.budget;
   const fill = ((value - min) / (max - min)) * 100;
+  const setEmi = (e: Partial<Pick<Answers, "monthly" | "down" | "tenure">>) => {
+    const n = { monthly: a.monthly, down: a.down, tenure: a.tenure, ...e };
+    set("monthly", n.monthly);
+    set("down", n.down);
+    set("tenure", n.tenure);
+    set("budget", emiBudget(n.down, n.monthly, n.tenure));
+  };
   const setValue = (v: number) => {
-    if (monthly) {
-      set("monthly", v);
-      set("budget", v * EMI_MONTHS);
-    } else {
+    if (monthly) setEmi({ monthly: v });
+    else {
       set("budget", v);
       set("monthly", emiMonthly(v));
     }
@@ -327,13 +349,19 @@ function BudgetStep({ a, set }: { a: Answers; set: <K extends keyof Answers>(k: 
   return (
     <Question
       title={tx("What's your budget?", "আপনার বাজেট কত?")}
-      sub={tx("The most you'd pay for the bike itself. We'll add registration separately.", "শুধু বাইকের জন্য সর্বোচ্চ কত দেবেন। রেজিস্ট্রেশন আলাদা।")}
+      sub={tx(
+        "The most you can pay to ride it home: bike plus BRTA registration. Nothing above this is shown unless marked as a stretch.",
+        "বাইক বাড়ি নিতে সর্বোচ্চ কত দিতে পারবেন: বাইক + BRTA রেজিস্ট্রেশন। এর বেশি কিছু দেখানো হয় না, শুধু “একটু বেশি” অংশ ছাড়া।",
+      )}
     >
       <div className="mb-4 grid grid-cols-2 gap-1 rounded-xl bg-surface-2 p-1 sm:w-fit">
         {(["total", "monthly"] as const).map((m) => (
           <button
             key={m}
-            onClick={() => set("payMode", m)}
+            onClick={() => {
+              set("payMode", m);
+              if (m === "monthly") setEmi({});
+            }}
             aria-pressed={a.payMode === m}
             className={`h-10 rounded-lg px-4 text-[14px] font-medium transition-all ${a.payMode === m ? "bg-surface text-ink shadow-sm" : "text-muted hover:text-ink"}`}
           >
@@ -348,8 +376,11 @@ function BudgetStep({ a, set }: { a: Answers; set: <K extends keyof Answers>(k: 
         </p>
         <p className="text-center text-[14px] text-muted">
           {monthly
-            ? tx(`× ${EMI_MONTHS} months = bikes up to ${formatLakh(a.budget, lang)}`, `× ${EMI_MONTHS} মাস = ${formatLakh(a.budget, lang)} পর্যন্ত বাইক`)
-            : formatLakh(a.budget, lang)}
+            ? tx(
+                `${formatBDT(a.down)} down + ${a.tenure} months = up to ${formatLakh(a.budget, lang)} on the road`,
+                `${formatBDT(a.down)} ডাউন + ${a.tenure} মাস = অন-রোড ${formatLakh(a.budget, lang)} পর্যন্ত`,
+              )
+            : tx(`${formatLakh(a.budget, lang)} on the road`, `অন-রোড ${formatLakh(a.budget, lang)}`)}
         </p>
         <input
           type="range"
@@ -370,13 +401,40 @@ function BudgetStep({ a, set }: { a: Answers; set: <K extends keyof Answers>(k: 
           ))}
         </div>
         {monthly && (
-          <p className="mx-auto mt-5 flex max-w-md gap-2 text-[12.5px] leading-relaxed text-muted">
-            <Info size={14} className="mt-0.5 shrink-0" />
-            {tx(
-              "Most showrooms offer 0% EMI for up to 12 months on partner-bank credit cards; banks may add a processing fee. Without a credit card, ask about the dealer's own installment plan.",
-              "বেশিরভাগ শোরুমে পার্টনার ব্যাংকের ক্রেডিট কার্ডে ১২ মাস পর্যন্ত ০% কিস্তি পাওয়া যায়; ব্যাংক প্রসেসিং ফি নিতে পারে। ক্রেডিট কার্ড না থাকলে ডিলারের নিজস্ব কিস্তি সুবিধা জিজ্ঞেস করুন।",
-            )}
-          </p>
+          <>
+            <div className="mt-6 grid gap-4 border-t border-line pt-5 sm:grid-cols-2">
+              <label className="block text-[13px] font-medium text-ink-2">
+                {tx("Down payment (cash upfront)", "ডাউন পেমেন্ট (নগদ আগে)")}
+                <input
+                  type="number"
+                  inputMode="numeric"
+                  min={0}
+                  max={1000000}
+                  step={5000}
+                  value={a.down}
+                  onChange={(e) => setEmi({ down: Math.min(1000000, Math.max(0, Number(e.target.value) || 0)) })}
+                  className="mt-1.5 h-11 w-full rounded-xl border border-line-strong bg-surface px-3 text-[15px] text-ink tnum"
+                />
+              </label>
+              <div>
+                <p className="text-[13px] font-medium text-ink-2">{tx("Months", "কত মাস")}</p>
+                <div className="mt-1.5 flex flex-wrap gap-1.5">
+                  {EMI_TENURES.map((t) => (
+                    <button key={t} className="chip" data-active={a.tenure === t} aria-pressed={a.tenure === t} onClick={() => setEmi({ tenure: t })}>
+                      {t}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <p className="mx-auto mt-5 flex max-w-md gap-2 text-[12.5px] leading-relaxed text-muted">
+              <Info size={14} className="mt-0.5 shrink-0" />
+              {tx(
+                `Most showrooms offer 0% EMI for up to 12 months on partner-bank credit cards; banks may add a processing fee. Longer plans charge interest: we assume ${EMI_FLAT_RATE * 100}% a year flat (an estimate, not a quote), so ask the dealer for the real rate.`,
+                `বেশিরভাগ শোরুমে পার্টনার ব্যাংকের ক্রেডিট কার্ডে ১২ মাস পর্যন্ত ০% কিস্তি পাওয়া যায়; ব্যাংক প্রসেসিং ফি নিতে পারে। এর বেশি মেয়াদে সুদ লাগে: আমরা বছরে ফ্ল্যাট ${EMI_FLAT_RATE * 100}% ধরেছি (আনুমানিক, কোটেশন নয়), আসল হার ডিলারের কাছে জেনে নিন।`,
+              )}
+            </p>
+          </>
         )}
       </div>
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -385,7 +443,13 @@ function BudgetStep({ a, set }: { a: Answers; set: <K extends keyof Answers>(k: 
           compact
           active={a.condition === "any"}
           onClick={() => set("condition", "any")}
-          opt={{ id: "any", en: "Open to used", bn: "পুরনো হলেও চলবে", sub: "1–3 year old bikes from bikroy prices", subBn: "bikroy-এর দামে ১–৩ বছরের পুরনো বাইক" }}
+          opt={{
+            id: "any",
+            en: "Open to used",
+            bn: "পুরনো হলেও চলবে",
+            sub: `1–3 year old bikes at Bikroy asking prices (we count ${USED_HAIRCUT * 100}% off: bikes usually sell lower)`,
+            subBn: `Bikroy-এর চাওয়া দামে ১–৩ বছরের পুরনো বাইক (বিক্রি সাধারণত কমে হয়, তাই ${USED_HAIRCUT * 100}% কম ধরি)`,
+          }}
         />
       </div>
     </Question>
@@ -399,6 +463,8 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
   const tx = useTx();
   const { compare, toggleCompare, clearCompare } = useStore();
   const matches = useMemo(() => matchBikes(a, 6), [a]);
+  const stretch = useMemo(() => stretchPicks(a, 2), [a]);
+  const fallback = useMemo(() => (matches.length ? [] : cheapestPicks(a, 3)), [a, matches.length]);
   const [top, ...rest] = matches;
   const use = USES.find((u) => u.id === a.use)!;
   const where = WHERES.find((w) => w.id === a.where)!;
@@ -409,7 +475,6 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
     clearCompare();
     matches.slice(0, 3).forEach((m) => toggleCompare(m.bike.id));
   };
-  const usedLabel = (age: 1 | 3) => (age === 1 ? tx("Used · ~1 year old", "পুরনো · ~১ বছর") : tx("Used · ~3 years old", "পুরনো · ~৩ বছর"));
 
   return (
     <div className="container-x pb-10 pt-10">
@@ -431,11 +496,12 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
       {/* answers summary */}
       <div className="mt-6 flex flex-wrap gap-2">
         <EditChip onClick={() => onEdit(0)}>
-          {a.payMode === "monthly" ? `${formatBDT(a.monthly)}${tx("/mo EMI", "/মাস কিস্তি")}` : `≤ ${formatLakh(a.budget, lang)}`} · {a.condition === "new" ? tx("new", "নতুন") : tx("new or used", "নতুন বা পুরনো")}
+          {a.payMode === "monthly" ? `${formatBDT(a.monthly)}${tx("/mo", "/মাস")} × ${a.tenure} · ` : ""}≤ {formatLakh(a.budget, lang)} {tx("on-road", "অন-রোড")} ·{" "}
+          {a.condition === "new" ? tx("new", "নতুন") : tx("new or used", "নতুন বা পুরনো")}
         </EditChip>
         <EditChip onClick={() => onEdit(1)}>{lang === "bn" ? use.bn : use.en}</EditChip>
         {HAS_NETWORKS && <EditChip onClick={() => onEdit(2)}>{lang === "bn" ? where.bn : where.en}</EditChip>}
-        <EditChip onClick={() => onEdit(3)}>{a.gearless === "yes" ? tx("Scooter", "স্কুটার") : a.gearless === "no" ? tx("Geared", "গিয়ার") : tx("Geared or scooter", "গিয়ার বা স্কুটার")}</EditChip>
+        <EditChip onClick={() => onEdit(3)}>{a.gearless === "yes" ? tx("Scooters only", "শুধু স্কুটার") : a.gearless === "no" ? tx("Geared only", "শুধু গিয়ার") : tx("Geared or scooter", "গিয়ার বা স্কুটার")}</EditChip>
         <EditChip onClick={() => onEdit(4)}>
           {lang === "bn"
             ? `${{ short: "৫′৫″ এর কম", medium: "৫′৫″–৫′৯″", tall: "৫′৯″ এর বেশি" }[a.height]} · ${{ first: "প্রথম বাইক", some: "কিছু অভিজ্ঞতা", pro: "অভিজ্ঞ" }[a.experience]}`
@@ -447,13 +513,13 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
         {a.priorities.length > 0 && <EditChip onClick={() => onEdit(6)}>{a.priorities.map((p) => tx(PRIORITIES.find((x) => x.id === p)!.en, PRIORITIES.find((x) => x.id === p)!.bn)).join(", ")}</EditChip>}
       </div>
 
-      {noNew && cheapest && (
+      {top && noNew && cheapest && (
         <div className="mt-6 flex flex-wrap items-center gap-3 rounded-2xl border border-warn/30 bg-warn-soft p-4 text-[14.5px] text-ink-2">
           <Info size={18} className="shrink-0 text-warn" />
           <span className="min-w-0 flex-1">
             {tx(
-              `Nothing new fits ${formatLakh(a.budget, lang)}. The cheapest new option is the ${fullName(cheapest)} at ${formatBDT(cheapest.priceBDT)}${a.condition === "new" ? " — or allow used bikes." : "."}`,
-              `${formatLakh(a.budget, lang)}-এ নতুন কিছু মেলে না। সবচেয়ে কম দামের নতুন বাইক ${fullName(cheapest)} — ${formatBDT(cheapest.priceBDT)}${a.condition === "new" ? "। অথবা পুরনো বাইকও দেখুন।" : "।"}`,
+              `Nothing new fits ${formatLakh(a.budget, lang)} on the road. The cheapest new option is the ${fullName(cheapest)} at ${formatBDT(onRoadPrice(cheapest))} on-road.`,
+              `অন-রোড ${formatLakh(a.budget, lang)}-এ নতুন কিছু মেলে না। সবচেয়ে কম দামের নতুন বাইক ${fullName(cheapest)} — অন-রোড ${formatBDT(onRoadPrice(cheapest))}।`,
             )}
           </span>
           <Link href={`/bikes/${cheapest.id}/`} className="text-[13.5px] font-medium text-brand underline underline-offset-2">
@@ -463,11 +529,20 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
       )}
 
       {!top ? (
-        <div className="card mt-10 px-6 py-16 text-center">
-          <p className="text-[17px] font-semibold text-ink">{tx("No bikes fit all of that.", "সব শর্তে কোনো বাইক মেলেনি।")}</p>
+        <div className="card mt-10 p-6 sm:p-8">
+          <p className="text-[17px] font-semibold text-ink">{tx(`Nothing fits ${formatLakh(a.budget, lang)} on the road.`, `অন-রোড ${formatLakh(a.budget, lang)}-এ কিছু মেলেনি।`)}</p>
           <p className="mt-1 text-[14.5px] text-muted">
-            {tx("Try raising the budget, allowing used bikes, or choosing “show me both”.", "বাজেট বাড়ান, পুরনো বাইক চালু করুন, অথবা “দুটোই দেখান” বেছে নিন।")}
+            {a.condition === "new"
+              ? tx("These are the cheapest ways in, and how far over they are. A used bike costs far less: allow used bikes on the budget step.", "সবচেয়ে কম দামের বিকল্প আর বাজেটের চেয়ে কত বেশি, নিচে দেখুন। পুরনো বাইক অনেক সস্তা: বাজেটের ধাপে পুরনো বাইক চালু করুন।")
+              : tx("These are the cheapest options, new or used, and how far over they are.", "নতুন বা পুরনো, সবচেয়ে কম দামের বিকল্প আর বাজেটের চেয়ে কত বেশি, নিচে দেখুন।")}
           </p>
+          {fallback.length > 0 && (
+            <div className="mt-5 grid gap-3">
+              {fallback.map((m) => (
+                <MatchRow key={m.bike.id} m={m} a={a} />
+              ))}
+            </div>
+          )}
           <button className="btn-primary mt-6" onClick={() => onEdit(0)}>
             {tx("Adjust budget", "বাজেট বদলান")}
           </button>
@@ -481,7 +556,7 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-brand px-3 py-1 text-[12.5px] font-semibold text-brand-ink">
                   <Sparkles size={13} /> {tx("Best match", "সেরা ম্যাচ")}
                 </span>
-                {top.used && <span className="rounded-full bg-warn-soft px-3 py-1 text-[12.5px] font-semibold text-warn">{usedLabel(top.used.age)}</span>}
+                {top.used && <UsedTag age={top.used.age} />}
               </div>
               <BikeArt bike={top.bike} className="mx-auto mt-4 w-full max-w-[480px] animate-rise" />
             </div>
@@ -493,7 +568,7 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
                   </p>
                   <h2 className="mt-1 text-[30px] font-semibold leading-tight tracking-tight text-ink">{top.bike.model}</h2>
                 </div>
-                <MatchRing value={top.score} />
+                <BandBadge band={top.band} />
               </div>
               <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{tagline(top.bike, lang)}</p>
               <ul className="mt-5 space-y-2.5">
@@ -509,13 +584,16 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
                 ))}
               </ul>
               <div className="mt-6 grid grid-cols-3 gap-4 border-t border-line pt-5">
-                <MiniStat k={top.used ? tx("Used price", "পুরনো দাম") : tx("Price", "দাম")} v={formatLakh(top.price, lang)} />
+                <MiniStat k={top.used ? tx("Bikroy asking", "Bikroy-তে চাওয়া দাম") : tx("On-road", "অন-রোড")} v={formatLakh(top.onRoad, lang)} />
                 <MiniStat k={tx("Mileage", "মাইলেজ")} v={`${top.bike.mileageKmpl[0]}–${top.bike.mileageKmpl[1]}`} />
                 <MiniStat
                   k={top.used ? tx("Running/mo", "চলার খরচ/মাস") : tx("EMI/mo", "কিস্তি/মাস")}
-                  v={formatBDT(top.used ? ownershipCost(top.bike, { ...DEFAULT_COST_INPUT, includeDepreciation: false }).runningPerMonth : emiMonthly(top.price))}
+                  v={formatBDT(top.used ? ownershipCost(top.bike, { ...DEFAULT_COST_INPUT, includeDepreciation: false }).runningPerMonth : perMonth(top, a))}
                 />
               </div>
+              <p className="mt-3 text-[12.5px] text-muted tnum">
+                <PriceNote m={top} />
+              </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 <Link href={`/bikes/${top.bike.id}/`} className="btn-primary">
                   {tx("See full details", "বিস্তারিত দেখুন")} <ArrowRight size={16} />
@@ -537,55 +615,134 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
               </div>
               <div className="mt-5 grid gap-3">
                 {rest.map((m, i) => (
-                  <Link
-                    key={m.bike.id}
-                    href={`/bikes/${m.bike.id}/`}
-                    className="group card grid grid-cols-[88px_1fr] items-center gap-4 p-4 transition-all hover:border-line-strong hover:shadow-md sm:grid-cols-[28px_140px_1fr_auto] sm:gap-6 sm:p-5"
-                  >
-                    <span className="hidden text-center text-[15px] font-semibold text-faint tnum sm:block">{i + 2}</span>
-                    <BikeArt bike={m.bike} shadow={false} className="w-full" />
-                    <div className="min-w-0">
-                      <div className="flex flex-wrap items-baseline gap-x-3">
-                        <h3 className="text-[17px] font-semibold text-ink">{fullName(m.bike)}</h3>
-                        <span className="text-[13px] font-semibold text-brand tnum">
-                          {m.score}% {tx("match", "ম্যাচ")}
-                        </span>
-                        {m.used && <span className="rounded-full bg-warn-soft px-2 py-0.5 text-[11.5px] font-semibold text-warn">{usedLabel(m.used.age)}</span>}
-                      </div>
-                      <p className="mt-1 text-[13.5px] text-muted">{m.reasons.slice(0, 2).map((r) => r[lang]).join(" · ")}</p>
-                      {m.warnings[0] && (
-                        <p className="mt-1 flex items-center gap-1.5 text-[13px] text-warn">
-                          <TriangleAlert size={13} className="shrink-0" /> {m.warnings[0][lang]}
-                        </p>
-                      )}
-                    </div>
-                    <div className="col-span-2 flex items-center justify-between gap-3 sm:col-span-1 sm:flex-col sm:items-end">
-                      <span className="text-right">
-                        <span className="block text-[18px] font-semibold text-ink tnum">{formatLakh(m.price, lang)}</span>
-                        {!m.used && (
-                          <span className="block text-[12px] text-muted tnum">
-                            {formatBDT(emiMonthly(m.price))}
-                            {tx("/mo EMI", "/মাস কিস্তি")}
-                          </span>
-                        )}
-                      </span>
-                      <CompareButton id={m.bike.id} size="sm" />
-                    </div>
-                  </Link>
+                  <MatchRow key={m.bike.id} m={m} a={a} rank={i + 2} />
                 ))}
               </div>
             </>
           )}
-          <p className="mt-8 text-[13px] text-faint">
-            {compare.length > 0 ? tx(`${compare.length} in your compare tray. `, `তুলনার তালিকায় ${compare.length}টি। `) : ""}
-            {tx(
-              "Rankings are computed from our 11 ownership scores, your answers and current prices — no brand pays for placement. EMI shown as a plain 12-month split.",
-              "র‍্যাঙ্কিং আমাদের ১১টি মালিকানা স্কোর, আপনার উত্তর আর বর্তমান দাম থেকে হিসাব করা — কোনো ব্র্যান্ড টাকা দিয়ে জায়গা কেনে না। কিস্তি দেখানো হয়েছে ১২ মাসে সমান ভাগ করে।",
-            )}
-          </p>
+
+          {stretch.length > 0 && (
+            <>
+              <h2 className="mt-12 text-[22px] font-semibold tracking-tight text-ink">{tx("A stretch: slightly over budget", "একটু বেশি: বাজেটের সামান্য ওপরে")}</h2>
+              <p className="mt-1 text-[14px] text-muted">
+                {tx(`Up to ${STRETCH_PCT}% over your on-road budget. Only if you can find the extra.`, `অন-রোড বাজেটের সর্বোচ্চ ${STRETCH_PCT}% বেশি। বাড়তি টাকা জোগাড় করতে পারলে তবেই।`)}
+              </p>
+              <div className="mt-5 grid gap-3">
+                {stretch.map((m) => (
+                  <MatchRow key={m.bike.id} m={m} a={a} />
+                ))}
+              </div>
+            </>
+          )}
         </>
       )}
+
+      <div className="mt-8 space-y-2 text-[13px] text-faint">
+        {a.use === "rideshare" && (
+          <p>
+            {tx(
+              "Pathao, Uber and delivery apps set their own vehicle rules (model year, papers and more). We don't check them: confirm the app's current vehicle requirements before you buy.",
+              "পাঠাও, উবার ও ডেলিভারি অ্যাপ নিজেরা গাড়ির নিয়ম ঠিক করে (মডেল বছর, কাগজপত্র ইত্যাদি)। আমরা সেটা যাচাই করি না: কেনার আগে অ্যাপের বর্তমান শর্ত দেখে নিন।",
+            )}
+          </p>
+        )}
+        {!HAS_NETWORKS && (
+          <p>
+            {tx(
+              "Where you live isn't used yet: we don't have district service-network data, so we don't ask.",
+              "আপনি কোথায় থাকেন তা এখনো হিসাবে নেই: জেলাভিত্তিক সার্ভিস নেটওয়ার্কের তথ্য আমাদের কাছে নেই, তাই প্রশ্নটা করি না।",
+            )}
+          </p>
+        )}
+        <p>
+          {compare.length > 0 ? tx(`${compare.length} in your compare tray. `, `তুলনার তালিকায় ${compare.length}টি। `) : ""}
+          {tx(
+            `Match bands come from our 11 ownership scores and your answers — no brand pays for placement. On-road = ex-showroom + BRTA registration with a 2-year tax token (fees as of ${REG_AS_OF}).`,
+            `ম্যাচ ব্যান্ড আমাদের ১১টি মালিকানা স্কোর আর আপনার উত্তর থেকে হিসাব করা — কোনো ব্র্যান্ড টাকা দিয়ে জায়গা কেনে না। অন-রোড = শোরুম দাম + ২ বছরের ট্যাক্স টোকেনসহ BRTA রেজিস্ট্রেশন (ফি ${REG_AS_OF} অনুযায়ী)।`,
+          )}{" "}
+          {a.payMode === "monthly" && a.tenure > 12
+            ? tx(`EMI includes our assumed ${EMI_FLAT_RATE * 100}% a year flat interest. `, `কিস্তিতে আমাদের ধরা বছরে ফ্ল্যাট ${EMI_FLAT_RATE * 100}% সুদ যোগ আছে। `)
+            : ""}
+          <Link href="/disclaimer/" className="underline underline-offset-2">
+            {tx("Disclaimer", "দায়মুক্তি")}
+          </Link>
+        </p>
+      </div>
     </div>
+  );
+}
+
+const STRETCH_PCT = Math.round(STRETCH * 100);
+const REG_AS_OF = guide.registration.asOf;
+const perMonth = (m: Match, a: Answers) => (a.payMode === "monthly" ? emiFor(m.onRoad, a.down, a.tenure) : emiMonthly(m.price));
+
+function PriceNote({ m }: { m: Match }) {
+  const tx = useTx();
+  return m.used || m.registration === 0
+    ? tx(
+        `Asking price on Bikroy (typical selling price is lower; we count ${formatBDT(m.cost)} against your budget)`,
+        `Bikroy-তে চাওয়া দাম (আসল বিক্রি সাধারণত কমে হয়; বাজেটে আমরা ${formatBDT(m.cost)} ধরেছি)`,
+      )
+    : tx(`${formatBDT(m.price)} bike + ${formatBDT(m.registration)} BRTA registration`, `${formatBDT(m.price)} বাইক + ${formatBDT(m.registration)} BRTA রেজিস্ট্রেশন`);
+}
+
+function UsedTag({ age }: { age: 1 | 3 }) {
+  const tx = useTx();
+  return (
+    <span className="rounded-full bg-warn-soft px-2.5 py-0.5 text-[12px] font-semibold text-warn">
+      {age === 1 ? tx("Used · ~1 year old", "পুরনো · ~১ বছর") : tx("Used · ~3 years old", "পুরনো · ~৩ বছর")}
+    </span>
+  );
+}
+
+const BAND_LABEL: Record<Band, { en: string; bn: string; cls: string }> = {
+  great: { en: "Great match", bn: "দারুণ ম্যাচ", cls: "bg-brand-soft text-brand" },
+  good: { en: "Good match", bn: "ভালো ম্যাচ", cls: "bg-surface-2 text-ink-2" },
+  possible: { en: "Possible", bn: "চলতে পারে", cls: "bg-surface-2 text-muted" },
+};
+
+function BandBadge({ band }: { band: Band }) {
+  const { lang } = useLang();
+  const b = BAND_LABEL[band];
+  return <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-[12.5px] font-semibold ${b.cls}`}>{b[lang]}</span>;
+}
+
+function MatchRow({ m, a, rank }: { m: Match; a: Answers; rank?: number }) {
+  const { lang } = useLang();
+  const tx = useTx();
+  return (
+    <Link
+      href={`/bikes/${m.bike.id}/`}
+      className="group card grid grid-cols-[88px_1fr] items-center gap-4 p-4 transition-all hover:border-line-strong hover:shadow-md sm:grid-cols-[28px_140px_1fr_auto] sm:gap-6 sm:p-5"
+    >
+      <span className="hidden text-center text-[15px] font-semibold text-faint tnum sm:block">{rank}</span>
+      <BikeArt bike={m.bike} shadow={false} className="w-full" />
+      <div className="min-w-0">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <h3 className="text-[17px] font-semibold text-ink">{fullName(m.bike)}</h3>
+          <BandBadge band={m.band} />
+          {m.used && <UsedTag age={m.used.age} />}
+        </div>
+        <p className="mt-1 text-[13.5px] text-muted">{m.reasons.slice(0, 2).map((r) => r[lang]).join(" · ")}</p>
+        {m.warnings[0] && (
+          <p className="mt-1 flex items-center gap-1.5 text-[13px] text-warn">
+            <TriangleAlert size={13} className="shrink-0" /> {m.warnings[0][lang]}
+          </p>
+        )}
+        <p className="mt-1 text-[12px] text-muted tnum">
+          <PriceNote m={m} />
+        </p>
+      </div>
+      <div className="col-span-2 flex items-center justify-between gap-3 sm:col-span-1 sm:flex-col sm:items-end">
+        <span className="text-right">
+          <span className="block text-[18px] font-semibold text-ink tnum">{formatLakh(m.onRoad, lang)}</span>
+          <span className="block text-[12px] text-muted tnum">
+            {m.used ? tx("asking", "চাওয়া দাম") : `${tx("on-road", "অন-রোড")} · ${formatBDT(perMonth(m, a))}${tx("/mo", "/মাস")}`}
+          </span>
+        </span>
+        <CompareButton id={m.bike.id} size="sm" />
+      </div>
+    </Link>
   );
 }
 
@@ -604,31 +761,6 @@ function MiniStat({ k, v }: { k: string; v: string }) {
     <div>
       <p className="text-[12px] text-muted">{k}</p>
       <p className="mt-0.5 text-[16px] font-semibold text-ink tnum">{v}</p>
-    </div>
-  );
-}
-
-function MatchRing({ value }: { value: number }) {
-  const r = 26;
-  const c = 2 * Math.PI * r;
-  return (
-    <div className="relative h-[68px] w-[68px] shrink-0" aria-label={`${value}%`}>
-      <svg viewBox="0 0 64 64" className="h-full w-full -rotate-90">
-        <circle cx="32" cy="32" r={r} fill="none" stroke="var(--surface-3)" strokeWidth="6" />
-        <circle
-          cx="32"
-          cy="32"
-          r={r}
-          fill="none"
-          stroke="var(--brand)"
-          strokeWidth="6"
-          strokeLinecap="round"
-          strokeDasharray={c}
-          strokeDashoffset={c * (1 - value / 100)}
-          style={{ transition: "stroke-dashoffset 1s cubic-bezier(.2,.7,.2,1)" }}
-        />
-      </svg>
-      <span className="absolute inset-0 grid place-items-center text-[15px] font-semibold text-ink tnum">{value}%</span>
     </div>
   );
 }

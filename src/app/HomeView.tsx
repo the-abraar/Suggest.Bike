@@ -320,7 +320,7 @@ function QuickPick() {
                 <span className="block truncate text-[12.5px] text-muted">{m.reasons[0]?.[lang]}</span>
               </span>
               <span className="text-right">
-                <span className="block text-[14px] font-semibold text-ink tnum">{formatLakh(m.price, lang)}</span>
+                <span className="block text-[14px] font-semibold text-ink tnum">{formatLakh(m.onRoad, lang)}</span>
                 <span className="block text-[11.5px] text-muted tnum">
                   ~{formatBDT(monthly)}
                   {tx("/mo to run", "/মাস চালাতে")}
