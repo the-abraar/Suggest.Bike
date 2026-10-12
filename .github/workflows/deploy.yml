@@ -20,13 +20,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history: scripts/build-history.ts reads every version of bikes.json
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
       - run: npm ci
       - run: npm run validate
-      - run: npx tsc --noEmit
+      - run: npm run typecheck # pretypecheck generates src/data/generated, which tsc needs on a fresh checkout
       - run: npm test
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3

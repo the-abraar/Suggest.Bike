@@ -22,6 +22,7 @@ import { DEFAULT_COST_INPUT, emiMonthly, ownershipCost, registrationFor } from "
 import { useLang, useTx } from "@/lib/i18n";
 import { SITE, issueUrl, langHref } from "@/lib/site";
 import type { Bike, Part, ScoreKey } from "@/lib/types";
+import type { PricePoint } from "@/lib/history";
 import { EstimateBadge } from "@/components/Experimental";
 import { FeedbackForm } from "@/components/FeedbackForm";
 import { AskShowroom, DealerCard } from "@/app/dealers/DealersView";
@@ -41,7 +42,8 @@ const monthLabel = (ym: string, lang: "en" | "bn") => {
   return isNaN(+d) ? ym : d.toLocaleString(lang === "bn" ? "bn-BD" : "en", { month: "short", year: "numeric" });
 };
 
-export function BikeDetail({ bike }: { bike: Bike }) {
+export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[] } }) {
+  const hist = bike.priceHistory ?? [];
   const { lang } = useLang();
   const tx = useTx();
   const router = useRouter();
@@ -201,6 +203,24 @@ export function BikeDetail({ bike }: { bike: Bike }) {
                     ))}
                   </tbody>
                 </table>
+              )}
+              {hist.length > 0 && (
+                <p className="mt-2 text-[13px] text-muted">
+                  <span className="font-medium text-ink-2">{tx("Price history", "দামের ইতিহাস")}:</span>{" "}
+                  {hist.length > 1
+                    ? hist
+                        .slice(-3)
+                        .reverse()
+                        .map((p, i) => {
+                          const [price, m] = [formatBDT(p.priceBDT), monthLabel(p.firstSeen.slice(0, 7), lang)];
+                          return i === 0 ? tx(`${price} since ${m}`, `${m} থেকে ${price}`) : tx(`was ${price} in ${m}`, `আগে ${price} (${m})`);
+                        })
+                        .join(" · ")
+                    : tx(`unchanged since ${monthLabel(hist[0].firstSeen.slice(0, 7), lang)}`, `${monthLabel(hist[0].firstSeen.slice(0, 7), lang)} থেকে অপরিবর্তিত`)}{" "}
+                  <Link href="/changes/" className="text-[12.5px] text-brand underline underline-offset-2">
+                    {tx("dates are when our data changed · what changed", "তারিখ মানে আমাদের ডেটা বদলের সময় · কী বদলেছে")}
+                  </Link>
+                </p>
               )}
               <p className="mt-2 text-[12px] text-faint">
                 {bike.priceSource.startsWith("http") && (

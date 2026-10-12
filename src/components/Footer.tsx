@@ -42,6 +42,7 @@ export function Footer() {
           <FLink href="/guide/#used">{tx("Buying used", "পুরনো বাইক কেনা")}</FLink>
           <FLink href="/guide/#rules">{tx("Road rules", "রাস্তার নিয়ম")}</FLink>
           <FLink href="/method/">{tx("How we rate", "আমরা কীভাবে রেট করি")}</FLink>
+          <FLink href="/changes/">{tx("Price changes", "দামের পরিবর্তন")}</FLink>
           <FLink href="/dealers/">{tx("Where to buy", "কোথায় কিনবেন")}</FLink>
           <FLink href="/feedback/">{tx("Report a mistake", "ভুল জানান")}</FLink>
         </FooterCol>
