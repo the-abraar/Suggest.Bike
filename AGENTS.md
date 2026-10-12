@@ -3,7 +3,6 @@
 - Run `scripts/check.sh` before finishing (typecheck, stray files, unsafe HTML, data validate, tests, build). `--fast` = typecheck, stray files, unsafe HTML only; it is the pre-commit hook (`.githooks`, enabled locally via `git config core.hooksPath .githooks`).
 - No Python. Node 22 (matches CI). Stack is Next 16 static export to `out/`; no ESLint, `tsc` is the lint.
 - `typecheck` and `build` regenerate `src/data/generated` and `public/data/bikes` (gitignored) from `src/data`; edit the source, not the generated files.
-- Known failing: `npm run validate` fails on `zontes-zt155-u` (price 253 days old). It is real stale data; do not loosen thresholds. `check.sh` shows it as FAIL.
 - `deploy.yml` gates (validate, tsc, finder test, build) are the deploy contract; `check.yml` is the separate full check.
 - Real-browser QA is not in `check.sh`: when changing UI or layout, read `tools/qa/README.md` (own `package.json`, screenshots in gitignored `tools/qa/shots/`).
 - Price freshness: read `scripts/price-audit.mjs` (`npm run audit:prices`) when touching bike prices; sources in `SOURCES.md`.

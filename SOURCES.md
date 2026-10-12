@@ -410,11 +410,6 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://www.bikebd.com/price/yamaha-rx-s115
   - Photo: Ali zeb, CC BY-SA 3.0 — https://commons.wikimedia.org/wiki/File:Yamaha_RX_115.jpg
 
-### Zontes
-
-- **ZT155 U** — ৳3,49,000 as of 2026-02
-  - Price: https://bikebd.com/price/zontes-zt155-u
-  - https://bikebd.com/brand/zontes
 
 ## Buyer's guide (BRTA, licence, fuel, laws)
 

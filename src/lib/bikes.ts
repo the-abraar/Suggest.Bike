@@ -149,7 +149,6 @@ const BRAND_COLORS: Record<string, string> = {
   GPX: "#0a84c6",
   Keeway: "#7c3aed",
   Haojue: "#9b2c2c",
-  Zontes: "#334155",
   Aprilia: "#b91c1c",
   Vespa: "#4f9d8a",
   Benelli: "#166534",
