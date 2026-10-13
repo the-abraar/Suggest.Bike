@@ -7,7 +7,7 @@ import { SITE } from "@/lib/site";
 export const dynamic = "force-static";
 
 // Every indexable page that has a /bn/ twin. /saved/ is noindex (a per-browser list), so it is not here.
-const STATIC = ["", "match/", "bikes/", "compare/", "cost/", "guide/", "guide/motorcycle-fines/", "owner/", "maintenance/", "method/", "changes/", "dealers/", "about/", "feedback/", "privacy/", "terms/", "disclaimer/"];
+const STATIC = ["", "match/", "bikes/", "compare/", "cost/", "guide/", "guide/motorcycle-fines/", "guide/speed-limits/", "guide/driving-licence/", "guide/e-fines/", "owner/", "maintenance/", "method/", "changes/", "dealers/", "about/", "feedback/", "privacy/", "terms/", "disclaimer/"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = STATIC.map((p) => ({ url: `${SITE.url}/${p}`, changeFrequency: "weekly" as const, priority: p ? 0.8 : 1 }));

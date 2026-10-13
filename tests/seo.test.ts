@@ -15,7 +15,7 @@ test("langHref maps EN and BN twins and keeps query and hash", () => {
   assert.equal(langHref("/bn/compare/?bikes=a,b#engine", "en"), "/compare/?bikes=a,b#engine");
   assert.equal(langHref("/bikes/bajaj-pulsar-n160/", "bn"), "/bn/bikes/bajaj-pulsar-n160/");
   assert.equal(langHref("/bn/bikes/bajaj-pulsar-n160/", "bn"), "/bn/bikes/bajaj-pulsar-n160/");
-  for (const p of ["privacy", "terms", "disclaimer", "saved", "feedback", "guide/motorcycle-fines", "compare/a-vs-b"]) assert.equal(langHref(`/${p}/`, "bn"), `/bn/${p}/`);
+  for (const p of ["privacy", "terms", "disclaimer", "saved", "feedback", "guide/motorcycle-fines", "guide/e-fines", "compare/a-vs-b"]) assert.equal(langHref(`/${p}/`, "bn"), `/bn/${p}/`);
 });
 
 test("langHref leaves pages without a Bangla twin and non-paths alone", () => {
@@ -49,7 +49,7 @@ test("Product JSON-LD has an Offer only for bikes on sale", () => {
 test("sitemap lists the fines guide and every popular pair in EN and BN, and not the noindex /saved/", () => {
   const urls = sitemap().map((e) => e.url.replace("https://suggest.bike", ""));
   assert.equal(new Set(urls).size, urls.length, "duplicate sitemap URL");
-  const want = ["/guide/motorcycle-fines/", ...POPULAR_COMPARISONS.map(([a, b]) => pairHref(a, b))];
+  const want = ["/guide/motorcycle-fines/", "/guide/speed-limits/", "/guide/driving-licence/", "/guide/e-fines/", ...POPULAR_COMPARISONS.map(([a, b]) => pairHref(a, b))];
   for (const p of want) for (const u of [p, langHref(p, "bn")]) assert.ok(urls.includes(u), `${u} missing from sitemap`);
   assert.ok(!urls.some((u) => u.includes("/saved/")));
   for (const u of urls.filter((u) => u.startsWith("/bn/"))) assert.ok(urls.includes(langHref(u, "en")), `${u} has no EN twin in the sitemap`);
