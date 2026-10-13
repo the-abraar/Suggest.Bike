@@ -2,6 +2,22 @@
 
 Things only you can do: decisions, accounts, money, relationships and work out in the real world. The agent work that depends on them is noted in `Todo_agent.md`.
 
+## Blocked on you (2026-10-14)
+
+The agent is waiting on these. Send the value (or the answer) and it wires it in.
+
+- [ ] **Formspree URL** for `FORM_ENDPOINT` in `src/lib/site.ts` (steps below). Until then the feedback and "I own this" forms open an email app, which fails on phones without one.
+- [ ] **GoatCounter code** for `GOATCOUNTER_CODE` (steps below). Set it before the first Facebook post, or that traffic can't be measured.
+- [ ] **WhatsApp number** for `WHATSAPP`, or say "skip".
+- [ ] **Data answers:** open `docs/data-needed.html` in a browser, fill each row (value, unsure, or both options), press "Download answers" and give the agent the JSON file.
+- [ ] **Quiz defaults:** the quiz shows default answers as already selected (budget ৳2.5 lakh, brand new, daily commute, etc.). Keep, or start every step blank?
+- [ ] **Search Console:** in URL Inspection, press "Request indexing" for `/`, `/bn/`, `/bikes/`, `/bn/bikes/`, `/guide/`, `/bn/guide/` (about 10 a day allowed). Check the sitemap status again around 2026-10-18.
+- [ ] **Lawyer review** of `/privacy/`, `/terms/`, `/disclaimer/` (EN and BN) and the law cards on `/guide/` and `/guide/*/`.
+- [ ] **Real phones:** walk the quiz, a bike page, `/compare/`, `/cost/` and `/bn/` on one Android and one iPhone.
+- [ ] **Proofread the Bangla** in the 18 new maintenance posts, the `/owner/` sections and the three new rules pages.
+- [ ] **Before each Facebook post** (`docs/launch-posts.md`): open the linked page that day and fix any number that moved (Hunk 150R went up ৳3,000 on 2026-10-14).
+- [ ] **Check `hello@suggest.bike` forwarding** by sending one test email to it.
+
 ## Before launch
 
 - [x] **Domain.** `suggest.bike` (Namecheap), set in `src/lib/site.ts → SITE.url`.

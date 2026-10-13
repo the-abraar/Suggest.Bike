@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Needed</title>
+<style>
+  :root { --bg:#f7f8fa; --surface:#fff; --ink:#15202b; --muted:#5b6672; --line:#d9dee4; --brand:#1f5f8b; --hi:#fff6c2; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0f1418; --surface:#172028; --ink:#e6edf3; --muted:#9aa7b3; --line:#2a3642; --brand:#6fb3e0; --hi:#3a3510; } }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:24px 16px 64px; background:var(--bg); color:var(--ink); font:15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  h1 { font-size:22px; margin:0 0 6px; }
+  p { margin:0 0 12px; color:var(--muted); max-width:70ch; }
+  .bar { position:sticky; top:0; z-index:2; display:flex; flex-wrap:wrap; gap:8px; align-items:center; padding:10px 0; background:var(--bg); }
+  button { font:inherit; padding:8px 14px; border-radius:8px; border:1px solid var(--line); background:var(--surface); color:var(--ink); cursor:pointer; }
+  button.primary { background:var(--brand); border-color:var(--brand); color:#fff; }
+  #count { color:var(--muted); }
+  .wrap { overflow-x:auto; border:1px solid var(--line); border-radius:10px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; min-width:1100px; }
+  th, td { padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top; text-align:left; }
+  th { position:sticky; top:0; background:var(--surface); font-size:13px; color:var(--muted); }
+  td.area { font-size:12px; color:var(--muted); white-space:nowrap; }
+  td code { font-size:12px; color:var(--muted); }
+  tr.done { background:color-mix(in srgb, var(--hi) 40%, transparent); }
+  select, input { font:inherit; width:100%; padding:6px 8px; border:1px solid var(--line); border-radius:6px; background:var(--bg); color:var(--ink); }
+  input + input { margin-top:6px; }
+  input:disabled { opacity:.35; }
+  .ans { min-width:220px; }
+  :focus-visible { outline:2px solid var(--brand); outline-offset:2px; }
+</style>
+</head>
+<body>
+<h1>Data needed: values to confirm</h1>
+<p>Each row is something the site shows today, or would show, that no official source has confirmed. For each one, pick an answer:
+<b>Value</b> (type it in), <b>Both</b> (two values are both true, for example two variants or a range), <b>Unsure</b> (keep what the site shows and mark it as unconfirmed) or <b>Remove</b> (stop showing it).
+Your answers are saved in this browser as you type. When you're done, press <b>Download answers</b> and give the JSON file to the agent.</p>
+<div class="bar">
+  <button class="primary" id="dl">Download answers</button>
+  <button id="clear">Clear all</button>
+  <span id="count"></span>
+</div>
+<div class="wrap">
+<table>
+  <thead><tr><th>#</th><th>Area</th><th>What</th><th>Site shows now</th><th>What sources say</th><th>Your answer</th><th>Note</th></tr></thead>
+  <tbody id="rows"></tbody>
+</table>
+</div>
+<script>
+// [id, area, what, field (where it lives), site shows now, what sources say]
+const ROWS = [
+  ["metro-plus-weight", "Bike spec", "TVS Metro Plus: kerb weight (kg)", "bikes.json tvs-metro-plus weightKg", "116", "BikeBD pages say 103, 108 or 138; no TVS BD source"],
+  ["stryker-seat", "Bike spec", "TVS Stryker 125: seat height (mm)", "bikes.json tvs-stryker-125 seatHeightMm", "790", "No TVS BD source"],
+  ["stryker-tank", "Bike spec", "TVS Stryker 125: fuel tank (L)", "bikes.json tvs-stryker-125 fuelTankL", "10", "No TVS BD source"],
+  ["apache4v-top", "Bike spec", "TVS Apache RTR 160 4V: top speed (km/h)", "bikes.json tvs-apache-rtr-160-4v topSpeedKmh", "125", "BikeBD 130; TVS 2019 press release 113"],
+  ["access-weight", "Bike spec", "Suzuki Access 125: weight (kg)", "bikes.json suzuki-access-125 weightKg", "104", "BikeBD 104; ResearchingStuff lead 102; suzuki.com.bd specs didn't load"],
+  ["access-torque", "Bike spec", "Suzuki Access 125: torque (Nm)", "bikes.json suzuki-access-125 torqueNm", "10", "BikeBD 10; lead 10.2"],
+  ["access-brakes", "Bike spec", "Suzuki Access 125: brakes sold in BD", "bikes.json suzuki-access-125 brakes", "drum / drum, CBS", "A front-disc variant may exist"],
+  ["gsxr150-weight", "Bike spec", "Suzuki GSX-R150: weight (kg)", "bikes.json suzuki-gsx-r150 weightKg", "134", "131 seen elsewhere (maybe non-ABS or dry)"],
+  ["sp160-abs", "Bike spec", "Honda SP160: does the single-disc variant have ABS?", "bikes.json honda-sp160 brakes / variants", "disc / disc, single-channel ABS", "bdhonda.com shows one price, doesn't say"],
+  ["xsr155-abs", "Bike spec", "Yamaha XSR155: ABS?", "bikes.json yamaha-xsr155 brakes.abs", "none", "No source found"],
+  ["fzsv2-abs", "Bike spec", "Yamaha FZS V2 DD: ABS?", "bikes.json yamaha-fzs-v2-dd brakes.abs", "none", "No source found"],
+  ["fzsv2-tank", "Bike spec", "Yamaha FZS V2 DD: fuel tank (L)", "bikes.json yamaha-fzs-v2-dd fuelTankL", "12", "Same-platform figure, not from a BD page"],
+  ["gixxer-carb-tank", "Bike spec", "Suzuki Gixxer Carb DD: fuel tank (L)", "bikes.json suzuki-gixxer-carb-dd fuelTankL", "12", "Copied from the FI Gixxer entry"],
+  ["discover110-gears", "Bike spec", "Bajaj Discover 110: gears", "bikes.json bajaj-discover-110 gears", "4", "BikeBD spec table 4, BikeBD article 5"],
+  ["vxl-fuel", "Bike spec", "Vespa VXL 125: carburettor or fuel injection?", "bikes.json vespa-vxl-125 engine.fuel", "carb", "BikeBD says carb; no Runner/Piaggio BD source"],
+  ["rayzr-hybrid", "Bike spec", "Yamaha Ray ZR 125 sold in BD: Hybrid or non-hybrid?", "bikes.json yamaha-ray-zr-125 variant + text", "\"Fi Hybrid\" text, but 9.7 Nm (non-hybrid figure)", "Only ACI can confirm; a Street Rally variant at ৳2,25,000 is also listed"],
+  ["duke125-onsale", "Bike status", "KTM Duke 125: still sold new in BD?", "bikes.json ktm-duke-125 status", "on-sale, ৳3,00,000", "India stopped it in 2025; BikeBD says available; no Runner/KTM source"],
+  ["rc125-onsale", "Bike status", "KTM RC 125: still sold new in BD?", "bikes.json ktm-rc-125 status", "on-sale, ৳4,43,000 (offer ৳3,70,000 in note)", "Same as Duke 125"],
+  ["r15v4-bs7", "Price", "Yamaha R15 V4: is there a separate BS7/2025 version with its own price?", "bikes.json yamaha-r15-v4 priceBDT / variants", "৳6,05,000", "No source mentions BS7 in BD"],
+  ["vstrom-price", "Price", "Suzuki V-Strom SX 250: regular price", "bikes.json + offers.json", "৳4,49,950 (offers.json says regular ৳4,50,000)", "BikeBD ৳4,49,950; your showroom report ৳4,50,000; not on suzuki.com.bd"],
+  ["vxl-price", "Price", "Vespa VXL 125 CBS: price", "bikes.json vespa-vxl-125 priceBDT", "৳3,50,000", "Other sites differ by more than 5%"],
+  ["knightrider-price", "Price", "Runner Knight Rider V2: price", "bikes.json runner-knight-rider-v2 priceBDT", "৳1,67,000", "Other sites differ by more than 5%"],
+  ["kpt-price", "Price", "Lifan KPT 150 4V: price", "bikes.json lifan-kpt-150-4v priceBDT", "৳2,85,000", "Other BD sites ৳3,05,000-3,30,000"],
+  ["dr160-price", "Price", "Haojue DR160: price", "bikes.json haojue-dr160 priceBDT", "৳1,99,500", "Only one source"],
+  ["cbz-used", "Price", "Hero Honda CBZ: typical used price", "bikes.json hero-honda-cbz priceBDT", "৳45,000", "Only one source"],
+  ["tvs-network", "Dealers", "TVS: showroom and service-centre counts", "networks.json TVS", "showrooms ≥ 69, service unknown", "Locator has no national list; counted district by district"],
+  ["yamaha-service", "Dealers", "Yamaha (ACI): service-centre count", "networks.json Yamaha serviceCentres", "unknown (119 showrooms)", "Dealer list doesn't mark service points"],
+  ["runner-network", "Dealers", "Runner: showrooms, service centres, divisions", "networks.json Runner", "not listed (treated as unknown)", "No dealer list on site; 2017 report says 200+ dealers"],
+  ["gpx-network", "Dealers", "GPX (Speedoz): showrooms, service centres", "networks.json GPX", "not listed", "3S-centres page returns 404"],
+  ["haojue-network", "Dealers", "Haojue: showrooms, service centres", "networks.json Haojue", "not listed", "24 unlabelled contact entries"],
+  ["zontes-network", "Dealers", "Zontes: showrooms, service centres", "networks.json Zontes", "not listed", "No official list found"],
+  ["walton-network", "Dealers", "Walton (Takyon EVs): showrooms, service centres", "networks.json Walton", "not listed", "No official list found"],
+  ["vespa-aprilia-network", "Dealers", "Vespa / Aprilia: showrooms, service centres, and is Runner the distributor?", "networks.json + dealers.json", "not listed; distributor unconfirmed", "Not on an official page"],
+  ["tvs-since", "Dealers", "TVS: sold officially in BD since (year)", "networks.json TVS since", "not shown", "2007 in a Daily Star item and third-party sites"],
+  ["bajaj-since", "Dealers", "Bajaj (Uttara Motors): sold officially since (year)", "networks.json Bajaj since", "not shown", "Sources only say \"1980s\""],
+  ["lifan-since", "Dealers", "Lifan: sold officially since (year)", "networks.json Lifan since", "not shown", "2007 only on BikeBD"],
+  ["hotlines", "Dealers", "Hotlines for TVS, Royal Enfield, KTM, Runner (write brand: number)", "dealers.json", "not rechecked", "No hotline on their official sites"],
+  ["tin-psr", "Guide / law", "Bikes >150cc need a TIN, or bikes >165cc need return proof (PSR)? (Finance Act 2026)", "guide.json registration + changes2024to2026", "Shows both reports, marked unconfirmed", "Daily Star 4 Jun 2026: TIN >150cc; Dhaka Tribune 6 Jun 2026: PSR >165cc"],
+  ["idra-pilot", "Guide / law", "IDRA ৳1,006 motor-liability pilot: still running after Aug 2026?", "guide.json insurance (used by /cost)", "Marked unconfirmed after Aug 2026", "TBS 10 Feb 2026"],
+  ["demerit-suspend", "Guide / law", "How many demerit points suspend a licence?", "guide.json laws (demerit card)", "Says \"set by the Rules\"", "Act s.11 leaves it to the Rules"],
+  ["reg-cost-165", "Guide / cost", "BRTA registration total for a 250-350cc bike (from a real receipt)", "guide.json registration.bands", "Low-confidence estimate", "No itemised receipt yet"],
+  ["reg-cost-150", "Guide / cost", "BRTA registration total for a 150cc bike (from a real receipt)", "guide.json registration.bands", "৳11,764 (2-year token)", "Calculated, not from a receipt"],
+  ["cbu-165", "Guide / law", "Can fully-built (CBU) bikes over 165cc be imported under Import Policy Order 2026-29?", "guide.json ccPolicy", "Conflicting reports", "Dhaka Times vs Desh Rupantor / Bangla Tribune"],
+  ["emergency-999", "Owner posts", "999 is the number to call after a crash or theft", "maintenance-posts.ts, /owner/", "999", "Financial Express mentions it; no official page fetched"],
+  ["theft-police", "Owner posts", "After a theft: file a GD or a case (FIR)? What do insurers need?", "/owner/ theft section", "\"Report at the nearest police station\"", "Not checked"],
+  ["free-services", "Owner posts", "What the 1st, 2nd and 3rd free services cover (per brand if it differs)", "maintenance-posts.ts free-services-explained", "Hedged general text", "Not from any brand's service book"],
+];
+
+const KEY = "suggestbike-data-needed-v1";
+let saved = {};
+try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch { saved = {}; }
+
+const tbody = document.getElementById("rows");
+ROWS.forEach(([id, area, what, field, now, src], i) => {
+  const s = saved[id] || {};
+  const tr = document.createElement("tr");
+  tr.dataset.id = id;
+  tr.innerHTML = `<td>${i + 1}</td><td class="area"></td><td><div></div><code></code></td><td></td><td></td>
+    <td class="ans"><select aria-label="Answer type">
+      <option value="">— pick —</option><option value="value">Value</option><option value="both">Both / dual</option>
+      <option value="unsure">Unsure (keep, mark unconfirmed)</option><option value="remove">Remove from site</option></select>
+      <input class="v1" placeholder="Value" aria-label="Value"><input class="v2" placeholder="Second value" aria-label="Second value"></td>
+    <td><input class="note" placeholder="Source or note" aria-label="Note"></td>`;
+  // textContent, not innerHTML, for the data cells
+  tr.children[1].textContent = area;
+  tr.children[2].firstElementChild.textContent = what;
+  tr.children[2].lastElementChild.textContent = field;
+  tr.children[3].textContent = now;
+  tr.children[4].textContent = src;
+  const sel = tr.querySelector("select"), v1 = tr.querySelector(".v1"), v2 = tr.querySelector(".v2"), note = tr.querySelector(".note");
+  sel.value = s.answer || ""; v1.value = s.value || ""; v2.value = s.value2 || ""; note.value = s.note || "";
+  const sync = () => {
+    v1.disabled = !(sel.value === "value" || sel.value === "both");
+    v2.disabled = sel.value !== "both";
+    tr.classList.toggle("done", !!sel.value);
+  };
+  const save = () => {
+    sync();
+    saved[id] = { answer: sel.value, value: v1.value.trim(), value2: v2.value.trim(), note: note.value.trim() };
+    try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch {}
+    count();
+  };
+  [sel, v1, v2, note].forEach((el) => el.addEventListener("input", save));
+  sync();
+  tbody.appendChild(tr);
+});
+
+function count() {
+  const n = ROWS.filter(([id]) => saved[id] && saved[id].answer).length;
+  document.getElementById("count").textContent = `${n} of ${ROWS.length} answered`;
+}
+count();
+
+document.getElementById("dl").addEventListener("click", () => {
+  const out = ROWS.map(([id, area, what, field, now]) => ({ id, what, field, siteNow: now, ...(saved[id] || { answer: "" }) }));
+  const blob = new Blob([JSON.stringify({ exported: new Date().toISOString(), answers: out }, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "data-answers.json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+document.getElementById("clear").addEventListener("click", () => {
+  if (!confirm("Clear every answer on this page?")) return;
+  saved = {};
+  try { localStorage.removeItem(KEY); } catch {}
+  location.reload();
+});
+</script>
+</body>
+</html>
