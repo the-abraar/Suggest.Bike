@@ -26,11 +26,24 @@ jobs:
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            tools/qa/package-lock.json
       - run: npm ci
       - run: npm run validate
       - run: npm run typecheck # pretypecheck generates src/data/generated, which tsc needs on a fresh checkout
       - run: npm test
       - run: npm run build
+      # Bangla share cards (scripts/bn-og.mts) need a shaping renderer: Chromium from tools/qa's Playwright, cached per lockfile.
+      # Runs only here, not in check.sh, so local checks pass without a browser; the script fails if any /bn/ og:image is missing.
+      - run: npm ci --prefix tools/qa
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-shell-${{ runner.os }}-${{ hashFiles('tools/qa/package-lock.json') }}
+      - run: npx playwright install --only-shell chromium # no-op on a cache hit; runner images already have Chromium's system libs
+        working-directory: tools/qa
+      - run: npm run og:bn
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
