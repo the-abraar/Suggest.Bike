@@ -926,13 +926,19 @@
   },
   {
    "title": "যে জরিমানাগুলো জানা দরকার",
-   "detail": "লাইসেন্স ছাড়া চালালে: ৳25,000 বা 6 মাস বা দুটোই। রেজিস্ট্রেশন ছাড়া বাইক / নম্বর প্লেট নেই: ৳50,000 বা 6 মাস বা দুটোই। অবৈধ পরিবর্তন (এক্সজস্ট, ব্রেক ইত্যাদি): সর্বোচ্চ ৳3 লাখ। উল্টো পথে চালালে: ৳10,000 / 3 মাস।",
+   "detail": "লাইসেন্স ছাড়া চালালে: ৳25,000 বা 6 মাস বা দুটোই। রেজিস্ট্রেশন ছাড়া বাইক / নম্বর প্লেট নেই: ৳50,000 বা 6 মাস বা দুটোই। অবৈধ পরিবর্তন (এক্সজস্ট, ব্রেক ইত্যাদি): 1 থেকে 3 বছর জেল, সর্বোচ্চ ৳3 লাখ জরিমানা বা দুটোই, জামিন অযোগ্য (ধারা 84)। উল্টো পথে চালালে: ৳10,000 / 3 মাস।",
    "sources": [
     {
      "title": "Penalties for violating rules under the new Road Transport Act",
      "url": "https://www.tbsnews.net/node/21549",
      "publisher": "The Business Standard",
      "date": "2019-11"
+    },
+    {
+     "title": "Road Transport Act 2018, s.84 and s.117 (official text)",
+     "url": "https://bdlaws.minlaw.gov.bd/act-print-1262.html",
+     "publisher": "Laws of Bangladesh (bdlaws)",
+     "date": "2026-10-13"
     }
    ],
    "confidence": "high"

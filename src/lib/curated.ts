@@ -1,4 +1,7 @@
-import { getBike } from "./bikes";
+import type { Metadata } from "next";
+import { formatBDT, getBike, mileageText } from "./bikes";
+import { onRoadPrice } from "./cost";
+import { langAlternates, OG_BASE, OG_BN } from "./site";
 import type { BikeLite } from "./types";
 
 /** The comparisons Bangladeshi buyers argue about most. */
@@ -15,3 +18,24 @@ export const POPULAR_COMPARISONS: [string, string][] = [
 
 export const popularPairs = () =>
   POPULAR_COMPARISONS.map(([a, b]) => [getBike(a), getBike(b)] as const).filter((p): p is readonly [BikeLite, BikeLite] => !!p[0] && !!p[1]);
+
+/** Crawlable URL of a popular pair (src/app/compare/[pair]); other pairs use /compare/?bikes=a,b. */
+export const pairSlug = (a: string, b: string) => `${a}-vs-${b}`;
+export const pairHref = (a: string, b: string) => `/compare/${pairSlug(a, b)}/`;
+export const pairBySlug = (slug: string) => popularPairs().find(([a, b]) => pairSlug(a.id, b.id) === slug);
+
+/** Title, description and hreflang for a popular pair page; every figure comes from bikes.json via the engines. */
+export function pairMetadata(slug: string, lang: "en" | "bn"): Metadata {
+  const p = pairBySlug(slug);
+  if (!p) return {};
+  const [a, b] = p;
+  const price = `${formatBDT(onRoadPrice(a))} vs ${formatBDT(onRoadPrice(b))}`;
+  const km = `${mileageText(a)} vs ${mileageText(b)}`;
+  const title =
+    lang === "bn" ? `${a.model} বনাম ${b.model}: বাংলাদেশে দাম, মাইলেজ ও স্পেক` : `${a.model} vs ${b.model}: price, mileage & specs in Bangladesh`;
+  const description =
+    lang === "bn"
+      ? `${a.brand} ${a.model} না ${b.brand} ${b.model}? অন-রোড দাম ${price}, আসল মাইলেজ ${km}, পাওয়ার ${a.powerPS} বনাম ${b.powerPS} PS, ওজন, পার্টস আর মাসিক খরচ পাশাপাশি।`
+      : `${a.brand} ${a.model} or ${b.brand} ${b.model}? On-road price ${price}, real mileage ${km}, power ${a.powerPS} vs ${b.powerPS} PS, weight, parts and monthly cost side by side.`;
+  return { title, description, alternates: langAlternates(pairHref(a.id, b.id), lang), openGraph: { ...(lang === "bn" ? OG_BN : OG_BASE), title, description } };
+}

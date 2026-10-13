@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Saved bikes",
   description: "Your saved motorcycles, kept in this browser.",
   alternates: langAlternates("/saved/"),
+  robots: { index: false, follow: true }, // a per-browser list: nothing for search to show
 };
 
 export default function Page() {

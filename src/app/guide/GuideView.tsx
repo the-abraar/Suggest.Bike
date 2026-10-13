@@ -237,6 +237,9 @@ export function GuideView() {
                 </div>
               ))}
             </div>
+            <Link href="/guide/motorcycle-fines/" className="mt-4 inline-flex items-center gap-1 text-[14.5px] font-medium text-brand underline underline-offset-2">
+              {tx("Every motorcycle fine, jail term and licence point, with section numbers", "মোটরসাইকেলের সব জরিমানা, জেল ও লাইসেন্স পয়েন্ট, ধারা নম্বরসহ")} <ArrowUpRight size={14} />
+            </Link>
           </Section>
 
           {/* Insurance */}

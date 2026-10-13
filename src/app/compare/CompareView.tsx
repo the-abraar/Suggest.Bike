@@ -6,7 +6,8 @@ import { Plus, Search, X } from "lucide-react";
 import { BIKES, SCORE_LABELS, avgMileage, ccLabel, formatBDT, formatLakh, fullName, getBike, mileageText, partLabel, tagline } from "@/lib/bikes";
 import { DEFAULT_COST_INPUT, emiMonthly, onRoadPrice, ownershipCost } from "@/lib/cost";
 import { OfferTag } from "@/components/Dated";
-import { popularPairs } from "@/lib/curated";
+import { pairHref, popularPairs } from "@/lib/curated";
+import { langHref } from "@/lib/site";
 import { useStore, MAX_COMPARE } from "@/lib/store";
 import { useLang, useTx } from "@/lib/i18n";
 import type { Bike, BikeLite, ScoreKey } from "@/lib/types";
@@ -14,15 +15,17 @@ import { BikeArt } from "@/components/BikeArt";
 import { searchBikes } from "@/components/SearchBox";
 import { Approx, ShareButton, WithSearchParams } from "@/components/ui";
 
-export function CompareView() {
+/** `pair`: a popular pair page (/compare/a-vs-b/), prerendered with both bikes instead of reading the query string. */
+export function CompareView({ pair }: { pair?: string[] }) {
+  if (pair) return <Compare params={new URLSearchParams({ bikes: pair.join(",") })} pair={pair} />;
   return <WithSearchParams render={(params) => <Compare params={params} />} />;
 }
 
-function Compare({ params }: { params: URLSearchParams }) {
+function Compare({ params, pair }: { params: URLSearchParams; pair?: string[] }) {
   const { lang } = useLang();
   const tx = useTx();
   const { compare, toggleCompare, clearCompare, ready } = useStore();
-  const [ids, setIds] = useState<string[]>([]);
+  const [ids, setIds] = useState<string[]>(pair ?? []);
 
   // URL wins on first load; otherwise fall back to the compare tray.
   useEffect(() => {
@@ -38,7 +41,9 @@ function Compare({ params }: { params: URLSearchParams }) {
     setIds(next);
     clearCompare();
     next.forEach((id) => toggleCompare(id));
-    window.history.replaceState(null, "", next.length ? `?bikes=${next.join(",")}` : window.location.pathname);
+    // A pair page that changes bikes moves to the generic /compare/ URL so the address matches what is shown.
+    const base = pair ? langHref("/compare/", lang) : window.location.pathname;
+    window.history.replaceState(null, "", next.length ? `${base}?bikes=${next.join(",")}` : base);
   };
 
   const bikes = ids.map((id) => getBike(id)).filter((b): b is BikeLite => !!b);
@@ -102,7 +107,7 @@ function Compare({ params }: { params: URLSearchParams }) {
         </div>
       </div>
 
-      {bikes.length < 2 ? <EmptyState onPick={(pair) => update(pair)} /> : <Table bikes={bikes} />}
+      {bikes.length < 2 ? <EmptyState /> : <Table bikes={bikes} />}
     </div>
   );
 }
@@ -157,22 +162,22 @@ function AddSlot({ exclude, onPick }: { exclude: string[]; onPick: (id: string) 
   );
 }
 
-function EmptyState({ onPick }: { onPick: (ids: string[]) => void }) {
+function EmptyState() {
   const tx = useTx();
   return (
     <div className="mt-10">
       <p className="eyebrow mb-4">{tx("Or start with a popular match-up", "অথবা জনপ্রিয় তুলনা দিয়ে শুরু করুন")}</p>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {popularPairs().map(([a, b]) => (
-          <button
+          <Link
             key={a.id + b.id}
-            onClick={() => onPick([a.id, b.id])}
+            href={pairHref(a.id, b.id)}
             className="card flex items-center justify-between gap-3 p-4 text-left transition-all hover:border-line-strong hover:shadow-md"
           >
             <span className="text-[14.5px] font-medium text-ink">
               {a.model} <span className="text-faint">{tx("vs", "বনাম")}</span> {b.model}
             </span>
-          </button>
+          </Link>
         ))}
       </div>
     </div>

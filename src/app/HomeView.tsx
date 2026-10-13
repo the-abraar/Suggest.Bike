@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import { ArrowRight, BadgeCheck, Fuel, Gauge, ShieldCheck, Sparkles, Wallet, Wrench } from "lucide-react";
 import { BIKES, BRANDS, CATEGORIES, PRICE_BANDS, formatBDT, formatLakh, fullName } from "@/lib/bikes";
 import { matchBikes, DEFAULT_ANSWERS, encodeAnswers, type Use } from "@/lib/match";
-import { popularPairs } from "@/lib/curated";
+import { pairHref, popularPairs } from "@/lib/curated";
 import { FUEL, ownershipCost, DEFAULT_COST_INPUT, registrationFor, emiMonthly, onRoadPrice } from "@/lib/cost";
 import { useLang, useTx, L } from "@/lib/i18n";
 import { BikeArt } from "@/components/BikeArt";
@@ -144,7 +144,7 @@ export function HomeView() {
           {popularPairs().map(([a, b]) => (
             <Link
               key={a.id + b.id}
-              href={`/compare/?bikes=${a.id},${b.id}`}
+              href={pairHref(a.id, b.id)}
               className="group card overflow-hidden transition-all hover:-translate-y-0.5 hover:border-line-strong hover:shadow-md"
             >
               <div className="relative grid grid-cols-2 bg-surface-2/60 px-2 pt-3">

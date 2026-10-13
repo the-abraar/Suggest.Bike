@@ -926,13 +926,19 @@
   },
   {
    "title": "Key penalties to know",
-   "detail": "Riding without a licence: Tk 25,000 or 6 months or both. Unregistered bike / no number plate: Tk 50,000 or 6 months or both. Illegal modifications (exhaust, brakes etc.): up to Tk 3 lakh. Wrong-way riding: Tk 10,000 / 3 months.",
+   "detail": "Riding without a licence: Tk 25,000 or 6 months or both. Unregistered bike / no number plate: Tk 50,000 or 6 months or both. Illegal modifications (exhaust, brakes etc.): 1 to 3 years in jail, up to Tk 3 lakh, or both, and not bailable (s.84). Wrong-way riding: Tk 10,000 / 3 months.",
    "sources": [
     {
      "title": "Penalties for violating rules under the new Road Transport Act",
      "url": "https://www.tbsnews.net/node/21549",
      "publisher": "The Business Standard",
      "date": "2019-11"
+    },
+    {
+     "title": "Road Transport Act 2018, s.84 and s.117 (official text)",
+     "url": "https://bdlaws.minlaw.gov.bd/act-print-1262.html",
+     "publisher": "Laws of Bangladesh (bdlaws)",
+     "date": "2026-10-13"
     }
    ],
    "confidence": "high"
