@@ -600,7 +600,7 @@ export const POSTS: Post[] = [
     ],
     steps: [
       ["Choose a full-face helmet if you can. It protects the chin and jaw, which open-face helmets do not.", "পারলে ফুল-ফেস হেলমেট নিন। এটা থুতনি আর চোয়াল বাঁচায়, ওপেন-ফেস যা পারে না।"],
-      ["Look for a recognised safety certification label inside, such as DOT or ECE. Avoid helmets with no label at all.", "ভেতরে স্বীকৃত সেফটি সার্টিফিকেশনের লেবেল দেখুন, যেমন DOT বা ECE। কোনো লেবেল না থাকলে সেই হেলমেট নেবেন না।"],
+      ["Check the certification. In Bangladesh, helmets are reported to need BSTI certification to be sold. Also look for an international label such as ECE or DOT. Avoid helmets with no label at all. Our guide \"Helmet labels: BSTI, ECE 22.06 and the rest\" explains each mark.", "সার্টিফিকেশন দেখুন। খবর অনুযায়ী বাংলাদেশে হেলমেট বিক্রির জন্য BSTI সার্টিফিকেশন লাগে। সাথে ECE বা DOT-এর মতো আন্তর্জাতিক লেবেলও খুঁজুন। কোনো লেবেল না থাকলে সেই হেলমেট নেবেন না। কোন চিহ্নের কী মানে, তা আমাদের \"হেলমেটের লেবেল: BSTI, ECE 22.06 আর অন্যগুলো\" গাইডে আছে।"],
       ["Try it on. It should be snug all round, with no pressure points, and must not twist when you shake your head.", "পরে দেখুন। চারপাশে আঁটসাঁট থাকবে কিন্তু কোথাও চাপ লাগবে না, আর মাথা নাড়লে ঘুরে যাবে না।"],
       ["Fasten the strap every ride, so only a finger or two fits under it.", "প্রতিবার স্ট্র্যাপ আটকান, নিচে যেন এক-দুই আঙুলের বেশি না ঢোকে।"],
       ["Clean the visor with water and a soft cloth, and wash the removable liner with mild soap.", "ভাইজর পানি আর নরম কাপড়ে পরিষ্কার করুন, খোলা যায় এমন লাইনার হালকা সাবানে ধুন।"],
@@ -614,6 +614,35 @@ export const POSTS: Post[] = [
     mechanic: [
       ["If the bike's helmet lock is broken or missing, get it fixed so the helmet is not left loose.", "বাইকের হেলমেট লক ভাঙা বা না থাকলে ঠিক করিয়ে নিন, যাতে হেলমেট আলগা পড়ে না থাকে।"],
       ["Replace the helmet when the liner is loose, the strap is worn, or the maker's suggested life is up.", "লাইনার ঢিলা হলে, স্ট্র্যাপ ক্ষয় হলে, বা নির্মাতার বলা মেয়াদ শেষ হলে হেলমেট বদলান।"],
+    ],
+  },
+  {
+    slug: "helmet-standards-bsti-ece-22-06",
+    updated: "2026-10-14",
+    minutes: 5,
+    title: ["Helmet labels: BSTI, ECE 22.06 and the rest", "হেলমেটের লেবেল: BSTI, ECE 22.06 আর অন্যগুলো"],
+    summary: [
+      "What the marks inside a helmet mean, which one the law asks for, and which one we suggest. Law and enforcement notes are as of 14 October 2026. This is general guidance, not legal advice.",
+      "হেলমেটের ভেতরের চিহ্নগুলোর মানে কী, আইন কোনটা চায়, আর আমরা কোনটা নিতে বলি। আইন আর প্রয়োগের তথ্য ১৪ অক্টোবর ২০২৬ পর্যন্ত। এটা সাধারণ পরামর্শ, আইনি পরামর্শ নয়।",
+    ],
+    steps: [
+      ["Know the legal rule. Helmets are reported to be on BSTI's mandatory certification list, so a helmet made or imported for sale here must carry BSTI certification (Prothom Alo, 2 April 2026). BSTI certification is the legal requirement. For the exact rule, check with BSTI.", "আইনটা জানুন। খবর অনুযায়ী হেলমেট BSTI-এর বাধ্যতামূলক সার্টিফিকেশন তালিকায় আছে। তাই দেশে বানানো বা আমদানি করা হেলমেট বিক্রি করতে BSTI সার্টিফিকেশন লাগবে (প্রথম আলো, ২ এপ্রিল ২০২৬)। আইনগত শর্ত হলো BSTI সার্টিফিকেশন। সঠিক নিয়ম জানতে BSTI-তে খোঁজ নিন।"],
+      ["Know how it is checked today. In our experience, police stops check that you are wearing a helmet, not what its label says. That is no reason to skip the rule. The rule exists so the helmet on your head has passed a test.", "এখন কীভাবে দেখা হয়, জানুন। আমাদের অভিজ্ঞতায় পুলিশ থামালে দেখে আপনি হেলমেট পরেছেন কি না, লেবেলে কী লেখা তা নয়। তাই বলে নিয়ম এড়ানোর কারণ নেই। নিয়মটা আছে যাতে আপনার মাথার হেলমেটটা পরীক্ষায় পাস করা হয়।"],
+      ["If you can, choose a helmet that also has ECE 22.06. It is the current version of the UN helmet rule (UN Regulation 22, 06 series). It came into force in January 2021 and has been required for new helmet approvals in Europe since July 2022.", "পারলে এমন হেলমেট নিন যাতে ECE 22.06-ও আছে। এটা জাতিসংঘের হেলমেট নিয়মের (UN Regulation 22, 06 সিরিজ) এখনকার সংস্করণ। ২০২১ সালের জানুয়ারিতে চালু হয়েছে, আর ২০২২ সালের জুলাই থেকে ইউরোপে নতুন হেলমেটের অনুমোদন পেতে এটা লাগে।"],
+      ["Why 22.06 is better: it adds an angled impact test that measures how fast the head is made to spin. Most falls hit the head at an angle, not straight on, so the head twists as well as stops. That twisting strains the brain inside the skull and is linked to concussion and serious brain injury.", "22.06 কেন ভালো: এতে কোণ করে আঘাতের একটা পরীক্ষা যোগ হয়েছে, যেটা মাপে মাথা কত জোরে ঘুরে যায়। বেশিরভাগ পড়ে যাওয়ায় মাথায় আঘাত লাগে বাঁকা হয়ে, সোজাসুজি নয়। তাই মাথা থামার সাথে সাথে মোচড়ও খায়। এই মোচড়ে খুলির ভেতরে মস্তিষ্কে টান পড়ে, যা কনকাশন আর গুরুতর ব্রেন ইনজুরির সাথে জড়িত।"],
+      ["22.06 also tests at more points around the shell, at both a lower and a higher impact speed, and tests the visor, for example against a small steel ball fired at it at high speed.", "22.06-এ শেলের আরও বেশি জায়গায় পরীক্ষা হয়, কম আর বেশি দুই গতিতেই আঘাত করা হয়। ভাইজরও পরীক্ষা হয়, যেমন জোরে ছোড়া ছোট স্টিলের বলের আঘাতে।"],
+      ["Read the ECE label, usually sewn onto the chin strap. Look for an E with a number in a circle. In the long approval number below it, the first two digits show the version: 06 means 22.06, 05 means the older 22.05.", "ECE লেবেল পড়ুন, সাধারণত চিন স্ট্র্যাপে সেলাই করা থাকে। গোল দাগের ভেতরে E আর একটা সংখ্যা খুঁজুন। নিচের লম্বা অনুমোদন নম্বরের প্রথম দুই অঙ্ক সংস্করণ বোঝায়: 06 মানে 22.06, 05 মানে পুরনো 22.05।"],
+      ["Other marks you may see: DOT is the US standard and ISI is India's. They show the helmet was made to a recognised test, but they are different tests from ECE 22.06.", "আরও যেসব চিহ্ন দেখবেন: DOT আমেরিকার মান, ISI ভারতের। এগুলো বোঝায় হেলমেট একটা স্বীকৃত পরীক্ষা মেনে বানানো, তবে ECE 22.06-এর পরীক্ষা থেকে এগুলো আলাদা।"],
+      ["Buy from an authorised dealer or a shop you trust, and keep the receipt.", "অনুমোদিত ডিলার বা ভরসার দোকান থেকে কিনুন, রসিদ রেখে দিন।"],
+    ],
+    avoid: [
+      ["Trusting a sticker alone. Fake BSTI, ECE and DOT stickers exist. A real ECE label carries a full approval number, not just the letters.", "শুধু স্টিকার দেখে ভরসা করা। BSTI, ECE, DOT-এর নকল স্টিকারও পাওয়া যায়। আসল ECE লেবেলে পুরো অনুমোদন নম্বর থাকে, শুধু অক্ষর নয়।"],
+      ["Buying a very cheap helmet from a roadside stall because it has a sticker. Most helmets in the market lack BSTI certification, according to the same report.", "স্টিকার আছে বলে রাস্তার পাশের দোকান থেকে খুব সস্তা হেলমেট কেনা। একই খবর বলছে, বাজারের বেশিরভাগ হেলমেটে BSTI সার্টিফিকেশন নেই।"],
+      ["Riding bareheaded because your helmet is not the best one. Any helmet, worn with the strap fastened, beats no helmet.", "হেলমেট সেরা না বলে খালি মাথায় চালানো। স্ট্র্যাপ আটকে পরা যেকোনো হেলমেট, হেলমেট না পরার চেয়ে ভালো।"],
+    ],
+    mechanic: [
+      ["Ask the seller to show the certification label before you pay. If they cannot, buy elsewhere.", "টাকা দেওয়ার আগে বিক্রেতাকে সার্টিফিকেশনের লেবেল দেখাতে বলুন। না পারলে অন্য জায়গা থেকে কিনুন।"],
+      ["Replace any helmet after a crash, whatever its label says.", "দুর্ঘটনার পর হেলমেট বদলে ফেলুন, লেবেলে যা-ই লেখা থাকুক।"],
     ],
   },
   {
