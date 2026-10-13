@@ -2984,7 +2984,14 @@
    "splendor plus",
    "splender",
    "splendor+"
-  ]
+  ],
+  "image": {
+   "src": "/bikes/hero-splendor-plus.webp",
+   "author": "Sonachalam 2k Ramalingame",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "sourcePage": "https://commons.wikimedia.org/wiki/File:Hero_Splendor_Plus_i3s_All_Black_Edition_and_IBS_2023_model_Non-_Xtec_PGM_FI_Model.png"
+  }
  },
  {
   "id": "hero-hf-deluxe",
@@ -5646,7 +5653,14 @@
    "nx 200",
    "honda nx",
    "cb200x"
-  ]
+  ],
+  "image": {
+   "src": "/bikes/honda-nx200.webp",
+   "author": "Ganesh Mohan T",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "sourcePage": "https://commons.wikimedia.org/wiki/File:Honda_CB200X_4.jpg"
+  }
  },
  {
   "id": "honda-cbr150r",
@@ -5981,6 +5995,13 @@
     "https://bikroy.com/bn/motorcycles-and-scooters/honda-dio",
     "https://bikroy.com/bn/motorcycles-and-scooters/honda-dio-2023"
    ]
+  },
+  "image": {
+   "src": "/bikes/honda-dio.webp",
+   "author": "Ganesh Mohan T",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "sourcePage": "https://commons.wikimedia.org/wiki/File:Honda_Dio_2.jpg"
   }
  },
  {
@@ -6146,6 +6167,13 @@
    "sources": [
     "https://bikroy.com/bn/motorcycles-and-scooters/yamaha-saluto-125"
    ]
+  },
+  "image": {
+   "src": "/bikes/yamaha-saluto-125.webp",
+   "author": "Rainmaker47",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "sourcePage": "https://commons.wikimedia.org/wiki/File:2015_Yamaha_YC125-4_Saluto.JPG"
   }
  },
  {
@@ -7119,7 +7147,14 @@
    "r15v4",
    "r15",
    "r15m"
-  ]
+  ],
+  "image": {
+   "src": "/bikes/yamaha-r15-v4.webp",
+   "author": "Kamalnath P",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "sourcePage": "https://commons.wikimedia.org/wiki/File:Yamaha_R15_v4_bike.jpg"
+  }
  },
  {
   "id": "yamaha-r15-v3",
@@ -9332,7 +9367,14 @@
    "v-strom 250 sx",
    "250sx"
   ],
-  "tyrePairBDT": 15000
+  "tyrePairBDT": 15000,
+  "image": {
+   "src": "/bikes/suzuki-v-strom-sx-250.webp",
+   "author": "RuinDig/Yuki Uchida",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+   "sourcePage": "https://commons.wikimedia.org/wiki/File:Japan-Mobility-Show-2023-RuinDig_507.jpg"
+  }
  },
  {
   "id": "suzuki-gsx-r150",
@@ -10769,7 +10811,14 @@
    "rc125",
    "ktm rc",
    "ktm rc125"
-  ]
+  ],
+  "image": {
+   "src": "/bikes/ktm-rc-125.webp",
+   "author": "Debarshi Ray",
+   "license": "CC BY-SA 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+   "sourcePage": "https://www.flickr.com/photos/39423133@N04/48792586571"
+  }
  },
  {
   "id": "runner-bullet-100-v2",

@@ -140,6 +140,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 - **Splendor+** — ৳1,17,000 as of 2026-09
   - Price: https://www.bikebd.com/price/hero-splendor-plus
   - https://www.heromotocorp.com/en-bd/the-bike/passion-xpro-xtec-110cc-motorcycle-91.html
+  - Photo: Sonachalam 2k Ramalingame, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Hero_Splendor_Plus_i3s_All_Black_Edition_and_IBS_2023_model_Non-_Xtec_PGM_FI_Model.png
 - **HF Deluxe** (Tubeless) — ৳1,14,500 as of 2026-09
   - Price: https://www.bikebd.com/price/hero-hf-deluxe-price-in-bangladesh
   - https://www.heromotocorp.com/en-bd/the-bike/passion-xpro-xtec-110cc-motorcycle-91.html
@@ -227,6 +228,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - Price: https://bdhonda.com/media-center/pr-details/282
   - https://www.bikebd.com/price/honda-nx200
   - https://bikebd.com/blog/honda-nx200-officially-launched-in-bangladesh
+  - Photo: Ganesh Mohan T, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Honda_CB200X_4.jpg
 - **CBR150R** (ABS (Indonesian)) — ৳6,50,000 as of 2026-10
   - Price: https://www.bdhonda.com/products/cbr150r
   - https://www.bikebd.com/price/new-honda-cbr150r
@@ -237,6 +239,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - Price: https://www.bikebd.com/price/honda-dio-price-in-bangladesh
   - https://www.bdhonda.com/product/dio/index
   - Used asking prices (2026-10): ~1 yr ৳1,75,000, ~3 yr ৳1,60,000 — https://bikroy.com/bn/motorcycles-and-scooters/honda-dio, https://bikroy.com/bn/motorcycles-and-scooters/honda-dio-2023
+  - Photo: Ganesh Mohan T, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Honda_Dio_2.jpg
 - **CG125** — ৳50,000 as of 2026-10 (used market)
   - Price: https://bikroy.com/en/ads/c/bangladesh/motorbikes-scooters/used/honda/cg125
   - https://bikebd.com/price/honda-cg-125-2006
@@ -255,6 +258,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - Price: https://bikebd.com/price/ktm-rc-125-2022
   - https://bikebd.com/brand/ktm
   - https://www.tbsnews.net/node/191338
+  - Photo: Debarshi Ray, CC BY-SA 2.0 — https://www.flickr.com/photos/39423133@N04/48792586571
 
 ### Lifan
 
@@ -376,6 +380,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://www.rokomari.com/product/358551/suzuki-ecstar-r5000-10w-40-mineral-1-liter
   - https://bongshal.com/product/suzuki-ecstar-10w-40-4t-engine-oil
   - https://www.bikepartsbd.com/product/suzuki-gixxer-front-brake-pads/
+  - Photo: RuinDig/Yuki Uchida, CC BY 4.0 — https://commons.wikimedia.org/wiki/File:Japan-Mobility-Show-2023-RuinDig_507.jpg
 - **GSX-R150** (ABS) — ৳5,29,950 as of 2026-10
   - Price: https://www.suzuki.com.bd/
   - https://www.bikebd.com/price/suzuki-gsxr-price-in-bangladesh
@@ -449,6 +454,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - Price: https://www.bikebd.com/price/yamaha-saluto-125-ubs
   - https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/
   - Used asking prices (2026-10): ~1 yr —, ~3 yr ৳1,15,000 — https://bikroy.com/bn/motorcycles-and-scooters/yamaha-saluto-125
+  - Photo: Rainmaker47, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:2015_Yamaha_YC125-4_Saluto.JPG
 - **Fazer FI V2** — ৳2,74,000 as of 2026-10
   - Price: https://www.bikebd.com/price/yamaha-fazer-price-in-bangladesh
   - https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/
@@ -473,6 +479,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - Price: https://www.bikebd.com/price/r15-v4-price-in-bangladesh
   - https://www.bikebd.com/price/yamaha-r15m-price-in-bangladesh
   - https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/
+  - Photo: Kamalnath P, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Yamaha_R15_v4_bike.jpg
 - **R15 V3** (Indian Dual ABS) — ৳5,25,000 as of 2026-10
   - Price: https://www.bikebd.com/price/r15-v3-indian-version-price-in-bd
   - https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/
