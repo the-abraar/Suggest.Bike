@@ -16,6 +16,19 @@ const norm = (s: string) =>
     .replace(/[০-৯]/g, (d) => String(BN_DIGITS.indexOf(d)))
     .replace(/[^a-z0-9\u0980-\u09ff]+/g, "");
 
+// Banglish spelling key: first letter, then consonants with doubles collapsed, so "palsar"/"plsar" = "pulsar", "gixar" = "gixxer", "harnet" = "hornet", "classik" = "classic".
+const skel = (s: string) => {
+  const w = s.replace(/ph/g, "f").replace(/[cq]/g, "k");
+  return w[0] + w.slice(1).replace(/(.)\1+/g, "$1").replace(/[aeiouy]/g, "");
+};
+const fuzzy = (w: string, tokens: string[]) => {
+  if (w.length < 4) return false;
+  const k = skel(w);
+  return tokens.some((t) => (k.length >= 3 ? skel(t).startsWith(k) : skel(t) === k));
+};
+// "fz v3", "r15 v5": a generation we do not list should still find the family.
+const isGen = (w: string) => /^v\d$/.test(w);
+
 export function searchBikes(q: string, limit = 7) {
   const n = norm(q);
   if (!n) return [];
@@ -31,6 +44,11 @@ export function searchBikes(q: string, limit = 7) {
     if (aliases.some((a) => a.startsWith(n))) score += 4;
     else if (aliases.some((a) => a.includes(n))) score += 2;
     if (words.every((w) => hay.includes(w))) score += 2;
+    if (!score) {
+      const tokens = `${b.brand} ${b.model} ${b.variant ?? ""} ${(b.aliases ?? []).join(" ")}`.toLowerCase().split(/[\s-]+/).map(norm).filter(Boolean);
+      const hit = (w: string) => tokens.some((t) => t.startsWith(w)) || fuzzy(w, tokens);
+      if (words.some((w) => !isGen(w)) && words.every((w) => isGen(w) || hit(w))) score = 1;
+    }
     return { b, score };
   })
     .filter((x) => x.score > 0)
@@ -79,7 +97,7 @@ export function SearchBox({ compact = false, autoFocus = false, large = false }:
   };
 
   return (
-    <div ref={boxRef} className="relative">
+    <div ref={boxRef} className="relative" onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && setOpen(false)}>
       <div className="relative">
         <Search size={large ? 20 : 17} className={`pointer-events-none absolute top-1/2 -translate-y-1/2 text-faint ${large ? "left-5" : "left-3.5"}`} />
         <input
@@ -94,6 +112,7 @@ export function SearchBox({ compact = false, autoFocus = false, large = false }:
           onKeyDown={(e) => {
             if (e.key === "ArrowDown") {
               e.preventDefault();
+              if (!open) return setOpen(true);
               setIdx((i) => Math.min(i + 1, results.length - 1));
             } else if (e.key === "ArrowUp") {
               e.preventDefault();
@@ -101,8 +120,7 @@ export function SearchBox({ compact = false, autoFocus = false, large = false }:
             } else if (e.key === "Enter" && results[idx]) {
               go(results[idx].id);
             } else if (e.key === "Escape") {
-              setOpen(false);
-              inputRef.current?.blur();
+              setOpen(false); // keep focus: keyboard users stay in the field (ARIA combobox pattern)
             }
           }}
           placeholder={compact ? t("home.search").split("—")[0].trim() + "…" : t("home.search")}
@@ -114,8 +132,9 @@ export function SearchBox({ compact = false, autoFocus = false, large = false }:
           role="combobox"
           aria-expanded={open && results.length > 0}
           aria-controls={listId}
+          aria-activedescendant={open && q && results[idx] ? `${listId}-${idx}` : undefined}
           aria-autocomplete="list"
-          aria-label="Search bikes"
+          aria-label={lang === "bn" ? "বাইক খুঁজুন" : "Search bikes"}
         />
         {compact && !q && (
           <kbd className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 rounded-md border border-line-strong bg-surface px-1.5 text-[11px] font-medium text-faint">
@@ -137,8 +156,11 @@ export function SearchBox({ compact = false, autoFocus = false, large = false }:
             results.map((b, i) => (
               <button
                 key={b.id}
+                id={`${listId}-${i}`}
                 role="option"
+                tabIndex={-1}
                 aria-selected={i === idx}
+                onMouseDown={(e) => e.preventDefault()} // keep focus in the input so the box's onBlur does not close the list mid-click
                 onMouseEnter={() => setIdx(i)}
                 onClick={() => go(b.id)}
                 className={`flex w-full items-center gap-3 px-3 py-2.5 text-left ${i === idx ? "bg-surface-2" : ""}`}

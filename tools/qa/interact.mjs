@@ -137,23 +137,24 @@ const kinds = await pg.locator('main li, main tr').filter({ hasText: /^(Added|Pr
 const bikeLinks = await pg.locator('main a[href^="/bikes/"]').count();
 ok('/changes: lists entries with bike links', kinds >= 5 && bikeLinks >= 5, `entries ${kinds}, links ${bikeLinks}`);
 
-// 9. Header Dealers/Method links: desktop nav, mobile menu, Bangla twin
+// 9. Dealers in the header nav (desktop, mobile menu, Bangla twin); Method lives in the footer since 2026-10-13.
 const wide = await br.newContext({ viewport: { width: 1280, height: 800 } });
 pg = await newPage(wide);
 await pg.goto(BASE + '/', { waitUntil: 'networkidle' });
 let navEl = pg.getByRole('navigation', { name: 'Primary' });
-ok('header 1280: Dealers + Method', (await navEl.getByRole('link', { name: 'Dealers' }).getAttribute('href')) === '/dealers/' && (await navEl.getByRole('link', { name: 'Method' }).getAttribute('href')) === '/method/');
-await navEl.getByRole('link', { name: 'Dealers' }).click();
+const footerHas = async (href) => (await pg.locator(`footer a[href="${href}"]`).count()) > 0;
+ok('header 1280: Dealers; footer: Method', (await navEl.locator('a[href="/dealers/"]').count()) === 1 && (await footerHas('/method/')));
+await navEl.locator('a[href="/dealers/"]').click();
 await pg.waitForURL(/\/dealers\/$/, { timeout: 5000 }).catch(() => {});
 ok('header: Dealers navigates', /\/dealers\/$/.test(pg.url()), pg.url());
 await pg.goto(BASE + '/bn/', { waitUntil: 'networkidle' });
 navEl = pg.getByRole('navigation', { name: 'Primary' });
-ok('header /bn/: ডিলার + পদ্ধতি stay in /bn/', (await navEl.getByRole('link', { name: 'ডিলার' }).getAttribute('href')) === '/bn/dealers/' && (await navEl.getByRole('link', { name: 'পদ্ধতি' }).getAttribute('href')) === '/bn/method/');
+ok('/bn/: Dealers + Method links stay in /bn/', (await navEl.locator('a[href="/bn/dealers/"]').count()) === 1 && (await footerHas('/bn/method/')));
 await wide.close();
 pg = await newPage();
 await pg.goto(BASE + '/', { waitUntil: 'networkidle' });
 await pg.getByRole('button', { name: 'Menu' }).click();
-ok('header 375 menu: Dealers + Method', (await pg.locator('a[href="/dealers/"]:visible').count()) > 0 && (await pg.locator('a[href="/method/"]:visible').count()) > 0);
+ok('header 375 menu: Dealers', (await pg.locator('a[href="/dealers/"]:visible').count()) > 0);
 
 const pageErrs = [...new Set(errs)];
 ok('no page/console errors', pageErrs.length === 0, pageErrs.join(' | '));

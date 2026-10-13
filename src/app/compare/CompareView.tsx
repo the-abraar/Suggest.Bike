@@ -128,14 +128,13 @@ function AddSlot({ exclude, onPick }: { exclude: string[]; onPick: (id: string) 
       </button>
     );
   return (
-    <div className="relative">
+    <div className="relative" onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && setOpen(false)}>
       <div className="relative">
         <Search size={16} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-faint" />
         <input
           autoFocus
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          onBlur={() => setTimeout(() => setOpen(false), 150)}
           onKeyDown={(e) => {
             if (e.key === "Enter" && results[0]) onPick(results[0].id);
             if (e.key === "Escape") setOpen(false);
@@ -148,7 +147,7 @@ function AddSlot({ exclude, onPick }: { exclude: string[]; onPick: (id: string) 
       {results.length > 0 && (
         <div className="absolute left-0 right-0 top-[calc(100%+6px)] z-50 overflow-hidden rounded-2xl border border-line bg-surface shadow-lg">
           {results.map((b) => (
-            <button key={b.id} onMouseDown={() => onPick(b.id)} className="flex w-full items-center gap-3 px-3 py-2.5 text-left hover:bg-surface-2">
+            <button key={b.id} onMouseDown={(e) => e.preventDefault()} onClick={() => onPick(b.id)} className="flex w-full items-center gap-3 px-3 py-2.5 text-left hover:bg-surface-2 focus-visible:bg-surface-2">
               <span className="h-8 w-12 shrink-0">
                 <BikeArt bike={b} shadow={false} className="h-full w-full" />
               </span>
