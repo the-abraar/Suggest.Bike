@@ -65,7 +65,7 @@ Full findings and file references: `docs/researching-stuff-uses.md`. Every numbe
 ## P2 — Engineering
 
 - [x] **Per-bike Bangla URLs** (`/bn/bikes/[id]`) *(done 2026-10-13)* so Google indexes the Bangla pages. Today the language is client-side only.
-- [ ] **Static OG/meta for client pages.** `/`, `/bikes`, `/match`, `/compare`, `/cost` and `/saved` are client components with only the layout's default metadata. Split them into a server `page.tsx` (with metadata) plus a client view.
+- [x] **Static OG/meta for client pages.** *Done: each listed route's `page.tsx` has a `metadata` export (verified 2026-10-13).* `/`, `/bikes`, `/match`, `/compare`, `/cost` and `/saved` are client components with only the layout's default metadata. Split them into a server `page.tsx` (with metadata) plus a client view.
 - [ ] **Tests.** Unit-test `matchBikes` (budget ceiling, no scooters when `gearless:"no"`, the seat-height penalty), `ownershipCost` (renewal maths for the 2-year plan) and `formatLakh`. Playwright smoke test for every route at 390px and 1440px, failing on horizontal overflow.
 - [ ] **Accessibility pass.** Keyboard-only run through the quiz, compare add-slot and search combobox. Check focus rings, colour contrast of `text-faint` (likely under 4.5:1), and the switch markup in `/bikes` (a button nested in a label).
 - [x] ~~**Performance.**~~ *Done: slim index plus per-bike files.* `bikes.json` (≈200 KB) ships to every client page. Split it into a slim list index plus per-bike details loaded on the detail page.
@@ -74,4 +74,4 @@ Full findings and file references: `docs/researching-stuff-uses.md`. Every numbe
 
 ## Documentation
 
-- [ ] **Write a PRD in ASD-STE100 format.** Cover the matchmaker, compare, cost and guide features and the data pipeline: problem, users, goals and non-goals, functional and non-functional requirements, constraints and success metrics. Follow ASD-STE100 (Simplified Technical English): use only approved words and their approved meanings, keep procedural sentences to 20 words or fewer and descriptive sentences to 25 or fewer, write one instruction per sentence, use the active voice, and use the imperative for procedures. Save it as `PRD.md`.
+- [x] **Write a PRD in ASD-STE100 format.** *Draft done 2026-10-13 in `PRD.md`; owner review and a check against the real STE dictionary are open.* Cover the matchmaker, compare, cost and guide features and the data pipeline: problem, users, goals and non-goals, functional and non-functional requirements, constraints and success metrics. Follow ASD-STE100 (Simplified Technical English): use only approved words and their approved meanings, keep procedural sentences to 20 words or fewer and descriptive sentences to 25 or fewer, write one instruction per sentence, use the active voice, and use the imperative for procedures. Save it as `PRD.md`.
