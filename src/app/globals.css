@@ -4,56 +4,64 @@
 
 /* ---------- Design tokens ---------- */
 :root {
-  --bg: #f7f7f4;
+  --bg: #f4f6fa;
   --surface: #ffffff;
-  --surface-2: #f1f2ee;
-  --surface-3: #e9ebe5;
-  --ink: #0f1613;
-  --ink-2: #2b3530;
-  --muted: #5f6b65;
-  --faint: #646f69;   /* ≥4.5:1 on --bg and --surface for small captions */
-  --line: #e4e6e0;
-  --line-strong: #d3d7cf;
+  --surface-2: #eaeff6;
+  --surface-3: #dfe6f1;
+  --ink: #0f1b2d;
+  --ink-2: #2b3a52;
+  --muted: #55657d;
+  --faint: #5c6b83;   /* ≥4.5:1 on --bg and --surface for small captions */
+  --line: #d9e0eb;
+  --line-strong: #c7d0df;
 
-  --brand: #0a6b4f;          /* Bangladesh green, deepened for contrast */
-  --brand-strong: #075540;
-  --brand-soft: #e3f1ea;
+  --brand: #1b4f91;          /* steel blue */
+  --brand-strong: #133c70;
+  --brand-soft: #e4ecf8;
   --brand-ink: #ffffff;
-  --signal: #c42b22;        /* the red sun — used sparingly */
+  --accent: #ffc400;        /* hi-vis yellow: one highlight, label it with --accent-ink */
+  --accent-ink: #0f1b2d;
+  --accent-soft: #fff3c4;
+  --accent-text: #8a6100;
+  --signal: #c42b22;        /* alert red: errors, price up, cons. Not a brand colour */
   --signal-soft: #fde9e7;
   --warn: #a15c07;
   --warn-soft: #fdf1dc;
   --good: #0f7a4c;
   --good-soft: #e1f3e9;
 
-  --shadow-sm: 0 1px 2px rgb(16 24 20 / 0.05);
-  --shadow-md: 0 1px 2px rgb(16 24 20 / 0.04), 0 8px 24px -8px rgb(16 24 20 / 0.12);
-  --shadow-lg: 0 2px 4px rgb(16 24 20 / 0.04), 0 24px 48px -16px rgb(16 24 20 / 0.22);
+  --shadow-sm: 0 1px 2px rgb(15 27 45 / 0.05);
+  --shadow-md: 0 1px 2px rgb(15 27 45 / 0.04), 0 8px 24px -8px rgb(15 27 45 / 0.12);
+  --shadow-lg: 0 2px 4px rgb(15 27 45 / 0.04), 0 24px 48px -16px rgb(15 27 45 / 0.22);
 
-  --art-ink: #1c2420;
-  --art-metal: #9aa39e;
-  --art-tyre: #1a1f1c;
-  --art-ground: rgb(15 22 19 / 0.08);
+  --art-ink: #1c2840;
+  --art-metal: #9aa6ba;
+  --art-tyre: #131a28;
+  --art-ground: rgb(15 27 45 / 0.08);
 
   color-scheme: light;
 }
 
 [data-theme="dark"] {
-  --bg: #0b0f0d;
-  --surface: #121815;
-  --surface-2: #18201c;
-  --surface-3: #1f2924;
-  --ink: #edf2ef;
-  --ink-2: #cfd8d3;
-  --muted: #94a39b;
-  --faint: #849189;
-  --line: #222c27;
-  --line-strong: #2f3b35;
+  --bg: #0a1220;
+  --surface: #111c2e;
+  --surface-2: #172540;
+  --surface-3: #1e2f52;
+  --ink: #eef2f9;
+  --ink-2: #cad5e6;
+  --muted: #93a4bf;
+  --faint: #8497b5;
+  --line: #243452;
+  --line-strong: #31456b;
 
-  --brand: #34c48f;
-  --brand-strong: #5fd6a8;
-  --brand-soft: #12261e;
-  --brand-ink: #04140d;
+  --brand: #7db0f5;
+  --brand-strong: #a8cbf9;
+  --brand-soft: #13294d;
+  --brand-ink: #0a1220;
+  --accent: #ffd43b;
+  --accent-ink: #0a1220;
+  --accent-soft: #3a3008;
+  --accent-text: #ffd43b;
   --signal: #ff6b5f;
   --signal-soft: #2b1513;
   --warn: #f0b04a;
@@ -65,9 +73,9 @@
   --shadow-md: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -8px rgb(0 0 0 / 0.5);
   --shadow-lg: 0 2px 4px rgb(0 0 0 / 0.3), 0 24px 48px -16px rgb(0 0 0 / 0.7);
 
-  --art-ink: #9aa69f;
-  --art-metal: #6f7b75;
-  --art-tyre: #050706;
+  --art-ink: #9aa8c0;
+  --art-metal: #6f7d96;
+  --art-tyre: #050810;
   --art-ground: rgb(0 0 0 / 0.35);
 
   color-scheme: dark;
@@ -88,6 +96,10 @@
   --color-brand-strong: var(--brand-strong);
   --color-brand-soft: var(--brand-soft);
   --color-brand-ink: var(--brand-ink);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-text: var(--accent-text);
   --color-signal: var(--signal);
   --color-signal-soft: var(--signal-soft);
   --color-warn: var(--warn);

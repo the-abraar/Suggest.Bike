@@ -34,7 +34,7 @@ export function HomeView() {
         <div className="container-x relative grid grid-cols-[minmax(0,1fr)] items-center gap-12 pb-16 pt-10 sm:pt-16 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:pb-24 lg:pt-20">
           <div className="animate-rise">
             <span className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-[12.5px] font-medium text-ink-2 shadow-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-signal" />
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
               {t("home.kicker")}
             </span>
             <h1 className="mt-6 text-[40px] font-semibold leading-[1.04] tracking-[-0.035em] text-ink sm:text-[56px] lg:text-[64px]">
@@ -227,7 +227,7 @@ export function HomeView() {
       <section className="container-x mt-24">
         <div className="relative overflow-hidden rounded-3xl bg-brand px-8 py-14 text-center sm:px-16">
           <svg className="pointer-events-none absolute -right-16 -top-16 h-72 w-72 opacity-20" viewBox="0 0 100 100" aria-hidden>
-            <circle cx="50" cy="50" r="50" fill="var(--signal)" />
+            <circle cx="50" cy="50" r="50" fill="var(--accent)" />
           </svg>
           <h2 className="relative text-[30px] font-semibold tracking-tight text-brand-ink sm:text-[38px]">
             <L en="Still not sure? Answer 7 questions." bn="এখনো নিশ্চিত নন? ৭টি প্রশ্নের উত্তর দিন।" />

@@ -29,7 +29,7 @@ export function OfferTag({ bikeId, className = "" }: { bikeId: string; className
   const tx = useTx();
   const o = useActiveOffer(bikeId);
   if (!o) return null;
-  return <span className={`rounded-full bg-signal-soft px-2 py-0.5 text-[11.5px] font-semibold text-signal ${className}`}>{tx("Offer", "অফার")}</span>;
+  return <span className={`rounded-full bg-accent px-2 py-0.5 text-[11.5px] font-bold text-accent-ink ${className}`}>{tx("Offer", "অফার")}</span>;
 }
 
 /** "This month's offer" box for the bike page. */
@@ -40,8 +40,8 @@ export function OfferBox({ bikeId }: { bikeId: string }) {
   if (!o) return null;
   const saving = o.regularPriceBDT && o.offerPriceBDT ? o.regularPriceBDT - o.offerPriceBDT : 0;
   return (
-    <div className="mt-4 max-w-md rounded-xl border border-line bg-signal-soft p-4">
-      <p className="flex items-center gap-1.5 text-[12.5px] font-semibold uppercase tracking-wide text-signal">
+    <div className="mt-4 max-w-md rounded-xl border border-line bg-accent-soft p-4">
+      <p className="flex items-center gap-1.5 text-[12.5px] font-semibold uppercase tracking-wide text-accent-text">
         <Tag size={13} aria-hidden /> {tx("This month's offer", "এই মাসের অফার")}
       </p>
       <p className="mt-1 text-[16px] font-semibold text-ink">{lang === "bn" ? o.titleBn : o.title}</p>

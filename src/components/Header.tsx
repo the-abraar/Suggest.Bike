@@ -76,7 +76,7 @@ export function Header() {
             >
               <Heart size={19} />
               {ready && saved.length > 0 && (
-                <span className="absolute right-1 top-1 grid h-4 min-w-4 place-items-center rounded-full bg-signal px-1 text-[10px] font-bold text-white tnum">
+                <span className="absolute right-1 top-1 grid h-4 min-w-4 place-items-center rounded-full bg-accent px-1 text-[10px] font-bold text-accent-ink tnum">
                   {saved.length}
                 </span>
               )}
