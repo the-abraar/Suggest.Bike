@@ -1,1 +1,123 @@
-{}
+{
+  "Bajaj": {
+    "distributor": "Uttara Motors Ltd",
+    "showrooms": 332,
+    "serviceCentres": 319,
+    "divisions": ["Dhaka", "Chattogram", "Rajshahi", "Khulna", "Barishal", "Sylhet", "Rangpur", "Mymensingh"],
+    "allDivisions": true,
+    "dealerLocatorUrl": "https://www.bajajauto.com/en-bd/store-locator",
+    "note": "Counted from the motorcycle entries on the official store locator by their Sales and Service tags (338 motorcycle entries in about 60 districts). A few entries may repeat under alternate district spellings.",
+    "asOf": "2026-10-14",
+    "sources": ["https://www.bajajauto.com/en-bd/store-locator"],
+    "confidence": "high"
+  },
+  "TVS": {
+    "distributor": "TVS Auto Bangladesh Ltd",
+    "showrooms": 69,
+    "serviceCentres": null,
+    "divisions": ["Dhaka", "Chattogram", "Rajshahi", "Khulna", "Barishal", "Sylhet", "Rangpur", "Mymensingh"],
+    "allDivisions": true,
+    "dealerLocatorUrl": "https://bangladesh.tvsmotor.com/en/dealers-location",
+    "note": "At least 69 sales points in about 41 districts, counted by querying the official locator one district at a time (it has no national list). Its service filter returns nothing, so the service count is unknown.",
+    "asOf": "2026-10-14",
+    "sources": ["https://bangladesh.tvsmotor.com/en/dealers-location"],
+    "confidence": "medium"
+  },
+  "Hero": {
+    "distributor": "HMCL Niloy Bangladesh Ltd",
+    "showrooms": 181,
+    "serviceCentres": 278,
+    "divisions": ["Dhaka", "Chattogram", "Rajshahi", "Khulna", "Barishal", "Sylhet", "Rangpur", "Mymensingh"],
+    "allDivisions": true,
+    "dealerLocatorUrl": "https://www.heromotocorp.com/en-bd/dealers.html",
+    "note": "Official dealer list: 181 sales-service-spares (3S) points plus 97 service-and-spares points; 289 spares-only shops are not counted.",
+    "asOf": "2026-10-14",
+    "sources": [
+      "https://www.heromotocorp.com/en-bd/dealers.html",
+      "https://www.heromotocorp.com/content/dam/hero-aem-website/in/investors/filing-reports/announcements-disclosures/press-release/20210830054620-Press-Releases.pdf"
+    ],
+    "confidence": "high",
+    "since": 2014,
+    "sinceSource": "https://www.heromotocorp.com/content/dam/hero-aem-website/in/investors/filing-reports/announcements-disclosures/press-release/20210830054620-Press-Releases.pdf"
+  },
+  "Honda": {
+    "distributor": "Bangladesh Honda Private Limited (BHL)",
+    "showrooms": 169,
+    "serviceCentres": 169,
+    "divisions": ["Dhaka", "Chattogram", "Rajshahi", "Khulna", "Barishal", "Sylhet", "Rangpur", "Mymensingh"],
+    "allDivisions": true,
+    "dealerLocatorUrl": "https://bdhonda.com/dealer-locator",
+    "note": "Official dealer locator: 169 dealers in 58 districts, each listed with a sales and a service point.",
+    "asOf": "2026-10-14",
+    "sources": ["https://bdhonda.com/dealer-locator", "https://bdhonda.com/pages/about-bhl"],
+    "confidence": "high",
+    "since": 2013,
+    "sinceSource": "https://bdhonda.com/pages/about-bhl"
+  },
+  "Yamaha": {
+    "distributor": "ACI Motors Ltd",
+    "showrooms": 119,
+    "serviceCentres": null,
+    "divisions": ["Dhaka", "Chattogram", "Rajshahi", "Khulna", "Barishal", "Sylhet", "Rangpur", "Mymensingh"],
+    "allDivisions": true,
+    "dealerLocatorUrl": "https://www.yamahabd.com/#dealers",
+    "note": "119 dealer points in 58 districts in the Dealers section of yamahabd.com; the list does not say which points do service.",
+    "asOf": "2026-10-14",
+    "sources": ["https://www.yamahabd.com/#dealers", "https://www.yamahabd.com/about-us"],
+    "confidence": "high",
+    "since": 2016,
+    "sinceSource": "https://www.yamahabd.com/about-us"
+  },
+  "Suzuki": {
+    "distributor": "Rancon Motor Bikes Ltd",
+    "showrooms": 140,
+    "serviceCentres": 139,
+    "divisions": ["Dhaka", "Chattogram", "Rajshahi", "Khulna", "Barishal", "Sylhet", "Rangpur", "Mymensingh"],
+    "allDivisions": true,
+    "dealerLocatorUrl": "https://www.suzuki.com.bd/dealer",
+    "note": "Official dealer locator: 142 points in 59 districts; 137 do sales and service, 3 sales only, 2 service only.",
+    "asOf": "2026-10-14",
+    "sources": ["https://www.suzuki.com.bd/dealer", "https://suzuki.com.bd/about"],
+    "confidence": "high",
+    "since": 2013,
+    "sinceSource": "https://suzuki.com.bd/about"
+  },
+  "Royal Enfield": {
+    "distributor": "IFAD Motors Ltd",
+    "showrooms": 16,
+    "serviceCentres": 16,
+    "divisions": ["Dhaka", "Chattogram", "Rajshahi", "Khulna", "Sylhet", "Rangpur"],
+    "allDivisions": false,
+    "dealerLocatorUrl": "https://www.royalenfield.com/bd/en/locate-us/dealers/",
+    "note": "Official locator: 16 dealers and 16 service points in 13 districts; none in Barishal or Mymensingh division.",
+    "asOf": "2026-10-14",
+    "sources": ["https://www.royalenfield.com/bd/en/locate-us/dealers/", "https://ifadgroup.com/ifad-motors-ltd"],
+    "confidence": "high",
+    "since": 2024,
+    "sinceSource": "https://ifadgroup.com/ifad-motors-ltd"
+  },
+  "KTM": {
+    "distributor": "Runner Automobiles PLC",
+    "showrooms": 2,
+    "serviceCentres": null,
+    "divisions": ["Dhaka"],
+    "allDivisions": false,
+    "dealerLocatorUrl": "https://www.ktm.com/en-bd/find-a-dealer.html",
+    "note": "The official KTM locator lists only two Runner points, both in Tejgaon, Dhaka. Runner may sell KTM through more outlets; ask before travelling.",
+    "asOf": "2026-10-14",
+    "sources": ["https://www.ktm.com/en-bd/find-a-dealer.html"],
+    "confidence": "low"
+  },
+  "Lifan": {
+    "distributor": "Rasel Industries Ltd",
+    "showrooms": 47,
+    "serviceCentres": null,
+    "divisions": ["Dhaka", "Chattogram", "Rajshahi", "Khulna", "Barishal", "Sylhet", "Rangpur", "Mymensingh"],
+    "allDivisions": true,
+    "dealerLocatorUrl": "https://raselindustry.com/distribution-network/",
+    "note": "47 dealers listed by division on the distributor's network page; service points are not listed.",
+    "asOf": "2026-10-14",
+    "sources": ["https://raselindustry.com/distribution-network/"],
+    "confidence": "medium"
+  }
+}

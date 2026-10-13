@@ -115,4 +115,7 @@ export interface BrandNetwork {
   asOf: string;
   sources: string[];
   confidence: "high" | "medium" | "low";
+  /** Year this distributor started official sales, from the dated company page in sinceSource. */
+  since?: number;
+  sinceSource?: string;
 }
