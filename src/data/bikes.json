@@ -7,7 +7,7 @@
   "category": "commuter",
   "status": "on-sale",
   "priceBDT": 134350,
-  "priceNote": "Platina 110 H-Gear also sold (around ৳1,40,000).",
+  "priceNote": "Platina 110 H (5-speed, front disc) ৳1,40,100.",
   "priceAsOf": "2026-10",
   "priceSource": "https://www.bajajauto.com/en-bd/bikes/platina-100-es",
   "distributor": "Uttara Motors Ltd",
@@ -30,10 +30,10 @@
    60,
    70
   ],
-  "weightKg": 117,
+  "weightKg": 116,
   "seatHeightMm": 807,
   "groundClearanceMm": 200,
-  "fuelTankL": 11,
+  "fuelTankL": 11.5,
   "brakes": {
    "front": "drum",
    "rear": "drum",
@@ -143,7 +143,7 @@
     "গ্রাম ও মফস্বলে ব্যবহার",
     "সবচেয়ে কম চালানোর খরচ"
    ],
-   "priceNote": "Platina 110 H-Gear-ও বিক্রি হয় (প্রায় ৳1,40,000)।",
+   "priceNote": "Platina 110 H (5-স্পিড, সামনে ডিস্ক) ৳1,40,100।",
    "partNotes": [
     null,
     null,
@@ -161,6 +161,157 @@
    "platina 100",
    "plattina",
    "bajaj platina"
+  ]
+ },
+ {
+  "id": "bajaj-platina-110-h",
+  "brand": "Bajaj",
+  "model": "Platina 110 H",
+  "category": "commuter",
+  "status": "on-sale",
+  "priceBDT": 140100,
+  "priceAsOf": "2026-10",
+  "priceSource": "https://www.bajajauto.com/en-bd/bikes/platina-110-h",
+  "distributor": "Uttara Motors Ltd",
+  "assembledInBD": true,
+  "engine": {
+   "cc": 115.45,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "air",
+   "valves": 2,
+   "fuel": "carb"
+  },
+  "powerPS": 8.6,
+  "powerRpm": 7000,
+  "torqueNm": 9.81,
+  "torqueRpm": 5000,
+  "gears": 5,
+  "mileageKmpl": [
+   58,
+   68
+  ],
+  "weightKg": 119,
+  "seatHeightMm": 804,
+  "groundClearanceMm": 200,
+  "fuelTankL": 11.5,
+  "brakes": {
+   "front": "disc",
+   "rear": "drum",
+   "abs": "cbs"
+  },
+  "tubeless": true,
+  "tyres": {
+   "front": "80/100-17",
+   "rear": "80/100-17"
+  },
+  "suspension": {
+   "front": "Hydraulic telescopic fork",
+   "rear": "Nitrox spring-on-spring shocks"
+  },
+  "scores": {
+   "reliability": 8,
+   "mechanicFamiliarity": 10,
+   "partsAvailability": 10,
+   "resale": 7,
+   "comfort": 8,
+   "cityHandling": 8,
+   "highway": 6,
+   "pillion": 7,
+   "offroad": 5,
+   "performance": 3,
+   "beginnerFriendly": 10
+  },
+  "tagline": "The Platina's plush ride with a fifth gear and a front disc.",
+  "feel": "Same soft, bump-swallowing suspension as the Platina 100, but the fifth gear lets it cruise at 60-70 km/h without screaming.",
+  "quirks": "Narrow 80-section tyres feel nervous on wet or broken tarmac. Plastics and switchgear are basic. Sold in few colours.",
+  "braking": "Front disc with combined braking stops far better than the drum-only Platina 100.",
+  "mechanicNote": "Platina parts are in every bazaar and every roadside mechanic knows the engine.",
+  "pros": [
+   "Very comfortable ride",
+   "5 gears",
+   "Front disc with CBS",
+   "Low running cost"
+  ],
+  "cons": [
+   "Thin tyres",
+   "Basic build quality",
+   "Low resale versus Hero Splendor"
+  ],
+  "bestFor": [
+   "Daily commute on bad roads",
+   "Ride-sharing (Pathao/Uber)",
+   "Rural and semi-urban use"
+  ],
+  "serviceIntervalKm": 2500,
+  "avgServiceCostBDT": 800,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 350,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 1400,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 300,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 650,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 900,
+    "availability": "everywhere"
+   }
+  ],
+  "sources": [
+   "https://www.bajajauto.com/en-bd/bikes/platina-110-h",
+   "https://bikebd.com/price/bajaj-platina-110cc-price-in-bangladesh"
+  ],
+  "bn": {
+   "tagline": "Platina-র আরামদায়ক রাইড, সাথে পঞ্চম গিয়ার আর সামনে ডিস্ক।",
+   "feel": "Platina 100-এর মতোই নরম সাসপেনশন ঝাঁকুনি গিলে নেয়, তবে পঞ্চম গিয়ারের কারণে 60-70 km/h-এ ইঞ্জিন চিৎকার না করে চলে।",
+   "quirks": "সরু 80-সেকশনের টায়ার ভেজা বা ভাঙা রাস্তায় অস্থির লাগে। প্লাস্টিক আর সুইচগিয়ার সাধারণ মানের। কালার অপশন কম।",
+   "braking": "সামনের ডিস্ক আর কম্বাইন্ড ব্রেকিং শুধু-ড্রামের Platina 100-এর চেয়ে অনেক ভালো থামায়।",
+   "mechanicNote": "Platina-র পার্টস সব বাজারে পাওয়া যায়, আর রাস্তার পাশের যেকোনো মেকানিক ইঞ্জিনটা চেনে।",
+   "pros": [
+    "খুব আরামদায়ক রাইড",
+    "5টা গিয়ার",
+    "CBS-সহ সামনে ডিস্ক",
+    "চালানোর খরচ কম"
+   ],
+   "cons": [
+    "সরু টায়ার",
+    "বিল্ড কোয়ালিটি সাধারণ",
+    "Hero Splendor-এর তুলনায় রিসেল কম"
+   ],
+   "bestFor": [
+    "খারাপ রাস্তায় ডেইলি যাতায়াত",
+    "রাইড শেয়ারিং (Pathao/Uber)",
+    "গ্রাম ও মফস্বলে ব্যবহার"
+   ],
+   "partNotes": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  "aliases": [
+   "প্লাটিনা 110",
+   "প্লাটিনা এইচ গিয়ার",
+   "platina 110",
+   "platina h gear",
+   "platina 110 h"
   ]
  },
  {
@@ -183,9 +334,9 @@
    "valves": 2,
    "fuel": "carb"
   },
-  "powerPS": 7.9,
+  "powerPS": 7.7,
   "powerRpm": 7500,
-  "torqueNm": 8.3,
+  "torqueNm": 8.24,
   "torqueRpm": 5500,
   "gears": 4,
   "topSpeedKmh": 85,
@@ -193,7 +344,7 @@
    60,
    70
   ],
-  "weightKg": 115,
+  "weightKg": 111,
   "seatHeightMm": 800,
   "groundClearanceMm": 169,
   "fuelTankL": 10.5,
@@ -350,7 +501,7 @@
    "fuel": "carb"
   },
   "powerPS": 11,
-  "powerRpm": 8000,
+  "powerRpm": 7500,
   "torqueNm": 11,
   "torqueRpm": 5500,
   "gears": 5,
@@ -362,7 +513,7 @@
   "weightKg": 124,
   "seatHeightMm": 805,
   "groundClearanceMm": 165,
-  "fuelTankL": 11,
+  "fuelTankL": 8,
   "brakes": {
    "front": "disc",
    "rear": "drum",
@@ -509,6 +660,159 @@
   ]
  },
  {
+  "id": "bajaj-discover-110",
+  "brand": "Bajaj",
+  "model": "Discover 110",
+  "variant": "Disc",
+  "category": "commuter",
+  "status": "on-sale",
+  "priceBDT": 149600,
+  "priceAsOf": "2026-10",
+  "priceSource": "https://www.bajajauto.com/en-bd/bikes/discover-110-disc",
+  "distributor": "Uttara Motors Ltd",
+  "assembledInBD": true,
+  "engine": {
+   "cc": 115.45,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "air",
+   "valves": 2,
+   "fuel": "carb"
+  },
+  "powerPS": 8.6,
+  "powerRpm": 7000,
+  "torqueNm": 9.81,
+  "torqueRpm": 5000,
+  "gears": 4,
+  "mileageKmpl": [
+   55,
+   62
+  ],
+  "weightKg": 119,
+  "seatHeightMm": 805,
+  "groundClearanceMm": 165,
+  "fuelTankL": 8,
+  "brakes": {
+   "front": "disc",
+   "rear": "drum",
+   "abs": "none"
+  },
+  "tubeless": true,
+  "tyres": {
+   "front": "100/80-17",
+   "rear": "100/90-17"
+  },
+  "suspension": {
+   "front": "Telescopic fork",
+   "rear": "Nitrox gas-charged twin shocks"
+  },
+  "scores": {
+   "reliability": 7,
+   "mechanicFamiliarity": 9,
+   "partsAvailability": 9,
+   "resale": 6,
+   "comfort": 7,
+   "cityHandling": 8,
+   "highway": 5,
+   "pillion": 7,
+   "offroad": 5,
+   "performance": 3,
+   "beginnerFriendly": 9
+  },
+  "tagline": "The Discover 125's frame and front disc with a thriftier 115cc engine.",
+  "feel": "Soft, long-travel ride and a broad seat; the small engine pulls cleanly to about 60 km/h and is happiest below 70.",
+  "quirks": "Only 4 gears, so it buzzes when held at highway speed. The 8 L tank is small for a commuter. Resale trails the Hero and Honda 110s.",
+  "braking": "Front disc is a real step up over drum-braked 100s; the rear drum is soft.",
+  "mechanicNote": "Shares parts with the Discover and Platina family, so any Bajaj-friendly mechanic can service it cheaply.",
+  "pros": [
+   "Front disc at a 110cc price",
+   "Comfortable seat and suspension",
+   "Cheap parts",
+   "Tubeless tyres"
+  ],
+  "cons": [
+   "4-speed gearbox",
+   "Small 8 L tank",
+   "Weak resale"
+  ],
+  "bestFor": [
+   "Daily commute",
+   "Ride-sharing (Pathao/Uber)",
+   "First bike on a tight budget"
+  ],
+  "serviceIntervalKm": 2500,
+  "avgServiceCostBDT": 850,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 350,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 1400,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 300,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 650,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 900,
+    "availability": "everywhere"
+   }
+  ],
+  "sources": [
+   "https://www.bajajauto.com/en-bd/bikes/discover-110-disc",
+   "https://www.bikebd.com/price/bajaj-discover-110-disc",
+   "https://www.bikebd.com/price/bajaj-discover-110-disc/specifications"
+  ],
+  "bn": {
+   "tagline": "Discover 125-এর ফ্রেম আর সামনের ডিস্ক, সাথে কম খরচের 115cc ইঞ্জিন।",
+   "feel": "নরম, লম্বা ট্রাভেলের সাসপেনশন আর চওড়া সিট; ছোট ইঞ্জিন 60 km/h পর্যন্ত পরিষ্কার টানে, 70-এর নিচেই সবচেয়ে স্বস্তিতে চলে।",
+   "quirks": "মাত্র 4টা গিয়ার, তাই হাইওয়ে স্পিডে ধরে রাখলে ভাইব্রেশন করে। কমিউটারের জন্য 8 লিটার ট্যাঙ্ক ছোট। Hero আর Honda-র 110-এর চেয়ে রিসেল কম।",
+   "braking": "ড্রাম ব্রেকের 100cc-এর তুলনায় সামনের ডিস্ক সত্যিই ভালো; পেছনের ড্রাম নরম।",
+   "mechanicNote": "Discover আর Platina ফ্যামিলির সাথে পার্টস মেলে, তাই Bajaj চেনা যেকোনো মেকানিক কম খরচে সার্ভিস করতে পারে।",
+   "pros": [
+    "110cc দামে সামনে ডিস্ক",
+    "আরামদায়ক সিট ও সাসপেনশন",
+    "সস্তা পার্টস",
+    "টিউবলেস টায়ার"
+   ],
+   "cons": [
+    "4-স্পিড গিয়ারবক্স",
+    "ছোট 8 লিটার ট্যাঙ্ক",
+    "রিসেল দুর্বল"
+   ],
+   "bestFor": [
+    "ডেইলি যাতায়াত",
+    "রাইড শেয়ারিং (Pathao/Uber)",
+    "কম বাজেটে প্রথম বাইক"
+   ],
+   "partNotes": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  "aliases": [
+   "ডিসকভার 110",
+   "বাজাজ ডিসকভার 110",
+   "discover 110",
+   "discover110",
+   "bajaj discover 110"
+  ]
+ },
+ {
   "id": "bajaj-pulsar-ns125",
   "brand": "Bajaj",
   "model": "Pulsar NS125",
@@ -537,7 +841,7 @@
    42,
    50
   ],
-  "weightKg": 144,
+  "weightKg": 141,
   "seatHeightMm": 805,
   "groundClearanceMm": 179,
   "fuelTankL": 12,
@@ -711,7 +1015,7 @@
   },
   "powerPS": 14,
   "powerRpm": 8500,
-  "torqueNm": 13.25,
+  "torqueNm": 13.4,
   "torqueRpm": 6500,
   "gears": 5,
   "topSpeedKmh": 115,
@@ -719,7 +1023,7 @@
    42,
    50
   ],
-  "weightKg": 148,
+  "weightKg": 144,
   "seatHeightMm": 785,
   "groundClearanceMm": 165,
   "fuelTankL": 15,
@@ -934,7 +1238,7 @@
    38,
    45
   ],
-  "weightKg": 152,
+  "weightKg": 154,
   "seatHeightMm": 795,
   "groundClearanceMm": 165,
   "fuelTankL": 14,
@@ -1273,10 +1577,10 @@
   "model": "Pulsar N250",
   "category": "naked",
   "status": "on-sale",
-  "priceBDT": 330100,
-  "priceNote": "N250 Fi ABS with USD fork ৳3,60,000. Official Bajaj BD blog listed ৳3,39,999 earlier.",
-  "priceAsOf": "2026-09",
-  "priceSource": "https://www.bikebd.com/price/bajaj-pulsar-n250",
+  "priceBDT": 360000,
+  "priceNote": "Bajaj BD price with the 37 mm USD fork. BikeBD lists ৳3,30,100; Bajaj's older BD blog listed ৳3,29,999.",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://www.bajajauto.com/en-bd/bikes/pulsar-n250",
   "distributor": "Uttara Motors Ltd",
   "assembledInBD": true,
   "engine": {
@@ -1297,7 +1601,7 @@
    30,
    36
   ],
-  "weightKg": 162,
+  "weightKg": 164,
   "seatHeightMm": 795,
   "groundClearanceMm": 165,
   "fuelTankL": 14,
@@ -1380,7 +1684,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/bajaj-pulsar-n250",
-   "https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh"
+   "https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh",
+   "https://www.bajajauto.com/en-bd/bikes/pulsar-n250"
   ],
   "bn": {
    "tagline": "বাংলাদেশে সবচেয়ে সস্তা আসল 250 — প্রচুর টর্ক, পালসারের মতো চালানোর খরচ।",
@@ -1404,7 +1709,7 @@
     "150-160cc থেকে আপগ্রেড",
     "লম্বা দূরত্বে নিয়মিত যাতায়াত"
    ],
-   "priceNote": "USD ফর্কসহ N250 Fi ABS ৳3,60,000। Bajaj BD-র অফিশিয়াল ব্লগে আগে ৳3,39,999 দেওয়া ছিল।",
+   "priceNote": "37 mm USD ফর্কসহ Bajaj BD-র দাম। BikeBD-তে ৳3,30,100; Bajaj-এর পুরনো BD ব্লগে ৳3,29,999 ছিল।",
    "partNotes": [
     null,
     null,
@@ -1439,10 +1744,10 @@
   "model": "Pulsar F250",
   "category": "sport",
   "status": "on-sale",
-  "priceBDT": 350100,
-  "priceNote": "Newer F250 listed at ৳3,65,100 on bikebd.",
-  "priceAsOf": "2026-09",
-  "priceSource": "https://www.bikebd.com/price/bajaj-pulsar-f250-abs-2024",
+  "priceBDT": 365100,
+  "priceNote": "Bajaj BD price (black). BikeBD lists the 2024 ABS model at ৳3,50,100.",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://www.bajajauto.com/en-bd/bikes/pulsar-f250",
   "distributor": "Uttara Motors Ltd",
   "assembledInBD": true,
   "engine": {
@@ -1549,7 +1854,8 @@
    "https://www.bikebd.com/price/pulsar-f250",
    "https://www.bikebd.com/brand/bajaj",
    "https://mrp.com.bd/product/bajaj-pulsar-f250/",
-   "https://deshibiker.com/baja-pulsar-f250/"
+   "https://deshibiker.com/baja-pulsar-f250/",
+   "https://www.bajajauto.com/en-bd/bikes/pulsar-f250"
   ],
   "bn": {
    "tagline": "N250-এর হাফ-ফেয়ারিং ট্যুরার যমজ ভাই — হাইওয়ে রাইডারদের জন্য বাতাস থেকে সুরক্ষা।",
@@ -1573,7 +1879,7 @@
     "লম্বা দূরত্বে নিয়মিত যাতায়াত",
     "কম বাজেটে ফেয়ারিংওয়ালা 250 চাওয়া রাইডার"
    ],
-   "priceNote": "নতুন F250-এর দাম bikebd-তে ৳3,65,100 দেওয়া আছে।",
+   "priceNote": "Bajaj BD-র দাম (কালো)। BikeBD-তে 2024 ABS মডেল ৳3,50,100।",
    "partNotes": [
     null,
     null,
@@ -3476,10 +3782,10 @@
   "variant": "Dual Disc ABS",
   "category": "street",
   "status": "on-sale",
-  "priceBDT": 207000,
-  "priceNote": "Dual Disc ৳1,96,000; Hunk 150R Xtec ৳2,15,000.",
-  "priceAsOf": "2026-09",
-  "priceSource": "https://www.bikebd.com/price/hero-hunk-150-price-in-bangladesh",
+  "priceBDT": 210000,
+  "priceNote": "Dual Disc ৳1,98,000; Hunk 150R Xtec ৳2,15,000 (BikeBD).",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://www.heromotocorp.com/en-bd/products/premium/hunk-150r-price-in-bangladesh.html",
   "distributor": "HMCL Niloy Bangladesh Ltd",
   "assembledInBD": true,
   "engine": {
@@ -3500,7 +3806,7 @@
    42,
    48
   ],
-  "weightKg": 146,
+  "weightKg": 149,
   "seatHeightMm": 790,
   "fuelTankL": 12.4,
   "brakes": {
@@ -3603,7 +3909,7 @@
     "শান্ত স্বভাবের রাইডার",
     "শহর আর হাইওয়ে দুটোই"
    ],
-   "priceNote": "Dual Disc ৳1,96,000; Hunk 150R Xtec ৳2,15,000।",
+   "priceNote": "Dual Disc ৳1,98,000; Hunk 150R Xtec ৳2,15,000 (BikeBD)।",
    "partNotes": [
     null,
     null,
@@ -3634,18 +3940,18 @@
   "variants": [
    {
     "name": "Dual Disc",
-    "priceBDT": 196000,
+    "priceBDT": 198000,
     "abs": "none",
     "frontDisc": true,
     "rearDisc": true,
-    "priceSource": "https://www.bikebd.com/brand/hero"
+    "priceSource": "https://www.heromotocorp.com/en-bd/products/premium/hunk-150r-price-in-bangladesh.html"
    },
    {
     "name": "Dual Disc ABS",
-    "priceBDT": 207000,
+    "priceBDT": 210000,
     "frontDisc": true,
     "rearDisc": true,
-    "priceSource": "https://www.bikebd.com/brand/hero"
+    "priceSource": "https://www.heromotocorp.com/en-bd/products/premium/hunk-150r-price-in-bangladesh.html"
    }
   ]
  },
@@ -5836,9 +6142,9 @@
   "variant": "110",
   "category": "scooter",
   "status": "on-sale",
-  "priceBDT": 199000,
+  "priceBDT": 157000,
   "priceAsOf": "2026-10",
-  "priceSource": "https://www.bikebd.com/price/honda-dio-price-in-bangladesh",
+  "priceSource": "https://www.bdhonda.com/products/dio",
   "distributor": "Bangladesh Honda Private Limited (BHL)",
   "engine": {
    "cc": 110,
@@ -5846,7 +6152,7 @@
    "stroke": 4,
    "cooling": "air",
    "valves": 2,
-   "fuel": "carb"
+   "fuel": "fi"
   },
   "powerPS": 8.1,
   "powerRpm": 7000,
@@ -5943,7 +6249,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/honda-dio-price-in-bangladesh",
-   "https://www.bdhonda.com/product/dio/index"
+   "https://www.bdhonda.com/product/dio/index",
+   "https://www.bdhonda.com/products/dio"
   ],
   "bn": {
    "tagline": "শহরের ছোটখাটো দৌড়ের জন্য টুইস্ট-অ্যান্ড-গো Honda।",
@@ -5967,7 +6274,7 @@
     "নারী রাইডার",
     "একদম নতুনরা"
    ],
-   "priceNote": null,
+   "priceNote": "BikeBD-র Dio পেজে ৳1,57,000 আর পুরনো ৳1,99,000 দুটোই আছে।",
    "partNotes": [
     null,
     "CVT স্কুটারে চেইন নেই; এখানে দেখানো দাম ড্রাইভ বেল্ট বদলানোর",
@@ -6002,7 +6309,8 @@
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
    "sourcePage": "https://commons.wikimedia.org/wiki/File:Honda_Dio_2.jpg"
-  }
+  },
+  "priceNote": "BikeBD's Dio page shows both ৳1,57,000 and an older ৳1,99,000."
  },
  {
   "id": "yamaha-saluto-125",
@@ -6182,7 +6490,7 @@
   "model": "Fazer FI V2",
   "category": "street",
   "status": "on-sale",
-  "priceBDT": 274000,
+  "priceBDT": 272000,
   "priceNote": "Eid 2026 offer price ৳2,65,000.",
   "priceAsOf": "2026-10",
   "priceSource": "https://www.bikebd.com/price/yamaha-fazer-price-in-bangladesh",
@@ -6346,7 +6654,7 @@
   "model": "FZS FI V4",
   "category": "street",
   "status": "on-sale",
-  "priceBDT": 294500,
+  "priceBDT": 292500,
   "priceNote": "Older FZS V3 ABS ~৳2,58,500-2,71,000 and FZS V2 ~৳2,29,000 still sold by ACI (May 2026 list).",
   "priceAsOf": "2026-10",
   "priceSource": "https://www.bikebd.com/price/yamaha-fzs-v4",
@@ -6515,12 +6823,167 @@
   }
  },
  {
+  "id": "yamaha-fzs-v2-dd",
+  "brand": "Yamaha",
+  "model": "FZS V2",
+  "variant": "FI Double Disc",
+  "category": "street",
+  "status": "on-sale",
+  "priceBDT": 234000,
+  "priceNote": "LED edition (Black Metallic, Grey Metallic) ৳2,38,000.",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://bikebd.com/price/fzs-v2-price-in-bd",
+  "distributor": "ACI Motors Ltd",
+  "assembledInBD": true,
+  "engine": {
+   "cc": 149,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "air",
+   "valves": 2,
+   "fuel": "fi"
+  },
+  "powerPS": 13.2,
+  "powerRpm": 8000,
+  "torqueNm": 12.8,
+  "torqueRpm": 6000,
+  "gears": 5,
+  "mileageKmpl": [
+   40,
+   45
+  ],
+  "weightKg": 133,
+  "seatHeightMm": 790,
+  "fuelTankL": 12,
+  "brakes": {
+   "front": "disc",
+   "rear": "disc",
+   "abs": "none"
+  },
+  "tubeless": true,
+  "tyres": {
+   "front": "100/80-17",
+   "rear": "140/60-17"
+  },
+  "suspension": {
+   "front": "Telescopic fork",
+   "rear": "Monoshock"
+  },
+  "scores": {
+   "reliability": 9,
+   "mechanicFamiliarity": 9,
+   "partsAvailability": 9,
+   "resale": 8,
+   "comfort": 7,
+   "cityHandling": 8,
+   "highway": 6,
+   "pillion": 7,
+   "offroad": 4,
+   "performance": 5,
+   "beginnerFriendly": 9
+  },
+  "tagline": "The cheapest way into an FZ: older styling, same easy engine, no ABS.",
+  "feel": "Relaxed, low-revving engine with the FZ family's fat rear tyre; light and calm in traffic.",
+  "quirks": "No ABS. Styling and switchgear are a generation behind the V4. Runs out of breath above 100 km/h like every FZ.",
+  "braking": "Discs at both ends without ABS: strong, but the rear can lock under panic braking.",
+  "mechanicNote": "The FZ platform is one of the best-known 150s in BD; parts come from ACI and the open market.",
+  "pros": [
+   "Lowest price for an FZ",
+   "Reliable engine",
+   "Fat 140 rear tyre",
+   "Parts everywhere"
+  ],
+  "cons": [
+   "No ABS",
+   "Dated looks",
+   "Modest power"
+  ],
+  "bestFor": [
+   "Daily Dhaka commute",
+   "First 150cc bike",
+   "Buyers who care about resale"
+  ],
+  "serviceIntervalKm": 3000,
+  "avgServiceCostBDT": 1500,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 700,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 3200,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 650,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 1400,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 2600,
+    "availability": "everywhere"
+   }
+  ],
+  "sources": [
+   "https://bikebd.com/price/fzs-v2-price-in-bd",
+   "https://bikebd.com/price/fzs-v2-price-in-bd/color",
+   "https://www.yamahabd.com/products"
+  ],
+  "bn": {
+   "tagline": "FZ পাওয়ার সবচেয়ে সস্তা পথ: পুরনো ডিজাইন, একই সহজ ইঞ্জিন, ABS নেই।",
+   "feel": "রিল্যাক্সড, কম RPM-এর ইঞ্জিন আর FZ ফ্যামিলির মোটা রিয়ার টায়ার; জ্যামে হালকা আর শান্ত।",
+   "quirks": "ABS নেই। ডিজাইন আর সুইচগিয়ার V4-এর চেয়ে এক জেনারেশন পুরনো। সব FZ-এর মতো 100 km/h-এর পর দম কমে যায়।",
+   "braking": "ABS ছাড়া দুই চাকায় ডিস্ক: জোরালো, তবে হঠাৎ জোরে ব্রেক করলে পেছনের চাকা লক হতে পারে।",
+   "mechanicNote": "FZ প্ল্যাটফর্ম বাংলাদেশের সবচেয়ে পরিচিত 150cc-গুলোর একটা; ACI আর খোলা বাজার দুই জায়গাতেই পার্টস পাওয়া যায়।",
+   "pros": [
+    "সবচেয়ে কম দামে FZ",
+    "রিলায়েবল ইঞ্জিন",
+    "মোটা 140 রিয়ার টায়ার",
+    "পার্টস সব জায়গায়"
+   ],
+   "cons": [
+    "ABS নেই",
+    "পুরনো লুক",
+    "পাওয়ার মোটামুটি"
+   ],
+   "bestFor": [
+    "ঢাকায় ডেইলি যাতায়াত",
+    "প্রথম 150cc বাইক",
+    "রিসেল ভ্যালু যাদের কাছে জরুরি"
+   ],
+   "priceNote": "LED এডিশন (ব্ল্যাক মেটালিক, গ্রে মেটালিক) ৳2,38,000।",
+   "partNotes": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  "aliases": [
+   "এফজেডএস ভি2",
+   "এফজেড ভি2",
+   "fzs v2",
+   "fz v2",
+   "fzs dd",
+   "fzs double disc"
+  ]
+ },
+ {
   "id": "yamaha-fzs-fi-hybrid",
   "brand": "Yamaha",
   "model": "FZS FI Hybrid",
   "category": "street",
   "status": "on-sale",
-  "priceBDT": 347500,
+  "priceBDT": 344500,
   "priceNote": "Launch price ৳3,49,500 (pre-booking offer ৳3,43,500); BD's first hybrid motorcycle.",
   "priceAsOf": "2026-10",
   "priceSource": "https://www.bikebd.com/price/yamaha-fz-s-fi-hybrid-2025",
@@ -6666,7 +7129,7 @@
    "fz hybrid",
    "yamaha hybrid"
   ],
-  "outlierNote": "BD's first hybrid 150cc, priced above the conventional FZS V4 and Gixxer that set the street median; Yamaha BD's page lists ৳3,49,500 (launch price) vs bikebd's ৳3,47,500."
+  "outlierNote": "BD's first hybrid 150cc, priced above the conventional FZS V4 and Gixxer that set the street median; launch price ৳3,49,500, BikeBD now lists ৳3,44,500."
  },
  {
   "id": "yamaha-fz-x",
@@ -6674,8 +7137,8 @@
   "model": "FZ-X",
   "category": "street",
   "status": "on-sale",
-  "priceBDT": 293500,
-  "priceNote": "Matt Titan colour offer ৳2,95,000; some colours ৳2,99,500 (May 2026).",
+  "priceBDT": 292500,
+  "priceNote": "Matte Copper edition ৳3,01,500; Matt Titan offer ৳2,95,000 (May 2026).",
   "priceAsOf": "2026-10",
   "priceSource": "https://www.bikebd.com/price/yamaha-fz-x-price-in-bangladesh",
   "distributor": "ACI Motors Ltd",
@@ -6805,7 +7268,7 @@
     "যারা নিয়মিত পিলিয়ন নিয়ে চলেন",
     "আরামে উইকেন্ড রাইড"
    ],
-   "priceNote": "ম্যাট টাইটান কালারে অফার ৳2,95,000; কিছু কালার ৳2,99,500 (মে 2026)।",
+   "priceNote": "ম্যাট কপার এডিশন ৳3,01,500; ম্যাট টাইটান অফার ৳2,95,000 (মে 2026)।",
    "partNotes": [
     null,
     null,
@@ -6995,7 +7458,7 @@
   "variant": "Indian-spec",
   "category": "sport",
   "status": "on-sale",
-  "priceBDT": 610000,
+  "priceBDT": 605000,
   "priceNote": "Imported 155cc fully-faired sportbike with VVA, quick-shifter and traction control, priced far above the sport median; Racing Blue ~৳6,06,000, Intensity White ৳6,60,000, R15M ৳6,25,000, R15M TFT ~৳6,78,000 (May 2026).",
   "priceAsOf": "2026-10",
   "priceSource": "https://www.bikebd.com/price/r15-v4-price-in-bangladesh",
@@ -7684,7 +8147,7 @@
   },
   "powerPS": 8.2,
   "powerRpm": 6500,
-  "torqueNm": 10.3,
+  "torqueNm": 9.7,
   "torqueRpm": 5000,
   "gears": 0,
   "topSpeedKmh": 95,
@@ -8308,7 +8771,7 @@
   "category": "street",
   "status": "on-sale",
   "priceBDT": 199950,
-  "priceNote": "Official 'start from' price; BikeBD lists ৳2,05,950 (same as Gixxer Classic Matt). Carb Disc ৳2,37,950.",
+  "priceNote": "Suzuki BD lists Gixxer Classic Matt from ৳2,05,950 (the figure BikeBD shows for this bike).",
   "priceAsOf": "2026-10",
   "priceSource": "https://www.suzuki.com.bd/",
   "distributor": "Rancon Motorbikes Ltd",
@@ -8415,7 +8878,8 @@
   "sources": [
    "https://www.suzuki.com.bd/",
    "https://www.bikebd.com/price/gixxer-price-in-bd",
-   "https://www.bikebd.com/price/suzuki-gixxer-carb-disc"
+   "https://www.bikebd.com/price/suzuki-gixxer-carb-disc",
+   "https://www.suzuki.com.bd/product/gixxer-classic-matt"
   ],
   "bn": {
    "tagline": "মোটা টায়ার আর পাঞ্চি ইঞ্জিনসহ সবচেয়ে সস্তা আসল 150।",
@@ -8439,7 +8903,7 @@
     "স্টুডেন্ট",
     "ঢাকায় ডেইলি যাতায়াত"
    ],
-   "priceNote": "অফিশিয়াল 'শুরু' দাম; BikeBD-তে লিস্টেড ৳2,05,950 (Gixxer Classic Matt-এর সমান)। কার্ব ডিস্ক ৳2,37,950।",
+   "priceNote": "Suzuki BD-তে Gixxer Classic Matt ৳2,05,950 থেকে (BikeBD এই বাইকের জন্য এই দামই দেখায়)।",
    "partNotes": [
     null,
     null,
@@ -8473,7 +8937,179 @@
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
    "sourcePage": "https://commons.wikimedia.org/wiki/File:Suzuki_Gixxer_negra.jpg"
-  }
+  },
+  "variants": [
+   {
+    "name": "Monotone",
+    "priceBDT": 199950,
+    "abs": "none",
+    "frontDisc": true,
+    "rearDisc": false,
+    "priceSource": "https://www.suzuki.com.bd/"
+   },
+   {
+    "name": "Classic Matt",
+    "priceBDT": 205950,
+    "abs": "none",
+    "frontDisc": true,
+    "rearDisc": false,
+    "priceSource": "https://www.suzuki.com.bd/"
+   }
+  ]
+ },
+ {
+  "id": "suzuki-gixxer-carb-dd",
+  "brand": "Suzuki",
+  "model": "Gixxer Carb",
+  "variant": "Carburettor, Double Disc",
+  "category": "street",
+  "status": "on-sale",
+  "priceBDT": 237950,
+  "priceNote": "Gixxer FI Disc ৳2,51,950; FI ABS ৳2,82,950.",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://www.suzuki.com.bd/",
+  "distributor": "Rancon Motorbikes Ltd",
+  "assembledInBD": true,
+  "engine": {
+   "cc": 155,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "air",
+   "valves": 2,
+   "fuel": "carb"
+  },
+  "powerPS": 14.8,
+  "powerRpm": 8000,
+  "torqueNm": 13.8,
+  "torqueRpm": 6000,
+  "gears": 5,
+  "mileageKmpl": [
+   38,
+   45
+  ],
+  "weightKg": 141,
+  "seatHeightMm": 795,
+  "fuelTankL": 12,
+  "brakes": {
+   "front": "disc",
+   "rear": "disc",
+   "abs": "none"
+  },
+  "tubeless": true,
+  "tyres": {
+   "front": "100/80-17",
+   "rear": "140/60-17"
+  },
+  "suspension": {
+   "front": "Telescopic fork",
+   "rear": "Monoshock"
+  },
+  "scores": {
+   "reliability": 8,
+   "mechanicFamiliarity": 9,
+   "partsAvailability": 8,
+   "resale": 7,
+   "comfort": 7,
+   "cityHandling": 8,
+   "highway": 6,
+   "pillion": 7,
+   "offroad": 4,
+   "performance": 6,
+   "beginnerFriendly": 8
+  },
+  "tagline": "The current Gixxer body and twin discs, with a simple carburettor instead of FI and ABS.",
+  "feel": "Eager, rev-happy 155cc engine with light steering; feels the same as the FI Gixxer in town.",
+  "quirks": "No ABS. Carburettor needs occasional tuning and starts less crisply on cold mornings than the FI model. Same rattle and pillion-seat complaints as the FI Gixxer.",
+  "braking": "Discs front and rear with no ABS: good bite, but brake with care in the wet.",
+  "mechanicNote": "Carb Gixxer is easy for any local mechanic; no dealer diagnostics needed.",
+  "pros": [
+   "Cheapest new-shape Gixxer",
+   "Punchy engine",
+   "Twin discs",
+   "Simple to service"
+  ],
+  "cons": [
+   "No ABS",
+   "Carb tuning drift",
+   "Firm pillion seat"
+  ],
+  "bestFor": [
+   "Daily Dhaka commute",
+   "First 150cc bike",
+   "Value-minded buyers"
+  ],
+  "serviceIntervalKm": 3000,
+  "avgServiceCostBDT": 1400,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 700,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 3200,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 650,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 1400,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 2600,
+    "availability": "everywhere"
+   }
+  ],
+  "sources": [
+   "https://www.suzuki.com.bd/",
+   "https://suzuki.com.bd/product/gixxer",
+   "https://www.bikebd.com/price/suzuki-gixxer-carb-disc"
+  ],
+  "bn": {
+   "tagline": "এখনকার Gixxer বডি আর দুই চাকায় ডিস্ক, তবে FI আর ABS-এর বদলে সাধারণ কার্বুরেটর।",
+   "feel": "তেজি, রেভ করতে ভালোবাসে এমন 155cc ইঞ্জিন আর হালকা স্টিয়ারিং; শহরে FI Gixxer-এর মতোই লাগে।",
+   "quirks": "ABS নেই। কার্বুরেটর মাঝে মাঝে টিউন করতে হয়, শীতের সকালে FI মডেলের মতো এক চাপে স্টার্ট হয় না। FI Gixxer-এর মতোই খটখট শব্দ আর শক্ত পিলিয়ন সিটের অভিযোগ।",
+   "braking": "ABS ছাড়া সামনে-পেছনে ডিস্ক: ভালো ধরে, তবে বৃষ্টিতে সাবধানে ব্রেক করুন।",
+   "mechanicNote": "কার্ব Gixxer যেকোনো লোকাল মেকানিক সহজে সারাতে পারে; ডিলারের ডায়াগনস্টিক লাগে না।",
+   "pros": [
+    "নতুন শেপের সবচেয়ে সস্তা Gixxer",
+    "পাঞ্চি ইঞ্জিন",
+    "দুই চাকায় ডিস্ক",
+    "সার্ভিস করা সহজ"
+   ],
+   "cons": [
+    "ABS নেই",
+    "কার্বুরেটর টিউনিং নড়ে যায়",
+    "পিলিয়ন সিট শক্ত"
+   ],
+   "bestFor": [
+    "ঢাকায় ডেইলি যাতায়াত",
+    "প্রথম 150cc বাইক",
+    "দামের হিসাব করে কেনেন যারা"
+   ],
+   "priceNote": "Gixxer FI Disc ৳2,51,950; FI ABS ৳2,82,950।",
+   "partNotes": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  "aliases": [
+   "জিক্সার কার্ব",
+   "জিক্সার ডাবল ডিস্ক",
+   "gixxer carb",
+   "gixxer dd",
+   "gixxer double disc"
+  ]
  },
  {
   "id": "suzuki-gixxer-fi-abs",
@@ -9206,8 +9842,8 @@
   "model": "V-Strom SX 250",
   "category": "adventure",
   "status": "on-sale",
-  "priceBDT": 449000,
-  "priceNote": "Launched at about ৳4,20,000–4,50,000 depending on launch offer; BikeBD lists ৳4,49,000. Not yet on suzuki.com.bd's price list.",
+  "priceBDT": 449950,
+  "priceNote": "BikeBD lists ৳4,49,950; the owner reports a ৳4,50,000 regular price at dealers. Not on suzuki.com.bd's model list (Oct 2026).",
   "priceAsOf": "2026-10",
   "priceSource": "https://www.bikebd.com/price/suzuki-v-strom-sx",
   "distributor": "Rancon Motorbikes Ltd",
@@ -9344,7 +9980,7 @@
     "পিলিয়ন নিয়ে লম্বা রাইড",
     "গ্রামের খারাপ রাস্তা"
    ],
-   "priceNote": "লঞ্চ অফার অনুযায়ী প্রায় ৳4,20,000–4,50,000; BikeBD-তে ৳4,49,000। suzuki.com.bd-র দামের তালিকায় এখনো নেই।",
+   "priceNote": "BikeBD-তে ৳4,49,950; সাইটের মালিক ডিলারে রেগুলার দাম ৳4,50,000 পেয়েছেন। suzuki.com.bd-র মডেল তালিকায় নেই (অক্টোবর 2026)।",
    "partNotes": [
     null,
     null,
@@ -10659,8 +11295,8 @@
   "model": "RC 125",
   "category": "sport",
   "status": "on-sale",
-  "priceBDT": 370000,
-  "priceNote": "Offer price ৳3,70,000 (regular ৳4,43,000) per bikebd. KTM India discontinued the RC 125 in 2025; BD availability depends on remaining Runner stock.",
+  "priceBDT": 443000,
+  "priceNote": "Regular price ৳4,43,000, offer ৳3,70,000 (BikeBD, Oct 2026). KTM India discontinued the RC 125 in 2025; BD availability depends on remaining Runner stock.",
   "priceAsOf": "2026-10",
   "priceSource": "https://bikebd.com/price/ktm-rc-125-2022",
   "distributor": "Runner Automobiles Ltd",
@@ -10794,7 +11430,7 @@
     "তরুণ বাইকপ্রেমী",
     "ছোট উইকেন্ড রাইড"
    ],
-   "priceNote": "bikebd অনুযায়ী অফার প্রাইস ৳3,70,000 (রেগুলার ৳4,43,000)। KTM India 2025-এ RC 125 বন্ধ করেছে; BD-তে পাওয়া যাবে কিনা Runner-এর বাকি স্টকের উপর নির্ভর করে।",
+   "priceNote": "রেগুলার দাম ৳4,43,000, অফারে ৳3,70,000 (BikeBD, অক্টোবর 2026)। KTM India 2025-এ RC 125 বন্ধ করেছে; BD-তে পাওয়া যাবে কিনা Runner-এর বাকি স্টকের উপর নির্ভর করে।",
    "partNotes": [
     null,
     null,
@@ -12888,10 +13524,10 @@
   "category": "naked",
   "status": "on-sale",
   "priceBDT": 349000,
-  "priceNote": "ZT155-U1 ৳3,79,000; ZT155-G1 ৳3,89,000; ZT155-GK ৳4,39,000 (bikebd Zontes brand list, updated Sep 2026). bikebd names both Moto Solution BD and Mototech Industry Bangladesh as distributors. TBS reported the same ৳3,49,000 at the March 2021 launch (Mototech Industry with Moto Solution).",
+  "priceNote": "ZT155-U1 ৳3,79,000; ZT155-G1 ৳3,89,000; ZT155-GK ৳4,39,000 (bikebd Zontes brand list, updated Sep 2026). Mototech Industry imports and distributes; Moto Solution BD markets and sells (BikeBD FAQ; TBS, March 2021 launch at ৳3,49,000).",
   "priceAsOf": "2026-10",
   "priceSource": "https://www.bikebd.com/price/zontes-zt155-u",
-  "distributor": "Moto Solution BD Ltd",
+  "distributor": "Mototech Industry Bangladesh Ltd",
   "assembledInBD": true,
   "engine": {
    "cc": 155,
