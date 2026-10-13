@@ -222,6 +222,10 @@ Plan: (R) data research: Pulsar N160, second sources, more EVs, BRTA EV fee; (H)
 - **Page weight** (375, 1.6 Mbps/150 ms, 4× CPU): `/bn/` pages LCP 0.84-1.20 s; bike pages LCP 2.81-2.88 s (EN was 3.19 s); JS 239-307 KB; Bangla pages +25-33 KB font. Table in `tools/qa/README.md`.
 - Unverified: real phones; dark tiles at 768/1280 looked at by axe only; 27 of 28 WebP photos not eyeballed; the `#pay` table still scrolls sideways at 375.
 
+#### Round 4: photos (full `check.sh`: all 6 steps pass)
+- **Photos 28 → 35 of 83.** Added: Hero Splendor+ (2023 i3s), Honda Dio (current gen), Honda NX200 (as CB200X, the same bike), Yamaha Saluto 125, Yamaha R15 V4 (cropped from a wide frame), Suzuki V-Strom SX 250, KTM RC 125 (2022 gen, which matches our 13.7 L / 824 mm specs). Six are from Wikimedia Commons, one from Flickr (CC BY-SA 2.0); all are CC BY or CC BY-SA. Every candidate was looked at before it was accepted. They go through `scripts/webp-photos.mjs` (2.73 MB JPG → 0.67 MB WebP); credits are in `SOURCES.md`.
+- **Still 48 without a photo.** Most have no free image at all (Pulsar N160/N250/F250, Karizma XMR, Xtreme 125R/160R, Xoom, SP125, X-Blade, Livo, FZ-X, FZ25, Ray ZR, Vespa VXL, Zontes, GPX, Haojue, Lifan, Walton, Runner models, and others). Some are skipped because the only free photos show the wrong model or generation: Fazer FI V2 (only the 2011 Fazer), Apache RTR 160 2V (older gen or RTR 180), Shine 100 (2009 CB Shine), Hayate EP (a Hayate 125 scooter), Gixxer SF 155 and Gixxer 250 (only SF 250), Platina 100 (Platina 110), Avenger 160 (Street 150/220). A few are skipped for photo quality: Radeon (front cut off), Access 125 (camera watermark, or the new gen), Lifan KPR (close-up). No manufacturer image was used.
+
 ---
 
 ## Status after round 3 (2026-10-13)
