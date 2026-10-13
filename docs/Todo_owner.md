@@ -64,3 +64,8 @@ Then run `npm run validate`: it fails on unknown bike ids, bad dates, `endsOn` b
 - **Soft launch and distribution.** Share with users and post hand-written answers in Facebook bike groups once the owner feels the site is ready. Not before.
 - **Score freeze.** The judge score stays "unvalidated" until there is outside evidence (real sessions, owner reports, a dealer reply). Agents don't raise it in the meantime.
 - **Mass-market gap.** Not actionable: bike prices keep rising and the catalogue follows the market.
+
+## Search (for the SEO agent, `.claude/agents/seo.md`)
+
+- [ ] Verify suggest.bike in Google Search Console (DNS TXT record) and submit `https://suggest.bike/sitemap.xml`. Also Bing Webmaster Tools (it can import from Search Console).
+- [ ] Once a month, paste the top queries, impressions and CTR into `docs/seo-log.md`, so the SEO agent can pick what to improve.

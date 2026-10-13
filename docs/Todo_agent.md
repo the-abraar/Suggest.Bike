@@ -32,6 +32,24 @@ Work an AI coding agent can pick up without the owner. Ordered by impact. Each i
 - [x] ~~**"Report a wrong price" button**~~ *Done (mailto).* on each bike page. It should open a prefilled form or `mailto:` with the bike id and current price.
 - [x] ~~**Real photos.**~~ *Done where a verified Wikimedia Commons photo exists. Add more, and colour swatches.* Let `Bike` carry `image?: { src, credit, license }`. Make `BikeArt` fall back to the illustration. Keep the 5:3 frame.
 
+## From the ResearchingStuff review (2026-10-13)
+
+Full findings and file references: `docs/researching-stuff-uses.md`. Every number there is a lead from a 2026-10-13 snapshot: re-fetch it at its cited source (official URL first) before editing, and record `priceAsOf`/`asOf` and the source. Never copy ResearchingStuff text or BikeBD tables verbatim.
+
+- [ ] **Fix ResearchingStuff first.** The Padma Bridge rows in `rules/00-overview.md`, `rules/roads-and-restrictions.md` and `rules/recent-changes-and-news.md` say motorcycles are still banned; they were allowed again from 20 Apr 2023 (the site is right).
+- [ ] **Price corrections** (`npm run audit:prices`): Honda Dio (৳1,99,000 vs ৳1,57,000 on the cited page), KTM RC 125 (৳3,70,000 vs ৳4,43,000), Pulsar N250 and F250 (official ৳3,60,000 / ৳3,65,100), Yamaha Fazer FI V2, FZS FI V4, FZ-X, FZS FI Hybrid and R15 V4 (all ৳1-5k high), V-Strom SX 250 (৳4,49,000 vs the owner-reported ৳4,50,000 regular price in `offers.json`; also missing from Suzuki's official list).
+- [ ] **Spec corrections in `bikes.json`:** Discover 125 tank 8 L; CT100 7.7 PS / 8.24 Nm / 111 kg (currently copied from Platina); Ray ZR 125 9.7 Nm; Hunk 150R 148/149 kg; NS125 141 kg; Pulsar 150 144 kg, 13.4 Nm; N160 154 kg; GSX-R150 131 kg; Access 125 102 kg, 10.2 Nm; Platina tank 11.5 L; Apache RTR 160 4V top speed (official 113 km/h); Zontes ZT155 U distributor (Mototech vs MotoSolution).
+- [ ] **guide.json corrections:** illegal modification penalty (Act s.84: 1-3 years jail plus up to Tk 3 lakh, non-bailable); TIN for >150cc vs return proof (PSR) for >165cc after the 2026 Finance Act; whether the IDRA motor-liability pilot (৳1,006, used by /cost insurance) continued past Aug 2026.
+- [ ] **Extend `guide.json` laws (EN+BN):** speed limits (flag the conflicting highway figures), phone while riding (s.92(2)), 12-point demerit system, accident duty (s.62/95, call 999), police-stop rights (charge copy, receipt, impound release), RFID and front plate, Dhaka AI-camera e-fines and the fake-SMS warning.
+- [ ] **Bangla rules-and-fines pages** (`/guide/<slug>` + `/bn/guide/<slug>`) from `rules/penalties-table.md` and siblings, with statute section numbers, an as-of date and a "not legal advice" line. Mark the 2024 amendment "cabinet-approved, not enacted"; never present draft policy as law. Owned by the SEO agent (`.claude/agents/seo.md`).
+- [ ] **Used-bike checklist additions** (`guide.json` `usedChecklist`): online ownership transfer at bsp.brta.gov.bd with seller biometric, same day (BRTA, 1 Sep 2026); VIN origin prefixes (ME1, MD2, MD6, ME4, MBL); FZS V2/V3/V4 and Gixxer generation tells. The late-fine waiver until 29 Oct 2026 is time-boxed: add it with an end date or skip it.
+- [ ] **Cheap volume bikes with official sources:** Yamaha FZS V2 DD (৳2,34,000), Suzuki Gixxer carb DD (৳2,37,950) and Classic Matt (৳2,05,950), Bajaj Discover 110 (৳1,49,600), Platina 110 H (৳1,40,100). Then single-source: Hero Passion Xpro, Xtreme 160R 4V, Pleasure; TVS Max 125, Metro; Runner Turbo 125; Honda SP160 SD, Shine 100 DX.
+- [ ] **Market snapshot** on `/method` or `/about`: brand shares (cite both reports where they disagree), the TVS 2025 sales collapse, and the fact that no model-level sales data exists.
+- [ ] **EV guide section:** whether e-bikes need registration (pedal e-bikes exempt; 5 kW slab), imports vs registrations, VAT 5% to 2030. Use `ownership/ev-rules-and-market.md` and `history/electric.md` as leads for new EVs (Yadea via Runner, Walton Takyon).
+- [ ] **Brand history line** on bike pages ("in Bangladesh since…": BHL 2013, ACI-Yamaha 2016, Rancon-Suzuki 2012, Niloy-Hero 2014) and short history on the 4 used-only legend pages (RX100, CG125, CBZ, H100S). Dated company facts only, no pre-2013 lore.
+- [ ] **Small anchors:** fuel price history Jan 2024 → Sep 2026 (+36%) on /cost or /changes; check `dealers.json` hotlines (Suzuki 16638, Yamaha 16533).
+- Do not use: the Keeway/Benelli/Kawasaki/KTM "upcoming" tables, empty Walton rows, 2015-2019 duty fragments, the "Tk 518 tax token" item, Indian warranty figures.
+
 ## P2 — Engineering
 
 - [x] **Per-bike Bangla URLs** (`/bn/bikes/[id]`) *(done 2026-10-13)* so Google indexes the Bangla pages. Today the language is client-side only.
