@@ -14,7 +14,8 @@
     "typecheck": "tsc --noEmit",
     "validate": "node scripts/validate-data.mjs",
     "test": "tsx --test tests/*.test.ts",
-    "audit:prices": "node scripts/price-audit.mjs"
+    "audit:prices": "node scripts/price-audit.mjs",
+    "og:bn": "tsx scripts/bn-og.mts"
   },
   "dependencies": {
     "lucide-react": "^1.52.0",

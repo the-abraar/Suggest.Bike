@@ -48,4 +48,6 @@ export function langAlternates(enPath: string, lang: "en" | "bn" = "en") {
 export const OG_IMAGE = { url: "/og.png", width: 1200, height: 630, alt: "Suggest.Bike — find the right motorcycle in Bangladesh" };
 /** Next replaces (not merges) a parent's openGraph, so pages that set one spread this first. */
 export const OG_BASE = { siteName: SITE.name, type: "website" as const, locale: "en_BD", images: [OG_IMAGE] };
-export const OG_BN = { ...OG_BASE, locale: "bn_BD" };
+/** Bangla share image, rendered after the build by scripts/bn-og.mts (deploy step); bike pages use /bn/bikes/<id>/og.png. */
+const OG_IMAGE_BN = { url: "/bn/og.png", width: 1200, height: 630, alt: "Suggest.Bike — বাংলাদেশে সঠিক মোটরসাইকেল খুঁজুন" };
+export const OG_BN = { ...OG_BASE, locale: "bn_BD", images: [OG_IMAGE_BN] };

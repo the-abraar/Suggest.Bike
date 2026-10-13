@@ -17,9 +17,8 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   if (!b) return {};
   const title = `${fullName(b)} বাংলাদেশে দাম, আসল মাইলেজ ও রিভিউ`;
   const description = `${fullName(b)}-এর দাম ${formatBDT(b.priceBDT)}। ${b.ev ? `আসল রেঞ্জ ${b.ev.realRangeKm[0]}–${b.ev.realRangeKm[1]} কিমি/চার্জ` : `আসল মাইলেজ ${b.mileageKmpl[0]}–${b.mileageKmpl[1]} কিমি/লি`}, পার্টসের দাম, মিস্ত্রির মতামত ও মাসিক খরচ।`;
-  // shortcut: English OG image. satori (next/og) does no complex-script shaping (Bangla conjuncts and pre-base vowel signs break), and the
-  // site's only Bangla font comes from next/font as woff2, which satori cannot read. Upgrade: pre-render Bangla PNGs with a shaping renderer.
-  const images = [{ url: `/bikes/${b.id}/og.png`, width: 1200, height: 630, alt: fullName(b) }];
+  // Rendered after the build by scripts/bn-og.mts (Chromium shapes Bangla; next/og cannot).
+  const images = [{ url: `/bn/bikes/${b.id}/og.png`, width: 1200, height: 630, alt: fullName(b) }];
   return { title, description, alternates: langAlternates(`/bikes/${b.id}/`, "bn"), openGraph: { ...OG_BN, title, description, images } };
 }
 
