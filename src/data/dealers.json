@@ -7,7 +7,7 @@
       "locator": "https://www.bajajauto.com/en-bd/store-locator",
       "hotline": "09678-333888",
       "sourceUrl": "https://www.bajajauto.com/en-bd/store-locator",
-      "checked": "2026-10-13",
+      "checked": "2026-10-14",
       "note": "The locator filters showrooms by district (about 64).",
       "noteBn": "শোরুম খোঁজার পাতায় জেলা ধরে খোঁজা যায় (প্রায় ৬৪টি)।"
     },
@@ -25,7 +25,7 @@
       "locator": "https://www.heromotocorp.com/en-bd/dealers.html",
       "hotline": "09611 566666",
       "sourceUrl": "https://www.heromotocorp.com/en-bd/",
-      "checked": "2026-10-13",
+      "checked": "2026-10-14",
       "note": "Labelled \"Niloy Hero Care\". Service centres are listed on a separate page.",
       "noteBn": "\"Niloy Hero Care\" নামে দেওয়া। সার্ভিস সেন্টারের তালিকা আলাদা পাতায়।"
     },
@@ -35,17 +35,17 @@
       "locator": "https://bdhonda.com/dealer-locator",
       "hotline": "08000430430",
       "sourceUrl": "https://bdhonda.com",
-      "checked": "2026-10-13"
+      "checked": "2026-10-14"
     },
     "Yamaha": {
       "distributor": "ACI Motors Ltd",
       "site": "https://www.yamahabd.com",
-      "locator": null,
+      "locator": "https://www.yamahabd.com/#dealers",
       "hotline": "16533",
       "sourceUrl": "https://www.yamahabd.com",
-      "checked": "2026-10-13",
-      "note": "The site has no working dealer list; call the hotline for the nearest showroom.",
-      "noteBn": "সাইটে কাজ করা ডিলার তালিকা নেই; কাছের শোরুম জানতে হটলাইনে ফোন করুন।"
+      "checked": "2026-10-14",
+      "note": "The dealer list is in the Dealers section of the home page; pick your district.",
+      "noteBn": "ডিলারের তালিকা হোম পেজের Dealers অংশে আছে; আপনার জেলা বেছে নিন।"
     },
     "Suzuki": {
       "distributor": "Rancon Motor Bikes Ltd",
@@ -53,7 +53,7 @@
       "locator": "https://www.suzuki.com.bd/dealer",
       "hotline": "16638",
       "sourceUrl": "https://www.suzuki.com.bd",
-      "checked": "2026-10-13"
+      "checked": "2026-10-14"
     },
     "Royal Enfield": {
       "distributor": "IFAD Motors Ltd",
@@ -105,7 +105,7 @@
       "locator": "https://raselindustry.com/distribution-network/",
       "hotline": "+8801971834488",
       "sourceUrl": "https://raselindustry.com/",
-      "checked": "2026-10-13",
+      "checked": "2026-10-14",
       "districts": [
         "Dhaka",
         "Narayanganj",
@@ -146,7 +146,7 @@
       "locator": null,
       "hotline": "01990-400600",
       "sourceUrl": "https://speedoz.com.bd/",
-      "checked": "2026-10-13"
+      "checked": "2026-10-14"
     },
     "Haojue": {
       "distributor": "Karnaphuli Group",
@@ -154,7 +154,7 @@
       "locator": null,
       "hotline": "08 000 333 333",
       "sourceUrl": "https://www.karnaphuli.com/areas-of-activities/motor-cycles",
-      "checked": "2026-10-13",
+      "checked": "2026-10-14",
       "note": "Group customer-care line, not a motorcycle-only number.",
       "noteBn": "গ্রুপের সাধারণ গ্রাহকসেবা নম্বর, শুধু মোটরসাইকেলের নয়।"
     }

@@ -380,6 +380,13 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
                           </>
                         )}
                       </p>
+                      {net.since && net.sinceSource && (
+                        <p className="mt-1 text-[12.5px] text-muted">
+                          <a href={net.sinceSource} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
+                            {tx(`Sold officially in Bangladesh since ${net.since}`, `বাংলাদেশে অফিশিয়ালি বিক্রি হচ্ছে ${net.since} সাল থেকে`)}
+                          </a>
+                        </p>
+                      )}
                     </>
                   ) : (
                     <p className="mt-1 text-[14.5px] text-ink-2">{tx("We haven't verified this brand's network yet.", "এই ব্র্যান্ডের নেটওয়ার্ক এখনো যাচাই করা হয়নি।")}</p>
