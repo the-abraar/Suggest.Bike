@@ -5,7 +5,7 @@ import { OwnerView } from "./OwnerView";
 export const metadata: Metadata = {
   title: "New bike? What to do first: break-in, basic checks, registration, accessories",
   description:
-    "A first-weeks checklist for new bike owners in Bangladesh: how to break in the engine, basic checks you can do yourself, whether to register, and which accessories to buy (disc lock, helmet lock, crash guard, phone mount).",
+    "A first-month checklist for new bike owners in Bangladesh: breaking in the engine, basic checks, booking the first free service, registration, insurance, which accessories to buy, and theft prevention.",
   alternates: langAlternates("/owner/"),
 };
 

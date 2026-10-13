@@ -1,15 +1,32 @@
 "use client";
 
 import Link from "@/components/LangLink";
-import { Gauge, Lock, ShieldCheck, Wrench } from "lucide-react";
+import { CalendarCheck, CalendarDays, FileCheck, Gauge, KeyRound, Lock, ShieldCheck, Wrench } from "lucide-react";
 import { ThrottleIqCard } from "@/components/ThrottleIqCard";
 import { useTx } from "@/lib/i18n";
 import { postBySlug } from "@/lib/maintenance-posts";
 
 type Pair = [en: string, bn: string];
-type Block = { id: string; icon: React.ReactNode; title: Pair; intro: Pair; items: Pair[] };
+type Block = { id: string; icon: React.ReactNode; title: Pair; intro: Pair; items: Pair[]; links?: { href: string; label: Pair }[] };
 
 const BLOCKS: Block[] = [
+  {
+    id: "first-month",
+    icon: <CalendarDays size={20} />,
+    title: ["Your first month, week by week", "প্রথম মাস, সপ্তাহ ধরে"],
+    intro: [
+      "A simple order to do things in, so nothing important gets missed while you get used to the bike.",
+      "বাইকে অভ্যস্ত হওয়ার সময় যাতে জরুরি কিছু বাদ না পড়ে, তার জন্য সহজ একটা ক্রম।",
+    ],
+    items: [
+      ["Day one: check you have the papers, warranty card and service book. Photograph them. Set the tyre pressure and lock the bike every time you park.", "প্রথম দিন: কাগজপত্র, ওয়ারেন্টি কার্ড আর সার্ভিস বই হাতে পেয়েছেন কি না দেখুন, ছবি তুলে রাখুন। টায়ারের প্রেসার ঠিক করুন, আর যেখানেই রাখুন লক করুন।"],
+      ["First week: read the owner's manual. Ride short, easy trips and follow the break-in advice below.", "প্রথম সপ্তাহ: ওনার্স ম্যানুয়াল পড়ুন। ছোট, সহজ রাইড দিন আর নিচের ব্রেক-ইন পরামর্শ মানুন।"],
+      ["Weeks two and three: start the weekly basic checks. Note anything odd: noises, leaks, warning lights.", "দ্বিতীয় আর তৃতীয় সপ্তাহ: সাপ্তাহিক বেসিক চেক শুরু করুন। অস্বাভাবিক কিছু লিখে রাখুন: শব্দ, তেল চুঁইয়ে পড়া, ওয়ার্নিং লাইট।"],
+      ["Before the first service is due: book it, and take your list of notes.", "প্রথম সার্ভিসের সময় আসার আগে: বুক করুন, আর লিখে রাখা তালিকা সাথে নিন।"],
+      ["End of the month: confirm registration and insurance are done, and measure your real fuel mileage.", "মাসের শেষে: রেজিস্ট্রেশন আর ইন্স্যুরেন্স হয়েছে কি না নিশ্চিত হোন, আর আসল মাইলেজ মেপে দেখুন।"],
+    ],
+    links: [{ href: "/maintenance/fuel-and-mileage-habits/", label: ["How to measure mileage", "মাইলেজ কীভাবে মাপবেন"] }],
+  },
   {
     id: "breakin",
     icon: <Gauge size={20} />,
@@ -43,6 +60,26 @@ const BLOCKS: Block[] = [
     ],
   },
   {
+    id: "first-service",
+    icon: <CalendarCheck size={20} />,
+    title: ["Booking your first free service", "প্রথম ফ্রি সার্ভিস বুক করা"],
+    intro: [
+      "The first service is the most important one a new engine gets. The service book says when it is due.",
+      "নতুন ইঞ্জিনের জন্য প্রথম সার্ভিসই সবচেয়ে জরুরি। কখন করাতে হবে, সার্ভিস বইয়ে লেখা আছে।",
+    ],
+    items: [
+      ["Check the due distance or date in the service book, and book a slot ahead with the authorised service centre.", "সার্ভিস বইয়ে দূরত্ব বা তারিখ দেখুন, আর অনুমোদিত সার্ভিস সেন্টারে আগে থেকে সময় নিন।"],
+      ["Take the service book, warranty card and a copy of your registration papers.", "সার্ভিস বই, ওয়ারেন্টি কার্ড আর রেজিস্ট্রেশনের কাগজের কপি সাথে নিন।"],
+      ["Take a written list of anything you noticed since you bought the bike.", "কেনার পর থেকে যা যা খেয়াল করেছেন, লিখে নিয়ে যান।"],
+      ["Ask before work starts what is free and what you will pay for.", "কাজ শুরুর আগে জিজ্ঞেস করুন কী ফ্রি আর কিসের টাকা দিতে হবে।"],
+      ["Before you leave: the book is stamped, the bill lists the oil used, and a short test ride feels right.", "বের হওয়ার আগে: বইয়ে সিল, বিলে কোন অয়েল দেওয়া হলো লেখা, আর ছোট একটা টেস্ট রাইডে সব ঠিক লাগছে।"],
+    ],
+    links: [
+      { href: "/maintenance/free-services-explained/", label: ["What each free service covers", "কোন ফ্রি সার্ভিসে কী হয়"] },
+      { href: "/maintenance/workshop-bill-and-upselling/", label: ["A fair workshop bill", "ন্যায্য ওয়ার্কশপ বিল"] },
+    ],
+  },
+  {
     id: "registration",
     icon: <ShieldCheck size={20} />,
     title: ["Registration: do you need it?", "রেজিস্ট্রেশন: লাগবে কি?"],
@@ -53,6 +90,25 @@ const BLOCKS: Block[] = [
     items: [
       ["Ask the dealer exactly who handles registration and what the receipt covers.", "ডিলারকে জিজ্ঞেস করুন রেজিস্ট্রেশন কে করবে আর রসিদে কী কী ধরা আছে।"],
       ["Carry your licence and registration papers every ride.", "প্রতিবার লাইসেন্স আর রেজিস্ট্রেশনের কাগজ সাথে রাখুন।"],
+    ],
+  },
+  {
+    id: "insurance",
+    icon: <FileCheck size={20} />,
+    title: ["Insurance for new owners", "নতুন মালিকদের জন্য ইন্স্যুরেন্স"],
+    intro: [
+      "Insurance rules and costs change, so the current details live in the buyer's guide. Here is what to do once you have a policy.",
+      "ইন্স্যুরেন্সের নিয়ম আর খরচ বদলায়, তাই হালনাগাদ তথ্য বাইয়ার্স গাইডে রাখা আছে। পলিসি নেওয়ার পর যা করবেন:",
+    ],
+    items: [
+      ["Read what the policy covers: damage to others only, or your own bike and theft as well.", "পলিসি কী কভার করে পড়ে নিন: শুধু অন্যের ক্ষতি, নাকি নিজের বাইক আর চুরিও।"],
+      ["Keep a copy with your papers and a photo on your phone.", "একটা কপি কাগজপত্রের সাথে আর একটা ছবি ফোনে রাখুন।"],
+      ["Note the renewal date somewhere you will see it.", "নবায়নের তারিখ এমন জায়গায় লিখে রাখুন যেন চোখে পড়ে।"],
+      ["Save the insurer's claim number. After a crash or theft, tell them quickly; policies often have a reporting deadline.", "ইন্স্যুরেন্স কোম্পানির ক্লেইম নম্বর সেভ রাখুন। দুর্ঘটনা বা চুরির পর দ্রুত জানান; পলিসিতে প্রায়ই জানানোর সময়সীমা থাকে।"],
+    ],
+    links: [
+      { href: "/guide/#insurance", label: ["Insurance in the buyer's guide", "বাইয়ার্স গাইডে ইন্স্যুরেন্স"] },
+      { href: "/maintenance/after-a-crash-or-breakdown/", label: ["After a crash or breakdown", "দুর্ঘটনা বা বিকল হলে"] },
     ],
   },
   {
@@ -71,6 +127,23 @@ const BLOCKS: Block[] = [
       ["Wait on: exhausts, extra lights, stickers. They can void warranty or break rules, and you do not know your needs yet.", "আপাতত থাক: এক্সজস্ট, বাড়তি লাইট, স্টিকার। ওয়ারেন্টি বা নিয়ম ভাঙতে পারে, আর আপনার আসল দরকার এখনো জানেন না।"],
     ],
   },
+  {
+    id: "theft",
+    icon: <KeyRound size={20} />,
+    title: ["Theft: prevention, and what to do if it happens", "চুরি: ঠেকানো, আর চুরি হলে কী করবেন"],
+    intro: [
+      "Most bikes are stolen in minutes from places their owners thought were safe. Make yours slower to take than the next one.",
+      "বেশির ভাগ বাইক কয়েক মিনিটেই চুরি হয়, এমন জায়গা থেকে যেটাকে মালিক নিরাপদ ভেবেছিলেন। আপনার বাইক যেন পাশেরটার চেয়ে চুরি করা কঠিন হয়।",
+    ],
+    items: [
+      ["Use the steering lock and a disc lock every time, even for a quick stop.", "প্রতিবার স্টিয়ারিং লক আর ডিস্ক লক দিন, অল্প সময়ের জন্য থামলেও।"],
+      ["Park in lit, busy or guarded places. At home, lock it to something fixed if you can.", "আলো আছে, লোকজন আছে বা পাহারা আছে এমন জায়গায় রাখুন। বাড়িতে পারলে কোনো স্থির জিনিসের সাথে লক করুন।"],
+      ["Never leave the key, papers or helmet with the bike.", "চাবি, কাগজ বা হেলমেট কখনো বাইকে রেখে যাবেন না।"],
+      ["Write down the chassis and engine numbers and keep clear photos of the bike and its papers.", "চেসিস আর ইঞ্জিন নম্বর লিখে রাখুন, আর বাইক ও কাগজের পরিষ্কার ছবি রাখুন।"],
+      ["If it is stolen: call 999 or go to the nearest police station and report it with the chassis and engine numbers. Keep a copy of the report.", "চুরি হলে: ৯৯৯-এ ফোন করুন বা নিকটস্থ থানায় গিয়ে চেসিস আর ইঞ্জিন নম্বরসহ জানান। রিপোর্টের কপি রাখুন।"],
+      ["Then tell your insurer, and ask the police which other papers they need from you.", "তারপর ইন্স্যুরেন্স কোম্পানিকে জানান, আর পুলিশের কাছে জিজ্ঞেস করুন আর কোন কাগজ লাগবে।"],
+    ],
+  },
 ];
 
 export function OwnerView() {
@@ -83,8 +156,8 @@ export function OwnerView() {
       </h1>
       <p className="mt-3 max-w-2xl text-[16px] leading-relaxed text-muted">
         {tx(
-          "A short checklist for the first weeks: how to run the engine in, what to check yourself, whether to register, and which accessories are worth the money.",
-          "প্রথম কয়েক সপ্তাহের ছোট চেকলিস্ট: ইঞ্জিন কীভাবে ব্রেক-ইন করবেন, নিজে কী কী দেখবেন, রেজিস্ট্রেশন লাগবে কি না, আর কোন অ্যাকসেসরিজে টাকা খরচ করা যায়।",
+          "A short checklist for the first weeks: a first-month timeline, how to run the engine in, what to check yourself, booking the first service, registration, insurance, accessories worth the money, and keeping the bike from being stolen.",
+          "প্রথম কয়েক সপ্তাহের ছোট চেকলিস্ট: প্রথম মাসের সময়সূচি, ইঞ্জিন কীভাবে ব্রেক-ইন করবেন, নিজে কী কী দেখবেন, প্রথম সার্ভিস বুক করা, রেজিস্ট্রেশন, ইন্স্যুরেন্স, কোন অ্যাকসেসরিজে টাকা খরচ করা যায়, আর বাইক চুরি ঠেকানো।",
         )}
       </p>
 
@@ -106,6 +179,16 @@ export function OwnerView() {
                   <span key={s}>
                     {i > 0 && " · "}
                     <Link href={`/maintenance/${s}/`} className="text-brand underline underline-offset-2">{tx(...postBySlug(s)!.title)}</Link>
+                  </span>
+                ))}
+              </p>
+            )}
+            {b.links && (
+              <p className="mt-4 text-[14.5px] text-ink-2">
+                {b.links.map((l, i) => (
+                  <span key={l.href}>
+                    {i > 0 && " · "}
+                    <Link href={l.href} className="text-brand underline underline-offset-2">{tx(...l.label)}</Link>
                   </span>
                 ))}
               </p>
