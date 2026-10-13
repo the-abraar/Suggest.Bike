@@ -46,7 +46,7 @@ export function Header() {
           scrolled || open ? "border-b border-line bg-bg/85 backdrop-blur-xl" : "border-b border-transparent bg-bg"
         }`}
       >
-        <div className="container-x flex h-16 items-center gap-6">
+        <div className="container-x flex h-16 items-center gap-3 sm:gap-6">
           <Link href="/" className="shrink-0 rounded-lg" aria-label="Suggest.Bike home">
             <Logo />
           </Link>
