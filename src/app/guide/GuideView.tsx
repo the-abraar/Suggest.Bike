@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "@/components/LangLink";
-import { ArrowUpRight, CheckCircle2, CreditCard, ExternalLink, FileText, Info, Scale, ShieldAlert, Users } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, CreditCard, ExternalLink, FileText, Info, Scale, ShieldAlert, Users, Zap } from "lucide-react";
 import guideEn from "@/data/guide.json";
 import guideBn from "@/data/guide.bn.json";
 import { formatBDT } from "@/lib/bikes";
@@ -22,6 +22,7 @@ export function GuideView() {
     { id: "cc", label: tx("The cc limit", "সিসি সীমা") },
     { id: "used", label: tx("Buying used", "পুরনো বাইক কেনা") },
     { id: "rules", label: tx("Road rules", "রাস্তার নিয়ম") },
+    { id: "ev", label: tx("Electric bikes", "ইলেকট্রিক বাইক") },
     { id: "insurance", label: tx("Insurance", "ইন্স্যুরেন্স") },
     { id: "community", label: tx("Communities", "কমিউনিটি") },
   ];
@@ -223,7 +224,7 @@ export function GuideView() {
           </Section>
 
           {/* Rules */}
-          <Section id="rules" icon={<Scale size={20} />} title={tx("Road rules that catch new riders", "নতুন রাইডাররা যে নিয়মে ধরা পড়েন")}>
+          <Section id="rules" icon={<Scale size={20} />} title={tx("Road rules that catch new riders", "নতুন রাইডাররা যে নিয়মে ধরা পড়েন")} kicker={`${tx("As of", "তারিখ")} ${guide.lawsNote.asOf}`}>
             <div className="grid gap-3 sm:grid-cols-2">
               {guide.laws.map((l, i) => (
                 <div key={i} className="rounded-2xl border border-line bg-surface p-5">
@@ -237,9 +238,42 @@ export function GuideView() {
                 </div>
               ))}
             </div>
-            <Link href="/guide/motorcycle-fines/" className="mt-4 inline-flex items-center gap-1 text-[14.5px] font-medium text-brand underline underline-offset-2">
-              {tx("Every motorcycle fine, jail term and licence point, with section numbers", "মোটরসাইকেলের সব জরিমানা, জেল ও লাইসেন্স পয়েন্ট, ধারা নম্বরসহ")} <ArrowUpRight size={14} />
-            </Link>
+            <Note>
+              {guide.lawsNote.text}{" "}
+              <Link href="/disclaimer/" className="text-brand underline underline-offset-2">
+                {tx("Disclaimer", "দায়মুক্তি")}
+              </Link>
+            </Note>
+            <h3 className="mt-10 text-[17px] font-semibold text-ink">{tx("More rules", "আরও নিয়ম")}</h3>
+            <ul className="mt-3 space-y-2">
+              {[
+                { href: "/guide/motorcycle-fines/", label: tx("Every motorcycle fine, jail term and licence point, with section numbers", "মোটরসাইকেলের সব জরিমানা, জেল ও লাইসেন্স পয়েন্ট, ধারা নম্বরসহ") },
+                { href: "/guide/speed-limits/", label: tx("Speed limits for motorcycles", "মোটরসাইকেলের গতিসীমা") },
+                { href: "/guide/driving-licence/", label: tx("Driving licence: steps and fees", "ড্রাইভিং লাইসেন্স: ধাপ ও ফি") },
+                { href: "/guide/e-fines/", label: tx("Dhaka AI-camera e-fines and fake fine SMS", "ঢাকার এআই ক্যামেরার ই-জরিমানা ও ভুয়া জরিমানার এসএমএস") },
+              ].map((r) => (
+                <li key={r.href}>
+                  <Link href={r.href} className="inline-flex items-center gap-1 text-[14.5px] font-medium text-brand underline underline-offset-2">
+                    {r.label} <ArrowUpRight size={14} />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Section>
+
+          {/* EV */}
+          <Section id="ev" icon={<Zap size={20} />} title={tx("Electric bikes: registration and tax", "ইলেকট্রিক বাইক: রেজিস্ট্রেশন ও কর")} kicker={`${tx("As of", "তারিখ")} ${guide.evRules.asOf}`}>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {guide.evRules.items.map((e) => (
+                <div key={e.title} className="rounded-2xl border border-line bg-surface p-5">
+                  <p className="text-[15px] font-semibold text-ink">{e.title}</p>
+                  <p className="mt-1.5 text-[14px] leading-relaxed text-muted">{e.detail}</p>
+                  <a href={e.sources[0].url} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1 text-[12.5px] text-faint hover:text-brand">
+                    {e.sources[0].publisher} <ArrowUpRight size={12} />
+                  </a>
+                </div>
+              ))}
+            </div>
           </Section>
 
           {/* Insurance */}
@@ -254,7 +288,7 @@ export function GuideView() {
               <Big
                 k={`${tx("Third-party", "থার্ড-পার্টি")} · ${guide.insurance.thirdParty.exampleFor}`}
                 v={`${formatBDT(guide.insurance.thirdParty.exampleAnnualPremiumBDT)}${tx("/yr", "/বছর")}`}
-                sub={tx("IDRA Motor Liability pilot", "IDRA মোটর লায়াবিলিটি পাইলট")}
+                sub={tx("IDRA pilot price (Feb 2026); not confirmed after Aug 2026", "আইডিআরএ পাইলটের দাম (ফেব্রুয়ারি 2026); আগস্ট 2026-এর পর নিশ্চিত নয়")}
               />
               <Big k={tx("Comprehensive (theft + damage)", "কম্প্রিহেনসিভ (চুরি + ক্ষতি)")} v={tx("Ask insurers", "বীমা কোম্পানিকে জিজ্ঞেস করুন")} sub={tx("No reliable public rate yet", "নির্ভরযোগ্য প্রকাশ্য রেট এখনো নেই")} />
             </div>

@@ -247,6 +247,75 @@
     "title": "BRTA starts registering ride-sharing firms",
     "url": "https://d11.thedailystar.net/backpage/news/brta-starts-registering-ride-sharing-firms-1765546",
     "publisher": "The Daily Star"
+   },
+   "rta2018": {
+    "title": "Road Transport Act 2018 (official Bangla text)",
+    "url": "https://bdlaws.minlaw.gov.bd/act-print-1262.html",
+    "publisher": "Laws of Bangladesh (bdlaws)",
+    "date": "2026-10-14"
+   },
+   "fe999": {
+    "title": "National emergency service 999 now fully operational",
+    "url": "https://thefinancialexpress.com.bd/home/national-emergency-service-999-now-fully-operational",
+    "publisher": "The Financial Express"
+   },
+   "btRFID": {
+    "title": "BRTA: retro-reflective number plate and RFID tag mandatory (Bangla)",
+    "url": "https://www.banglatribune.com/953538",
+    "publisher": "Bangla Tribune",
+    "date": "2026-06-24"
+   },
+   "ittefaqFrontPlate": {
+    "title": "Motorcycles to get a front number plate for AI-camera detection (Bangla)",
+    "url": "https://www.ittefaq.com.bd/805173/",
+    "publisher": "The Daily Ittefaq",
+    "date": "2026-08-20"
+   },
+   "dhakatimesTransfer": {
+    "title": "BRTA notice: online ownership transfer with seller biometrics (Bangla)",
+    "url": "https://www.dhakatimes24.com/2026/09/01/411836",
+    "publisher": "Dhaka Times",
+    "date": "2026-09-01"
+   },
+   "dtPSR": {
+    "title": "NBR drops direct tax on autorickshaws, motorcycles, expands income tax filing requirements",
+    "url": "https://www.dhakatribune.com/business/411857/nbr-drops-direct-tax-on-autorickshaws",
+    "publisher": "Dhaka Tribune",
+    "date": "2026-06-06"
+   },
+   "tbsWaltonEbike": {
+    "title": "Walton launches affordable e-bike",
+    "url": "https://www.tbsnews.net/economy/corporates/walton-launches-affordable-e-bike-584682",
+    "publisher": "The Business Standard",
+    "date": "2023-02-13"
+   },
+   "dsEbikeVAT": {
+    "title": "Electric vehicle makers get VAT, duty waivers",
+    "url": "https://epfs.thedailystar.net/TDS/2025/06/13/Bangladesh/BUS/5_01/7bb30e796932bd10_01.pdf",
+    "publisher": "The Daily Star",
+    "date": "2025-06-13"
+   },
+   "wikibooksWMI": {
+    "title": "World Manufacturer Identifier (WMI) codes",
+    "url": "https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/World_Manufacturer_Identifier_(WMI)",
+    "publisher": "Wikibooks"
+   },
+   "aciFzsV4": {
+    "title": "ACI Motors launches Yamaha FZS Version 4.0 in Bangladesh",
+    "url": "https://www.aci-bd.com/events/aci-motors-launches-yamaha-fzs-version-4.0-in-bangladesh.html",
+    "publisher": "ACI",
+    "date": "2024-09-28"
+   },
+   "bikebdFzsV3": {
+    "title": "Yamaha FZS FI V3 review",
+    "url": "https://bikebd.com/blog/yamaha-fzs-fi-v3-review-team-bikebd",
+    "publisher": "BikeBD"
+   },
+   "tbsGixxer2019": {
+    "title": "Rancon launches 2019 Gixxer and Gixxer SF in Bangladesh",
+    "url": "https://www.tbsnews.net/node/100465",
+    "publisher": "The Business Standard",
+    "date": "2020-07-01"
    }
   }
  },
@@ -328,7 +397,7 @@
     "ccMax": 165,
     "totalBDT": 11764,
     "totalBDT10yr": 20964,
-    "totalNote": "100cc-এর বেশির মতোই। 2026-27 অর্থবছরের আলোচনার পর থেকে 150cc-এর বেশি বাইকের মালিকদের টিআইএন (TIN) থাকা লাগবে বলে ধরা হচ্ছে (ডেইলি স্টার, 4 জুন 2026) - ডিলারের কাছে জেনে নিন।",
+    "totalNote": "100cc-এর বেশির মতোই। বাজেটের খবরে মিল নেই: ডেইলি স্টার (4 জুন 2026) বলেছিল 150cc-এর বেশি বাইকের মালিকদের টিআইএন (TIN) লাগবে; ঢাকা ট্রিবিউন (6 জুন 2026) বলেছে 165cc-এর বেশি বাইকের মালিকদের বদলে রেজিস্ট্রেশন ও নবায়নের সময় রিটার্ন জমার প্রমাণ (PSR) দেখাতে হবে। চূড়ান্ত অর্থ আইন 2026-এ কোন নিয়ম আছে আমরা নিশ্চিত হতে পারিনি (যাচাই 14 অক্টোবর 2026), তাই ডিলার বা বিআরটিএ-র কাছে জেনে নিন।",
     "confidence": "medium",
     "breakdownRef": "above100cc"
    },
@@ -435,14 +504,14 @@
    },
    {
     "date": "2026-06-04",
-    "change": "2026-27 অর্থবছরের বাজেটে মোটরসাইকেলের ওপর প্রথমবারের মতো বার্ষিক অগ্রিম আয়কর (AIT) প্রস্তাব করা হয়েছিল (শুরুতে 111-125cc-এ ৳2,000, 126-165cc-এ ৳5,000, 165cc-এর বেশি হলে ৳10,000), কিন্তু প্রতিবাদের পর তা বাদ দেওয়া হয়। মোটরসাইকেলে এখন কোনো AIT চালু নেই; তবে 150cc-এর বেশি বাইকের মালিকদের টিআইএন (TIN) লাগবে।",
+    "change": "2026-27 অর্থবছরের বাজেটে মোটরসাইকেলের ওপর প্রথমবারের মতো বার্ষিক অগ্রিম আয়কর (AIT) প্রস্তাব করা হয়েছিল (শুরুতে 111-125cc-এ ৳2,000, 126-165cc-এ ৳5,000, 165cc-এর বেশি হলে ৳10,000), কিন্তু প্রতিবাদের পর তা বাদ দেওয়া হয়। মোটরসাইকেলে এখন কোনো AIT চালু নেই। পরে বাজেটের খবরে বলা হয়, 165cc-এর বেশি বাইকের মালিকদের রেজিস্ট্রেশন ও নবায়নের সময় রিটার্ন জমার প্রমাণ (PSR) দেখাতে হবে (আগের এক খবরে ছিল 150cc-এর বেশি হলে টিআইএন); 14 অক্টোবর 2026 পর্যন্ত চূড়ান্ত অর্থ আইন 2026-এর পাঠ নিশ্চিত করা যায়নি।",
     "source": {
      "title": "Govt may drop planned wealth tax, bike and rickshaw AIT",
      "url": "https://www.thedailystar.net/business/economy/news/govt-may-drop-planned-wealth-tax-bike-and-rickshaw-ait-4190076",
      "publisher": "The Daily Star",
      "date": "2026-06-04"
     },
-    "confidence": "high"
+    "confidence": "medium"
    }
   ],
   "process": [
@@ -777,9 +846,24 @@
    "effectiveFrom": "2026-06",
    "note": "জুন 2026-এর বিল থেকে BERC-এর আবাসিক খুচরা দাম: 76-200 ইউনিট ৳8.50, 201-300 ৳9.10, 301-400 ৳9.62, 401-600 ৳15.01, 600-এর বেশি ৳17.35। 4 জুন 2026-এ শুধু লাইফলাইন (৳4.63) ও 0-75 ইউনিট (৳5.26) আগের দামে ফেরানো হয়। আগস্ট 2026-এর পাইকারি দাম কমানোয় খুচরা দাম বদলায়নি। EV-র খরচে চার্জিং লসের জন্য 15% যোগ করা হয়েছে (অনুমান)।",
    "sources": [
-    { "title": "Bangladesh hikes retail electricity price (slab table)", "url": "https://bdnews24.com/economy/9efadd3c57ad", "publisher": "bdnews24.com", "date": "2026-06-03" },
-    { "title": "BERC withdraws excess power tariff for up to 75 units", "url": "https://www.dhakatribune.com/bangladesh/power-energy/411765/berc-withdraws-excess-power-tariff-for-up-to-75", "publisher": "Dhaka Tribune", "date": "2026-06-04" },
-    { "title": "Wholesale power price cut; retail rates unchanged", "url": "https://observerbd.com/news/589536", "publisher": "The Daily Observer", "date": "2026-08-23" }
+    {
+     "title": "Bangladesh hikes retail electricity price (slab table)",
+     "url": "https://bdnews24.com/economy/9efadd3c57ad",
+     "publisher": "bdnews24.com",
+     "date": "2026-06-03"
+    },
+    {
+     "title": "BERC withdraws excess power tariff for up to 75 units",
+     "url": "https://www.dhakatribune.com/bangladesh/power-energy/411765/berc-withdraws-excess-power-tariff-for-up-to-75",
+     "publisher": "Dhaka Tribune",
+     "date": "2026-06-04"
+    },
+    {
+     "title": "Wholesale power price cut; retail rates unchanged",
+     "url": "https://observerbd.com/news/589536",
+     "publisher": "The Daily Observer",
+     "date": "2026-08-23"
+    }
    ]
   },
   "note": "অক্টোবর 2026-এ দাম 20 সেপ্টেম্বর 2026-এর সমন্বয়ের মতোই আছে, তখন সব জ্বালানির দাম লিটারে ৳20 বাড়ানো হয়েছিল। জ্বালানি ও খনিজ সম্পদ বিভাগ প্রতি মাসে দাম পর্যালোচনা করে (2024 সালে স্বয়ংক্রিয় ফর্মুলাভিত্তিক দাম চালু হয়), তবে অক্টোবরের সিদ্ধান্তে বলা হয়েছে 'উপযুক্ত কর্তৃপক্ষের অনুমোদনক্রমে অপরিবর্তিত রাখা হলো'। ইউএনবি জানিয়েছে, জানুয়ারি থেকে সেপ্টেম্বর 2026-এর মধ্যে দাম প্রায় 36% পর্যন্ত বেড়েছে।",
@@ -811,9 +895,9 @@
   "confidence": "high"
  },
  "insurance": {
-  "asOf": "2026-10-06",
+  "asOf": "2026-10-14",
   "thirdPartyMandatory": false,
-  "summary": "মোটরযান অধ্যাদেশ 1983 অনুযায়ী থার্ড-পার্টি মোটর বিমা বাধ্যতামূলক ছিল, কিন্তু সড়ক পরিবহন আইন 2018-তে তা ঐচ্ছিক হয়ে যায় (নভেম্বর 2019 থেকে কার্যকর; ডিসেম্বর 2020 থেকে কার্যত উঠে যায়)। মন্ত্রিসভা (12 মার্চ 2024) এটা আবার বাধ্যতামূলক করতে সর্বোচ্চ ৳3,000 জরিমানার বিধানসহ সংশোধনী নীতিগতভাবে অনুমোদন করে, তবে ফেব্রুয়ারি 2026 পর্যন্ত এটা বাধ্যতামূলক হয়নি। আইডিআরএ আগস্ট 2025 থেকে এক বছরের পাইলট হিসেবে 'মোটর লায়াবিলিটি ইন্স্যুরেন্স' নামে থার্ড-পার্টি বিমা আবার চালু করেছে।",
+  "summary": "মোটরযান অধ্যাদেশ 1983 অনুযায়ী থার্ড-পার্টি মোটর বিমা বাধ্যতামূলক ছিল, কিন্তু সড়ক পরিবহন আইন 2018-তে তা ঐচ্ছিক হয়ে যায় (নভেম্বর 2019 থেকে কার্যকর; ডিসেম্বর 2020 থেকে কার্যত উঠে যায়)। মার্চ 2024-এ মন্ত্রিসভা এটা আবার বাধ্যতামূলক করতে সর্বোচ্চ ৳3,000 জরিমানার বিধানসহ সংশোধনী নীতিগতভাবে অনুমোদন করে; এটা মন্ত্রিসভায় অনুমোদিত, কিন্তু আইন হিসেবে পাস হয়নি, তাই বিমা এখনো ঐচ্ছিক। আইডিআরএ আগস্ট 2025 থেকে এক বছরের পাইলট হিসেবে 'মোটর লায়াবিলিটি ইন্স্যুরেন্স' নামে থার্ড-পার্টি বিমা আবার চালু করে। আগস্ট 2026-এর পর পাইলট চালু আছে কি না আমরা নিশ্চিত হতে পারিনি (যাচাই 14 অক্টোবর 2026): পলিসিটা এখনো বিক্রি হয় কি না আর দাম কত, বিমা কোম্পানির কাছে জিজ্ঞেস করুন।",
   "thirdParty": {
    "exampleAnnualPremiumBDT": 1006,
    "exampleFor": "150cc মোটরসাইকেল (আইডিআরএ মোটর লায়াবিলিটি পাইলট)",
@@ -1009,8 +1093,141 @@
    ],
    "asOf": "2019-02-04",
    "confidence": "medium"
+  },
+  {
+   "title": "চালানোর সময় ফোন নয়",
+   "detail": "চালানোর সময় মোবাইল ফোন বা এ ধরনের যন্ত্র ব্যবহার নিষেধ (ধারা 49(1))। ধারা 92(2) অনুযায়ী শাস্তি: সর্বোচ্চ 1 মাস জেল, সর্বোচ্চ ৳5,000 জরিমানা বা দুটোই, সঙ্গে 1 দোষসূচক পয়েন্ট।",
+   "sources": [
+    {
+     "title": "Road Transport Act 2018 (official Bangla text)",
+     "url": "https://bdlaws.minlaw.gov.bd/act-print-1262.html",
+     "publisher": "Laws of Bangladesh (bdlaws)",
+     "date": "2026-10-14"
+    }
+   ],
+   "asOf": "2026-10-14",
+   "confidence": "high"
+  },
+  {
+   "title": "লাইসেন্সে 12 দোষসূচক পয়েন্ট",
+   "detail": "শিক্ষানবিশ ছাড়া প্রতিটি ড্রাইভিং লাইসেন্স 12 পয়েন্ট নিয়ে শুরু হয় (ধারা 11)। আইনে অতিরিক্ত গতি, লাল বাতি অমান্য, নিষিদ্ধ জায়গায় ওভারটেক এবং মাতাল বা বেপরোয়া চালানোকে পয়েন্ট কাটার অপরাধ হিসেবে বলা আছে; ফোন ব্যবহার (ধারা 92(2)) আর দুর্ঘটনার খবর না দেওয়ায় (ধারা 95) 1 পয়েন্ট করে কাটে। কত পয়েন্ট কাটলে লাইসেন্স স্থগিত বা বাতিল হবে, আইন তা বিধিমালার ওপর ছেড়েছে।",
+   "sources": [
+    {
+     "title": "Road Transport Act 2018 (official Bangla text)",
+     "url": "https://bdlaws.minlaw.gov.bd/act-print-1262.html",
+     "publisher": "Laws of Bangladesh (bdlaws)",
+     "date": "2026-10-14"
+    }
+   ],
+   "asOf": "2026-10-14",
+   "confidence": "high"
+  },
+  {
+   "title": "দুর্ঘটনার পর: খবর দিন, সাহায্য করুন",
+   "detail": "চালককে সঙ্গে সঙ্গে নিকটতম থানায় (দরকার হলে ফায়ার সার্ভিস বা হাসপাতালেও) জানাতে হবে এবং আহতদের যত দ্রুত সম্ভব নিকটতম হাসপাতালে পাঠাতে হবে (ধারা 62(1))। না করলে: সর্বোচ্চ 1 মাস জেল, সর্বোচ্চ ৳20,000 জরিমানা বা দুটোই, সঙ্গে 1 পয়েন্ট (ধারা 95)। 999-এ কল করুন: পুলিশ, ফায়ার সার্ভিস ও অ্যাম্বুলেন্সের বিনা খরচের জাতীয় জরুরি নম্বর।",
+   "sources": [
+    {
+     "title": "Road Transport Act 2018 (official Bangla text)",
+     "url": "https://bdlaws.minlaw.gov.bd/act-print-1262.html",
+     "publisher": "Laws of Bangladesh (bdlaws)",
+     "date": "2026-10-14"
+    },
+    {
+     "title": "National emergency service 999 now fully operational",
+     "url": "https://thefinancialexpress.com.bd/home/national-emergency-service-999-now-fully-operational",
+     "publisher": "The Financial Express"
+    }
+   ],
+   "asOf": "2026-10-14",
+   "confidence": "high"
+  },
+  {
+   "title": "পুলিশ থামালে",
+   "detail": "হেলমেট, ফোন, নম্বর প্লেট বা অবৈধ পরিবর্তনের মতো অপরাধে এসআই বা সার্জেন্ট (বা ওপরের কর্মকর্তা) অভিযোগ লিখবেন এবং তার একটি কপি আপনাকে দেবেন, আপনি সই বা টিপসই দেবেন; কপিতে লেখা তারিখের মধ্যে জরিমানা দিলে মামলা শেষ (ধারা 108)। বিআরটিএ-ঘোষিত এলাকায় কর্মকর্তা ঘটনাস্থলেই জরিমানা করতে পারেন, তবে নির্ধারিত ফরমে লিখে আপনাকে রসিদ দিতে হবে (ধারা 113)। কপি নিতে অস্বীকার করলে পরোয়ানা ছাড়া গ্রেপ্তার এবং সর্বোচ্চ ৳5,000 বাড়তি জরিমানা হতে পারে (ধারা 108(4))। লাইসেন্স জব্দ হলে একটি অস্থায়ী রসিদ পাবেন, তাতে লেখা তারিখ পর্যন্ত চালাতে পারবেন (ধারা 111)। ঘটনাস্থলের জরিমানা না দেওয়ায় আটকানো বাইক জরিমানা দিলেই ছাড়া পায় (ধারা 113); ভ্রাম্যমাণ আদালত ডাম্পিং ইয়ার্ডে পাঠালে 2 মাসের মধ্যে আদালতে আবেদন করুন (ধারা 115)।",
+   "sources": [
+    {
+     "title": "Road Transport Act 2018 (official Bangla text)",
+     "url": "https://bdlaws.minlaw.gov.bd/act-print-1262.html",
+     "publisher": "Laws of Bangladesh (bdlaws)",
+     "date": "2026-10-14"
+    }
+   ],
+   "asOf": "2026-10-14",
+   "confidence": "high"
+  },
+  {
+   "title": "নম্বর প্লেট, RFID ট্যাগ ও সামনের প্লেট",
+   "detail": "রেজিস্ট্রেশন নম্বর প্লেট লাগানো ও দৃশ্যমান না রেখে চালানো ধারা 16(3) ভঙ্গ: সর্বোচ্চ 6 মাস জেল, সর্বোচ্চ ৳50,000 জরিমানা বা দুটোই (ধারা 72)। বিআরটিএ বলছে রেট্রো-রিফ্লেক্টিভ প্লেট ও RFID ট্যাগ বাধ্যতামূলক, এবং 24 জুন 2026-এ সার্কেল অফিস থেকে যাঁরা তা নেননি তাঁদের আইনি ব্যবস্থার কথা জানিয়েছে (কোনো সময়সীমা দেওয়া হয়নি)। ঢাকার এআই ক্যামেরা যাতে পড়তে পারে, সেজন্য মোটরসাইকেলের সামনেও প্লেটের সিদ্ধান্ত হয় 18 জুলাই 2026-এ; 13 আগস্ট 2026-এ গঠিত বিআরটিএ-র কমিটি তখনো আকার ও জায়গা ঠিক করছিল (20 আগস্ট 2026-এর খবর)। বিআরটিএ মাপ প্রকাশ না করা পর্যন্ত নিজে সামনের প্লেট লাগাবেন না।",
+   "sources": [
+    {
+     "title": "Road Transport Act 2018 (official Bangla text)",
+     "url": "https://bdlaws.minlaw.gov.bd/act-print-1262.html",
+     "publisher": "Laws of Bangladesh (bdlaws)",
+     "date": "2026-10-14"
+    },
+    {
+     "title": "BRTA: retro-reflective number plate and RFID tag mandatory (Bangla)",
+     "url": "https://www.banglatribune.com/953538",
+     "publisher": "Bangla Tribune",
+     "date": "2026-06-24"
+    },
+    {
+     "title": "Motorcycles to get a front number plate for AI-camera detection (Bangla)",
+     "url": "https://www.ittefaq.com.bd/805173/",
+     "publisher": "The Daily Ittefaq",
+     "date": "2026-08-20"
+    }
+   ],
+   "asOf": "2026-10-14",
+   "confidence": "medium"
   }
  ],
+ "lawsNote": {
+  "asOf": "2026-10-14",
+  "text": "শাস্তিগুলো বর্তমানে কার্যকর সড়ক পরিবহন আইন 2018-এর সর্বোচ্চ সীমা; আদালত বা কর্মকর্তা কম শাস্তিও দিতে পারেন। ধারা নম্বরগুলো 14 অক্টোবর 2026-এ সরকারি পাঠের সঙ্গে মেলানো হয়েছে। 2024-এর সংশোধনী বিল মন্ত্রিসভায় অনুমোদিত, কিন্তু পাস হয়নি, তাই এখানে ধরা হয়নি। এটা সাধারণ তথ্য, আইনি পরামর্শ নয়।"
+ },
+ "evRules": {
+  "asOf": "2026-10-14",
+  "items": [
+   {
+    "title": "প্যাডেলওয়ালা ই-বাইক: বিআরটিএ রেজিস্ট্রেশন লাগে না",
+    "detail": "সরকারের 2023 সালের বৈদ্যুতিক যান রেজিস্ট্রেশন নীতিমালায় প্যাডেলেও চালানো যায় এমন ই-বাইককে বিআরটিএ রেজিস্ট্রেশন থেকে ছাড় দেওয়া হয়েছে, ওয়ালটনের প্যাডেল ই-বাইক আসার সময়ের খবর অনুযায়ী (ফেব্রুয়ারি 2023)। নির্দিষ্ট মডেলের অবস্থা ডিলারের কাছ থেকে লিখিত নিন।",
+    "sources": [
+     {
+      "title": "Walton launches affordable e-bike",
+      "url": "https://www.tbsnews.net/economy/corporates/walton-launches-affordable-e-bike-584682",
+      "publisher": "The Business Standard",
+      "date": "2023-02-13"
+     }
+    ]
+   },
+   {
+    "title": "ইলেকট্রিক স্কুটার ও মোটরসাইকেল: মোটরের ক্ষমতা অনুযায়ী রেজিস্ট্রেশন",
+    "detail": "প্যাডেল ছাড়া ই-বাইক অন্য মোটরসাইকেলের মতোই রেজিস্ট্রেশন করতে হয়, তবে ফির স্ল্যাব মোটরের রেটেড ক্ষমতায়: 5 kW পর্যন্ত হলে 100cc পর্যন্ত বাইকের মতো ৳2,000 রেজিস্ট্রেশন ফি, 5 kW-এর বেশি হলে ৳3,000 (সড়ক পরিবহন বিধিমালা 2022, তফসিল 1)।",
+    "sources": [
+     {
+      "title": "BRTA - Road Transport Rules 2022, Schedule-1 fees (Bangladesh Gazette Extraordinary, 27 Dec 2022), via brta.gov.bd 'বিভিন্ন ফি'",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-brta/2024/12/2e6d2c3e81cd4418882881f35e0e95bd.pdf",
+      "publisher": "BRTA / Govt of Bangladesh",
+      "date": "2022-12-27"
+     }
+    ]
+   },
+   {
+    "title": "ই-বাইকে ভ্যাট: জুন 2030 পর্যন্ত 5%",
+    "detail": "2025-26 অর্থবছরের বাজেটে (জুন 2025) ই-বাইকের সব ভ্যাট জুন 2030 পর্যন্ত 5%-এ নামানো হয়, সঙ্গে মূল যন্ত্রাংশ নির্মাতাদের শুল্ক ছাড়; যন্ত্রাংশভেদে ই-বাইকের কাস্টমস শুল্ক তখনো 26-60% (ডেইলি স্টার, 13 জুন 2025)। 2026-27 বাজেটে এটা বদলেছে কি না আমরা যাচাই করিনি।",
+    "sources": [
+     {
+      "title": "Electric vehicle makers get VAT, duty waivers",
+      "url": "https://epfs.thedailystar.net/TDS/2025/06/13/Bangladesh/BUS/5_01/7bb30e796932bd10_01.pdf",
+      "publisher": "The Daily Star",
+      "date": "2025-06-13"
+     }
+    ]
+   }
+  ],
+  "confidence": "medium: pedal exemption and VAT come from news reports of the policy and budget"
+ },
  "usedChecklist": [
   {
    "title": "ব্লু বুক / DRC-র সঙ্গে বিক্রেতাকে মিলিয়ে নিন",
@@ -1055,6 +1272,22 @@
   {
    "title": "বৈধভাবে বাইক নিয়ে যাওয়া",
    "detail": "আপনার নামে মালিকানা বদলের আবেদন জমা না হওয়া পর্যন্ত এবং বৈধ লাইসেন্স না থাকলে বাইক চালাবেন না; DRC, ট্যাক্স টোকেন ও লাইসেন্স (বা অস্থায়ী অনুমতিপত্র) সঙ্গে রাখুন।"
+  },
+  {
+   "title": "অনলাইনে মালিকানা বদল, বিক্রেতার উপস্থিতিতে",
+   "detail": "বিআরটিএ-র 1 সেপ্টেম্বর 2026-এর বিজ্ঞপ্তি অনুযায়ী ক্রেতা ও বিক্রেতা bsp.brta.gov.bd-তে আবেদন করবেন, তারপর হাতে ধরা বায়োমেট্রিক যন্ত্রে বিক্রেতার আঙুলের ছাপ যাচাই হবে; বিআরটিএ বলছে একই দিনে কাজ শেষ হতে পারে। নতুন ডিজিটাল রেজিস্ট্রেশন সনদের জন্য আপনিও বায়োমেট্রিক দিতে পারেন। আইন (ধারা 21) অনুযায়ী বিক্রির পর মালিকানা বদল করতেই হবে, তাই পুরো টাকা দেওয়ার আগে বিক্রেতা বায়োমেট্রিকের জন্য আসবেন কি না ঠিক করে নিন।"
+  },
+  {
+   "title": "VIN-এর শুরুর অক্ষর দেখুন",
+   "detail": "চেসিস নম্বরের (VIN) প্রথম তিন অক্ষর নির্মাতাকে চেনায়, যেমন ME1 ইন্ডিয়া ইয়ামাহা, MD2 বাজাজ (বাজাজের তৈরি KTM-ও), MD6 টিভিএস, ME4 হোন্ডা মোটরসাইকেল অ্যান্ড স্কুটার ইন্ডিয়া, MBL হিরো মটোকর্প আর MB8 সুজুকি মোটরসাইকেল ইন্ডিয়া। শুরুর অক্ষর ব্র্যান্ডের সঙ্গে না মিললে, বা VIN আর DRC আলাদা হলে, কিনবেন না।"
+  },
+  {
+   "title": "ইয়ামাহা FZS: কোন জেনারেশন?",
+   "detail": "V3-এ চাবি তেলের ট্যাংকের ওপর, এলইডি হেডলাইট, সামনের চাকায় ABS আর সিলড চেইন, আর ওজন V2-এর চেয়ে প্রায় 5 কেজি বেশি (BikeBD)। 28 সেপ্টেম্বর 2024-এ বাংলাদেশে আসা V4-এ যোগ হয়েছে ট্র্যাকশন কন্ট্রোল, হেডলাইটে পজিশন ল্যাম্প আর ইয়ামাহার কানেক্ট অ্যাপের সঙ্গে ব্লুটুথ সংযোগ (ACI)। ABS ছাড়া FZS-কে V3 বা V4 বলে বেচলে তা ভুল।"
+  },
+  {
+   "title": "সুজুকি জিক্সার: পুরনো না 2019 মডেল?",
+   "detail": "রানকন 1 জুলাই 2020-এ বাংলাদেশে 2019 জেনারেশনের জিক্সার ও জিক্সার SF আনে। নতুন জিক্সারে চ্যাপ্টা এলইডি হেডলাইট (পুরনোটায় হ্যালোজেন), চালক ও আরোহীর আলাদা সিট আর একটু উঁচু সিট; নতুন SF দেখতে SF 250-এর মতো, তাতেও এলইডি হেডলাইট। প্রতিটির দুটি সংস্করণ ছিল: কার্বুরেটর + ডিস্ক অথবা ফুয়েল ইনজেকশন + ABS, তাই FI-এর দাম দেওয়ার আগে দুটোই মিলিয়ে নিন।"
   }
  ],
  "usedChecklistSources": [
@@ -1097,6 +1330,34 @@
    "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-brta/2024/12/2e6d2c3e81cd4418882881f35e0e95bd.pdf",
    "publisher": "BRTA / Govt of Bangladesh",
    "date": "2022-12-27"
+  },
+  {
+   "title": "BRTA notice: online ownership transfer with seller biometrics (Bangla)",
+   "url": "https://www.dhakatimes24.com/2026/09/01/411836",
+   "publisher": "Dhaka Times",
+   "date": "2026-09-01"
+  },
+  {
+   "title": "World Manufacturer Identifier (WMI) codes",
+   "url": "https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/World_Manufacturer_Identifier_(WMI)",
+   "publisher": "Wikibooks"
+  },
+  {
+   "title": "Yamaha FZS FI V3 review",
+   "url": "https://bikebd.com/blog/yamaha-fzs-fi-v3-review-team-bikebd",
+   "publisher": "BikeBD"
+  },
+  {
+   "title": "ACI Motors launches Yamaha FZS Version 4.0 in Bangladesh",
+   "url": "https://www.aci-bd.com/events/aci-motors-launches-yamaha-fzs-version-4.0-in-bangladesh.html",
+   "publisher": "ACI",
+   "date": "2024-09-28"
+  },
+  {
+   "title": "Rancon launches 2019 Gixxer and Gixxer SF in Bangladesh",
+   "url": "https://www.tbsnews.net/node/100465",
+   "publisher": "The Business Standard",
+   "date": "2020-07-01"
   }
  ],
  "usedChecklistConfidence": "high for paperwork (BRTA page updated 30 Jun 2026); inspection tips are general practice guidance",
