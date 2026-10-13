@@ -118,29 +118,30 @@ export function BikeCard({ bike, footer, badge }: { bike: BikeLite; footer?: Rea
   return (
     <Link
       href={`/bikes/${bike.id}/`}
-      className="group card relative flex flex-col overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-md"
+      className="group card relative flex overflow-hidden sm:flex-col transition-all duration-200 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-md"
     >
-      <div className="relative bg-surface-2/60 px-5 pt-5">
-        <div className="absolute left-4 top-4 z-10 flex flex-wrap gap-1.5 pr-10">
+      {/* Phones: compact row (art left) so the 80-bike list is not 40 screens long */}
+      <div className="absolute right-3 top-3 z-10">
+        <SaveButton id={bike.id} />
+      </div>
+      <div className="relative flex w-[38%] shrink-0 items-center bg-surface-2/60 px-2 py-6 sm:block sm:w-auto sm:px-5 sm:pb-0 sm:pt-5">
+        <div className="absolute left-2 top-2 z-10 flex flex-wrap gap-1.5 sm:left-4 sm:top-4 sm:pr-10">
           {badge}
           {bike.status === "used-only" && (
             <span className="rounded-full bg-warn-soft px-2 py-0.5 text-[11.5px] font-semibold text-warn">{t("common.usedOnly")}</span>
           )}
           <OfferTag bikeId={bike.id} />
         </div>
-        <div className="absolute right-3 top-3 z-10">
-          <SaveButton id={bike.id} />
-        </div>
         <BikeArt bike={bike} className="mx-auto w-full max-w-[300px] transition-transform duration-300 group-hover:scale-[1.03]" />
       </div>
-      <div className="flex flex-1 flex-col gap-3 p-5 pt-4">
-        <div>
+      <div className="flex min-w-0 flex-1 flex-col gap-3 p-4 sm:p-5 sm:pt-4">
+        <div className="pr-8 sm:pr-0">
           <p className="text-[12.5px] font-medium text-muted">
             {bike.brand} · {ccLabel(bike)} · {lang === "bn" ? CATEGORIES[bike.category].bn : CATEGORIES[bike.category].en}
           </p>
           <h3 className="mt-0.5 text-[17px] font-semibold tracking-tight text-ink">{bike.model}</h3>
         </div>
-        <div className="mt-auto flex items-end justify-between gap-3">
+        <div className="mt-auto flex flex-wrap items-end justify-between gap-x-3 gap-y-2">
           <div className="min-w-0">
             <p className="text-[19px] font-semibold tracking-tight text-ink tnum">{formatLakh(onRoadPrice(bike), lang)}</p>
             <p className="text-[12px] text-muted tnum">
