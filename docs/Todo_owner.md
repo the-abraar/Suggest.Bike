@@ -43,3 +43,9 @@ Things only you can do: decisions, accounts, money, relationships and work out i
 - [ ] **Partnerships with BRTA-adjacent services** (licence-test coaching, registration agents). Only ones you have vetted.
 - [ ] **A Bangla-first social presence.** Most first-time buyers are more comfortable reading Bangla.
 - [ ] **A monthly review routine:** fuel price changes (BPC's automatic pricing), new launches, and discontinued models.
+
+## On hold (owner decides when)
+
+- **Soft launch and distribution.** Share with users and post hand-written answers in Facebook bike groups once the owner feels the site is ready. Not before.
+- **Score freeze.** The judge score stays "unvalidated" until there is outside evidence (real sessions, owner reports, a dealer reply). Agents don't raise it in the meantime.
+- **Mass-market gap.** Not actionable: bike prices keep rising and the catalogue follows the market.

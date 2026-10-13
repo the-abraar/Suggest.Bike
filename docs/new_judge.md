@@ -229,3 +229,64 @@ Plan: (R) data research: Pulsar N160, second sources, more EVs, BRTA EV fee; (H)
 Changes since the round 2 table: §2.5 "no reason to return" is **partly fixed** (price history on every bike + `/changes`, no backend; alerts still need one). §2.1 Bangla coverage is **complete** for every page except the OG images (satori can't shape Bangla). §4: BRTA EV fee **sourced**; N160 **verified**; 5 budget bikes still single-source; still 1 EV. §6 real device: **open (owner)**. Dark mode: **verified headless**.
 
 **Score: ~75%.** What's left is owner-only: real phones, Formspree + GoatCounter accounts, dealer calls, lawyer, mistri panel, real users. See "Owner-only next steps" above.
+
+---
+
+## Judge, round 4 (2026-10-13, after `476d6aa`): grilling the "~75%"
+
+**One line:** three rounds in one night moved the score from 60% to 75% without one user, one phone, one inbox or one rupee. The fixes are real; the score is the agents marking their own homework. It is a sharper brochure, still with no reason to exist next to BikeBD plus one Facebook group.
+
+### 1. The score is not evidence
+- **Self-graded.** The same pipeline that writes the code writes the judge, logs the fixes and raises the score. Not one point comes from outside: no user session, no search impression, no owner report, no showroom call. On a 7-day-old repo (53 commits, one human) "launch-grade" is an opinion.
+- **"Fixed in code" counts as fixed.** Analytics, the form endpoint, the inbox, dealer calls, the lawyer and the mistri panel are all "owner-only" and all undone. Take out what is switched off and the live product today has **no analytics, no working feedback path, no editorial authority and no lead flow**. That is still the ~60% product with better tests.
+- **Proposal:** freeze the score until there is outside evidence: 100 real sessions, 10 owner reports and 1 dealer reply. Until then report "unvalidated".
+
+### 2. Every channel back to you is dead on launch day
+- `FORM_ENDPOINT = ""`, so every form falls back to `mailto:hello@suggest.bike`. **Nobody has confirmed that mailbox exists** (`site.ts` says "create this mailbox before launch"). An owner who types a correction on the first day, which is the whole "help us fix it" trust story, may get a bounce or silence.
+- `mailto:` on Android with no mail app set up (most BD phones run on WhatsApp and Messenger, not Gmail-for-sending) does nothing visible. The other path is a GitHub issue, which needs a GitHub account no bike buyer has.
+- **No WhatsApp or Messenger contact anywhere.** In Bangladesh that is the only feedback channel people use. A `wa.me/` link is one line, needs no backend and beats Formspree.
+- `GOATCOUNTER_CODE = ""`: you will launch blind and won't know whether the Facebook soft-launch did anything.
+
+### 3. Product: why a real buyer still leaves
+1. **It answers a question people don't ask online.** BD buyers rarely ask "which bike suits me"; they ask "Pulsar N160 vs Apache 160 4V **dam** koto, mileage koto, which showroom has it, any offer this month?" The matcher (773-line `MatchView`, the biggest view) is the least-used tool on every comparable site. Price, mileage and the *showroom offer* are the job; `/cost` and the bike page sit closest to it, and the matcher is a detour.
+2. **No current offers, the thing that actually moves purchases.** Eid/Puja discounts, free registration, cashback, exchange offers and 0% EMI with specific banks change weekly and are worth ৳5k-৳30k. The site shows a monthly ex-showroom number and says "ask the dealer", so the most valuable fact is missing every week.
+3. **Prices are ex-showroom; BD buyers think in "on-road with registration".** The matcher does this, but the headline number on browse, compare and the OG share card is still ex-showroom. The number people screenshot and share is the one they don't pay.
+4. **Two on-road prices for the same bike.** `match.ts` `onRoadPrice` uses the **2-year** tax token (`registrationFor().totalBDT`), while `/cost` defaults to `taxPlan: "10yr"` (`cost.ts:69`, `reg.totalBDT10yr`). A user who checks the match result against the cost page gets different "on-road" figures. In a product whose pitch is honesty, that's a screenshot waiting to happen. Pick one default and label it everywhere.
+5. **55 of 83 bikes have no photo** (28 WebP); the rest show generated `BikeArt`. Buyers choose with their eyes, and colour options are absent entirely. A drawing next to a ৳3 lakh decision reads as a hobby site.
+6. **Reviews are zero.** "I own this bike" goes to an inbox that may not exist and is never shown back. With no owner voice on the page, the site still says "trust our editorial 7/10".
+7. **No price alert, no account, saved list per device.** "Price history" is one week of git history: every bike reads "unchanged since Oct 2026" and `/changes` lists 13 events, 8 of them "added". That isn't a reason to return; it is a page advertising that nothing has happened.
+8. **Used market is token.** 4 used-only bikes; used prices are Bikroy *asking* prices minus an invented 5%. In BD, used is roughly half of first purchases, and it is where buyers get burned. No checklist for papers (blue book, tax token, name transfer), which matters more than any score.
+9. **Mass-market gap.** Only 20 of 83 bikes are under ৳1.5L, while 15 are over ৳4L (enthusiast models that won't need a matcher). The catalogue leans toward what's fun to write about, not toward the 100-125cc commuters that most buyers want.
+10. **EV coverage is one Walton.** The fuel-price headline in the project's own sources is the strongest "why now" story, and the site has nothing to say about Yadea, Akij or the battery scooters that actually sell.
+
+### 4. Corner cases still open
+- **Price staleness becomes an outage.** 20 bikes are `2026-09`; the gate fails on age and `deploy.yml` runs validate. One person re-sourcing 83 prices by hand monthly means **the deploy goes red the first month the owner is busy**, and then no fix of any kind can ship. Make stale prices a visible "price may be old" badge plus a warning, not a deploy blocker; keep the hard fail for fuel only.
+- **Fuel/electricity `asOf` 45-day hard fail**: same trap, plus BD fuel prices are now set monthly by formula, so the gate will trip on schedule.
+- **"Where you live" is still dead:** `networks.json` is `{}`; the step is shown and then admits it does nothing. Asking a question you ignore costs trust and a quiz step. Remove the step until data exists.
+- **EMI assumes 10% flat** past 12 months and a single rate for every bank. Real card EMI is 0% at listed banks only, with a 1-3% processing fee and often a *higher* cash-vs-card price at the showroom. The calculator can understate the cost of the EMI path, the opposite of "honest".
+- **Insurance defaults off** in `/cost`, but third-party insurance is legally required in BD; the "true monthly cost" leaves out a mandatory line by default.
+- **Compare max 3.** People compare 4-5 in one segment (the 150cc fight: FZ-S, Gixxer, Apache, N160, Pulsar). The limit forces them back to BikeBD.
+- **Bangla OG image is English.** The audience you most want to reach on Facebook gets an English card on a Bangla link. Satori can't shape Bangla, so pre-render the Bangla cards with a real browser once at build (Playwright is already in `tools/qa`).
+- **Search in Banglish**: "palsar", "apachi", "gixer", "fz v3". `aliases` exist, but nobody has tested typo tolerance with real queries.
+- **Bike detail LCP 2.8 s** at 1.6 Mbps for a page that is static text: 240-300 KB of JS on a content site is a framework tax that BikeBD's AMP-ish pages don't pay. "No small fix" just means that nobody tried shipping less JS.
+
+### 5. Bloat that crept back in
+- **Header now carries 10+ destinations** (bikes, match, compare, cost, guide, dealers, method, changes, saved, feedback, about) for a site with no users. Each round adds a page; none removes one. `/method`, `/changes`, `/saved` and `/feedback` are footer material.
+- **`/changes` + `build-history.ts` + full-history CI checkout** add machinery (and slower CI) for a feature with one week of data. It earns its place in 6 months, not now.
+- **`ResearchingStuff/`** is a large local knowledge base (market, history, variants, rules, ownership) that **no page uses** (`grep` finds no reference from `src/` or `scripts/`). It is either the moat (publish it as guide pages in Bangla, the long-tail SEO BikeBD doesn't own) or dead weight in the repo.
+- **Twin EN/BN route trees** double the page count (194 URLs) and every future page costs twice. That's fine if Bangla is the main audience; then English should be the twin, not the default (`x-default` is EN, root is EN).
+- **The process is the bloat.** `judge.md`, `new_judge.md`, `Todo_agent.md`, `Todo_owner.md`, `HANDOFF.md`, `UI_AUDIT.md` and `SOURCES.md` sit in the repo root. More words go into judging the product than into the product's content.
+
+### 6. Positioning: the simple thought nobody has tested
+- **Kill the decision engine framing; own "the real price this week".** One page per bike: on-road price (one tax plan), this month's showroom offer, cash vs EMI with a named bank, nearest showroom hotline, a WhatsApp "is this price right?" button. Make it Bangla-first, with a share card in Bangla. That is the screenshot people forward in Messenger groups, and BikeBD doesn't do it well.
+- **Distribution is the product.** No Facebook page, no YouTube, no group, no partner mechanic, no showroom relationship exists yet. 194 server-rendered URLs with zero backlinks will not rank against a 10-year-old domain. The first 100 users come from posting answers in "Bike Lovers Bangladesh"-type groups by hand, not from SEO.
+- **Business model is still unspoken.** Lead fees need dealer relationships; ads need traffic; affiliate EMI needs banks. None is started, and nothing in the code is waiting for one.
+
+### 7. What should happen before any more code
+1. Create the mailbox, the Formspree form and GoatCounter (30 minutes, owner). Add a `wa.me` contact.
+2. Unify the on-road default (2-year vs 10-year token) across match, cost and the bike page; show on-road as the headline price.
+3. Turn stale-price failures into page badges plus warnings so the deploy can't brick itself.
+4. Delete the "where you live" step until `networks.json` has data.
+5. Post 10 hand-written answers in Facebook groups linking bike pages; measure for 2 weeks. Change nothing else until there are numbers.
+
+**Judge's score: ~62% of a product people would use; ~80% of a codebase.** The gap between those two numbers is the whole problem.

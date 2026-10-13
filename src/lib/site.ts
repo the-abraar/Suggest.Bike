@@ -5,17 +5,17 @@ export const issueUrl = (title: string, body = "") =>
 export const SITE = {
   name: "Suggest.Bike",
   url: "https://suggest.bike",
-  // Inbox for price corrections and feedback. Create this mailbox before launch (see Todo_owner.md).
+  // Inbox for price corrections and feedback. Create this mailbox before launch (see docs/Todo_owner.md).
   contactEmail: "hello@suggest.bike",
   description:
     "Bangladesh's motorcycle decision engine — find the right bike for your budget, compare real-world mileage, parts prices, mechanic familiarity and true monthly cost.",
   editor: "Abrar (The-Abraar)",
 };
 
-/** Formspree-compatible JSON endpoint (e.g. https://formspree.io/f/xxxx). Empty: forms open a prefilled email instead. See Todo_owner.md. */
+/** Formspree-compatible JSON endpoint (e.g. https://formspree.io/f/xxxx). Empty: forms open a prefilled email instead. See docs/Todo_owner.md. */
 export const FORM_ENDPOINT: string = "";
 
-/** GoatCounter site code (the "xxx" in xxx.goatcounter.com). Empty: no analytics script is loaded. See Todo_owner.md. */
+/** GoatCounter site code (the "xxx" in xxx.goatcounter.com). Empty: no analytics script is loaded. See docs/Todo_owner.md. */
 export const GOATCOUNTER_CODE: string = "";
 
 /** Count a custom GoatCounter event; a no-op when analytics is off or blocked. */
@@ -24,7 +24,7 @@ export function track(event: string) {
   gc?.count?.({ path: event, event: true });
 }
 
-// EN paths that have a server-rendered Bangla twin under /bn/ (Decision 8 in new_judge.md).
+// EN paths that have a server-rendered Bangla twin under /bn/ (Decision 8 in docs/new_judge.md).
 const BN_TWIN = /^\/(?:(?:bikes(?:\/[^/]+)?|match|compare|cost|guide|dealers|method|about|changes|privacy|terms|disclaimer|saved|feedback)\/?)?$/;
 
 /** Internal href in `lang`: adds or strips the /bn prefix, keeping ?query and #hash. Pages without a Bangla twin keep the English URL. */

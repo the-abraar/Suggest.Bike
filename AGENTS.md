@@ -6,5 +6,5 @@
 - `deploy.yml` gates (validate, tsc, tests, build) are the deploy contract; `check.yml` is the separate full check.
 - Real-browser QA is not in `check.sh`: when changing UI or layout, read `tools/qa/README.md` (own `package.json`, screenshots in gitignored `tools/qa/shots/`).
 - Price freshness: read `scripts/price-audit.mjs` (`npm run audit:prices`) when touching bike prices; sources in `SOURCES.md`.
-- Launch context and open gaps: `judge.md`, `Todo_agent.md`.
+- Launch context and open gaps: `judge.md`, `docs/Todo_agent.md`.
 - Review rules: `CODING_STANDARDS.md`.
