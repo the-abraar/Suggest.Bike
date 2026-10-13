@@ -247,6 +247,75 @@
     "title": "BRTA starts registering ride-sharing firms",
     "url": "https://d11.thedailystar.net/backpage/news/brta-starts-registering-ride-sharing-firms-1765546",
     "publisher": "The Daily Star"
+   },
+   "rta2018": {
+    "title": "Road Transport Act 2018 (official Bangla text)",
+    "url": "https://bdlaws.minlaw.gov.bd/act-print-1262.html",
+    "publisher": "Laws of Bangladesh (bdlaws)",
+    "date": "2026-10-14"
+   },
+   "fe999": {
+    "title": "National emergency service 999 now fully operational",
+    "url": "https://thefinancialexpress.com.bd/home/national-emergency-service-999-now-fully-operational",
+    "publisher": "The Financial Express"
+   },
+   "btRFID": {
+    "title": "BRTA: retro-reflective number plate and RFID tag mandatory (Bangla)",
+    "url": "https://www.banglatribune.com/953538",
+    "publisher": "Bangla Tribune",
+    "date": "2026-06-24"
+   },
+   "ittefaqFrontPlate": {
+    "title": "Motorcycles to get a front number plate for AI-camera detection (Bangla)",
+    "url": "https://www.ittefaq.com.bd/805173/",
+    "publisher": "The Daily Ittefaq",
+    "date": "2026-08-20"
+   },
+   "dhakatimesTransfer": {
+    "title": "BRTA notice: online ownership transfer with seller biometrics (Bangla)",
+    "url": "https://www.dhakatimes24.com/2026/09/01/411836",
+    "publisher": "Dhaka Times",
+    "date": "2026-09-01"
+   },
+   "dtPSR": {
+    "title": "NBR drops direct tax on autorickshaws, motorcycles, expands income tax filing requirements",
+    "url": "https://www.dhakatribune.com/business/411857/nbr-drops-direct-tax-on-autorickshaws",
+    "publisher": "Dhaka Tribune",
+    "date": "2026-06-06"
+   },
+   "tbsWaltonEbike": {
+    "title": "Walton launches affordable e-bike",
+    "url": "https://www.tbsnews.net/economy/corporates/walton-launches-affordable-e-bike-584682",
+    "publisher": "The Business Standard",
+    "date": "2023-02-13"
+   },
+   "dsEbikeVAT": {
+    "title": "Electric vehicle makers get VAT, duty waivers",
+    "url": "https://epfs.thedailystar.net/TDS/2025/06/13/Bangladesh/BUS/5_01/7bb30e796932bd10_01.pdf",
+    "publisher": "The Daily Star",
+    "date": "2025-06-13"
+   },
+   "wikibooksWMI": {
+    "title": "World Manufacturer Identifier (WMI) codes",
+    "url": "https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/World_Manufacturer_Identifier_(WMI)",
+    "publisher": "Wikibooks"
+   },
+   "aciFzsV4": {
+    "title": "ACI Motors launches Yamaha FZS Version 4.0 in Bangladesh",
+    "url": "https://www.aci-bd.com/events/aci-motors-launches-yamaha-fzs-version-4.0-in-bangladesh.html",
+    "publisher": "ACI",
+    "date": "2024-09-28"
+   },
+   "bikebdFzsV3": {
+    "title": "Yamaha FZS FI V3 review",
+    "url": "https://bikebd.com/blog/yamaha-fzs-fi-v3-review-team-bikebd",
+    "publisher": "BikeBD"
+   },
+   "tbsGixxer2019": {
+    "title": "Rancon launches 2019 Gixxer and Gixxer SF in Bangladesh",
+    "url": "https://www.tbsnews.net/node/100465",
+    "publisher": "The Business Standard",
+    "date": "2020-07-01"
    }
   }
  },
@@ -328,7 +397,7 @@
     "ccMax": 165,
     "totalBDT": 11764,
     "totalBDT10yr": 20964,
-    "totalNote": "Same as >100cc. Since FY2026-27 discussions, owners of bikes above 150cc are expected to hold a TIN (Daily Star, 4 Jun 2026) - check with dealer.",
+    "totalNote": "Same as >100cc. Budget reports differ: the Daily Star (4 Jun 2026) said owners of bikes above 150cc would need a TIN; the Dhaka Tribune (6 Jun 2026) said owners of bikes above 165cc would instead show proof of return submission (PSR) at registration and renewal. We could not confirm which rule is in the final Finance Act 2026 (checked 14 Oct 2026), so ask the dealer or BRTA.",
     "confidence": "medium",
     "breakdownRef": "above100cc"
    },
@@ -435,14 +504,14 @@
    },
    {
     "date": "2026-06-04",
-    "change": "Proposed first-ever annual advance income tax (AIT) on motorcycles in the FY2026-27 budget (initially Tk 2,000 for 111-125cc, Tk 5,000 for 126-165cc, Tk 10,000 above 165cc) was dropped after protests. No motorcycle AIT is in force; owners of >150cc bikes still need a TIN.",
+    "change": "Proposed first-ever annual advance income tax (AIT) on motorcycles in the FY2026-27 budget (initially Tk 2,000 for 111-125cc, Tk 5,000 for 126-165cc, Tk 10,000 above 165cc) was dropped after protests. No motorcycle AIT is in force. Budget reports then said owners of bikes above 165cc would show proof of return submission (PSR) at registration and renewal (an earlier report said a TIN for bikes above 150cc); the final Finance Act 2026 text was not confirmed as of 14 Oct 2026.",
     "source": {
      "title": "Govt may drop planned wealth tax, bike and rickshaw AIT",
      "url": "https://www.thedailystar.net/business/economy/news/govt-may-drop-planned-wealth-tax-bike-and-rickshaw-ait-4190076",
      "publisher": "The Daily Star",
      "date": "2026-06-04"
     },
-    "confidence": "high"
+    "confidence": "medium"
    }
   ],
   "process": [
@@ -777,9 +846,24 @@
    "effectiveFrom": "2026-06",
    "note": "BERC residential retail tariff from the June 2026 bill: 76-200 units Tk 8.50, 201-300 Tk 9.10, 301-400 Tk 9.62, 401-600 Tk 15.01, above 600 Tk 17.35. The 4 June 2026 rollback restored only the lifeline (Tk 4.63) and 0-75 unit (Tk 5.26) slabs. The August 2026 wholesale cut left retail rates unchanged. EV running cost adds 15% for charging losses (estimate).",
    "sources": [
-    { "title": "Bangladesh hikes retail electricity price (slab table)", "url": "https://bdnews24.com/economy/9efadd3c57ad", "publisher": "bdnews24.com", "date": "2026-06-03" },
-    { "title": "BERC withdraws excess power tariff for up to 75 units", "url": "https://www.dhakatribune.com/bangladesh/power-energy/411765/berc-withdraws-excess-power-tariff-for-up-to-75", "publisher": "Dhaka Tribune", "date": "2026-06-04" },
-    { "title": "Wholesale power price cut; retail rates unchanged", "url": "https://observerbd.com/news/589536", "publisher": "The Daily Observer", "date": "2026-08-23" }
+    {
+     "title": "Bangladesh hikes retail electricity price (slab table)",
+     "url": "https://bdnews24.com/economy/9efadd3c57ad",
+     "publisher": "bdnews24.com",
+     "date": "2026-06-03"
+    },
+    {
+     "title": "BERC withdraws excess power tariff for up to 75 units",
+     "url": "https://www.dhakatribune.com/bangladesh/power-energy/411765/berc-withdraws-excess-power-tariff-for-up-to-75",
+     "publisher": "Dhaka Tribune",
+     "date": "2026-06-04"
+    },
+    {
+     "title": "Wholesale power price cut; retail rates unchanged",
+     "url": "https://observerbd.com/news/589536",
+     "publisher": "The Daily Observer",
+     "date": "2026-08-23"
+    }
    ]
   },
   "note": "October 2026 prices unchanged from the 20 Sep 2026 revision, when every fuel was raised by Tk 20/litre. Prices are reviewed monthly by the Energy and Mineral Resources Division (automatic formula-based pricing introduced 2024), but the October decision was announced as 'retained with approval of the appropriate authority'. UNB reports prices rose up to ~36% between Jan and Sep 2026.",
@@ -811,9 +895,9 @@
   "confidence": "high"
  },
  "insurance": {
-  "asOf": "2026-10-06",
+  "asOf": "2026-10-14",
   "thirdPartyMandatory": false,
-  "summary": "Third-party motor insurance was compulsory under the Motor Vehicles Ordinance 1983 but became optional under the Road Transport Act 2018 (in effect from Nov 2019; abolished in practice Dec 2020). Cabinet approved in principle (12 Mar 2024) an amendment to make it mandatory again with a fine up to Tk 3,000, but as of Feb 2026 it is still not mandatory. IDRA relaunched third-party cover as 'Motor Liability Insurance' on a one-year pilot from Aug 2025.",
+  "summary": "Third-party motor insurance was compulsory under the Motor Vehicles Ordinance 1983 but became optional under the Road Transport Act 2018 (in effect from Nov 2019; abolished in practice Dec 2020). In Mar 2024 the cabinet approved in principle an amendment to make it compulsory again with a fine up to Tk 3,000; it is cabinet-approved, not enacted, so cover is still optional. IDRA relaunched third-party cover as 'Motor Liability Insurance' on a one-year pilot from Aug 2025. We could not confirm whether the pilot continued after Aug 2026 (checked 14 Oct 2026): ask an insurer whether the policy is still sold and at what price.",
   "thirdParty": {
    "exampleAnnualPremiumBDT": 1006,
    "exampleFor": "150cc motorcycle (IDRA Motor Liability pilot)",
@@ -1009,8 +1093,141 @@
    ],
    "asOf": "2019-02-04",
    "confidence": "medium"
+  },
+  {
+   "title": "No phone while riding",
+   "detail": "Using a mobile phone or similar device while riding is banned (s.49(1)). Penalty under s.92(2): up to 1 month in jail, a fine up to Tk 5,000, or both, plus 1 demerit point.",
+   "sources": [
+    {
+     "title": "Road Transport Act 2018 (official Bangla text)",
+     "url": "https://bdlaws.minlaw.gov.bd/act-print-1262.html",
+     "publisher": "Laws of Bangladesh (bdlaws)",
+     "date": "2026-10-14"
+    }
+   ],
+   "asOf": "2026-10-14",
+   "confidence": "high"
+  },
+  {
+   "title": "12 demerit points on your licence",
+   "detail": "Every driving licence except a learner licence starts with 12 points (s.11). The Act lists speeding, jumping a red light, illegal overtaking and drunk or reckless driving among offences that cost points; phone use (s.92(2)) and failing to report a crash (s.95) cost 1 point each. The Act leaves the point level that triggers suspension or cancellation to the Rules.",
+   "sources": [
+    {
+     "title": "Road Transport Act 2018 (official Bangla text)",
+     "url": "https://bdlaws.minlaw.gov.bd/act-print-1262.html",
+     "publisher": "Laws of Bangladesh (bdlaws)",
+     "date": "2026-10-14"
+    }
+   ],
+   "asOf": "2026-10-14",
+   "confidence": "high"
+  },
+  {
+   "title": "After a crash: report it and get help",
+   "detail": "The rider must immediately tell the nearest police station (and the fire service or a hospital if needed) and get injured people to the nearest hospital as fast as possible (s.62(1)). Not doing so: up to 1 month in jail, a fine up to Tk 20,000, or both, plus 1 point (s.95). Call 999, the free national emergency line for police, fire service and ambulance.",
+   "sources": [
+    {
+     "title": "Road Transport Act 2018 (official Bangla text)",
+     "url": "https://bdlaws.minlaw.gov.bd/act-print-1262.html",
+     "publisher": "Laws of Bangladesh (bdlaws)",
+     "date": "2026-10-14"
+    },
+    {
+     "title": "National emergency service 999 now fully operational",
+     "url": "https://thefinancialexpress.com.bd/home/national-emergency-service-999-now-fully-operational",
+     "publisher": "The Financial Express"
+    }
+   ],
+   "asOf": "2026-10-14",
+   "confidence": "high"
+  },
+  {
+   "title": "If police stop you",
+   "detail": "For offences such as helmet, phone, plate or illegal-modification cases, a sub-inspector or sergeant (or higher) writes a charge and must give you a copy to sign or thumbprint; a fine paid by the date on it closes the case (s.108). In areas BRTA has notified, the officer may fine you on the spot but must record it on the set form and give you a receipt (s.113). Refusing the copy can lead to arrest without a warrant and an extra fine up to Tk 5,000 (s.108(4)). If your licence is taken you get a temporary receipt that lets you keep riding until its date (s.111). A bike held for an unpaid on-the-spot fine is released once you pay (s.113); for a bike sent to a dumping yard by a mobile court, apply to the court within 2 months (s.115).",
+   "sources": [
+    {
+     "title": "Road Transport Act 2018 (official Bangla text)",
+     "url": "https://bdlaws.minlaw.gov.bd/act-print-1262.html",
+     "publisher": "Laws of Bangladesh (bdlaws)",
+     "date": "2026-10-14"
+    }
+   ],
+   "asOf": "2026-10-14",
+   "confidence": "high"
+  },
+  {
+   "title": "Number plate, RFID tag and the front plate",
+   "detail": "Riding without the registration plate fixed and displayed breaks s.16(3): up to 6 months in jail, a fine up to Tk 50,000, or both (s.72). BRTA says the retro-reflective plate and RFID tag are mandatory, and on 24 Jun 2026 warned owners who had not collected them from their circle office of legal action (no deadline given). A front plate for motorcycles, so Dhaka's AI cameras can read it, was decided on 18 Jul 2026; a BRTA committee formed on 13 Aug 2026 was still working out size and position (report of 20 Aug 2026). Wait for BRTA's specification before fitting one.",
+   "sources": [
+    {
+     "title": "Road Transport Act 2018 (official Bangla text)",
+     "url": "https://bdlaws.minlaw.gov.bd/act-print-1262.html",
+     "publisher": "Laws of Bangladesh (bdlaws)",
+     "date": "2026-10-14"
+    },
+    {
+     "title": "BRTA: retro-reflective number plate and RFID tag mandatory (Bangla)",
+     "url": "https://www.banglatribune.com/953538",
+     "publisher": "Bangla Tribune",
+     "date": "2026-06-24"
+    },
+    {
+     "title": "Motorcycles to get a front number plate for AI-camera detection (Bangla)",
+     "url": "https://www.ittefaq.com.bd/805173/",
+     "publisher": "The Daily Ittefaq",
+     "date": "2026-08-20"
+    }
+   ],
+   "asOf": "2026-10-14",
+   "confidence": "medium"
   }
  ],
+ "lawsNote": {
+  "asOf": "2026-10-14",
+  "text": "Penalties are the maximums in the Road Transport Act 2018 as in force; courts and officers can impose less. Section numbers were checked against the official text on 14 Oct 2026. The 2024 amendment bill is cabinet-approved, not enacted, so it is not reflected here. General information, not legal advice."
+ },
+ "evRules": {
+  "asOf": "2026-10-14",
+  "items": [
+   {
+    "title": "Pedal e-bikes: no BRTA registration",
+    "detail": "The government's 2023 electric-vehicle registration policy exempts e-bikes that can also be pedalled from BRTA registration, as reported when Walton launched its pedal e-bike (Feb 2023). Ask the dealer to confirm a model's status in writing.",
+    "sources": [
+     {
+      "title": "Walton launches affordable e-bike",
+      "url": "https://www.tbsnews.net/economy/corporates/walton-launches-affordable-e-bike-584682",
+      "publisher": "The Business Standard",
+      "date": "2023-02-13"
+     }
+    ]
+   },
+   {
+    "title": "Electric scooters and motorcycles: registered by motor power",
+    "detail": "E-bikes without pedals are registered like any motorcycle, but the fee slab follows the motor's rated power: up to 5 kW pays the same Tk 2,000 registration fee as an up-to-100cc bike, above 5 kW pays Tk 3,000 (Road Transport Rules 2022, Schedule 1).",
+    "sources": [
+     {
+      "title": "BRTA - Road Transport Rules 2022, Schedule-1 fees (Bangladesh Gazette Extraordinary, 27 Dec 2022), via brta.gov.bd 'বিভিন্ন ফি'",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-brta/2024/12/2e6d2c3e81cd4418882881f35e0e95bd.pdf",
+      "publisher": "BRTA / Govt of Bangladesh",
+      "date": "2022-12-27"
+     }
+    ]
+   },
+   {
+    "title": "VAT on e-bikes: 5% until June 2030",
+    "detail": "The FY26 budget (June 2025) cut all VAT on e-bikes to 5% until June 2030, alongside duty cuts for makers of key parts; customs duty on e-bikes was still 26-60% depending on the components (Daily Star, 13 Jun 2025). We have not checked whether the FY27 budget changed this.",
+    "sources": [
+     {
+      "title": "Electric vehicle makers get VAT, duty waivers",
+      "url": "https://epfs.thedailystar.net/TDS/2025/06/13/Bangladesh/BUS/5_01/7bb30e796932bd10_01.pdf",
+      "publisher": "The Daily Star",
+      "date": "2025-06-13"
+     }
+    ]
+   }
+  ],
+  "confidence": "medium: pedal exemption and VAT come from news reports of the policy and budget"
+ },
  "usedChecklist": [
   {
    "title": "Match the blue book / DRC to the seller",
@@ -1055,6 +1272,22 @@
   {
    "title": "Legal ride-away",
    "detail": "Don't ride the bike until the transfer is filed in your name and you hold a valid licence; carry DRC, tax token and licence (or temporary authorisation)."
+  },
+  {
+   "title": "Transfer online, with the seller present",
+   "detail": "Under a BRTA notice of 1 Sep 2026, buyer and seller apply for the transfer at bsp.brta.gov.bd, then the seller's fingerprint is checked on a handheld biometric device; BRTA says the transfer can finish the same day. You can give your own biometrics for the new digital registration certificate. The Act (s.21) requires the transfer after a sale, so agree before paying in full that the seller will come for the biometric check."
+  },
+  {
+   "title": "Read the VIN prefix",
+   "detail": "The first three characters of the chassis number (VIN) name the maker, for example ME1 India Yamaha, MD2 Bajaj (also Bajaj-built KTMs), MD6 TVS, ME4 Honda Motorcycle and Scooter India, MBL Hero MotoCorp and MB8 Suzuki Motorcycle India. A prefix that does not fit the brand, or a VIN that differs from the DRC, is a reason to walk away."
+  },
+  {
+   "title": "Yamaha FZS: which generation is it?",
+   "detail": "The V3 has the key on the fuel tank, an LED headlight, front-wheel ABS and a sealed chain, and weighs about 5 kg more than the V2 (BikeBD). The V4, launched in Bangladesh on 28 Sep 2024, adds traction control, position lamps in the headlight and a Bluetooth link to Yamaha's Connect app (ACI). An FZS without ABS sold as a V3 or V4 is mislabelled."
+  },
+  {
+   "title": "Suzuki Gixxer: old or 2019 shape?",
+   "detail": "Rancon launched the 2019-generation Gixxer and Gixxer SF in Bangladesh on 1 Jul 2020. The newer Gixxer has a flat LED headlight (the old one was halogen), split rider and pillion seats and a taller seat; the newer SF is styled like the SF 250 and also has an LED headlight. Each came as carburettor + disc or fuel injection + ABS, so check for both before paying the FI price."
   }
  ],
  "usedChecklistSources": [
@@ -1097,6 +1330,34 @@
    "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-brta/2024/12/2e6d2c3e81cd4418882881f35e0e95bd.pdf",
    "publisher": "BRTA / Govt of Bangladesh",
    "date": "2022-12-27"
+  },
+  {
+   "title": "BRTA notice: online ownership transfer with seller biometrics (Bangla)",
+   "url": "https://www.dhakatimes24.com/2026/09/01/411836",
+   "publisher": "Dhaka Times",
+   "date": "2026-09-01"
+  },
+  {
+   "title": "World Manufacturer Identifier (WMI) codes",
+   "url": "https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/World_Manufacturer_Identifier_(WMI)",
+   "publisher": "Wikibooks"
+  },
+  {
+   "title": "Yamaha FZS FI V3 review",
+   "url": "https://bikebd.com/blog/yamaha-fzs-fi-v3-review-team-bikebd",
+   "publisher": "BikeBD"
+  },
+  {
+   "title": "ACI Motors launches Yamaha FZS Version 4.0 in Bangladesh",
+   "url": "https://www.aci-bd.com/events/aci-motors-launches-yamaha-fzs-version-4.0-in-bangladesh.html",
+   "publisher": "ACI",
+   "date": "2024-09-28"
+  },
+  {
+   "title": "Rancon launches 2019 Gixxer and Gixxer SF in Bangladesh",
+   "url": "https://www.tbsnews.net/node/100465",
+   "publisher": "The Business Standard",
+   "date": "2020-07-01"
   }
  ],
  "usedChecklistConfidence": "high for paperwork (BRTA page updated 30 Jun 2026); inspection tips are general practice guidance",
