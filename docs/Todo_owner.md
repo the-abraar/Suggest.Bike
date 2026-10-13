@@ -67,5 +67,5 @@ Then run `npm run validate`: it fails on unknown bike ids, bad dates, `endsOn` b
 
 ## Search (for the SEO agent, `.claude/agents/seo.md`)
 
-- [ ] Verify suggest.bike in Google Search Console (DNS TXT record) and submit `https://suggest.bike/sitemap.xml`. Also Bing Webmaster Tools (it can import from Search Console). Step-by-step: `docs/seo_google.md`.
+- [x] *(done 2026-10-14: verified via domain provider, sitemap submitted)* Verify suggest.bike in Google Search Console (DNS TXT record) and submit `https://suggest.bike/sitemap.xml`. Also Bing Webmaster Tools (it can import from Search Console). Step-by-step: `docs/seo_google.md`.
 - [ ] Once a month, paste the top queries, impressions and CTR into `docs/seo-log.md`, so the SEO agent can pick what to improve.

@@ -88,7 +88,8 @@ export const networkFor = (brand: string): BrandNetwork | undefined => NETWORKS[
 /** 0–1: how easy it is to find a showroom/workshop outside Dhaka. Unknown brands are treated as small networks. */
 export function networkReach(brand: string) {
   const n = NETWORKS[brand];
-  if (!n) return 0.3;
+  // No official count is "unknown", not "small": neutral score, above the 0.45 small-network warning in match.ts.
+  if (!n) return 0.5;
   const centres = n.serviceCentres ?? n.showrooms ?? 0;
   const div = n.allDivisions ? 1 : Math.min(1, n.divisions.length / 8);
   return Math.min(1, 0.15 + Math.min(centres, 300) / 300 * 0.55 + div * 0.3);

@@ -1,7 +1,7 @@
 // Self-tests for the pure logic in src/lib. Run: npm test (node:test via tsx).
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { BIKES, HAS_NETWORKS, formatLakh, getBike } from "../src/lib/bikes";
+import { BIKES, HAS_NETWORKS, formatLakh, getBike, networkReach } from "../src/lib/bikes";
 import {
   matchBikes,
   anyNewFits,
@@ -264,4 +264,10 @@ test("formatLakh: plain taka under a lakh; 2 decimals under 10 lakh, 1 above; tr
   assert.equal(formatLakh(250000), "৳2.5 lakh");
   assert.equal(formatLakh(1250000), "৳12.5 lakh");
   assert.equal(formatLakh(265000, "bn"), "৳2.65 লাখ");
+});
+
+test("network: a brand with no official count is neutral, not flagged as a small network", () => {
+  assert.equal(networkReach("No Such Brand"), 0.5);
+  assert.ok(networkReach("No Such Brand") >= 0.45); // match.ts warns town/village riders below 0.45
+  assert.ok(networkReach("Bajaj") > networkReach("KTM"));
 });

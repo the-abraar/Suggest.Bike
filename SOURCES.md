@@ -630,6 +630,30 @@ Compiled 2026-10-06. Fees and rules change; always confirm on brta.gov.bd / bsp.
   https://www.thedailystar.net/backpage/news/govt-shuts-door-outside-vehicles-1697077
 - BRTA starts registering ride-sharing firms — The Daily Star  
   https://d11.thedailystar.net/backpage/news/brta-starts-registering-ride-sharing-firms-1765546
+- Road Transport Act 2018 (official Bangla text) — Laws of Bangladesh (bdlaws), 2026-10-14  
+  https://bdlaws.minlaw.gov.bd/act-print-1262.html
+- National emergency service 999 now fully operational — The Financial Express  
+  https://thefinancialexpress.com.bd/home/national-emergency-service-999-now-fully-operational
+- BRTA: retro-reflective number plate and RFID tag mandatory (Bangla) — Bangla Tribune, 2026-06-24  
+  https://www.banglatribune.com/953538
+- Motorcycles to get a front number plate for AI-camera detection (Bangla) — The Daily Ittefaq, 2026-08-20  
+  https://www.ittefaq.com.bd/805173/
+- BRTA notice: online ownership transfer with seller biometrics (Bangla) — Dhaka Times, 2026-09-01  
+  https://www.dhakatimes24.com/2026/09/01/411836
+- NBR drops direct tax on autorickshaws, motorcycles, expands income tax filing requirements — Dhaka Tribune, 2026-06-06  
+  https://www.dhakatribune.com/business/411857/nbr-drops-direct-tax-on-autorickshaws
+- Walton launches affordable e-bike — The Business Standard, 2023-02-13  
+  https://www.tbsnews.net/economy/corporates/walton-launches-affordable-e-bike-584682
+- Electric vehicle makers get VAT, duty waivers — The Daily Star, 2025-06-13  
+  https://epfs.thedailystar.net/TDS/2025/06/13/Bangladesh/BUS/5_01/7bb30e796932bd10_01.pdf
+- World Manufacturer Identifier (WMI) codes — Wikibooks  
+  https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/World_Manufacturer_Identifier_(WMI)
+- ACI Motors launches Yamaha FZS Version 4.0 in Bangladesh — ACI, 2024-09-28  
+  https://www.aci-bd.com/events/aci-motors-launches-yamaha-fzs-version-4.0-in-bangladesh.html
+- Yamaha FZS FI V3 review — BikeBD  
+  https://bikebd.com/blog/yamaha-fzs-fi-v3-review-team-bikebd
+- Rancon launches 2019 Gixxer and Gixxer SF in Bangladesh — The Business Standard, 2020-07-01  
+  https://www.tbsnews.net/node/100465
 - Bangladesh hikes retail electricity price (slab table) — bdnews24.com, 2026-06-03  
   https://bdnews24.com/economy/9efadd3c57ad
 - BERC withdraws excess power tariff for up to 75 units — Dhaka Tribune, 2026-06-04  
@@ -644,3 +668,4 @@ Compiled 2026-10-06. Fees and rules change; always confirm on brta.gov.bd / bsp.
 - **ccPolicy:** high for 375cc locally-made registration rule; low for CBU import status after IPO 2026-29 (conflicting reports)
 - **fuel:** high
 - **insurance:** high for legal status and pilot premium; low for comprehensive pricing
+- **evRules:** medium: pedal exemption and VAT come from news reports of the policy and budget
