@@ -8,14 +8,14 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 
 | Site | References |
 | --- | ---: |
-| bikebd.com | 188 |
+| bikebd.com | 191 |
 | bikroy.com | 65 |
-| bdhonda.com | 24 |
-| bajajauto.com | 23 |
-| suzuki.com.bd | 19 |
+| bajajauto.com | 31 |
+| bdhonda.com | 26 |
+| suzuki.com.bd | 23 |
 | motorcyclevalley.com | 11 |
+| heromotocorp.com | 9 |
 | motorcyclebd.com | 8 |
-| heromotocorp.com | 8 |
 | royalenfield.com | 8 |
 | motorcycle.com.bd | 6 |
 | tbsnews.net | 6 |
@@ -30,18 +30,18 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 | mrp.com.bd | 2 |
 | deshibiker.com | 2 |
 | bikestall.com | 2 |
+| yamahabd.com | 2 |
 | motorcyclefair.com | 2 |
 | banglamotor.net | 1 |
 | motobikebd.com | 1 |
 | online91.thedailystar.net | 1 |
-| yamahabd.com | 1 |
 | suzukicycles.org | 1 |
 | amarujala.com | 1 |
 | bdbiker.com | 1 |
 | thedailystar.net | 1 |
 | waltondigitech.com | 1 |
 
-**Primary price source** (the `priceSource` of each bike): bikebd.com 52 (63%), bdhonda.com 9 (11%), suzuki.com.bd 7 (8%), bajajauto.com 6 (7%), royalenfield.com 4 (5%), bikroy.com 4 (5%), waltonbd.com 1 (1%).
+**Primary price source** (the `priceSource` of each bike): bikebd.com 49 (56%), bajajauto.com 10 (11%), bdhonda.com 10 (11%), suzuki.com.bd 8 (9%), royalenfield.com 4 (5%), bikroy.com 4 (5%), heromotocorp.com 1 (1%), waltonbd.com 1 (1%).
 
 ## Bike data — per bike
 
@@ -59,6 +59,9 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://www.bikebd.com/price/bajaj-platina-es
   - https://www.bikebd.com/brand/bajaj
   - https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh
+- **Platina 110 H** — ৳1,40,100 as of 2026-10
+  - Price: https://www.bajajauto.com/en-bd/bikes/platina-110-h
+  - https://bikebd.com/price/bajaj-platina-110cc-price-in-bangladesh
 - **CT 100** (ES) — ৳1,20,100 as of 2026-10
   - Price: https://www.bajajauto.com/en-bd/bikes/ct-100-es
   - https://www.bikebd.com/price/bajaj-ct-100-price-in-bangladesh
@@ -70,6 +73,10 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://www.bikebd.com/price/discover-125-price-in-bangladesh
   - https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh
   - Used asking prices (2026-10): ~1 yr ৳1,40,000, ~3 yr ৳1,25,000 — https://bikroy.com/bn/motorcycles-and-scooters/bajaj-discover-125, https://bikroy.com/bn/motorcycles-and-scooters/bajaj-discover-125-2025, https://bikroy.com/bn/motorcycles-and-scooters/bajaj-discover-125-2023
+- **Discover 110** (Disc) — ৳1,49,600 as of 2026-10
+  - Price: https://www.bajajauto.com/en-bd/bikes/discover-110-disc
+  - https://www.bikebd.com/price/bajaj-discover-110-disc
+  - https://www.bikebd.com/price/bajaj-discover-110-disc/specifications
 - **Pulsar NS125** — ৳1,69,850 as of 2026-10
   - Price: https://www.bajajauto.com/en-bd/bikes/pulsar-ns125
   - https://www.bikebd.com/price/bajaj-pulsar-ns-125
@@ -97,12 +104,14 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 - **Avenger Street 160** (ABS) — ৳2,74,000 as of 2026-09
   - Price: https://www.bikebd.com/price/bajaj-avenger-160-abs
   - https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh
-- **Pulsar N250** — ৳3,30,100 as of 2026-09
-  - Price: https://www.bikebd.com/price/bajaj-pulsar-n250
+- **Pulsar N250** — ৳3,60,000 as of 2026-10
+  - Price: https://www.bajajauto.com/en-bd/bikes/pulsar-n250
+  - https://www.bikebd.com/price/bajaj-pulsar-n250
   - https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh
   - Used asking prices (2026-10): ~1 yr ৳2,85,000, ~3 yr — — https://bikroy.com/bn/motorcycles-and-scooters/bajaj-pulsar-n250
-- **Pulsar F250** — ৳3,50,100 as of 2026-09
-  - Price: https://www.bikebd.com/price/bajaj-pulsar-f250-abs-2024
+- **Pulsar F250** — ৳3,65,100 as of 2026-10
+  - Price: https://www.bajajauto.com/en-bd/bikes/pulsar-f250
+  - https://www.bikebd.com/price/bajaj-pulsar-f250-abs-2024
   - https://www.bikebd.com/price/pulsar-f250
   - https://www.bikebd.com/brand/bajaj
   - https://mrp.com.bd/product/bajaj-pulsar-f250/
@@ -151,10 +160,10 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - Price: https://www.bikebd.com/price/hero-xtreme-125r
   - https://www.heromotocorp.com/en-bd/the-bike/passion-xpro-xtec-110cc-motorcycle-91.html
   - Used asking prices (2026-10): ~1 yr ৳1,55,000, ~3 yr — — https://bikroy.com/bn/motorcycles-and-scooters/hero-xtreme-125r
-- **Hunk 150R** (Dual Disc ABS) — ৳2,07,000 as of 2026-09
-  - Price: https://www.bikebd.com/price/hero-hunk-150-price-in-bangladesh
+- **Hunk 150R** (Dual Disc ABS) — ৳2,10,000 as of 2026-10
+  - Price: https://www.heromotocorp.com/en-bd/products/premium/hunk-150r-price-in-bangladesh.html
+  - https://www.bikebd.com/price/hero-hunk-150-price-in-bangladesh
   - https://www.bikebd.com/price/hero-hunk-150r-xtec
-  - https://www.heromotocorp.com/en-bd/products/premium/hunk-150r-price-in-bangladesh.html
   - Used asking prices (2026-10): ~1 yr ৳1,75,000, ~3 yr ৳1,35,000 — https://bikroy.com/bn/motorcycles-and-scooters/hero-hunk-150r
 - **Thriller 160R 4V** — ৳2,20,000 as of 2026-09
   - Price: https://www.bikebd.com/price/hero-xtreme-160r-4v
@@ -235,8 +244,9 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://bikebd.com/blog/2021-honda-cbr150-r-officially-launched
   - https://www.bdhonda.com/product/cbr-150r/index
   - Photo: Chanokchon, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:2021_Honda_CBR150R_ABS.jpg
-- **Dio** (110) — ৳1,99,000 as of 2026-10
-  - Price: https://www.bikebd.com/price/honda-dio-price-in-bangladesh
+- **Dio** (110) — ৳1,57,000 as of 2026-10
+  - Price: https://www.bdhonda.com/products/dio
+  - https://www.bikebd.com/price/honda-dio-price-in-bangladesh
   - https://www.bdhonda.com/product/dio/index
   - Used asking prices (2026-10): ~1 yr ৳1,75,000, ~3 yr ৳1,60,000 — https://bikroy.com/bn/motorcycles-and-scooters/honda-dio, https://bikroy.com/bn/motorcycles-and-scooters/honda-dio-2023
   - Photo: Ganesh Mohan T, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Honda_Dio_2.jpg
@@ -254,7 +264,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://www.amarujala.com/automobiles/ktm-india-discontinues-125-duke-and-rc-125-in-indian-market-know-details-2025-04-02
   - Used asking prices (2026-10): ~1 yr —, ~3 yr ৳2,05,000 — https://bikroy.com/bn/motorcycles-and-scooters/ktm-duke-125
   - Photo: Corvettec6r, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:KTM_Duke_125.jpg
-- **RC 125** — ৳3,70,000 as of 2026-10
+- **RC 125** — ৳4,43,000 as of 2026-10
   - Price: https://bikebd.com/price/ktm-rc-125-2022
   - https://bikebd.com/brand/ktm
   - https://www.tbsnews.net/node/191338
@@ -342,8 +352,13 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - Price: https://www.suzuki.com.bd/
   - https://www.bikebd.com/price/gixxer-price-in-bd
   - https://www.bikebd.com/price/suzuki-gixxer-carb-disc
+  - https://www.suzuki.com.bd/product/gixxer-classic-matt
   - Used asking prices (2026-10): ~1 yr ৳1,80,000, ~3 yr ৳1,60,000 — https://bikroy.com/bn/motorcycles-and-scooters/suzuki-gixxer-monotone, https://bikroy.com/bn/motorcycles-and-scooters/suzuki-gixxer-monotone-2025
   - Photo: XalD, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Suzuki_Gixxer_negra.jpg
+- **Gixxer Carb** (Carburettor, Double Disc) — ৳2,37,950 as of 2026-10
+  - Price: https://www.suzuki.com.bd/
+  - https://suzuki.com.bd/product/gixxer
+  - https://www.bikebd.com/price/suzuki-gixxer-carb-disc
 - **Gixxer FI ABS** (FI ABS) — ৳2,82,950 as of 2026-10
   - Price: https://suzuki.com.bd/product/gixxer
   - https://www.bikebd.com/price/suzuki-gixxer-abs-price-in-bangladesh
@@ -372,7 +387,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://www.bikepartsbd.com/product/suzuki-gixxer-front-brake-pads/
   - Used asking prices (2026-10): ~1 yr ৳3,55,000, ~3 yr — — https://bikroy.com/bn/motorcycles-and-scooters/suzuki-gixxer-sf-250
   - Photo: ShunyaIshiwatari, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Suzuki_Gixxer_Sf250_%E3%83%88%E3%83%AA%E3%83%88%E3%83%B3%E3%83%96%E3%83%AB%E3%83%BC.jpg
-- **V-Strom SX 250** — ৳4,49,000 as of 2026-10
+- **V-Strom SX 250** — ৳4,49,950 as of 2026-10
   - Price: https://www.bikebd.com/price/suzuki-v-strom-sx
   - https://www.bikebd.com/price/suzuki-v-strom-sx/specifications
   - https://suzukicycles.org/V-Strom/V-Strom-250SX.shtml
@@ -455,19 +470,23 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/
   - Used asking prices (2026-10): ~1 yr —, ~3 yr ৳1,15,000 — https://bikroy.com/bn/motorcycles-and-scooters/yamaha-saluto-125
   - Photo: Rainmaker47, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:2015_Yamaha_YC125-4_Saluto.JPG
-- **Fazer FI V2** — ৳2,74,000 as of 2026-10
+- **Fazer FI V2** — ৳2,72,000 as of 2026-10
   - Price: https://www.bikebd.com/price/yamaha-fazer-price-in-bangladesh
   - https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/
   - Used asking prices (2026-10): ~1 yr ৳2,55,000, ~3 yr ৳2,05,000 — https://bikroy.com/bn/motorcycles-and-scooters/yamaha-fazer-fi-v2
-- **FZS FI V4** — ৳2,94,500 as of 2026-10
+- **FZS FI V4** — ৳2,92,500 as of 2026-10
   - Price: https://www.bikebd.com/price/yamaha-fzs-v4
   - https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/
   - Used asking prices (2026-10): ~1 yr ৳2,75,000, ~3 yr ৳2,50,000 — https://bikroy.com/bn/motorcycles-and-scooters/yamaha-fzs-fi-v4, https://bikroy.com/bn/motorcycles-and-scooters/yamaha-yzf-r15-v4
   - Photo: Ganesh Mohan T, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Yamaha_FZS.jpg
-- **FZS FI Hybrid** — ৳3,47,500 as of 2026-10
+- **FZS V2** (FI Double Disc) — ৳2,34,000 as of 2026-10
+  - Price: https://bikebd.com/price/fzs-v2-price-in-bd
+  - https://bikebd.com/price/fzs-v2-price-in-bd/color
+  - https://www.yamahabd.com/products
+- **FZS FI Hybrid** — ৳3,44,500 as of 2026-10
   - Price: https://www.bikebd.com/price/yamaha-fz-s-fi-hybrid-2025
   - https://online91.thedailystar.net/business/news/aci-motors-launches-yamaha-hybrid-motorcycle-4083056
-- **FZ-X** — ৳2,93,500 as of 2026-10
+- **FZ-X** — ৳2,92,500 as of 2026-10
   - Price: https://www.bikebd.com/price/yamaha-fz-x-price-in-bangladesh
   - https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/
   - Used asking prices (2026-10): ~1 yr ৳2,40,000, ~3 yr ৳2,30,000 — https://bikroy.com/bn/motorcycles-and-scooters/yamaha-fz-x
@@ -475,7 +494,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - Price: https://www.bikebd.com/price/yamaha-fz-25
   - https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/
   - https://www.yamahabd.com/products/yamaha-fz-25/
-- **R15 V4** (Indian-spec) — ৳6,10,000 as of 2026-10
+- **R15 V4** (Indian-spec) — ৳6,05,000 as of 2026-10
   - Price: https://www.bikebd.com/price/r15-v4-price-in-bangladesh
   - https://www.bikebd.com/price/yamaha-r15m-price-in-bangladesh
   - https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/
