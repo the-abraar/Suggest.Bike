@@ -1,7 +1,7 @@
 // Self-tests for the pure logic in src/lib. Run: npm test (node:test via tsx).
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { BIKES, HAS_NETWORKS, getBike } from "../src/lib/bikes";
+import { BIKES, HAS_NETWORKS, formatLakh, getBike } from "../src/lib/bikes";
 import {
   matchBikes,
   anyNewFits,
@@ -233,4 +233,35 @@ test("payPaths: the default processing fee is charged on the amount financed and
   const loanFee = 140000 * 0.015; // on the financed 70%, not on the down payment
   assert.ok(Math.abs(p.loan.extra - (p.loan.emi * 24 - 140000) - loanFee) < 1e-6);
   assert.ok(p.card.total > p.cash.total);
+});
+
+// ---------------- gaps from docs/Todo_agent.md P2 Tests ----------------
+test("match: seat-height penalty lowers the score of the same bike for a short rider", () => {
+  const byId = (h: Answers["height"]) => new Map(matchBikes(A({ budget: 900000, height: h }), 1000).map((m) => [m.bike.id, m]));
+  const short = byId("short"), tall = byId("tall");
+  const hit = [...short.values()].filter((m) => m.warnings.some((w) => /tiptoes/.test(w.en)));
+  assert.ok(hit.length > 0);
+  // the score is rounded, so a few mm over the limit can round to no change
+  for (const m of hit) assert.ok(m.score <= tall.get(m.bike.id)!.score, m.bike.id);
+  assert.ok(hit.filter((m) => m.score < tall.get(m.bike.id)!.score).length >= hit.length / 2);
+});
+test("cost: 2-year plan renews road tax every 2 years after the first registration", () => {
+  for (const id of ["bajaj-platina-100", "bajaj-pulsar-n160"]) {
+    const b = bike(id);
+    const paper = (years: number) => ownershipCost(b, { ...DEFAULT_COST_INPUT, taxPlan: "2yr", years }).paperwork;
+    const renewal = b.engine.cc <= 100 ? 1150 : 2300; // ROAD_TAX_2YR in src/lib/cost.ts
+    assert.equal(paper(1), registrationFor(b.engine.cc).totalBDT);
+    assert.equal(paper(2), paper(1));
+    assert.equal(paper(3), paper(1) + renewal);
+    assert.equal(paper(4), paper(1) + renewal);
+    assert.equal(paper(5), paper(1) + 2 * renewal);
+  }
+});
+test("formatLakh: plain taka under a lakh; 2 decimals under 10 lakh, 1 above; trailing zeros trimmed; Bangla unit", () => {
+  assert.equal(formatLakh(99999), "৳99,999");
+  assert.equal(formatLakh(100000), "৳1 lakh");
+  assert.equal(formatLakh(265000), "৳2.65 lakh");
+  assert.equal(formatLakh(250000), "৳2.5 lakh");
+  assert.equal(formatLakh(1250000), "৳12.5 lakh");
+  assert.equal(formatLakh(265000, "bn"), "৳2.65 লাখ");
 });
