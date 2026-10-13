@@ -6,6 +6,7 @@ import { T, useLang } from "@/lib/i18n";
 import { BIKES, CATEGORIES } from "@/lib/bikes";
 import type { Category } from "@/lib/types";
 import { whatsappUrl } from "@/lib/site";
+import { THROTTLE_IQ_URL } from "./ThrottleIqCard";
 
 export function Footer() {
   const { t, lang } = useLang();
@@ -13,7 +14,7 @@ export function Footer() {
   const latest = BIKES.map((b) => b.priceAsOf).sort()[0]; // oldest, so stale prices are not hidden by fresh ones
   return (
     <footer className="mt-24 border-t border-line bg-surface">
-      <div className="container-x grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div className="container-x grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]">
         <div className="max-w-sm space-y-4">
           <Logo />
           <p className="text-[14px] leading-relaxed text-muted">
@@ -35,6 +36,21 @@ export function Footer() {
               {lang === "bn" ? CATEGORIES[c].bn : CATEGORIES[c].en}
             </FLink>
           ))}
+        </FooterCol>
+        <FooterCol title={tx("New bike owner", "নতুন বাইক নিয়ে কী করবেন")}>
+          <FLink href="/owner/">{tx("What to do after buying", "কেনার পর কী করবেন")}</FLink>
+          <FLink href="/owner/#breakin">{tx("Engine break-in", "ইঞ্জিন ব্রেক-ইন")}</FLink>
+          <FLink href="/owner/#checks">{tx("Basic checks", "বেসিক চেক")}</FLink>
+          <FLink href="/owner/#registration">{tx("Register or not?", "রেজিস্ট্রেশন লাগবে?")}</FLink>
+          <FLink href="/owner/#accessories">{tx("Accessories to buy", "কোন অ্যাকসেসরিজ কিনবেন")}</FLink>
+        </FooterCol>
+        <FooterCol title={tx("Maintenance", "রক্ষণাবেক্ষণ")}>
+          <FLink href="/maintenance/">{tx("Maintenance guides", "রক্ষণাবেক্ষণ গাইড")}</FLink>
+          <li>
+            <a href={THROTTLE_IQ_URL} target="_blank" rel="noopener noreferrer" className="text-[14px] text-ink-2 transition-colors hover:text-brand">
+              ThrottleIQ app
+            </a>
+          </li>
         </FooterCol>
         <FooterCol title={tx("Learn", "জানুন")}>
           <FLink href="/guide/#registration">{tx("Registration cost", "রেজিস্ট্রেশন খরচ")}</FLink>

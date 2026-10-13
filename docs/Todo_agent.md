@@ -50,6 +50,18 @@ Full findings and file references: `docs/researching-stuff-uses.md`. Every numbe
 - [ ] **Small anchors:** fuel price history Jan 2024 → Sep 2026 (+36%) on /cost or /changes; check `dealers.json` hotlines (Suzuki 16638, Yamaha 16533).
 - Do not use: the Keeway/Benelli/Kawasaki/KTM "upcoming" tables, empty Walton rows, 2015-2019 duty fragments, the "Tk 518 tax token" item, Indian warranty figures.
 
+## New-owner and maintenance pages (added 2026-10-13)
+
+`/owner/` and `/maintenance/` (+ `/bn/` twins) are live with generic starter content. Posts live in `src/lib/maintenance-posts.ts`; keep slugs stable. The owner rewrites the text over time, so add content in the same shape and mark nothing "coming soon".
+
+- [ ] **Series 2: seasonal and "before it breaks".** Spark plug check; coolant and radiator (liquid-cooled bikes); clutch and throttle cable free play and lube; headlight bulb and fuse swap; washing the bike without damaging it; long-term parking and storage; winter starting.
+- [ ] **Series 3: buying and owning smart.** Service schedule explained (what the 1st, 2nd and 3rd free services cover); what a fair workshop bill looks like and how to spot upselling; genuine vs duplicate parts and how to tell; fuel and mileage habits that save money; warranty: what voids it.
+- [ ] **Series 4: safety and riding skills.** Helmet buying and care (ISI/DOT marks, replacing after a crash); riding in rain and fog; night riding; emergency braking; pillion and luggage load; what to do after a crash or breakdown (documents, insurance, police).
+- [ ] **Series 5: model-specific cheat sheets.** One page per top seller (tyre pressure, oil grade and quantity, chain slack, service interval) from the manual, linked from `/bikes/[id]`. Needs the owner to verify each figure against the manual.
+- [ ] **Post features.** Photos or short videos per step (owner's own); a printable monthly checklist; "ask a mechanic" Q&A; link each `/bikes/[id]` page to the relevant guides; bike-specific ThrottleIQ intervals once the app exposes them.
+- [ ] **`/owner/` additions.** First-service booking checklist; insurance for new owners (link to the guide); theft prevention and what to do if the bike is stolen; a "first month" timeline.
+- [ ] **Needs the owner.** Review and personally rewrite the 8 starter posts; supply photos; confirm the ThrottleIQ description and add a store or download link when one exists (the card currently links to the GitHub repo).
+
 ## P2 — Engineering
 
 - [x] **Per-bike Bangla URLs** (`/bn/bikes/[id]`) *(done 2026-10-13)* so Google indexes the Bangla pages. Today the language is client-side only.

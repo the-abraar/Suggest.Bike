@@ -17,7 +17,6 @@ const NAV: { href: string; k: DictKey }[] = [
   { href: "/cost/", k: "nav.cost" },
   { href: "/guide/", k: "nav.guide" },
   { href: "/dealers/", k: "nav.dealers" },
-  { href: "/method/", k: "nav.method" },
 ];
 
 export function Header() {
