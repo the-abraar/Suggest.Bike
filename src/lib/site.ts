@@ -15,6 +15,12 @@ export const SITE = {
 /** Formspree-compatible JSON endpoint (e.g. https://formspree.io/f/xxxx). Empty: forms open a prefilled email instead. See docs/Todo_owner.md. */
 export const FORM_ENDPOINT: string = "";
 
+/** WhatsApp number in international digits only (e.g. "8801XXXXXXXXX"). Empty: no WhatsApp link is shown. See Todo_owner.md. */
+export const WHATSAPP: string = "";
+
+/** wa.me chat link with a prefilled message, or "" when WHATSAPP is not set. */
+export const whatsappUrl = (text: string) => (WHATSAPP ? `https://wa.me/${WHATSAPP.replace(/\D/g, "")}?text=${encodeURIComponent(text)}` : "");
+
 /** GoatCounter site code (the "xxx" in xxx.goatcounter.com). Empty: no analytics script is loaded. See docs/Todo_owner.md. */
 export const GOATCOUNTER_CODE: string = "";
 

@@ -47,10 +47,13 @@ const DICT = {
   "common.compareNow": { en: "Compare now", bn: "এখনই তুলনা করুন" },
   "common.clear": { en: "Clear", bn: "মুছুন" },
   "common.selected": { en: "selected", bn: "নির্বাচিত" },
+  "price.onRoad": { en: "on-road, with 2-year tax token", bn: "অন-রোড, ২ বছরের ট্যাক্স টোকেনসহ" },
+  "price.exShowroom": { en: "ex-showroom", bn: "শোরুম মূল্য" },
+  "price.usedAsking": { en: "used, asking price", bn: "পুরনো, চাওয়া দাম" },
 
   "footer.tag": {
-    en: "Built for Bangladeshi riders. Prices are ex-showroom and change often — always confirm with the showroom before paying.",
-    bn: "বাংলাদেশি রাইডারদের জন্য তৈরি। দাম শোরুম মূল্য এবং প্রায়ই বদলায় — টাকা দেওয়ার আগে শোরুমে নিশ্চিত হোন।",
+    en: "Built for Bangladeshi riders. On-road prices are ex-showroom plus BRTA registration with a 2-year tax token; prices change often — always confirm with the showroom before paying.",
+    bn: "বাংলাদেশি রাইডারদের জন্য তৈরি। অন-রোড দাম = শোরুম মূল্য + ২ বছরের ট্যাক্স টোকেনসহ BRTA রেজিস্ট্রেশন; দাম প্রায়ই বদলায় — টাকা দেওয়ার আগে শোরুমে নিশ্চিত হোন।",
   },
 } as const;
 

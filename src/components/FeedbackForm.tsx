@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTx } from "@/lib/i18n";
-import { FORM_ENDPOINT, SITE, track } from "@/lib/site";
+import { FORM_ENDPOINT, SITE, track, whatsappUrl } from "@/lib/site";
 import { LIMITS, reportBody, validateReport, type ReportInput, type ReportKind } from "@/lib/report";
 
 const ERR: Record<string, [string, string]> = {
@@ -25,6 +25,7 @@ export function FeedbackForm({ kind, bike }: { kind: ReportKind; bike?: { id: st
   const subject = kind === "owner" ? `Owner report: ${bike?.name ?? ""}` : "Suggest.Bike feedback";
   const body = reportBody(kind, r, bike);
   const mailto = `mailto:${SITE.contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const wa = whatsappUrl(kind === "owner" ? `Owner report: ${bike?.name ?? ""}\n` : "Suggest.Bike feedback:\n");
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -89,6 +90,11 @@ export function FeedbackForm({ kind, bike }: { kind: ReportKind; bike?: { id: st
       )}
       <div className="flex flex-wrap items-center gap-3">
         <button type="submit" disabled={state === "sending"} className="btn-primary">{state === "sending" ? tx("Sending…", "পাঠানো হচ্ছে…") : tx("Send", "পাঠান")}</button>
+        {wa && (
+          <a href={wa} target="_blank" rel="noopener noreferrer" className="btn-secondary">
+            {tx("Or message on WhatsApp", "অথবা হোয়াটসঅ্যাপে লিখুন")}
+          </a>
+        )}
         <span className="text-[12.5px] text-faint">{FORM_ENDPOINT ? tx("No account needed. No name or phone asked.", "অ্যাকাউন্ট লাগবে না। নাম বা ফোন চাওয়া হয় না।") : tx("Opens your email app with this filled in.", "এগুলো লেখা অবস্থায় আপনার ইমেইল অ্যাপ খুলবে।")}</span>
       </div>
       {state === "error" && (

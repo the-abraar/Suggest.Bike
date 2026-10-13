@@ -6,7 +6,7 @@ import { ArrowRight, BadgeCheck, Fuel, Gauge, ShieldCheck, Sparkles, Wallet, Wre
 import { BIKES, BRANDS, CATEGORIES, PRICE_BANDS, formatBDT, formatLakh, fullName } from "@/lib/bikes";
 import { matchBikes, DEFAULT_ANSWERS, encodeAnswers, type Use } from "@/lib/match";
 import { popularPairs } from "@/lib/curated";
-import { FUEL, ownershipCost, DEFAULT_COST_INPUT, registrationFor, emiMonthly } from "@/lib/cost";
+import { FUEL, ownershipCost, DEFAULT_COST_INPUT, registrationFor, emiMonthly, onRoadPrice } from "@/lib/cost";
 import { useLang, useTx, L } from "@/lib/i18n";
 import { BikeArt } from "@/components/BikeArt";
 import { SearchBox } from "@/components/SearchBox";
@@ -75,11 +75,11 @@ export function HomeView() {
         <SectionHead
           eyebrow={tx("Shop by budget", "বাজেট অনুযায়ী")}
           title={<L en="What can my money buy?" bn="আমার বাজেটে কী পাব?" />}
-          sub={<L en="Ex-showroom prices. Add roughly ৳12–21k for BRTA registration." bn="শোরুম মূল্য। BRTA রেজিস্ট্রেশনের জন্য আরও ১২–২১ হাজার টাকা ধরুন।" />}
+          sub={<L en="On-road prices: ex-showroom plus BRTA registration with a 2-year tax token." bn="অন-রোড দাম: শোরুম মূল্য + ২ বছরের ট্যাক্স টোকেনসহ BRTA রেজিস্ট্রেশন।" />}
         />
         <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
           {PRICE_BANDS.map((band) => {
-            const inBand = onSale.filter((b) => b.priceBDT >= band.min && b.priceBDT < band.max);
+            const inBand = onSale.filter((b) => onRoadPrice(b) >= band.min && onRoadPrice(b) < band.max);
             const art = [...inBand].sort((a, b) => b.scores.resale + b.scores.reliability - (a.scores.resale + a.scores.reliability))[0];
             return (
               <Link

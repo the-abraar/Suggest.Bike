@@ -19,7 +19,7 @@ import {
   type Answers,
 } from "../src/lib/match";
 import { emiMonthly, registrationFor, yearlyRetention, defaultUsedPrice, ownershipCost, DEFAULT_COST_INPUT, type CostBike } from "../src/lib/cost";
-import { loanEmi, payPaths } from "../src/lib/fund";
+import { DEFAULT_FEE_PCT, loanEmi, payPaths } from "../src/lib/fund";
 
 const A = (o: Partial<Answers> = {}): Answers => ({ ...DEFAULT_ANSWERS, ...o });
 const bike = (id: string) => getBike(id)! as unknown as CostBike & typeof BIKES[number];
@@ -209,4 +209,28 @@ test("cost: all bikes produce finite non-negative totals; zero km/years do not y
     for (const k of ["perKm", "perMonth", "runningPerMonth", "pocketPerMonth"] as const) assert.ok(Number.isFinite(r[k]), `${JSON.stringify(o)} ${k}`);
   }
   assert.equal(ownershipCost(bike("bajaj-platina-100"), { ...DEFAULT_COST_INPUT, kmPerDay: 0 }).fuel, 0);
+});
+
+// ---------------- one on-road price, fee default ----------------
+test("on-road: match and cost agree (2-year token default) for petrol, EV and used-only bikes", () => {
+  const ev = BIKES.find((b) => b.engine.fuel === "electric") as CostBike | undefined;
+  const usedOnly = BIKES.find((b) => b.status === "used-only") as CostBike | undefined;
+  assert.ok(ev && usedOnly, "fixtures need an EV and a used-only bike in src/data/bikes.json");
+  assert.equal(DEFAULT_COST_INPUT.taxPlan, "2yr");
+  assert.equal(DEFAULT_COST_INPUT.insurance, true);
+  for (const b of [bike("bajaj-platina-100"), bike("bajaj-pulsar-n160"), ev, usedOnly]) assert.equal(ownershipCost(b, DEFAULT_COST_INPUT).onRoad, onRoadPrice(b));
+  const n160 = bike("bajaj-pulsar-n160");
+  assert.equal(onRoadPrice(n160), n160.priceBDT + registrationFor(n160.engine.cc).totalBDT);
+  assert.equal(onRoadPrice(usedOnly), usedOnly.priceBDT); // no new registration on a used-only bike
+  assert.equal(ownershipCost(n160, { ...DEFAULT_COST_INPUT, taxPlan: "10yr" }).onRoad, n160.priceBDT + registrationFor(n160.engine.cc).totalBDT10yr);
+});
+test("payPaths: the default processing fee is charged on the amount financed and counted in each EMI total", () => {
+  assert.equal(DEFAULT_FEE_PCT, 1.5);
+  const p = payPaths({ price: 200000, brta: 11764, cardMonths: 12, feePct: DEFAULT_FEE_PCT, loanDownPct: 30, loanPct: 14, loanMonths: 24 });
+  assert.equal(p.card.extra, 3000); // 1.5% of 2,00,000
+  assert.equal(p.card.total, 200000 + 11764 + 3000);
+  assert.equal(p.card.upfront, 11764 + 3000);
+  const loanFee = 140000 * 0.015; // on the financed 70%, not on the down payment
+  assert.ok(Math.abs(p.loan.extra - (p.loan.emi * 24 - 140000) - loanFee) < 1e-6);
+  assert.ok(p.card.total > p.cash.total);
 });

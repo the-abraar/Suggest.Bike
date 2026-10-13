@@ -5,6 +5,7 @@ import { Logo } from "./Logo";
 import { T, useLang } from "@/lib/i18n";
 import { BIKES, CATEGORIES } from "@/lib/bikes";
 import type { Category } from "@/lib/types";
+import { whatsappUrl } from "@/lib/site";
 
 export function Footer() {
   const { t, lang } = useLang();
@@ -45,6 +46,13 @@ export function Footer() {
           <FLink href="/changes/">{tx("Price changes", "দামের পরিবর্তন")}</FLink>
           <FLink href="/dealers/">{tx("Where to buy", "কোথায় কিনবেন")}</FLink>
           <FLink href="/feedback/">{tx("Report a mistake", "ভুল জানান")}</FLink>
+          {whatsappUrl("") && (
+            <li>
+              <a href={whatsappUrl("Suggest.Bike: ")} target="_blank" rel="noopener noreferrer" className="text-[14px] text-ink-2 transition-colors hover:text-brand">
+                {tx("WhatsApp us", "হোয়াটসঅ্যাপে লিখুন")}
+              </a>
+            </li>
+          )}
         </FooterCol>
       </div>
       <div className="border-t border-line">

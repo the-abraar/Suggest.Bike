@@ -4,7 +4,8 @@ import Link from "@/components/LangLink";
 import { useEffect, useMemo, useState } from "react";
 import { Plus, Search, X } from "lucide-react";
 import { BIKES, SCORE_LABELS, avgMileage, ccLabel, formatBDT, formatLakh, fullName, getBike, mileageText, partLabel, tagline } from "@/lib/bikes";
-import { DEFAULT_COST_INPUT, emiMonthly, ownershipCost, registrationFor } from "@/lib/cost";
+import { DEFAULT_COST_INPUT, emiMonthly, onRoadPrice, ownershipCost } from "@/lib/cost";
+import { OfferTag } from "@/components/Dated";
 import { popularPairs } from "@/lib/curated";
 import { useStore, MAX_COMPARE } from "@/lib/store";
 import { useLang, useTx } from "@/lib/i18n";
@@ -79,7 +80,10 @@ function Compare({ params }: { params: URLSearchParams }) {
                   <span className="hidden sm:inline">{b.brand} </span>
                   {b.model}
                 </Link>
-                <p className="text-[13px] text-muted tnum">{formatLakh(b.priceBDT, lang)}</p>
+                <p className="flex flex-wrap items-center gap-1.5 text-[13px] text-muted tnum">
+                  {formatLakh(onRoadPrice(b), lang)} {b.status === "used-only" ? tx("used", "পুরনো") : tx("on-road", "অন-রোড")}
+                  <OfferTag bikeId={b.id} />
+                </p>
               </div>
               <button
                 onClick={() => update(ids.filter((x) => x !== b.id))}
@@ -144,7 +148,7 @@ function AddSlot({ exclude, onPick }: { exclude: string[]; onPick: (id: string) 
                 <BikeArt bike={b} shadow={false} className="h-full w-full" />
               </span>
               <span className="min-w-0 flex-1 truncate text-[14px] font-medium text-ink">{fullName(b)}</span>
-              <span className="text-[13px] text-muted tnum">{formatLakh(b.priceBDT, lang)}</span>
+              <span className="text-[13px] text-muted tnum">{formatLakh(onRoadPrice(b), lang)}</span>
             </button>
           ))}
         </div>
@@ -224,11 +228,19 @@ function Table({ bikes }: { bikes: BikeLite[] }) {
     {
       title: tx("Money", "টাকা"),
       rows: [
-        { label: tx("Price", "দাম"), values: bikes.map((b) => formatBDT(b.priceBDT)), nums: bikes.map((b) => b.priceBDT), better: "low" },
         {
-          label: tx("On-road (10-yr tax token)", "অন-রোড (১০ বছরের ট্যাক্স টোকেন)"),
-          values: bikes.map((b) => (b.status === "used-only" ? tx("Used — transfer only", "পুরনো — শুধু মালিকানা বদল") : formatBDT(b.priceBDT + registrationFor(b.engine.cc).totalBDT10yr))),
+          label: tx("On-road, with 2-year tax token", "অন-রোড, ২ বছরের ট্যাক্স টোকেনসহ"),
+          values: bikes.map((b) => (
+            <>
+              {formatBDT(onRoadPrice(b))}
+              {b.status === "used-only" && <span className="block text-[12px] font-normal text-muted">{tx("used, asking price", "পুরনো, চাওয়া দাম")}</span>}
+              <OfferTag bikeId={b.id} className="mt-1 inline-block" />
+            </>
+          )),
+          nums: bikes.map((b) => onRoadPrice(b)),
+          better: "low",
         },
+        { label: tx("Ex-showroom", "শোরুম মূল্য"), values: bikes.map((b) => (b.status === "used-only" ? "—" : formatBDT(b.priceBDT))) },
         {
           label: tx("12-month card EMI", "১২ মাসের কার্ড কিস্তি"),
           values: bikes.map((b) => (b.status === "used-only" ? "—" : `${formatBDT(emiMonthly(b.priceBDT))}${tx("/mo", "/মাস")}`)),
@@ -470,7 +482,7 @@ function Verdict({ bikes }: { bikes: BikeLite[] }) {
     return list[vals.indexOf(best)];
   };
   const items = [
-    { k: tx("Cheaper to buy", "কিনতে সস্তা"), b: pick((b) => b.priceBDT, false) },
+    { k: tx("Cheaper to buy", "কিনতে সস্তা"), b: pick((b) => onRoadPrice(b), false) },
     { k: tx("Cheaper to run", "চালাতে সস্তা"), b: pick((b) => ownershipCost(b, DEFAULT_COST_INPUT).runningPerMonth, false) },
     { k: tx("Quicker", "বেশি দ্রুত"), b: pick((b) => b.powerPS / b.weightKg) },
     { k: tx("Better mileage", "মাইলেজ বেশি"), b: petrol.length > 1 ? pick(avgMileage, true, petrol) : null }, // kmpl means nothing for an EV

@@ -22,8 +22,8 @@ const ROWS: Row[] = [
   {
     what: ["On-road cost", "অন-রোড খরচ"],
     how: [
-      "Ex-showroom price plus the BRTA registration package for the engine size (fees, 10-year tax token, number plate and VAT), taken from the BRTA fee schedule and the Road Transport Rules 2022 in our Buyer's guide. Dealer handling charges and offers are not included, so ask the showroom.",
-      "শোরুম মূল্য + ইঞ্জিনের সিসি অনুযায়ী BRTA রেজিস্ট্রেশন প্যাকেজ (ফি, ১০ বছরের ট্যাক্স টোকেন, নম্বর প্লেট ও ভ্যাট), ক্রেতা গাইডে দেওয়া BRTA ফি তালিকা ও সড়ক পরিবহন বিধিমালা ২০২২ থেকে। ডিলারের হ্যান্ডলিং চার্জ ও অফার ধরা হয়নি, তাই শোরুমে জিজ্ঞেস করুন।",
+      "Ex-showroom price plus the BRTA registration package for the engine size (fees, 2-year tax token, number plate and VAT), taken from the BRTA fee schedule and the Road Transport Rules 2022 in our Buyer's guide. The 2-year token is the least you can ride away with; the cost calculator also shows the 10-year option. Dealer handling charges are not included, so ask the showroom. Time-limited showroom offers are shown separately, with their end date and source.",
+      "শোরুম মূল্য + ইঞ্জিনের সিসি অনুযায়ী BRTA রেজিস্ট্রেশন প্যাকেজ (ফি, ২ বছরের ট্যাক্স টোকেন, নম্বর প্লেট ও ভ্যাট), ক্রেতা গাইডে দেওয়া BRTA ফি তালিকা ও সড়ক পরিবহন বিধিমালা ২০২২ থেকে। ২ বছরের টোকেনেই সবচেয়ে কম টাকায় বাইক নিয়ে বের হওয়া যায়; খরচের হিসাবে ১০ বছরের বিকল্পও আছে। ডিলারের হ্যান্ডলিং চার্জ ধরা হয়নি, তাই শোরুমে জিজ্ঞেস করুন। সময়সীমিত শোরুম অফার আলাদা দেখানো হয়, শেষ তারিখ ও সূত্রসহ।",
     ],
     kind: "derived",
     refresh: ["When BRTA changes fees; the as-of date is in the guide.", "BRTA ফি বদলালে; তারিখ গাইডে দেওয়া আছে।"],

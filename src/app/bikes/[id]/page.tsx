@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { fullName, formatBDT, ccLabel, mileageText, productJsonLd } from "@/lib/bikes";
 import { ALL_IDS, getFullBike } from "@/lib/bikes.server";
 import { langAlternates, OG_BASE } from "@/lib/site";
+import { onRoadPrice } from "@/lib/cost";
 import { BikeDetail } from "./BikeDetail";
 
 export const dynamicParams = false;
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const b = getFullBike(id);
   if (!b) return {};
   const title = `${fullName(b)} price in Bangladesh, real mileage & review`;
-  const description = `${fullName(b)} (${ccLabel(b)}) costs ${formatBDT(b.priceBDT)} in Bangladesh. Real-world ${mileageText(b)}, parts prices, mechanic familiarity and true monthly cost. ${b.tagline}`;
+  const description = `${fullName(b)} (${ccLabel(b)}) costs ${b.status === "used-only" ? `about ${formatBDT(b.priceBDT)} used` : `${formatBDT(onRoadPrice(b))} on-road with a 2-year tax token (${formatBDT(b.priceBDT)} ex-showroom)`} in Bangladesh. Real-world ${mileageText(b)}, parts prices, mechanic familiarity and true monthly cost. ${b.tagline}`;
   const images = [{ url: `/bikes/${b.id}/og.png`, width: 1200, height: 630, alt: fullName(b) }];
   return { title, description, alternates: langAlternates(`/bikes/${b.id}/`), openGraph: { ...OG_BASE, title, description, images } };
 }
