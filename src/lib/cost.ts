@@ -14,6 +14,14 @@ export function registrationFor(cc: number) {
   return bands.find((b) => cc <= b.ccMax) ?? bands[bands.length - 1];
 }
 
+/**
+ * The one on-road price shown everywhere (match, cost, browse, compare, bike page, share card): ex-showroom + BRTA
+ * registration with the 2-year tax token, the least you can ride away with. A used-only bike has no new registration,
+ * so it is its asking price (ownership transfer not counted).
+ */
+export const onRoadPrice = (b: Pick<BikeLite, "priceBDT" | "engine" | "status">) =>
+  b.status === "used-only" ? b.priceBDT : b.priceBDT + registrationFor(b.engine.cc).totalBDT;
+
 /** Road tax renewal every 2 years (VAT-inclusive), above / up to 100cc. */
 const ROAD_TAX_2YR = (cc: number) => (cc <= 100 ? 1000 * 1.15 : 2300);
 const THIRD_PARTY_INSURANCE = guide.insurance.thirdParty.exampleAnnualPremiumBDT;
@@ -66,8 +74,8 @@ export const DEFAULT_COST_INPUT: CostInput = {
   kmPerDay: 25,
   years: 3,
   fuelPrice: FUEL.octane,
-  taxPlan: "10yr",
-  insurance: false,
+  taxPlan: "2yr", // same as onRoadPrice; the cost page still offers 10-year
+  insurance: true, // cheap (~৳1,000/yr) and expected to become compulsory again; see guide.insurance
   includeDepreciation: true,
   upkeepPerMonth: 500,
   used: false,
@@ -160,7 +168,7 @@ export function ownershipCost(b: CostBike, inp: CostInput) {
     perKm: km > 0 ? total / km : 0,
     buyingUsed,
     price,
-    onRoad: price + (buyingUsed ? 0 : inp.taxPlan === "10yr" ? reg.totalBDT10yr : reg.totalBDT),
+    onRoad: buyingUsed ? price : inp.taxPlan === "10yr" ? price + reg.totalBDT10yr : onRoadPrice(b),
   };
 }
 

@@ -14,6 +14,12 @@ export function loanEmi(principal: number, annualPct: number, months: number): n
 
 export type PathKey = "cash" | "card" | "loan";
 
+/**
+ * APPROX, UNVERIFIED: BD banks and showrooms charge a one-off processing fee on card EMI and bike loans, typically
+ * 1-3% of the amount financed (no single published rate). We default to 1.5% and let the user change it on /cost.
+ */
+export const DEFAULT_FEE_PCT = 1.5;
+
 export type PayTerms = {
   /** Ex-showroom (or used) price of the bike. */
   price: number;

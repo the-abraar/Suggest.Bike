@@ -64,13 +64,35 @@ for (const b of bikes) {
 }
 // Fuel price: the cost page multiplies by it, so a stale figure skews every running cost. Same for the electricity tariff (EVs).
 const guide = JSON.parse(readFileSync(new URL("../src/data/guide.json", import.meta.url)));
-const FUEL_DAYS = +(process.env.FUEL_FAIL_DAYS ?? 45);
+// Old is only a warning: BD fuel prices reset monthly and a busy month must not block every deploy; /cost shows its own "may be out of date" note.
+const FUEL_DAYS = +(process.env.FUEL_WARN_DAYS ?? 45);
 for (const [name, asOf] of [["fuel", guide.fuel?.asOf], ["electricity tariff", guide.fuel?.electricity?.asOf]]) {
   const age = Math.floor((Date.now() - Date.parse(asOf)) / 864e5);
-  if (!(age >= -1)) /* -1: asOf is a Bangladesh date, the clock may be UTC */ errors.push(`guide.json ${name}: bad asOf ${asOf}`);
-  else if (age > FUEL_DAYS) errors.push(`guide.json ${name}: asOf ${asOf} is ${age}d old (fail >${FUEL_DAYS}d); re-check the official price and update the value and asOf`);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(asOf ?? "") || !(age >= -1)) /* -1: asOf is a Bangladesh date, the clock may be UTC */ errors.push(`guide.json ${name}: bad or future asOf ${asOf}`);
+  else if (age > FUEL_DAYS) warnings.push(`guide.json ${name}: asOf ${asOf} is ${age}d old (warn >${FUEL_DAYS}d); re-check the official price and update the value and asOf`);
 }
 if (!(guide.fuel?.electricity?.tkPerKWh > 0)) errors.push("guide.json fuel.electricity.tkPerKWh missing (EV running cost)");
+// Offers (hand-edited, src/data/offers.json). A past offer is only a warning: the site hides it by date on its own.
+const OFFER_TYPES = ["discount", "free-registration", "cashback", "emi", "exchange", "gift", "other"];
+const isDate = (s) => typeof s === "string" && /^\d{4}-\d{2}-\d{2}$/.test(s) && new Date(`${s}T00:00:00Z`).toISOString().startsWith(s);
+const todayBD = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Dhaka" });
+const offerIds = new Set();
+for (const o of JSON.parse(readFileSync(new URL("../src/data/offers.json", import.meta.url))).offers ?? []) {
+  const e = (m) => errors.push(`offers.json ${o.id ?? "?"}: ${m}`);
+  if (!/^[a-z0-9-]+$/.test(o.id ?? "") || offerIds.has(o.id)) e("missing, bad or duplicate id");
+  offerIds.add(o.id);
+  if (!Array.isArray(o.bikeIds) || !o.bikeIds.length) e("bikeIds must list at least one bike");
+  for (const id of o.bikeIds ?? []) if (!ids.has(id)) e(`unknown bike id ${id}`);
+  if (!OFFER_TYPES.includes(o.type)) e(`bad type ${o.type} (one of ${OFFER_TYPES.join(", ")})`);
+  for (const k of ["title", "titleBn"]) if (!(typeof o[k] === "string" && o[k].length >= 5)) e(`missing ${k}`);
+  if (!isDate(o.startsOn) || !isDate(o.endsOn)) e(`dates must be real YYYY-MM-DD (startsOn ${o.startsOn}, endsOn ${o.endsOn})`);
+  else if (o.endsOn < o.startsOn) e(`endsOn ${o.endsOn} is before startsOn ${o.startsOn}`);
+  else if (o.endsOn < todayBD) warnings.push(`offers.json ${o.id}: ended ${o.endsOn}; the site hides it, delete it when convenient`);
+  for (const k of ["regularPriceBDT", "offerPriceBDT"]) if (o[k] !== undefined && !(Number.isInteger(o[k]) && o[k] >= 20000)) e(`bad ${k} ${o[k]}`);
+  if (o.type === "discount" && !(o.offerPriceBDT < o.regularPriceBDT)) e("discount needs offerPriceBDT lower than regularPriceBDT");
+  if (!(typeof o.source?.name === "string" && o.source.name.length >= 2)) e("missing source.name");
+  if (o.source?.url != null) try { if (!/^https?:$/.test(new URL(o.source.url).protocol)) e("source.url must be http(s)"); } catch { e("bad source.url"); }
+}
 for (const [d, n] of Object.entries(domains))
   if (n / bikes.length > 0.5) warnings.push(`source concentration: ${d} supplies ${n}/${bikes.length} (${Math.round((100 * n) / bikes.length)}%) of price sources`);
 warnings.forEach((w) => console.log("WARN", w));

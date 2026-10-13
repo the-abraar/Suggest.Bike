@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { ALL_IDS, getFullBike } from "@/lib/bikes.server";
 import { CATEGORIES, ccLabel, mileageText } from "@/lib/bikes";
+import { onRoadPrice } from "@/lib/cost";
 import art from "@/data/generated/art.json";
 
 // Route handler so the export writes og.png with an extension (see app/og.png/route.tsx).
@@ -31,7 +32,11 @@ export async function GET(_req: Request, { params }: { params: Promise<{ id: str
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ fontSize: 28, color: "#5f6b65" }}>{`${b.brand} · ${ccLabel(b)} · ${CATEGORIES[b.category].en}`}</div>
             <div style={{ fontSize: 76, fontWeight: 800, color: "#0f1613", lineHeight: 1.05, marginTop: 8 }}>{b.model}</div>
-            <div style={{ fontSize: 44, fontWeight: 700, color: "#0a6b4f", marginTop: 20 }}>{`Tk ${b.priceBDT.toLocaleString("en-IN")}`}</div>
+            <div style={{ fontSize: 44, fontWeight: 700, color: "#0a6b4f", marginTop: 20 }}>{`Tk ${onRoadPrice(b).toLocaleString("en-IN")}`}</div>
+            <div style={{ display: "flex", flexDirection: "column", fontSize: 22, color: "#5f6b65", marginTop: 4 }}>
+              <span>{b.status === "used-only" ? "Used, asking price" : "On-road, with 2-year tax token"}</span>
+              {b.status !== "used-only" && <span>{`Ex-showroom Tk ${b.priceBDT.toLocaleString("en-IN")}`}</span>}
+            </div>
             <div style={{ fontSize: 26, color: "#2b3530", marginTop: 14 }}>{`Real ${b.ev ? "range" : "mileage"} ${mileageText(b)} · ${b.powerPS} PS`}</div>
           </div>
           <div style={{ fontSize: 22, color: "#646f69" }}>Real mileage, parts prices & true monthly cost — Bangladesh</div>

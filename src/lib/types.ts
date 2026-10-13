@@ -102,7 +102,6 @@ export type BikeLite = Omit<
 > & {
   taglineBn?: string;
   parts: Pick<Part, "name" | "priceBDT" | "availability">[];
-  hasOffer: boolean;
 };
 
 export interface BrandNetwork {

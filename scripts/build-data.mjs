@@ -7,7 +7,6 @@ import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 
 const root = new URL("..", import.meta.url);
 const guide = JSON.parse(readFileSync(new URL("src/data/guide.json", root)));
-const OFFER = /offer|discount|campaign|cashback|ছাড়|অফার/i;
 
 // EVs carry no kmpl or tank. Derive a petrol-cost equivalent so the cost, match and compare engines work unchanged:
 // electricity Tk/km = battery kWh x charging loss x tariff / real range; equivalent kmpl = octane Tk/L / that.
@@ -28,7 +27,6 @@ const index = bikes.map((b) => {
     ...rest,
     taglineBn: bn?.tagline,
     parts: parts.map(({ name, priceBDT, availability }) => ({ name, priceBDT, availability })),
-    hasOffer: OFFER.test(priceNote ?? ""),
   };
 });
 

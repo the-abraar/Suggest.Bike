@@ -13,6 +13,7 @@ Things only you can do: decisions, accounts, money, relationships and work out i
 
 - [ ] **Create a Formspree form** (free tier, formspree.io) sending to `hello@suggest.bike`, then paste its URL (`https://formspree.io/f/xxxx`) into `FORM_ENDPOINT` in `src/lib/site.ts`. Until then the feedback and "I own this" forms open a prefilled email, which fails on phones without a mail app.
 - [ ] **Create a GoatCounter account** (goatcounter.com, free for non-commercial use, no cookies) with the code `suggestbike`, then set `GOATCOUNTER_CODE` in `src/lib/site.ts`. The privacy page already covers it ("if enabled"). Form submits are counted as `form-feedback` / `form-owner` events.
+- [ ] **Set the WhatsApp number**: put your number, international digits only (e.g. `8801XXXXXXXXX`, no `+` or spaces), into `WHATSAPP` in `src/lib/site.ts`. Until then no WhatsApp link shows; once set, the feedback page, both forms and the footer get a `wa.me` link with a prefilled message. Use a number you are happy to have public.
 - [ ] **Confirm the distributor hotlines** in `src/data/dealers.json` by calling each one once, and ask Runner whether it distributes Vespa and Aprilia (not confirmed on an official page). Update `checked`.
 
 ## Data you're best placed to collect
@@ -24,6 +25,20 @@ Things only you can do: decisions, accounts, money, relationships and work out i
 - [ ] **Owner mileage survey.** A Google Form shared in BD bike Facebook groups: model, city/highway split, kmpl, problems. Even 300 responses would make the mileage numbers defensible.
 - [ ] **Verify the dealer and service-centre numbers** in `src/data/networks.json` with each distributor. The matchmaker's "I live outside Dhaka" weighting depends on them.
 - [ ] **More photos.** The site now uses only freely licensed Wikimedia Commons photos (with credit) and falls back to illustrations elsewhere. For full coverage, either shoot bikes at showrooms (with permission) or get press kits from distributors. Get written permission to use them.
+
+## How to add a showroom offer
+
+Offers live in `src/data/offers.json` (your editor autocompletes the fields from `offers.schema.json`). Add one object to `offers`:
+
+- `id`: unique, lowercase with dashes, e.g. `honda-sp160-2026-11-cashback`.
+- `bikeIds`: bike ids from `src/data/bikes.json` (the part after `/bikes/` in the page URL).
+- `type`: `discount`, `free-registration`, `cashback`, `emi`, `exchange`, `gift` or `other`.
+- `title` and `titleBn`: one short line each, e.g. "৳20,000 off until 31 October".
+- `regularPriceBDT` and `offerPriceBDT`: required for a `discount` (offer must be lower); optional otherwise.
+- `startsOn` and `endsOn`: dates as `YYYY-MM-DD`; `endsOn` is the last day. The site shows the offer only between these dates, using the visitor's date in Bangladesh, so it disappears by itself without a redeploy.
+- `where` (optional, leave out if unknown), `source` (`name`, and `url` or `null`), `notes` (optional).
+
+Then run `npm run validate`: it fails on unknown bike ids, bad dates, `endsOn` before `startsOn` or a discount that isn't cheaper, and only warns about offers that have ended (delete those when convenient). The matcher keeps ranking on the regular price.
 
 ## Growth
 

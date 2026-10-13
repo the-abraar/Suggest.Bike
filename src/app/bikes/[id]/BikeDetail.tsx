@@ -18,7 +18,8 @@ import {
   partLabel,
   similarBikes,
 } from "@/lib/bikes";
-import { DEFAULT_COST_INPUT, emiMonthly, ownershipCost, registrationFor } from "@/lib/cost";
+import { DEFAULT_COST_INPUT, emiMonthly, onRoadPrice, ownershipCost } from "@/lib/cost";
+import { FuelAgeNote, OfferBox, OfferTag } from "@/components/Dated";
 import { useLang, useTx } from "@/lib/i18n";
 import { SITE, issueUrl, langHref } from "@/lib/site";
 import type { Bike, Part, ScoreKey } from "@/lib/types";
@@ -48,7 +49,6 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
   const tx = useTx();
   const router = useRouter();
   const [showPhoto, setShowPhoto] = useState(true);
-  const reg = registrationFor(bike.engine.cc);
   const used = bike.status === "used-only";
   const bn = lang === "bn" && bike.bn ? bike.bn : null;
   const txt = {
@@ -62,7 +62,6 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
     bestFor: bn?.bestFor ?? bike.bestFor,
     priceNote: (bn?.priceNote ?? bike.priceNote) || undefined,
   };
-  const hasOffer = /offer|discount|campaign|cashback/i.test(bike.priceNote ?? "");
   const net = networkFor(bike.brand);
   const reportBody = `Bike: ${fullName(bike)} (${bike.id})\nPage: ${SITE.url}/bikes/${bike.id}/\nPrice on Suggest.Bike: ${formatBDT(bike.priceBDT)} (checked ${bike.priceAsOf})\n\nWhat's wrong / correct value:\n\nWhere you saw it (showroom, link):\n`;
   const reportTitle = `Price/spec correction: ${fullName(bike)}`;
@@ -155,20 +154,21 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
                   {tx("Price checked", "দাম যাচাই")} {monthLabel(bike.priceAsOf, lang)}
                 </span>
                 <span className="text-[12px] text-muted">{tx("Re-checked monthly", "প্রতি মাসে আবার যাচাই")}</span>
-                {hasOffer && <span className="rounded-full bg-signal-soft px-2.5 py-1 text-[12px] font-semibold text-signal">{tx("Offer running", "অফার চলছে")}</span>}
+                <OfferTag bikeId={bike.id} className="px-2.5 py-1 text-[12px]" />
               </div>
               <div className="mt-3 flex flex-wrap items-end gap-x-8 gap-y-3">
                 <div>
-                  <p className="text-[12.5px] text-muted">{used ? tx("Typical used price", "সাধারণ পুরনো দাম") : tx("Ex-showroom price", "শোরুম মূল্য")}</p>
-                  <p className="text-[34px] font-semibold tracking-tight text-ink tnum">{formatBDT(bike.priceBDT)}</p>
+                  <p className="text-[12.5px] text-muted">{used ? tx("Typical used price", "সাধারণ পুরনো দাম") : tx("On-road, with 2-year tax token", "অন-রোড, ২ বছরের ট্যাক্স টোকেনসহ")}</p>
+                  <p className="text-[34px] font-semibold tracking-tight text-ink tnum">{formatBDT(onRoadPrice(bike))}</p>
                 </div>
                 {!used && (
                   <div className="pb-1.5">
-                    <p className="text-[12.5px] text-muted">{tx("On-road (with 10-yr tax token)", "অন-রোড (১০ বছরের ট্যাক্স টোকেনসহ)")}</p>
-                    <p className="text-[18px] font-semibold text-ink-2 tnum">≈ {formatBDT(bike.priceBDT + reg.totalBDT10yr)}</p>
+                    <p className="text-[12.5px] text-muted">{tx("Ex-showroom", "শোরুম মূল্য")}</p>
+                    <p className="text-[18px] font-semibold text-ink-2 tnum">{formatBDT(bike.priceBDT)}</p>
                   </div>
                 )}
               </div>
+              <OfferBox bikeId={bike.id} />
               {!used && (
                 <p className="mt-2 text-[14px] text-ink-2">
                   {tx("or about", "অথবা প্রায়")} <strong className="font-semibold text-ink tnum">{formatBDT(emiMonthly(bike.priceBDT))}</strong>
@@ -634,6 +634,7 @@ function MonthlyCard({ bike }: { bike: Bike }) {
     { k: tx("Wear parts", "ক্ষয়যোগ্য পার্টস"), v: c.wear / months },
     { k: tx("Washing & parking", "ধোয়া ও পার্কিং"), v: c.upkeep / months },
     ...(c.hiddenRepairs ? [{ k: tx("Hidden used-bike repairs", "পুরনো বাইকের লুকানো মেরামত"), v: c.hiddenRepairs / months }] : []),
+    ...(c.insurance ? [{ k: tx("Third-party insurance", "থার্ড-পার্টি ইন্স্যুরেন্স"), v: c.insurance / months }] : []),
   ];
   return (
     <div className="card p-5 shadow-md">
@@ -642,6 +643,7 @@ function MonthlyCard({ bike }: { bike: Bike }) {
       <p className="text-[12.5px] text-muted">
         {tx(`at ${km} km/day, octane ৳${DEFAULT_COST_INPUT.fuelPrice}/L`, `দিনে ${km} km, অকটেন ৳${DEFAULT_COST_INPUT.fuelPrice}/লিটার`)}
       </p>
+      <FuelAgeNote className="mt-2" />
       <input
         type="range"
         className="range mt-4"
@@ -676,7 +678,7 @@ function MonthlyCard({ bike }: { bike: Bike }) {
         )}
       </p>
       <p className="mt-4 border-t border-line pt-4 text-[13px] text-muted">
-        {formatLakh(bike.priceBDT, lang)} · {fullName(bike)}
+        {formatLakh(onRoadPrice(bike), lang)} {tx("on-road", "অন-রোড")} · {fullName(bike)}
       </p>
     </div>
   );

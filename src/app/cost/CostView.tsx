@@ -6,7 +6,9 @@ import { useEffect, useMemo, useState } from "react";
 import { Info } from "lucide-react";
 import { BIKES, formatBDT, formatLakh, fullName, getBike } from "@/lib/bikes";
 import { DEFAULT_COST_INPUT, FUEL, WEAR_KM, defaultUsedPrice, emiMonthly, hiddenRepairRate, ownershipCost, registrationFor, type CostInput } from "@/lib/cost";
-import { payPaths, type PathKey } from "@/lib/fund";
+import { DEFAULT_FEE_PCT, payPaths, type PathKey } from "@/lib/fund";
+import { FuelAgeNote } from "@/components/Dated";
+import guide from "@/data/guide.json";
 import { useLang, useTx } from "@/lib/i18n";
 import { BikeArt } from "@/components/BikeArt";
 import { BikePicker, Field, Range, Switch } from "@/components/form";
@@ -162,6 +164,7 @@ function Cost({ params }: { params: URLSearchParams }) {
                 </button>
               )}
             </p>
+            <FuelAgeNote className="mt-2" />
           </Field>
 
           <Field label={tx("Washing, parking & small fixes", "ধোয়া, পার্কিং ও ছোটখাটো খরচ")} value={`${formatBDT(inp.upkeepPerMonth)}${tx("/mo", "/মাস")}`}>
@@ -193,7 +196,10 @@ function Cost({ params }: { params: URLSearchParams }) {
               on={inp.insurance}
               onChange={(v) => set("insurance", v)}
               label={tx("Third-party insurance", "থার্ড-পার্টি ইন্স্যুরেন্স")}
-              sub={tx("Optional in BD · ~৳1,006/yr", "বাংলাদেশে ঐচ্ছিক · বছরে ~৳1,006")}
+              sub={tx(
+                `On by default · ~৳1,006/yr · not compulsory as of ${INSURANCE_AS_OF}, but a rule to make it compulsory again is pending`,
+                `ডিফল্টে চালু · বছরে ~৳1,006 · ${INSURANCE_AS_OF} পর্যন্ত বাধ্যতামূলক নয়, তবে আবার বাধ্যতামূলক করার নিয়ম আসছে`,
+              )}
             />
             <Switch
               on={inp.includeDepreciation}
@@ -272,9 +278,9 @@ function Cost({ params }: { params: URLSearchParams }) {
 
           <div className="grid gap-4 sm:grid-cols-3">
             <Fact
-              k={tx("Buy today", "আজ কিনলে")}
+              k={c.buyingUsed ? tx("Buy today", "আজ কিনলে") : inp.taxPlan === "2yr" ? tx("On-road, with 2-year tax token", "অন-রোড, ২ বছরের ট্যাক্স টোকেনসহ") : tx("On-road, with 10-year tax token", "অন-রোড, ১০ বছরের ট্যাক্স টোকেনসহ")}
               v={formatBDT(c.onRoad)}
-              sub={!c.buyingUsed ? tx(`ex-showroom + ${formatBDT(c.onRoad - bike.priceBDT)} BRTA`, `শোরুম মূল্য + ${formatBDT(c.onRoad - bike.priceBDT)} BRTA`) : tx("used price, plus transfer fee", "পুরনো দাম, সাথে মালিকানা বদলের ফি")}
+              sub={!c.buyingUsed ? tx(`ex-showroom ${formatBDT(bike.priceBDT)} + ${formatBDT(c.onRoad - bike.priceBDT)} BRTA`, `শোরুম মূল্য ${formatBDT(bike.priceBDT)} + ${formatBDT(c.onRoad - bike.priceBDT)} BRTA`) : tx("used price, plus transfer fee", "পুরনো দাম, সাথে মালিকানা বদলের ফি")}
             />
             <Fact
               k={tx("Or on 12-month EMI", "অথবা ১২ মাসের কিস্তিতে")}
@@ -332,13 +338,16 @@ function Cost({ params }: { params: URLSearchParams }) {
   );
 }
 
-// Example terms; banks and dealers differ. 0% card EMI is only offered up to 12 months.
-const PAY_TERMS = { cardMonths: 12, feePct: 0, loanDownPct: 30, loanPct: 14, loanMonths: 24 };
+const INSURANCE_AS_OF = guide.insurance.asOf;
+
+// Example terms; banks and dealers differ. 0% card EMI is only offered up to 12 months. The fee is set by the user.
+const PAY_TERMS = { cardMonths: 12, loanDownPct: 30, loanPct: 14, loanMonths: 24 };
 
 /** Cash vs 0% card EMI vs loan for the same bike. A private (used) sale has no card EMI. */
 function PayCompare({ price, brta, used }: { price: number; brta: number; used: boolean }) {
   const tx = useTx();
-  const p = payPaths({ price, brta, ...PAY_TERMS });
+  const [feePct, setFeePct] = useState(DEFAULT_FEE_PCT);
+  const p = payPaths({ price, brta, feePct, ...PAY_TERMS });
   const rows: { key: PathKey; label: string }[] = [
     { key: "cash", label: tx("Cash", "নগদ") },
     ...(used ? [] : [{ key: "card" as const, label: tx(`0% card EMI, ${PAY_TERMS.cardMonths} mo`, `০% কার্ড কিস্তি, ${PAY_TERMS.cardMonths} মাস`) }]),
@@ -347,6 +356,12 @@ function PayCompare({ price, brta, used }: { price: number; brta: number; used: 
   return (
     <div id="pay" className="card scroll-mt-24 p-6">
       <h2 className="text-[17px] font-semibold tracking-tight text-ink">{tx("Cash, card EMI or loan", "নগদ, কার্ড কিস্তি না লোন")}</h2>
+      <div className="mt-4 max-w-sm">
+        <Field label={tx("Processing fee (card EMI or loan)", "প্রসেসিং ফি (কার্ড কিস্তি বা লোন)")} value={`${feePct}%`}>
+          <Range min={0} max={3} step={0.5} value={feePct} onChange={setFeePct} label={tx("Processing fee, percent of the amount financed", "প্রসেসিং ফি, কিস্তির টাকার শতাংশ")} />
+          <p className="mt-1 text-[12px] text-faint">{tx("Usually 1–3% of the amount financed (estimate). Ask your bank.", "সাধারণত কিস্তির টাকার ১–৩% (আনুমানিক)। আপনার ব্যাংকে জিজ্ঞেস করুন।")}</p>
+        </Field>
+      </div>
       <div className="mt-4 overflow-x-auto" tabIndex={0} role="region" aria-label={tx("Payment options table", "পেমেন্টের বিকল্পের টেবিল")}>
         <table className="w-full min-w-[420px] text-left text-[14px] tnum [&_tr>*:not(:last-child)]:pr-3">
           <thead className="text-[12.5px] text-muted">
@@ -372,6 +387,12 @@ function PayCompare({ price, brta, used }: { price: number; brta: number; used: 
           </tbody>
         </table>
       </div>
+      <p className="mt-3 rounded-lg bg-warn-soft px-3 py-2 text-[12.5px] leading-relaxed text-warn">
+        {tx(
+          "0% EMI is only with the banks a showroom lists. Some showrooms charge more if you pay by card than in cash, so ask the cash price first.",
+          "০% কিস্তি শুধু শোরুমের তালিকাভুক্ত ব্যাংকের কার্ডে। কিছু শোরুম কার্ডে নগদের চেয়ে বেশি দাম নেয়, তাই আগে নগদ দাম জিজ্ঞেস করুন।",
+        )}
+      </p>
       <p className="mt-3 text-[12.5px] leading-relaxed text-faint">
         {tx(
           `Example terms: loan with ${PAY_TERMS.loanDownPct}% down, reducing balance. BRTA is paid in cash upfront whichever way you pay. Ask for the total payable in writing; this is not financial advice.`,

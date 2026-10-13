@@ -587,7 +587,7 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
                 ))}
               </ul>
               <div className="mt-6 grid grid-cols-3 gap-4 border-t border-line pt-5">
-                <MiniStat k={top.used ? tx("Bikroy asking", "Bikroy-তে চাওয়া দাম") : tx("On-road", "অন-রোড")} v={formatLakh(top.onRoad, lang)} />
+                <MiniStat k={top.used ? tx("Bikroy asking", "Bikroy-তে চাওয়া দাম") : tx("On-road (2-yr tax token)", "অন-রোড (২ বছরের টোকেন)")} v={formatLakh(top.onRoad, lang)} />
                 {top.bike.ev ? (
                   <MiniStat k={tx("Range/charge", "রেঞ্জ/চার্জ")} v={`${top.bike.ev.realRangeKm[0]}–${top.bike.ev.realRangeKm[1]} km`} />
                 ) : (

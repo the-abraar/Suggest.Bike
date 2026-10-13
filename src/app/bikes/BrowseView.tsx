@@ -7,6 +7,7 @@ import { L, useLang, useTx } from "@/lib/i18n";
 import { BikeCard, WithSearchParams } from "@/components/ui";
 import { searchBikes } from "@/components/SearchBox";
 import type { Category } from "@/lib/types";
+import { onRoadPrice } from "@/lib/cost";
 
 type Sort = "recommended" | "price-asc" | "price-desc" | "mileage" | "power" | "reliability";
 const SORTS: { id: Sort; label: string; bn: string }[] = [
@@ -81,7 +82,7 @@ function Browse({ params }: { params: URLSearchParams }) {
     list = list.filter(
       (b) =>
         (!f.cats.length || f.cats.includes(b.category)) &&
-        (!band || (b.priceBDT >= band.min && b.priceBDT < band.max)) &&
+        (!band || (onRoadPrice(b) >= band.min && onRoadPrice(b) < band.max)) &&
         (!f.brands.length || f.brands.includes(b.brand)) &&
         (!f.abs || b.brakes.abs === "single" || b.brakes.abs === "dual") &&
         (!f.fi || b.engine.fuel === "fi") &&
@@ -90,8 +91,9 @@ function Browse({ params }: { params: URLSearchParams }) {
     const sorted = [...list];
     const by: Record<Sort, (a: (typeof list)[0], b: (typeof list)[0]) => number> = {
       recommended: (a, b) => overall(b) - overall(a),
-      "price-asc": (a, b) => a.priceBDT - b.priceBDT,
-      "price-desc": (a, b) => b.priceBDT - a.priceBDT,
+      // Price filter and sort follow the on-road headline on the cards.
+      "price-asc": (a, b) => onRoadPrice(a) - onRoadPrice(b),
+      "price-desc": (a, b) => onRoadPrice(b) - onRoadPrice(a),
       mileage: (a, b) => avgMileage(b) - avgMileage(a),
       power: (a, b) => b.powerPS - a.powerPS,
       reliability: (a, b) =>

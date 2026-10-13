@@ -9,6 +9,8 @@ import { CATEGORIES, ccLabel, formatLakh, mileageText } from "@/lib/bikes";
 import { useStore } from "@/lib/store";
 import { useLang } from "@/lib/i18n";
 import { BikeArt } from "./BikeArt";
+import { OfferTag } from "./Dated";
+import { onRoadPrice } from "@/lib/cost";
 
 /**
  * Renders a page that reads the query string. The static export prerenders the fallback, i.e. the page with no
@@ -124,9 +126,7 @@ export function BikeCard({ bike, footer, badge }: { bike: BikeLite; footer?: Rea
           {bike.status === "used-only" && (
             <span className="rounded-full bg-warn-soft px-2 py-0.5 text-[11.5px] font-semibold text-warn">{t("common.usedOnly")}</span>
           )}
-          {bike.hasOffer && (
-            <span className="rounded-full bg-signal-soft px-2 py-0.5 text-[11.5px] font-semibold text-signal">{lang === "bn" ? "অফার চলছে" : "Offer running"}</span>
-          )}
+          <OfferTag bikeId={bike.id} />
         </div>
         <div className="absolute right-3 top-3 z-10">
           <SaveButton id={bike.id} />
@@ -142,7 +142,16 @@ export function BikeCard({ bike, footer, badge }: { bike: BikeLite; footer?: Rea
         </div>
         <div className="mt-auto flex items-end justify-between gap-3">
           <div className="min-w-0">
-            <p className="text-[19px] font-semibold tracking-tight text-ink tnum">{formatLakh(bike.priceBDT, lang)}</p>
+            <p className="text-[19px] font-semibold tracking-tight text-ink tnum">{formatLakh(onRoadPrice(bike), lang)}</p>
+            <p className="text-[12px] text-muted tnum">
+              {bike.status === "used-only" ? (
+                t("price.usedAsking")
+              ) : (
+                <>
+                  {t("price.onRoad")} · <span className="whitespace-nowrap">{`${t("price.exShowroom")} ${formatLakh(bike.priceBDT, lang)}`}</span>
+                </>
+              )}
+            </p>
             <p className="whitespace-nowrap text-[12.5px] text-muted tnum">
               ~{mileageText(bike)} · {bike.powerPS} PS
             </p>

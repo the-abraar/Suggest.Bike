@@ -3,6 +3,7 @@
 import Link from "@/components/LangLink";
 import { useTx } from "@/lib/i18n";
 import { FeedbackForm } from "@/components/FeedbackForm";
+import { whatsappUrl } from "@/lib/site";
 
 export function FeedbackView() {
   const tx = useTx();
@@ -14,6 +15,14 @@ export function FeedbackView() {
         {tx("Wrong price, missing bike, confusing page. No account needed. Say which bike or page. Own a bike? Use the \"I own this\" form on its page to report your on-road price and real mileage.", "ভুল দাম, বাদ পড়া বাইক বা বিভ্রান্তিকর পাতা। অ্যাকাউন্ট লাগবে না। কোন বাইক বা পাতা, তা লিখুন। বাইক আছে? তার পাতার \"আমার এই বাইক আছে\" ফর্মে আপনার অন-রোড দাম ও আসল মাইলেজ জানান।")}{" "}
         <Link href="/method/" className="text-brand underline underline-offset-2">{tx("How reports are used", "রিপোর্ট কীভাবে ব্যবহার হয়")}</Link>
       </p>
+      {whatsappUrl("") && (
+        <p className="mt-3 text-[15px] text-ink-2">
+          {tx("Prefer WhatsApp?", "হোয়াটসঅ্যাপ সহজ?")}{" "}
+          <a href={whatsappUrl("Suggest.Bike feedback:\n")} target="_blank" rel="noopener noreferrer" className="font-medium text-brand underline underline-offset-2">
+            {tx("Message us there", "সেখানে আমাদের লিখুন")}
+          </a>
+        </p>
+      )}
       <div className="mt-8">
         <FeedbackForm kind="feedback" />
       </div>

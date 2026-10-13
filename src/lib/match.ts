@@ -1,6 +1,6 @@
 import type { BikeLite } from "./types";
 import { BIKES, HAS_NETWORKS, avgMileage, formatBDT, networkReach } from "./bikes";
-import { registrationFor } from "./cost";
+import { onRoadPrice } from "./cost";
 
 export type Use = "commute" | "mixed" | "highway" | "rough" | "rideshare" | "fun";
 export type Priority = "mileage" | "maintenance" | "performance" | "comfort" | "resale" | "safety" | "style";
@@ -43,8 +43,8 @@ export const USED_HAIRCUT = 0.05;
 /** Stretch picks may go this far over the on-road budget; they are shown in their own section. */
 export const STRETCH = 0.1;
 
-/** Ex-showroom + BRTA registration with the 2-year tax token (the least you can register with). */
-export const onRoadPrice = (b: Pick<BikeLite, "priceBDT" | "engine">) => b.priceBDT + registrationFor(b.engine.cc).totalBDT;
+/** Ex-showroom + BRTA registration with the 2-year tax token; lives in cost.ts so every page shares it. */
+export { onRoadPrice };
 
 export const DEFAULT_ANSWERS: Answers = {
   budget: 250000,
