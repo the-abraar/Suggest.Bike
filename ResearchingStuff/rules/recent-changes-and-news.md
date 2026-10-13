@@ -21,7 +21,8 @@ Access date: 2026-10-13. Items marked (snippet) were seen only in search summari
 | Jul-Sep 2023 | Dhaka Elevated Expressway opens; motorcycles banned | https://www.dhakatribune.com/bangladesh/dhaka/319966/motorcycles-three-wheelers-banned-on-dhaka |
 | 20 Feb 2023 | Draft Motorcycle Movement Policy 2023 (draft only) | https://en.prothomalo.com/bangladesh/zy5y79y3zf |
 | 27 Dec 2022 (gazette), 2 Jan 2023 (listing) | Road Transport Rules 2022, S.R.O. 367/2022 | https://rthd.gov.bd/pages/laws ; gazette PDF in act file |
-| 26-27 Jun 2022 | Motorcycles banned on Padma Bridge (and Dhaka-Mawa Expressway per another report) | https://www.tbsnews.net/bangladesh/motorcycles-banned-padma-bridge-447738?amp |
+| 20 Apr 2023 | Motorcycles allowed on Padma Bridge again, with conditions (own lane, 60 km/h, max two people, helmets); ends the ban below | https://en.prothomalo.com/bangladesh/rbjde07nzk ; https://www.tbsnews.net/node/619670 |
+| 26-27 Jun 2022 | Motorcycles banned on Padma Bridge (lifted 20 Apr 2023, see above) (and Dhaka-Mawa Expressway per another report) | https://www.tbsnews.net/bangladesh/motorcycles-banned-padma-bridge-447738?amp |
 | 3-4 Sep 2020 | BRTA lets 1,156 enlisted motorbikes resume ride sharing in DTCA area | https://www.thedailystar.net/city/news/brta-allows-motorcycle-ride-sharing-areas-under-dtca-1955877 |
 | 1 Nov 2019 | Road Transport Act 2018 in force; initial go-slow: media (Samakal, 16 Nov 2019) reported no cases filed for several days, grace for updating papers; mobile-court notification pending | https://samakal.com/bangladesh/article/4315/ |
 

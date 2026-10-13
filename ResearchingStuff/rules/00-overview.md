@@ -10,10 +10,10 @@ Access date: 2026-10-13. Not legal advice. Every figure has a citation in the li
 ## 10-second rider summary
 - Licence (18+, class 8, learner then smart card), registration certificate and number plate, tax token, fitness, plate/RFID: all required; fines are up to Tk 25,000-50,000 and up to 6 months jail for no licence/no registration.
 - Helmet for rider AND pillion; one pillion only: s.49(1)(চ); penalty up to 3 months / Tk 10,000 / 1 point (s.92(1)). Mobile phone: up to 1 month / Tk 5,000 (s.92(2)).
-- Speed: 30 km/h in cities for bikes; ~50 highways, 60 expressways (sources differ).
+- Speed: 30 km/h in cities for bikes; 50 highways and district roads, 60 expressways (official BRTA guideline PDF, 7 May 2024; see roads-and-restrictions.md).
 - Death/grievous injury by negligence: up to 5 years / Tk 5 lakh, non-bailable (s.105). Over-speed accident: 3 years / Tk 3 lakh (s.98).
 - Police can fine on the spot, take the bike, file a mobile-court case; you get a receipt and charge copy.
-- Banned: Padma Bridge (2022), Dhaka Elevated Expressway; election-day bans (Feb 2026).
+- Banned: Dhaka Elevated Expressway; election-day bans (Feb 2026). Padma Bridge: banned 27 Jun 2022, allowed again from 20 Apr 2023 with conditions (own lane, 60 km/h, max two people, helmets).
 
 ## Files
 - [penalties-table.md](penalties-table.md) - all violations with jail/fine/points

@@ -10,6 +10,7 @@ TBS report of 10 May 2024 (announced Wednesday 8 May 2024) [B]:
 | Inside city corporations/municipal/district towns | 30 km/h | 40 km/h | 30 km/h |
 | Expressway | 60 km/h | 80 km/h | 50 km/h |
 | National highway (other than expressway) and district roads (as reported) | 50 km/h | 70-80 km/h (see below) | 45-50 km/h |
+- **Resolved 2026-10-14 from the official guideline PDF** (BRTA notification 35.03.0000.008.026.075.20-283, 7 May 2024, linked from brta.gov.bd > laws: https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-brta/2024/12/6b812c0217bf470cb1fc3beacd6da9ab.pdf). Motorcycle km/h: expressway 60; national highway cat. A 50; cat. B and regional highway 50; district road 50; highways through city/municipality/district town 30; other town roads 30; upazila road 30; primary urban road 30; narrow/shared urban road 20; rural road 30. Near schools, hospitals, markets: local authority sets, max 40 (national highway) / 30 (regional). The Dhaka Tribune "60 on highways" figure (8 May 2024) described the draft sent to the ministry.
 - Conflicts: TBS's table says motorcycle 50 km/h on "other national highways and district roads" and does not give the motorcycle figure for Category B roads; Dhaka Tribune's summary of the same guideline says 80 km/h for cars/buses/minibuses, 60 km/h for motorbikes, 50 km/h for trucks on highways; Observer says 60 on expressways, 50 on highways. Treat highway = 50 and expressway = 60 as best-supported (TBS, Observer) but unresolved; authoritative text not retrieved [B][C].
 - Enforcement: BRTA spokesperson Mahbub-E-Rabbani said immediate enforcement was stated but wide implementation would be gradual, publicity first, mobile courts for speeding in the interim, speed guns for police [B]. Prothom Alo headline: "Motorcycles can't cross 30 km/h threshold in cities" [C2].
 - Dhaka Elevated Expressway posted 60 km/h (Financial Express/Dhaka Tribune snippet); an earlier report expected speeds up to 80 km/h. Not verified from a notification [D].
@@ -30,7 +31,7 @@ Hand signals (Schedule 2(খ), page 19622) [E]: right turn - right arm extended 
 ## 4. Roads where motorcycles are banned or restricted
 | Place | Status | Evidence |
 |---|---|---|
-| Padma Multipurpose Bridge (পদ্মা সেতু) | Banned "until further notice" from Mon 27 Jun 2022 06:00, by Bridges Division, after two deaths on the opening weekend; Dhaka-Mawa Expressway also covered from 27 Jun with riders allowed on service lanes (per another report); no later reversal found | TBS 26 Jun 2022 [F]; TBS/Daily Star snippets [G] |
+| Padma Multipurpose Bridge (পদ্মা সেতু) | Banned from Mon 27 Jun 2022 06:00 by Bridges Division after two deaths on the opening weekend [F][G]. **Allowed again from Thu 20 Apr 2023** with conditions: designated motorcycle lane and toll booth, 60 km/h, no overtaking or lane change, max two people, helmets, no stopping or photos [L][M]. No later re-ban found. | Prothom Alo English 18 Apr 2023 [L]; TBS 20 Apr 2023 [M] |
 | Dhaka Elevated Expressway (ঢাকা এলিভেটেড এক্সপ্রেসওয়ে) | Motorcycles, CNG three-wheelers and bicycles banned at opening (Sept 2023; reported 8 Jul 2023: "to prevent deadly crashes"); one related headline says CNG and motorcycles were allowed for six hours on one Tuesday (details unread) | Dhaka Tribune [H] |
 | Bangabandhu (Jamuna) Bridge, other bridges/expressways | No source found in this research - NOT VERIFIED either way | - |
 | Dhaka-Chattogram Highway | Eid-time check posts have restricted bikes (riders pass with documents/necessity); permanent ban: none found | TBS snippet [G] |
@@ -53,6 +54,8 @@ One rider plus one pillion maximum (s.49(1)(চ)) [A].
 - [E] Rules 2022 gazette PDF https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-rthd/2024/12/a4bd5ed71c014574ab29ebf0f6993fee.pdf pp.19621-19622
 - [F] https://www.tbsnews.net/bangladesh/motorcycles-banned-padma-bridge-447738?amp
 - [G] https://www.tbsnews.net/node/454798 ; https://online87.thedailystar.net/news/bangladesh/transport/news/after-padma-bridge-motorbikes-might-be-banned-dhaka-mawa-expressway (snippets)
+- [L] https://en.prothomalo.com/bangladesh/rbjde07nzk (18 Apr 2023)
+- [M] https://www.tbsnews.net/node/619670 (20 Apr 2023)
 - [H] https://www.dhakatribune.com/bangladesh/dhaka/319966/motorcycles-three-wheelers-banned-on-dhaka (8 Jul 2023)
 - [I] https://bangla.bdnews24.com/13th-parliamentary-election/7520751c2f2a
 - [J] https://en.prothomalo.com/bangladesh/zy5y79y3zf

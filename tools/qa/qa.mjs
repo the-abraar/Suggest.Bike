@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 import fs from 'fs';
 
 const BASE = process.env.BASE || 'http://localhost:4173';
-const PAGES = (process.env.PAGES || '/,/match/,/bikes/,/bikes/bajaj-ct100/,/bikes/walton-takyon-fusion-25td/,/bikes/bajaj-pulsar-n160/,/compare/?bikes=walton-takyon-fusion-25td,bajaj-ct100,/cost/,/cost/#pay,/guide/,/method/,/dealers/,/about/,/feedback/,/bn/,/bn/match/,/bn/bikes/bajaj-ct100/,/bn/compare/,/changes/,/bn/changes/,/bn/privacy/,/guide/motorcycle-fines/,/bn/guide/motorcycle-fines/,/compare/bajaj-pulsar-n160-vs-tvs-apache-rtr-160-4v/,/bn/compare/honda-dio-vs-tvs-ntorq-125/').split(/,(?=\/)/); // split only before a path, so ?bikes=a,b survives
+const PAGES = (process.env.PAGES || '/,/match/,/bikes/,/bikes/bajaj-ct100/,/bikes/walton-takyon-fusion-25td/,/bikes/bajaj-pulsar-n160/,/compare/?bikes=walton-takyon-fusion-25td,bajaj-ct100,/cost/,/cost/#pay,/guide/,/method/,/dealers/,/about/,/feedback/,/bn/,/bn/match/,/bn/bikes/bajaj-ct100/,/bn/compare/,/changes/,/bn/changes/,/bn/privacy/,/guide/motorcycle-fines/,/bn/guide/motorcycle-fines/,/guide/speed-limits/,/bn/guide/driving-licence/,/guide/e-fines/,/compare/bajaj-pulsar-n160-vs-tvs-apache-rtr-160-4v/,/bn/compare/honda-dio-vs-tvs-ntorq-125/').split(/,(?=\/)/); // split only before a path, so ?bikes=a,b survives
 const SIZES = { 375: 812, 768: 1024, 1280: 800 };
 const WIDTHS = (process.env.WIDTHS || '375,768,1280').split(',').map(Number);
 const MAX_TILES = 4;
