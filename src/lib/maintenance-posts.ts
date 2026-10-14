@@ -1,4 +1,7 @@
+import type { BikeImage } from "./types";
+
 export type Pair = [en: string, bn: string];
+export type Figure = { alt: Pair; caption: Pair; width: number; height: number; image: BikeImage };
 export type Post = {
   slug: string;
   updated: string;
@@ -6,6 +9,7 @@ export type Post = {
   title: Pair;
   summary: Pair;
   need?: Pair[];
+  figures?: Figure[];
   steps: Pair[];
   avoid: Pair[];
   mechanic: Pair[];
@@ -783,6 +787,51 @@ export const POSTS: Post[] = [
     mechanic: [
       ["Any crash, even a slow one. Bent forks, wheels or brake parts are not always visible.", "যেকোনো দুর্ঘটনার পর, ধীর গতির হলেও। ফর্ক, চাকা বা ব্রেকের পার্টস বাঁকলে সবসময় চোখে পড়ে না।"],
       ["See a doctor too. Some injuries only show up hours later.", "ডাক্তারও দেখান। কিছু আঘাত কয়েক ঘণ্টা পরে টের পাওয়া যায়।"],
+    ],
+  },
+  {
+    slug: "clutchless-shifting",
+    updated: "2026-10-14",
+    minutes: 5,
+    title: ["Clutchless shifting: how it works and when to skip it", "ক্লাচ ছাড়া গিয়ার বদল: কীভাবে কাজ করে, কখন করবেন না"],
+    summary: [
+      "Riders argue about it endlessly. Here is what actually happens inside the gearbox, what is fine, and where you can hurt the bike or yourself.",
+      "নিয়ে তর্কের শেষ নেই। গিয়ারবক্সের ভেতরে আসলে কী হয়, কোনটা ঠিক আর কোথায় বাইক বা নিজের ক্ষতি হতে পারে, এখানে সেটাই।",
+    ],
+    figures: [
+      {
+        width: 600,
+        height: 640,
+        alt: ["Animated diagram of a sequential gearbox: a shift fork slides a ring with dogs sideways to lock one gear to its shaft", "সিকোয়েন্সিয়াল গিয়ারবক্সের অ্যানিমেটেড ডায়াগ্রাম: শিফট ফর্ক ডগসহ রিংকে পাশে সরিয়ে একটি গিয়ারকে শ্যাফটের সাথে আটকায়"],
+        caption: ["A sequential gearbox. The shift fork (grey) slides a ring of dogs (pink) into the next gear. There is no synchroniser, so the dogs simply have to line up and drop in.", "সিকোয়েন্সিয়াল গিয়ারবক্স। শিফট ফর্ক (ধূসর) ডগের রিংকে (গোলাপি) পরের গিয়ারে ঢুকিয়ে দেয়। সিঙ্ক্রোনাইজার নেই, ডগগুলো মিলে গেলেই ঢুকে যায়।"],
+        image: { src: "/posts/sequential-gearbox.gif", author: "XyKyWyKy", license: "CC0", sourcePage: "https://commons.wikimedia.org/wiki/File:Gearbox_4gears_sequential.gif" },
+      },
+      {
+        width: 1000,
+        height: 750,
+        alt: ["Close-up of motorcycle gearbox gears with square dog lugs on the face of the gear", "মোটরসাইকেল গিয়ারবক্সের গিয়ারের মুখে চৌকো ডগ লাগ-এর ক্লোজ-আপ"],
+        caption: ["Real gearbox gears (Honda CBR600RR teardown). The chunky square lugs on the gear face are the dogs. Worn or rounded corners make shifts harder.", "আসল গিয়ারবক্সের গিয়ার (Honda CBR600RR খোলা অবস্থায়)। গিয়ারের মুখের মোটা চৌকো লাগগুলোই ডগ। কোণ ক্ষয়ে গোল হলে গিয়ার বদল কঠিন হয়ে যায়।"],
+        image: { src: "/posts/gearbox-dogs.webp", author: "Spheroidite", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0", sourcePage: "https://commons.wikimedia.org/wiki/File:Honda_CBR600RR_teardown_2015-10-19_13.44.00.jpg" },
+      },
+    ],
+    steps: [
+      ["Know why it works. A motorcycle gearbox has no synchronisers like a car. Gears are locked to the shaft by dogs, which are chunky lugs that slot into matching gaps. They are built for fast, repeated load changes.", "কেন কাজ করে তা বুঝুন। গাড়ির মতো মোটরসাইকেলের গিয়ারবক্সে সিঙ্ক্রোনাইজার নেই। গিয়ার শ্যাফটের সাথে আটকায় ডগ দিয়ে, মানে মোটা লাগ যা মাপমতো ফাঁকে ঢোকে। দ্রুত, বারবার লোড বদলের জন্যই এগুলো বানানো।"],
+      ["Upshift: keep the throttle on, ease off it for a moment as you press the shift lever up, then roll back on. Unloading the dogs for that instant lets them slide out and into the next gear. Do it smoothly, do not stab at the lever.", "আপশিফট: থ্রটল ধরে রেখে লিভার ওপরে চাপার মুহূর্তে একটু ছেড়ে দিন, তারপর আবার দিন। ওই মুহূর্তে ডগের ওপর চাপ কমে, তাই সহজে বেরিয়ে পরের গিয়ারে ঢোকে। মসৃণভাবে করুন, লিভারে ঘুষি মারবেন না।"],
+      ["Downshift method 1, rev matching: close the throttle, blip it up as you press the lever down, so the engine speed matches the speed the lower gear needs. Release smoothly. It takes practice, and a bad blip gives a jerk or a rear-wheel skid.", "ডাউনশিফট পদ্ধতি ১, রেভ ম্যাচিং: থ্রটল বন্ধ করে লিভার নামানোর সময় থ্রটল একটু ঝাপটা দিন, যাতে ইঞ্জিনের গতি নিচের গিয়ারের দরকারি গতির সাথে মেলে। আস্তে ছাড়ুন। অভ্যাস লাগে; ভুল হলে ঝটকা বা পেছনের চাকা স্কিড করতে পারে।"],
+      ["Downshift method 2, passive syncing: as the bike slows, hold light steady pressure on the lever. When engine and wheel speed come close, the gear drops in by itself. The dogs are angled to self-align, so it is gentle if you stay patient.", "ডাউনশিফট পদ্ধতি ২, প্যাসিভ সিঙ্কিং: বাইক ধীর হওয়ার সময় লিভারে হালকা চাপ ধরে রাখুন। ইঞ্জিন আর চাকার গতি কাছাকাছি এলে গিয়ার নিজেই ঢুকে যায়। ডগের আকার এমন যে নিজে থেকে মিলে যায়, তাই ধৈর্য ধরলে মসৃণ হয়।"],
+      ["Practise on a quiet, dry, straight road at low speed first, never in traffic or in a corner.", "প্রথমে ফাঁকা, শুকনো, সোজা রাস্তায় কম গতিতে অভ্যাস করুন। ভিড়ের মধ্যে বা বাঁকে কখনো নয়।"],
+    ],
+    avoid: [
+      ["Clutchless on a cold engine. Thick cold oil makes the dogs slow to engage. Ride a few minutes first.", "ঠান্ডা ইঞ্জিনে ক্লাচ ছাড়া বদল। ঠান্ডা ঘন তেলে ডগ ধীরে ঢোকে। আগে কয়েক মিনিট চালিয়ে নিন।"],
+      ["Forcing it when the RPM does not match. Mismatched speed, not the lack of a clutch, is what damages the gearbox and locks the rear wheel.", "গতি না মিললে জোর করে গিয়ার ঢোকানো। গিয়ারবক্সের ক্ষতি আর পেছনের চাকা লক হওয়ার আসল কারণ গতির অমিল, ক্লাচ না থাকা নয়।"],
+      ["Doing it hard on an old or abused bike: bent shift forks, rounded dogs or a gearbox that already jumps out of gear. Use the clutch there.", "পুরনো বা অযত্নের বাইকে জোরে করা: বাঁকা শিফট ফর্ক, গোল হয়ে যাওয়া ডগ, বা গিয়ার ইতিমধ্যে ফসকে যায়। সেখানে ক্লাচ ব্যবহার করুন।"],
+      ["Downshifting clutchless on wet or loose roads. A wrong match can lock the rear tyre and slide you out.", "ভেজা বা আলগা রাস্তায় ক্লাচ ছাড়া ডাউনশিফট। অমিল হলে পেছনের টায়ার লক হয়ে পিছলে পড়তে পারেন।"],
+      ["Missing the gear on a 1-N-2-3-4 pattern. Many commuter bikes have neutral between 1st and 2nd, and a lazy clutchless 1-to-2 shift can land in neutral. Use the clutch for that one.", "১-এন-২-৩-৪ প্যাটার্নে গিয়ার ফসকানো। অনেক কমিউটার বাইকে ১ম আর ২য় গিয়ারের মাঝে নিউট্রাল থাকে, আর ক্লাচ ছাড়া ঢিলেঢালা ১ থেকে ২ করলে নিউট্রালে পড়ে যেতে পারে। ওই বদলে ক্লাচ ব্যবহার করুন।"],
+    ],
+    mechanic: [
+      ["The bike jumps out of gear, or the lever feels notchy or stuck: shift fork or dog wear.", "বাইক গিয়ার থেকে ফসকে যায়, বা লিভার শক্ত বা আটকে আটকে চলে: শিফট ফর্ক বা ডগ ক্ষয়।"],
+      ["Loud crunching or clunking on every shift, or it will not find neutral.", "প্রতিবার গিয়ার বদলে জোরে কড়কড় বা ঠক শব্দ, অথবা নিউট্রাল পাওয়া যায় না।"],
+      ["Gear oil or engine oil is low or old. Fix that first; oil level and quality matter a lot for smooth shifts.", "ইঞ্জিন অয়েল বা গিয়ার অয়েল কম বা পুরনো। আগে সেটা ঠিক করুন; মসৃণ গিয়ার বদলে অয়েলের পরিমাণ আর মান অনেক বড় ব্যাপার।"],
     ],
   },
 ];

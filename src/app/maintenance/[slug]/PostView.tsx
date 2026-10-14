@@ -37,6 +37,23 @@ export function PostView({ slug }: { slug: string }) {
             <List items={post.need} />
           </section>
         )}
+        {post.figures?.map((f) => (
+          <figure key={f.image.src}>
+            <img src={f.image.src} alt={tx(...f.alt)} width={f.width} height={f.height} loading="lazy" className="mx-auto h-auto max-h-[480px] w-auto max-w-full rounded-2xl border border-line bg-white" />
+            <figcaption className="mt-2 text-[13px] leading-relaxed text-muted">
+              {tx(...f.caption)} {tx("Image", "ছবি")}:{" "}
+              <a href={f.image.sourcePage} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
+                {f.image.author}
+              </a>
+              {" · "}
+              {f.image.licenseUrl ? (
+                <a href={f.image.licenseUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{f.image.license}</a>
+              ) : (
+                f.image.license
+              )}
+            </figcaption>
+          </figure>
+        ))}
         <section>
           <h2 className="text-[22px] font-semibold tracking-tight text-ink">{tx("Steps", "ধাপগুলো")}</h2>
           <List items={post.steps} ordered />
