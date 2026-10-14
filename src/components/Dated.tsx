@@ -1,7 +1,8 @@
 "use client";
 
 // Things that depend on today's date. The site is a static export, so the build date goes stale:
-// each of these compares against the visitor's clock after mount and renders nothing before that (no hydration mismatch).
+// each of these compares against the visitor's clock after mount. Before that they render nothing, except offers, which
+// render for the build date (same on server and first client render, so no hydration mismatch).
 import { useEffect, useState } from "react";
 import { Tag } from "lucide-react";
 import { formatBDT } from "@/lib/bikes";
@@ -16,9 +17,13 @@ function useToday() {
   return today;
 }
 
+// The build's Bangladesh date (next.config.ts): an offer running at build time is in the HTML, so its box holds its space
+// before paint instead of pushing the page down after mount (critique B18). After mount the visitor's date decides.
+const BUILD_DAY = process.env.BUILD_DAY_BD ?? "";
+
 export function useActiveOffer(bikeId: string) {
-  const today = useToday();
-  return today ? activeOffer(bikeId, today) : undefined;
+  const day = useToday() || BUILD_DAY;
+  return day ? activeOffer(bikeId, day) : undefined;
 }
 
 const longDate = (iso: string, lang: "en" | "bn") =>
