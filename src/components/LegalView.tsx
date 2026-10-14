@@ -6,6 +6,9 @@ import { SITE } from "@/lib/site";
 type Doc = { title: [string, string]; items: [string, string][][] };
 
 // TODO(owner): these texts are plain-language drafts, NOT legal advice. Have a Bangladesh lawyer review them before launch.
+// TODO(owner): name the operator (person or company) and a postal address in the terms; neither is stated anywhere yet.
+// TODO(owner): add a governing-law line (e.g. "the laws of Bangladesh; courts of Dhaka") once a lawyer confirms it.
+// TODO(owner): promise a response time for corrections and takedowns (e.g. "within 7 days") only once you can keep it.
 const DOCS: Record<"privacy" | "terms" | "disclaimer", Doc> = {
   privacy: {
     title: ["Privacy", "গোপনীয়তা"],
@@ -30,8 +33,9 @@ const DOCS: Record<"privacy" | "terms" | "disclaimer", Doc> = {
         ["Suggest.Bike is a free information site. By using it you accept these terms.", "Suggest.Bike একটি বিনামূল্যের তথ্যের সাইট। ব্যবহার করলে আপনি এই শর্ত মেনে নিচ্ছেন।"],
         ["Information is provided as is, without any promise that it is complete, current or correct. Prices, specs, ratings and legal or fee figures can change or contain mistakes.", "তথ্য যেমন আছে তেমন দেওয়া হয়; সম্পূর্ণ, হালনাগাদ বা নির্ভুল হওয়ার কোনো নিশ্চয়তা নেই। দাম, স্পেক, রেটিং এবং আইনি বা ফির অঙ্ক বদলাতে পারে বা ভুল থাকতে পারে।"],
         ["You are responsible for your own buying decisions. To the extent the law allows, we are not liable for losses from using the site.", "কেনার সিদ্ধান্ত আপনার নিজের। আইনে যতটুকু অনুমোদিত, সাইট ব্যবহারে হওয়া ক্ষতির দায় আমরা নিই না।"],
-        ["Brand names are used only to identify bikes. We are not affiliated with any manufacturer or dealer.", "ব্র্যান্ডের নাম শুধু বাইক চেনাতে ব্যবহার করা হয়েছে। আমরা কোনো নির্মাতা বা ডিলারের সাথে যুক্ত নই।"],
-        ["Some bike photos come from Wikimedia Commons under the CC BY-SA licence; credits stay with each photo and the licence applies to reuse of those photos.", "কিছু বাইকের ছবি Wikimedia Commons থেকে CC BY-SA লাইসেন্সে নেওয়া; ক্রেডিট প্রতিটি ছবির সাথে থাকে এবং ছবিগুলো আবার ব্যবহারে ওই লাইসেন্স প্রযোজ্য।"],
+        ["Trademarks. Brand names, model names and logos belong to their owners. We use them only to identify bikes, and we are not affiliated with, sponsored by or endorsed by any manufacturer, distributor or dealer.", "ট্রেডমার্ক। ব্র্যান্ড ও মডেলের নাম এবং লোগো তাদের মালিকদের। আমরা এগুলো শুধু বাইক চেনাতে ব্যবহার করি; কোনো নির্মাতা, ডিস্ট্রিবিউটর বা ডিলারের সাথে আমরা যুক্ত নই, তারা আমাদের স্পনসর বা সমর্থক নয়।"],
+        ["Some bike photos come from Wikimedia Commons under CC BY, CC BY-SA or CC0 licences. Each photo's credit names its author and licence, links the licence and says what we changed (resized, converted to WebP, cropped). The licence applies to reuse of those photos.", "কিছু বাইকের ছবি Wikimedia Commons থেকে CC BY, CC BY-SA বা CC0 লাইসেন্সে নেওয়া। প্রতিটি ছবির ক্রেডিটে লেখক ও লাইসেন্সের নাম, লাইসেন্সের লিংক আর আমরা কী বদলেছি (আকার, WebP রূপান্তর, ক্রপ) লেখা থাকে। ছবিগুলো আবার ব্যবহারে ওই লাইসেন্স প্রযোজ্য।"],
+        ["Corrections and takedowns. If a price, spec or other fact here is wrong, use \"Report wrong price\" on the bike page or write to the contact below with the page link, the correct value and where you saw it. If you own a photo, text or trademark used here and want it removed or credited differently, write to the same address with the page link and proof that it is yours. We check each request, then correct, credit or remove the item.", "সংশোধন ও সরিয়ে নেওয়া। এখানে কোনো দাম, স্পেক বা অন্য তথ্য ভুল হলে বাইকের পাতায় \"ভুল দাম জানান\" ব্যবহার করুন, অথবা নিচের ঠিকানায় পাতার লিংক, সঠিক তথ্য আর কোথায় দেখেছেন তা লিখুন। এখানে ব্যবহৃত কোনো ছবি, লেখা বা ট্রেডমার্ক আপনার হলে এবং তা সরাতে বা ক্রেডিট বদলাতে চাইলে, একই ঠিকানায় পাতার লিংক ও মালিকানার প্রমাণসহ লিখুন। আমরা প্রতিটি অনুরোধ যাচাই করে তথ্য ঠিক করি, ক্রেডিট দিই বা সরিয়ে ফেলি।"],
         ["We may change these terms or the site at any time.", "আমরা যেকোনো সময় এই শর্ত বা সাইট বদলাতে পারি।"],
       ],
       [["Contact: ", "যোগাযোগ: "]],
@@ -45,7 +49,8 @@ const DOCS: Record<"privacy" | "terms" | "disclaimer", Doc> = {
         ["Mileage, mechanic and parts scores are editorial estimates, not lab measurements.", "মাইলেজ, মিস্ত্রি ও পার্টসের স্কোর সম্পাদকীয় আন্দাজ, ল্যাবে মাপা নয়।"],
         ["Registration, BRTA, licence and import-rule information is a general guide, not legal advice. Check with BRTA or a qualified professional.", "রেজিস্ট্রেশন, BRTA, লাইসেন্স ও আমদানি নিয়মের তথ্য সাধারণ নির্দেশিকা, আইনি পরামর্শ নয়। BRTA বা যোগ্য পেশাজীবীর কাছে যাচাই করুন।"],
         ["The used-bike checklist is an aid only and cannot replace inspection by a qualified mechanic.", "পুরনো বাইকের চেকলিস্ট শুধু সহায়ক; যোগ্য মিস্ত্রির পরীক্ষার বিকল্প নয়।"],
-        ["Photos from Wikimedia Commons are used under CC BY-SA with credit to their authors.", "Wikimedia Commons-এর ছবি CC BY-SA লাইসেন্সে লেখকদের ক্রেডিটসহ ব্যবহার করা হয়েছে।"],
+        ["Photos from Wikimedia Commons are used under their CC licences with credit to their authors, a licence link and a note of our changes.", "Wikimedia Commons-এর ছবি তাদের CC লাইসেন্সে লেখকদের ক্রেডিট, লাইসেন্সের লিংক ও আমাদের পরিবর্তনের কথাসহ ব্যবহার করা হয়েছে।"],
+        ["Brand names, model names and logos belong to their owners.", "ব্র্যান্ড ও মডেলের নাম এবং লোগো তাদের মালিকদের।"],
       ],
     ],
   },
