@@ -29,3 +29,9 @@ export const activeOffer = (bikeId: string, today: string, offers: Offer[] = OFF
 
 /** Whole days from an ISO date to today (both YYYY-MM-DD). */
 export const daysSince = (iso: string, today: string) => Math.round((Date.parse(today) - Date.parse(iso)) / 864e5);
+
+/** How old a "YYYY-MM" price is on the visitor's date: amber after 60 days, red after 120 (critique B5). Counted from the 1st, as validate does. */
+export const priceAge = (asOf: string, today: string): "fresh" | "aging" | "stale" => {
+  const d = daysSince(`${asOf}-01`, today);
+  return d > 120 ? "stale" : d > 60 ? "aging" : "fresh";
+};

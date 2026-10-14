@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Tag } from "lucide-react";
 import { formatBDT } from "@/lib/bikes";
 import { FUEL } from "@/lib/cost";
-import { activeOffer, daysSince, todayBD } from "@/lib/offers";
+import { activeOffer, daysSince, priceAge, todayBD } from "@/lib/offers";
 import { useLang, useTx } from "@/lib/i18n";
 
 /** Today in Bangladesh as YYYY-MM-DD, or "" during prerender and the first client render. */
@@ -70,6 +70,25 @@ export function OfferBox({ bikeId }: { bikeId: string }) {
         {tx("Confirm with the showroom before paying.", "টাকা দেওয়ার আগে শোরুমে নিশ্চিত হোন।")}
       </p>
     </div>
+  );
+}
+
+/**
+ * "Price checked Oct 2026" (or "Used-price estimate" for used-only bikes). The dot is neutral until mount, then ages on the
+ * visitor's date: green, amber after 60 days, red after 120, with words so colour is not the only signal.
+ */
+export function PriceBadge({ asOf, label, estimate }: { asOf: string; label: string; estimate: boolean }) {
+  const tx = useTx();
+  const today = useToday();
+  const age = today ? priceAge(asOf, today) : null;
+  const dot = { fresh: "bg-good", aging: "bg-warn", stale: "bg-signal" }[age ?? "fresh"];
+  return (
+    <span className="inline-flex items-center gap-1.5 rounded-full bg-surface-2 px-2.5 py-1 text-[12px] font-medium text-ink-2">
+      <span className={`h-1.5 w-1.5 rounded-full ${age ? dot : "bg-faint"}`} aria-hidden />
+      {estimate ? tx("Used-price estimate", "পুরনো বাইকের আনুমানিক দাম") : tx("Price checked", "দাম যাচাই")} {label}
+      {age === "aging" && <span className="text-warn">{tx("· may have changed", "· বদলাতে পারে")}</span>}
+      {age === "stale" && <span className="text-signal">{tx("· may be out of date", "· পুরনো হতে পারে")}</span>}
+    </span>
   );
 }
 
