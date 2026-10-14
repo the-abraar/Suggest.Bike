@@ -2,7 +2,6 @@
 
 import Link from "@/components/LangLink";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { AlertTriangle, ArrowRight, Calculator, Check, ChevronRight, ExternalLink, Flag, Info, MapPin, Minus, Wrench } from "lucide-react";
 import {
   CATEGORIES,
@@ -20,9 +19,9 @@ import {
 } from "@/lib/bikes";
 import { DEFAULT_COST_INPUT, onRoadPrice, ownershipCost } from "@/lib/cost";
 import { cardEmi } from "@/lib/fund";
-import { FuelAgeNote, OfferBox, OfferTag } from "@/components/Dated";
+import { FuelAgeNote, OfferBox, OfferTag, PriceBadge } from "@/components/Dated";
 import { useLang, useTx } from "@/lib/i18n";
-import { SITE, issueUrl, langHref } from "@/lib/site";
+import { SITE, issueUrl } from "@/lib/site";
 import { pairBySlug, pairHref, pairSlug, pairsForBike } from "@/lib/curated";
 import type { Bike, Part, ScoreKey } from "@/lib/types";
 import type { PricePoint } from "@/lib/history";
@@ -47,9 +46,8 @@ const monthLabel = (ym: string, lang: "en" | "bn") => {
 
 export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[] } }) {
   const hist = bike.priceHistory ?? [];
-  const { lang } = useLang();
+  const { lang, t } = useLang();
   const tx = useTx();
-  const router = useRouter();
   const [showPhoto, setShowPhoto] = useState(true);
   const used = bike.status === "used-only";
   const bn = lang === "bn" && bike.bn ? bike.bn : null;
@@ -127,11 +125,25 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
                   </button>
                 </div>
               )}
-              <figcaption className="absolute bottom-2 right-3 max-w-[85%] truncate rounded-md bg-surface/80 px-1.5 py-0.5 text-[11px] text-muted backdrop-blur">
+              {/* CC BY / BY-SA need the licence link and a note of changes (critique B17); wraps, never truncated, below the photo on phones */}
+              <figcaption className="px-3 py-1.5 text-[11px] leading-snug text-muted sm:absolute sm:bottom-2 sm:right-3 sm:max-w-[85%] sm:rounded-md sm:bg-surface/80 sm:px-1.5 sm:py-0.5 sm:backdrop-blur">
                 {bike.image && showPhoto ? (
-                  <a href={bike.image.sourcePage} target="_blank" rel="noopener noreferrer" className="hover:text-ink">
-                    {tx("Photo", "ছবি")}: {bike.image.author} · {bike.image.license}
-                  </a>
+                  <>
+                    {tx("Photo", "ছবি")}:{" "}
+                    <a href={bike.image.sourcePage} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-ink">
+                      {bike.image.author}
+                    </a>
+                    {" · "}
+                    {bike.image.licenseUrl ? (
+                      <a href={bike.image.licenseUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-ink">
+                        {bike.image.license}
+                      </a>
+                    ) : (
+                      bike.image.license
+                    )}
+                    {" · "}
+                    {tx("resized, converted to WebP and cropped", "আকার বদলানো, WebP-তে রূপান্তর ও ক্রপ করা")}
+                  </>
                 ) : (
                   tx("Illustration", "ইলাস্ট্রেশন")
                 )}
@@ -145,17 +157,14 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
                 <span className="text-faint">·</span>
                 <span>{ccLabel(bike)}</span>
                 {used && <span className="rounded-full bg-warn-soft px-2 py-0.5 text-[11.5px] font-semibold text-warn">{tx("Used market only", "শুধু পুরনো বাজারে")}</span>}
+                {bike.availability === "unconfirmed" && <span className="rounded-full bg-warn-soft px-2 py-0.5 text-[11.5px] font-semibold text-warn">{t("common.availUnconfirmed")}</span>}
               </div>
               <h1 className="mt-2 text-[34px] font-semibold leading-tight tracking-[-0.03em] text-ink sm:text-[44px]">{bike.model}</h1>
               {bike.variant && <p className="mt-1 text-[14.5px] text-muted">{bike.variant}</p>}
               <p className="mt-4 text-[17px] leading-relaxed text-ink-2">{txt.tagline}</p>
 
               <div className="mt-6 flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-surface-2 px-2.5 py-1 text-[12px] font-medium text-ink-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-good" />
-                  {tx("Price checked", "দাম যাচাই")} {monthLabel(bike.priceAsOf, lang)}
-                </span>
-                <span className="text-[12px] text-muted">{tx("Re-checked monthly", "প্রতি মাসে আবার যাচাই")}</span>
+                <PriceBadge asOf={bike.priceAsOf} label={monthLabel(bike.priceAsOf, lang)} estimate={used} />
                 <OfferTag bikeId={bike.id} className="px-2.5 py-1 text-[12px]" />
               </div>
               <div className="mt-3 flex flex-wrap items-end gap-x-8 gap-y-3">
@@ -185,6 +194,14 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
                   {tx("Cash, card EMI or loan? Compare what each costs →", "নগদ, কার্ড কিস্তি না লোন? কোনটায় কত খরচ দেখুন →")}
                 </Link>
               </p>
+              {bike.availability === "unconfirmed" && (
+                <p className="mt-2 text-[13.5px] leading-relaxed text-warn">
+                  {tx(
+                    "The distributor does not list this model now, or its stock in Bangladesh is unproven. Ask the showroom whether they have one before you plan on it.",
+                    "ডিস্ট্রিবিউটর এখন এই মডেল তালিকায় রাখেনি, অথবা বাংলাদেশে স্টক আছে কিনা নিশ্চিত নয়। ভরসা করার আগে শোরুমে জিজ্ঞেস করুন আছে কিনা।",
+                  )}
+                </p>
+              )}
               {txt.priceNote && <p className="mt-2 text-[13.5px] leading-relaxed text-muted">{txt.priceNote}</p>}
               {bike.variants && bike.variants.length > 0 && (
                 <table className="mt-3 w-full max-w-md text-[13px]">
@@ -539,24 +556,12 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
                 key={s.id}
                 bike={s}
                 footer={
-                  <span
-                    role="link"
-                    tabIndex={0}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      router.push(langHref(targetHref, lang));
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        e.preventDefault();
-                        router.push(langHref(targetHref, lang));
-                      }
-                    }}
-                    className="-mx-5 -mb-5 mt-1 flex cursor-pointer items-center justify-between border-t border-line px-5 py-3 text-[13px] font-medium text-brand hover:bg-surface-2"
+                  <Link
+                    href={targetHref}
+                    className="relative z-10 -mx-5 -mb-5 mt-1 flex items-center justify-between border-t border-line px-5 py-3 text-[13px] font-medium text-brand hover:bg-surface-2"
                   >
                     {tx(`Compare with ${bike.model}`, `${bike.model}-এর সাথে তুলনা`)} <ArrowRight size={14} />
-                  </span>
+                  </Link>
                 }
               />
             );
@@ -578,7 +583,7 @@ function BuyAndReport({ bike }: { bike: Bike }) {
           {dealer ? <DealerCard brand={bike.brand} d={dealer} compact /> : <p className="text-[14.5px] text-ink-2">{tx("We have not verified an official distributor for this brand.", "এই ব্র্যান্ডের অফিশিয়াল ডিস্ট্রিবিউটর এখনো যাচাই করা হয়নি।")}</p>}
           <AskShowroom />
           <p className="mt-3 text-[13px] text-muted">
-            {tx("Prices are re-checked monthly. Seen a different price at a showroom?", "দাম প্রতি মাসে আবার যাচাই করা হয়। শোরুমে অন্য দাম দেখেছেন?")}{" "}
+            {tx("Prices change often. Seen a different price at a showroom?", "দাম প্রায়ই বদলায়। শোরুমে অন্য দাম দেখেছেন?")}{" "}
             <Link href="/dealers/" className="text-brand underline underline-offset-2">{tx("All distributors", "সব ডিস্ট্রিবিউটর")}</Link>
           </p>
         </Section>
