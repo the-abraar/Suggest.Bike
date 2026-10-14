@@ -13,7 +13,45 @@ export type Post = {
   steps: Pair[];
   avoid: Pair[];
   mechanic: Pair[];
+  related?: string[]; // slugs shown under "More guides" instead of the default next five
 };
+
+// Shared blocks for the four used-bike checklists (used-check-*). Engine-specific steps sit between them.
+const USED_PAPERS: Pair[] = [
+  ["Ask for the papers before you even look at the bike: the BRTA registration certificate (smart card, or the older blue book), the tax token, the insurance paper and the seller's NID. Motorcycles do not need a fitness certificate, so that is not one to look for.", "বাইক দেখার আগেই কাগজ দেখতে চান: BRTA রেজিস্ট্রেশন সার্টিফিকেট (স্মার্ট কার্ড, বা পুরনো ব্লু বুক), ট্যাক্স টোকেন, ইন্স্যুরেন্সের কাগজ আর বিক্রেতার এনআইডি। মোটরসাইকেলে ফিটনেস সার্টিফিকেট লাগে না, তাই ওটা খোঁজার দরকার নেই।"],
+  ["Match the name on the registration to the seller's NID. If the bike is in someone else's name, the registered owner must sign the ownership transfer with you. Without that signature BRTA will not move the bike into your name.", "রেজিস্ট্রেশনের নাম আর বিক্রেতার এনআইডির নাম মিলিয়ে দেখুন। বাইক অন্য কারো নামে থাকলে, মালিকানা বদলের কাগজে আসল মালিককেই আপনার সাথে সই করতে হবে। সেই সই ছাড়া BRTA বাইক আপনার নামে করবে না।"],
+  ["Read the chassis number (stamped on the frame, usually near the steering head) and the engine number (on the engine case). Both must match the registration exactly. Filed, re-stamped, painted-over or uneven digits are a reason to walk away.", "চেসিস নম্বর (ফ্রেমে খোদাই করা, সাধারণত হ্যান্ডেলের নিচে স্টিয়ারিং হেডের কাছে) আর ইঞ্জিন নম্বর (ইঞ্জিনের কেসিংয়ে) পড়ুন। দুটোই রেজিস্ট্রেশনের সাথে হুবহু মিলতে হবে। ঘষা, নতুন করে খোদাই করা, রং দিয়ে ঢাকা বা এলোমেলো অক্ষর দেখলে সেখানেই কেনা বাদ দিন।"],
+  ["The number plate should be the BRTA-issued digital (retro-reflective) plate with the same number as the papers. A hand-made or mismatched plate needs a clear explanation.", "নম্বর প্লেট হতে হবে BRTA-র দেওয়া ডিজিটাল (রেট্রো-রিফ্লেক্টিভ) প্লেট, আর নম্বর কাগজের সাথে মিলতে হবে। হাতে বানানো বা না-মেলা প্লেট হলে পরিষ্কার ব্যাখ্যা চান।"],
+  ["Check the tax token's expiry date. If it has lapsed, the arrears and fines usually land on whoever owns the bike next, so agree who pays before any money changes hands.", "ট্যাক্স টোকেনের মেয়াদ কবে শেষ দেখুন। মেয়াদ পেরিয়ে গেলে বকেয়া আর জরিমানা সাধারণত পরের মালিকের ঘাড়েই পড়ে, তাই টাকা দেওয়ার আগেই ঠিক করুন কে দেবে।"],
+  ["Ask whether the bike has pending traffic cases or e-fines, and check yourself on the official online service before paying (our e-fines guide shows how). Unpaid cases follow the bike.", "বাইকের নামে কোনো ট্রাফিক মামলা বা ই-ফাইন বাকি আছে কি না জিজ্ঞেস করুন, আর টাকা দেওয়ার আগে নিজে অফিসিয়াল অনলাইন সেবায় যাচাই করুন (কীভাবে, তা আমাদের ই-ফাইন গাইডে আছে)। বকেয়া মামলা বাইকের সাথেই থেকে যায়।"],
+  ["Write a sale receipt with both NID numbers, the date, the price and the chassis and engine numbers, signed by both of you. Then do the ownership transfer at BRTA soon. Until it is done, the bike legally stays in the seller's name.", "একটি বিক্রয় রসিদ লিখুন: দুজনের এনআইডি নম্বর, তারিখ, দাম, চেসিস আর ইঞ্জিন নম্বরসহ, আর দুজনেই সই করুন। তারপর দেরি না করে BRTA-তে মালিকানা বদল করুন। সেটা না হওয়া পর্যন্ত আইনত বাইক বিক্রেতার নামেই থাকে।"],
+];
+const USED_ENGINE: Pair[] = [
+  ["Ask the seller not to start or ride the bike before you arrive, and touch the engine when you get there. It should be cold. A warm engine hides hard starting, smoke and noises.", "বিক্রেতাকে বলুন আপনি পৌঁছানোর আগে যেন বাইক স্টার্ট বা চালানো না হয়, আর গিয়ে ইঞ্জিনে হাত দিয়ে দেখুন। ঠান্ডা থাকা উচিত। গরম ইঞ্জিনে স্টার্টের সমস্যা, ধোঁয়া আর শব্দ লুকিয়ে যায়।"],
+  ["Start it and watch the exhaust, then rev it a few times. Thin white vapour on a cool morning that clears in a minute is normal. Blue or grey smoke means it is burning oil (worn rings or valve seals). Black smoke means it is running too rich.", "স্টার্ট দিয়ে সাইলেন্সারের দিকে তাকান, তারপর কয়েকবার রেভ দিন। ঠান্ডা সকালে হালকা সাদা বাষ্প এক মিনিটে মিলিয়ে গেলে স্বাভাবিক। নীল বা ধূসর ধোঁয়া মানে ইঞ্জিন অয়েল পুড়ছে (রিং বা ভালভ সিল ক্ষয়)। কালো ধোঁয়া মানে তেল বেশি পুড়ছে, মিক্সচার রিচ।"],
+  ["Listen at idle and as it warms. A light, even ticking is normal. Loud tapping from the top, knocking from the bottom, a rattle for the first seconds after start-up, or grinding are not. Look for oil seeping around the cylinder head and the base of the cylinder.", "আইডলে আর গরম হওয়ার সময় কান পাতুন। হালকা, সমান টিকটিক শব্দ স্বাভাবিক। ওপর থেকে জোরে ঠকঠক, নিচ থেকে ধাক্কার মতো শব্দ, স্টার্টের পর প্রথম কয়েক সেকেন্ড ঝনঝন, বা ঘষার শব্দ ভালো লক্ষণ নয়। সিলিন্ডার হেড আর সিলিন্ডারের গোড়ায় অয়েল চুইয়ে পড়ছে কি না দেখুন।"],
+  ["Hard starting together with weak pulling and blue smoke points to a tired top end (low compression). A mechanic can measure compression with a gauge in a few minutes.", "স্টার্ট নিতে কষ্ট, টান কম আর সাথে নীল ধোঁয়া মানে ইঞ্জিনের ওপরের অংশ ক্লান্ত (কম্প্রেশন কম)। মেকানিক গেজ দিয়ে কয়েক মিনিটেই কম্প্রেশন মেপে দিতে পারেন।"],
+];
+const USED_CHASSIS: Pair[] = [
+  ["Clutch slip test: in a high gear at low speed, open the throttle quickly. If the revs jump but the bike barely speeds up, the clutch plates are worn. It should also find neutral easily, and the lever should have a little free play.", "ক্লাচ স্লিপ টেস্ট: উঁচু গিয়ারে কম গতিতে হঠাৎ থ্রটল খুলুন। রেভ লাফিয়ে উঠল কিন্তু বাইক তেমন জোরে গেল না, মানে ক্লাচ প্লেট ক্ষয়ে গেছে। নিউট্রালও সহজে পাওয়া উচিত, আর লিভারে একটু ঢিলা থাকা উচিত।"],
+  ["Chain and sprockets: try to pull the chain backwards off the rear sprocket. If it lifts away and shows a big gap, the chain is stretched. Hooked or pointed teeth mean the chain and both sprockets are due.", "চেইন আর স্প্রকেট: পেছনের স্প্রকেটের পেছন দিক থেকে চেইন টেনে তোলার চেষ্টা করুন। অনেকখানি উঠে ফাঁক দেখা গেলে চেইন লম্বা হয়ে গেছে। দাঁত হুকের মতো বা সুচালো হলে চেইন আর দুই স্প্রকেটই বদলানোর সময়।"],
+  ["Accident signs: scraped bar ends, levers, footpegs, mirrors or engine cover; dents in the tank; new panels that do not match the rest; welding or fresh paint on the frame. Stand in front and behind: both wheels should line up, and the handlebar should be straight when the front wheel is.", "দুর্ঘটনার চিহ্ন: হ্যান্ডেলের মাথা, লিভার, ফুটপেগ, আয়না বা ইঞ্জিন কাভারে ঘষার দাগ; ট্যাংকে টোল; বাকিগুলোর সাথে না-মেলা নতুন প্যানেল; ফ্রেমে ওয়েল্ডিং বা নতুন রং। সামনে আর পেছনে দাঁড়িয়ে দেখুন: দুই চাকা এক লাইনে থাকা উচিত, আর সামনের চাকা সোজা থাকলে হ্যান্ডেলও সোজা থাকা উচিত।"],
+  ["Forks and steering: look at the shiny fork tubes for oil, rust or pitting. Push down on the front a few times; it should rebound smoothly, without clunks. Turn the bar from lock to lock; it should move smoothly, not notchy or loose.", "ফর্ক আর স্টিয়ারিং: ফর্কের চকচকে টিউবে অয়েল, মরচে বা ছোট গর্ত আছে কি না দেখুন। সামনের দিক কয়েকবার চেপে ছাড়ুন; মসৃণভাবে উঠে আসা উচিত, ঠকঠক শব্দ ছাড়া। হ্যান্ডেল এক পাশ থেকে আরেক পাশে ঘোরান; মসৃণ হওয়া উচিত, আটকে আটকে বা ঢিলা নয়।"],
+  ["Flood damage, common after the monsoon: dried mud or silt where washing does not reach (under the seat, in the air box, around wiring plugs, behind the headlight), green or white crust on connectors, rust on bolts low on the bike, fog or a water line inside the headlight or meter, a musty smell, and milky engine oil.", "বন্যার ক্ষতি, বর্ষার পর যা প্রায়ই দেখা যায়: যেখানে ধোয়ার পানি পৌঁছায় না সেখানে শুকনো কাদা বা পলি (সিটের নিচে, এয়ার বক্সে, তারের প্লাগের আশপাশে, হেডলাইটের পেছনে), কানেক্টরে সবুজ বা সাদা আস্তর, বাইকের নিচের দিকের বোল্টে মরচে, হেডলাইট বা মিটারের ভেতরে ঝাপসা ভাব বা পানির দাগ, স্যাঁতসেঁতে গন্ধ, আর দুধের মতো ইঞ্জিন অয়েল।"],
+  ["Odometer: do not trust the number alone. Both mechanical and digital meters can be wound back. Compare it with the service book stamps and with wear on the grips, footpeg rubbers, gear lever, brake pedal, seat, tyres and chain. Very low kilometres with worn rubber and a stretched chain do not add up.", "ওডোমিটার: শুধু সংখ্যার ওপর ভরসা করবেন না। মেকানিক্যাল আর ডিজিটাল দুই ধরনের মিটারই পিছিয়ে দেওয়া যায়। সার্ভিস বুকের সিলের সাথে মিলিয়ে দেখুন, আর গ্রিপ, ফুটপেগের রাবার, গিয়ার লিভার, ব্রেক প্যাডেল, সিট, টায়ার আর চেইনের ক্ষয়ের সাথে। কিলোমিটার খুব কম অথচ রাবার ক্ষয়ে গেছে আর চেইন ঢিলা, এ হিসাব মেলে না।"],
+  ["Test ride with your licence and a helmet on a quiet road. Use every gear up and down, brake firmly once from moderate speed, ride straight with a light grip to feel any pull to one side, and check the horn, lights, indicators, self-start and kick start if fitted.", "নিজের লাইসেন্স আর হেলমেট নিয়ে ফাঁকা রাস্তায় টেস্ট রাইড দিন। সব গিয়ার ওঠানামা করুন, মাঝারি গতি থেকে একবার জোরে ব্রেক করুন, হালকা হাতে সোজা চালিয়ে দেখুন এক পাশে টানে কি না, আর হর্ন, লাইট, ইন্ডিকেটর, সেলফ স্টার্ট আর কিক (থাকলে) পরীক্ষা করুন।"],
+  ["Before paying, have a mechanic you trust look it over, not one the seller brings. If anything above worried you, use it to lower the price or walk away.", "টাকা দেওয়ার আগে নিজের বিশ্বস্ত মেকানিক দিয়ে দেখান, বিক্রেতার আনা মেকানিক দিয়ে নয়। ওপরের কোনো কিছু নিয়ে খটকা লাগলে সেটা দেখিয়ে দাম কমান, নয়তো কেনা বাদ দিন।"],
+];
+const USED_AVOID: Pair[] = [
+  ["Jumping at a price far below the usual used price for that model and year. The common reasons are a stolen bike, flood or accident damage, or papers that are missing or cannot be transferred. Be extra careful, or walk away.", "ওই মডেল আর বছরের সাধারণ সেকেন্ড-হ্যান্ড দামের চেয়ে অনেক কম দাম দেখে লাফিয়ে পড়া। এর পেছনে সাধারণত থাকে চুরির বাইক, বন্যা বা দুর্ঘটনার ক্ষতি, অথবা কাগজ নেই বা হস্তান্তর করা যায় না। বাড়তি সাবধান হোন, নয়তো সরে আসুন।"],
+  ["Paying an advance to 'hold' the bike before you have seen the original papers and matched the numbers yourself.", "আসল কাগজ দেখা আর নিজে নম্বর মেলানোর আগেই বাইক 'আটকে রাখতে' অগ্রিম টাকা দেওয়া।"],
+  ["Buying on 'the papers will come later', or with only a photocopy of the registration.", "'কাগজ পরে দেব' কথায় কেনা, বা শুধু রেজিস্ট্রেশনের ফটোকপি দেখে কেনা।"],
+  ["Inspecting at night, in the rain or right after a wash. Water hides leaks, and darkness hides dents and smoke.", "রাতে, বৃষ্টিতে বা সদ্য ধোয়ার পর বাইক দেখা। পানি লিক লুকায়, আর অন্ধকারে টোল আর ধোঁয়া চোখে পড়ে না।"],
+];
+const USED_MECHANIC: Pair[] = [
+  ["Always, before you pay. A short inspection costs far less than buying the wrong bike.", "সবসময়, টাকা দেওয়ার আগে। ছোট একটা পরীক্ষার খরচ ভুল বাইক কেনার ক্ষতির চেয়ে অনেক কম।"],
+  ["Blue smoke, knocking, clutch slip or a bike that pulls to one side: get a compression test or frame check and price the repair before you agree.", "নীল ধোঁয়া, ঠকঠক শব্দ, ক্লাচ স্লিপ বা এক পাশে টানা: রাজি হওয়ার আগে কম্প্রেশন টেস্ট বা ফ্রেম চেক করিয়ে মেরামতের খরচ জেনে নিন।"],
+];
 
 // Generic starter guides for Bangladesh riders. The owner rewrites these over time; keep slugs stable so links and the sitemap do not break.
 export const POSTS: Post[] = [
@@ -833,6 +871,146 @@ export const POSTS: Post[] = [
       ["Loud crunching or clunking on every shift, or it will not find neutral.", "প্রতিবার গিয়ার বদলে জোরে কড়কড় বা ঠক শব্দ, অথবা নিউট্রাল পাওয়া যায় না।"],
       ["Gear oil or engine oil is low or old. Fix that first; oil level and quality matter a lot for smooth shifts.", "ইঞ্জিন অয়েল বা গিয়ার অয়েল কম বা পুরনো। আগে সেটা ঠিক করুন; মসৃণ গিয়ার বদলে অয়েলের পরিমাণ আর মান অনেক বড় ব্যাপার।"],
     ],
+  },
+  {
+    slug: "used-check-carb",
+    updated: "2026-10-15",
+    minutes: 8,
+    title: ["Buying a used carburettor bike: what to check", "সেকেন্ড-হ্যান্ড কার্বুরেটর বাইক কেনার আগে কী দেখবেন"],
+    summary: [
+      "For air-cooled carburettor bikes such as the Bajaj Pulsar 150, Discover 125, Hero Splendor+, Honda CG125, Honda Livo and TVS Apache RTR 160 2V. Papers first, then the engine, then the frame, plus the carb checks a seller can hide.",
+      "Bajaj Pulsar 150, Discover 125, Hero Splendor+, Honda CG125, Honda Livo বা TVS Apache RTR 160 2V-এর মতো এয়ার-কুলড কার্বুরেটর বাইকের জন্য। আগে কাগজ, তারপর ইঞ্জিন, তারপর ফ্রেম, সাথে কার্বুরেটরের সেই চেকগুলো যা বিক্রেতা লুকাতে পারেন।",
+    ],
+    need: [
+      ["A torch, a clean rag, and a friend or mechanic who knows bikes", "একটি টর্চ, পরিষ্কার ন্যাকড়া, আর বাইক বোঝেন এমন বন্ধু বা মেকানিক"],
+      ["Your licence and helmet for the test ride", "টেস্ট রাইডের জন্য নিজের লাইসেন্স আর হেলমেট"],
+    ],
+    steps: [
+      ...USED_PAPERS,
+      ...USED_ENGINE,
+      ["Cold start with the choke: a healthy carb bike starts within a few tries on choke when cold, and idles steadily once you push the choke off after a minute or two. If it only runs with the choke on, or dies as soon as you close the throttle, the carb is dirty or badly tuned.", "চোক দিয়ে ঠান্ডা স্টার্ট: ভালো কার্বুরেটর বাইক ঠান্ডা অবস্থায় চোক দিলে কয়েক চেষ্টাতেই স্টার্ট নেয়, আর এক-দুই মিনিট পর চোক বন্ধ করলেও স্থির আইডলে চলে। শুধু চোক দিয়েই চলে, বা থ্রটল ছাড়লেই বন্ধ হয়ে যায়, মানে কার্বুরেটর ময়লা বা টিউনিং ঠিক নেই।"],
+      ["Once warm, blip the throttle. The revs should rise cleanly and fall back to a steady idle. Coughing, popping, a flat spot when you open it, or revs that hang high are carb or air-leak problems.", "গরম হলে থ্রটল ঝাপটা দিন। রেভ পরিষ্কারভাবে উঠে আবার স্থির আইডলে নামা উচিত। কাশির মতো শব্দ, ফটফট আওয়াজ, থ্রটল খুললে ঝিমিয়ে যাওয়া, বা রেভ উঁচুতে আটকে থাকা কার্বুরেটর বা বাতাস লিকের সমস্যা।"],
+      ["Look at the carburettor itself: petrol stains or wetness under the float bowl, a strong petrol smell, chewed screw heads or broken paint marks on the adjusting screws (it has been tuned a lot), and a cracked or loose rubber joint between carb and engine. Ask when it was last cleaned, and why.", "কার্বুরেটর নিজে দেখুন: ফ্লোট বোলের নিচে পেট্রোলের দাগ বা ভেজা ভাব, পেট্রোলের কড়া গন্ধ, অ্যাডজাস্টিং স্ক্রুর মাথা ক্ষয়ে যাওয়া বা রঙের দাগ ভাঙা (অনেকবার টিউন করা হয়েছে), আর কার্বুরেটর ও ইঞ্জিনের মাঝের রাবার জয়েন্ট ফাটা বা ঢিলা কি না। শেষ কবে আর কেন পরিষ্কার করা হয়েছে জিজ্ঞেস করুন।"],
+      ["Ask your mechanic to pull the spark plug. A light brown tip is healthy. Black and sooty means it runs rich (dirty air filter, wrong tuning or a sticking choke). Wet and oily points to burning oil.", "মেকানিককে বলুন স্পার্ক প্লাগ খুলে দেখাতে। মাথা হালকা বাদামি হলে ভালো। কালো, ঝুলের মতো হলে মিক্সচার রিচ (ময়লা এয়ার ফিল্টার, ভুল টিউনিং বা আটকে থাকা চোক)। ভেজা আর তেলতেলে হলে অয়েল পুড়ছে।"],
+      ["The TVS Apache RTR 160 4V is carbureted but oil-cooled: also check its oil cooler, lines and oil level as in the oil-cooled guide. Old two-strokes like the Yamaha RX100 always smoke a little; the smoke test above is for four-strokes.", "TVS Apache RTR 160 4V কার্বুরেটর হলেও অয়েল-কুলড: অয়েল-কুলড গাইডের মতো এর অয়েল কুলার, লাইন আর অয়েল লেভেলও দেখুন। Yamaha RX100-এর মতো পুরনো টু-স্ট্রোক বাইক একটু ধোঁয়া দেবেই; ওপরের ধোঁয়ার পরীক্ষা ফোর-স্ট্রোকের জন্য।"],
+      ...USED_CHASSIS,
+    ],
+    avoid: [
+      ...USED_AVOID,
+      ["Letting the seller 'just tune it a little' with a screwdriver while you wait. A quick tune can mask a worn carb or an air leak for the length of a test ride.", "আপনি অপেক্ষা করার সময় বিক্রেতাকে স্ক্রুড্রাইভার দিয়ে 'একটু টিউন' করতে দেওয়া। তাড়াহুড়োর টিউনিং টেস্ট রাইডের সময়টুকুর জন্য ক্ষয়ে যাওয়া কার্বুরেটর বা বাতাস লিক ঢেকে দিতে পারে।"],
+      ["Accepting 'mileage is low, it just needs tuning'. Poor mileage can also come from a worn engine; check the smoke and the plug first.", "'মাইলেজ কম, একটু টিউন করলেই ঠিক' কথা মেনে নেওয়া। ইঞ্জিন ক্ষয়ে গেলেও মাইলেজ কমে; আগে ধোঁয়া আর প্লাগ দেখুন।"],
+    ],
+    mechanic: [
+      ...USED_MECHANIC,
+      ["It will not hold an idle without the choke, even after a carb clean: worn carb parts or an air leak.", "কার্বুরেটর পরিষ্কারের পরও চোক ছাড়া আইডল ধরে রাখে না: কার্বুরেটরের পার্টস ক্ষয় বা বাতাস লিক।"],
+    ],
+    related: ["used-check-air-cooled-fi", "used-check-oil-cooled-fi", "used-check-liquid-cooled", "spark-plug", "air-filter", "monsoon-riding-and-care"],
+  },
+  {
+    slug: "used-check-air-cooled-fi",
+    updated: "2026-10-15",
+    minutes: 8,
+    title: ["Buying a used air-cooled fuel-injected bike: what to check", "সেকেন্ড-হ্যান্ড এয়ার-কুলড ফুয়েল-ইনজেক্টেড বাইক কেনার আগে কী দেখবেন"],
+    summary: [
+      "For air-cooled FI bikes such as the Yamaha FZS FI V2 and V4, Fazer FI, Suzuki Gixxer FI ABS and Gixxer SF 155, Honda Hornet 2.0, SP160 and Hero Xtreme 125R. The usual papers and body checks, plus the FI warning light, fuel pump and sensors.",
+      "Yamaha FZS FI V2 ও V4, Fazer FI, Suzuki Gixxer FI ABS ও Gixxer SF 155, Honda Hornet 2.0, SP160 বা Hero Xtreme 125R-এর মতো এয়ার-কুলড এফআই বাইকের জন্য। কাগজ আর বডির সাধারণ চেক, সাথে এফআই ওয়ার্নিং লাইট, ফুয়েল পাম্প আর সেন্সর।",
+    ],
+    need: [
+      ["A torch, a clean rag, and a friend or mechanic who knows bikes", "একটি টর্চ, পরিষ্কার ন্যাকড়া, আর বাইক বোঝেন এমন বন্ধু বা মেকানিক"],
+      ["Your licence and helmet for the test ride", "টেস্ট রাইডের জন্য নিজের লাইসেন্স আর হেলমেট"],
+    ],
+    steps: [
+      ...USED_PAPERS,
+      ["Key on, engine off: the FI warning light (an engine symbol, sometimes marked FI) should come on briefly as a self-check, and you should hear the fuel pump hum for a moment under the tank. If the light never comes on at all, the bulb may have been removed to hide a fault.", "চাবি অন, ইঞ্জিন বন্ধ: এফআই ওয়ার্নিং লাইট (ইঞ্জিনের চিহ্ন, কখনো FI লেখা) নিজে পরীক্ষার জন্য অল্প সময় জ্বলা উচিত, আর ট্যাংকের নিচে ফুয়েল পাম্পের গুনগুন শব্দ এক মুহূর্ত শোনা উচিত। লাইট একেবারেই না জ্বললে হয়তো সমস্যা লুকাতে বাল্বটাই খুলে রাখা হয়েছে।"],
+      ...USED_ENGINE,
+      ["No choke on FI: it should start on the button within a few seconds even when cold, with a slightly higher idle that settles by itself as it warms. Long cranking, stalling at idle or surging revs point to a dirty throttle body, an idle control fault or a weak fuel pump.", "এফআই-তে চোক নেই: ঠান্ডা অবস্থাতেও বাটন চাপলে কয়েক সেকেন্ডে স্টার্ট নেওয়া উচিত, শুরুতে আইডল একটু উঁচু থেকে গরম হলে নিজেই নেমে আসবে। অনেকক্ষণ ক্র্যাংক করা, আইডলে বন্ধ হয়ে যাওয়া বা রেভ ওঠানামা করা মানে থ্রটল বডি ময়লা, আইডল কন্ট্রোলে সমস্যা বা দুর্বল ফুয়েল পাম্প।"],
+      ["After starting, the FI light must go out and stay out for the whole test ride. A light that stays on or flickers means the ECU has stored a fault.", "স্টার্টের পর এফআই লাইট নিভে যেতে হবে আর পুরো টেস্ট রাইডে নেভা থাকতে হবে। লাইট জ্বলে থাকলে বা মিটমিট করলে ইসিইউ-তে কোনো ফল্ট জমা আছে।"],
+      ["Ask for a fault code reading at the brand's service centre before you pay; their diagnostic tool reads stored codes quickly. Some models can also show codes on the dash; the owner's manual explains how.", "টাকা দেওয়ার আগে ব্র্যান্ডের সার্ভিস সেন্টারে ফল্ট কোড পড়িয়ে নিন; ওদের ডায়াগনস্টিক যন্ত্রে জমা কোড দ্রুত দেখা যায়। কিছু মডেলে ড্যাশেও কোড দেখানো যায়; কীভাবে, তা ওনার্স ম্যানুয়ালে আছে।"],
+      ["Feel for sensor trouble on the ride: jerky throttle at low speed, hesitation when you open it, a temperature reading that never moves, or 'mileage has dropped lately'. Throttle position, oxygen and temperature sensors are common culprits. They are fixable, but price them in.", "রাইডে সেন্সরের সমস্যা টের পান কি না দেখুন: কম গতিতে থ্রটলে ঝাঁকুনি, থ্রটল খুললে দ্বিধা, টেম্পারেচার রিডিং একেবারে না নড়া, বা 'ইদানীং মাইলেজ কমে গেছে'। থ্রটল পজিশন, অক্সিজেন আর টেম্পারেচার সেন্সর প্রায়ই দায়ী। ঠিক করা যায়, তবে খরচটা দামে ধরুন।"],
+      ["Look under the seat and around the throttle body and ECU for cut, taped or joined wires, or an add-on box. A bypassed sensor or cheap tuning module can cause faults later. FI also needs steady voltage, so check the battery's age and that it cranks strongly.", "সিটের নিচে আর থ্রটল বডি ও ইসিইউ-র আশপাশে কাটা, টেপ মারা বা জোড়া দেওয়া তার, বা বাড়তি কোনো বক্স আছে কি না দেখুন। বাইপাস করা সেন্সর বা সস্তা টিউনিং মডিউল পরে ঝামেলা করতে পারে। এফআই-র স্থির ভোল্টেজ লাগে, তাই ব্যাটারি কত পুরনো আর ক্র্যাংক জোরালো কি না দেখুন।"],
+      ...USED_CHASSIS,
+    ],
+    avoid: [
+      ...USED_AVOID,
+      ["Accepting 'the light comes on sometimes, it is nothing'. Get the codes read before you pay.", "'লাইট মাঝে মাঝে জ্বলে, কিছু না' কথা মেনে নেওয়া। টাকা দেওয়ার আগে কোড পড়িয়ে নিন।"],
+      ["A short test ride only. Codes cleared just before you arrive can take a while to come back, so ride long enough for the engine to fully warm up.", "শুধু ছোট একটা টেস্ট রাইড। আপনি আসার ঠিক আগে কোড মুছে দিলে আবার ফিরতে সময় লাগে, তাই ইঞ্জিন পুরো গরম হওয়া পর্যন্ত চালান।"],
+    ],
+    mechanic: [
+      ...USED_MECHANIC,
+      ["The FI light stays on, or it hesitates or stalls even with a clean air filter and fresh petrol: get a diagnostic check at the service centre.", "এফআই লাইট জ্বলেই থাকে, বা পরিষ্কার এয়ার ফিল্টার আর নতুন পেট্রোলেও থমকে যায় বা বন্ধ হয়: সার্ভিস সেন্টারে ডায়াগনস্টিক চেক করান।"],
+    ],
+    related: ["used-check-carb", "used-check-oil-cooled-fi", "used-check-liquid-cooled", "battery-and-starting", "air-filter", "monsoon-riding-and-care"],
+  },
+  {
+    slug: "used-check-oil-cooled-fi",
+    updated: "2026-10-15",
+    minutes: 8,
+    title: ["Buying a used oil-cooled fuel-injected bike: what to check", "সেকেন্ড-হ্যান্ড অয়েল-কুলড ফুয়েল-ইনজেক্টেড বাইক কেনার আগে কী দেখবেন"],
+    summary: [
+      "For oil-cooled FI bikes such as the Bajaj Pulsar N160, NS160 and N250, Suzuki Gixxer 250 and Gixxer SF 250, Hero Thriller 160R 4V, Hero XPulse 200 4V and the Royal Enfield 350s. On these the engine oil also carries heat away, so its level and condition tell you a lot.",
+      "Bajaj Pulsar N160, NS160 ও N250, Suzuki Gixxer 250 ও Gixxer SF 250, Hero Thriller 160R 4V, Hero XPulse 200 4V আর Royal Enfield-এর 350 মডেলগুলোর মতো অয়েল-কুলড এফআই বাইকের জন্য। এগুলোতে ইঞ্জিন অয়েল তাপও সরায়, তাই অয়েলের পরিমাণ আর অবস্থা অনেক কিছু বলে দেয়।",
+    ],
+    need: [
+      ["A torch, a clean rag, and a friend or mechanic who knows bikes", "একটি টর্চ, পরিষ্কার ন্যাকড়া, আর বাইক বোঝেন এমন বন্ধু বা মেকানিক"],
+      ["Your licence and helmet for the test ride", "টেস্ট রাইডের জন্য নিজের লাইসেন্স আর হেলমেট"],
+    ],
+    steps: [
+      ...USED_PAPERS,
+      ["Before starting, check the oil with the engine cold and the bike upright, in the sight glass or on the dipstick. It should sit between the marks. Low oil on an oil-cooled engine means it has run hotter than it should.", "স্টার্টের আগে, ইঞ্জিন ঠান্ডা আর বাইক সোজা রেখে সাইট গ্লাস বা ডিপস্টিকে অয়েল দেখুন। দুই দাগের মাঝে থাকা উচিত। অয়েল-কুলড ইঞ্জিনে অয়েল কম মানে ইঞ্জিন দরকারের চেয়ে বেশি গরমে চলেছে।"],
+      ["Look at the oil colour. Fresh oil is amber and used oil darkens, which is normal. Milky or frothy oil means water got in (flood, or a careless wash); a burnt smell or glittering metal flakes are bad signs. Ask to see the receipt or service-book stamp for the last oil change.", "অয়েলের রং দেখুন। নতুন অয়েল হালকা সোনালি, পুরনো হলে গাঢ় হয়, এটা স্বাভাবিক। দুধের মতো বা ফেনা ওঠা অয়েল মানে পানি ঢুকেছে (বন্যা, বা অসাবধানে ধোয়া); পোড়া গন্ধ বা চিকচিকে ধাতুর কণা খারাপ লক্ষণ। শেষ অয়েল বদলের রসিদ বা সার্ভিস বুকের সিল দেখতে চান।"],
+      ["Oil cooler and lines: most of these bikes have a small radiator-like oil cooler at the front, fed by hoses or metal pipes. Look for bent, crushed or mud-packed fins, and run a finger along the lines and joints. Oily wetness, fresh drips under the bike, or one joint wiped suspiciously clean needs an explanation. A dented cooler is also a sign of a fall.", "অয়েল কুলার আর লাইন: এগুলোর বেশির ভাগে সামনে ছোট রেডিয়েটরের মতো একটা অয়েল কুলার থাকে, হোস বা ধাতব পাইপ দিয়ে অয়েল যায়। পাত বাঁকা, থেঁতলানো বা কাদায় বোজা কি না দেখুন, আর লাইন ও জোড়াগুলোয় আঙুল বুলিয়ে দেখুন। তেলতেলে ভাব, বাইকের নিচে নতুন ফোঁটা, বা কোনো একটা জোড়া সন্দেহজনকভাবে ঝকঝকে মোছা থাকলে ব্যাখ্যা চান। টোল খাওয়া কুলার পড়ে যাওয়ারও চিহ্ন।"],
+      ...USED_ENGINE,
+      ["These bikes are fuel-injected too: the FI light should come on briefly at key-on and go out after starting, the fuel pump should hum for a moment, and it should start without fuss when cold. The air-cooled FI guide has the full list.", "এগুলোও ফুয়েল-ইনজেক্টেড: চাবি অন করলে এফআই লাইট অল্প সময় জ্বলে স্টার্টের পর নিভে যাওয়া উচিত, ফুয়েল পাম্প এক মুহূর্ত গুনগুন করবে, আর ঠান্ডায়ও ঝামেলা ছাড়া স্টার্ট নেবে। পুরো তালিকা এয়ার-কুলড এফআই গাইডে আছে।"],
+      ["Heat check after the test ride: let it idle for a few minutes. If it has a temperature gauge or light, it should stay normal. Losing power when hot, a strong hot-oil smell or a warning light points to low oil, the wrong grade or a blocked cooler.", "টেস্ট রাইডের পর তাপ পরীক্ষা: কয়েক মিনিট আইডলে চলতে দিন। টেম্পারেচার গেজ বা লাইট থাকলে স্বাভাবিক থাকা উচিত। গরম হলে টান কমে যাওয়া, গরম অয়েলের কড়া গন্ধ বা ওয়ার্নিং লাইট মানে অয়েল কম, ভুল গ্রেড, বা কুলার বন্ধ হয়ে আছে।"],
+      ...USED_CHASSIS,
+    ],
+    avoid: [
+      ...USED_AVOID,
+      ["Trusting 'the oil was changed yesterday' with no receipt. Fresh oil can hide milky or metal-laced old oil, so ask why it was changed just before the sale.", "রসিদ ছাড়া 'গতকালই অয়েল বদলেছি' কথায় ভরসা করা। নতুন অয়েল দুধের মতো বা ধাতুর কণা মেশানো পুরনো অয়েল ঢেকে দিতে পারে, তাই বিক্রির ঠিক আগে কেন বদলানো হলো জিজ্ঞেস করুন।"],
+      ["Confusing the oil cooler with a radiator. Oil-cooled bikes have no coolant; anyone who says they 'topped up the radiator with water' has done harm.", "অয়েল কুলারকে রেডিয়েটর ভেবে ভুল করা। অয়েল-কুলড বাইকে কুল্যান্ট নেই; কেউ যদি বলেন 'রেডিয়েটরে পানি দিয়েছি', তাহলে ক্ষতিই করেছেন।"],
+    ],
+    mechanic: [
+      ...USED_MECHANIC,
+      ["Oil seeping at the cooler or its lines, or the oil level dropping between changes.", "কুলার বা তার লাইনে অয়েল চুইয়ে পড়া, বা দুই অয়েল বদলের মাঝে লেভেল কমে যাওয়া।"],
+    ],
+    related: ["used-check-carb", "used-check-air-cooled-fi", "used-check-liquid-cooled", "engine-oil", "monsoon-riding-and-care", "after-a-crash-or-breakdown"],
+  },
+  {
+    slug: "used-check-liquid-cooled",
+    updated: "2026-10-15",
+    minutes: 9,
+    title: ["Buying a used liquid-cooled bike: what to check", "সেকেন্ড-হ্যান্ড লিকুইড-কুলড বাইক কেনার আগে কী দেখবেন"],
+    summary: [
+      "For liquid-cooled bikes such as the Yamaha R15 V3 and V4, MT-15 V2, XSR155 and Aerox 155, Honda CBR150R, Suzuki GSX-R150, KTM Duke 125 and RC 125, and the Hero Karizma XMR 210. A cooling system that was neglected or filled with water is the big extra risk.",
+      "Yamaha R15 V3 ও V4, MT-15 V2, XSR155 ও Aerox 155, Honda CBR150R, Suzuki GSX-R150, KTM Duke 125 ও RC 125, আর Hero Karizma XMR 210-এর মতো লিকুইড-কুলড বাইকের জন্য। এখানে বাড়তি বড় ঝুঁকি হলো অযত্নে থাকা বা শুধু পানি ভরা কুলিং সিস্টেম।",
+    ],
+    need: [
+      ["A torch, a clean rag, and a friend or mechanic who knows bikes", "একটি টর্চ, পরিষ্কার ন্যাকড়া, আর বাইক বোঝেন এমন বন্ধু বা মেকানিক"],
+      ["Your licence and helmet for the test ride", "টেস্ট রাইডের জন্য নিজের লাইসেন্স আর হেলমেট"],
+    ],
+    steps: [
+      ...USED_PAPERS,
+      ["Before starting, with the engine cold: the coolant in the reservoir should sit between the low and full marks. Never open the radiator cap on a warm engine.", "স্টার্টের আগে, ইঞ্জিন ঠান্ডা অবস্থায়: রিজার্ভারে কুল্যান্ট লো আর ফুল দাগের মাঝে থাকা উচিত। গরম ইঞ্জিনে কখনো রেডিয়েটরের ক্যাপ খুলবেন না।"],
+      ["Look at the coolant colour. Proper coolant is clear and coloured, often green, blue or pink. Rusty brown, cloudy or plain water are warnings. Many used bikes run on tap water, which leaves scale and lets the inside corrode; mixing different coolant types is not recommended either.", "কুল্যান্টের রং দেখুন। ঠিক কুল্যান্ট স্বচ্ছ আর রঙিন, সাধারণত সবুজ, নীল বা গোলাপি। মরচে-বাদামি, ঘোলা বা শুধু পানি হলে সতর্ক হোন। অনেক সেকেন্ড-হ্যান্ড বাইকে কলের পানি দিয়ে চালানো হয়, এতে ভেতরে আস্তর জমে আর ক্ষয় ধরে; আলাদা ধরনের কুল্যান্ট মেশানোও ঠিক নয়।"],
+      ["An oily film or bubbles in the coolant, or milky oil in the sight glass, can mean a failed head gasket letting oil and coolant mix. Steady white smoke with a sweet smell that does not clear once warm points the same way.", "কুল্যান্টে তেলের আস্তর বা বুদবুদ, অথবা সাইট গ্লাসে দুধের মতো অয়েল মানে হতে পারে হেড গ্যাসকেট নষ্ট, অয়েল আর কুল্যান্ট মিশে যাচ্ছে। গরম হওয়ার পরও মিষ্টি গন্ধের সাদা ধোঁয়া একটানা বের হলে একই ইঙ্গিত।"],
+      ...USED_ENGINE,
+      ["Radiator and hoses: look for bent or blocked fins, leaks or green or white crust at the hose joints and the cap, and hoses that feel hard, cracked or swollen. A replaced or bent radiator on a faired bike like the R15 or RC 125 is also a fall clue.", "রেডিয়েটর আর হোস: পাত বাঁকা বা বন্ধ কি না, হোসের জোড়া আর ক্যাপে লিক বা সবুজ-সাদা আস্তর আছে কি না, আর হোস শক্ত, ফাটা বা ফোলা কি না দেখুন। R15 বা RC 125-এর মতো ফেয়ারিং বাইকে বদলানো বা বাঁকা রেডিয়েটরও পড়ে যাওয়ার চিহ্ন।"],
+      ["Water pump: find the small weep hole under the pump on the engine case. Dried coolant trails or drips there mean the pump seal is going.", "ওয়াটার পাম্প: ইঞ্জিন কেসিংয়ে পাম্পের নিচের ছোট ফুটোটা (উইপ হোল) খুঁজুন। সেখানে শুকনো কুল্যান্টের দাগ বা ফোঁটা মানে পাম্পের সিল যাচ্ছে।"],
+      ["These bikes are fuel-injected too: the FI light should come on briefly at key-on and go out after starting, and it should start without fuss when cold. The air-cooled FI guide has the full list.", "এগুলোও ফুয়েল-ইনজেক্টেড: চাবি অন করলে এফআই লাইট অল্প সময় জ্বলে স্টার্টের পর নিভে যাওয়া উচিত, আর ঠান্ডায়ও ঝামেলা ছাড়া স্টার্ট নেবে। পুরো তালিকা এয়ার-কুলড এফআই গাইডে আছে।"],
+      ["Fan test after the test ride: let it idle until it gets hot. The fan should switch on by itself and the temperature should come back down. If the fan never runs or the temperature light comes on, do not buy until it is fixed.", "টেস্ট রাইডের পর ফ্যান পরীক্ষা: গরম না হওয়া পর্যন্ত আইডলে চলতে দিন। ফ্যান নিজে থেকে চালু হয়ে তাপমাত্রা আবার নামানো উচিত। ফ্যান কখনো না চললে বা টেম্পারেচার লাইট জ্বললে ঠিক না করা পর্যন্ত কিনবেন না।"],
+      ["Ask directly whether it has ever overheated. Discoloured exhaust pipes near the engine, cooked hoses and a coolant level that keeps dropping are signs it has.", "সরাসরি জিজ্ঞেস করুন কখনো ওভারহিট হয়েছিল কি না। ইঞ্জিনের কাছে সাইলেন্সার পাইপের রং বদলে যাওয়া, তাপে শক্ত হয়ে যাওয়া হোস আর বারবার কমে যাওয়া কুল্যান্ট লেভেল তারই চিহ্ন।"],
+      ...USED_CHASSIS,
+    ],
+    avoid: [
+      ...USED_AVOID,
+      ["Believing 'it only has water in the radiator, that is fine here'. Without coolant's corrosion protection the pump and radiator wear faster; plan to flush and refill it properly.", "'রেডিয়েটরে শুধু পানি, এখানে তাতেই চলে' কথায় বিশ্বাস করা। কুল্যান্টের ক্ষয়রোধী সুরক্ষা ছাড়া পাম্প আর রেডিয়েটর দ্রুত নষ্ট হয়; ঠিকভাবে ফ্লাশ করে নতুন কুল্যান্ট ভরানোর হিসাব রাখুন।"],
+      ["Checking the coolant only after the seller has warmed the bike up. The level reads differently hot, and you cannot safely open the cap.", "বিক্রেতা বাইক গরম করার পরে কুল্যান্ট দেখা। গরম অবস্থায় লেভেল অন্যরকম দেখায়, আর ক্যাপ খোলাও নিরাপদ নয়।"],
+    ],
+    mechanic: [
+      ...USED_MECHANIC,
+      ["Coolant that keeps dropping with no visible leak, or oil in the coolant: get a cooling-system pressure test or head gasket check before you pay, or walk away.", "কোনো লিক চোখে না পড়লেও কুল্যান্ট বারবার কমে যায়, বা কুল্যান্টে অয়েল: টাকা দেওয়ার আগে কুলিং সিস্টেমের প্রেসার টেস্ট বা হেড গ্যাসকেট চেক করান, নয়তো কেনা বাদ দিন।"],
+    ],
+    related: ["used-check-carb", "used-check-air-cooled-fi", "used-check-oil-cooled-fi", "coolant-and-radiator", "monsoon-riding-and-care", "after-a-crash-or-breakdown"],
   },
 ];
 
