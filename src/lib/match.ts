@@ -282,6 +282,8 @@ function score(a: Answers, o: Option): Match {
     warnings.push({ en: "Will feel strained above 70 km/h", bn: "৭০ km/h এর বেশি গতিতে কষ্ট হবে" });
   }
   if (a.pillion === "daily" && b.scores.pillion <= 4) warnings.push({ en: "Pillion seat is cramped", bn: "পিলিয়ন সিট ছোট" });
+  // First, because cards show only the first warning: a new one may not be in stock at all.
+  if (b.availability === "unconfirmed" && !used) warnings.unshift({ en: "Availability unconfirmed: ask the showroom if it is in stock", bn: "পাওয়া যাবে কিনা অনিশ্চিত: শোরুমে স্টক আছে কিনা জিজ্ঞেস করুন" });
 
   const reasons = contrib
     .filter((c) => c.f >= 0.68)

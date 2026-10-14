@@ -124,6 +124,14 @@ test("match: never suggests a bike over 375cc (BRTA registration limit), at any 
       for (const m of [...matchBikes(a, 1000), ...stretchPicks(a, 1000), ...cheapestPicks(a, 1000)]) assert.ok(m.bike.engine.cc <= 375, `${use} ${condition}: ${m.bike.id}`);
     }
 });
+test("match: an availability-unconfirmed bike, bought new, leads its warnings with that; a used example does not", () => {
+  const flagged = BIKES.filter((b) => b.availability === "unconfirmed");
+  assert.ok(flagged.length > 0, "fixture: no bike carries availability unconfirmed");
+  const all = matchBikes(A({ budget: BUDGET_RANGE[1], condition: "any", use: "mixed", priorities: ["price"] }), 1000);
+  const hits = all.filter((m) => m.bike.availability === "unconfirmed");
+  assert.ok(hits.length > 0);
+  for (const m of hits) assert.equal(/Availability unconfirmed/.test(m.warnings[0]?.en ?? ""), !m.used, m.bike.id);
+});
 test("match: new-only never returns used-only or used examples", () => {
   assert.ok(matchBikes(A({ condition: "new", budget: 300000 }), 50).every((m) => m.bike.status === "on-sale" && !m.used));
 });
