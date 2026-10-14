@@ -181,7 +181,9 @@ export function body(bikes: Bike[], checks: Check[], lists: Record<string, Set<s
   for (const b of bikes.filter((x) => x.status === "on-sale" && brandHost.has(x.brand))) {
     const h = brandHost.get(b.brand)!, list = lists[h], c = checks.find((x) => x.id === b.id && !x.variant);
     const key = c ? keyOf(c.url, c.row) : host(b.priceSource) === h ? keyOf(b.priceSource, "") : "";
-    const why = c?.status === "missing" ? c.note : !list || c?.status === "error" ? "" : list.has(key) ? "" : key ? `not on ${LISTS[h][0]}` : `no official price page known; look for it on ${LISTS[h][0]}`;
+    let why = "";
+    if (c?.status === "missing") why = c.note;
+    else if (list && c?.status !== "error" && !list.has(key)) why = key ? `not on ${LISTS[h][0]}` : `no official price page known; look for it on ${LISTS[h][0]}`;
     if (why) unconfirmed.push(`- ${b.brand} ${b.model} (\`${b.id}\`): ${why}`);
   }
   for (const [h, list] of Object.entries(lists)) if (!list) unconfirmed.push(`- ${h}: model list ${LISTS[h][0]} did not load, so its availability was not checked.`);
@@ -230,11 +232,13 @@ function liveGet(): Get {
     const res = await fetch(url, { headers: { "user-agent": UA }, redirect: "follow", signal: AbortSignal.timeout(30_000) });
     return { status: res.status, body: res.ok ? await res.text() : "" };
   };
+  // No robots.txt (4xx) allows everything; an unreachable one (5xx, network) blocks the host for this run, as crawlers do.
+  const closed = "User-agent: *\nDisallow: /";
   return async (url) => {
     try {
-      const origin = new URL(url).origin;
-      if (!robots.has(origin)) robots.set(origin, await fetchText(`${origin}/robots.txt`).then((r) => (r.status === 200 ? r.body : ""), () => ""));
-      if (!robotsAllows(robots.get(origin)!, new URL(url).pathname)) return 0;
+      const { origin, pathname, search } = new URL(url);
+      if (!robots.has(origin)) robots.set(origin, await fetchText(`${origin}/robots.txt`).then((r) => (r.status === 200 ? r.body : r.status < 500 ? "" : closed), () => closed));
+      if (!robotsAllows(robots.get(origin)!, pathname + search)) return 0;
       const r = await fetchText(url);
       return r.status === 200 ? r.body : r.status;
     } catch { return 0; }
