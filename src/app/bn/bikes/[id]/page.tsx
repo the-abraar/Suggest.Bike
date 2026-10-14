@@ -2,17 +2,19 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { productJsonLd } from "@/lib/bikes";
 import { ALL_IDS, getFullBike } from "@/lib/bikes.server";
-import { bikeMetadata } from "@/lib/curated";
+import { RetiredBike } from "@/components/Moved";
+import { RETIRED_BIKES, bikeMetadata, retiredMetadata } from "@/lib/curated";
 import { BikeDetail } from "../../../bikes/[id]/BikeDetail";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return ALL_IDS.map((id) => ({ id }));
+  return [...ALL_IDS, ...RETIRED_BIKES].map((id) => ({ id }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
+  if (RETIRED_BIKES.includes(id)) return retiredMetadata(id, "bn");
   const b = getFullBike(id);
   if (!b) return {};
   return bikeMetadata(b, "bn");
@@ -20,6 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
+  if (RETIRED_BIKES.includes(id)) return <RetiredBike />;
   const bike = getFullBike(id);
   if (!bike) notFound();
   return (

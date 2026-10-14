@@ -77,6 +77,19 @@ export function bikeTitle(b: Pick<Bike, "brand" | "model" | "status">, lang: "en
   return all.find((t) => t.length <= TITLE_MAX) ?? all[all.length - 1];
 }
 
+/**
+ * Bikes removed from the catalogue after their pages were live (antique used-only imports, 14 Oct 2026). Their old
+ * /bikes/<id>/ URLs stay as static pages that send readers on to the bike list, never a 404 (tests/seo.test.ts
+ * fails if a bike leaves bikes.json without an entry here).
+ */
+export const RETIRED_BIKES: readonly string[] = ["honda-cbx-600p", "honda-cbx-750", "honda-cd70", "roadmaster-cd200"];
+
+export const retiredMetadata = (id: string, lang: "en" | "bn"): Metadata => ({
+  title: lang === "bn" ? "এই বাইকটি আর তালিকায় নেই" : "This bike is no longer listed",
+  robots: { index: false, follow: true },
+  alternates: langAlternates(`/bikes/${id}/`, lang),
+});
+
 /** Title, description, hreflang and share image for a bike page; every figure comes from bikes.json via the engines. */
 export function bikeMetadata(b: Bike, lang: "en" | "bn"): Metadata {
   const used = b.status === "used-only";

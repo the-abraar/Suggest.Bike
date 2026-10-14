@@ -5,7 +5,8 @@ import { productJsonLd } from "../src/lib/bikes";
 import bikes from "../src/data/bikes.json";
 import type { Bike } from "../src/lib/types";
 import sitemap from "../src/app/sitemap";
-import { POPULAR_COMPARISONS, bikeMetadata, bikeTitle, pairBySlug, pairHref, pairMetadata, pairSlug, pairsForBike } from "../src/lib/curated";
+import history from "../src/data/generated/price-history.json"; // every bike id bikes.json has ever had (scripts/build-history.ts)
+import { POPULAR_COMPARISONS, RETIRED_BIKES, bikeMetadata, bikeTitle, pairBySlug, pairHref, pairMetadata, pairSlug, pairsForBike } from "../src/lib/curated";
 
 test("langHref maps EN and BN twins and keeps query and hash", () => {
   assert.equal(langHref("/", "bn"), "/bn/");
@@ -203,4 +204,14 @@ test("out/ contains zero orphan pages when built", async () => {
     if (inc.size === 0) orphans.push(p);
   }
   assert.equal(orphans.length, 0, `Found ${orphans.length} orphan pages: ${orphans.join(", ")}`);
+});
+
+test("a bike removed from bikes.json keeps a redirect page, and leaves the sitemap", () => {
+  const live = new Set((bikes as Bike[]).map((b) => b.id));
+  for (const id of Object.keys(history.bikes)) assert.ok(live.has(id) || RETIRED_BIKES.includes(id), `${id} was published and has no page: add it to RETIRED_BIKES`);
+  const urls = sitemap().map((e) => e.url);
+  for (const id of RETIRED_BIKES) {
+    assert.ok(!live.has(id), `${id} is back in bikes.json; drop it from RETIRED_BIKES`);
+    assert.ok(!urls.some((u) => u.includes(`/bikes/${id}/`)), id);
+  }
 });
