@@ -57,6 +57,7 @@ for (const b of bikes) {
 // Only prices the bike page shows as "checked" (on sale) fail; used-only prices are labelled estimates, so they only warn.
 const WARN_DAYS = +(process.env.PRICE_WARN_DAYS ?? 90), FAIL_DAYS = +(process.env.PRICE_FAIL_DAYS ?? 180);
 const warnings = [], domains = {};
+if (!Number.isFinite(WARN_DAYS) || !Number.isFinite(FAIL_DAYS)) errors.push(`PRICE_WARN_DAYS / PRICE_FAIL_DAYS must be numbers (got ${process.env.PRICE_WARN_DAYS}, ${process.env.PRICE_FAIL_DAYS})`); // NaN would switch the gate off
 for (const b of bikes) {
   const t = Date.parse(`${b.priceAsOf}-01`);
   if (Number.isNaN(t)) { errors.push(`${b.id}: bad priceAsOf ${b.priceAsOf}`); continue; }

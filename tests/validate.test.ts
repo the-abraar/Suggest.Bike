@@ -48,4 +48,5 @@ test("validate: old prices fail only when shown as checked (on sale); PRICE_FAIL
   assert.doesNotMatch(r.out, new RegExp(`- ${used.id}:`));
   assert.match(r.out, new RegExp(`WARN ${used.id}: used-price estimate`));
   assert.equal(validate(bikes, { PRICE_FAIL_DAYS: "100000" }).code, 0);
+  assert.match(validate(real(), { PRICE_FAIL_DAYS: "abc" }).out, /must be numbers/); // a typo must not switch the gate off
 });
