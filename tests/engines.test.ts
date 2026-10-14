@@ -135,7 +135,7 @@ test("match: cheapestNew respects gearbox; encode/decode round-trips; bad params
   assert.equal(decodeAnswers(new URLSearchParams("")), null);
   const d = decodeAnswers(new URLSearchParams("b=100000&u=nonsense&pr=safety.x.mileage.comfort.style"))!;
   assert.equal(d.use, DEFAULT_ANSWERS.use);
-  assert.deepEqual(d.priorities, ["safety", "mileage", "comfort"]);
+  assert.deepEqual(d.priorities, ["safety", "mileage", "comfort", "style"]);
 });
 
 // ---------------- cost / EMI / BRTA ----------------

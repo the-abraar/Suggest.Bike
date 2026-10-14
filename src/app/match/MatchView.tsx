@@ -38,6 +38,8 @@ import {
   matchBikes,
   onRoadPrice,
   stretchPicks,
+  withPriorityBudget,
+  PRIORITY_BUMP,
   type Answers,
   type Band,
   type Match,
@@ -251,15 +253,16 @@ function Matchmaker({ params }: { params: URLSearchParams }) {
           </Question>
         )}
         {step === 6 && (
-          <Question title={tx("What matters most?", "সবচেয়ে গুরুত্বপূর্ণ কী?")} sub={tx("Pick up to three.", "সর্বোচ্চ তিনটি বাছুন।")}>
+          <Question title={tx("What matters most?", "সবচেয়ে গুরুত্বপূর্ণ কী?")} sub={tx(
+              `Pick as many as you like. More than ${PRIORITY_BUMP.over}? A bike that does everything costs more, so under ৳3 lakh we raise your budget by ${PRIORITY_BUMP.pct * 100}%.`,
+              `যতগুলো খুশি বাছুন। ${PRIORITY_BUMP.over}টির বেশি? সব দিকে ভালো বাইকের দাম বেশি, তাই ৳৩ লাখের কম বাজেট হলে আমরা বাজেট ${PRIORITY_BUMP.pct * 100}% বাড়িয়ে দেখাই।`,
+            )}>
             <div className="flex flex-wrap gap-2">
               {PRIORITIES.map((p) => {
                 const on = a.priorities.includes(p.id);
-                const full = !on && a.priorities.length >= 3;
                 return (
                   <button
                     key={p.id}
-                    disabled={full}
                     aria-pressed={on}
                     onClick={() => set("priorities", on ? a.priorities.filter((x) => x !== p.id) : [...a.priorities, p.id])}
                     className={`inline-flex h-12 items-center gap-2 rounded-xl border px-4 text-[15px] font-medium transition-all disabled:opacity-40 ${
@@ -461,9 +464,11 @@ function BudgetStep({ a, set }: { a: Answers; set: <K extends keyof Answers>(k: 
 
 /* ---------------- Results ---------------- */
 
-function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) => void; onRestart: () => void }) {
+function Results({ a: asked, onEdit, onRestart }: { a: Answers; onEdit: (step: number) => void; onRestart: () => void }) {
   const { lang } = useLang();
   const tx = useTx();
+  const a = useMemo(() => withPriorityBudget(asked), [asked]);
+  const bumped = a.budget !== asked.budget;
   const { compare, toggleCompare, clearCompare } = useStore();
   const matches = useMemo(() => matchBikes(a, 6), [a]);
   const stretch = useMemo(() => stretchPicks(a, 2), [a]);
@@ -515,6 +520,18 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
         </EditChip>
         {a.priorities.length > 0 && <EditChip onClick={() => onEdit(6)}>{a.priorities.map((p) => tx(PRIORITIES.find((x) => x.id === p)!.en, PRIORITIES.find((x) => x.id === p)!.bn)).join(", ")}</EditChip>}
       </div>
+
+      {bumped && (
+        <div className="mt-6 flex items-center gap-3 rounded-2xl border border-line bg-surface-2 p-4 text-[14.5px] text-ink-2">
+          <Info size={18} className="shrink-0 text-brand" />
+          <span>
+            {tx(
+              `You picked ${asked.priorities.length} priorities. Bikes that do all of that cost more, so we raised your budget by ${PRIORITY_BUMP.pct * 100}%, from ${formatLakh(asked.budget, lang)} to ${formatLakh(a.budget, lang)}.`,
+              `আপনি ${asked.priorities.length}টি অগ্রাধিকার বেছেছেন। সব দিকে ভালো বাইকের দাম বেশি, তাই বাজেট ${PRIORITY_BUMP.pct * 100}% বাড়িয়ে ${formatLakh(asked.budget, lang)} থেকে ${formatLakh(a.budget, lang)} ধরেছি।`,
+            )}
+          </span>
+        </div>
+      )}
 
       {top && noNew && cheapest && (
         <div className="mt-6 flex flex-wrap items-center gap-3 rounded-2xl border border-warn/30 bg-warn-soft p-4 text-[14.5px] text-ink-2">

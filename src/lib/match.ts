@@ -40,6 +40,11 @@ export const emiFor = (onRoad: number, down: number, tenure: number) => Math.cei
 
 /** Bikroy prices are asking prices and bikes usually sell lower, so we count 5% off (APPROX) against the budget. */
 export const USED_HAIRCUT = 0.05;
+/** Wanting more than three things at once costs more: the results add 20% to budgets under ৳3 lakh (APPROX, owner rule). */
+export const PRIORITY_BUMP = { over: 3, pct: 0.2, below: 300000 };
+export const withPriorityBudget = (a: Answers): Answers =>
+  a.priorities.length > PRIORITY_BUMP.over && a.budget < PRIORITY_BUMP.below ? { ...a, budget: Math.round(a.budget * (1 + PRIORITY_BUMP.pct)) } : a;
+
 /** Stretch picks may go this far over the on-road budget; they are shown in their own section. */
 export const STRETCH = 0.1;
 
@@ -344,7 +349,6 @@ export function decodeAnswers(q: URLSearchParams): Answers | null {
     gearless: pick(q.get("g"), ["yes", "no", "either"] as const, D.gearless),
     priorities: (q.get("pr") || "")
       .split(".")
-      .filter((x): x is Priority => ["mileage", "maintenance", "performance", "comfort", "resale", "safety", "style"].includes(x))
-      .slice(0, 3),
+      .filter((x): x is Priority => ["mileage", "maintenance", "performance", "comfort", "resale", "safety", "style"].includes(x)),
   };
 }
