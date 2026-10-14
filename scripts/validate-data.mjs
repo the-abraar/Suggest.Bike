@@ -8,7 +8,11 @@ const SCORES = ["reliability", "mechanicFamiliarity", "partsAvailability", "resa
 const errors = [];
 const ids = new Set();
 // Words that mark a note for us, not the rider. "unverified" is allowed: it is the public APPROX marker (CODING_STANDARDS "Cite").
-const INTERNAL = /\b(user|BikeBD data|placeholder|unconfirmed|TODO|FIXME)\b/i;
+const INTERNAL = /\b(users?|BikeBD data|placeholder|unconfirmed|TODO|FIXME)\b/i;
+// Owner-experience text must not narrate our sources (critique 15 Oct N6: "bikebd's spec table and review disagree…" under
+// "Quirks owners talk about"). Citations belong in priceNote, sources and dataNote, which this check skips.
+const EDITORIAL = ["tagline", "feel", "quirks", "braking", "mechanicNote", "pros", "cons", "bestFor"];
+const PROVENANCE = /bikebd|spec table|স্পেক টেবিল|স্পেস টেবিল/i;
 
 for (const b of bikes) {
   const e = (m) => errors.push(`${b.id ?? "?"}: ${m}`);
@@ -51,6 +55,8 @@ for (const b of bikes) {
   const pub = [b.variant, b.priceNote, b.tagline, b.feel, b.quirks, b.braking, b.mechanicNote, b.pros, b.cons, b.bestFor, b.parts?.map((p) => p.note), b.variants?.map((v) => v.name), b.bn];
   const leak = JSON.stringify(pub).match(INTERNAL);
   if (leak) e(`public text contains "${leak[0]}": move editorial or provenance notes to dataNote`);
+  const named = JSON.stringify(EDITORIAL.flatMap((k) => [b[k], b.bn?.[k]])).match(PROVENANCE);
+  if (named) e(`owner-experience text names "${named[0]}": say what the rider should check, and keep the source in dataNote`);
 }
 // Price age: priceAsOf is "YYYY-MM"; treated as month start. Thresholds overridable via env:
 // PRICE_FAIL_DAYS is the emergency-deploy override (docs/price-refresh.md), not a fix for stale prices.
@@ -114,8 +120,9 @@ for (const [d, n] of Object.entries(domains))
   if (n / bikes.length > 0.5) warnings.push(`source concentration: ${d} supplies ${n}/${bikes.length} (${Math.round((100 * n) / bikes.length)}%) of price sources`);
 // Unset launch settings in src/lib/site.ts: forms fall back to mailto and analytics stays off, so say so.
 const site = readFileSync(new URL("../src/lib/site.ts", import.meta.url), "utf8");
-for (const k of ["FORM_ENDPOINT", "GOATCOUNTER_CODE", "WHATSAPP"])
-  if (new RegExp(`export const ${k}: string = "";`).test(site)) warnings.push(`site.ts ${k} is empty (feedback falls back to mailto, analytics off, no WhatsApp link); see docs/Todo_owner.md`);
+const UNSET = { FORM_ENDPOINT: "feedback falls back to mailto", GOATCOUNTER_CODE: "analytics off", WHATSAPP: "no WhatsApp link" };
+for (const [k, why] of Object.entries(UNSET))
+  if (new RegExp(`export const ${k}: string = "";`).test(site)) warnings.push(`site.ts ${k} is empty (${why}); see docs/Todo_owner.md`);
 warnings.forEach((w) => console.log("WARN", w));
 console.log(`${bikes.length} bikes checked, ${errors.length} problems`);
 if (errors.some((x) => /price \d+d old/.test(x)))

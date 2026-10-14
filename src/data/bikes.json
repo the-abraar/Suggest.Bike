@@ -11393,7 +11393,7 @@
   "priceNote": "Indian-made unit ৳3,00,000; European Edition ৳3,70,000. KTM India discontinued the 125s in 2025, so BD availability depends on remaining Runner stock — confirm with dealer.",
   "priceAsOf": "2026-10",
   "priceSource": "https://bikebd.com/price/ktm-duke-125-price-in-bd",
-  "dataNote": "Availability: KTM India discontinued the 125s in 2025; Runner stock in BD not confirmed. Ask the distributor or a showroom, then drop \"availability\" or set status.",
+  "dataNote": "Availability: KTM India discontinued the 125s in 2025; Runner stock in BD not confirmed. Ask the distributor or a showroom, then drop \"availability\" or set status. Service-cost complaint: owner comments on bikebd.",
   "distributor": "Runner Automobiles Ltd",
   "assembledInBD": false,
   "engine": {
@@ -11449,7 +11449,7 @@
   "feel": "Premium chassis, USD fork, wide rear tyre and sharp steering — it feels like a much bigger bike than it is. The 125 engine needs revving past 7,000 rpm to make progress.",
   "quirks": "Gutless below 6,000 rpm so you're constantly downshifting in traffic; liquid-cooled engine still gets hot in jams; firm seat and tiny pillion perch; KTM's Indian 125 range is discontinued, so long-term parts support depends on Runner.",
   "braking": "Bybre disc brakes with ABS are strong and well-modulated for a 125.",
-  "mechanicNote": "Runner's KTM service points only (a handful, mostly Dhaka); owners on bikebd complain service cost is roughly double a normal bike. Local mechanics avoid the FI/liquid-cooled KTM engine.",
+  "mechanicNote": "Runner's KTM service points only (a handful, mostly Dhaka); owners report service costs roughly double a normal bike's. Local mechanics avoid the FI/liquid-cooled KTM engine.",
   "pros": [
    "Premium chassis and USD fork",
    "ABS and quality brakes",
@@ -11508,7 +11508,7 @@
    "feel": "প্রিমিয়াম চ্যাসিস, USD ফর্ক, চওড়া পেছনের টায়ার আর শার্প স্টিয়ারিং — আসলে যত বড় তার চেয়ে অনেক বড় বাইকের মতো লাগে। তবে 125 ইঞ্জিন থেকে স্পিড পেতে 7,000 rpm-এর উপরে টানতে হয়।",
    "quirks": "6,000 rpm-এর নিচে একদম দম নেই, তাই ট্রাফিকে বারবার গিয়ার নামাতে হয়; লিকুইড-কুলড হলেও জ্যামে ইঞ্জিন গরম হয়; সিট শক্ত আর পিলিয়নের জায়গা খুব ছোট; KTM-এর ইন্ডিয়ান 125 রেঞ্জ বন্ধ হয়ে গেছে, তাই লম্বা সময় পার্টস পাওয়া Runner-এর উপর নির্ভর করবে।",
    "braking": "Bybre ডিস্ক ব্রেক আর ABS — 125-এর জন্য শক্তিশালী আর ভালোভাবে কন্ট্রোল করা যায়।",
-   "mechanicNote": "শুধু Runner-এর KTM সার্ভিস পয়েন্ট (হাতে গোনা কয়েকটা, বেশিরভাগ ঢাকায়); bikebd-তে ওনাররা অভিযোগ করেন সার্ভিস খরচ সাধারণ বাইকের প্রায় দ্বিগুণ। FI/লিকুইড-কুলড KTM ইঞ্জিন লোকাল মেকানিকরা ধরতে চায় না।",
+   "mechanicNote": "শুধু Runner-এর KTM সার্ভিস পয়েন্ট (হাতে গোনা কয়েকটা, বেশিরভাগ ঢাকায়); ওনাররা বলেন সার্ভিস খরচ সাধারণ বাইকের প্রায় দ্বিগুণ। FI/লিকুইড-কুলড KTM ইঞ্জিন লোকাল মেকানিকরা ধরতে চায় না।",
    "pros": [
     "প্রিমিয়াম চ্যাসিস আর USD ফর্ক",
     "ABS আর মানসম্মত ব্রেক",
@@ -14028,7 +14028,7 @@
   },
   "tagline": "A 165cc carb street bike with USD fork and twin discs at a 125cc price.",
   "feel": "Simple air-cooled carburettor engine in a sporty naked body with a USD fork and a fat 130-section rear tyre; it looks bigger than its price.",
-  "quirks": "No ABS or CBS despite discs at both ends. bikebd's own spec table and review disagree on top speed and seat height, so test-ride before trusting the brochure. Resale on Runner's 150-165cc bikes is weak.",
+  "quirks": "No ABS or CBS despite discs at both ends. Published figures for top speed and seat height disagree, so test-ride before trusting the brochure. Resale on Runner's 150-165cc bikes is weak.",
   "braking": "Disc front and rear, but no ABS or CBS, so brake progressively in the wet.",
   "mechanicNote": "Runner has its own showroom and service network; the carb engine is simple enough for local mechanics, but body panels and the USD fork parts come through Runner.",
   "pros": [
@@ -14085,7 +14085,7 @@
   "bn": {
    "tagline": "125cc-র দামে USD ফর্ক আর দুই চাকায় ডিস্কসহ 165cc কার্ব স্ট্রিট বাইক।",
    "feel": "সাধারণ এয়ার-কুলড কার্বুরেটর ইঞ্জিন, স্পোর্টি নেকেড বডি, USD ফর্ক আর মোটা 130 সেকশনের পেছনের টায়ার; দামের তুলনায় বড় দেখায়।",
-   "quirks": "দুই চাকায় ডিস্ক থাকলেও ABS বা CBS নেই। bikebd-র স্পেক টেবিল আর রিভিউতে টপ স্পিড ও সিটের উচ্চতা মেলে না, তাই কেনার আগে টেস্ট রাইড দিন। Runner-এর 150-165cc বাইকের রিসেল দুর্বল।",
+   "quirks": "দুই চাকায় ডিস্ক থাকলেও ABS বা CBS নেই। প্রকাশিত টপ স্পিড ও সিটের উচ্চতার হিসাব মেলে না, তাই কেনার আগে টেস্ট রাইড দিন। Runner-এর 150-165cc বাইকের রিসেল দুর্বল।",
    "braking": "সামনে-পেছনে ডিস্ক, কিন্তু ABS বা CBS নেই, ভেজা রাস্তায় ধীরে ব্রেক করুন।",
    "mechanicNote": "Runner-এর নিজস্ব শোরুম ও সার্ভিস নেটওয়ার্ক আছে; কার্ব ইঞ্জিন লোকাল মেকানিক সহজেই সামলাতে পারেন, তবে বডি প্যানেল আর USD ফর্কের পার্টস Runner থেকে আনতে হয়।",
    "pros": [
@@ -14110,7 +14110,8 @@
    "runner bolt",
    "bolt 165"
   ],
-  "priceNote": "Unchanged from the August 2020 launch price of ৳1,69,000 reported by TBS and The Daily Star; Runner publishes no current price list online."
+  "priceNote": "Unchanged from the August 2020 launch price of ৳1,69,000 reported by TBS and The Daily Star; Runner publishes no current price list online.",
+  "dataNote": "bikebd's spec table and review disagree on top speed and seat height."
  },
  {
   "status": "on-sale",
@@ -14173,7 +14174,7 @@
   },
   "tagline": "A 135cc Chinese commuter priced against Indian 110-125s.",
   "feel": "Relaxed, light commuter with a slightly bigger engine than the 110-125cc norm and an upright seat; built for daily errands, not speed.",
-  "quirks": "Small brand presence in BD, so resale is weak and parts outside the distributor's network can take time. bikebd's spec table and review disagree on tank size and mileage (45-50 vs 55 kmpl).",
+  "quirks": "Small brand presence in BD, so resale is weak and parts outside the distributor's network can take time. Published figures for tank size and mileage disagree (45-50 vs 55 kmpl).",
   "braking": "Front disc and rear drum without CBS: adequate at commuter speeds.",
   "mechanicNote": "Sold through Karnaphuli Motors; the carb single is conventional, so local mechanics can do routine work, but genuine parts come via the distributor.",
   "pros": [
@@ -14227,7 +14228,7 @@
   "bn": {
    "tagline": "ইন্ডিয়ান 110-125cc-র দামে 135cc চায়নিজ কমিউটার।",
    "feel": "হালকা, আরামদায়ক কমিউটার, 110-125cc-র চেয়ে একটু বড় ইঞ্জিন আর সোজা হয়ে বসার সিট; প্রতিদিনের কাজের জন্য, গতির জন্য নয়।",
-   "quirks": "বাংলাদেশে ব্র্যান্ডের উপস্থিতি কম, তাই রিসেল দুর্বল আর ডিস্ট্রিবিউটরের বাইরে পার্টস পেতে সময় লাগতে পারে। bikebd-র স্পেক টেবিল আর রিভিউতে ট্যাংক ও মাইলেজ মেলে না (45-50 বনাম 55 kmpl)।",
+   "quirks": "বাংলাদেশে ব্র্যান্ডের উপস্থিতি কম, তাই রিসেল দুর্বল আর ডিস্ট্রিবিউটরের বাইরে পার্টস পেতে সময় লাগতে পারে। প্রকাশিত ট্যাংক ও মাইলেজের হিসাব মেলে না (45-50 বনাম 55 kmpl)।",
    "braking": "সামনে ডিস্ক, পেছনে ড্রাম, CBS নেই: কমিউটার গতিতে যথেষ্ট।",
    "mechanicNote": "Karnaphuli Motors বিক্রি করে; সাধারণ কার্ব ইঞ্জিন, লোকাল মেকানিক রুটিন কাজ পারেন, তবে আসল পার্টস ডিস্ট্রিবিউটর থেকে আসে।",
    "pros": [
@@ -14250,7 +14251,8 @@
    "হাওজুয়ে",
    "haojue ka",
    "ka 135"
-  ]
+  ],
+  "dataNote": "bikebd's spec table and review disagree on tank size and mileage (45-50 vs 55 kmpl)."
  },
  {
   "status": "on-sale",
@@ -14314,7 +14316,7 @@
   },
   "tagline": "The cheapest way into a low-seat cruiser riding position.",
   "feel": "Low 725 mm seat, laid-back cruiser posture and a soft, unhurried 149cc engine; easy for shorter riders to flat-foot.",
-  "quirks": "Low ground clearance (157 mm) scrapes on speed breakers with a pillion. Small brand presence means weak resale and slower parts. bikebd's review and spec table disagree on top speed and mileage.",
+  "quirks": "Low ground clearance (157 mm) scrapes on speed breakers with a pillion. Small brand presence means weak resale and slower parts. Published figures for top speed and mileage disagree.",
   "braking": "Front disc, rear drum, no ABS or CBS.",
   "mechanicNote": "Sold through Karnaphuli Motors; the carb engine is conventional, but cruiser-specific body and trim parts are distributor-only.",
   "pros": [
@@ -14368,7 +14370,7 @@
   "bn": {
    "tagline": "নিচু সিটের ক্রুজার পজিশনে যাওয়ার সবচেয়ে সস্তা উপায়।",
    "feel": "নিচু 725 mm সিট, আরামদায়ক ক্রুজার ভঙ্গি আর ধীরস্থির 149cc ইঞ্জিন; খাটো রাইডারের দুই পা সহজে মাটিতে পৌঁছায়।",
-   "quirks": "গ্রাউন্ড ক্লিয়ারেন্স কম (157 mm), পিলিয়নসহ স্পিড ব্রেকারে ঘষা লাগে। ব্র্যান্ড ছোট, তাই রিসেল দুর্বল আর পার্টস ধীরে আসে। bikebd-র রিভিউ আর স্পেক টেবিলে টপ স্পিড ও মাইলেজ মেলে না।",
+   "quirks": "গ্রাউন্ড ক্লিয়ারেন্স কম (157 mm), পিলিয়নসহ স্পিড ব্রেকারে ঘষা লাগে। ব্র্যান্ড ছোট, তাই রিসেল দুর্বল আর পার্টস ধীরে আসে। প্রকাশিত টপ স্পিড ও মাইলেজের হিসাব মেলে না।",
    "braking": "সামনে ডিস্ক, পেছনে ড্রাম, ABS বা CBS নেই।",
    "mechanicNote": "Karnaphuli Motors বিক্রি করে; কার্ব ইঞ্জিন সাধারণ, তবে ক্রুজারের বডি ও ট্রিম পার্টস শুধু ডিস্ট্রিবিউটরে।",
    "pros": [
@@ -14391,7 +14393,8 @@
    "হাওজুয়ে টিআর",
    "haojue tr",
    "tr 150"
-  ]
+  ],
+  "dataNote": "bikebd's review and spec table disagree on top speed and mileage."
  },
  {
   "status": "on-sale",
@@ -14455,8 +14458,8 @@
   },
   "tagline": "A liquid-cooled, fuel-injected 165cc cruiser for Avenger money.",
   "feel": "Very low 710 mm seat, fat 15-inch rear tyre and a smoother liquid-cooled FI engine than the air-cooled budget cruisers.",
-  "quirks": "No ABS. Liquid cooling and FI mean fewer local mechanics are comfortable with it. bikebd's page is inconsistent (gear count, rear brake and engine size differ between spec table and article), so confirm the spec at the showroom.",
-  "braking": "Discs listed at both ends in bikebd's spec table (its article mentions a rear drum), no ABS.",
+  "quirks": "No ABS. Liquid cooling and FI mean fewer local mechanics are comfortable with it. Published specs disagree on gear count, rear brake and engine size, so confirm the spec at the showroom.",
+  "braking": "Listed with discs at both ends, though some listings show a rear drum; no ABS. Check at the showroom.",
   "mechanicNote": "Rasel Industries handles sales and service; coolant and FI work is best left to the dealer.",
   "pros": [
    "Very low seat",
@@ -14509,8 +14512,8 @@
   "bn": {
    "tagline": "Avenger-এর দামে লিকুইড-কুলড, ফুয়েল-ইনজেকটেড 165cc ক্রুজার।",
    "feel": "খুব নিচু 710 mm সিট, মোটা 15 ইঞ্চি পেছনের টায়ার আর এয়ার-কুলড বাজেট ক্রুজারের চেয়ে স্মুথ লিকুইড-কুলড FI ইঞ্জিন।",
-   "quirks": "ABS নেই। লিকুইড কুলিং আর FI-এর কারণে কম লোকাল মেকানিক এতে স্বচ্ছন্দ। bikebd-র পেজে অসঙ্গতি আছে (গিয়ার সংখ্যা, পেছনের ব্রেক আর ইঞ্জিন সাইজ), তাই শোরুমে স্পেক মিলিয়ে নিন।",
-   "braking": "bikebd-র স্পেক টেবিলে দুই চাকায় ডিস্ক (আর্টিকেলে পেছনে ড্রাম), ABS নেই।",
+   "quirks": "ABS নেই। লিকুইড কুলিং আর FI-এর কারণে কম লোকাল মেকানিক এতে স্বচ্ছন্দ। প্রকাশিত স্পেকে গিয়ার সংখ্যা, পেছনের ব্রেক আর ইঞ্জিন সাইজ মেলে না, তাই শোরুমে স্পেক মিলিয়ে নিন।",
+   "braking": "দুই চাকায় ডিস্ক লেখা, তবে কোথাও পেছনে ড্রাম; ABS নেই। শোরুমে মিলিয়ে নিন।",
    "mechanicNote": "Rasel Industries বিক্রি ও সার্ভিস দেয়; কুল্যান্ট আর FI-এর কাজ ডিলারেই করানো ভালো।",
    "pros": [
     "খুব নিচু সিট",
@@ -14533,7 +14536,8 @@
    "লিফান কে19",
    "lifan k19",
    "k 19"
-  ]
+  ],
+  "dataNote": "bikebd's page is inconsistent: its spec table lists discs at both ends, its article a rear drum; gear count and engine size also differ."
  },
  {
   "status": "on-sale",
@@ -14597,7 +14601,7 @@
   },
   "tagline": "The lowest new-bike price in the list, for errands and short commutes.",
   "feel": "Light 108 kg 100cc commuter with a 4-speed gearbox; easy around town, out of breath on highways.",
-  "quirks": "Tube-type tyres. Resale for Chinese 100cc commuters is poor. bikebd's overview and spec table disagree on torque and mileage. Check the seat height (bikebd lists both 775 and 810 mm) on a test ride.",
+  "quirks": "Tube-type tyres. Resale for Chinese 100cc commuters is poor. Published figures for torque and mileage disagree. Check the seat height (listed as both 775 and 810 mm) on a test ride.",
   "braking": "Front disc, rear drum, no CBS.",
   "mechanicNote": "Rasel Industries sells and services Lifan; the simple carb 100cc engine is familiar territory for local mechanics.",
   "pros": [
@@ -14651,7 +14655,7 @@
   "bn": {
    "tagline": "তালিকায় সবচেয়ে কম দামের নতুন বাইক, ছোট কাজ আর কাছের যাতায়াতের জন্য।",
    "feel": "হালকা 108 kg-এর 100cc কমিউটার, 4-স্পিড গিয়ার; শহরে সহজ, হাইওয়েতে হাঁপিয়ে যায়।",
-   "quirks": "টিউব টায়ার। চায়নিজ 100cc কমিউটারের রিসেল খারাপ। bikebd-র ওভারভিউ আর স্পেক টেবিলে টর্ক ও মাইলেজ মেলে না। সিটের উচ্চতা (bikebd-তে 775 ও 810 mm দুটোই) টেস্ট রাইডে দেখে নিন।",
+   "quirks": "টিউব টায়ার। চায়নিজ 100cc কমিউটারের রিসেল খারাপ। প্রকাশিত টর্ক ও মাইলেজের হিসাব মেলে না। সিটের উচ্চতা (775 ও 810 mm দুটোই লেখা) টেস্ট রাইডে দেখে নিন।",
    "braking": "সামনে ডিস্ক, পেছনে ড্রাম, CBS নেই।",
    "mechanicNote": "Rasel Industries বিক্রি ও সার্ভিস দেয়; সাধারণ কার্ব 100cc ইঞ্জিন লোকাল মেকানিকের চেনা।",
    "pros": [
@@ -14674,7 +14678,8 @@
    "লিফান গ্লিন্ট",
    "lifan glint",
    "glint 100"
-  ]
+  ],
+  "dataNote": "bikebd's overview and spec table disagree on torque and mileage; it lists both 775 and 810 mm seat height."
  },
  {
   "status": "on-sale",
@@ -14931,7 +14936,7 @@
   "bn": {
    "tagline": "জাপানি প্যারালাল-টুইন ১২৫, খেলনার মতো রেভ করে আর সবার নজর কাড়ে।",
    "feel": "মসৃণ, উঁচু রেভের টুইন ইঞ্জিন; শহরে হালকা ও চটপটে কিন্তু গতি তুলতে রেভ লাগে, হাইওয়েতে ছোট মনে হয়।",
-   "quirks": "জাপান থেকে আসা দুর্লভ ইমপোর্ট, পার্টস খুব কম; স্পেক bikebd থেকে (আনুমানিক, যাচাইহীন); কেনার আগে ফ্রেম/ইঞ্জিন নম্বর আর BRTA কাগজ মিলিয়ে দেখুন।",
+   "quirks": "জাপান থেকে আসা দুর্লভ ইমপোর্ট, পার্টস খুব কম; স্পেক আনুমানিক, যাচাইহীন; কেনার আগে ফ্রেম/ইঞ্জিন নম্বর আর BRTA কাগজ মিলিয়ে দেখুন।",
    "braking": "সামনে-পেছনে ড্রাম ব্রেক; এই গতিতে চলে কিন্তু লম্বা ঢালে ফেড করে।",
    "mechanicNote": "সাধারণ এয়ার-কুলড টুইন, Honda মেকানিকরা কাজ করতে পারেন, কিন্তু পার্টস বেশিরভাগই পুরনো/স্ক্র্যাপ থেকে; কার্ব সিঙ্কের জন্য দক্ষ কারিগর লাগে।",
    "pros": [
@@ -15158,7 +15163,7 @@
   "priceBDT": 350000,
   "priceNote": "Approx, unverified: BikeBD shows ৳0 (discontinued) and says it was never officially launched in Bangladesh; no live ad found. Estimated ৳2,00,000 (rough/non-original) to ৳6,00,000+ (restored, original). Pricey because very few exist, original Yamaha twin-cylinder parts are scarce and collectors drive demand.",
   "priceSource": "https://bikebd.com/price/yamaha-rajdoot-rd350",
-  "dataNote": "Specs from BikeBD (27 BHP, ~180 km/h claimed top speed); ~150 km/h is an editorial estimate.",
+  "dataNote": "Specs from BikeBD (27 BHP, ~180 km/h claimed top speed); ~150 km/h is an editorial estimate. Drum/drum brakes per BikeBD's Rajdoot spec.",
   "distributor": "None (private import)",
   "assembledInBD": false,
   "engine": {
@@ -15210,7 +15215,7 @@
   "tagline": "The two-stroke twin legend, the rarest of the old Yamaha cult in Bangladesh.",
   "feel": "Violent two-stroke twin power band and a screaming exhaust note; fast for its weight but demanding, with a light front end and old-school handling.",
   "quirks": "Specs are approx, unverified (the factory RD350 made more than the 27 BHP listed; ~150 km/h top speed and seat height are estimates). Rare in BD with many half-original builds; two carbs and 2T oil injection or premix need care; smoky; plug fouling; police scrutiny of loud two-strokes in some areas.",
-  "braking": "Drum brakes front and rear per BikeBD's Rajdoot spec, weak for the pace; some imported units have a front disc.",
+  "braking": "Drum brakes front and rear on the Rajdoot-built version, weak for the pace; some imported units have a front disc.",
   "mechanicNote": "Two-stroke RX/RD mechanics exist in Dhaka and a few cities, but a twin is rarer to tune than an RX100. Genuine cylinders, crankshafts and pistons are scarce; most parts are reproduction or from India.",
   "pros": [
    "Iconic two-stroke twin",
@@ -15270,7 +15275,7 @@
    "tagline": "টু-স্ট্রোক টুইন কিংবদন্তি, বাংলাদেশের পুরনো Yamaha-পন্থীদের মধ্যে সবচেয়ে বিরল।",
    "feel": "টু-স্ট্রোক টুইনের তীব্র পাওয়ার ব্যান্ড আর চিৎকারের মতো এক্সহস্ট; ওজনের তুলনায় দ্রুত কিন্তু রাইড করা কঠিন, সামনের দিক হালকা।",
    "quirks": "স্পেক আনুমানিক, যাচাই করা নয় (আসল ফ্যাক্টরি RD350-র পাওয়ার ২৭ BHP-এর বেশি; টপ স্পিড ও সিট উচ্চতা অনুমান)। বাংলাদেশে খুব বিরল, অনেকগুলো অর্ধেক আসল; দুটি কার্ব ও 2T অয়েলের যত্ন লাগে; ধোঁয়া, প্লাগ ফাউলিং; কিছু এলাকায় জোরালো টু-স্ট্রোক নিয়ে পুলিশি নজর।",
-   "braking": "BikeBD-র Rajdoot স্পেক অনুযায়ী সামনে-পেছনে ড্রাম ব্রেক, গতির তুলনায় দুর্বল; কিছু ইমপোর্টে সামনে ডিস্ক থাকে।",
+   "braking": "Rajdoot-এর তৈরি ভার্সনে সামনে-পেছনে ড্রাম ব্রেক, গতির তুলনায় দুর্বল; কিছু ইমপোর্টে সামনে ডিস্ক থাকে।",
    "mechanicNote": "RX/RD-র টু-স্ট্রোক মেকানিক ঢাকা ও কয়েকটি শহরে আছেন, তবে টুইন টিউন করা RX100-র চেয়ে কঠিন। জেনুইন সিলিন্ডার, ক্র্যাঙ্কশ্যাফট ও পিস্টন দুর্লভ; বেশিরভাগ পার্টস রিপ্রোডাকশন বা ভারত থেকে আনা।",
    "pros": [
     "আইকনিক টু-স্ট্রোক টুইন",
@@ -15375,7 +15380,7 @@
   },
   "tagline": "The light, simple 100cc two-stroke that is a cheap way into old-school riding.",
   "feel": "Light, zippy and noisy, with a sudden two-stroke surge at higher revs; feels quick in town but gets breathless on highways.",
-  "quirks": "Power (7.88 BHP) from BikeBD; torque, weight, seat and tyre sizes are approx, unverified. Premix/2T oil, smoke and fouled plugs common; most units 25+ years old with mixed parts; some areas police loud two-strokes.",
+  "quirks": "Torque, weight, seat and tyre sizes are approx, unverified. Premix/2T oil, smoke and fouled plugs common; most units 25+ years old with mixed parts; some areas police loud two-strokes.",
   "braking": "Drum brakes front and rear, adequate for the weight but fade when hot.",
   "mechanicNote": "Two-stroke mechanics are fairly common and the engine is simple; genuine Suzuki parts are scarce so repro and cross-fit parts are used.",
   "pros": [
@@ -15435,7 +15440,7 @@
   "bn": {
    "tagline": "হালকা, সাধারণ ১০০ সিসির টু-স্ট্রোক, পুরনো ধাঁচের রাইডিংয়ে ঢোকার সস্তা পথ।",
    "feel": "হালকা, চটপটে ও শব্দওয়ালা; বেশি আরপিএমে হঠাৎ টু-স্ট্রোক টান, শহরে দ্রুত মনে হয় কিন্তু হাইওয়েতে হাঁপিয়ে যায়।",
-   "quirks": "পাওয়ার (৭.৮৮ BHP) BikeBD থেকে; টর্ক, ওজন, সিট ও টায়ারের মাপ আনুমানিক, যাচাই করা নয়। 2T অয়েল, ধোঁয়া ও প্লাগ ফাউলিং সাধারণ; বেশিরভাগ বাইক ২৫+ বছর পুরনো, মিশ্র পার্টস; কিছু এলাকায় জোরালো টু-স্ট্রোক নিয়ে পুলিশি নজর।",
+   "quirks": "টর্ক, ওজন, সিট ও টায়ারের মাপ আনুমানিক, যাচাই করা নয়। 2T অয়েল, ধোঁয়া ও প্লাগ ফাউলিং সাধারণ; বেশিরভাগ বাইক ২৫+ বছর পুরনো, মিশ্র পার্টস; কিছু এলাকায় জোরালো টু-স্ট্রোক নিয়ে পুলিশি নজর।",
    "braking": "সামনে-পেছনে ড্রাম ব্রেক, ওজনের জন্য চলনসই কিন্তু গরম হলে দুর্বল হয়।",
    "mechanicNote": "টু-স্ট্রোক মেকানিক মোটামুটি সহজলভ্য, ইঞ্জিন সাদামাটা; জেনুইন Suzuki পার্টস দুর্লভ, তাই রিপ্রোডাকশন বা ক্রস-ফিট ব্যবহার হয়।",
    "pros": [
@@ -15474,7 +15479,8 @@
    "suzuki a100",
    "sujuki ax100",
    "suzki ax100"
-  ]
+  ],
+  "dataNote": "Power (7.88 BHP) from BikeBD."
  },
  {
   "status": "used-only",
@@ -15542,7 +15548,7 @@
   },
   "tagline": "The tough 80s Honda two-stroke that put a generation of Bangladeshis on motorbikes.",
   "feel": "Light and rev-happy with a bright two-stroke buzz, easy to handle, but slow and shaky on highways.",
-  "quirks": "Engine size (99cc), power, torque, weight and tyres are approx, unverified: BikeBD's blog (launched in BD early 1986, production ended ~1992) gives no cc. Reported ~20 kmpl average; heavy smoke and 2T oil use. Most units are 30+ years old with replaced parts; wiring and CDI units often need replacement.",
+  "quirks": "Engine size (99cc), power, torque, weight and tyres are approx, unverified. Launched in BD in early 1986; production ended around 1992. Reported ~20 kmpl average; heavy smoke and 2T oil use. Most units are 30+ years old with replaced parts; wiring and CDI units often need replacement.",
   "braking": "Drum brakes front and rear, adequate for the weight but weak when worn.",
   "mechanicNote": "Older mechanics know it well and it is cheap to rebuild; genuine Honda parts are mostly gone, so repro and Japan-surplus parts fill the gap.",
   "pros": [
@@ -15602,7 +15608,7 @@
   "bn": {
    "tagline": "শক্তপোক্ত ৮০-র দশকের Honda টু-স্ট্রোক, যেটা এক প্রজন্মকে মোটরবাইকে চড়িয়েছে।",
    "feel": "হালকা ও রিভ-প্রিয়, উজ্জ্বল টু-স্ট্রোক গুঞ্জন, চালানো সহজ, কিন্তু হাইওয়েতে ধীর ও নড়বড়ে।",
-   "quirks": "ইঞ্জিন সাইজ (৯৯ সিসি), পাওয়ার, টর্ক, ওজন ও টায়ার আনুমানিক, যাচাই করা নয়: BikeBD ব্লগে সিসি নেই (১৯৮৬-র শুরুতে বাংলাদেশে আসে, ~১৯৯২-এ উৎপাদন বন্ধ)। গড় মাইলেজ ~২০ কিমি/লি; ধোঁয়া ও 2T অয়েল বেশি। বেশিরভাগ বাইক ৩০+ বছর পুরনো, ওয়্যারিং ও CDI বদলাতে হয়।",
+   "quirks": "ইঞ্জিন সাইজ (৯৯ সিসি), পাওয়ার, টর্ক, ওজন ও টায়ার আনুমানিক, যাচাই করা নয়। ১৯৮৬-র শুরুতে বাংলাদেশে আসে, ~১৯৯২-এ উৎপাদন বন্ধ। গড় মাইলেজ ~২০ কিমি/লি; ধোঁয়া ও 2T অয়েল বেশি। বেশিরভাগ বাইক ৩০+ বছর পুরনো, ওয়্যারিং ও CDI বদলাতে হয়।",
    "braking": "সামনে-পেছনে ড্রাম ব্রেক, ওজনের জন্য চলনসই, ক্ষয়ে গেলে দুর্বল।",
    "mechanicNote": "পুরনো মেকানিকরা ভালো চেনেন, রিবিল্ড সস্তা; জেনুইন Honda পার্টস প্রায় শেষ, রিপ্রোডাকশন ও জাপান-সারপ্লাস পার্টস ব্যবহার হয়।",
    "pros": [
@@ -15643,7 +15649,8 @@
    "h100s super cdi",
    "hunda h100s",
    "সুপার সিডিআই"
-  ]
+  ],
+  "dataNote": "BikeBD's blog (source for the 1986 launch and ~1992 end) gives no cc."
  },
  {
   "category": "classic",
@@ -15693,7 +15700,7 @@
   },
   "tagline": "The 'mileage king': tiny engine, tiny fuel bill, still running 30 years on.",
   "feel": "Light, soft and slow; the little 4-speed pulls gently and sips fuel. Fine in city traffic, strained on highways with a pillion.",
-  "quirks": "Spec figures vary by source (BikeBD lists 72cc in one table and 80cc in another; seat height, tank and power here are approx, unverified). Many units are 25-40 years old with mixed parts. Kerb weight 82 kg claimed. Claimed 65-80 kmpl is optimistic; owners on tuned units report 50-65.",
+  "quirks": "Published specs disagree (72cc in one listing, 80cc in another; seat height, tank and power here are approx, unverified). Many units are 25-40 years old with mixed parts. Kerb weight 82 kg claimed. Claimed 65-80 kmpl is optimistic; owners on tuned units report 50-65.",
   "braking": "Small drum brakes front and rear; adequate for its 70 km/h top speed, nothing more.",
   "mechanicNote": "Simple Honda single-cylinder; almost any town mechanic can fix it. Genuine parts are scarce, clones and Dream/CD-series interchange parts are easy.",
   "pros": [
@@ -15723,7 +15730,7 @@
   "bn": {
    "tagline": "মাইলেজ কিং: ছোট ইঞ্জিন, কম তেল, ৩০ বছর পরেও চলছে।",
    "feel": "হালকা, নরম আর ধীর; ছোট ৪-স্পিড আস্তে টানে আর তেল খায় কম। শহরের ট্রাফিকে ভালো, হাইওয়েতে পিলিয়ন নিয়ে কষ্ট।",
-   "quirks": "সোর্সভেদে স্পেক মেলে না (BikeBD-তে ৭২cc ও ৮০cc দুটোই আছে; সিট হাইট, ট্যাংক ও পাওয়ার আনুমানিক, যাচাই হয়নি)। অনেক ইউনিট ২৫-৪০ বছরের পুরনো, পার্টস মেশানো। কোম্পানির ৬৫-৮০ kmpl দাবি আশাবাদী; মালিকদের হিসাবে ৫০-৬৫।",
+   "quirks": "প্রকাশিত স্পেক মেলে না (কোথাও ৭২cc, কোথাও ৮০cc; সিট হাইট, ট্যাংক ও পাওয়ার আনুমানিক, যাচাই হয়নি)। অনেক ইউনিট ২৫-৪০ বছরের পুরনো, পার্টস মেশানো। কোম্পানির ৬৫-৮০ kmpl দাবি আশাবাদী; মালিকদের হিসাবে ৫০-৬৫।",
    "braking": "সামনে-পেছনে ছোট ড্রাম ব্রেক; ৭০ কিমি/ঘণ্টা গতির জন্য যথেষ্ট, এর বেশি নয়।",
    "mechanicNote": "সহজ হোন্ডা সিঙ্গেল-সিলিন্ডার; প্রায় যেকোনো শহরের মেকানিক সারাতে পারে। জেনুইন পার্টস দুর্লভ, ক্লোন ও ড্রিম/সিডি সিরিজের পার্টস মেলে।",
    "pros": [
@@ -15796,7 +15803,8 @@
     "priceBDT": 700,
     "availability": "common"
    }
-  ]
+  ],
+  "dataNote": "BikeBD lists 72cc in one table and 80cc in another."
  },
  {
   "category": "classic",
@@ -16029,7 +16037,7 @@
   "bn": {
    "tagline": "বাজাজের পুরনো ১০০cc ওয়ার্কহর্স, আর তার নামে চলা বাজার ক্লোন।",
    "feel": "১০০cc-র তুলনায় উঁচু, মজবুত ও টর্কি; সাদামাটা আর কিছুটা খসখসে, মাঝারি গতিতে মাল বইতে ভালো।",
-   "quirks": "'বাজার বক্সার' বলতে সাধারণত সস্তা স্থানীয়ভাবে জোড়া বা ক্লোন ভ্যারিয়েন্ট বোঝায়, বাজাজের নিজের কিট নয়: মান, ফ্রেম ও ইঞ্জিন পার্টস ভিন্ন, কাগজপত্র সমস্যা হতে পারে। Bikroy বিজ্ঞাপনে আসল-নকল বোঝা যায় না। স্পেক BikeBD থেকে, আনুমানিক, যাচাই হয়নি; ৫৫ kmpl দাবি, বাস্তবে কম।",
+   "quirks": "'বাজার বক্সার' বলতে সাধারণত সস্তা স্থানীয়ভাবে জোড়া বা ক্লোন ভ্যারিয়েন্ট বোঝায়, বাজাজের নিজের কিট নয়: মান, ফ্রেম ও ইঞ্জিন পার্টস ভিন্ন, কাগজপত্র সমস্যা হতে পারে। Bikroy বিজ্ঞাপনে আসল-নকল বোঝা যায় না। স্পেক আনুমানিক, যাচাই হয়নি; ৫৫ kmpl দাবি, বাস্তবে কম।",
    "braking": "সামনে-পেছনে ড্রাম ব্রেক; সাধারণ।",
    "mechanicNote": "সাধারণ বাজাজ/কাওয়াসাকি ১০০cc ইঞ্জিন; গ্রাম-শহরের মেকানিক নিয়মিত সারান। ক্লোনে নমুনা দেখে পার্টস মেলাতে হয়।",
    "pros": [
@@ -16154,7 +16162,7 @@
   },
   "tagline": "Yamaha's 100-ish cc Libero: an uncommon, tank-heavy old commuter.",
   "feel": "Solid, a little heavy for its size, with a big tank and easy 4-speed; calm and comfortable at moderate speeds.",
-  "quirks": "Engine size is inconsistent (BikeBD lists 100cc and 106cc; Bikroy ad says 105cc), power/torque/weight are approx, unverified. Not an official BD model so parts are not well stocked and many are imported-used. 'Libero G5' is the version confirmed; other Libero variants in BD could not be confirmed.",
+  "quirks": "Engine size is listed as 100, 105 and 106cc in different places; power/torque/weight are approx, unverified. Not an official BD model so parts are not well stocked and many are imported-used. 'Libero G5' is the version confirmed; other Libero variants in BD could not be confirmed.",
   "braking": "Drum brakes both ends; adequate for its speed.",
   "mechanicNote": "A conventional air-cooled single; Yamaha-experienced mechanics manage, but genuine parts are hard to find and some are matched from other Yamaha/Bajaj-style kit.",
   "pros": [
@@ -16184,7 +16192,7 @@
   "bn": {
    "tagline": "ইয়ামাহার ১০০cc-র কাছাকাছি লিবেরো: অপ্রচলিত, বড় ট্যাংকের পুরনো কমিউটার।",
    "feel": "মজবুত, আকারের তুলনায় একটু ভারী, বড় ট্যাংক আর সহজ ৪-স্পিড; মাঝারি গতিতে শান্ত ও আরামদায়ক।",
-   "quirks": "ইঞ্জিন সাইজে অসঙ্গতি (BikeBD-তে ১০০cc ও ১০৬cc, Bikroy-তে ১০৫cc); পাওয়ার, টর্ক ও ওজন আনুমানিক, যাচাই হয়নি। বাংলাদেশে অফিশিয়াল মডেল নয়, পার্টস কম, অনেক ইম্পোর্টেড-ইউজড। শুধু 'লিবেরো জি৫' নিশ্চিত; অন্য ভ্যারিয়েন্ট নিশ্চিত করা যায়নি।",
+   "quirks": "ইঞ্জিন সাইজ কোথাও ১০০cc, কোথাও ১০৫ বা ১০৬cc; পাওয়ার, টর্ক ও ওজন আনুমানিক, যাচাই হয়নি। বাংলাদেশে অফিশিয়াল মডেল নয়, পার্টস কম, অনেক ইম্পোর্টেড-ইউজড। শুধু 'লিবেরো জি৫' নিশ্চিত; অন্য ভ্যারিয়েন্ট নিশ্চিত করা যায়নি।",
    "braking": "দুই চাকায় ড্রাম ব্রেক; গতির তুলনায় যথেষ্ট।",
    "mechanicNote": "সাধারণ এয়ার-কুলড সিঙ্গেল; ইয়ামাহা-অভিজ্ঞ মেকানিক পারেন, কিন্তু জেনুইন পার্টস কঠিন।",
    "pros": [
@@ -16255,7 +16263,8 @@
     "priceBDT": 850,
     "availability": "common"
    }
-  ]
+  ],
+  "dataNote": "Engine size: BikeBD lists 100cc and 106cc; a Bikroy ad says 105cc."
  },
  {
   "id": "hero-xpulse-200-4v-pro",
@@ -16623,7 +16632,7 @@
   },
   "tagline": "A rare Yamaha 125 import with a proper five-speed box and a front disc.",
   "feel": "Smooth, upright and comfortable for a 125; the five-speed gearbox and disc brake make it nicer than typical 100cc commuters, though power is modest.",
-  "quirks": "Not sold by an official distributor in Bangladesh, so history, papers and parts are the buyer's problem; very few ads exist (about 5 on Bikroy); engine-parts matches with Yamaha YBR125 from India/China rather than Yamaha BD; BikeBD spec tables for it are inconsistent.",
+  "quirks": "Not sold by an official distributor in Bangladesh, so history, papers and parts are the buyer's problem; very few ads exist (about 5 on Bikroy); engine-parts matches with Yamaha YBR125 from India/China rather than Yamaha BD; published specs for it disagree, so check the bike itself.",
   "braking": "Front disc and rear drum; adequate for a 125 and better than the drum-only commuters of its age.",
   "mechanicNote": "Basic air-cooled four-stroke, so general mechanics cope; model-specific parts must be sourced from importers or cannibalised from other YBR125s.",
   "pros": [
@@ -16682,7 +16691,7 @@
   "bn": {
    "tagline": "পাঁচ-গিয়ার আর ফ্রন্ট ডিস্কওয়ালা বিরল ইয়ামাহা 125 ইম্পোর্ট।",
    "feel": "125-এর জন্য মসৃণ, সোজা হয়ে বসা আর আরামদায়ক; পাঁচ গিয়ার আর ডিস্ক ব্রেক একে সাধারণ 100cc কমিউটারের চেয়ে ভালো করেছে, তবে পাওয়ার সীমিত।",
-   "quirks": "বাংলাদেশে অফিসিয়াল ডিস্ট্রিবিউটর নেই, তাই ইতিহাস, কাগজ আর পার্টস ক্রেতার দায়; Bikroy-তে বিজ্ঞাপন মাত্র প্রায় ৫টি; ইঞ্জিন-পার্টস ভারত/চীনের YBR125-এর সাথে মেলে, Yamaha BD-র নয়; BikeBD-র স্পেস টেবিল অসংগত।",
+   "quirks": "বাংলাদেশে অফিসিয়াল ডিস্ট্রিবিউটর নেই, তাই ইতিহাস, কাগজ আর পার্টস ক্রেতার দায়; Bikroy-তে বিজ্ঞাপন মাত্র প্রায় ৫টি; ইঞ্জিন-পার্টস ভারত/চীনের YBR125-এর সাথে মেলে, Yamaha BD-র নয়; প্রকাশিত স্পেক মেলে না, তাই বাইক নিজে দেখে নিন।",
    "braking": "সামনে ডিস্ক, পেছনে ড্রাম; 125-এর জন্য যথেষ্ট, ড্রাম-অনলি সমসাময়িক কমিউটারের চেয়ে ভালো।",
    "mechanicNote": "সাধারণ এয়ার-কুলড ফোর-স্ট্রোক, তাই সাধারণ মেকানিকই পারে; মডেল-স্পেসিফিক পার্টস ইম্পোর্টার বা অন্য YBR125 থেকে জোগাড় করতে হয়।",
    "pros": [
@@ -16719,7 +16728,8 @@
    "ybr125",
    "yamaha ybr",
    "yamha ybr125"
-  ]
+  ],
+  "dataNote": "BikeBD spec tables for it are inconsistent."
  },
  {
   "id": "bajaj-discover-135",

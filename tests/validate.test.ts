@@ -61,3 +61,23 @@ test("validate: an offer's struck-through price must be its bike's headline pric
   assert.equal(r.code, 1);
   assert.match(r.out, /regularPriceBDT \d+ is not/);
 });
+
+test("validate: owner-experience text that narrates our sources fails; the same note in dataNote passes (critique 15 Oct N6)", () => {
+  for (const [k, text] of [["quirks", "bikebd's spec table and review disagree on top speed."], ["braking", "Discs per the spec table."]] as const) {
+    const bikes = real();
+    bikes[0][k] = text;
+    const r = validate(bikes);
+    assert.equal(r.code, 1, k);
+    assert.match(r.out, new RegExp(`${bikes[0].id}: owner-experience text names`));
+  }
+  const bn = real();
+  const withBn = bn.find((b) => b.bn?.quirks)!;
+  withBn.bn!.quirks = "bikebd-র স্পেক টেবিল আর রিভিউ মেলে না।";
+  assert.equal(validate(bn).code, 1);
+  const users = real();
+  users[0].cons = [...users[0].cons, "Some users say the seat is hard"];
+  assert.equal(validate(users).code, 1, '"users" is an internal word too');
+  const ok = real();
+  ok[0].dataNote = "bikebd's spec table and review disagree on top speed.";
+  assert.equal(validate(ok).code, 0);
+});

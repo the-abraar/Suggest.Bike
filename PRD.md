@@ -99,7 +99,7 @@ Bangladeshi buyers choose a motorcycle with poor information. Most reviews come 
 - DP-4. Run `npm run audit:prices` to list stale prices, single-source bikes and outliers.
 - DP-5. The build shall generate `src/data/generated` and `public/data/bikes` from `src/data`. Edit the source files only.
 - DP-6. A person shall check a price against its source before editing. Do not edit data to pass a check.
-- DP-7. Editorial, provenance and owner notes go in `dataNote`, which is never rendered. The validator shall fail when public text contains internal-note words ("user", "BikeBD data", "placeholder", "unconfirmed", "TODO").
+- DP-7. Editorial, provenance and owner notes go in `dataNote`, which is never rendered. The validator shall fail when public text contains internal-note words ("user", "users", "BikeBD data", "placeholder", "unconfirmed", "TODO"), and when owner-experience text (tagline, feel, quirks, braking, mechanic note, pros, cons, best for, in both languages) names a source ("bikebd", "spec table"). Citations stay in `priceNote`, `sources` and `dataNote`.
 - DP-8. An on-sale bike missing from its distributor's list, or with unproven BD stock, shall carry `availability: "unconfirmed"`, and its page and card shall say so.
 - DP-9. The bike page shall age the price badge on the visitor's date (amber after 60 days, red after 120) and label used-only prices as estimates.
 
