@@ -3,6 +3,8 @@
 import Link from "@/components/LangLink";
 import { SCORE_LABELS } from "@/lib/bikes";
 import { FUEL } from "@/lib/cost";
+import { DEFAULT_FEE_PCT, PAY_TERMS } from "@/lib/fund";
+import { BAND_LOW } from "@/lib/match";
 import { useLang, useTx } from "@/lib/i18n";
 import { SITE } from "@/lib/site";
 import type { ScoreKey } from "@/lib/types";
@@ -74,10 +76,19 @@ const ROWS: Row[] = [
     refresh: ["Fuel price checked monthly against the government revision.", "জ্বালানির দাম প্রতি মাসে সরকারি সংশোধনের সাথে মেলানো হয়।"],
   },
   {
+    what: ["EMI and upfront cash", "কিস্তি ও শুরুর নগদ"],
+    how: [
+      `One calculator for the whole site. 0% card EMI splits the ex-showroom price over up to ${PAY_TERMS.cardMonths} months; longer plans are a loan at an assumed ${PAY_TERMS.loanPct}% a year on a reducing balance. BRTA registration and an assumed ${DEFAULT_FEE_PCT}% processing fee are paid in cash before you ride home. The "/month" next to a price is the ${PAY_TERMS.cardMonths}-month card EMI. A used bike is bought in cash: a private sale has no card EMI or bike loan.`,
+      `পুরো সাইটে একই হিসাব। ০% কার্ড কিস্তিতে শোরুম মূল্য সর্বোচ্চ ${PAY_TERMS.cardMonths} মাসে ভাগ হয়; এর বেশি মেয়াদ মানে লোন, আমরা বছরে ${PAY_TERMS.loanPct}% ক্রমহ্রাসমান ব্যালান্সে সুদ ধরি। BRTA রেজিস্ট্রেশন আর আনুমানিক ${DEFAULT_FEE_PCT}% প্রসেসিং ফি বাইক বাড়ি নেওয়ার আগে নগদে দিতে হয়। দামের পাশে "/মাস" মানে ${PAY_TERMS.cardMonths} মাসের কার্ড কিস্তি। পুরনো বাইক নগদে কিনতে হয়: ব্যক্তিগত বিক্রিতে কার্ড কিস্তি বা বাইক লোন নেই।`,
+    ],
+    kind: "derived",
+    refresh: ["When banks change typical card EMI terms, loan rates or fees.", "ব্যাংকের সাধারণ কার্ড কিস্তির শর্ত, লোনের সুদ বা ফি বদলালে।"],
+  },
+  {
     what: ["Match ranking", "ম্যাচ র‍্যাঙ্কিং"],
     how: [
-      "Filters by your on-road budget (or EMI), gearbox and new/used, then weights the ownership scores by how and where you ride, and penalises seats too tall for you or bikes too strong for a first bike. Bikes above budget appear only if you ask for a stretch, labelled. Because it uses the editorial scores, the ranking is only as good as those estimates.",
-      "আপনার অন-রোড বাজেট (বা কিস্তি), গিয়ার ও নতুন/পুরনো দিয়ে ছাঁকে, তারপর কীভাবে ও কোথায় চালাবেন সে অনুযায়ী মালিকানা স্কোরের গুরুত্ব ঠিক করে; উঁচু সিট বা নতুনদের জন্য বেশি শক্তিশালী বাইকে নম্বর কমায়। বাজেটের বেশি বাইক শুধু আপনি চাইলে আলাদা করে দেখায়। স্কোর সম্পাদকের মূল্যায়ন, তাই র‍্যাঙ্কিংও ততটাই নির্ভুল।",
+      `Filters by your on-road budget, gearbox and new/used. In EMI mode a bike is shown only when your cash now covers BRTA, the fee and any down payment, and the instalment fits your monthly figure; used bikes are left out. It then weights the ownership scores by how and where you ride. It lowers bikes that cost under ${BAND_LOW * 100}% of your budget (unless you pick "Lowest price"), seats too tall for you and bikes too strong for a first bike. When the top three are all one style, a close match of another style takes third place. Bikes above budget appear only in the labelled stretch section. Because it uses the editorial scores, the ranking is only as good as those estimates.`,
+      `আপনার অন-রোড বাজেট, গিয়ার ও নতুন/পুরনো দিয়ে ছাঁকে। কিস্তি মোডে বাইক তখনই দেখায় যখন হাতের নগদে BRTA, ফি ও দরকারি ডাউন পেমেন্ট হয়, আর কিস্তি আপনার মাসিক অঙ্কের মধ্যে থাকে; পুরনো বাইক বাদ। তারপর কীভাবে ও কোথায় চালাবেন সে অনুযায়ী মালিকানা স্কোরের গুরুত্ব ঠিক করে। বাজেটের ${BAND_LOW * 100}%-এর কম দামের বাইকে (আপনি “সবচেয়ে কম দাম” না বাছলে), উঁচু সিটে আর নতুনদের জন্য বেশি শক্তিশালী বাইকে নম্বর কমায়। সেরা তিনটি একই ধরনের হলে, কাছাকাছি নম্বরের অন্য ধরনের একটি বাইক তৃতীয় জায়গা পায়। বাজেটের বেশি বাইক শুধু আলাদা “একটু বেশি” অংশে দেখায়। স্কোর সম্পাদকের মূল্যায়ন, তাই র‍্যাঙ্কিংও ততটাই নির্ভুল।`,
     ],
     kind: "derived",
     refresh: ["Changes when scores or prices change.", "স্কোর বা দাম বদলালে বদলায়।"],

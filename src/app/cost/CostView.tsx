@@ -5,8 +5,8 @@ import { WithSearchParams } from "@/components/ui";
 import { useEffect, useMemo, useState } from "react";
 import { Info } from "lucide-react";
 import { BIKES, formatBDT, formatLakh, fullName, getBike } from "@/lib/bikes";
-import { DEFAULT_COST_INPUT, FUEL, WEAR_KM, defaultUsedPrice, emiMonthly, hiddenRepairRate, ownershipCost, registrationFor, type CostInput } from "@/lib/cost";
-import { DEFAULT_FEE_PCT, payPaths, type PathKey } from "@/lib/fund";
+import { DEFAULT_COST_INPUT, FUEL, WEAR_KM, defaultUsedPrice, hiddenRepairRate, ownershipCost, registrationFor, type CostInput } from "@/lib/cost";
+import { DEFAULT_FEE_PCT, PAY_TERMS, cardEmi, payPaths, type PathKey } from "@/lib/fund";
 import { FuelAgeNote } from "@/components/Dated";
 import guide from "@/data/guide.json";
 import { useLang, useTx } from "@/lib/i18n";
@@ -284,7 +284,7 @@ function Cost({ params }: { params: URLSearchParams }) {
             />
             <Fact
               k={tx("Or on 12-month EMI", "অথবা ১২ মাসের কিস্তিতে")}
-              v={!c.buyingUsed ? `${formatBDT(emiMonthly(bike.priceBDT))}${tx("/mo", "/মাস")}` : "—"}
+              v={!c.buyingUsed ? `${formatBDT(cardEmi(bike.priceBDT))}${tx("/mo", "/মাস")}` : "—"}
               sub={c.buyingUsed ? tx("No card EMI on a private sale", "ব্যক্তিগত বিক্রিতে কার্ড কিস্তি নেই") : tx("0% card EMI where offered, plus BRTA upfront", "যেখানে ০% কার্ড কিস্তি আছে; BRTA খরচ শুরুতেই")}
             />
             <Fact k={tx(`Worth after ${inp.years} yr`, `${inp.years} বছর পর দাম`)} v={formatBDT(c.resaleValue)} sub={tx("estimated, decent condition", "আনুমানিক, ভালো অবস্থায়")} />
@@ -340,28 +340,31 @@ function Cost({ params }: { params: URLSearchParams }) {
 
 const INSURANCE_AS_OF = guide.insurance.asOf;
 
-// Example terms; banks and dealers differ. 0% card EMI is only offered up to 12 months. The fee is set by the user.
-const PAY_TERMS = { cardMonths: 12, loanDownPct: 30, loanPct: 14, loanMonths: 24 };
-
-/** Cash vs 0% card EMI vs loan for the same bike. A private (used) sale has no card EMI. */
+/** Cash vs 0% card EMI vs loan for the same bike (example PAY_TERMS from fund.ts; the fee is set by the user). A private (used) sale is cash only. */
 function PayCompare({ price, brta, used }: { price: number; brta: number; used: boolean }) {
   const tx = useTx();
   const [feePct, setFeePct] = useState(DEFAULT_FEE_PCT);
   const p = payPaths({ price, brta, feePct, ...PAY_TERMS });
   const rows: { key: PathKey; label: string }[] = [
     { key: "cash", label: tx("Cash", "নগদ") },
-    ...(used ? [] : [{ key: "card" as const, label: tx(`0% card EMI, ${PAY_TERMS.cardMonths} mo`, `০% কার্ড কিস্তি, ${PAY_TERMS.cardMonths} মাস`) }]),
-    { key: "loan", label: tx(`Loan, ${PAY_TERMS.loanPct}% for ${PAY_TERMS.loanMonths} mo`, `লোন, ${PAY_TERMS.loanPct}% সুদে ${PAY_TERMS.loanMonths} মাস`) },
+    ...(used
+      ? []
+      : [
+          { key: "card" as const, label: tx(`0% card EMI, ${PAY_TERMS.cardMonths} mo`, `০% কার্ড কিস্তি, ${PAY_TERMS.cardMonths} মাস`) },
+          { key: "loan" as const, label: tx(`Loan, ${PAY_TERMS.loanPct}% for ${PAY_TERMS.loanMonths} mo`, `লোন, ${PAY_TERMS.loanPct}% সুদে ${PAY_TERMS.loanMonths} মাস`) },
+        ]),
   ];
   return (
     <div id="pay" className="card scroll-mt-24 p-6">
       <h2 className="text-[17px] font-semibold tracking-tight text-ink">{tx("Cash, card EMI or loan", "নগদ, কার্ড কিস্তি না লোন")}</h2>
-      <div className="mt-4 max-w-sm">
-        <Field label={tx("Processing fee (card EMI or loan)", "প্রসেসিং ফি (কার্ড কিস্তি বা লোন)")} value={`${feePct}%`}>
-          <Range min={0} max={3} step={0.5} value={feePct} onChange={setFeePct} label={tx("Processing fee, percent of the amount financed", "প্রসেসিং ফি, কিস্তির টাকার শতাংশ")} />
-          <p className="mt-1 text-[12px] text-faint">{tx("Usually 1–3% of the amount financed (estimate). Ask your bank.", "সাধারণত কিস্তির টাকার ১–৩% (আনুমানিক)। আপনার ব্যাংকে জিজ্ঞেস করুন।")}</p>
-        </Field>
-      </div>
+      {!used && (
+        <div className="mt-4 max-w-sm">
+          <Field label={tx("Processing fee (card EMI or loan)", "প্রসেসিং ফি (কার্ড কিস্তি বা লোন)")} value={`${feePct}%`}>
+            <Range min={0} max={3} step={0.5} value={feePct} onChange={setFeePct} label={tx("Processing fee, percent of the amount financed", "প্রসেসিং ফি, কিস্তির টাকার শতাংশ")} />
+            <p className="mt-1 text-[12px] text-faint">{tx("Usually 1–3% of the amount financed (estimate). Ask your bank.", "সাধারণত কিস্তির টাকার ১–৩% (আনুমানিক)। আপনার ব্যাংকে জিজ্ঞেস করুন।")}</p>
+          </Field>
+        </div>
+      )}
       <div className="mt-4 overflow-x-auto" tabIndex={0} role="region" aria-label={tx("Payment options table", "পেমেন্টের বিকল্পের টেবিল")}>
         <table className="w-full min-w-[420px] text-left text-[14px] tnum [&_tr>*:not(:last-child)]:pr-3">
           <thead className="text-[12.5px] text-muted">
@@ -388,18 +391,22 @@ function PayCompare({ price, brta, used }: { price: number; brta: number; used: 
         </table>
       </div>
       <p className="mt-3 rounded-lg bg-warn-soft px-3 py-2 text-[12.5px] leading-relaxed text-warn">
-        {tx(
-          "0% EMI is only with the banks a showroom lists. Some showrooms charge more if you pay by card than in cash, so ask the cash price first.",
-          "০% কিস্তি শুধু শোরুমের তালিকাভুক্ত ব্যাংকের কার্ডে। কিছু শোরুম কার্ডে নগদের চেয়ে বেশি দাম নেয়, তাই আগে নগদ দাম জিজ্ঞেস করুন।",
-        )}
+        {used
+          ? tx("A private used sale is paid in cash: there is no card EMI or bike loan.", "ব্যক্তিগতভাবে পুরনো বাইক কিনলে নগদে দিতে হয়: কার্ড কিস্তি বা বাইক লোন নেই।")
+          : tx(
+              "0% EMI is only with the banks a showroom lists. Some showrooms charge more if you pay by card than in cash, so ask the cash price first.",
+              "০% কিস্তি শুধু শোরুমের তালিকাভুক্ত ব্যাংকের কার্ডে। কিছু শোরুম কার্ডে নগদের চেয়ে বেশি দাম নেয়, তাই আগে নগদ দাম জিজ্ঞেস করুন।",
+            )}
       </p>
-      <p className="mt-3 text-[12.5px] leading-relaxed text-faint">
-        {tx(
-          `Example terms: loan with ${PAY_TERMS.loanDownPct}% down, reducing balance. BRTA is paid in cash upfront whichever way you pay. Ask for the total payable in writing; this is not financial advice.`,
-          `উদাহরণ: লোনে ${PAY_TERMS.loanDownPct}% ডাউন পেমেন্ট, ক্রমহ্রাসমান ব্যালান্সে সুদ। যেভাবেই কিনুন, BRTA খরচ শুরুতেই নগদে দিতে হয়। মোট কত দিতে হবে লিখিতভাবে চেয়ে নিন; এটি আর্থিক পরামর্শ নয়।`,
-        )}{" "}
-        <Link href="/guide/#emi" className="text-brand underline underline-offset-2">{tx("How EMI works", "কিস্তি কীভাবে কাজ করে")}</Link>
-      </p>
+      {!used && (
+        <p className="mt-3 text-[12.5px] leading-relaxed text-faint">
+          {tx(
+            `Example terms: loan with ${PAY_TERMS.loanDownPct}% down, reducing balance. BRTA is paid in cash upfront whichever way you pay. Ask for the total payable in writing; this is not financial advice.`,
+            `উদাহরণ: লোনে ${PAY_TERMS.loanDownPct}% ডাউন পেমেন্ট, ক্রমহ্রাসমান ব্যালান্সে সুদ। যেভাবেই কিনুন, BRTA খরচ শুরুতেই নগদে দিতে হয়। মোট কত দিতে হবে লিখিতভাবে চেয়ে নিন; এটি আর্থিক পরামর্শ নয়।`,
+          )}{" "}
+          <Link href="/guide/#emi" className="text-brand underline underline-offset-2">{tx("How EMI works", "কিস্তি কীভাবে কাজ করে")}</Link>
+        </p>
+      )}
     </div>
   );
 }

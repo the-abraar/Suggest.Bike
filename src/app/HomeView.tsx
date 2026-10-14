@@ -6,7 +6,8 @@ import { ArrowRight, BadgeCheck, Fuel, Gauge, ShieldCheck, Sparkles, Wallet, Wre
 import { BIKES, BRANDS, CATEGORIES, PRICE_BANDS, formatBDT, formatLakh, fullName } from "@/lib/bikes";
 import { matchBikes, DEFAULT_ANSWERS, encodeAnswers, type Use } from "@/lib/match";
 import { pairHref, popularPairs } from "@/lib/curated";
-import { FUEL, ownershipCost, DEFAULT_COST_INPUT, registrationFor, emiMonthly, onRoadPrice } from "@/lib/cost";
+import { FUEL, ownershipCost, DEFAULT_COST_INPUT, registrationFor, onRoadPrice } from "@/lib/cost";
+import { cardEmi } from "@/lib/fund";
 import { useLang, useTx, L } from "@/lib/i18n";
 import { BikeArt } from "@/components/BikeArt";
 import { SearchBox } from "@/components/SearchBox";
@@ -285,12 +286,18 @@ function QuickPick() {
           max={max}
           step={5000}
           value={budget}
+          aria-valuetext={formatLakh(budget, lang)}
           style={{ ["--fill" as string]: `${fill}%` }}
           onChange={(e) => setBudget(Number(e.target.value))}
         />
-        <p className="text-right text-[11.5px] text-faint tnum">
-          {tx(`≈ ${formatBDT(emiMonthly(budget))}/mo on 12-month EMI`, `১২ মাসের কিস্তিতে ≈ ${formatBDT(emiMonthly(budget))}/মাস`)}
-        </p>
+        {top[0] && (
+          <p className="text-right text-[11.5px] text-faint tnum">
+            {tx(
+              `#1 on 12-month card EMI: ${formatBDT(cardEmi(top[0].price))}/mo, BRTA paid upfront`,
+              `১ নম্বর বাইক ১২ মাসের কার্ড কিস্তিতে: ${formatBDT(cardEmi(top[0].price))}/মাস, BRTA শুরুতেই নগদে`,
+            )}
+          </p>
+        )}
       </div>
       <div className="mt-2 flex flex-wrap gap-1.5">
         {QUICK_USES.map((u) => (

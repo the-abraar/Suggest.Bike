@@ -18,7 +18,8 @@ import {
   partLabel,
   similarBikes,
 } from "@/lib/bikes";
-import { DEFAULT_COST_INPUT, emiMonthly, onRoadPrice, ownershipCost } from "@/lib/cost";
+import { DEFAULT_COST_INPUT, onRoadPrice, ownershipCost } from "@/lib/cost";
+import { cardEmi } from "@/lib/fund";
 import { FuelAgeNote, OfferBox, OfferTag } from "@/components/Dated";
 import { useLang, useTx } from "@/lib/i18n";
 import { SITE, issueUrl, langHref } from "@/lib/site";
@@ -172,7 +173,7 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
               <OfferBox bikeId={bike.id} />
               {!used && (
                 <p className="mt-2 text-[14px] text-ink-2">
-                  {tx("or about", "অথবা প্রায়")} <strong className="font-semibold text-ink tnum">{formatBDT(emiMonthly(bike.priceBDT))}</strong>
+                  {tx("or about", "অথবা প্রায়")} <strong className="font-semibold text-ink tnum">{formatBDT(cardEmi(bike.priceBDT))}</strong>
                   {tx("/month on 12-month card EMI", "/মাস — ১২ মাসের কার্ড কিস্তিতে")}{" "}
                   <Link href="/guide/#emi" className="text-[12.5px] text-brand underline underline-offset-2">
                     {tx("how EMI works", "কিস্তি কীভাবে কাজ করে")}

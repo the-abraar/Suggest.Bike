@@ -16,7 +16,7 @@ Fix every issue in `UI_AUDIT.md` (C1, H1–H6, M1–M7, L1–L6). Then commit an
 | C1 | Mobile menu invisible | Done (earlier commit) | `src/components/Header.tsx` |
 | H1 | Half-translated Bangla | Done: all UI strings, bike write-ups (`bikes.json → bn`), guide (`guide.bn.json`), "লাখ" | `useTx()` in `src/lib/i18n.tsx` |
 | H2 | Bangla search | Done: `aliases` on every bike, normaliser keeps Bangla script and folds Bangla digits | `src/components/SearchBox.tsx` |
-| H3 | EMI | Done: EMI mode in the quiz budget step, "/month on 12-month card EMI" on detail/compare/cost/quick pick, guide `#emi` | `emiMonthly` in `src/lib/cost.ts` |
+| H3 | EMI | Done: EMI mode in the quiz budget step, "/month on 12-month card EMI" on detail/compare/cost/quick pick, guide `#emi` | `cardEmi`, `emiPlan` and `payPaths` in `src/lib/fund.ts` (was `emiMonthly`, removed 2026-10-14) |
 | H4 | District buyers | Code done ("Where" quiz step, weighting through `networkReach`, network box on detail). **Data pending:** `src/data/networks.json` is `{}` until the research agent writes `scratchpad/research/networks.json` | `src/lib/match.ts`, `src/lib/bikes.ts` |
 | H5 | Monthly card buried on mobile | Done (`order-first` aside) | `src/app/bikes/[id]/BikeDetail.tsx` |
 | H6 | RX100 recommended to commuters | Done: used-only and 2-stroke penalties unless fun/style, plus a "Nothing new fits" banner | `src/lib/match.ts`, `src/app/match/page.tsx` |
