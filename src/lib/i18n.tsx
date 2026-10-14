@@ -38,12 +38,15 @@ const DICT = {
 
   "common.compare": { en: "Compare", bn: "তুলনা" },
   "common.added": { en: "Added", bn: "যুক্ত" },
+  "common.compareFull": { en: "Compare full", bn: "তুলনা পূর্ণ" },
+  "common.compareFullHint": { en: "Compare holds 3 bikes. Remove one to add another.", bn: "তুলনায় ৩টি বাইক রাখা যায়। আরেকটি যোগ করতে একটি সরান।" },
   "common.save": { en: "Save", bn: "সেভ" },
   "common.saved": { en: "Saved", bn: "সেভড" },
   "common.details": { en: "Full details", bn: "বিস্তারিত" },
   "common.mileage": { en: "Real mileage", bn: "আসল মাইলেজ" },
   "common.price": { en: "Price", bn: "দাম" },
   "common.usedOnly": { en: "Used market", bn: "ব্যবহৃত বাজার" },
+  "common.availUnconfirmed": { en: "Availability unconfirmed", bn: "পাওয়া যাবে কিনা অনিশ্চিত" },
   "common.compareNow": { en: "Compare now", bn: "এখনই তুলনা করুন" },
   "common.clear": { en: "Clear", bn: "মুছুন" },
   "common.selected": { en: "selected", bn: "নির্বাচিত" },
@@ -69,9 +72,10 @@ export function LangProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>(onBn ? "bn" : "en");
 
   useEffect(() => {
+    // Visiting /bn/ (a shared link, a search result) is not a preference: only the toggle stores one (setLang), so a
+    // reader who once opened a Bangla link is not redirected away from every English page after (critique B10).
     if (onBn) {
       setLangState("bn");
-      try { localStorage.setItem("sb-lang", "bn"); } catch {} // keep Bangla when the reader follows an English-URL link
       return;
     }
     try {

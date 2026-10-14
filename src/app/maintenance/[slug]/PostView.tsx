@@ -2,7 +2,6 @@
 
 import Link from "@/components/LangLink";
 import { ArrowLeft, Info } from "lucide-react";
-import { ThrottleIqCard } from "@/components/ThrottleIqCard";
 import { useTx } from "@/lib/i18n";
 import { POSTS, postBySlug, type Pair } from "@/lib/maintenance-posts";
 
@@ -75,7 +74,6 @@ export function PostView({ slug }: { slug: string }) {
             )}
           </span>
         </p>
-        <ThrottleIqCard />
         <section>
           <h2 className="text-[22px] font-semibold tracking-tight text-ink">{tx("More guides", "আরও গাইড")}</h2>
           <ul className="mt-3 space-y-2 text-[15px]">

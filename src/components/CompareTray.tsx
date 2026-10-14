@@ -12,8 +12,15 @@ export function CompareTray() {
   const { compare, toggleCompare, clearCompare, ready } = useStore();
   const { t, lang } = useLang();
   const pathname = usePathname();
-  if (!ready || compare.length === 0 || pathname?.replace(/^\/bn(?=\/)/, "").startsWith("/compare")) return null;
   const bikes = compare.map(getBike).filter((b) => !!b);
+  // Counts bikes that resolve, not raw ids, so a stale id never shows an empty tray (critique B12).
+  if (!ready || bikes.length === 0 || pathname?.replace(/^\/bn(?=\/)/, "").startsWith("/compare")) return null;
+  const label = (
+    <>
+      {t("nav.compare")} {bikes.length > 1 && <span className="tnum">({bikes.length})</span>}
+      <ArrowRight size={16} />
+    </>
+  );
 
   return (
     <>
@@ -37,21 +44,25 @@ export function CompareTray() {
                 </button>
               </span>
             ))}
-            {bikes.length < MAX_COMPARE && (
-              <span className="hidden shrink-0 text-[12.5px] text-muted sm:inline">{lang === "bn" ? (bikes.length === 1 ? "তুলনার জন্য আরও ১–২টি যোগ করুন" : "চাইলে আরও একটি যোগ করুন") : bikes.length === 1 ? "Add 1–2 more to compare" : "Add one more (optional)"}</span>
-            )}
+            <span aria-live="polite" className="hidden shrink-0 text-[12.5px] text-muted sm:inline">
+              {bikes.length >= MAX_COMPARE
+                ? t("common.compareFullHint")
+                : lang === "bn" ? (bikes.length === 1 ? "তুলনার জন্য আরও ১–২টি যোগ করুন" : "চাইলে আরও একটি যোগ করুন") : bikes.length === 1 ? "Add 1–2 more to compare" : "Add one more (optional)"}
+            </span>
           </div>
           <button onClick={clearCompare} className="btn-ghost h-10 px-3 text-[13.5px]">
             {t("common.clear")}
           </button>
-          <Link
-            href={`/compare/?bikes=${compare.join(",")}`}
-            className={`btn-primary h-10 px-4 text-[14px] ${bikes.length < 2 ? "pointer-events-none opacity-40" : ""}`}
-            aria-disabled={bikes.length < 2}
-          >
-            {t("nav.compare")} {bikes.length > 1 && <span className="tnum">({bikes.length})</span>}
-            <ArrowRight size={16} />
-          </Link>
+          {bikes.length < 2 ? (
+            // Not a link until there are two bikes: a disabled link would still take focus and open on Enter.
+            <span aria-disabled="true" className="btn-primary h-10 cursor-not-allowed px-4 text-[14px] opacity-40">
+              {label}
+            </span>
+          ) : (
+            <Link href={`/compare/?bikes=${bikes.map((b) => b.id).join(",")}`} className="btn-primary h-10 px-4 text-[14px]">
+              {label}
+            </Link>
+          )}
         </div>
       </div>
     </>

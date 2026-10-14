@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "@/components/LangLink";
-import { ThrottleIqCard } from "@/components/ThrottleIqCard";
 import { useTx } from "@/lib/i18n";
 import { POSTS } from "@/lib/maintenance-posts";
 
@@ -40,7 +39,6 @@ export function MaintenanceView() {
             </li>
           ))}
         </ul>
-        <ThrottleIqCard className="mt-10" />
       </div>
     </div>
   );

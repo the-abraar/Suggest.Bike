@@ -6,7 +6,8 @@ import { T, useLang } from "@/lib/i18n";
 import { BIKES, CATEGORIES } from "@/lib/bikes";
 import type { Category } from "@/lib/types";
 import { whatsappUrl } from "@/lib/site";
-import { THROTTLE_IQ_URL } from "./ThrottleIqCard";
+// The owner's other project: a plain footer link only, no cards in guides (critique section 15 item 7).
+const THROTTLE_IQ_URL = "https://github.com/blankframe-tech/ThrottleIQ";
 
 export function Footer() {
   const { t, lang } = useLang();

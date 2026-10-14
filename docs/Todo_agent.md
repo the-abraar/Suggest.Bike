@@ -60,7 +60,7 @@ Full findings and file references: `docs/researching-stuff-uses.md`. Every numbe
 - [ ] **Series 5: model-specific cheat sheets.** One page per top seller (tyre pressure, oil grade and quantity, chain slack, service interval) from the manual, linked from `/bikes/[id]`. Needs the owner to verify each figure against the manual.
 - [ ] **Post features.** Photos or short videos per step (owner's own); a printable monthly checklist; "ask a mechanic" Q&A; link each `/bikes/[id]` page to the relevant guides; bike-specific ThrottleIQ intervals once the app exposes them.
 - [x] *(done 2026-10-14)* **`/owner/` additions.** First-service booking checklist; insurance for new owners (link to the guide); theft prevention and what to do if the bike is stolen; a "first month" timeline.
-- [ ] **Needs the owner.** Review and personally rewrite the 8 starter posts; supply photos; confirm the ThrottleIQ description and add a store or download link when one exists (the card currently links to the GitHub repo).
+- [ ] **Needs the owner.** Review and personally rewrite the 8 starter posts; supply photos; confirm the ThrottleIQ description and add a store or download link when one exists (only a footer text link remains, to the GitHub repo; the guide and owner-page cards were removed in Oct 2026, critique section 15 item 7).
 
 ## P2 — Engineering
 

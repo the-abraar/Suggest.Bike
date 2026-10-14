@@ -1,6 +1,6 @@
 # Monthly price refresh
 
-How the 107 prices in `src/data/bikes.json` stay fresh. A scheduled Action re-checks the prices that official Bangladesh distributor pages publish (41 bikes). The owner re-checks the rest (about 66) by hand, a quarter each week. This keeps every price under the 180-day `validate` gate, so deploys do not stop when a whole month's prices age out together (critique B9, March 2027).
+How the 103 prices in `src/data/bikes.json` stay fresh. A scheduled Action re-checks the prices that official Bangladesh distributor pages publish (41 bikes). The owner re-checks the rest (about 62) by hand, a quarter each week. This keeps every on-sale price under the 180-day `validate` gate, so deploys do not stop when a whole month's prices age out together (critique B9, March 2027).
 
 ## What runs
 
@@ -53,7 +53,25 @@ Not covered automatically. These stay on the owner checklist:
    - if the price did not change, still set `priceAsOf` to the current month;
    - for used-only bikes, take the typical asking price from current listings.
 3. **Push each batch.** Run `npm run validate` and `node scripts/sources.mjs`, then commit and push to `main` (or open a PR). Tick the batch's boxes in the bot PR description; ticking works even after a merge.
-4. **Act on "Availability unconfirmed".** Ask the distributor or a showroom. If a model is gone, set `status` or remove the bike in a normal change.
+4. **Act on "Availability unconfirmed".** Ask the distributor or a showroom. While you wait, set `"availability": "unconfirmed"` on the bike (its page and card then say so) and note why in `dataNote`. If the model is on sale, remove the field; if it is gone, set `status` or remove the bike in a normal change.
+
+## The price-age gate
+
+`npm run validate` (run by `deploy.yml` and `check.sh`) ages each `priceAsOf` from the first of its month:
+
+- **On-sale bikes** (their page says "Price checked"): a warning after 90 days, an error after 180 days. An error blocks the deploy.
+- **Used-only bikes** (their page says "Used-price estimate"): a warning only, however old.
+
+The bike page also ages the badge on the visitor's clock: the dot turns amber after 60 days and red after 120, with a "may be out of date" note.
+
+### Emergency deploy with stale prices
+
+If an urgent code fix must ship while some on-sale prices are past 180 days, raise the limit for that one run:
+
+- **GitHub:** Actions → deploy → Run workflow, and set `price_fail_days` (for example `240`). A push to `main` always uses 180.
+- **Locally:** `PRICE_FAIL_DAYS=240 npm run validate` (or `scripts/check.sh`).
+
+A value that is not a number fails the run. This only unblocks the deploy: re-check the listed prices next, because the badges on those pages are red.
 
 ## How to merge the bot PR
 

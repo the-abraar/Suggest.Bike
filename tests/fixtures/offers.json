@@ -1,0 +1,16 @@
+{
+  "offers": [
+    {
+      "id": "fixture-pulsar-n160-discount",
+      "bikeIds": ["bajaj-pulsar-n160"],
+      "type": "discount",
+      "title": "৳10,000 off until 31 October",
+      "titleBn": "৩১ অক্টোবর পর্যন্ত ৳১০,০০০ ছাড়",
+      "regularPriceBDT": 273600,
+      "offerPriceBDT": 263600,
+      "startsOn": "2026-10-13",
+      "endsOn": "2026-10-31",
+      "source": { "name": "Test fixture", "url": null }
+    }
+  ]
+}

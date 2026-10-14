@@ -1,12 +1,14 @@
-// Sanity-checks src/data/bikes.json. Run: node scripts/validate-data.mjs
+// Sanity-checks src/data/bikes.json. Run: node scripts/validate-data.mjs [other-bikes.json] (the argument is for tests)
 import { readFileSync } from "node:fs";
 
-const bikes = JSON.parse(readFileSync(new URL("../src/data/bikes.json", import.meta.url)));
+const bikes = JSON.parse(readFileSync(process.argv[2] ?? new URL("../src/data/bikes.json", import.meta.url)));
 const CATS = ["commuter", "street", "sport", "naked", "adventure", "cruiser", "classic", "scooter"];
 const COLS = ["legendary", "old-school"];
 const SCORES = ["reliability", "mechanicFamiliarity", "partsAvailability", "resale", "comfort", "cityHandling", "highway", "pillion", "offroad", "performance", "beginnerFriendly"];
 const errors = [];
 const ids = new Set();
+// Words that mark a note for us, not the rider. "unverified" is allowed: it is the public APPROX marker (CODING_STANDARDS "Cite").
+const INTERNAL = /\b(user|BikeBD data|placeholder|unconfirmed|TODO|FIXME)\b/i;
 
 for (const b of bikes) {
   const e = (m) => errors.push(`${b.id ?? "?"}: ${m}`);
@@ -43,15 +45,25 @@ for (const b of bikes) {
   for (const s of SCORES) if (!Number.isInteger(b.scores?.[s]) || b.scores[s] < 1 || b.scores[s] > 10) e(`bad score ${s}`);
   for (const k of ["tagline", "feel", "quirks", "braking", "mechanicNote"]) if (typeof b[k] !== "string" || b[k].length < 10) e(`thin ${k}`);
   for (const k of ["pros", "cons", "bestFor", "parts", "sources"]) if (!Array.isArray(b[k]) || !b[k].length) e(`empty ${k}`);
+  if (b.availability !== undefined && !(b.availability === "unconfirmed" && b.status === "on-sale")) e(`bad availability ${b.availability} (only "unconfirmed", on an on-sale bike)`);
+  if (b.dataNote !== undefined && typeof b.dataNote !== "string") e("dataNote must be a string");
+  // Rendered text must not carry editorial or provenance notes (critique B4: "Name as used by the user…" under an H1).
+  const pub = [b.variant, b.priceNote, b.tagline, b.feel, b.quirks, b.braking, b.mechanicNote, b.pros, b.cons, b.bestFor, b.parts?.map((p) => p.note), b.variants?.map((v) => v.name), b.bn];
+  const leak = JSON.stringify(pub).match(INTERNAL);
+  if (leak) e(`public text contains "${leak[0]}": move editorial or provenance notes to dataNote`);
 }
-// Price age: priceAsOf is "YYYY-MM"; treated as month start. Thresholds overridable via env.
+// Price age: priceAsOf is "YYYY-MM"; treated as month start. Thresholds overridable via env:
+// PRICE_FAIL_DAYS is the emergency-deploy override (docs/price-refresh.md), not a fix for stale prices.
+// Only prices the bike page shows as "checked" (on sale) fail; used-only prices are labelled estimates, so they only warn.
 const WARN_DAYS = +(process.env.PRICE_WARN_DAYS ?? 90), FAIL_DAYS = +(process.env.PRICE_FAIL_DAYS ?? 180);
 const warnings = [], domains = {};
+if (!Number.isFinite(WARN_DAYS) || !Number.isFinite(FAIL_DAYS)) errors.push(`PRICE_WARN_DAYS / PRICE_FAIL_DAYS must be numbers (got ${process.env.PRICE_WARN_DAYS}, ${process.env.PRICE_FAIL_DAYS})`); // NaN would switch the gate off
 for (const b of bikes) {
   const t = Date.parse(`${b.priceAsOf}-01`);
   if (Number.isNaN(t)) { errors.push(`${b.id}: bad priceAsOf ${b.priceAsOf}`); continue; }
   const age = Math.floor((Date.now() - t) / 864e5);
-  if (age > FAIL_DAYS) errors.push(`${b.id}: price ${age}d old (priceAsOf ${b.priceAsOf}, fail >${FAIL_DAYS}d)`);
+  if (age > FAIL_DAYS && b.status === "on-sale") errors.push(`${b.id}: price ${age}d old (priceAsOf ${b.priceAsOf}, fail >${FAIL_DAYS}d)`);
+  else if (age > FAIL_DAYS) warnings.push(`${b.id}: used-price estimate ${age}d old (priceAsOf ${b.priceAsOf}); re-check current listings`);
   else if (age > WARN_DAYS) warnings.push(`${b.id}: price ${age}d old (priceAsOf ${b.priceAsOf}, warn >${WARN_DAYS}d)`);
   try { const d = new URL(b.priceSource).hostname.replace(/^www\./, ""); domains[d] = (domains[d] ?? 0) + 1; } catch { errors.push(`${b.id}: bad priceSource`); }
 }
@@ -105,6 +117,6 @@ for (const k of ["FORM_ENDPOINT", "GOATCOUNTER_CODE", "WHATSAPP"])
 warnings.forEach((w) => console.log("WARN", w));
 console.log(`${bikes.length} bikes checked, ${errors.length} problems`);
 if (errors.some((x) => /price \d+d old/.test(x)))
-  console.log("\nTo fix stale prices: re-source each listed bike. Find its current price on the official distributor page or a dated distributor price list, then update priceBDT, priceSource and priceAsOf (YYYY-MM) in src/data/bikes.json. Do not just raise PRICE_FAIL_DAYS.\n");
+  console.log("\nTo fix stale prices: re-source each listed bike. Find its current price on the official distributor page or a dated distributor price list, then update priceBDT, priceSource and priceAsOf (YYYY-MM) in src/data/bikes.json. Do not just raise PRICE_FAIL_DAYS: it is only for an emergency deploy (docs/price-refresh.md).\n");
 errors.forEach((x) => console.log(" -", x));
 process.exit(errors.length ? 1 : 0);

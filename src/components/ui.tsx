@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { Check, Heart, Plus, Share2 } from "lucide-react";
 import type { BikeLite } from "@/lib/types";
 import { CATEGORIES, ccLabel, formatLakh, mileageText } from "@/lib/bikes";
-import { useStore } from "@/lib/store";
+import { useStore, MAX_COMPARE } from "@/lib/store";
 import { useLang } from "@/lib/i18n";
 import { BikeArt } from "./BikeArt";
 import { OfferTag } from "./Dated";
@@ -31,6 +31,7 @@ export function CompareButton({ id, size = "md" }: { id: string; size?: "sm" | "
   const { compare, toggleCompare, ready } = useStore();
   const { t } = useLang();
   const on = ready && compare.includes(id);
+  const full = ready && !on && compare.length >= MAX_COMPARE; // the store refuses a 4th; say so instead of a dead tap
   return (
     <button
       onClick={(e) => {
@@ -39,12 +40,14 @@ export function CompareButton({ id, size = "md" }: { id: string; size?: "sm" | "
         toggleCompare(id);
       }}
       aria-pressed={on}
-      className={`inline-flex items-center gap-1.5 rounded-lg font-medium transition-colors ${
+      disabled={full}
+      title={full ? t("common.compareFullHint") : undefined}
+      className={`relative z-10 inline-flex items-center gap-1.5 rounded-lg font-medium transition-colors disabled:cursor-not-allowed ${
         size === "sm" ? "h-8 px-2.5 text-[12.5px]" : "h-10 px-3.5 text-[14px]"
-      } ${on ? "bg-brand-soft text-brand" : "bg-surface-2 text-ink-2 hover:bg-surface-3"}`}
+      } ${on ? "bg-brand-soft text-brand" : full ? "bg-surface-2 text-muted" : "bg-surface-2 text-ink-2 hover:bg-surface-3"}`}
     >
       {on ? <Check size={size === "sm" ? 14 : 16} /> : <Plus size={size === "sm" ? 14 : 16} />}
-      {on ? t("common.added") : t("common.compare")}
+      {on ? t("common.added") : full ? t("common.compareFull") : t("common.compare")}
     </button>
   );
 }
@@ -113,22 +116,26 @@ export function Approx({ className = "" }: { className?: string }) {
   );
 }
 
+/**
+ * The card is a div, not a link: the model name's link stretches over the card (after:inset-0) and the Save, Compare and
+ * footer controls sit above it (z-10), so no button is nested inside a link (critique B13).
+ */
 export function BikeCard({ bike, footer, badge }: { bike: BikeLite; footer?: React.ReactNode; badge?: React.ReactNode }) {
   const { lang, t } = useLang();
   return (
-    <Link
-      href={`/bikes/${bike.id}/`}
-      className="group card relative flex overflow-hidden sm:flex-col transition-all duration-200 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-md"
-    >
+    <div className="group card relative flex overflow-hidden sm:flex-col transition-all duration-200 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-md">
       {/* Phones: compact row (art left) so the 80-bike list is not 40 screens long */}
       <div className="absolute right-3 top-3 z-10">
         <SaveButton id={bike.id} />
       </div>
       <div className="relative flex w-[38%] shrink-0 items-center bg-surface-2/60 px-2 py-6 sm:block sm:w-auto sm:px-5 sm:pb-0 sm:pt-5">
-        <div className="absolute left-2 top-2 z-10 flex flex-wrap gap-1.5 sm:left-4 sm:top-4 sm:pr-10">
+        <div className="pointer-events-none absolute left-2 top-2 z-10 flex flex-wrap gap-1.5 sm:left-4 sm:top-4 sm:pr-10">
           {badge}
           {bike.status === "used-only" && (
             <span className="rounded-full bg-warn-soft px-2 py-0.5 text-[11.5px] font-semibold text-warn">{t("common.usedOnly")}</span>
+          )}
+          {bike.availability === "unconfirmed" && (
+            <span className="rounded-full bg-warn-soft px-2 py-0.5 text-[11.5px] font-semibold text-warn">{t("common.availUnconfirmed")}</span>
           )}
           <OfferTag bikeId={bike.id} />
         </div>
@@ -139,7 +146,12 @@ export function BikeCard({ bike, footer, badge }: { bike: BikeLite; footer?: Rea
           <p className="text-[12.5px] font-medium text-muted">
             {bike.brand} · {ccLabel(bike)} · {lang === "bn" ? CATEGORIES[bike.category].bn : CATEGORIES[bike.category].en}
           </p>
-          <h3 className="mt-0.5 text-[17px] font-semibold tracking-tight text-ink">{bike.model}</h3>
+          <h3 className="mt-0.5 text-[17px] font-semibold tracking-tight text-ink">
+            <Link href={`/bikes/${bike.id}/`} className="after:absolute after:inset-0 after:content-['']">
+              <span className="sr-only">{bike.brand} </span>
+              {bike.model}
+            </Link>
+          </h3>
         </div>
         <div className="mt-auto flex flex-wrap items-end justify-between gap-x-3 gap-y-2">
           <div className="min-w-0">
@@ -161,7 +173,7 @@ export function BikeCard({ bike, footer, badge }: { bike: BikeLite; footer?: Rea
         </div>
         {footer}
       </div>
-    </Link>
+    </div>
   );
 }
 

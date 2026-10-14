@@ -102,7 +102,7 @@ for (const width of [375, 1280]) {
   ok(`${W} search: Enter opens the highlighted bike`, /\/bikes\/bajaj-pulsar-/.test(pg.url()), pg.url());
   }
 
-  // 3. Compare add-slot: open with Enter, type, Tab to the 2nd result, Enter adds it.
+  // 3. Compare add-slot: open with Enter, type, Tab to the 2nd result, Enter adds it. "apache" ties rank by overall(): 4V, then 2V.
   pg = await newPage();
   await pg.goto(BASE + '/compare/?bikes=bajaj-ct100', { waitUntil: 'networkidle' });
   ok(`${W} compare: Tab reaches Add a bike`, await tabTo(pg, 'text=^\\s*Add a bike'));
@@ -114,7 +114,7 @@ for (const width of [375, 1280]) {
   const focused = await pg.evaluate(() => document.activeElement?.textContent?.trim() || '');
   await pg.keyboard.press('Enter');
   await pg.waitForTimeout(400);
-  ok(`${W} compare: keyboard picks a non-first result`, /bikes=bajaj-ct100,tvs-apache-rtr-160-4v/.test(pg.url()), `${pg.url()} focused "${focused.slice(0, 40)}"`);
+  ok(`${W} compare: keyboard picks a non-first result`, /bikes=bajaj-ct100,tvs-apache-rtr-160-2v/.test(pg.url()), `${pg.url()} focused "${focused.slice(0, 40)}"`);
 
   // 4. /bikes switches: real buttons, not nested in a label, toggled by Space.
   pg = await newPage();

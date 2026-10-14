@@ -161,6 +161,45 @@ await pg.goto(BASE + '/', { waitUntil: 'networkidle' });
 await pg.getByRole('button', { name: 'Menu' }).click();
 ok('header 375 menu: Dealers', (await pg.locator('a[href="/dealers/"]:visible').count()) > 0);
 
+// 9. Language memory is set only by the toggle, never by visiting /bn/ (critique B10)
+{
+  const c = await br.newContext({ viewport: { width: 375, height: 812 } });
+  const p = await newPage(c);
+  await p.goto(BASE + '/bn/bikes/', { waitUntil: 'networkidle' });
+  await p.goto(BASE + '/bikes/', { waitUntil: 'networkidle' });
+  ok('B10: /bn/ visit then English URL stays English', !/\/bn\//.test(p.url()) && (await p.evaluate(() => localStorage.getItem('sb-lang'))) === null, p.url());
+  await c.close();
+}
+
+// 10. Compare tray: no 4th bike, de-dup, shared links keep the tray, stale ids, no buttons inside links (B6, B7, B12, B13)
+{
+  const c = await br.newContext({ viewport: { width: 375, height: 812 } });
+  const p = await newPage(c);
+  const tray = () => p.evaluate(() => JSON.parse(localStorage.getItem('sb-compare') || '[]'));
+  await p.goto(BASE + '/bikes/', { waitUntil: 'networkidle' });
+  ok('B13: no button inside a link on /bikes/', (await p.locator('a button').count()) === 0, String(await p.locator('a button').count()));
+  const btns = p.locator('.card').getByRole('button', { name: /^Compare$/ });
+  for (let i = 0; i < 3; i++) await btns.first().click();
+  const three = await tray();
+  ok('B6: 3 picks fill the tray', three.length === 3, JSON.stringify(three));
+  ok('B6: other cards say "Compare full" and are disabled', (await p.locator('.card button:disabled', { hasText: 'Compare full' }).count()) > 0);
+  ok('B6: tray says it holds 3', /Compare holds 3 bikes/.test(await p.locator('[aria-live="polite"]').allInnerTexts().then((t) => t.join(' '))));
+  await p.goto(BASE + '/compare/?bikes=bajaj-pulsar-n160,bajaj-pulsar-n160', { waitUntil: 'networkidle' });
+  ok('B7: duplicate ids show one bike', !/N160 vs/.test(await p.locator('h1').innerText()), await p.locator('h1').innerText());
+  ok('B7: a shared link leaves a full tray untouched', JSON.stringify(await tray()) === JSON.stringify(three), JSON.stringify(await tray()));
+  await p.evaluate(() => localStorage.setItem('sb-compare', JSON.stringify(['no-such-bike'])));
+  await p.goto(BASE + '/bikes/', { waitUntil: 'networkidle' });
+  ok('B12: a stale id shows no tray', (await p.getByRole('button', { name: 'Clear' }).count()) === 0);
+  await p.locator('.card').getByRole('button', { name: /^Compare$/ }).first().click();
+  ok('tray with 1 bike: Compare is not a focusable link', (await p.locator('a[href^="/compare/?bikes="]').count()) === 0 && (await p.locator('[aria-disabled="true"]', { hasText: 'Compare' }).count()) === 1);
+  await p.evaluate(() => localStorage.removeItem('sb-compare'));
+  await p.goto(BASE + '/compare/?bikes=bajaj-pulsar-n160,honda-hornet-2-0', { waitUntil: 'networkidle' });
+  ok('B7: a shared link fills an empty tray', JSON.stringify(await tray()) === '["bajaj-pulsar-n160","honda-hornet-2-0"]', JSON.stringify(await tray()));
+  await p.goto(BASE + '/', { waitUntil: 'networkidle' });
+  ok('B13: no button inside a link on /', (await p.locator('a button').count()) === 0);
+  await c.close();
+}
+
 const pageErrs = [...new Set(errs)];
 ok('no page/console errors', pageErrs.length === 0, pageErrs.join(' | '));
 await br.close();

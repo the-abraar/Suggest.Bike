@@ -2,7 +2,6 @@
 
 import Link from "@/components/LangLink";
 import { CalendarCheck, CalendarDays, FileCheck, Gauge, KeyRound, Lock, ShieldCheck, Wrench } from "lucide-react";
-import { ThrottleIqCard } from "@/components/ThrottleIqCard";
 import { useTx } from "@/lib/i18n";
 import { postBySlug } from "@/lib/maintenance-posts";
 
@@ -204,7 +203,6 @@ export function OwnerView() {
         ))}
 
         <section className="space-y-4">
-          <ThrottleIqCard />
           <p className="text-[14.5px] text-ink-2">
             {tx("Want to learn the checks properly? ", "চেকগুলো ঠিকভাবে শিখতে চান? ")}
             <Link href="/maintenance/" className="text-brand underline underline-offset-2">{tx("Read the maintenance guides", "রক্ষণাবেক্ষণের লেখাগুলো পড়ুন")}</Link>

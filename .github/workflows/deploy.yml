@@ -5,6 +5,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      price_fail_days:
+        description: "Emergency only: allow on-sale prices up to this many days old (default 180). See docs/price-refresh.md."
+        required: false
+        default: ""
 
 permissions:
   contents: read
@@ -31,6 +36,8 @@ jobs:
             tools/qa/package-lock.json
       - run: npm ci
       - run: npm run validate
+        env:
+          PRICE_FAIL_DAYS: ${{ inputs.price_fail_days || 180 }}
       - run: npm run typecheck # pretypecheck generates src/data/generated, which tsc needs on a fresh checkout
       - run: npm test
       - run: npm run build

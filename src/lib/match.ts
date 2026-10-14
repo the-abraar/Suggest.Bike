@@ -1,6 +1,6 @@
 import type { BikeLite } from "./types";
 import { BIKES, HAS_NETWORKS, avgMileage, formatBDT, networkReach } from "./bikes";
-import { onRoadPrice } from "./cost";
+import { MAX_REGISTRABLE_CC, onRoadPrice } from "./cost";
 import { emiCeiling, emiPlan, type PathResult } from "./fund";
 
 export type Use = "commute" | "mixed" | "highway" | "rough" | "rideshare" | "fun";
@@ -195,6 +195,8 @@ type Option = Pick<Match, "bike" | "price" | "registration" | "onRoad" | "cost" 
 export const isUsedOption = (m: Pick<Match, "bike" | "used">) => !!m.used || m.bike.status === "used-only";
 
 const gearOk = (a: Pick<Answers, "gearless">, b: BikeLite) => !(a.gearless === "no" && b.category === "scooter") && !(a.gearless === "yes" && b.category !== "scooter");
+/** The quiz never suggests a bike an individual cannot register in BD (critique section 4: a 748cc import came up for "fun"). */
+export const registrable = (b: Pick<BikeLite, "engine">) => b.engine.cc <= MAX_REGISTRABLE_CC;
 const usedOption = (bike: BikeLite, price: number, used?: Match["used"]): Option => ({
   bike,
   price,
@@ -208,7 +210,7 @@ const usedOption = (bike: BikeLite, price: number, used?: Match["used"]): Option
 function options(a: Answers): Option[][] {
   const emi = a.payMode === "monthly";
   const used = a.condition === "any" && !emi; // a private used sale has no card EMI or bike loan
-  return BIKES.filter((b) => gearOk(a, b)).map((b) => {
+  return BIKES.filter((b) => gearOk(a, b) && registrable(b)).map((b) => {
     if (b.status === "used-only") return used ? [usedOption(b, b.priceBDT)] : [];
     const onRoad = onRoadPrice(b);
     const registration = onRoad - b.priceBDT;
@@ -280,6 +282,8 @@ function score(a: Answers, o: Option): Match {
     warnings.push({ en: "Will feel strained above 70 km/h", bn: "৭০ km/h এর বেশি গতিতে কষ্ট হবে" });
   }
   if (a.pillion === "daily" && b.scores.pillion <= 4) warnings.push({ en: "Pillion seat is cramped", bn: "পিলিয়ন সিট ছোট" });
+  // First, because cards show only the first warning: a new one may not be in stock at all.
+  if (b.availability === "unconfirmed" && !used) warnings.unshift({ en: "Availability unconfirmed: ask the showroom if it is in stock", bn: "পাওয়া যাবে কিনা অনিশ্চিত: শোরুমে স্টক আছে কিনা জিজ্ঞেস করুন" });
 
   const reasons = contrib
     .filter((c) => c.f >= 0.68)
@@ -329,7 +333,7 @@ export function cheapestPicks(a: Answers, n = 3): Match[] {
 
 /** Cheapest new bike matching the gearbox preference — shown when nothing new fits the budget. */
 export function cheapestNew(a: Pick<Answers, "gearless">) {
-  return BIKES.filter((b) => b.status === "on-sale" && gearOk(a, b)).sort((x, y) => x.priceBDT - y.priceBDT)[0];
+  return BIKES.filter((b) => b.status === "on-sale" && gearOk(a, b) && registrable(b)).sort((x, y) => x.priceBDT - y.priceBDT)[0];
 }
 
 export const anyNewFits = (a: Answers) => candidates({ ...a, condition: "new" }, a.budget).length > 0;
