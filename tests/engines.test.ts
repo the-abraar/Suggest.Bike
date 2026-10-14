@@ -4,6 +4,8 @@ import assert from "node:assert/strict";
 import { BIKES, HAS_NETWORKS, formatLakh, getBike, networkReach } from "../src/lib/bikes";
 import {
   matchBikes,
+  KINDS,
+  kindOf,
   anyNewFits,
   cheapestNew,
   cheapestPicks,
@@ -48,7 +50,7 @@ test("match: on-road ceiling — nothing over budget outside stretch; stretch is
   }
   // A bike whose ex-showroom price fits but whose on-road price does not is excluded.
   const b = BIKES.find((x) => x.status === "on-sale")!;
-  assert.ok(!matchBikes(A({ budget: b.priceBDT, gearless: "either" }), 1000).some((m) => m.bike.id === b.id && !m.used));
+  assert.ok(!matchBikes(A({ budget: b.priceBDT }), 1000).some((m) => m.bike.id === b.id && !m.used));
 });
 test("match: cheaper bike is not penalised (score is independent of how much budget is left)", () => {
   const lo = matchBikes(A({ budget: 150000 }), 1000);
@@ -90,10 +92,15 @@ test("match: height uses seat + weight; tall riders are never warned", () => {
   assert.equal(warned("tall"), 0);
   assert.ok(warned("short") > warned("medium"));
 });
-test("match: gearless=no never returns scooters; yes returns only scooters", () => {
-  assert.ok(matchBikes(A({ gearless: "no", budget: 400000 }), 50).every((m) => m.bike.category !== "scooter"));
-  const yes = matchBikes(A({ gearless: "yes", budget: 400000 }), 50);
-  assert.ok(yes.length > 0 && yes.every((m) => m.bike.category === "scooter"));
+test("match: kinds filter to motorcycles, petrol scooters or EVs", () => {
+  for (const k of KINDS) {
+    const r = matchBikes(A({ kinds: [k], budget: 400000 }), 50);
+    assert.ok(r.length > 0 && r.every((m) => kindOf(m.bike) === k), k);
+  }
+  assert.ok(matchBikes(A({ kinds: ["motorcycle"], budget: 400000 }), 50).every((m) => m.bike.category !== "scooter" && m.bike.engine.fuel !== "electric"));
+  // Old share links used g=yes|no.
+  assert.deepEqual(decodeAnswers(new URLSearchParams("b=200000&g=no"))!.kinds, ["motorcycle"]);
+  assert.deepEqual(decodeAnswers(new URLSearchParams("b=200000&g=yes"))!.kinds, ["scooter", "ev"]);
 });
 test("match: new-only never returns used-only or used examples", () => {
   assert.ok(matchBikes(A({ condition: "new", budget: 300000 }), 50).every((m) => m.bike.status === "on-sale" && !m.used));
@@ -127,7 +134,7 @@ test("match: HAS_NETWORKS off => 'where' answer is ignored (same ranking, no net
   }
 });
 test("match: cheapestNew respects gearbox; encode/decode round-trips; bad params fall back", () => {
-  const c = cheapestNew({ gearless: "no" });
+  const c = cheapestNew({ kinds: ["motorcycle"] });
   assert.ok(c && c.category !== "scooter");
   assert.ok(BIKES.filter((b) => b.status === "on-sale" && b.category !== "scooter").every((b) => b.priceBDT >= c!.priceBDT));
   const a = A({ budget: 175000, use: "highway", priorities: ["safety", "comfort"], where: "town" });
