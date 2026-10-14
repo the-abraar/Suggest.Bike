@@ -50,11 +50,13 @@ export function formatBDT(n: number) {
   return "৳" + Math.round(n).toLocaleString("en-IN");
 }
 
-/** ৳2.65 lakh / ৳2.65 লাখ */
+/** ৳2.65 lakh / ৳2.65 লাখ; 100 lakh and up is crore (৳99,99,999 rounds to ৳1 crore, not "৳100 lakh"). */
 export function formatLakh(n: number, lang: "en" | "bn" = "en") {
   if (n < 100000) return formatBDT(n);
-  const l = n / 100000;
-  return `৳${(l >= 10 ? l.toFixed(1) : l.toFixed(2)).replace(/\.?0+$/, "")} ${lang === "bn" ? "লাখ" : "lakh"}`;
+  const short = (x: number) => (x >= 10 ? x.toFixed(1) : x.toFixed(2)).replace(/\.?0+$/, "");
+  const l = short(n / 1e5);
+  if (+l < 100) return `৳${l} ${lang === "bn" ? "লাখ" : "lakh"}`;
+  return `৳${short(n / 1e7)} ${lang === "bn" ? "কোটি" : "crore"}`;
 }
 
 export const avgMileage = (b: Pick<BikeLite, "mileageKmpl">) => (b.mileageKmpl[0] + b.mileageKmpl[1]) / 2;

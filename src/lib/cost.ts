@@ -13,6 +13,8 @@ const bands = guide.registration.bands;
 export function registrationFor(cc: number) {
   return bands.find((b) => cc <= b.ccMax) ?? bands[bands.length - 1];
 }
+/** Largest engine an individual can register in BD (375cc, guide.json registration bands / ccPolicy). */
+export const MAX_REGISTRABLE_CC = bands[bands.length - 1].ccMax;
 
 /**
  * The one on-road price shown everywhere (match, cost, browse, compare, bike page, share card): ex-showroom + BRTA

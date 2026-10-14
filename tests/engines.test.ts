@@ -12,6 +12,8 @@ import {
   encodeAnswers,
   decodeAnswers,
   isUsedOption,
+  registrable,
+  BUDGET_RANGE,
   DEFAULT_ANSWERS,
   BAND_LOW,
   DIVERSE_GAP,
@@ -19,7 +21,7 @@ import {
   type Answers,
   type Match,
 } from "../src/lib/match";
-import { registrationFor, yearlyRetention, defaultUsedPrice, ownershipCost, DEFAULT_COST_INPUT, type CostBike } from "../src/lib/cost";
+import { MAX_REGISTRABLE_CC, registrationFor, yearlyRetention, defaultUsedPrice, ownershipCost, DEFAULT_COST_INPUT, type CostBike } from "../src/lib/cost";
 import { DEFAULT_FEE_PCT, PAY_TERMS, cardEmi, emiCeiling, emiPlan, loanEmi, maxPrincipal, payPaths } from "../src/lib/fund";
 
 const A = (o: Partial<Answers> = {}): Answers => ({ ...DEFAULT_ANSWERS, ...o });
@@ -111,6 +113,16 @@ test("match: gearless=no never returns scooters; yes returns only scooters", () 
   assert.ok(matchBikes(A({ gearless: "no", budget: 400000 }), 50).every((m) => m.bike.category !== "scooter"));
   const yes = matchBikes(A({ gearless: "yes", budget: 400000 }), 50);
   assert.ok(yes.length > 0 && yes.every((m) => m.bike.category === "scooter"));
+});
+test("match: never suggests a bike over 375cc (BRTA registration limit), at any budget, use or condition", () => {
+  assert.equal(MAX_REGISTRABLE_CC, 375);
+  assert.equal(registrable({ engine: { ...bike("royal-enfield-classic-350").engine, cc: 748 } }), false);
+  assert.equal(registrable(bike("royal-enfield-classic-350")), true);
+  for (const use of ["fun", "highway", "mixed"] as const)
+    for (const condition of ["new", "any"] as const) {
+      const a = A({ budget: BUDGET_RANGE[1], use, condition, priorities: ["performance"] });
+      for (const m of [...matchBikes(a, 1000), ...stretchPicks(a, 1000), ...cheapestPicks(a, 1000)]) assert.ok(m.bike.engine.cc <= 375, `${use} ${condition}: ${m.bike.id}`);
+    }
 });
 test("match: new-only never returns used-only or used examples", () => {
   assert.ok(matchBikes(A({ condition: "new", budget: 300000 }), 50).every((m) => m.bike.status === "on-sale" && !m.used));
@@ -290,6 +302,13 @@ test("formatLakh: plain taka under a lakh; 2 decimals under 10 lakh, 1 above; tr
   assert.equal(formatLakh(250000), "৳2.5 lakh");
   assert.equal(formatLakh(1250000), "৳12.5 lakh");
   assert.equal(formatLakh(265000, "bn"), "৳2.65 লাখ");
+});
+test("formatLakh: crore from 100 lakh, including amounts that round up to it (critique B15)", () => {
+  assert.equal(formatLakh(9940000), "৳99.4 lakh");
+  assert.equal(formatLakh(9999999), "৳1 crore");
+  assert.equal(formatLakh(10000000), "৳1 crore");
+  assert.equal(formatLakh(12500000), "৳1.25 crore");
+  assert.equal(formatLakh(250000000, "bn"), "৳25 কোটি");
 });
 
 test("network: a brand with no official count is neutral, not flagged as a small network", () => {
