@@ -11,7 +11,9 @@ import { BIKES } from "@/lib/bikes"; // server component: read at build time, no
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap", preload: false }); // no font-mono text today; skip the preload
-const bangla = Hind_Siliguri({ subsets: ["bengali"], weight: ["400", "500", "600", "700"], variable: "--font-bangla", display: "swap" }); // keep preloaded: ৳ is in the Bengali block, so English pages need it too
+// Two weights (medium falls back to 400, bold to 600), not preloaded: English pages never use it (৳ comes from the system
+// Bengali font, see --font-sans in globals.css). /bn/ fetches it on first paint; a /bn/-only preload measured no LCP gain.
+const bangla = Hind_Siliguri({ subsets: ["bengali"], weight: ["400", "600"], variable: "--font-bangla", display: "swap", preload: false });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
