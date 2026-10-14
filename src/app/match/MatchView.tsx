@@ -251,15 +251,13 @@ function Matchmaker({ params }: { params: URLSearchParams }) {
           </Question>
         )}
         {step === 6 && (
-          <Question title={tx("What matters most?", "সবচেয়ে গুরুত্বপূর্ণ কী?")} sub={tx("Pick up to three.", "সর্বোচ্চ তিনটি বাছুন।")}>
+          <Question title={tx("What matters most?", "সবচেয়ে গুরুত্বপূর্ণ কী?")} sub={tx("Pick as many as you like.", "যতগুলো খুশি বাছুন।")}>
             <div className="flex flex-wrap gap-2">
               {PRIORITIES.map((p) => {
                 const on = a.priorities.includes(p.id);
-                const full = !on && a.priorities.length >= 3;
                 return (
                   <button
                     key={p.id}
-                    disabled={full}
                     aria-pressed={on}
                     onClick={() => set("priorities", on ? a.priorities.filter((x) => x !== p.id) : [...a.priorities, p.id])}
                     className={`inline-flex h-12 items-center gap-2 rounded-xl border px-4 text-[15px] font-medium transition-all disabled:opacity-40 ${

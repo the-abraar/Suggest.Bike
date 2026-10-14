@@ -77,7 +77,7 @@ export function PostView({ slug }: { slug: string }) {
         <section>
           <h2 className="text-[22px] font-semibold tracking-tight text-ink">{tx("More guides", "আরও গাইড")}</h2>
           <ul className="mt-3 space-y-2 text-[15px]">
-            {[1, 2, 3, 4, 5].map((n) => POSTS[(POSTS.findIndex((p) => p.slug === slug) + n) % POSTS.length]).map((p) => (
+            {(post.related ? post.related.flatMap((s) => postBySlug(s) ?? []) : [1, 2, 3, 4, 5].map((n) => POSTS[(POSTS.findIndex((p) => p.slug === slug) + n) % POSTS.length])).map((p) => (
               <li key={p.slug}>
                 <Link href={`/maintenance/${p.slug}/`} className="text-brand underline underline-offset-2">{tx(...p.title)}</Link>
               </li>

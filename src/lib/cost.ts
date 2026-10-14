@@ -105,10 +105,53 @@ export function defaultUsedPrice(b: CostBike) {
  */
 export const hiddenRepairRate = (b: Pick<CostBike, "engine">) => (b.engine.cooling === "air" ? 0.05 : 0.1);
 
+/**
+ * APPROX: a used bike priced well below its typical asking price usually hides accident damage, a worn engine or
+ * paper trouble, so the reserve goes up: 20% when the price is 20–35% below defaultUsedPrice(), 25% when more than 35% below.
+ * Returns the reserve rate and how far below the typical price it is (0 when at or above it).
+ */
+export function usedRepairRate(b: CostBike, price: number) {
+  const ref = defaultUsedPrice(b);
+  const belowRef = ref > 0 && price > 0 ? Math.max(0, 1 - price / ref) : 0;
+  const rate = !belowRef ? hiddenRepairRate(b) : price < ref * 0.65 ? 0.25 : price <= ref * 0.8 ? 0.2 : hiddenRepairRate(b); // compare prices, not 1 - p/r, so exactly 20% below is not lost to float error
+  return { rate, belowRef, ref, cheap: rate > hiddenRepairRate(b) };
+}
+
+/** Keeping it 10 years = keeping it for life; the page offers exactly these and adds a major overhaul at 10. */
+export const OWNERSHIP_YEARS = [1, 2, 3, 4, 5, 10] as const;
+export const OVERHAUL_YEARS = 10;
+
+/**
+ * APPROX: one major overhaul over 10 years of ~30 km/day with some highway touring, some misuse and missed services.
+ * Prices are for a ~150cc bike whose 5 listed parts cost ~৳6,000 together, scaled by this bike's parts basket
+ * (brand + size, clamped 0.6–4.5×). Engine, clutch and suspension also scale with distance against the 30 km/day
+ * reference (clamped 0.5–3×); wiring and frame age with time. Liquid-cooled +25%, multi-cylinder +40% on the engine.
+ * Frame straightening is a ৳8,000 job counted at half because not every bike needs it.
+ * shortcut: EVs get no motor/controller/traction-battery line; add one once BD replacement prices are sourced.
+ */
+export const OVERHAUL = { refKmPerDay: 30, refPartsBDT: 6000, engine: 15000, suspension: 6000, frame: 8000 * 0.5, wiring: 4000 };
+
+export function overhaulCost(b: CostBike, km: number) {
+  const O = OVERHAUL;
+  const ev = b.engine.fuel === "electric";
+  const parts = b.parts.reduce((a, p) => a + p.priceBDT, 0);
+  const partsFactor = Math.min(4.5, Math.max(0.6, parts / O.refPartsBDT));
+  const kmFactor = Math.min(3, Math.max(0.5, km / (O.refKmPerDay * 365 * OVERHAUL_YEARS)));
+  const engineMult = (b.engine.cooling === "liquid" ? 1.25 : 1) * (b.engine.cylinders > 1 ? 1.4 : 1);
+  const engine = ev ? 0 : O.engine * partsFactor * engineMult * kmFactor; // top-end/rebuild: piston, rings, valves, gaskets, cam chain
+  const clutch = ev ? 0 : (b.parts.find((p) => p.name.toLowerCase().includes("clutch"))?.priceBDT ?? 1800) * kmFactor; // one extra set burnt by misuse, beyond normal wear
+  const suspension = O.suspension * partsFactor * kmFactor; // fork seals, oil and bushes, rear shock
+  const frame = O.frame * partsFactor;
+  const wiring = O.wiring * partsFactor; // harness, switches, regulator-rectifier
+  return { engine, clutch, suspension, frame, wiring, total: engine + clutch + suspension + frame + wiring, partsFactor, kmFactor };
+}
+
 export function ownershipCost(b: CostBike, inp: CostInput) {
   const buyingUsed = inp.used || b.status === "used-only";
   const price = buyingUsed ? (inp.usedPrice ?? defaultUsedPrice(b)) : b.priceBDT;
-  const hiddenRepairs = buyingUsed ? price * hiddenRepairRate(b) : 0;
+  const repair = usedRepairRate(b, price);
+  const repairRate = buyingUsed ? repair.rate : 0;
+  const hiddenRepairs = price * repairRate;
 
   const km = inp.kmPerDay * 365 * inp.years;
   // EVs: build-data derives their mileage as a petrol-cost equivalent at the current octane price, so the octane slider must not move it.
@@ -132,21 +175,24 @@ export function ownershipCost(b: CostBike, inp: CostInput) {
   const filters = ev ? 0 : (km / W.airFilter) * (part("air filter") ?? 600) + (km / W.sparkPlug) * SPARK_PLUG(b.engine.cc);
   const battery = ev ? 0 : (months / W.batteryMonths) * BATTERY(b.engine.cc);
   const wear = brakes + chain + tyres + clutch + filters + battery;
+  const oh = inp.years >= OVERHAUL_YEARS ? overhaulCost(b, km) : null;
+  const overhaul = oh?.total ?? 0;
   const upkeep = inp.upkeepPerMonth * months;
 
   const reg = registrationFor(b.engine.cc);
+  const renewals = Math.max(0, Math.ceil(inp.years / 2) - 1);
   const paperwork =
     buyingUsed
       ? 0
       : inp.taxPlan === "10yr"
         ? reg.totalBDT10yr
-        : reg.totalBDT + Math.max(0, Math.ceil(inp.years / 2) - 1) * ROAD_TAX_2YR(b.engine.cc);
+        : reg.totalBDT + renewals * ROAD_TAX_2YR(b.engine.cc);
   const insurance = inp.insurance ? THIRD_PARTY_INSURANCE * inp.years : 0;
 
   const resaleValue = Math.round(price * Math.pow(yearlyRetention(b), inp.years));
   const depreciation = inp.includeDepreciation ? price - resaleValue : 0;
 
-  const running = fuel + service + wear + upkeep + hiddenRepairs + insurance;
+  const running = fuel + service + wear + overhaul + upkeep + hiddenRepairs + insurance;
   const total = running + paperwork + depreciation;
 
   return {
@@ -154,6 +200,7 @@ export function ownershipCost(b: CostBike, inp: CostInput) {
     fuel,
     service,
     wear,
+    overhaul,
     upkeep,
     hiddenRepairs,
     paperwork,
@@ -170,6 +217,19 @@ export function ownershipCost(b: CostBike, inp: CostInput) {
     perKm: km > 0 ? total / km : 0,
     buyingUsed,
     price,
+    /** Inputs behind each line, for the "how is this worked out" popovers. */
+    detail: {
+      services,
+      wear: { brakes, chain, tyres, clutch, filters, battery },
+      overhaul: oh,
+      reg,
+      renewals,
+      roadTax: ROAD_TAX_2YR(b.engine.cc),
+      hiddenRepairRate: repairRate,
+      belowRef: buyingUsed ? repair.belowRef : 0,
+      cheap: buyingUsed && repair.cheap,
+      refUsedPrice: repair.ref,
+    },
     onRoad: buyingUsed ? price : inp.taxPlan === "10yr" ? price + reg.totalBDT10yr : onRoadPrice(b),
   };
 }

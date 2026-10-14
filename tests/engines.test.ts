@@ -172,7 +172,7 @@ test("match: cheapestNew respects gearbox; encode/decode round-trips; bad params
   assert.equal(decodeAnswers(new URLSearchParams("")), null);
   const d = decodeAnswers(new URLSearchParams("b=100000&u=nonsense&pr=safety.x.mileage.comfort.style"))!;
   assert.equal(d.use, DEFAULT_ANSWERS.use);
-  assert.deepEqual(d.priorities, ["safety", "mileage", "comfort"]);
+  assert.deepEqual(d.priorities, ["safety", "mileage", "comfort", "style"]);
 });
 
 // ---------------- cost / EMI / BRTA ----------------
@@ -432,7 +432,8 @@ test("decodeAnswers: clamps the budget, de-duplicates priorities and derives the
   assert.equal(decodeAnswers(new URLSearchParams("b=abc")), null);
   assert.equal(decodeAnswers(new URLSearchParams("b=0")), null);
   assert.deepEqual(d("b=200000&pr=mileage.mileage.mileage").priorities, ["mileage"]);
-  assert.deepEqual(d("b=200000&pr=price.safety.price.style.comfort").priorities, ["price", "safety", "style"]);
+  assert.deepEqual(d("b=200000&pr=price.safety.price.style.comfort").priorities, ["price", "safety", "style", "comfort"]);
+  assert.equal(d(`b=200000&pr=${"mileage.safety.x.".repeat(500)}price`).priorities.length, 3); // de-dup bounds the list
   const m = d("pm=monthly&m=2000&t=36&b=150000");
   assert.equal(m.budget, emiCeiling(0, 2000, 36));
   assert.ok(m.budget < 150000);

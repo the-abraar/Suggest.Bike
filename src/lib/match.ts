@@ -30,6 +30,7 @@ export type Answers = {
 
 /** Bikroy prices are asking prices and bikes usually sell lower, so we count 5% off (APPROX) against the budget. */
 export const USED_HAIRCUT = 0.05;
+
 /** Stretch picks may go this far over the on-road budget; they are shown in their own section. */
 export const STRETCH = 0.1;
 /**
@@ -383,6 +384,7 @@ export function decodeAnswers(q: URLSearchParams): Answers | null {
     experience: pick(q.get("e"), ["first", "some", "pro"] as const, D.experience),
     pillion: pick(q.get("p"), ["rarely", "sometimes", "daily"] as const, D.pillion),
     gearless: pick(q.get("g"), ["yes", "no", "either"] as const, D.gearless),
-    priorities: [...new Set((q.get("pr") || "").split("."))].filter((x): x is Priority => PRIORITY_IDS.includes(x as Priority)).slice(0, 3),
+    // Any number of priorities; de-duplication bounds the list to PRIORITY_IDS (Cap rule).
+    priorities: [...new Set((q.get("pr") || "").split("."))].filter((x): x is Priority => PRIORITY_IDS.includes(x as Priority)),
   };
 }
