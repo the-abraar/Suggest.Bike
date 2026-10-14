@@ -19,6 +19,8 @@ The agent is waiting on these. Send the value (or the answer) and it wires it in
 - [ ] **Check `hello@suggest.bike` forwarding** by sending one test email to it.
 - [ ] **Two suspected spec errors** (critique B4; each bike's `dataNote` in `src/data/bikes.json` has the detail). Platina 100 ES: does it have CBS? bajajauto.com/en-bd lists drum/drum with no CBS; if not, set `brakes.abs` to `"none"`. Apache RTR 160 4V: 147 kg in the data, 143-144 kg on bikebd; ask TVS Auto Bangladesh.
 - [ ] **Availability:** ask the distributor or a showroom whether these are still sold new: Suzuki V-Strom SX 250, Bajaj Avenger 160, KTM Duke 125 and RC 125, Hero Splendor+. Each shows "Availability unconfirmed" until you remove `"availability": "unconfirmed"` (on sale) or set `status` (gone).
+- [ ] **More than three priorities** (2026-10-15): the quiz takes any number again, but the 20% budget raise for more than three was dropped, because it showed bikes over the buyer's own budget. If many priorities should change the results, say how (for example a labelled "these cost more" section) and the agent builds it.
+- [ ] **Offers without a source link:** the V-Strom SX 250 offer ("reported by the site owner", no URL) is hidden while the bike is "availability unconfirmed", and its prices now match the ৳4,49,950 headline (৳4,29,950 offer). Decide whether every offer needs a source URL; if yes, the agent makes `validate` require one.
 - [ ] **Legal page gaps** (TODO comments at the top of `src/components/LegalView.tsx`): operator name and postal address, governing law, and a response time you can keep for corrections and takedowns.
 
 ## Before launch
@@ -57,7 +59,7 @@ Offers live in `src/data/offers.json` (your editor autocompletes the fields from
 - `startsOn` and `endsOn`: dates as `YYYY-MM-DD`; `endsOn` is the last day. The site shows the offer only between these dates, using the visitor's date in Bangladesh, so it disappears by itself without a redeploy.
 - `where` (optional, leave out if unknown), `source` (`name`, and `url` or `null`), `notes` (optional).
 
-Then run `npm run validate`: it fails on unknown bike ids, bad dates, `endsOn` before `startsOn` or a discount that isn't cheaper, and only warns about offers that have ended (delete those when convenient). The matcher keeps ranking on the regular price.
+Then run `npm run validate`: it fails on unknown bike ids, bad dates, `endsOn` before `startsOn`, a discount that isn't cheaper or a `regularPriceBDT` that is not the bike's `priceBDT`, and only warns about offers that have ended (delete those when convenient). The matcher keeps ranking on the regular price.
 
 ## Growth
 
