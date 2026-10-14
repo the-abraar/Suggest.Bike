@@ -534,7 +534,11 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
 
       {!top ? (
         <div className="card mt-10 p-6 sm:p-8">
-          <p className="text-[17px] font-semibold text-ink">{tx(`Nothing fits ${formatLakh(a.budget, lang)} on the road.`, `অন-রোড ${formatLakh(a.budget, lang)}-এ কিছু মেলেনি।`)}</p>
+          <p className="text-[17px] font-semibold text-ink">
+            {a.payMode === "monthly"
+              ? tx(`Nothing fits ${formatBDT(a.monthly)}/mo with ${formatBDT(a.down)} cash now.`, `মাসে ${formatBDT(a.monthly)} আর এখন ${formatBDT(a.down)} নগদে কিছু মেলেনি।`)
+              : tx(`Nothing fits ${formatLakh(a.budget, lang)} on the road.`, `অন-রোড ${formatLakh(a.budget, lang)}-এ কিছু মেলেনি।`)}
+          </p>
           <p className="mt-1 text-[14.5px] text-muted">
             {a.payMode === "monthly"
               ? tx(

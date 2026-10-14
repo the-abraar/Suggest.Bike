@@ -398,13 +398,15 @@ function PayCompare({ price, brta, used }: { price: number; brta: number; used: 
               "০% কিস্তি শুধু শোরুমের তালিকাভুক্ত ব্যাংকের কার্ডে। কিছু শোরুম কার্ডে নগদের চেয়ে বেশি দাম নেয়, তাই আগে নগদ দাম জিজ্ঞেস করুন।",
             )}
       </p>
-      <p className="mt-3 text-[12.5px] leading-relaxed text-faint">
-        {tx(
-          `Example terms: loan with ${PAY_TERMS.loanDownPct}% down, reducing balance. BRTA is paid in cash upfront whichever way you pay. Ask for the total payable in writing; this is not financial advice.`,
-          `উদাহরণ: লোনে ${PAY_TERMS.loanDownPct}% ডাউন পেমেন্ট, ক্রমহ্রাসমান ব্যালান্সে সুদ। যেভাবেই কিনুন, BRTA খরচ শুরুতেই নগদে দিতে হয়। মোট কত দিতে হবে লিখিতভাবে চেয়ে নিন; এটি আর্থিক পরামর্শ নয়।`,
-        )}{" "}
-        <Link href="/guide/#emi" className="text-brand underline underline-offset-2">{tx("How EMI works", "কিস্তি কীভাবে কাজ করে")}</Link>
-      </p>
+      {!used && (
+        <p className="mt-3 text-[12.5px] leading-relaxed text-faint">
+          {tx(
+            `Example terms: loan with ${PAY_TERMS.loanDownPct}% down, reducing balance. BRTA is paid in cash upfront whichever way you pay. Ask for the total payable in writing; this is not financial advice.`,
+            `উদাহরণ: লোনে ${PAY_TERMS.loanDownPct}% ডাউন পেমেন্ট, ক্রমহ্রাসমান ব্যালান্সে সুদ। যেভাবেই কিনুন, BRTA খরচ শুরুতেই নগদে দিতে হয়। মোট কত দিতে হবে লিখিতভাবে চেয়ে নিন; এটি আর্থিক পরামর্শ নয়।`,
+          )}{" "}
+          <Link href="/guide/#emi" className="text-brand underline underline-offset-2">{tx("How EMI works", "কিস্তি কীভাবে কাজ করে")}</Link>
+        </p>
+      )}
     </div>
   );
 }

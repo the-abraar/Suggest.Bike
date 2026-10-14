@@ -20,12 +20,12 @@ const newPage = async (c = ctx) => {
 const cont = (pg) => pg.getByRole('button', { name: /^(Continue|Show my matches)/ }).click();
 const mainText = (pg) => pg.locator('main').innerText();
 
-// Budget step: total (default) or EMI with ৳30,000 down over 24 months; `budget` drives the slider by keyboard.
+// Budget step: total (default) or EMI with ৳30,000 cash now over 24 months; `budget` drives the slider by keyboard.
 async function budgetStep(pg, { emi = false, budget } = {}) {
   await pg.goto(BASE + '/match/', { waitUntil: 'networkidle' });
   if (emi) {
     await pg.getByRole('button', { name: 'Monthly (EMI)' }).click();
-    await pg.getByLabel('Down payment (cash upfront)').fill('30000');
+    await pg.getByLabel('Cash available now').fill('30000');
     await pg.getByRole('button', { name: '24', exact: true }).click();
   } else if (budget) {
     const slider = pg.getByRole('slider', { name: 'Budget' });

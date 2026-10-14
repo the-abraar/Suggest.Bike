@@ -349,7 +349,7 @@ test("B3: used and used-only options never carry EMI or a registration, and EMI 
   const total = matchBikes(A({ budget: 200000, condition: "any" }), 1000);
   const used = total.filter(isUsedOption);
   assert.ok(used.some((m) => m.bike.status === "used-only") && used.some((m) => m.used));
-  for (const m of used) assert.ok(!m.pay && m.registration === 0 && m.onRoad === m.price, m.bike.id);
+  for (const m of used) assert.ok(!m.pay && m.registration === 0 && m.onRoad === m.price && !m.reasons.some((r) => /on the road/.test(r.en)), m.bike.id);
   const emi = matchBikes(A({ budget: emiCeiling(700000, 60000, 12), payMode: "monthly", down: 700000, monthly: 60000, tenure: 12, condition: "any" }), 1000);
   assert.ok(emi.length > 0 && !emi.some(isUsedOption));
 });

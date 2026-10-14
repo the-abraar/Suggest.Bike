@@ -286,7 +286,12 @@ function score(a: Answers, o: Option): Match {
     .sort((x, y) => y.v - x.v)
     .slice(0, 3)
     .map((c) => FEATURE_REASON[c.k](b));
-  if (reasons.length < 3 && short <= 0) reasons.push({ en: `Fits your budget at ${formatBDT(o.onRoad)} on the road`, bn: `অন-রোড ${formatBDT(o.onRoad)} — আপনার বাজেটে মানায়` });
+  if (reasons.length < 3 && short <= 0)
+    reasons.push(
+      isUsedOption(o)
+        ? { en: `Fits your budget at ${formatBDT(o.price)} asking`, bn: `চাওয়া দাম ${formatBDT(o.price)} — আপনার বাজেটে মানায়` }
+        : { en: `Fits your budget at ${formatBDT(o.onRoad)} on the road`, bn: `অন-রোড ${formatBDT(o.onRoad)} — আপনার বাজেটে মানায়` },
+    );
 
   const sc = Math.round(Math.max(0, Math.min(99, 30 + s * 75)));
   return { ...o, score: sc, band: sc >= BAND.great ? "great" : sc >= BAND.good ? "good" : "possible", reasons, warnings: warnings.slice(0, 2) };
