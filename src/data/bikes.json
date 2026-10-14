@@ -17496,5 +17496,159 @@
    "palsar 135",
    "pulser 135"
   ]
+ },
+ {
+  "category": "classic",
+  "status": "used-only",
+  "priceAsOf": "2026-10",
+  "collections": [
+   "old-school"
+  ],
+  "id": "honda-super-cub",
+  "brand": "Honda",
+  "model": "Super Cub",
+  "variant": "C-series family (C50/C70/C90 step-throughs)",
+  "priceBDT": 50000,
+  "priceNote": "Approx, unverified: no C-series listing found on Bikroy at research time; price is an editorial estimate for a decent imported-used C50/C70/C90 (~৳35,000 rough to ~৳80,000 restored). The whole C family is covered here; specs are a typical C70/C90.",
+  "priceSource": "https://bikroy.com/bn/motorcycles-and-scooters/honda-super-cub",
+  "engine": {
+   "cc": 90,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "air",
+   "fuel": "carb"
+  },
+  "powerPS": 7,
+  "powerRpm": 8500,
+  "torqueNm": 7,
+  "torqueRpm": 6000,
+  "gears": 3,
+  "topSpeedKmh": 80,
+  "mileageKmpl": [
+   50,
+   65
+  ],
+  "weightKg": 85,
+  "seatHeightMm": 760,
+  "fuelTankL": 4,
+  "scores": {
+   "reliability": 8,
+   "mechanicFamiliarity": 5,
+   "partsAvailability": 3,
+   "resale": 6,
+   "comfort": 6,
+   "cityHandling": 8,
+   "highway": 3,
+   "pillion": 5,
+   "offroad": 3,
+   "performance": 2,
+   "beginnerFriendly": 8
+  },
+  "tagline": "The step-through that built the world's bike habit, now a rare sight in BD.",
+  "feel": "Semi-automatic centrifugal clutch (no lever), tall wheels and a step-through frame; relaxed, tough and easy in traffic.",
+  "quirks": "One record covers the whole C-series moped family (C50, C70, C90 and cousins); engine size, power, gears (3-speed assumed), tank and weight vary by model and are approx, unverified. Rare, mostly imported or old units; Chinese clones are often sold under the same name.",
+  "braking": "Drum brakes both wheels; modest.",
+  "mechanicNote": "Famously simple and durable, but few BD mechanics have worked on genuine Cubs; clone-style parts fit some Honda-style engines but check before buying.",
+  "pros": [
+   "Extremely durable engine",
+   "Easy semi-auto riding",
+   "Great for short city trips",
+   "Iconic collectible"
+  ],
+  "cons": [
+   "Rare in BD, parts hard to find",
+   "Slow, small tank",
+   "Price info thin",
+   "Clones in the market"
+  ],
+  "bestFor": [
+   "Collectors",
+   "Short city commutes",
+   "Old-school look"
+  ],
+  "serviceIntervalKm": 2000,
+  "avgServiceCostBDT": 700,
+  "sources": [
+   "https://bikroy.com/bn/motorcycles-and-scooters/honda-super-cub",
+   "https://en.wikipedia.org/wiki/Honda_Super_Cub"
+  ],
+  "bn": {
+   "tagline": "স্টেপ-থ্রু বাইক যা দুনিয়া কাঁপিয়েছে, বাংলাদেশে এখন বিরল।",
+   "feel": "সেমি-অটোমেটিক সেন্ট্রিফিউগাল ক্লাচ (লিভার নেই), উঁচু চাকা আর স্টেপ-থ্রু ফ্রেম; শান্ত, শক্ত আর ট্রাফিকে সহজ।",
+   "quirks": "সি৫০/সি৭০/সি৯০ কোনটি বাংলাদেশে বেশি চলে তা নিশ্চিত নয়; ইঞ্জিন, পাওয়ার, গিয়ার, ট্যাংক ও ওজন আনুমানিক, যাচাই হয়নি। বিরল; অনেক সময় একই নামে চীনা ক্লোন বিক্রি হয়।",
+   "braking": "দুই চাকায় ড্রাম ব্রেক; সাধারণ।",
+   "mechanicNote": "সহজ ও টেকসই ইঞ্জিন, কিন্তু আসল কাব মেরামতের অভিজ্ঞ মেকানিক কম; পার্টস কেনার আগে মিলিয়ে দেখুন।",
+   "pros": [
+    "খুব টেকসই ইঞ্জিন",
+    "সেমি-অটো, চালানো সহজ",
+    "ছোট শহুরে ট্রিপে ভালো",
+    "কালেক্টরদের পছন্দ"
+   ],
+   "cons": [
+    "বাংলাদেশে বিরল, পার্টস কঠিন",
+    "ধীর, ট্যাংক ছোট",
+    "দামের তথ্য কম",
+    "বাজারে ক্লোন"
+   ],
+   "bestFor": [
+    "কালেক্টর",
+    "শহরের ছোট যাতায়াত",
+    "ওল্ড-স্কুল লুক"
+   ],
+   "priceNote": "আনুমানিক, যাচাই হয়নি: কোনো বিজ্ঞাপন পাওয়া যায়নি; সম্পাদকীয় অনুমান ৳৩৫,০০০-৮০,০০০।",
+   "partNotes": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  "aliases": [
+   "হোন্ডা সুপার কাব",
+   "সুপার কাব",
+   "সুপারকাব",
+   "super cub",
+   "supercub",
+   "honda c70",
+   "honda c90",
+   "honda c50",
+   "honda cub",
+   "সি৭০",
+   "সি৯০"
+  ],
+  "brakes": {
+   "front": "drum",
+   "rear": "drum",
+   "abs": "none"
+  },
+  "tubeless": false,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 350,
+    "availability": "common"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 1300,
+    "availability": "common"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 250,
+    "availability": "common"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 450,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 800,
+    "availability": "common"
+   }
+  ]
  }
 ]
