@@ -32,15 +32,16 @@ If port 4173 is taken (another checkout's server), `serve` picks a random port: 
 
 `weight.mjs`: 375 wide, ~1.6 Mbps down, 150 ms RTT, 4× CPU, cold cache per page; KB are compressed bytes as served by `serve@14`.
 
-### Last measured (2026-10-13, after WebP photos)
+### Last measured (2026-10-15, after the bundle split, font trim and /bikes/ pagination)
 
-| Page | JS KB | CSS KB | Font KB | Img KB | DCL ms | Load ms | LCP ms |
-|---|---|---|---|---|---|---|---|
-| `/bn/` | 276 | 11 | 215 | 0 | 704 | 2677 | 1200 |
-| `/bn/match/` | 239 | 11 | 207 | 0 | 686 | 2641 | 1184 |
-| `/bn/bikes/` | 245 | 11 | 207 | 0 | 676 | 2496 | 836 |
-| `/bn/bikes/bajaj-ct100/` | 307 | 11 | 215 | 92 | 681 | 3134 | 2880 |
-| `/bikes/bajaj-ct100/` | 307 | 11 | 182 | 92 | 753 | 2956 | 2812 |
-| `/` | 276 | 11 | 182 | 0 | 677 | 2472 | 1256 |
+Local `out/` served by `serve@14`; two interleaved runs, before and after on the same browser build.
 
-Bangla pages load ~25-33 KB more font than English ones (the Bangla face). The bike photo LCP was 3.19 s with the 1024 px JPG.
+| Page | JS KB | Font KB | HTML KB | DCL ms | Load ms | LCP ms (before) |
+|---|---|---|---|---|---|---|
+| `/` | 279 | 29 | 21 | 467 | 1830 | 698 (1282) |
+| `/bn/` | 279 | 124 | 22 | 459 | 2301 | 1110 (1202) |
+| `/bikes/` | 257 | 29 | 16 | 453 | 1783 | 608 (2912) |
+| `/bikes/bajaj-pulsar-n160/` | 315 | 29 | 19 | 458 | 1848 | 724 (1258) |
+| `/match/` | 248 | 29 | 7 | 447 | 1851 | 650 (1248) |
+
+English pages no longer load Hind Siliguri (৳ uses the system Bengali font); `/bn/` loads its 400 and 600 weights. `/bikes/` ships 24 cards (244 KB raw HTML, was 925 KB). JS totals include the routes Next prefetches after load: guides and legal pages no longer load the bike index up front, but prefetching the logo's home route still fetches it once the page is idle. The bike photo LCP was 3.19 s with the 1024 px JPG (2026-10-13).

@@ -63,6 +63,7 @@ Edit `priceBDT`, `priceAsOf` and `priceSource` in `bikes.json`, run the validato
 src/
   app/            routes (App Router, static export)
   components/     BikeArt (illustrations drawn in code), Header, SearchBox, CompareTray, ui
-  lib/            bikes (data helpers), match (recommendation engine), cost (ownership model), fund (cash/card EMI/loan maths), i18n, store
+  lib/            bikes (catalogue index), bike-utils (data-free helpers: formats, labels, JSON-LD), search, match (recommendation engine),
+                  cost (ownership model), fund (cash/card EMI/loan maths), curated (pairs, page titles), i18n, store
   data/           bikes.json, guide.json
 ```

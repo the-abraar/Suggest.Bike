@@ -1,5 +1,6 @@
 // Splits src/data/bikes.json into what the browser actually needs:
-//   src/data/generated/bikes.index.json  — slim list used by every client page (search, cards, matchmaker, cost)
+//   src/data/generated/bikes.index.json  — slim list for client pages that list bikes (cards, matchmaker, cost); the header
+//                                          search and compare tray import it on demand, so guides and legal pages skip it
 //   src/data/generated/bikes.full.json   — full records for server components (detail pages)
 //   src/data/generated/bikes.ids.json    — ids only, for the compare/saved store in the layout (every page)
 //   public/data/bikes/<id>.json          — full record, fetched by /compare for the long-form rows
