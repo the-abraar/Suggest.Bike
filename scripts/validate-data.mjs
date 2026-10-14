@@ -98,6 +98,10 @@ for (const o of JSON.parse(readFileSync(new URL("../src/data/offers.json", impor
 }
 for (const [d, n] of Object.entries(domains))
   if (n / bikes.length > 0.5) warnings.push(`source concentration: ${d} supplies ${n}/${bikes.length} (${Math.round((100 * n) / bikes.length)}%) of price sources`);
+// Unset launch settings in src/lib/site.ts: forms fall back to mailto and analytics stays off, so say so.
+const site = readFileSync(new URL("../src/lib/site.ts", import.meta.url), "utf8");
+for (const k of ["FORM_ENDPOINT", "GOATCOUNTER_CODE", "WHATSAPP"])
+  if (new RegExp(`export const ${k}: string = "";`).test(site)) warnings.push(`site.ts ${k} is empty (feedback falls back to mailto, analytics off, no WhatsApp link); see docs/Todo_owner.md`);
 warnings.forEach((w) => console.log("WARN", w));
 console.log(`${bikes.length} bikes checked, ${errors.length} problems`);
 if (errors.some((x) => /price \d+d old/.test(x)))

@@ -16,7 +16,7 @@ export const SITE = {
 export const FORM_ENDPOINT: string = "";
 
 /** WhatsApp number in international digits only (e.g. "8801XXXXXXXXX"). Empty: no WhatsApp link is shown. See Todo_owner.md. */
-export const WHATSAPP: string = "";
+export const WHATSAPP: string = "8801327045005";
 
 /** wa.me chat link with a prefilled message, or "" when WHATSAPP is not set. */
 export const whatsappUrl = (text: string) => (WHATSAPP ? `https://wa.me/${WHATSAPP.replace(/\D/g, "")}?text=${encodeURIComponent(text)}` : "");
