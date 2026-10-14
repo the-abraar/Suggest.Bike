@@ -8,13 +8,14 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 
 | Site | References |
 | --- | ---: |
-| bikebd.com | 191 |
-| bikroy.com | 65 |
+| bikebd.com | 246 |
+| bikroy.com | 90 |
 | bajajauto.com | 31 |
 | bdhonda.com | 26 |
 | suzuki.com.bd | 23 |
 | motorcyclevalley.com | 11 |
 | heromotocorp.com | 9 |
+| waltonbd.com | 9 |
 | motorcyclebd.com | 8 |
 | royalenfield.com | 8 |
 | motorcycle.com.bd | 6 |
@@ -26,22 +27,25 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 | bongshal.com | 3 |
 | bikepartsbd.com | 3 |
 | banglarbike.com | 3 |
-| waltonbd.com | 3 |
 | mrp.com.bd | 2 |
 | deshibiker.com | 2 |
 | bikestall.com | 2 |
 | yamahabd.com | 2 |
 | motorcyclefair.com | 2 |
+| thedailystar.net | 2 |
+| bikes4sale.com | 2 |
 | banglamotor.net | 1 |
 | motobikebd.com | 1 |
 | online91.thedailystar.net | 1 |
 | suzukicycles.org | 1 |
 | amarujala.com | 1 |
 | bdbiker.com | 1 |
-| thedailystar.net | 1 |
 | waltondigitech.com | 1 |
+| bikebros.co.jp | 1 |
+| observerbd.com | 1 |
+| en.wikipedia.org | 1 |
 
-**Primary price source** (the `priceSource` of each bike): bikebd.com 49 (56%), bajajauto.com 10 (11%), bdhonda.com 10 (11%), suzuki.com.bd 8 (9%), royalenfield.com 4 (5%), bikroy.com 4 (5%), heromotocorp.com 1 (1%), waltonbd.com 1 (1%).
+**Primary price source** (the `priceSource` of each bike): bikebd.com 60 (54%), bikroy.com 14 (13%), bajajauto.com 10 (9%), bdhonda.com 10 (9%), suzuki.com.bd 8 (7%), royalenfield.com 4 (4%), waltonbd.com 3 (3%), heromotocorp.com 1 (1%), bikes4sale.com 1 (1%).
 
 ## Bike data — per bike
 
@@ -101,6 +105,11 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://www.bajajauto.com/en-bd/bikes/pulsar-n160-single-seat
   - https://www.bajajauto.com/en-bd/bikes/pulsar-n160-td
   - Used asking prices (2026-10): ~1 yr ৳2,25,000, ~3 yr ৳2,10,000 — https://bikroy.com/bn/motorcycles-and-scooters/bajaj-pulsar-n160
+- **Pulsar NS160** (FI ABS) — ৳1,20,000 as of 2026-10 (used market)
+  - Price: https://bikroy.com/bn/motorcycles-and-scooters/bajaj-pulsar-ns-160
+  - https://bikebd.com/price/bajaj-pulsar-ns160-fi-abs
+  - https://www.bikebd.com/info/bajaj-pulsar-ns160-bike-price-in-bd
+  - Used asking prices (2026-10): ~1 yr ৳1,95,000, ~3 yr ৳1,30,000 — https://bikroy.com/bn/motorcycles-and-scooters/bajaj-pulsar-ns-160
 - **Avenger Street 160** (ABS) — ৳2,74,000 as of 2026-09
   - Price: https://www.bikebd.com/price/bajaj-avenger-160-abs
   - https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh
@@ -117,6 +126,20 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://mrp.com.bd/product/bajaj-pulsar-f250/
   - https://deshibiker.com/baja-pulsar-f250/
   - Used asking prices (2026-10): ~1 yr ৳3,00,000, ~3 yr — — https://bikroy.com/bn/motorcycles-and-scooters/bajaj-pulsar-f250
+- **CT100 (old, 2000s-2010s)** — ৳38,000 as of 2026-10 (used market)
+  - Price: https://bikroy.com/bn/motorcycles-and-scooters/bajaj-ct-100
+  - https://www.bikebd.com/price/bajaj-ct-100
+- **Boxer** (Boxer 100 (BM100) incl. bazaar/clone assembled) — ৳35,000 as of 2026-10 (used market)
+  - Price: https://bikroy.com/bn/motorcycles-and-scooters/bajaj-boxer-100
+  - https://bikebd.com/price/bajaj-kawasaki-boxer-100/specifications
+  - https://bikebd.com/price/bajaj-kawasaki-boxer-100/faq
+- **Discover 135** — ৳80,000 as of 2026-10 (used market)
+  - Price: https://bikroy.com/bn/motorcycles-and-scooters/bajaj-discover-135
+  - https://bikebd.com/price/bajaj-discover-135
+  - https://bikebd.com/blog/legendary-discontinued-motorcycles-of-bangladesh
+- **Pulsar 135 LS** — ৳48,000 as of 2026-10 (used market)
+  - Price: https://bikroy.com/bn/motorcycles-and-scooters/bajaj-pulsar-135-ls
+  - https://bikebd.com/price/bajaj-pulsar-135/specifications
 
 ### GPX
 
@@ -182,11 +205,17 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - Price: https://www.bikebd.com/price/hero-xoom-125r
   - https://www.bikebd.com/brand/hero
   - https://www.heromotocorp.com/en-bd/products/scooter/xoom-125r-fi-price-in-bangladesh.html
+- **XPulse 200 4V Pro** — ৳3,65,000 as of 2026-10
+  - Price: https://www.bikebd.com/price/hero-xpulse-200-4v-pro
+  - https://bikebd.com/price/hero-xpulse-200-4v-pro/specifications
+  - https://www.bikebd.com/blog/hero-xpulse-200-4v-and-xpulse-200-4v-pro-officially-launched-in-bangladesh
+  - https://observerbd.com/news/589485
 
 ### Hero Honda
 
 - **CBZ** — ৳45,000 as of 2026-10 (used market)
   - Price: https://bikroy.com/bn/motorcycles-and-scooters/hero-honda-cbz
+  - https://www.bikebd.com/price/hero-honda-cbz
   - Photo: Sonachalam 2k Ramalingame, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Hero_Honda_CBZ_1999_Blue1.jpg
 
 ### Honda
@@ -254,6 +283,40 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - Price: https://bikroy.com/en/ads/c/bangladesh/motorbikes-scooters/used/honda/cg125
   - https://bikebd.com/price/honda-cg-125-2006
   - Photo: SEDJRO SETONDJI, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Honda_CG125.jpg
+- **Benly 125 (CD125T)** — ৳1,80,000 as of 2026-10 (used market)
+  - Price: https://bikebd.com/price/honda-cd-125-t-benly-2002
+  - https://www.bikebros.co.jp/bikesearch2/1/1010661/?newold=0
+- **CD200 Road Master** — ৳2,50,000 as of 2026-10 (used market)
+  - Price: https://bikebd.com/price/honda-cd-200-road-master-1981
+  - https://www.bikebd.com/price/honda-cd200-roadmaster
+  - https://bikebd.com/blog/honda-cd200-roadmaster
+- **Rebel 250 (CMX250)** — ৳2,40,000 as of 2026-10 (used market)
+  - Price: https://bikebd.com/price/honda-250-rebel-2010
+  - https://bikebd.com/price/honda-rebel-250-2007
+  - https://bikebd.com/price/honda-rebel-250
+- **CBX 750** (CBX 750F (1984-88 import)) — ৳6,00,000 as of 2026-10 (used market)
+  - Price: https://bikebd.com/price/honda-cbx-750-f-1986
+  - https://bikebd.com/price/honda-cbx-750-f-1987
+  - https://bikebd.com/price/honda-cbx-750-boldor-1986
+  - https://bikroy.com/bn/motorcycles-and-scooters/honda-cbx
+- **CBX 600P** (Name as used by the user; likely a 1980s CBX 550/600-class four import (unconfirmed)) — ৳3,50,000 as of 2026-10 (used market)
+  - Price: https://bikebd.com/price/honda-cbx-600-e-1983
+  - https://bikroy.com/bn/motorcycles-and-scooters/honda-cbx
+- **H100S Super CDI** (H100S (1985-92 two-stroke)) — ৳45,000 as of 2026-10 (used market)
+  - Price: https://bikebd.com/price/h100s-super-cdi
+  - https://bikebd.com/price/honda-h-100-s-1986
+  - https://bikebd.com/blog/honda-h100s-cdi
+- **CD80** — ৳40,000 as of 2026-10 (used market)
+  - Price: https://bikroy.com/bn/motorcycles-and-scooters/honda-cd80
+  - https://www.bikebd.com/price/honda-cd80
+  - https://bikebd.com/blog/honda-cd80-best-80cc-bike-in-bangladesh
+- **CD70** — ৳30,000 as of 2026-10 (used market)
+  - Price: https://www.bikes4sale.com/used/buy/honda-cd70-in-sirajganj/101189/
+  - https://www.bikebd.com/price/honda-cd70
+  - https://www.bikebd.com/price/honda-cd70-dream-2022
+- **Super Cub** (C-series family (C50/C70/C90 step-throughs)) — ৳50,000 as of 2026-10 (used market)
+  - Price: https://bikroy.com/bn/motorcycles-and-scooters/honda-super-cub
+  - https://en.wikipedia.org/wiki/Honda_Super_Cub
 
 ### KTM
 
@@ -288,6 +351,17 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 - **Glint 100** — ৳86,000 as of 2026-10
   - Price: https://www.bikebd.com/price/lifan-glint-100
   - https://www.bikebd.com/price/lifan-glint-100/specifications
+
+### Revoo
+
+- **C32-Y** — ৳1,34,900 as of 2026-10
+  - Price: https://bikebd.com/price/revoo-c32-y/color
+  - https://www.bikebd.com/ev/revoo-c32-y/specifications
+  - https://www.bikebd.com/ev/revoo-c32-y
+- **A12-S** — ৳1,05,900 as of 2026-10
+  - Price: https://bikebd.com/price/revoo-a12-s/specifications
+  - https://www.bikebd.com/ev/revoo-a12-s/specifications
+  - https://www.thedailystar.net/tech-startup/news/revoo-a10-and-a12-electric-bikes-launched-bangladesh-3843171
 
 ### Royal Enfield
 
@@ -405,6 +479,10 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - Price: https://www.suzuki.com.bd/
   - https://www.bikebd.com/price/suzuki-access-125
   - Used asking prices (2026-10): ~1 yr ৳1,95,000, ~3 yr ৳1,70,000 — https://bikroy.com/bn/motorcycles-and-scooters/suzuki-access-125, https://bikroy.com/bn/motorcycles-and-scooters/suzuki-access-125-fi-cbs
+- **AX-100** — ৳45,000 as of 2026-10 (used market)
+  - Price: https://bikebd.com/price/suzuki-ax100
+  - https://bikebd.com/price/suzuki-a100
+  - https://bikroy.com/bn/motorcycles-and-scooters/suzuki
 
 ### TVS
 
@@ -462,6 +540,13 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://waltonbd.com/takyon
   - https://www.waltondigitech.com/news/countrys-first-brta-approved-walton-e-bike-hits-market-km-cost-10-15-paisa
   - https://www.dhakatribune.com/business/408101/walton-offers-up-to-tk9-600-discount-on-takyon
+- **Takyon 1.00** (38Ah) — ৳1,59,999 as of 2026-10
+  - Price: https://waltonbd.com/takyon/takyon-1-00-38ah
+  - https://waltonbd.com/takyon
+  - https://www.bikebd.com/ev-brand/walton
+- **Takyon Fusion 1.00 Swift** — ৳1,17,000 as of 2026-10
+  - Price: https://waltonbd.com/takyon/takyon-fusion-1-00-swift
+  - https://waltonbd.com/takyon
 
 ### Yamaha
 
@@ -524,15 +609,29 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - Price: https://www.bikebd.com/price/yamaha-aerox-155
   - https://www.tbsnews.net/node/748346
   - Photo: Chanokchon, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:2021_Yamaha_Aerox_155_ABS.jpg
-- **RX100** — ৳80,000 as of 2026-10 (used market)
+- **RX100** — ৳45,000 as of 2026-10 (used market)
   - Price: https://bikroy.com/bn/ads/bangladesh/motorbikes-scooters/yamaha/rx
   - https://bikebd.com/price/yamaha-rx100
   - Photo: Udaya kumar, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Yamaha_RX100_genuine.jpg
-- **RX 115** — ৳75,000 as of 2026-10 (used market)
+- **RX 115** — ৳95,000 as of 2026-10 (used market)
   - Price: https://bikroy.com/bn/motorcycles-and-scooters/yamaha-rx-115
   - https://bikroy.com/bn/ads/bangladesh/motorbikes-scooters/yamaha/rx
   - https://www.bikebd.com/price/yamaha-rx-s115
   - Photo: Ali zeb, CC BY-SA 3.0 — https://commons.wikimedia.org/wiki/File:Yamaha_RX_115.jpg
+- **RD350** (Rajdoot RD350 (Indian-built, as BikeBD lists)) — ৳3,50,000 as of 2026-10 (used market)
+  - Price: https://bikebd.com/price/yamaha-rajdoot-rd350
+  - https://bikebd.com/price/yamaha-rajdoot-rd350/specifications
+  - https://bikroy.com/bn/motorcycles-and-scooters/yamaha
+- **Libero** (Libero G5) — ৳32,000 as of 2026-10 (used market)
+  - Price: https://bikroy.com/bn/motorcycles-and-scooters/yamaha-libero
+  - https://bikebd.com/price/yamaha-libero-g5/specifications
+  - https://bikebd.com/price/yamaha-libero-g5
+- **Crux** — ৳35,000 as of 2026-10 (used market)
+  - Price: https://bikroy.com/bn/motorcycles-and-scooters/yamaha-crux
+  - https://bikebd.com/price/yamaha-crux/specifications
+- **YBR125** — ৳40,000 as of 2026-10 (used market)
+  - Price: https://bikroy.com/bn/motorcycles-and-scooters/yamaha-ybr125
+  - https://www.bikebd.com/price/yamaha-ybr-125-2022
 
 ### Zontes
 
@@ -541,6 +640,18 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://www.bikebd.com/price/zontes-zt155-u/specifications
   - https://www.bikebd.com/brand/zontes
   - https://www.tbsnews.net/feature/wheels/zontes-enters-bangladesh-premium-motorcycles-222703
+
+## Dealer & service networks
+
+- **Bajaj** (Uttara Motors Ltd; confidence high, 2026-10-14): https://www.bajajauto.com/en-bd/store-locator
+- **TVS** (TVS Auto Bangladesh Ltd; confidence medium, 2026-10-14): https://bangladesh.tvsmotor.com/en/dealers-location
+- **Hero** (HMCL Niloy Bangladesh Ltd; confidence high, 2026-10-14): https://www.heromotocorp.com/en-bd/dealers.html, https://www.heromotocorp.com/content/dam/hero-aem-website/in/investors/filing-reports/announcements-disclosures/press-release/20210830054620-Press-Releases.pdf
+- **Honda** (Bangladesh Honda Private Limited (BHL); confidence high, 2026-10-14): https://bdhonda.com/dealer-locator, https://bdhonda.com/pages/about-bhl
+- **Yamaha** (ACI Motors Ltd; confidence high, 2026-10-14): https://www.yamahabd.com/#dealers, https://www.yamahabd.com/about-us
+- **Suzuki** (Rancon Motor Bikes Ltd; confidence high, 2026-10-14): https://www.suzuki.com.bd/dealer, https://suzuki.com.bd/about
+- **Royal Enfield** (IFAD Motors Ltd; confidence high, 2026-10-14): https://www.royalenfield.com/bd/en/locate-us/dealers/, https://ifadgroup.com/ifad-motors-ltd
+- **KTM** (Runner Automobiles PLC; confidence low, 2026-10-14): https://www.ktm.com/en-bd/find-a-dealer.html
+- **Lifan** (Rasel Industries Ltd; confidence medium, 2026-10-14): https://raselindustry.com/distribution-network/
 
 ## Buyer's guide (BRTA, licence, fuel, laws)
 

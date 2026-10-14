@@ -3,7 +3,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import guide from "../src/data/guide.json";
 import { BIKES } from "../src/lib/bikes";
-import { ownershipCost, registrationFor, DEFAULT_COST_INPUT, type CostBike } from "../src/lib/cost";
+import { ownershipCost, registrationFor, evBatteryCost, EV_BATTERY, OWNERSHIP_YEARS, DEFAULT_COST_INPUT, type CostBike } from "../src/lib/cost";
 
 const evs = BIKES.filter((b) => b.engine.fuel === "electric");
 
@@ -35,4 +35,37 @@ test("ev: BRTA registration uses the up-to-100cc band for motors up to 5 kW", ()
     assert.ok(b.ev!.motorW <= guide.registration.ev.motorKWMax * 1000, `${b.id}: motor above 5 kW needs the >100cc band`);
     assert.equal(registrationFor(b.engine.cc).ccMax, 100, b.id);
   }
+});
+
+// Owner rule: one traction battery at 30% of the new price, once the ownership period runs past the battery warranty.
+test("ev: battery replacement = 30% of price, charged only past the warranty (data months, else 48), in running cost", () => {
+  const ev = evs.find((b) => b.ev?.batteryWarrantyMonths === 15);
+  assert.ok(ev, "an EV with Walton's 15-month battery warranty");
+  for (const years of OWNERSHIP_YEARS) {
+    const c = ownershipCost(ev, { ...DEFAULT_COST_INPUT, years });
+    const want: number = years * 12 > 15 ? ev.priceBDT * 0.3 : 0;
+    assert.equal(c.evBattery, want, `${years}y`);
+    assert.equal(c.detail.evBattery?.due, want > 0);
+  }
+  const c2 = ownershipCost(ev, { ...DEFAULT_COST_INPUT, years: 2 });
+  const c1 = ownershipCost(ev, { ...DEFAULT_COST_INPUT, years: 1 });
+  assert.ok(c2.running - c1.running >= ev.priceBDT * 0.3, "the battery is part of running cost");
+
+  // No warranty in the data: assume 48 months, so 5 and 10 years pay, 1-4 do not.
+  const noWarranty: CostBike = { ...ev, ev: { ...ev.ev!, batteryWarrantyMonths: undefined } };
+  assert.equal(EV_BATTERY.defaultWarrantyMonths, 48);
+  for (const years of OWNERSHIP_YEARS) assert.equal(evBatteryCost(noWarranty, years, false)!.due, years > 4, `${years}y`);
+  assert.equal(evBatteryCost(noWarranty, 1, false)!.assumed, true);
+  // A used EV counts as ~3 years old, so a 4-year warranty has 1 year left.
+  assert.equal(evBatteryCost(noWarranty, 1, true)!.due, false);
+  assert.equal(evBatteryCost(noWarranty, 2, true)!.due, true);
+  assert.equal(evBatteryCost(noWarranty, 2, true)!.cost, ev.priceBDT * 0.3, "30% of the new price, not the used price");
+
+  const petrol = BIKES.find((b) => b.engine.fuel !== "electric")!;
+  assert.equal(evBatteryCost(petrol, 10, false), null);
+  assert.equal(ownershipCost(petrol, { ...DEFAULT_COST_INPUT, years: 10 }).evBattery, 0);
+});
+
+test("ev: every EV states a battery warranty in whole months", () => {
+  for (const b of evs) assert.ok(Number.isInteger(b.ev?.batteryWarrantyMonths) && b.ev!.batteryWarrantyMonths! > 0, b.id);
 });

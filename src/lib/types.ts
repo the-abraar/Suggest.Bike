@@ -73,7 +73,7 @@ export interface Bike {
 }
 
 /** Electric two-wheelers. Claimed figures come from the cited source; realRangeKm is an editorial estimate. */
-export interface EvSpec { motorW: number; peakMotorW?: number; batteryKWh: number; battery: string; rangeKm: number; realRangeKm: [number, number]; chargeHours: number }
+export interface EvSpec { motorW: number; peakMotorW?: number; batteryKWh: number; battery: string; rangeKm: number; realRangeKm: [number, number]; chargeHours: number; batteryWarrantyMonths?: number /* traction battery; the cost page assumes 48 when absent */ }
 
 export interface Variant { name: string; priceBDT: number; abs?: "none" | "single" | "dual" | "cbs"; frontDisc?: boolean; rearDisc?: boolean; priceSource: string }
 

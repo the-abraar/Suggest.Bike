@@ -25,6 +25,7 @@ for (const b of bikes) {
     const v = b.ev ?? {};
     for (const k of ["motorW", "batteryKWh", "rangeKm", "chargeHours"]) if (!(typeof v[k] === "number" && v[k] > 0)) e(`electric: missing ev.${k}`);
     if (!(typeof v.battery === "string" && v.battery.length > 3)) e("electric: missing ev.battery");
+    if (v.batteryWarrantyMonths !== undefined && !(Number.isInteger(v.batteryWarrantyMonths) && v.batteryWarrantyMonths > 0 && v.batteryWarrantyMonths <= 120)) e("electric: bad ev.batteryWarrantyMonths (whole months, 1-120)");
     if (!(Array.isArray(v.realRangeKm) && v.realRangeKm[0] > 0 && v.realRangeKm[1] >= v.realRangeKm[0] && v.realRangeKm[1] <= v.rangeKm)) e("electric: bad ev.realRangeKm (must not exceed claimed rangeKm)");
   } else {
     if (!(b.engine?.cc > 40 && b.engine.cc < 1000)) e("bad cc");
