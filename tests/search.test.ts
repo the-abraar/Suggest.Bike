@@ -23,6 +23,14 @@ const cases: [string, string][] = [
   ["অ্যাপাচি", "tvs-apache-rtr-160-2v"],
   ["জিক্সার", "suzuki-gixxer-sf-fi-abs"],
   ["হর্নেট", "honda-hornet-2-0"],
+  ["discovar", "bajaj-discover-125"],
+  ["radier", "tvs-raider-125"],
+  ["xtream", "hero-xtreme-125r"],
+  ["ntork", "tvs-ntorq-125"],
+  ["platena", "bajaj-platina-100"],
+  ["jixer", "suzuki-gixxer-fi-abs"],
+  ["পালসার ১৬০", "bajaj-pulsar-n160"],
+  ["জিকসার", "suzuki-gixxer-fi-abs"],
 ];
 
 test("search: Banglish misspellings and Bangla script find the bike", () => {

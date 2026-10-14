@@ -1,6 +1,6 @@
 import raw from "@/data/generated/bikes.index.json";
 import networks from "@/data/networks.json";
-import type { Bike, BikeLite, BrandNetwork, Category, ScoreKey } from "./types";
+import type { Bike, BikeLite, BrandNetwork, Category, Collection, ScoreKey } from "./types";
 import { SITE } from "./site";
 
 /** Slim records for client pages. Full records: lib/bikes.server.ts (build time) or /data/bikes/<id>.json (runtime). */
@@ -24,6 +24,11 @@ export const CATEGORIES: Record<Category, { en: string; bn: string; blurb: strin
   cruiser: { en: "Cruiser", bn: "ক্রুজার", blurb: "Low seat, relaxed posture, easy miles.", blurbBn: "নিচু সিট, আরামদায়ক বসা, সহজ লম্বা পথ।" },
   classic: { en: "Classic", bn: "ক্লাসিক", blurb: "Retro charm — thump, chrome and character.", blurbBn: "রেট্রো আকর্ষণ — থাম্প, ক্রোম আর চরিত্র।" },
   scooter: { en: "Scooter", bn: "স্কুটার", blurb: "Gearless, easy, storage under the seat.", blurbBn: "গিয়ারলেস, সহজ, সিটের নিচে জায়গা।" },
+};
+
+export const COLLECTIONS: Record<Collection, { en: string; bn: string }> = {
+  legendary: { en: "Legendary", bn: "কিংবদন্তি" },
+  "old-school": { en: "Old-school", bn: "ওল্ড-স্কুল" },
 };
 
 export const SCORE_LABELS: Record<ScoreKey, { en: string; bn: string; hint: string; hintBn: string }> = {

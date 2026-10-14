@@ -51,7 +51,7 @@ for (const width of [375, 1280]) {
   await pg.keyboard.press('Enter');
   ok(`${W} quiz: Tab reaches Continue`, await tabTo(pg, 'text=^\\s*Continue'));
   await pg.keyboard.press('Enter');
-  const steps = [/Daily commute/, /Show me both/, null, /Sometimes/];
+  const steps = [/Daily commute/, /Dhaka/, /Show me both/, null, /Sometimes/];
   for (const [i, s] of steps.entries()) {
     await pg.waitForTimeout(300);
     preselected.push(`step ${i + 1} (${(await pg.locator('main h1').innerText()).slice(0, 30)}): ${(await pressedNow()).join(', ') || '-'}`);

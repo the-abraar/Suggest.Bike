@@ -5,7 +5,7 @@ import { productJsonLd } from "../src/lib/bikes";
 import bikes from "../src/data/bikes.json";
 import type { Bike } from "../src/lib/types";
 import sitemap from "../src/app/sitemap";
-import { POPULAR_COMPARISONS, pairBySlug, pairHref, pairMetadata, pairSlug } from "../src/lib/curated";
+import { POPULAR_COMPARISONS, pairBySlug, pairHref, pairMetadata, pairSlug, pairsForBike } from "../src/lib/curated";
 
 test("langHref maps EN and BN twins and keeps query and hash", () => {
   assert.equal(langHref("/", "bn"), "/bn/");
@@ -15,7 +15,9 @@ test("langHref maps EN and BN twins and keeps query and hash", () => {
   assert.equal(langHref("/bn/compare/?bikes=a,b#engine", "en"), "/compare/?bikes=a,b#engine");
   assert.equal(langHref("/bikes/bajaj-pulsar-n160/", "bn"), "/bn/bikes/bajaj-pulsar-n160/");
   assert.equal(langHref("/bn/bikes/bajaj-pulsar-n160/", "bn"), "/bn/bikes/bajaj-pulsar-n160/");
-  for (const p of ["privacy", "terms", "disclaimer", "saved", "feedback", "guide/motorcycle-fines", "guide/e-fines", "compare/a-vs-b"]) assert.equal(langHref(`/${p}/`, "bn"), `/bn/${p}/`);
+  for (const p of ["privacy", "terms", "disclaimer", "saved", "feedback", "owner", "maintenance", "maintenance/tyre-pressure", "guide/motorcycle-fines", "guide/e-fines", "compare/a-vs-b"]) {
+    assert.equal(langHref(`/${p}/`, "bn"), `/bn/${p}/`);
+  }
 });
 
 test("langHref leaves pages without a Bangla twin and non-paths alone", () => {
@@ -73,4 +75,81 @@ test("every popular comparison resolves to two bikes, with its own title and can
 test("/saved/ and /bn/saved/ stay noindex (a per-browser list)", async () => {
   const { readFileSync } = await import("node:fs");
   for (const f of ["src/app/saved/page.tsx", "src/app/bn/saved/page.tsx"]) assert.match(readFileSync(f, "utf8"), /robots: \{ index: false/, f);
+});
+
+test("pairsForBike returns matching comparisons with valid other bikes and crawlable hrefs", () => {
+  for (const [a, b] of POPULAR_COMPARISONS) {
+    const forA = pairsForBike(a);
+    const forB = pairsForBike(b);
+    assert.ok(forA.some((p) => p.other.id === b && p.href === pairHref(a, b)), `${a} missing pair for ${b}`);
+    assert.ok(forB.some((p) => p.other.id === a && p.href === pairHref(a, b)), `${b} missing pair for ${a}`);
+  }
+});
+
+test("every indexable sitemap URL has a valid /bn/ twin mapping via langHref", () => {
+  for (const entry of sitemap()) {
+    const url = entry.url.replace("https://suggest.bike", "");
+    if (!url.startsWith("/bn/")) {
+      const bn = langHref(url, "bn");
+      assert.ok(bn.startsWith("/bn/"), `${url} failed to map to /bn/ via langHref (got ${bn})`);
+    }
+  }
+});
+
+test("out/ contains zero orphan pages when built", async () => {
+  const { existsSync, readdirSync, statSync, readFileSync } = await import("node:fs");
+  const { join, relative } = await import("node:path");
+  if (!existsSync("out")) return;
+
+  function getHtmlFiles(dir: string): string[] {
+    let results: string[] = [];
+    for (const file of readdirSync(dir)) {
+      const full = join(dir, file);
+      if (statSync(full).isDirectory()) {
+        results = results.concat(getHtmlFiles(full));
+      } else if (file.endsWith(".html")) {
+        results.push(full);
+      }
+    }
+    return results;
+  }
+
+  const allHtml = getHtmlFiles("out");
+  function fileToPath(f: string) {
+    const rel = relative("out", f).replace(/\\/g, "/");
+    if (rel === "index.html") return "/";
+    if (rel.endsWith("/index.html")) return "/" + rel.slice(0, -10);
+    if (rel.endsWith(".html")) return "/" + rel.slice(0, -5);
+    return "/" + rel;
+  }
+
+  const urlToPathMap = new Map<string, string>();
+  for (const f of allHtml) {
+    let p = fileToPath(f);
+    if (!p.endsWith("/")) p = p + "/";
+    urlToPathMap.set(p, f);
+  }
+
+  const incoming = new Map<string, Set<string>>();
+  for (const p of urlToPathMap.keys()) incoming.set(p, new Set());
+
+  const hrefRegex = /href="([^"#?]+)(?:[#?][^"]*)?"/g;
+  for (const [p, f] of urlToPathMap.entries()) {
+    const content = readFileSync(f, "utf8");
+    let match;
+    while ((match = hrefRegex.exec(content)) !== null) {
+      let href = match[1];
+      if (href.startsWith("http://") || href.startsWith("https://") || href.startsWith("mailto:") || href.startsWith("tel:")) continue;
+      if (!href.startsWith("/")) continue;
+      if (!href.endsWith("/") && !href.includes(".")) href = href + "/";
+      if (incoming.has(href)) incoming.get(href)!.add(p);
+    }
+  }
+
+  const orphans: string[] = [];
+  for (const [p, inc] of incoming.entries()) {
+    if (p === "/" || p === "/bn/" || p === "/404/" || p === "/_not-found/" || p.includes("404")) continue;
+    if (inc.size === 0) orphans.push(p);
+  }
+  assert.equal(orphans.length, 0, `Found ${orphans.length} orphan pages: ${orphans.join(", ")}`);
 });

@@ -160,7 +160,9 @@
    "platina",
    "platina 100",
    "plattina",
-   "bajaj platina"
+   "bajaj platina",
+   "platena",
+   "প্লাটিনা ১০০"
   ]
  },
  {
@@ -311,7 +313,9 @@
    "প্লাটিনা এইচ গিয়ার",
    "platina 110",
    "platina h gear",
-   "platina 110 h"
+   "platina 110 h",
+   "platena",
+   "প্লাটিনা"
   ]
  },
  {
@@ -631,7 +635,9 @@
    "discover",
    "discover 125",
    "discovar",
-   "bajaj discover"
+   "bajaj discover",
+   "diskovar",
+   "ডিসকভার ১২৫"
   ],
   "usedPrice": {
    "y1": 140000,
@@ -809,7 +815,10 @@
    "বাজাজ ডিসকভার 110",
    "discover 110",
    "discover110",
-   "bajaj discover 110"
+   "bajaj discover 110",
+   "discovar",
+   "diskovar",
+   "ডিসকভার"
   ]
  },
  {
@@ -971,7 +980,12 @@
    "ns125",
    "ns 125",
    "pulsar ns 125",
-   "plusar ns125"
+   "plusar ns125",
+   "palsar",
+   "palsar ns125",
+   "plsar ns125",
+   "পালসার ১২৫",
+   "পলসার ১২৫"
   ],
   "usedPrice": {
    "y1": 150000,
@@ -1152,7 +1166,12 @@
    "pulsar 150",
    "pulser 150",
    "plusar",
-   "p150"
+   "p150",
+   "palsar",
+   "palsar 150",
+   "plsar",
+   "পলসার",
+   "পালশার"
   ],
   "usedPrice": {
    "y1": 170000,
@@ -1367,7 +1386,12 @@
    "n160",
    "pulsar n160",
    "pulser n160",
-   "n 160"
+   "n 160",
+   "palsar",
+   "palsar n160",
+   "plsar n160",
+   "পালসার ১৬০",
+   "পলসার ১৬০"
   ],
   "usedPrice": {
    "y1": 225000,
@@ -1726,7 +1750,11 @@
    "n250",
    "pulsar n250",
    "pulsar 250",
-   "pulser 250"
+   "pulser 250",
+   "palsar",
+   "palsar n250",
+   "পালসার ২৫০",
+   "পলসার ২৫০"
   ],
   "usedPrice": {
    "y1": 285000,
@@ -1896,7 +1924,11 @@
    "f250",
    "pulsar f250",
    "pulser f250",
-   "f 250"
+   "f 250",
+   "palsar",
+   "palsar f250",
+   "পালসার ২৫০",
+   "পলসার ২৫০"
   ],
   "usedPrice": {
    "y1": 300000,
@@ -2542,7 +2574,11 @@
    "raider",
    "raider 125",
    "rider 125",
-   "tvs raider"
+   "tvs raider",
+   "radier",
+   "redar",
+   "রেডার",
+   "রাইডার ১২৫"
   ],
   "usedPrice": {
    "y1": 130000,
@@ -2718,7 +2754,11 @@
    "apache 160",
    "apachi",
    "rtr 160",
-   "apache 2v"
+   "apache 2v",
+   "apachee",
+   "apasi",
+   "অ্যাপাচি ১৬০",
+   "এপাচি 2v"
   ],
   "usedPrice": {
    "y1": 165000,
@@ -2909,7 +2949,12 @@
    "apache 4v",
    "apachi 4v",
    "rtr 160 4v",
-   "apache rtr 4v"
+   "apache rtr 4v",
+   "apachi",
+   "apachee",
+   "apasi",
+   "অ্যাপাচি ১৬০",
+   "এপাচি 4v"
   ],
   "usedPrice": {
    "y1": 185000,
@@ -3113,7 +3158,9 @@
    "ntorq",
    "ntorq 125",
    "entorq",
-   "n torq"
+   "n torq",
+   "ntork",
+   "entork"
   ],
   "usedPrice": {
    "y1": 185000,
@@ -3289,7 +3336,9 @@
    "splendor",
    "splendor plus",
    "splender",
-   "splendor+"
+   "splendor+",
+   "splender plus",
+   "ইসপ্লেন্ডার"
   ],
   "image": {
    "src": "/bikes/hero-splendor-plus.webp",
@@ -3763,7 +3812,11 @@
    "xtreme 125",
    "extreme 125r",
    "hero xtreme",
-   "xtream 125r"
+   "xtream 125r",
+   "xtream",
+   "xtrim",
+   "extreme 125",
+   "এক্সট্রিম ১২৫"
   ],
   "usedPrice": {
    "y1": 155000,
@@ -6802,7 +6855,9 @@
    "fzs v4",
    "fz s",
    "fzs fi v4",
-   "fz v4"
+   "fz v4",
+   "fz-s",
+   "এফজেডএস ভি৪"
   ],
   "usedPrice": {
    "y1": 275000,
@@ -7127,7 +7182,8 @@
    "fzs hybrid",
    "fz s hybrid",
    "fz hybrid",
-   "yamaha hybrid"
+   "yamaha hybrid",
+   "fz-s hybrid"
   ],
   "outlierNote": "BD's first hybrid 150cc, priced above the conventional FZS V4 and Gixxer that set the street median; launch price ৳3,49,500, BikeBD now lists ৳3,44,500."
  },
@@ -7609,7 +7665,11 @@
    "r15 v4",
    "r15v4",
    "r15",
-   "r15m"
+   "r15m",
+   "r 15",
+   "r 15 v4",
+   "r15-v4",
+   "আর ১৫"
   ],
   "image": {
    "src": "/bikes/yamaha-r15-v4.webp",
@@ -8919,7 +8979,11 @@
    "gixxer",
    "gixer",
    "gixxer monotone",
-   "gixxer carb"
+   "gixxer carb",
+   "gixar",
+   "jixer",
+   "zikser",
+   "জিকসার"
   ],
   "usedPrice": {
    "y1": 180000,
@@ -9108,7 +9172,12 @@
    "জিক্সার ডাবল ডিস্ক",
    "gixxer carb",
    "gixxer dd",
-   "gixxer double disc"
+   "gixxer double disc",
+   "gixer",
+   "gixar",
+   "jixer",
+   "zikser",
+   "জিকসার"
   ]
  },
  {
@@ -9267,7 +9336,13 @@
    "gixxer abs",
    "gixxer fi",
    "gixer abs",
-   "gixxer fi abs"
+   "gixxer fi abs",
+   "gixer",
+   "gixar",
+   "jixer",
+   "zikser",
+   "জিকসার",
+   "gixer fi"
   ],
   "usedPrice": {
    "y1": 250000,
@@ -9466,7 +9541,11 @@
    "gixxer sf",
    "gixer sf",
    "gsf",
-   "gixxer sf abs"
+   "gixxer sf abs",
+   "gixer",
+   "gixar sf",
+   "jixer sf",
+   "জিকসার এসএফ"
   ],
   "usedPrice": {
    "y1": 300000,
@@ -9647,7 +9726,11 @@
    "gixxer 250",
    "gixer 250",
    "gixxer250",
-   "suzuki 250"
+   "suzuki 250",
+   "gixer",
+   "gixar 250",
+   "jixer 250",
+   "জিকসার ২৫০"
   ],
   "usedPrice": {
    "y1": 340000,
@@ -9817,7 +9900,11 @@
    "gixxer sf 250",
    "gixer sf 250",
    "sf 250",
-   "sf250"
+   "sf250",
+   "gixer",
+   "gixar sf 250",
+   "jixer sf 250",
+   "জিকসার এসএফ ২৫০"
   ],
   "usedPrice": {
    "y1": 355000,
@@ -10702,7 +10789,10 @@
    "royal enfield classic",
    "re classic 350",
    "classic350",
-   "enfield classic"
+   "enfield classic",
+   "classik",
+   "klasik",
+   "ক্লাসিক ৩৫০"
   ],
   "usedPrice": {
    "y1": 375000,
@@ -13036,7 +13126,10 @@
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
    "sourcePage": "https://commons.wikimedia.org/wiki/File:Honda_CG125.jpg"
-  }
+  },
+  "collections": [
+   "old-school"
+  ]
  },
  {
   "id": "yamaha-rx100",
@@ -13044,8 +13137,8 @@
   "model": "RX100",
   "category": "classic",
   "status": "used-only",
-  "priceBDT": 80000,
-  "priceNote": "Used-only classic priced on the used market; Bikroy asks range ৳20,000 (rough) to ৳1,10,000 (restored/modified), fresh-condition examples typically ৳70,000-90,000 while the median ask is ~৳45,000.",
+  "priceBDT": 45000,
+  "priceNote": "Used-only classic priced on the used market; basic-condition bikes sell around ৳35,000, the median Bikroy ask is ~৳45,000, and a top-condition restored bike reaches ~৳1,00,000 (owner-reported, approx). Fresh-looking examples often ask ৳70,000-90,000.",
   "priceAsOf": "2026-10",
   "priceSource": "https://bikroy.com/bn/ads/bangladesh/motorbikes-scooters/yamaha/rx",
   "engine": {
@@ -13174,7 +13267,7 @@
     "রিস্টোরেশন প্রজেক্ট",
     "ছোট মজার রাইড"
    ],
-   "priceNote": "Bikroy-তে চাওয়া দাম ৳28,000 (খারাপ অবস্থা) থেকে ৳1,10,000 (রিস্টোর/মডিফাইড); ফ্রেশ কন্ডিশনের বাইক সাধারণত ৳70,000-90,000।",
+   "priceNote": "বেসিক কন্ডিশনের বাইক প্রায় ৳35,000, Bikroy-তে মিডিয়ান চাওয়া দাম ~৳45,000, আর টপ কন্ডিশনের রিস্টোর বাইক প্রায় ৳1,00,000 পর্যন্ত (মালিকদের তথ্য, আনুমানিক)। ফ্রেশ দেখতে বাইকে প্রায়ই ৳70,000-90,000 চায়।",
    "partNotes": [
     null,
     null,
@@ -13198,7 +13291,10 @@
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
    "sourcePage": "https://commons.wikimedia.org/wiki/File:Yamaha_RX100_genuine.jpg"
-  }
+  },
+  "collections": [
+   "old-school"
+  ]
  },
  {
   "id": "yamaha-rx-115",
@@ -13206,8 +13302,8 @@
   "model": "RX 115",
   "category": "classic",
   "status": "used-only",
-  "priceBDT": 75000,
-  "priceNote": "Used-only classic priced on the used market; few listings, from ৳50,000 for a 2001 local-used unit up to ৳1,55,000 for an original 1992 Japanese example with full papers.",
+  "priceBDT": 95000,
+  "priceNote": "Used-only legend priced well above the RX100: a basic-condition RXS sells for about ৳70,000 (RX100 in the same state ~৳35,000) and a top-condition one can go past ৳3,00,000 (RX100 tops out near ৳1,00,000). Owner-reported, approx; Bikroy listings are few, from ৳50,000 for a 2001 local-used unit to ৳1,55,000 for an original 1992 Japanese example with papers.",
   "priceAsOf": "2026-10",
   "priceSource": "https://bikroy.com/bn/motorcycles-and-scooters/yamaha-rx-115",
   "engine": {
@@ -13243,8 +13339,8 @@
   "scores": {
    "reliability": 6,
    "mechanicFamiliarity": 7,
-   "partsAvailability": 5,
-   "resale": 7,
+   "partsAvailability": 4,
+   "resale": 9,
    "comfort": 5,
    "cityHandling": 8,
    "highway": 4,
@@ -13253,9 +13349,9 @@
    "performance": 6,
    "beginnerFriendly": 5
   },
-  "tagline": "The bigger-bore RX that two-stroke fans hunt for.",
+  "tagline": "The RXS: a rite of passage in BD, priced like one.",
   "feel": "Like the RX100 with extra mid-range shove — light, rev-happy and raw, with the classic two-stroke crackle.",
-  "quirks": "Rarer than the RX100, so parts are harder and fakes/mismatched engines common; thirsty and smoky; drum brakes; papers on older units often incomplete — verify chassis/engine numbers.",
+  "quirks": "Rarer than the RX100, so parts are harder and fakes/mismatched engines common; thirsty and smoky; drum brakes; papers on older units often incomplete — verify chassis/engine numbers. Parts run 1.5-5x RX100 prices (approx, owner-reported) and good bikes are hoarded by collectors.",
   "braking": "Drum brakes front and rear — inadequate for its acceleration.",
   "mechanicNote": "Two-stroke specialists can rebuild it, sharing many parts with the RX100, but model-specific parts are scarce and often reproduction quality.",
   "pros": [
@@ -13280,17 +13376,18 @@
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
-    "priceBDT": 350,
-    "availability": "common"
+    "priceBDT": 600,
+    "availability": "common",
+    "note": "Approx, owner-reported: RXS parts run 1.5-5x RX100 prices"
    },
    {
     "name": "Chain & sprocket set",
-    "priceBDT": 1500,
+    "priceBDT": 3000,
     "availability": "common"
    },
    {
     "name": "Air filter",
-    "priceBDT": 300,
+    "priceBDT": 1000,
     "availability": "rare"
    },
    {
@@ -13301,7 +13398,7 @@
    },
    {
     "name": "Clutch plate set",
-    "priceBDT": 1000,
+    "priceBDT": 3500,
     "availability": "rare"
    }
   ],
@@ -13311,9 +13408,9 @@
    "https://www.bikebd.com/price/yamaha-rx-s115"
   ],
   "bn": {
-   "tagline": "বড় বোরের RX, যেটা টু-স্ট্রোক ভক্তরা খুঁজে বেড়ায়।",
+   "tagline": "RXS: বাংলাদেশে বাইকপ্রেমীর রাইট অব প্যাসেজ — দামও সেরকম।",
    "feel": "RX100-এর মতোই, সাথে মিড-রেঞ্জে বাড়তি ধাক্কা — হালকা, রেভ-প্রিয় আর কাঁচা মেজাজের, সেই ক্লাসিক টু-স্ট্রোক ফটফট আওয়াজ সহ।",
-   "quirks": "RX100-এর চেয়ে দুর্লভ, তাই পার্টস পাওয়া আরো কঠিন আর নকল/অমিল ইঞ্জিন প্রচুর; তেল বেশি খায়, ধোঁয়া ছাড়ে; ড্রাম ব্রেক; পুরনো ইউনিটের কাগজ প্রায়ই অসম্পূর্ণ — চ্যাসিস/ইঞ্জিন নাম্বার মিলিয়ে নিন।",
+   "quirks": "RX100-এর চেয়ে দুর্লভ, তাই পার্টস পাওয়া আরো কঠিন আর নকল/অমিল ইঞ্জিন প্রচুর; তেল বেশি খায়, ধোঁয়া ছাড়ে; ড্রাম ব্রেক; পুরনো ইউনিটের কাগজ প্রায়ই অসম্পূর্ণ — চ্যাসিস/ইঞ্জিন নাম্বার মিলিয়ে নিন। পার্টসের দাম RX100-এর ১.৫-৫ গুণ (আনুমানিক, মালিকদের তথ্য) আর ভালো বাইক কালেক্টররা ধরে রাখে।",
    "braking": "সামনে-পেছনে ড্রাম ব্রেক — যতটা টানে তার জন্য যথেষ্ট না।",
    "mechanicNote": "টু-স্ট্রোক স্পেশালিস্টরা রিবিল্ড করতে পারে, RX100-এর অনেক পার্টস মিলে যায়, কিন্তু মডেল-স্পেসিফিক পার্টস দুর্লভ আর প্রায়ই রিপ্রোডাকশন মানের।",
    "pros": [
@@ -13333,9 +13430,9 @@
     "রিস্টোরেশন প্রজেক্ট",
     "কালেক্টর"
    ],
-   "priceNote": "লিস্টিং কম: 2001 সালের লোকাল-ইউজড ইউনিট ৳50,000 থেকে পুরো কাগজসহ 1992 সালের অরিজিনাল জাপানি বাইক ৳1,55,000 পর্যন্ত।",
+   "priceNote": "RX100-এর চেয়ে অনেক বেশি দাম: বেসিক কন্ডিশনের RXS প্রায় ৳70,000 (একই অবস্থায় RX100 ~৳35,000) আর টপ কন্ডিশনেরটা ৳3,00,000 ছাড়িয়ে যেতে পারে (RX100 সর্বোচ্চ ~৳1,00,000)। মালিকদের তথ্য, আনুমানিক; Bikroy-তে লিস্টিং কম, 2001 সালের লোকাল-ইউজড ৳50,000 থেকে পুরো কাগজসহ 1992 সালের অরিজিনাল জাপানি ৳1,55,000 পর্যন্ত।",
    "partNotes": [
-    null,
+    "আনুমানিক, মালিকদের তথ্য: RXS-এর পার্টস RX100-এর ১.৫-৫ গুণ দামি",
     null,
     null,
     "গিয়ারবক্স অয়েল চেঞ্জ; 2T অয়েল আলাদাভাবে টপ-আপ করতে হয়",
@@ -13357,7 +13454,11 @@
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
    "sourcePage": "https://commons.wikimedia.org/wiki/File:Yamaha_RX_115.jpg"
-  }
+  },
+  "collections": [
+   "legendary",
+   "old-school"
+  ]
  },
  {
   "id": "hero-honda-cbz",
@@ -13515,7 +13616,10 @@
    "license": "CC BY-SA 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
    "sourcePage": "https://commons.wikimedia.org/wiki/File:Hero_Honda_CBZ_1999_Blue1.jpg"
-  }
+  },
+  "collections": [
+   "old-school"
+  ]
  },
  {
   "id": "zontes-zt155-u",
@@ -14515,6 +14619,2882 @@
    "electric scooter",
    "ইলেকট্রিক স্কুটার",
    "ev"
+  ]
+ },
+ {
+  "id": "honda-benly-125",
+  "brand": "Honda",
+  "model": "Benly 125 (CD125T)",
+  "category": "classic",
+  "collections": [
+   "legendary",
+   "old-school"
+  ],
+  "status": "used-only",
+  "priceBDT": 180000,
+  "priceNote": "Japan-import used bike; Bangladesh ask roughly ৳1,20,000 (basic, tired) to ৳2,50,000 (clean, original or restored), approx, unverified: no Bikroy listing found, estimate from bikebd.com reference pages and Japan-import norms. Pricey for a 125 because few were imported, they are Japan-made, and collectors want original ones.",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://bikebd.com/price/honda-cd-125-t-benly-2002",
+  "engine": {
+   "cc": 125,
+   "cylinders": 2,
+   "stroke": 4,
+   "cooling": "air",
+   "fuel": "carb"
+  },
+  "powerPS": 10.9,
+  "powerRpm": 9000,
+  "torqueNm": 9.8,
+  "torqueRpm": 6500,
+  "gears": 5,
+  "topSpeedKmh": 105,
+  "mileageKmpl": [
+   30,
+   40
+  ],
+  "weightKg": 133,
+  "seatHeightMm": 760,
+  "fuelTankL": 10,
+  "brakes": {
+   "front": "drum",
+   "rear": "drum",
+   "abs": "none"
+  },
+  "tubeless": false,
+  "tyres": {
+   "front": "2.75-18",
+   "rear": "3.00-18"
+  },
+  "suspension": {
+   "front": "Telescopic fork",
+   "rear": "Twin shock"
+  },
+  "scores": {
+   "reliability": 7,
+   "mechanicFamiliarity": 5,
+   "partsAvailability": 2,
+   "resale": 8,
+   "comfort": 5,
+   "cityHandling": 7,
+   "highway": 3,
+   "pillion": 5,
+   "offroad": 2,
+   "performance": 4,
+   "beginnerFriendly": 2
+  },
+  "tagline": "A Japanese parallel-twin 125 that revs like a toy engine and turns heads.",
+  "feel": "Smooth, high-revving twin with a thin, buzzy note; light and easy to flick through traffic but it needs revs to move and feels small on the highway.",
+  "quirks": "Rare Japan import with few bikes and fewer parts; specs from bikebd (approx, unverified: seat height shown there as 1,050 mm is a data error, 760 mm here is an estimate); gear count 5 is unconfirmed; check frame and engine numbers and paperwork (BRTA registration) before paying.",
+  "braking": "Drum brakes front and rear; fine at its speed but fade on long descents.",
+  "mechanicNote": "Any Honda-trained mechanic can work on a simple air-cooled twin, but parts are mostly picked from Japan scrap or found second-hand; carb sync on the twin is a specialist job.",
+  "pros": [
+   "Smooth, refined twin",
+   "Honda build quality",
+   "Rare and collectible",
+   "Light and city-friendly"
+  ],
+  "cons": [
+   "Parts are scarce",
+   "Underpowered on highway",
+   "Paperwork risk on old imports",
+   "Expensive for a 125"
+  ],
+  "bestFor": [
+   "Collectors",
+   "Weekend riders",
+   "Honda fans"
+  ],
+  "serviceIntervalKm": 3000,
+  "avgServiceCostBDT": 1200,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 500,
+    "availability": "rare",
+    "note": "Used or aftermarket shoes, genuine hard to find"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 2500,
+    "availability": "rare",
+    "note": "Chain set usually fitted from a similar Honda"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 450,
+    "availability": "rare",
+    "note": "Cut-to-fit universal filter often used"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 700,
+    "availability": "common",
+    "note": "Standard 4T oil, ~1L"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 1800,
+    "availability": "rare",
+    "note": "Often reused or custom-matched"
+   }
+  ],
+  "sources": [
+   "https://bikebd.com/price/honda-cd-125-t-benly-2002",
+   "https://www.bikebros.co.jp/bikesearch2/1/1010661/?newold=0"
+  ],
+  "bn": {
+   "tagline": "জাপানি প্যারালাল-টুইন ১২৫, খেলনার মতো রেভ করে আর সবার নজর কাড়ে।",
+   "feel": "মসৃণ, উঁচু রেভের টুইন ইঞ্জিন; শহরে হালকা ও চটপটে কিন্তু গতি তুলতে রেভ লাগে, হাইওয়েতে ছোট মনে হয়।",
+   "quirks": "জাপান থেকে আসা দুর্লভ ইমপোর্ট, পার্টস খুব কম; স্পেক bikebd থেকে (আনুমানিক, যাচাইহীন); কেনার আগে ফ্রেম/ইঞ্জিন নম্বর আর BRTA কাগজ মিলিয়ে দেখুন।",
+   "braking": "সামনে-পেছনে ড্রাম ব্রেক; এই গতিতে চলে কিন্তু লম্বা ঢালে ফেড করে।",
+   "mechanicNote": "সাধারণ এয়ার-কুলড টুইন, Honda মেকানিকরা কাজ করতে পারেন, কিন্তু পার্টস বেশিরভাগই পুরনো/স্ক্র্যাপ থেকে; কার্ব সিঙ্কের জন্য দক্ষ কারিগর লাগে।",
+   "pros": [
+    "মসৃণ ও পরিশীলিত টুইন",
+    "Honda-র বিল্ড কোয়ালিটি",
+    "দুর্লভ ও কালেক্টর আইটেম",
+    "হালকা, শহরের জন্য ভালো"
+   ],
+   "cons": [
+    "পার্টস দুর্লভ",
+    "হাইওয়েতে দুর্বল",
+    "পুরনো ইমপোর্টের কাগজের ঝুঁকি",
+    "১২৫-এর জন্য দামি"
+   ],
+   "bestFor": [
+    "কালেক্টর",
+    "উইকএন্ড রাইডার",
+    "Honda ভক্ত"
+   ],
+   "priceNote": "আনুমানিক, যাচাইহীন: ৳১,২০,০০০ (সাধারণ) থেকে ৳২,৫০,০০০ (ভালো/রিস্টোর); জাপান ইমপোর্ট ও সংখ্যায় কম বলে দাম বেশি।",
+   "partNotes": [
+    "ব্যবহৃত বা আফটারমার্কেট শু; জেনুইন পাওয়া কঠিন",
+    "সাধারণত একই রকম Honda-র সেট লাগানো হয়",
+    "কেটে লাগানো ইউনিভার্সাল ফিল্টার",
+    "স্ট্যান্ডার্ড 4T অয়েল, প্রায় ১ লিটার",
+    "প্রায়ই পুরনোটা ব্যবহার বা ম্যাচ করানো"
+   ]
+  },
+  "aliases": [
+   "হোন্ডা বেনলি",
+   "বেনলি ১২৫",
+   "বেনলি",
+   "benly",
+   "benly 125",
+   "honda benly",
+   "cd125t",
+   "cd 125 t benly",
+   "honda bently",
+   "bently 125",
+   "honda benli"
+  ]
+ },
+ {
+  "id": "roadmaster-cd200",
+  "brand": "Honda",
+  "model": "CD200 Road Master",
+  "category": "classic",
+  "collections": [
+   "legendary",
+   "old-school"
+  ],
+  "status": "used-only",
+  "priceBDT": 250000,
+  "priceNote": "Used-only Japan import; Bangladesh ask roughly ৳1,80,000 (rough, incomplete) to ৳3,50,000 (clean or restored), approx, unverified: no BD listings found, bikebd shows only a 'global' ৳4,65,999 reference for the 1981 model. High because the CD200 twin was made only briefly, few reached Bangladesh and owners rarely sell.",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://bikebd.com/price/honda-cd-200-road-master-1981",
+  "engine": {
+   "cc": 194,
+   "cylinders": 2,
+   "stroke": 4,
+   "cooling": "air",
+   "fuel": "carb"
+  },
+  "powerPS": 16.7,
+  "powerRpm": 9000,
+  "torqueNm": 15,
+  "torqueRpm": 7500,
+  "gears": 5,
+  "topSpeedKmh": 120,
+  "mileageKmpl": [
+   28,
+   35
+  ],
+  "weightKg": 140,
+  "seatHeightMm": 780,
+  "fuelTankL": 12,
+  "brakes": {
+   "front": "drum",
+   "rear": "drum",
+   "abs": "none"
+  },
+  "tubeless": false,
+  "tyres": {
+   "front": "3.00-18",
+   "rear": "3.50-18"
+  },
+  "suspension": {
+   "front": "Telescopic fork",
+   "rear": "Twin shock"
+  },
+  "scores": {
+   "reliability": 7,
+   "mechanicFamiliarity": 5,
+   "partsAvailability": 2,
+   "resale": 9,
+   "comfort": 6,
+   "cityHandling": 6,
+   "highway": 6,
+   "pillion": 7,
+   "offroad": 2,
+   "performance": 5,
+   "beginnerFriendly": 3
+  },
+  "tagline": "Honda's twin-cylinder 200 'Roadmaster', a Japan-built rarity most riders only see in photos.",
+  "feel": "Smooth parallel twin with an easy 120 km/h cruise by old standards, softer and heavier than 125s, with a vintage riding position.",
+  "quirks": "Specs inconsistent across sources (bikebd shows 194 or 200 cc, 16.1-16.7 BHP, 121 or 140 kg); torque, seat height, tank and gear count are approx, unverified; no confirmed BD resale listings found; paperwork and engine-number checks essential.",
+  "braking": "Drums at both ends; adequate for the era but weak by today's traffic standards.",
+  "mechanicNote": "Twin-cylinder Honda simplicity means any good Honda mechanic can service it, but spares come from Japan scrap or donor bikes and may take weeks.",
+  "pros": [
+   "Rare Japan-built twin",
+   "Strong highway pace for its era",
+   "Excellent classic styling",
+   "High collector demand"
+  ],
+  "cons": [
+   "Very scarce parts",
+   "Heavy for the power",
+   "High price for the performance",
+   "Paperwork risk"
+  ],
+  "bestFor": [
+   "Collectors",
+   "Classic show riders",
+   "Long relaxed cruising"
+  ],
+  "serviceIntervalKm": 3000,
+  "avgServiceCostBDT": 1500,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 600,
+    "availability": "rare",
+    "note": "Used or aftermarket shoes"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 3000,
+    "availability": "rare",
+    "note": "Often fitted from similar Honda sizes"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 500,
+    "availability": "rare",
+    "note": "Universal filter cut to fit"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 800,
+    "availability": "common",
+    "note": "~1.2L 4T oil"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 2200,
+    "availability": "rare",
+    "note": "Often reused or custom-matched"
+   }
+  ],
+  "sources": [
+   "https://bikebd.com/price/honda-cd-200-road-master-1981",
+   "https://www.bikebd.com/price/honda-cd200-roadmaster",
+   "https://bikebd.com/blog/honda-cd200-roadmaster"
+  ],
+  "bn": {
+   "tagline": "Honda-র টুইন-সিলিন্ডার ২০০ 'রোডমাস্টার', বেশিরভাগ রাইডার শুধু ছবিতে দেখেছেন।",
+   "feel": "মসৃণ প্যারালাল টুইন, পুরনো মানে আরামদায়ক ১২০ কিমি/ঘণ্টা ক্রুজ, ১২৫-এর চেয়ে ভারী ও নরম, ভিনটেজ রাইডিং পজিশন।",
+   "quirks": "সূত্রভেদে স্পেক ভিন্ন (বাইকবিডি ১৯৪ বা ২০০ সিসি, ১২১ বা ১৪০ কেজি); টর্ক, সিট উচ্চতা, ট্যাংক, গিয়ার আনুমানিক ও যাচাইহীন; কাগজ ও ইঞ্জিন নম্বর অবশ্যই মেলান।",
+   "braking": "সামনে-পেছনে ড্রাম; তখনকার জন্য চলে, আজকের ট্রাফিকে দুর্বল।",
+   "mechanicNote": "টুইন Honda সহজ, ভালো Honda মেকানিক সার্ভিস করতে পারেন, কিন্তু পার্টস জাপানি স্ক্র্যাপ/ডোনর বাইক থেকে আনতে সপ্তাহ লাগতে পারে।",
+   "pros": [
+    "দুর্লভ জাপানি টুইন",
+    "তখনকার হিসেবে হাইওয়েতে জোরালো",
+    "চমৎকার ক্লাসিক স্টাইল",
+    "কালেক্টরদের বেশি চাহিদা"
+   ],
+   "cons": [
+    "পার্টস খুব দুর্লভ",
+    "শক্তির তুলনায় ভারী",
+    "পারফরম্যান্সের তুলনায় দাম বেশি",
+    "কাগজের ঝুঁকি"
+   ],
+   "bestFor": [
+    "কালেক্টর",
+    "ক্লাসিক শো রাইডার",
+    "আরামদায়ক লং ক্রুজ"
+   ],
+   "priceNote": "আনুমানিক, যাচাইহীন: ৳১,৮০,০০০ (সাধারণ) থেকে ৳৩,৫০,০০০ (ভালো/রিস্টোর); সীমিত সংখ্যক ইমপোর্ট ও মালিকরা বিক্রি করেন না বলে দাম বেশি।",
+   "partNotes": [
+    "ব্যবহৃত বা আফটারমার্কেট শু",
+    "সাধারণত কাছাকাছি সাইজের Honda সেট",
+    "ইউনিভার্সাল ফিল্টার কেটে লাগানো",
+    "প্রায় ১.২ লিটার 4T অয়েল",
+    "প্রায়ই পুরনোটা বা ম্যাচ করানো"
+   ]
+  },
+  "aliases": [
+   "রোডমাস্টার",
+   "হোন্ডা রোডমাস্টার",
+   "সিডি ২০০",
+   "cd200",
+   "cd 200",
+   "road master",
+   "roadmaster",
+   "honda roadmaster",
+   "honda cd200",
+   "honda road mastar",
+   "rodmaster"
+  ]
+ },
+ {
+  "id": "honda-rebel-250",
+  "brand": "Honda",
+  "model": "Rebel 250 (CMX250)",
+  "category": "cruiser",
+  "collections": [
+   "legendary"
+  ],
+  "status": "used-only",
+  "priceBDT": 240000,
+  "priceNote": "Used-only Japan import; Bangladesh ask roughly ৳1,80,000 (older, basic) to ৳3,00,000 (clean, low km), approx, unverified: bikebd gives ৳2,35,990 on its 2010 page (marked discontinued) and 'global' figures ৳1.9-8 lakh. Priced above typical used 250s because few were imported and it is the only small Honda cruiser many riders can find.",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://bikebd.com/price/honda-250-rebel-2010",
+  "engine": {
+   "cc": 234,
+   "cylinders": 2,
+   "stroke": 4,
+   "cooling": "air",
+   "fuel": "carb"
+  },
+  "powerPS": 18,
+  "powerRpm": 8500,
+  "torqueNm": 19,
+  "torqueRpm": 6500,
+  "gears": 5,
+  "topSpeedKmh": 130,
+  "mileageKmpl": [
+   20,
+   28
+  ],
+  "weightKg": 139,
+  "seatHeightMm": 690,
+  "fuelTankL": 9.8,
+  "brakes": {
+   "front": "disc",
+   "rear": "drum",
+   "abs": "none"
+  },
+  "tubeless": true,
+  "tyres": {
+   "front": "3.00-16",
+   "rear": "130/90-15"
+  },
+  "suspension": {
+   "front": "Telescopic fork",
+   "rear": "Twin shock"
+  },
+  "scores": {
+   "reliability": 8,
+   "mechanicFamiliarity": 5,
+   "partsAvailability": 3,
+   "resale": 7,
+   "comfort": 7,
+   "cityHandling": 7,
+   "highway": 5,
+   "pillion": 6,
+   "offroad": 3,
+   "performance": 2,
+   "beginnerFriendly": 4
+  },
+  "tagline": "The friendly low cruiser that taught a generation to ride, rare in Bangladesh.",
+  "feel": "Very low seat, light controls and a smooth twin make it easy for shorter riders; stable and comfortable cruising at 70-90 km/h.",
+  "quirks": "Used examples here are the older air-cooled 234cc twin (1985-2016 style), not the new liquid-cooled 249cc Rebel 250 (bikebd says that one is not sold in BD); bikebd data is inconsistent (234 vs 250 cc, power 0 on some pages); specs are approx, unverified; check year and condition.",
+  "braking": "Single front disc and rear drum; adequate, no ABS on older units.",
+  "mechanicNote": "Simple air-cooled twin that Honda-trained mechanics understand; wear parts are cheaper than for other imports but body and trim parts are rare.",
+  "pros": [
+   "Very beginner-friendly handling",
+   "Low seat",
+   "Reliable Honda twin",
+   "Cruiser looks"
+  ],
+  "cons": [
+   "Few in Bangladesh",
+   "Parts scarce",
+   "Modest power",
+   "Old units need paperwork care"
+  ],
+  "bestFor": [
+   "Shorter riders",
+   "Cruiser beginners",
+   "Relaxed city and highway rides"
+  ],
+  "serviceIntervalKm": 3000,
+  "avgServiceCostBDT": 1400,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 600,
+    "availability": "rare",
+    "note": "Shoes or pads from similar Honda"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 2800,
+    "availability": "rare"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 450,
+    "availability": "rare",
+    "note": "Universal fit"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 800,
+    "availability": "common",
+    "note": "~1.3L 4T oil"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 2000,
+    "availability": "rare",
+    "note": "Often custom-matched"
+   }
+  ],
+  "sources": [
+   "https://bikebd.com/price/honda-250-rebel-2010",
+   "https://bikebd.com/price/honda-rebel-250-2007",
+   "https://bikebd.com/price/honda-rebel-250"
+  ],
+  "bn": {
+   "tagline": "সদয় নিচু ক্রুজার, বাংলাদেশে দুর্লভ।",
+   "feel": "খুব নিচু সিট, হালকা কন্ট্রোল আর মসৃণ টুইন; খাটো রাইডারদের জন্য সহজ, ৭০-৯০ কিমি/ঘণ্টায় আরামদায়ক ও স্থির।",
+   "quirks": "এখানে ব্যবহৃত বাইক সাধারণত পুরনো এয়ার-কুলড ২৩৪সিসি টুইন, নতুন লিকুইড-কুলড ২৪৯সিসি নয় (বাইকবিডি বলছে সেটা বিডিতে বিক্রি হয় না); তথ্য অসঙ্গত; স্পেক আনুমানিক ও যাচাইহীন।",
+   "braking": "সামনে সিঙ্গেল ডিস্ক, পেছনে ড্রাম; পুরনোগুলোতে ABS নেই।",
+   "mechanicNote": "সহজ এয়ার-কুলড টুইন, Honda মেকানিকরা বোঝেন; ওয়্যার পার্টস তুলনামূলক সস্তা, কিন্তু বডি/ট্রিম পার্টস দুর্লভ।",
+   "pros": [
+    "নতুনদের জন্য সহজ হ্যান্ডলিং",
+    "নিচু সিট",
+    "নির্ভরযোগ্য Honda টুইন",
+    "ক্রুজার লুক"
+   ],
+   "cons": [
+    "বাংলাদেশে কম",
+    "পার্টস দুর্লভ",
+    "সীমিত শক্তি",
+    "পুরনোগুলোর কাগজ দেখে নিন"
+   ],
+   "bestFor": [
+    "খাটো রাইডার",
+    "ক্রুজারে নতুন",
+    "আরামদায়ক শহর ও হাইওয়ে"
+   ],
+   "priceNote": "আনুমানিক, যাচাইহীন: ৳১,৮০,০০০ থেকে ৳৩,০০,০০০; বাইকবিডি-তে ২০১০ মডেল ৳২,৩৫,৯৯০।",
+   "partNotes": [
+    "সাধারণত কাছাকাছি Honda-র পার্টস",
+    null,
+    "ইউনিভার্সাল ফিট",
+    "প্রায় ১.৩ লিটার 4T অয়েল",
+    "প্রায়ই ম্যাচ করানো"
+   ]
+  },
+  "aliases": [
+   "হোন্ডা রেবেল",
+   "রেবেল ২৫০",
+   "রেবেল",
+   "rebel",
+   "rebel 250",
+   "honda rebel",
+   "cmx250",
+   "cmx 250 rebel",
+   "honda rebal",
+   "rebal 250",
+   "honda 250 rebel"
+  ]
+ },
+ {
+  "status": "used-only",
+  "priceAsOf": "2026-10",
+  "tubeless": false,
+  "serviceIntervalKm": 2000,
+  "id": "honda-cbx-750",
+  "brand": "Honda",
+  "model": "CBX 750",
+  "variant": "CBX 750F (1984-88 import)",
+  "category": "sport",
+  "collections": [
+   "legendary"
+  ],
+  "priceBDT": 600000,
+  "priceNote": "Approx, unverified: no CBX 750 ad was live on Bikroy when checked. Rough range ৳3,50,000 (tired, incomplete) to ৳10,00,000 (restored). BikeBD lists 1986-88 CBX 750F near ৳10,00,000 but marks it 'not available in Bangladesh' and the figure is a global price. Pricey because only a handful of reconditioned imports exist, parts must be sourced abroad and buyers are collectors.",
+  "priceSource": "https://bikebd.com/price/honda-cbx-750-f-1986",
+  "distributor": "None (private/reconditioned import)",
+  "assembledInBD": false,
+  "engine": {
+   "cc": 748,
+   "cylinders": 4,
+   "stroke": 4,
+   "cooling": "air",
+   "valves": 16,
+   "fuel": "carb"
+  },
+  "powerPS": 91,
+  "powerRpm": 9500,
+  "torqueNm": 68,
+  "torqueRpm": 8000,
+  "gears": 5,
+  "topSpeedKmh": 200,
+  "mileageKmpl": [
+   14,
+   18
+  ],
+  "weightKg": 220,
+  "seatHeightMm": 790,
+  "fuelTankL": 20,
+  "brakes": {
+   "front": "disc",
+   "rear": "disc",
+   "abs": "none"
+  },
+  "tyres": {
+   "front": "110/90-16",
+   "rear": "130/80-18"
+  },
+  "suspension": {
+   "front": "Telescopic fork",
+   "rear": "Twin shock"
+  },
+  "scores": {
+   "reliability": 6,
+   "mechanicFamiliarity": 2,
+   "partsAvailability": 1,
+   "resale": 8,
+   "comfort": 6,
+   "cityHandling": 3,
+   "highway": 8,
+   "pillion": 6,
+   "offroad": 1,
+   "performance": 9,
+   "beginnerFriendly": 1
+  },
+  "tagline": "The 80s Honda four-cylinder superbike almost nobody in Bangladesh can find or afford.",
+  "feel": "Smooth, loud inline-four with big-bike pull for its era, heavy and wide in Dhaka traffic but relaxed and fast on open highway.",
+  "quirks": "Specs, power and tyre sizes are approx, unverified for BD units. Carbs (4) need expert sync; 16-valve DOHC head and 40-year-old rubber/electrics are fragile. Very few exist in BD, so history and registration papers need checking. Heavy and tall for most riders.",
+  "braking": "Disc brakes front and rear, adequate for the era but weak by modern standards; old fluid and seals are a common issue.",
+  "mechanicNote": "Almost no mechanic outside a few Dhaka big-bike workshops has seen one; carb sync and valve work are specialist jobs. Genuine parts must be imported or cannibalised from other CBX/CB units.",
+  "pros": [
+   "Real four-cylinder 80s superbike sound",
+   "Strong collector appeal",
+   "Comfortable high-speed cruiser"
+  ],
+  "cons": [
+   "Parts nearly impossible to find",
+   "Very heavy and wide for city use",
+   "Few qualified mechanics",
+   "High purchase price for age"
+  ],
+  "bestFor": [
+   "Collectors",
+   "Experienced big-bike owners",
+   "Weekend highway rides"
+  ],
+  "avgServiceCostBDT": 6000,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 2500,
+    "availability": "rare",
+    "note": "Pads from other Honda/aftermarket fitments; approx"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 9000,
+    "availability": "rare",
+    "note": "Imported 530-class chain kit; approx"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 2500,
+    "availability": "rare"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 3500,
+    "availability": "common",
+    "note": "4L of 10W-40; engine oil only"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 9000,
+    "availability": "rare",
+    "note": "Approx; often reconditioned plates"
+   }
+  ],
+  "sources": [
+   "https://bikebd.com/price/honda-cbx-750-f-1986",
+   "https://bikebd.com/price/honda-cbx-750-f-1987",
+   "https://bikebd.com/price/honda-cbx-750-boldor-1986",
+   "https://bikroy.com/bn/motorcycles-and-scooters/honda-cbx"
+  ],
+  "bn": {
+   "tagline": "৮০-র দশকের হন্ডা ফোর-সিলিন্ডার সুপারবাইক, যেটা বাংলাদেশে খুঁজে পাওয়া বা কেনা প্রায় অসম্ভব।",
+   "feel": "মসৃণ, জোরালো ইনলাইন-ফোর, সেই যুগের জন্য বিশাল টান; ঢাকার ট্রাফিকে ভারী ও চওড়া, কিন্তু খোলা হাইওয়েতে আরামদায়ক ও দ্রুত।",
+   "quirks": "স্পেক, পাওয়ার ও টায়ারের মাপ আনুমানিক, বাংলাদেশের ইউনিটের জন্য যাচাই করা নয়। চারটি কার্বুরেটর সিঙ্ক করতে বিশেষজ্ঞ লাগে; ৪০ বছরের পুরনো রাবার ও ইলেকট্রিক্স নাজুক। বাংলাদেশে খুব কম আছে, তাই কাগজপত্র ভালো করে দেখুন। বেশিরভাগ রাইডারের জন্য ভারী ও উঁচু।",
+   "braking": "সামনে-পেছনে ডিস্ক ব্রেক, সেই যুগের জন্য ঠিকঠাক কিন্তু আজকের মানে দুর্বল; পুরনো ফ্লুইড ও সিল সাধারণ সমস্যা।",
+   "mechanicNote": "ঢাকার হাতে গোনা বিগ-বাইক ওয়ার্কশপ ছাড়া কোনো মেকানিক এটা দেখেননি; কার্ব সিঙ্ক ও ভালভের কাজ বিশেষজ্ঞের। জেনুইন পার্টস বিদেশ থেকে আনতে হয় বা অন্য CBX/CB থেকে খুলতে হয়।",
+   "pros": [
+    "আসল ফোর-সিলিন্ডার ৮০-র দশকের সুপারবাইকের শব্দ",
+    "কালেক্টরদের কাছে দারুণ চাহিদা",
+    "হাইস্পিডে আরামদায়ক ক্রুজার"
+   ],
+   "cons": [
+    "পার্টস প্রায় অসম্ভব",
+    "শহরের জন্য খুব ভারী ও চওড়া",
+    "দক্ষ মেকানিক কম",
+    "বয়সের তুলনায় দাম বেশি"
+   ],
+   "bestFor": [
+    "কালেক্টর",
+    "অভিজ্ঞ বিগ-বাইক রাইডার",
+    "সপ্তাহান্তে হাইওয়ে রাইড"
+   ],
+   "priceNote": "আনুমানিক, যাচাই করা নয়: যাচাইয়ের সময় Bikroy-তে কোনো CBX 750 বিজ্ঞাপন ছিল না। মোটামুটি ৳৩,৫০,০০০ (জীর্ণ) থেকে ৳১০,০০,০০০ (রিস্টোর)। হাতে গোনা রিকন ইমপোর্ট, বিদেশ থেকে পার্টস আনতে হয় ও ক্রেতা কালেক্টর, তাই দাম চড়া।",
+   "partNotes": [
+    "অন্য Honda/আফটারমার্কেট ফিটমেন্ট; আনুমানিক",
+    "আমদানিকৃত চেইন কিট; আনুমানিক",
+    null,
+    "৪ লিটার 10W-40; শুধু ইঞ্জিন অয়েল",
+    "আনুমানিক; প্রায়ই রিকন প্লেট"
+   ]
+  },
+  "aliases": [
+   "হোন্ডা সিবিএক্স ৭৫০",
+   "সিবিএক্স ৭৫০",
+   "cbx750",
+   "cbx 750",
+   "honda cbx750f",
+   "cbx 750f",
+   "honda cbx",
+   "hunda cbx 750",
+   "সিবিএক্স"
+  ]
+ },
+ {
+  "status": "used-only",
+  "priceAsOf": "2026-10",
+  "tubeless": false,
+  "serviceIntervalKm": 2000,
+  "id": "honda-cbx-600p",
+  "brand": "Honda",
+  "model": "CBX 600P",
+  "variant": "Name as used by the user; likely a 1980s CBX 550/600-class four import (unconfirmed)",
+  "category": "sport",
+  "collections": [
+   "legendary"
+  ],
+  "priceBDT": 350000,
+  "priceNote": "Approx, unverified: no 'CBX 600P' listing found anywhere. BikeBD lists a 'Honda CBX 600 E 1983' at ৳4,75,999 (global price, 'not available in Bangladesh'). Estimated BD used range ৳2,50,000 (rough) to ৳6,00,000 (restored). Expensive for its age because it is a rare reconditioned import with no local parts supply.",
+  "priceSource": "https://bikebd.com/price/honda-cbx-600-e-1983",
+  "distributor": "None (private/reconditioned import)",
+  "assembledInBD": false,
+  "engine": {
+   "cc": 600,
+   "cylinders": 4,
+   "stroke": 4,
+   "cooling": "air",
+   "valves": 16,
+   "fuel": "carb"
+  },
+  "powerPS": 70,
+  "powerRpm": 9500,
+  "torqueNm": 55,
+  "torqueRpm": 8000,
+  "gears": 5,
+  "topSpeedKmh": 185,
+  "mileageKmpl": [
+   15,
+   20
+  ],
+  "weightKg": 165,
+  "seatHeightMm": 790,
+  "fuelTankL": 18,
+  "brakes": {
+   "front": "disc",
+   "rear": "disc",
+   "abs": "none"
+  },
+  "tyres": {
+   "front": "110/90-16",
+   "rear": "130/80-18"
+  },
+  "suspension": {
+   "front": "Telescopic fork",
+   "rear": "Twin shock"
+  },
+  "scores": {
+   "reliability": 6,
+   "mechanicFamiliarity": 2,
+   "partsAvailability": 1,
+   "resale": 7,
+   "comfort": 6,
+   "cityHandling": 4,
+   "highway": 7,
+   "pillion": 5,
+   "offroad": 1,
+   "performance": 8,
+   "beginnerFriendly": 2
+  },
+  "tagline": "A rare 80s Honda four-cylinder import whose exact model name even sellers argue over.",
+  "feel": "Smooth inline-four with a sporty, high-revving character; lighter than the 750 but still big and thirsty next to any modern 150cc.",
+  "quirks": "Identity unconfirmed: 'CBX 600P' is not a name found in BikeBD or Bikroy; it may be a CBX 550F/600-class import or a seller label. Power, torque and tyre figures are approx, unverified (weight and tank from BikeBD's CBX 600 E page). Verify engine and frame numbers before buying; carbs and 40-year-old electrics need specialist care.",
+  "braking": "Disc brakes front and rear, decent for the era but old seals and fluid often need a full rebuild.",
+  "mechanicNote": "Only a few Dhaka big-bike mechanics can sync four carbs and service the DOHC head. Parts are cannibalised from donors or imported, so expect waits.",
+  "pros": [
+   "Four-cylinder sound and smoothness",
+   "Rare, collector appeal",
+   "Lighter than a 750"
+  ],
+  "cons": [
+   "Model identity and papers hard to verify",
+   "Parts nearly unobtainable",
+   "Thirsty and heavy for city use",
+   "Few mechanics"
+  ],
+  "bestFor": [
+   "Collectors",
+   "Experienced enthusiasts",
+   "Weekend rides"
+  ],
+  "avgServiceCostBDT": 5500,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 2200,
+    "availability": "rare",
+    "note": "Approx; pads from other Honda fitments"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 8000,
+    "availability": "rare",
+    "note": "Approx; imported chain kit"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 2200,
+    "availability": "rare"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 3200,
+    "availability": "common",
+    "note": "Engine oil only"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 8000,
+    "availability": "rare",
+    "note": "Approx"
+   }
+  ],
+  "sources": [
+   "https://bikebd.com/price/honda-cbx-600-e-1983",
+   "https://bikroy.com/bn/motorcycles-and-scooters/honda-cbx"
+  ],
+  "bn": {
+   "tagline": "৮০-র দশকের বিরল হন্ডা ফোর-সিলিন্ডার ইমপোর্ট, যার সঠিক মডেল নাম নিয়ে বিক্রেতারাও একমত নন।",
+   "feel": "মসৃণ ইনলাইন-ফোর, স্পোর্টি ও হাই-রিভিং; ৭৫০-র চেয়ে হালকা কিন্তু আজকের যেকোনো ১৫০ সিসির তুলনায় বড় ও তেলখেকো।",
+   "quirks": "মডেল নিশ্চিত নয়: BikeBD বা Bikroy-তে 'CBX 600P' নাম পাওয়া যায়নি; এটি CBX 550F/600-শ্রেণির ইমপোর্ট বা বিক্রেতার দেওয়া নাম হতে পারে। পাওয়ার, টর্ক ও টায়ারের মাপ আনুমানিক, যাচাই করা নয়। কেনার আগে ইঞ্জিন ও ফ্রেম নম্বর মেলান; কার্ব ও পুরনো ইলেকট্রিক্সে বিশেষজ্ঞ লাগে।",
+   "braking": "সামনে-পেছনে ডিস্ক ব্রেক, সেই যুগের জন্য ভালো কিন্তু পুরনো সিল ও ফ্লুইডে প্রায়ই পুরো রিবিল্ড লাগে।",
+   "mechanicNote": "চারটি কার্ব সিঙ্ক ও DOHC হেড সার্ভিস করতে পারেন ঢাকার হাতে গোনা বিগ-বাইক মেকানিক। পার্টস ডোনার বাইক থেকে বা আমদানি করে আনতে হয়, তাই অপেক্ষা করতে হয়।",
+   "pros": [
+    "ফোর-সিলিন্ডারের শব্দ ও মসৃণতা",
+    "বিরল, কালেক্টরদের পছন্দ",
+    "৭৫০-র চেয়ে হালকা"
+   ],
+   "cons": [
+    "মডেল ও কাগজপত্র যাচাই কঠিন",
+    "পার্টস প্রায় অমিল",
+    "শহরের জন্য ভারী ও তেলখেকো",
+    "মেকানিক কম"
+   ],
+   "bestFor": [
+    "কালেক্টর",
+    "অভিজ্ঞ বাইকপ্রেমী",
+    "সপ্তাহান্তের রাইড"
+   ],
+   "priceNote": "আনুমানিক, যাচাই করা নয়: 'CBX 600P' নামে কোনো বিজ্ঞাপন পাওয়া যায়নি। BikeBD-তে 'CBX 600 E 1983' ৳৪,৭৫,৯৯৯ (গ্লোবাল দাম)। আনুমানিক ব্যবহৃত দাম ৳২,৫০,০০০ থেকে ৳৬,০০,০০০ (রিস্টোর)। বিরল রিকন ইমপোর্ট ও স্থানীয় পার্টস নেই, তাই দাম বেশি।",
+   "partNotes": [
+    "আনুমানিক; অন্য Honda-র প্যাড",
+    "আনুমানিক; আমদানি করা চেইন কিট",
+    null,
+    "শুধু ইঞ্জিন অয়েল",
+    "আনুমানিক"
+   ]
+  },
+  "aliases": [
+   "হোন্ডা সিবিএক্স ৬০০",
+   "সিবিএক্স ৬০০পি",
+   "cbx 600",
+   "cbx600p",
+   "cbx 600p",
+   "cbx600",
+   "honda cbx 600",
+   "cbx 550",
+   "honda cbx 550f",
+   "hunda cbx600"
+  ]
+ },
+ {
+  "status": "used-only",
+  "priceAsOf": "2026-10",
+  "tubeless": false,
+  "serviceIntervalKm": 1500,
+  "id": "yamaha-rd350",
+  "brand": "Yamaha",
+  "model": "RD350",
+  "variant": "Rajdoot RD350 (Indian-built, as BikeBD lists)",
+  "category": "classic",
+  "collections": [
+   "legendary",
+   "old-school"
+  ],
+  "priceBDT": 350000,
+  "priceNote": "Approx, unverified: BikeBD shows ৳0 (discontinued) and says it was never officially launched in Bangladesh; no live ad found. Estimated ৳2,00,000 (rough/non-original) to ৳6,00,000+ (restored, original). Pricey because very few exist, original Yamaha twin-cylinder parts are scarce and collectors drive demand.",
+  "priceSource": "https://bikebd.com/price/yamaha-rajdoot-rd350",
+  "distributor": "None (private import)",
+  "assembledInBD": false,
+  "engine": {
+   "cc": 347,
+   "cylinders": 2,
+   "stroke": 2,
+   "cooling": "air",
+   "fuel": "carb"
+  },
+  "powerPS": 27,
+  "powerRpm": 6000,
+  "torqueNm": 30.4,
+  "torqueRpm": 5500,
+  "gears": 6,
+  "topSpeedKmh": 150,
+  "mileageKmpl": [
+   20,
+   28
+  ],
+  "weightKg": 155,
+  "seatHeightMm": 790,
+  "fuelTankL": 16,
+  "brakes": {
+   "front": "drum",
+   "rear": "drum",
+   "abs": "none"
+  },
+  "tyres": {
+   "front": "3.00-18",
+   "rear": "3.75-18"
+  },
+  "suspension": {
+   "front": "Telescopic fork",
+   "rear": "Twin shock"
+  },
+  "scores": {
+   "reliability": 5,
+   "mechanicFamiliarity": 3,
+   "partsAvailability": 2,
+   "resale": 9,
+   "comfort": 5,
+   "cityHandling": 5,
+   "highway": 6,
+   "pillion": 5,
+   "offroad": 2,
+   "performance": 8,
+   "beginnerFriendly": 2
+  },
+  "tagline": "The two-stroke twin legend, the rarest of the old Yamaha cult in Bangladesh.",
+  "feel": "Violent two-stroke twin power band and a screaming exhaust note; fast for its weight but demanding, with a light front end and old-school handling.",
+  "quirks": "Specs from BikeBD (27 BHP; the factory RD350 made more), top speed ~180 claimed, ~150 here is my approx; seat height approx, unverified. Rare in BD with many half-original builds; two carbs and 2T oil injection or premix need care; smoky; plug fouling; police scrutiny of loud two-strokes in some areas.",
+  "braking": "Drum brakes front and rear per BikeBD's Rajdoot spec, weak for the pace; some imported units have a front disc.",
+  "mechanicNote": "Two-stroke RX/RD mechanics exist in Dhaka and a few cities, but a twin is rarer to tune than an RX100. Genuine cylinders, crankshafts and pistons are scarce; most parts are reproduction or from India.",
+  "pros": [
+   "Iconic two-stroke twin",
+   "Strong collector value",
+   "Very quick for its weight",
+   "Simple mechanicals to rebuild"
+  ],
+  "cons": [
+   "Extremely rare, parts scarce",
+   "Smoky and thirsty",
+   "Weak drum brakes",
+   "Hard to verify originality"
+  ],
+  "bestFor": [
+   "Collectors",
+   "Two-stroke enthusiasts",
+   "Restoration projects"
+  ],
+  "avgServiceCostBDT": 1800,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 600,
+    "availability": "rare",
+    "note": "Approx; shoes from similar Yamaha/Rajdoot fitments"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 3000,
+    "availability": "rare",
+    "note": "Approx"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 500,
+    "availability": "rare"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 700,
+    "availability": "common",
+    "note": "Gearbox oil only; 2T oil topped up separately"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 2500,
+    "availability": "rare",
+    "note": "Approx"
+   }
+  ],
+  "sources": [
+   "https://bikebd.com/price/yamaha-rajdoot-rd350",
+   "https://bikebd.com/price/yamaha-rajdoot-rd350/specifications",
+   "https://bikroy.com/bn/motorcycles-and-scooters/yamaha"
+  ],
+  "bn": {
+   "tagline": "টু-স্ট্রোক টুইন কিংবদন্তি, বাংলাদেশের পুরনো Yamaha-পন্থীদের মধ্যে সবচেয়ে বিরল।",
+   "feel": "টু-স্ট্রোক টুইনের তীব্র পাওয়ার ব্যান্ড আর চিৎকারের মতো এক্সহস্ট; ওজনের তুলনায় দ্রুত কিন্তু রাইড করা কঠিন, সামনের দিক হালকা।",
+   "quirks": "স্পেক BikeBD থেকে (২৭ BHP; আসল ফ্যাক্টরি RD350-র পাওয়ার বেশি), টপ স্পিড ও সিট উচ্চতা আনুমানিক, যাচাই করা নয়। বাংলাদেশে খুব বিরল, অনেকগুলো অর্ধেক আসল; দুটি কার্ব ও 2T অয়েলের যত্ন লাগে; ধোঁয়া, প্লাগ ফাউলিং; কিছু এলাকায় জোরালো টু-স্ট্রোক নিয়ে পুলিশি নজর।",
+   "braking": "BikeBD-র Rajdoot স্পেক অনুযায়ী সামনে-পেছনে ড্রাম ব্রেক, গতির তুলনায় দুর্বল; কিছু ইমপোর্টে সামনে ডিস্ক থাকে।",
+   "mechanicNote": "RX/RD-র টু-স্ট্রোক মেকানিক ঢাকা ও কয়েকটি শহরে আছেন, তবে টুইন টিউন করা RX100-র চেয়ে কঠিন। জেনুইন সিলিন্ডার, ক্র্যাঙ্কশ্যাফট ও পিস্টন দুর্লভ; বেশিরভাগ পার্টস রিপ্রোডাকশন বা ভারত থেকে আনা।",
+   "pros": [
+    "আইকনিক টু-স্ট্রোক টুইন",
+    "কালেক্টর ভ্যালু বেশি",
+    "ওজনের তুলনায় খুব দ্রুত",
+    "ইঞ্জিন রিবিল্ড সহজ"
+   ],
+   "cons": [
+    "অত্যন্ত বিরল, পার্টস দুর্লভ",
+    "ধোঁয়া ও তেল বেশি",
+    "দুর্বল ড্রাম ব্রেক",
+    "আসলত্ব যাচাই কঠিন"
+   ],
+   "bestFor": [
+    "কালেক্টর",
+    "টু-স্ট্রোক প্রেমী",
+    "রিস্টোরেশন প্রজেক্ট"
+   ],
+   "priceNote": "আনুমানিক, যাচাই করা নয়: BikeBD-তে দাম ৳০ (বন্ধ) ও বাংলাদেশে অফিসিয়ালি আসেনি বলা আছে; কোনো লাইভ বিজ্ঞাপন পাইনি। আনুমানিক ৳২,০০,০০০ (জীর্ণ) থেকে ৳৬,০০,০০০+ (রিস্টোর)। খুব কম আছে, আসল পার্টস দুর্লভ ও কালেক্টরদের চাহিদা, তাই দাম বেশি।",
+   "partNotes": [
+    "আনুমানিক; একই ধরনের Yamaha/Rajdoot শু",
+    "আনুমানিক",
+    null,
+    "শুধু গিয়ারবক্স অয়েল; 2T অয়েল আলাদা",
+    "আনুমানিক"
+   ]
+  },
+  "aliases": [
+   "ইয়ামাহা আরডি ৩৫০",
+   "আরডি ৩৫০",
+   "আরডি৩৫০",
+   "rd350",
+   "rd 350",
+   "yamaha rd 350",
+   "rajdoot rd350",
+   "yamha rd350",
+   "রাজদূত"
+  ]
+ },
+ {
+  "status": "used-only",
+  "priceAsOf": "2026-10",
+  "tubeless": false,
+  "serviceIntervalKm": 1500,
+  "id": "suzuki-ax100",
+  "brand": "Suzuki",
+  "model": "AX-100",
+  "category": "classic",
+  "collections": [
+   "old-school"
+  ],
+  "priceBDT": 45000,
+  "priceNote": "Approx, unverified: BikeBD shows ৳0 (discontinued) and no AX100 ad appeared on Bikroy's Suzuki page when checked. Estimated ৳25,000 (rough, non-running) to ৳70,000 (clean, restored). Not rare like the CBX/RD, but clean original units are fading and 2-stroke popularity pushes good ones up.",
+  "priceSource": "https://bikebd.com/price/suzuki-ax100",
+  "distributor": "Suzuki (old import/assembly; Rancon is the current distributor)",
+  "assembledInBD": false,
+  "engine": {
+   "cc": 98,
+   "cylinders": 1,
+   "stroke": 2,
+   "cooling": "air",
+   "fuel": "carb"
+  },
+  "powerPS": 8,
+  "powerRpm": 7500,
+  "torqueNm": 9.8,
+  "torqueRpm": 6000,
+  "gears": 4,
+  "topSpeedKmh": 90,
+  "mileageKmpl": [
+   30,
+   40
+  ],
+  "weightKg": 100,
+  "seatHeightMm": 770,
+  "fuelTankL": 10,
+  "brakes": {
+   "front": "drum",
+   "rear": "drum",
+   "abs": "none"
+  },
+  "tyres": {
+   "front": "2.75-17",
+   "rear": "3.00-17"
+  },
+  "suspension": {
+   "front": "Telescopic fork",
+   "rear": "Twin shock"
+  },
+  "scores": {
+   "reliability": 6,
+   "mechanicFamiliarity": 7,
+   "partsAvailability": 4,
+   "resale": 6,
+   "comfort": 5,
+   "cityHandling": 8,
+   "highway": 4,
+   "pillion": 5,
+   "offroad": 4,
+   "performance": 5,
+   "beginnerFriendly": 6
+  },
+  "tagline": "The light, simple 100cc two-stroke that is a cheap way into old-school riding.",
+  "feel": "Light, zippy and noisy, with a sudden two-stroke surge at higher revs; feels quick in town but gets breathless on highways.",
+  "quirks": "Power (7.88 BHP) from BikeBD; torque, weight, seat and tyre sizes are approx, unverified. Premix/2T oil, smoke and fouled plugs common; most units 25+ years old with mixed parts; some areas police loud two-strokes.",
+  "braking": "Drum brakes front and rear, adequate for the weight but fade when hot.",
+  "mechanicNote": "Two-stroke mechanics are fairly common and the engine is simple; genuine Suzuki parts are scarce so repro and cross-fit parts are used.",
+  "pros": [
+   "Cheap to buy and run",
+   "Simple, rebuildable engine",
+   "Light and agile",
+   "Old-school two-stroke character"
+  ],
+  "cons": [
+   "Smoky and needs 2T oil",
+   "Weak highway ability",
+   "Old units with unknown history",
+   "Genuine parts scarce"
+  ],
+  "bestFor": [
+   "Budget old-school fans",
+   "Short city rides",
+   "First restoration project"
+  ],
+  "avgServiceCostBDT": 700,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 300,
+    "availability": "common",
+    "note": "Approx; drum shoes"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 1300,
+    "availability": "common",
+    "note": "Approx"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 200,
+    "availability": "common"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 400,
+    "availability": "everywhere",
+    "note": "Gearbox oil; 2T oil topped up separately"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 800,
+    "availability": "common",
+    "note": "Approx"
+   }
+  ],
+  "sources": [
+   "https://bikebd.com/price/suzuki-ax100",
+   "https://bikebd.com/price/suzuki-a100",
+   "https://bikroy.com/bn/motorcycles-and-scooters/suzuki"
+  ],
+  "bn": {
+   "tagline": "হালকা, সাধারণ ১০০ সিসির টু-স্ট্রোক, পুরনো ধাঁচের রাইডিংয়ে ঢোকার সস্তা পথ।",
+   "feel": "হালকা, চটপটে ও শব্দওয়ালা; বেশি আরপিএমে হঠাৎ টু-স্ট্রোক টান, শহরে দ্রুত মনে হয় কিন্তু হাইওয়েতে হাঁপিয়ে যায়।",
+   "quirks": "পাওয়ার (৭.৮৮ BHP) BikeBD থেকে; টর্ক, ওজন, সিট ও টায়ারের মাপ আনুমানিক, যাচাই করা নয়। 2T অয়েল, ধোঁয়া ও প্লাগ ফাউলিং সাধারণ; বেশিরভাগ বাইক ২৫+ বছর পুরনো, মিশ্র পার্টস; কিছু এলাকায় জোরালো টু-স্ট্রোক নিয়ে পুলিশি নজর।",
+   "braking": "সামনে-পেছনে ড্রাম ব্রেক, ওজনের জন্য চলনসই কিন্তু গরম হলে দুর্বল হয়।",
+   "mechanicNote": "টু-স্ট্রোক মেকানিক মোটামুটি সহজলভ্য, ইঞ্জিন সাদামাটা; জেনুইন Suzuki পার্টস দুর্লভ, তাই রিপ্রোডাকশন বা ক্রস-ফিট ব্যবহার হয়।",
+   "pros": [
+    "কেনা ও চালানো সস্তা",
+    "সহজ, রিবিল্ডযোগ্য ইঞ্জিন",
+    "হালকা ও চটপটে",
+    "পুরনো টু-স্ট্রোকের মেজাজ"
+   ],
+   "cons": [
+    "ধোঁয়া ও 2T অয়েল লাগে",
+    "হাইওয়েতে দুর্বল",
+    "পুরনো বাইক, ইতিহাস অজানা",
+    "জেনুইন পার্টস দুর্লভ"
+   ],
+   "bestFor": [
+    "বাজেটে পুরনো বাইকপ্রেমী",
+    "শহরে ছোট রাইড",
+    "প্রথম রিস্টোরেশন প্রজেক্ট"
+   ],
+   "priceNote": "আনুমানিক, যাচাই করা নয়: BikeBD-তে দাম ৳০ (বন্ধ), Bikroy-তে চেক করার সময় কোনো AX100 বিজ্ঞাপন ছিল না। আনুমানিক ৳২৫,০০০ (জীর্ণ) থেকে ৳৭০,০০০ (পরিষ্কার/রিস্টোর)।",
+   "partNotes": [
+    "আনুমানিক; ড্রাম শু",
+    "আনুমানিক",
+    null,
+    "গিয়ারবক্স অয়েল; 2T অয়েল আলাদা",
+    "আনুমানিক"
+   ]
+  },
+  "aliases": [
+   "সুজুকি এএক্স ১০০",
+   "এএক্স ১০০",
+   "এক্স ১০০",
+   "ax100",
+   "ax 100",
+   "suzuki ax 100",
+   "suzuki a100",
+   "sujuki ax100",
+   "suzki ax100"
+  ]
+ },
+ {
+  "status": "used-only",
+  "priceAsOf": "2026-10",
+  "tubeless": false,
+  "serviceIntervalKm": 1500,
+  "id": "honda-cdi-h100s",
+  "brand": "Honda",
+  "model": "H100S Super CDI",
+  "variant": "H100S (1985-92 two-stroke)",
+  "category": "classic",
+  "collections": [
+   "old-school"
+  ],
+  "priceBDT": 45000,
+  "priceNote": "Approx, unverified: BikeBD shows ৳0 (discontinued) and a 'Honda H 100 S 1986' page at ৳1,50,000 (global figure, 'not available in BD'). No live Bikroy ad found. Estimated ৳25,000 (rough) to ৳75,000 (restored). Cheap to buy, but clean original frames are getting scarce.",
+  "priceSource": "https://bikebd.com/price/h100s-super-cdi",
+  "distributor": "Honda (1980s import)",
+  "assembledInBD": false,
+  "engine": {
+   "cc": 99,
+   "cylinders": 1,
+   "stroke": 2,
+   "cooling": "air",
+   "fuel": "carb"
+  },
+  "powerPS": 8,
+  "powerRpm": 7500,
+  "torqueNm": 9,
+  "torqueRpm": 6500,
+  "gears": 4,
+  "topSpeedKmh": 90,
+  "mileageKmpl": [
+   18,
+   24
+  ],
+  "weightKg": 95,
+  "seatHeightMm": 760,
+  "fuelTankL": 8,
+  "brakes": {
+   "front": "drum",
+   "rear": "drum",
+   "abs": "none"
+  },
+  "tyres": {
+   "front": "2.50-17",
+   "rear": "2.75-17"
+  },
+  "suspension": {
+   "front": "Telescopic fork",
+   "rear": "Twin shock"
+  },
+  "scores": {
+   "reliability": 7,
+   "mechanicFamiliarity": 7,
+   "partsAvailability": 4,
+   "resale": 6,
+   "comfort": 5,
+   "cityHandling": 8,
+   "highway": 3,
+   "pillion": 4,
+   "offroad": 4,
+   "performance": 4,
+   "beginnerFriendly": 6
+  },
+  "tagline": "The tough 80s Honda two-stroke that put a generation of Bangladeshis on motorbikes.",
+  "feel": "Light and rev-happy with a bright two-stroke buzz, easy to handle, but slow and shaky on highways.",
+  "quirks": "Engine size (99cc), power, torque, weight and tyres are approx, unverified: BikeBD's blog (launched in BD early 1986, production ended ~1992) gives no cc. Reported ~20 kmpl average; heavy smoke and 2T oil use. Most units are 30+ years old with replaced parts; wiring and CDI units often need replacement.",
+  "braking": "Drum brakes front and rear, adequate for the weight but weak when worn.",
+  "mechanicNote": "Older mechanics know it well and it is cheap to rebuild; genuine Honda parts are mostly gone, so repro and Japan-surplus parts fill the gap.",
+  "pros": [
+   "Durable, simple two-stroke",
+   "Cheap to buy",
+   "Light and easy to ride",
+   "Easy rebuild"
+  ],
+  "cons": [
+   "Smoky, thirsty on 2T oil",
+   "Poor highway ability",
+   "Genuine parts scarce",
+   "Aging wiring and ignition"
+  ],
+  "bestFor": [
+   "Budget old-school fans",
+   "Restoration",
+   "Nostalgic short rides"
+  ],
+  "avgServiceCostBDT": 600,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 300,
+    "availability": "common",
+    "note": "Approx; drum shoes"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 1200,
+    "availability": "common",
+    "note": "Approx"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 200,
+    "availability": "common"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 400,
+    "availability": "everywhere",
+    "note": "Gearbox oil; 2T oil topped up separately"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 700,
+    "availability": "common",
+    "note": "Approx"
+   }
+  ],
+  "sources": [
+   "https://bikebd.com/price/h100s-super-cdi",
+   "https://bikebd.com/price/honda-h-100-s-1986",
+   "https://bikebd.com/blog/honda-h100s-cdi"
+  ],
+  "bn": {
+   "tagline": "শক্তপোক্ত ৮০-র দশকের Honda টু-স্ট্রোক, যেটা এক প্রজন্মকে মোটরবাইকে চড়িয়েছে।",
+   "feel": "হালকা ও রিভ-প্রিয়, উজ্জ্বল টু-স্ট্রোক গুঞ্জন, চালানো সহজ, কিন্তু হাইওয়েতে ধীর ও নড়বড়ে।",
+   "quirks": "ইঞ্জিন সাইজ (৯৯ সিসি), পাওয়ার, টর্ক, ওজন ও টায়ার আনুমানিক, যাচাই করা নয়: BikeBD ব্লগে সিসি নেই (১৯৮৬-র শুরুতে বাংলাদেশে আসে, ~১৯৯২-এ উৎপাদন বন্ধ)। গড় মাইলেজ ~২০ কিমি/লি; ধোঁয়া ও 2T অয়েল বেশি। বেশিরভাগ বাইক ৩০+ বছর পুরনো, ওয়্যারিং ও CDI বদলাতে হয়।",
+   "braking": "সামনে-পেছনে ড্রাম ব্রেক, ওজনের জন্য চলনসই, ক্ষয়ে গেলে দুর্বল।",
+   "mechanicNote": "পুরনো মেকানিকরা ভালো চেনেন, রিবিল্ড সস্তা; জেনুইন Honda পার্টস প্রায় শেষ, রিপ্রোডাকশন ও জাপান-সারপ্লাস পার্টস ব্যবহার হয়।",
+   "pros": [
+    "টেকসই, সাদামাটা টু-স্ট্রোক",
+    "কেনা সস্তা",
+    "হালকা ও চালানো সহজ",
+    "রিবিল্ড সহজ"
+   ],
+   "cons": [
+    "ধোঁয়া ও 2T অয়েল",
+    "হাইওয়েতে দুর্বল",
+    "জেনুইন পার্টস দুর্লভ",
+    "পুরনো ওয়্যারিং ও ইগনিশন"
+   ],
+   "bestFor": [
+    "বাজেটে পুরনো বাইকপ্রেমী",
+    "রিস্টোরেশন",
+    "স্মৃতি-ভরা ছোট রাইড"
+   ],
+   "priceNote": "আনুমানিক, যাচাই করা নয়: BikeBD-তে দাম ৳০ (বন্ধ), 'Honda H 100 S 1986' পেজে ৳১,৫০,০০০ (গ্লোবাল)। লাইভ Bikroy বিজ্ঞাপন পাইনি। আনুমানিক ৳২৫,০০০ (জীর্ণ) থেকে ৳৭৫,০০০ (রিস্টোর)।",
+   "partNotes": [
+    "আনুমানিক; ড্রাম শু",
+    "আনুমানিক",
+    null,
+    "গিয়ারবক্স অয়েল; 2T অয়েল আলাদা",
+    "আনুমানিক"
+   ]
+  },
+  "aliases": [
+   "হোন্ডা এইচ১০০এস",
+   "এইচ১০০এস",
+   "হোন্ডা সিডিআই",
+   "h100s",
+   "h 100 s",
+   "honda h100s",
+   "honda cdi",
+   "honda h100",
+   "h100s super cdi",
+   "hunda h100s",
+   "সুপার সিডিআই"
+  ]
+ },
+ {
+  "category": "classic",
+  "status": "used-only",
+  "priceAsOf": "2026-10",
+  "collections": [
+   "old-school"
+  ],
+  "id": "honda-cd80",
+  "brand": "Honda",
+  "model": "CD80",
+  "priceBDT": 40000,
+  "priceNote": "Used market only. Bikroy asks seen Oct 2026: ৳12,500 (rough, 2000) to ৳65,000 (2006), typical decent unit ৳35,000-50,000; clean 1980s-90s originals up to ~৳45,000-65,000. Price is a midpoint of the listings seen (approx, unverified for condition).",
+  "priceSource": "https://bikroy.com/bn/motorcycles-and-scooters/honda-cd80",
+  "engine": {
+   "cc": 80,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "air",
+   "fuel": "carb"
+  },
+  "powerPS": 4.2,
+  "powerRpm": 6500,
+  "torqueNm": 5.16,
+  "torqueRpm": 5500,
+  "gears": 4,
+  "topSpeedKmh": 70,
+  "mileageKmpl": [
+   50,
+   65
+  ],
+  "weightKg": 82,
+  "seatHeightMm": 760,
+  "fuelTankL": 8,
+  "scores": {
+   "reliability": 7,
+   "mechanicFamiliarity": 8,
+   "partsAvailability": 5,
+   "resale": 6,
+   "comfort": 5,
+   "cityHandling": 8,
+   "highway": 3,
+   "pillion": 4,
+   "offroad": 3,
+   "performance": 2,
+   "beginnerFriendly": 8
+  },
+  "tagline": "The 'mileage king': tiny engine, tiny fuel bill, still running 30 years on.",
+  "feel": "Light, soft and slow; the little 4-speed pulls gently and sips fuel. Fine in city traffic, strained on highways with a pillion.",
+  "quirks": "Spec figures vary by source (BikeBD lists 72cc in one table and 80cc in another; seat height, tank and power here are approx, unverified). Many units are 25-40 years old with mixed parts. Kerb weight 82 kg claimed. Claimed 65-80 kmpl is optimistic; owners on tuned units report 50-65.",
+  "braking": "Small drum brakes front and rear; adequate for its 70 km/h top speed, nothing more.",
+  "mechanicNote": "Simple Honda single-cylinder; almost any town mechanic can fix it. Genuine parts are scarce, clones and Dream/CD-series interchange parts are easy.",
+  "pros": [
+   "Extremely good mileage",
+   "Very simple and cheap to repair",
+   "Light and easy for beginners",
+   "Cheap to buy"
+  ],
+  "cons": [
+   "Weak power, poor with pillion",
+   "Old units with unknown history",
+   "Genuine parts scarce",
+   "Basic drum brakes"
+  ],
+  "bestFor": [
+   "Fuel-saving commuting",
+   "Short city runs",
+   "Old-school fans"
+  ],
+  "serviceIntervalKm": 2000,
+  "avgServiceCostBDT": 600,
+  "sources": [
+   "https://bikroy.com/bn/motorcycles-and-scooters/honda-cd80",
+   "https://www.bikebd.com/price/honda-cd80",
+   "https://bikebd.com/blog/honda-cd80-best-80cc-bike-in-bangladesh"
+  ],
+  "bn": {
+   "tagline": "মাইলেজ কিং: ছোট ইঞ্জিন, কম তেল, ৩০ বছর পরেও চলছে।",
+   "feel": "হালকা, নরম আর ধীর; ছোট ৪-স্পিড আস্তে টানে আর তেল খায় কম। শহরের ট্রাফিকে ভালো, হাইওয়েতে পিলিয়ন নিয়ে কষ্ট।",
+   "quirks": "সোর্সভেদে স্পেক মেলে না (BikeBD-তে ৭২cc ও ৮০cc দুটোই আছে; সিট হাইট, ট্যাংক ও পাওয়ার আনুমানিক, যাচাই হয়নি)। অনেক ইউনিট ২৫-৪০ বছরের পুরনো, পার্টস মেশানো। কোম্পানির ৬৫-৮০ kmpl দাবি আশাবাদী; মালিকদের হিসাবে ৫০-৬৫।",
+   "braking": "সামনে-পেছনে ছোট ড্রাম ব্রেক; ৭০ কিমি/ঘণ্টা গতির জন্য যথেষ্ট, এর বেশি নয়।",
+   "mechanicNote": "সহজ হোন্ডা সিঙ্গেল-সিলিন্ডার; প্রায় যেকোনো শহরের মেকানিক সারাতে পারে। জেনুইন পার্টস দুর্লভ, ক্লোন ও ড্রিম/সিডি সিরিজের পার্টস মেলে।",
+   "pros": [
+    "অসাধারণ মাইলেজ",
+    "সারানো সহজ ও সস্তা",
+    "হালকা, নতুনদের জন্য সহজ",
+    "কেনা সস্তা"
+   ],
+   "cons": [
+    "পাওয়ার কম, পিলিয়নে দুর্বল",
+    "পুরনো বাইক, ইতিহাস অজানা",
+    "জেনুইন পার্টস দুর্লভ",
+    "সাধারণ ড্রাম ব্রেক"
+   ],
+   "bestFor": [
+    "তেল বাঁচিয়ে যাতায়াত",
+    "শহরের ছোট ট্রিপ",
+    "ওল্ড-স্কুল প্রেমী"
+   ],
+   "priceNote": "Bikroy-তে আসল দাম ৳১২,৫০০ (খারাপ) থেকে ৳৬৫,০০০; সাধারণ ভালো বাইক ৳৩৫,০০০-৫০,০০০ (আনুমানিক)।",
+   "partNotes": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  "aliases": [
+   "হোন্ডা সিডি ৮০",
+   "সিডি ৮০",
+   "সিডি৮০",
+   "cd80",
+   "cd 80",
+   "honda cd 80",
+   "honda cd-80",
+   "mileage king",
+   "হোন্ডা সিডি80",
+   "honda cd eighty"
+  ],
+  "brakes": {
+   "front": "drum",
+   "rear": "drum",
+   "abs": "none"
+  },
+  "tubeless": false,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 300,
+    "availability": "common"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 1200,
+    "availability": "common"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 200,
+    "availability": "common"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 450,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 700,
+    "availability": "common"
+   }
+  ]
+ },
+ {
+  "category": "classic",
+  "status": "used-only",
+  "priceAsOf": "2026-10",
+  "collections": [
+   "old-school"
+  ],
+  "id": "honda-cd70",
+  "brand": "Honda",
+  "model": "CD70",
+  "priceBDT": 30000,
+  "priceNote": "Used-only; very few BD listings found. One Bikes4Sale ask: ৳28,000 for a 2000-model unit (Sirajganj, Mar 2026). Range approx ৳20,000 (rough) to ৳45,000 (clean), approx, unverified. BikeBD shows no usable BD price.",
+  "priceSource": "https://www.bikes4sale.com/used/buy/honda-cd70-in-sirajganj/101189/",
+  "engine": {
+   "cc": 72,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "air",
+   "fuel": "carb"
+  },
+  "powerPS": 6,
+  "powerRpm": 8000,
+  "torqueNm": 5.5,
+  "torqueRpm": 6000,
+  "gears": 4,
+  "topSpeedKmh": 80,
+  "mileageKmpl": [
+   50,
+   60
+  ],
+  "weightKg": 80,
+  "seatHeightMm": 760,
+  "fuelTankL": 8,
+  "scores": {
+   "reliability": 7,
+   "mechanicFamiliarity": 7,
+   "partsAvailability": 4,
+   "resale": 5,
+   "comfort": 5,
+   "cityHandling": 8,
+   "highway": 3,
+   "pillion": 4,
+   "offroad": 3,
+   "performance": 2,
+   "beginnerFriendly": 8
+  },
+  "tagline": "The 70cc Honda step-over: basic, thrifty, and rare enough to be a find.",
+  "feel": "Light and gentle with a soft 4-speed; adequate for town, out of breath with a pillion or on an incline.",
+  "quirks": "Power, torque, weight and mileage are approx, unverified (BikeBD data for CD70 is blank/placeholder, and the CD70 Dream 2022 page is a global-market model, not the old BD unit). Few listings, so used price is thinly sourced. Often confused with CD80 and Dream/Pakistan CD70 clones.",
+  "braking": "Small drum brakes on both wheels; fine at its low speeds.",
+  "mechanicNote": "Basic Honda single; local mechanics handle it. Genuine parts are hard to find, so expect CD-series and Chinese-clone parts.",
+  "pros": [
+   "Very economical",
+   "Simple mechanics",
+   "Cheap to buy",
+   "Easy for beginners"
+  ],
+  "cons": [
+   "Few for sale, thin price data",
+   "Low power",
+   "Genuine parts hard to find",
+   "Not for highways"
+  ],
+  "bestFor": [
+   "Cheap commuting",
+   "Old-school collectors",
+   "Beginner learning bike"
+  ],
+  "serviceIntervalKm": 2000,
+  "avgServiceCostBDT": 600,
+  "sources": [
+   "https://www.bikes4sale.com/used/buy/honda-cd70-in-sirajganj/101189/",
+   "https://www.bikebd.com/price/honda-cd70",
+   "https://www.bikebd.com/price/honda-cd70-dream-2022"
+  ],
+  "bn": {
+   "tagline": "৭০cc হোন্ডা: সাদামাটা, সাশ্রয়ী, আর এখন বিরল।",
+   "feel": "হালকা আর নরম; শহরে চলে, পিলিয়ন বা চড়াইয়ে হাঁপায়।",
+   "quirks": "পাওয়ার, টর্ক, ওজন ও মাইলেজ আনুমানিক, যাচাই হয়নি (BikeBD-তে CD70-র ডেটা ফাঁকা)। বিক্রির বিজ্ঞাপন কম, তাই দামের তথ্য পাতলা। সিডি৮০ ও ড্রিম ক্লোনের সাথে প্রায়ই গুলিয়ে ফেলা হয়।",
+   "braking": "সামনে-পেছনে ছোট ড্রাম ব্রেক; কম গতির জন্য ঠিক আছে।",
+   "mechanicNote": "সাধারণ হোন্ডা সিঙ্গেল; স্থানীয় মেকানিকরা পারে। জেনুইন পার্টস কঠিন, সিডি-সিরিজ ও চীনা ক্লোন পার্টস লাগে।",
+   "pros": [
+    "খুব সাশ্রয়ী",
+    "সহজ মেকানিক্স",
+    "কেনা সস্তা",
+    "নতুনদের জন্য সহজ"
+   ],
+   "cons": [
+    "বিক্রির বাইক কম",
+    "পাওয়ার কম",
+    "জেনুইন পার্টস কঠিন",
+    "হাইওয়েতে অনুপযুক্ত"
+   ],
+   "bestFor": [
+    "সস্তা যাতায়াত",
+    "ওল্ড-স্কুল কালেক্টর",
+    "শেখার বাইক"
+   ],
+   "priceNote": "একটি বিজ্ঞাপনে ২০০০ মডেল ৳২৮,০০০; আনুমানিক রেঞ্জ ৳২০,০০০-৪৫,০০০ (যাচাই হয়নি)।",
+   "partNotes": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  "aliases": [
+   "হোন্ডা সিডি ৭০",
+   "সিডি ৭০",
+   "সিডি৭০",
+   "cd70",
+   "cd 70",
+   "honda cd 70",
+   "honda cd-70",
+   "honda dream 70"
+  ],
+  "brakes": {
+   "front": "drum",
+   "rear": "drum",
+   "abs": "none"
+  },
+  "tubeless": false,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 300,
+    "availability": "common"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 1100,
+    "availability": "common"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 200,
+    "availability": "common"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 450,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 650,
+    "availability": "common"
+   }
+  ]
+ },
+ {
+  "category": "classic",
+  "status": "used-only",
+  "priceAsOf": "2026-10",
+  "collections": [
+   "old-school"
+  ],
+  "id": "bajaj-ct100-old",
+  "brand": "Bajaj",
+  "model": "CT100 (old, 2000s-2010s)",
+  "priceBDT": 38000,
+  "priceNote": "Bikroy asks seen Oct 2026 on 2007-2018 units: ৳16,000 (rough or imported-used) to ~৳73,500 (outlier), typical ৳35,000-55,000. Midpoint chosen for decent condition. Modern CT100 is a separate record.",
+  "priceSource": "https://bikroy.com/bn/motorcycles-and-scooters/bajaj-ct-100",
+  "engine": {
+   "cc": 99,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "air",
+   "fuel": "carb"
+  },
+  "powerPS": 7.7,
+  "powerRpm": 7500,
+  "torqueNm": 8.05,
+  "torqueRpm": 5000,
+  "gears": 4,
+  "topSpeedKmh": 80,
+  "mileageKmpl": [
+   55,
+   70
+  ],
+  "weightKg": 105,
+  "seatHeightMm": 790,
+  "fuelTankL": 10.5,
+  "scores": {
+   "reliability": 7,
+   "mechanicFamiliarity": 9,
+   "partsAvailability": 8,
+   "resale": 6,
+   "comfort": 5,
+   "cityHandling": 8,
+   "highway": 4,
+   "pillion": 5,
+   "offroad": 4,
+   "performance": 3,
+   "beginnerFriendly": 8
+  },
+  "tagline": "The 2000s-2010s budget workhorse, now a cheap used commuter.",
+  "feel": "Soft, tall-geared and economical; a basic 4-speed commuter with a plain-but-sturdy frame and a gentle engine.",
+  "quirks": "Specs are approx, unverified and taken from India-spec CT100 (not BD-verified). Listings run to 2023 so many 'CT100' ads are the later model; ads with 1990-2000 years are doubtful. Rear shock and electrics wear on 10+ year old units.",
+  "braking": "Drum brakes front and rear; ok at commuter speeds, poor in the wet.",
+  "mechanicNote": "Every town mechanic knows Bajaj 100cc engines; parts are cheap and everywhere.",
+  "pros": [
+   "Very easy to repair",
+   "Parts everywhere",
+   "Very good mileage",
+   "Cheap to buy"
+  ],
+  "cons": [
+   "Basic comfort",
+   "Weak on highways",
+   "Old units wear out",
+   "Drum brakes only"
+  ],
+  "bestFor": [
+   "Budget commuting",
+   "Rural use",
+   "First bike"
+  ],
+  "serviceIntervalKm": 2500,
+  "avgServiceCostBDT": 700,
+  "sources": [
+   "https://bikroy.com/bn/motorcycles-and-scooters/bajaj-ct-100",
+   "https://www.bikebd.com/price/bajaj-ct-100"
+  ],
+  "bn": {
+   "tagline": "২০০০-২০১০ দশকের বাজেট ওয়ার্কহর্স, এখন সস্তা ব্যবহৃত কমিউটার।",
+   "feel": "নরম, উঁচু গিয়ারিং আর সাশ্রয়ী; সাদামাটা কিন্তু মজবুত ফ্রেম ও নরম ইঞ্জিনের ৪-স্পিড কমিউটার।",
+   "quirks": "স্পেক আনুমানিক, যাচাই হয়নি (ভারতীয় স্পেক থেকে নেওয়া)। বিজ্ঞাপন ২০২৩ পর্যন্ত, তাই অনেক 'সিটি১০০' আসলে পরের মডেল; ১৯৯০-২০০০ সালের বিজ্ঞাপন সন্দেহজনক। ১০ বছরের বেশি পুরনোতে রিয়ার শক ও ইলেকট্রিক্স ক্ষয়ে যায়।",
+   "braking": "সামনে-পেছনে ড্রাম ব্রেক; কমিউটার গতিতে ঠিক, ভেজা রাস্তায় দুর্বল।",
+   "mechanicNote": "প্রতিটি শহরের মেকানিক বাজাজ ১০০cc ইঞ্জিন চেনে; পার্টস সস্তা ও সব জায়গায় মেলে।",
+   "pros": [
+    "সারানো খুব সহজ",
+    "পার্টস সর্বত্র",
+    "ভালো মাইলেজ",
+    "কেনা সস্তা"
+   ],
+   "cons": [
+    "আরাম সাধারণ",
+    "হাইওয়েতে দুর্বল",
+    "পুরনো ইউনিট ক্ষয়ে গেছে",
+    "শুধু ড্রাম ব্রেক"
+   ],
+   "bestFor": [
+    "বাজেট যাতায়াত",
+    "গ্রামে ব্যবহার",
+    "প্রথম বাইক"
+   ],
+   "priceNote": "২০০৭-২০১৮ মডেলের Bikroy দাম ৳১৬,০০০ থেকে ৳৭৩,৫০০, সাধারণ ৳৩৫,০০০-৫৫,০০০।",
+   "partNotes": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  "aliases": [
+   "বাজাজ সিটি ১০০",
+   "সিটি ১০০",
+   "সিটি১০০",
+   "ct100",
+   "ct 100",
+   "bajaj ct 100",
+   "bajaj ct100 old",
+   "purano ct100",
+   "bajaj c t 100"
+  ],
+  "brakes": {
+   "front": "drum",
+   "rear": "drum",
+   "abs": "none"
+  },
+  "tubeless": false,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 350,
+    "availability": "common"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 1400,
+    "availability": "common"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 250,
+    "availability": "common"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 500,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 750,
+    "availability": "common"
+   }
+  ]
+ },
+ {
+  "category": "classic",
+  "status": "used-only",
+  "priceAsOf": "2026-10",
+  "collections": [
+   "old-school"
+  ],
+  "id": "bajaj-boxer",
+  "brand": "Bajaj",
+  "model": "Boxer",
+  "variant": "Boxer 100 (BM100) incl. bazaar/clone assembled",
+  "priceBDT": 35000,
+  "priceNote": "Bikroy asks seen Oct 2026 on 17 'Boxer 100' ads: ৳20,000 (2008) to ৳50,000 (2010), most ৳25,000-45,000 across model years 1997-2020; midpoint ৳35,000. 'Bazar Boxer'/'bazar boxxer' is the common name for cheap bazaar-assembled or clone Boxer-lookalikes; BD listings do not label which are genuine Bajaj, so the price covers both (approx, unverified).",
+  "priceSource": "https://bikroy.com/bn/motorcycles-and-scooters/bajaj-boxer-100",
+  "engine": {
+   "cc": 100,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "air",
+   "fuel": "carb"
+  },
+  "powerPS": 8.3,
+  "powerRpm": 7500,
+  "torqueNm": 8.1,
+  "torqueRpm": 5500,
+  "gears": 4,
+  "topSpeedKmh": 85,
+  "mileageKmpl": [
+   45,
+   55
+  ],
+  "weightKg": 109,
+  "seatHeightMm": 790,
+  "fuelTankL": 9.3,
+  "scores": {
+   "reliability": 6,
+   "mechanicFamiliarity": 9,
+   "partsAvailability": 8,
+   "resale": 5,
+   "comfort": 5,
+   "cityHandling": 7,
+   "highway": 4,
+   "pillion": 5,
+   "offroad": 4,
+   "performance": 3,
+   "beginnerFriendly": 7
+  },
+  "tagline": "Bajaj's old 100cc workhorse, plus the bazaar clones that wear its name.",
+  "feel": "Tall, sturdy and torquey for a 100cc; plain, rough-ish but happy to carry loads at moderate speed.",
+  "quirks": "'Bazar Boxer'/'bazar boxxer' usually means a cheap locally assembled or clone variant, not Bajaj's own kit: quality, frame and engine parts vary and papers can be a problem. Genuine vs clone cannot be told from Bikroy ads alone. Specs from BikeBD (Bajaj Kawasaki Boxer 100) approx, unverified: 55 kmpl is a claim, real range lower; BikeBD lists no BD price (217,000 is a placeholder).",
+  "braking": "Drum brakes front and rear; modest.",
+  "mechanicNote": "Common Bajaj/Kawasaki 100cc engine; village and town mechanics service it routinely. Clone bikes need parts matched by sample.",
+  "pros": [
+   "Cheap to buy",
+   "Easy repairs",
+   "Strong load-carrying",
+   "Parts everywhere"
+  ],
+  "cons": [
+   "Clone variants vary in quality",
+   "Basic comfort",
+   "Weak highway pace",
+   "Paper and ID risk on clones"
+  ],
+  "bestFor": [
+   "Budget commuting",
+   "Rural and load use",
+   "First bike"
+  ],
+  "serviceIntervalKm": 2500,
+  "avgServiceCostBDT": 700,
+  "sources": [
+   "https://bikroy.com/bn/motorcycles-and-scooters/bajaj-boxer-100",
+   "https://bikebd.com/price/bajaj-kawasaki-boxer-100/specifications",
+   "https://bikebd.com/price/bajaj-kawasaki-boxer-100/faq"
+  ],
+  "bn": {
+   "tagline": "বাজাজের পুরনো ১০০cc ওয়ার্কহর্স, আর তার নামে চলা বাজার ক্লোন।",
+   "feel": "১০০cc-র তুলনায় উঁচু, মজবুত ও টর্কি; সাদামাটা আর কিছুটা খসখসে, মাঝারি গতিতে মাল বইতে ভালো।",
+   "quirks": "'বাজার বক্সার' বলতে সাধারণত সস্তা স্থানীয়ভাবে জোড়া বা ক্লোন ভ্যারিয়েন্ট বোঝায়, বাজাজের নিজের কিট নয়: মান, ফ্রেম ও ইঞ্জিন পার্টস ভিন্ন, কাগজপত্র সমস্যা হতে পারে। Bikroy বিজ্ঞাপনে আসল-নকল বোঝা যায় না। স্পেক BikeBD থেকে, আনুমানিক, যাচাই হয়নি; ৫৫ kmpl দাবি, বাস্তবে কম।",
+   "braking": "সামনে-পেছনে ড্রাম ব্রেক; সাধারণ।",
+   "mechanicNote": "সাধারণ বাজাজ/কাওয়াসাকি ১০০cc ইঞ্জিন; গ্রাম-শহরের মেকানিক নিয়মিত সারান। ক্লোনে নমুনা দেখে পার্টস মেলাতে হয়।",
+   "pros": [
+    "কেনা সস্তা",
+    "সারানো সহজ",
+    "মাল বহনে শক্ত",
+    "পার্টস সর্বত্র"
+   ],
+   "cons": [
+    "ক্লোনের মান আলাদা",
+    "আরাম সাধারণ",
+    "হাইওয়েতে দুর্বল",
+    "ক্লোনে কাগজের ঝুঁকি"
+   ],
+   "bestFor": [
+    "বাজেট যাতায়াত",
+    "গ্রাম ও মাল বহন",
+    "প্রথম বাইক"
+   ],
+   "priceNote": "১৭টি বিজ্ঞাপনে ৳২০,০০০ থেকে ৳৫০,০০০, বেশিরভাগ ৳২৫,০০০-৪৫,০০০; বাজার বক্সার/ক্লোনও এর মধ্যে (আনুমানিক)।",
+   "partNotes": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  "aliases": [
+   "বাজাজ বক্সার",
+   "বক্সার",
+   "বাজার বক্সার",
+   "bazar boxer",
+   "bazar boxxer",
+   "bajaar boxer",
+   "boxxer",
+   "bajaj boxxer",
+   "boxer 100",
+   "bm100",
+   "bajaj kawasaki boxer"
+  ],
+  "brakes": {
+   "front": "drum",
+   "rear": "drum",
+   "abs": "none"
+  },
+  "tubeless": false,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 350,
+    "availability": "common"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 1400,
+    "availability": "common"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 250,
+    "availability": "common"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 500,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 750,
+    "availability": "common"
+   }
+  ]
+ },
+ {
+  "category": "classic",
+  "status": "used-only",
+  "priceAsOf": "2026-10",
+  "collections": [
+   "old-school"
+  ],
+  "id": "yamaha-libero",
+  "brand": "Yamaha",
+  "model": "Libero",
+  "variant": "Libero G5",
+  "priceBDT": 32000,
+  "priceNote": "Only two Bikroy ads seen Oct 2026: ৳30,000 (2007, 105cc G5) and ৳32,000 (2011); very thin data, approx, unverified. Not officially sold in BD (BikeBD: discontinued, no BD price), so units are imported-used/old stock.",
+  "priceSource": "https://bikroy.com/bn/motorcycles-and-scooters/yamaha-libero",
+  "engine": {
+   "cc": 106,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "air",
+   "fuel": "carb"
+  },
+  "powerPS": 7.7,
+  "powerRpm": 7500,
+  "torqueNm": 7.85,
+  "torqueRpm": 6000,
+  "gears": 4,
+  "topSpeedKmh": 90,
+  "mileageKmpl": [
+   40,
+   50
+  ],
+  "weightKg": 119,
+  "seatHeightMm": 800,
+  "fuelTankL": 13,
+  "scores": {
+   "reliability": 6,
+   "mechanicFamiliarity": 6,
+   "partsAvailability": 4,
+   "resale": 5,
+   "comfort": 6,
+   "cityHandling": 7,
+   "highway": 5,
+   "pillion": 5,
+   "offroad": 4,
+   "performance": 4,
+   "beginnerFriendly": 7
+  },
+  "tagline": "Yamaha's 100-ish cc Libero: an uncommon, tank-heavy old commuter.",
+  "feel": "Solid, a little heavy for its size, with a big tank and easy 4-speed; calm and comfortable at moderate speeds.",
+  "quirks": "Engine size is inconsistent (BikeBD lists 100cc and 106cc; Bikroy ad says 105cc), power/torque/weight are approx, unverified. Not an official BD model so parts are not well stocked and many are imported-used. 'Libero G5' is the version confirmed; other Libero variants in BD could not be confirmed.",
+  "braking": "Drum brakes both ends; adequate for its speed.",
+  "mechanicNote": "A conventional air-cooled single; Yamaha-experienced mechanics manage, but genuine parts are hard to find and some are matched from other Yamaha/Bajaj-style kit.",
+  "pros": [
+   "Large fuel tank",
+   "Comfortable at modest speed",
+   "Cheap to buy",
+   "Simple engine"
+  ],
+  "cons": [
+   "Few for sale, thin data",
+   "Parts not stocked",
+   "Heavy for 100cc",
+   "Not officially sold in BD"
+  ],
+  "bestFor": [
+   "Cheap commuting",
+   "Yamaha fans",
+   "Occasional older-bike collectors"
+  ],
+  "serviceIntervalKm": 2500,
+  "avgServiceCostBDT": 800,
+  "sources": [
+   "https://bikroy.com/bn/motorcycles-and-scooters/yamaha-libero",
+   "https://bikebd.com/price/yamaha-libero-g5/specifications",
+   "https://bikebd.com/price/yamaha-libero-g5"
+  ],
+  "bn": {
+   "tagline": "ইয়ামাহার ১০০cc-র কাছাকাছি লিবেরো: অপ্রচলিত, বড় ট্যাংকের পুরনো কমিউটার।",
+   "feel": "মজবুত, আকারের তুলনায় একটু ভারী, বড় ট্যাংক আর সহজ ৪-স্পিড; মাঝারি গতিতে শান্ত ও আরামদায়ক।",
+   "quirks": "ইঞ্জিন সাইজে অসঙ্গতি (BikeBD-তে ১০০cc ও ১০৬cc, Bikroy-তে ১০৫cc); পাওয়ার, টর্ক ও ওজন আনুমানিক, যাচাই হয়নি। বাংলাদেশে অফিশিয়াল মডেল নয়, পার্টস কম, অনেক ইম্পোর্টেড-ইউজড। শুধু 'লিবেরো জি৫' নিশ্চিত; অন্য ভ্যারিয়েন্ট নিশ্চিত করা যায়নি।",
+   "braking": "দুই চাকায় ড্রাম ব্রেক; গতির তুলনায় যথেষ্ট।",
+   "mechanicNote": "সাধারণ এয়ার-কুলড সিঙ্গেল; ইয়ামাহা-অভিজ্ঞ মেকানিক পারেন, কিন্তু জেনুইন পার্টস কঠিন।",
+   "pros": [
+    "বড় ফুয়েল ট্যাংক",
+    "মাঝারি গতিতে আরামদায়ক",
+    "কেনা সস্তা",
+    "সহজ ইঞ্জিন"
+   ],
+   "cons": [
+    "বিক্রির বাইক কম, তথ্য পাতলা",
+    "পার্টস মজুত নেই",
+    "১০০cc-র জন্য ভারী",
+    "বাংলাদেশে অফিশিয়ালি বিক্রি হয়নি"
+   ],
+   "bestFor": [
+    "সস্তা যাতায়াত",
+    "ইয়ামাহা প্রেমী",
+    "পুরনো বাইকের শখ"
+   ],
+   "priceNote": "মাত্র দুটি Bikroy বিজ্ঞাপন: ৳৩০,০০০ (২০০৭) ও ৳৩২,০০০ (২০১১); তথ্য খুব কম, আনুমানিক।",
+   "partNotes": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  "aliases": [
+   "ইয়ামাহা লিবেরো",
+   "লিবেরো",
+   "লিবারো",
+   "libero",
+   "libero g5",
+   "yamaha libero g5",
+   "yamha libero",
+   "yamaha liberro"
+  ],
+  "brakes": {
+   "front": "drum",
+   "rear": "drum",
+   "abs": "none"
+  },
+  "tubeless": false,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 400,
+    "availability": "common"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 1500,
+    "availability": "common"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 300,
+    "availability": "common"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 500,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 850,
+    "availability": "common"
+   }
+  ]
+ },
+ {
+  "id": "hero-xpulse-200-4v-pro",
+  "brand": "Hero",
+  "model": "XPulse 200 4V Pro",
+  "category": "adventure",
+  "status": "on-sale",
+  "priceBDT": 365000,
+  "priceNote": "Official launch price ৳3,65,000 (standard XPulse 200 4V is ৳3,35,000); two years of free registration included. Pro adds ৳30,000 for taller, longer-travel off-road hardware.",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://www.bikebd.com/price/hero-xpulse-200-4v-pro",
+  "distributor": "HMCL Niloy Bangladesh Ltd",
+  "assembledInBD": true,
+  "engine": {
+   "cc": 199.6,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "oil",
+   "valves": 4,
+   "fuel": "fi"
+  },
+  "powerPS": 18.9,
+  "powerRpm": 8500,
+  "torqueNm": 17.35,
+  "torqueRpm": 6500,
+  "gears": 5,
+  "topSpeedKmh": 115,
+  "mileageKmpl": [
+   32,
+   38
+  ],
+  "weightKg": 161,
+  "seatHeightMm": 891,
+  "groundClearanceMm": 270,
+  "fuelTankL": 13,
+  "brakes": {
+   "front": "disc",
+   "rear": "disc",
+   "abs": "single"
+  },
+  "tubeless": false,
+  "tyres": {
+   "front": "90/90-21",
+   "rear": "120/80-18"
+  },
+  "suspension": {
+   "front": "37mm telescopic, adjustable compression/rebound (250mm travel)",
+   "rear": "Monoshock, 10-step preload (220mm travel)"
+  },
+  "scores": {
+   "reliability": 7,
+   "mechanicFamiliarity": 5,
+   "partsAvailability": 6,
+   "resale": 7,
+   "comfort": 7,
+   "cityHandling": 4,
+   "highway": 6,
+   "pillion": 5,
+   "offroad": 10,
+   "performance": 6,
+   "beginnerFriendly": 3
+  },
+  "tagline": "The XPulse with the dial turned to off-road: taller, longer-legged, harder to mount.",
+  "feel": "Same 200cc oil-cooled engine as the standard XPulse, but the 250mm adjustable fork, 270mm ground clearance and handlebar risers make it a proper trail tool. The 891mm seat is a stretch for most riders and it is a handful in Dhaka traffic.",
+  "quirks": "Seat height 891mm means many riders cannot flat-foot at a stop; ~2kg heavier than the standard XPulse; tube-type tyres; same buzz above 90 km/h as the standard bike; dealer-only parts can be slow.",
+  "braking": "Single-channel ABS with Road, Off-Road and Rally modes; the off-road modes release the rear wheel for trail riding.",
+  "mechanicNote": "Serviced at HMCL Niloy centres; the adjustable long-travel suspension and FI parts are dealer territory, while oil, chain and pads are easy at any local garage.",
+  "pros": [
+   "Longest suspension travel in the Hero BD range",
+   "270mm ground clearance",
+   "Adjustable fork and monoshock",
+   "Handlebar risers and off-road gear lever"
+  ],
+  "cons": [
+   "891mm seat is very tall",
+   "Costs ৳30,000 more than the standard XPulse",
+   "Heavy and awkward in city traffic",
+   "Tube-type tyres"
+  ],
+  "bestFor": [
+   "Serious off-road and trail riding",
+   "Tall riders",
+   "Bandarban/Sylhet hill touring"
+  ],
+  "serviceIntervalKm": 3000,
+  "avgServiceCostBDT": 2200,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 750,
+    "availability": "common"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 3000,
+    "availability": "common"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 650,
+    "availability": "dealer-only"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 1200,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 1800,
+    "availability": "dealer-only"
+   }
+  ],
+  "sources": [
+   "https://www.bikebd.com/price/hero-xpulse-200-4v-pro",
+   "https://bikebd.com/price/hero-xpulse-200-4v-pro/specifications",
+   "https://www.bikebd.com/blog/hero-xpulse-200-4v-and-xpulse-200-4v-pro-officially-launched-in-bangladesh",
+   "https://observerbd.com/news/589485"
+  ],
+  "bn": {
+   "tagline": "অফ-রোডের দিকে ঘুরিয়ে দেওয়া XPulse: আরও উঁচু, আরও লম্বা সাসপেনশন, চড়াও কঠিন।",
+   "feel": "স্ট্যান্ডার্ড XPulse-এর মতোই 200cc অয়েল-কুলড ইঞ্জিন, কিন্তু 250mm অ্যাডজাস্টেবল ফর্ক, 270mm গ্রাউন্ড ক্লিয়ারেন্স আর হ্যান্ডেলবার রাইজার একে আসল ট্রেইল বাইক বানিয়েছে। 891mm সিট বেশিরভাগ রাইডারের জন্য উঁচু, ঢাকার জ্যামে সামলানো কষ্টকর।",
+   "quirks": "891mm সিটের কারণে অনেকেই থামলে পা পুরো মাটিতে রাখতে পারেন না; স্ট্যান্ডার্ড XPulse-এর চেয়ে প্রায় 2kg ভারী; টিউব-টাইপ টায়ার; 90 km/h-এর ওপরে স্ট্যান্ডার্ডের মতোই ভাইব্রেশন; ডিলার-অনলি পার্টস আসতে দেরি হতে পারে।",
+   "braking": "সিঙ্গেল-চ্যানেল ABS, রোড, অফ-রোড ও র‍্যালি মোডসহ; অফ-রোড মোডে পেছনের চাকা ছেড়ে দেয়।",
+   "mechanicNote": "HMCL Niloy সেন্টারে সার্ভিস হয়; অ্যাডজাস্টেবল লং-ট্রাভেল সাসপেনশন ও FI পার্টস ডিলারের কাজ, তবে তেল, চেইন আর প্যাড যেকোনো লোকাল গ্যারেজে সহজে হয়।",
+   "pros": [
+    "Hero BD রেঞ্জে সবচেয়ে লম্বা সাসপেনশন ট্রাভেল",
+    "270mm গ্রাউন্ড ক্লিয়ারেন্স",
+    "অ্যাডজাস্টেবল ফর্ক ও মনোশক",
+    "হ্যান্ডেলবার রাইজার ও অফ-রোড গিয়ার লিভার"
+   ],
+   "cons": [
+    "891mm সিট অনেক উঁচু",
+    "স্ট্যান্ডার্ড XPulse-এর চেয়ে ৳30,000 বেশি",
+    "ভারী, শহরের জ্যামে অস্বস্তিকর",
+    "টিউব-টাইপ টায়ার"
+   ],
+   "bestFor": [
+    "সিরিয়াস অফ-রোড ও ট্রেইল রাইডিং",
+    "লম্বা রাইডার",
+    "বান্দরবান/সিলেটের পাহাড়ি ট্যুর"
+   ],
+   "priceNote": "অফিসিয়াল লঞ্চ প্রাইস ৳3,65,000 (স্ট্যান্ডার্ড XPulse 200 4V ৳3,35,000); সঙ্গে দুই বছরের ফ্রি রেজিস্ট্রেশন। উঁচু, লম্বা-ট্রাভেল অফ-রোড হার্ডওয়্যারের জন্য Pro-তে ৳30,000 বেশি।",
+   "partNotes": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  "aliases": [
+   "এক্সপালস প্রো",
+   "এক্সপালস 200 প্রো",
+   "হিরো এক্সপালস প্রো",
+   "xpulse pro",
+   "x pulse pro",
+   "xpulse 200 pro",
+   "xpulse 200 4v pro",
+   "expulse pro"
+  ]
+ },
+ {
+  "id": "yamaha-crux",
+  "brand": "Yamaha",
+  "model": "Crux",
+  "category": "classic",
+  "status": "used-only",
+  "priceBDT": 35000,
+  "priceNote": "Bikroy asks for 2000-2008 units range ৳21,000-50,000 (9 ads seen, Oct 2026); one 2021-titled ad at ৳4,05,000 is not a real Crux price. Part prices approx, unverified.",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://bikroy.com/bn/motorcycles-and-scooters/yamaha-crux",
+  "engine": {
+   "cc": 106,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "air",
+   "fuel": "carb"
+  },
+  "powerPS": 7.6,
+  "powerRpm": 7500,
+  "torqueNm": 7.5,
+  "torqueRpm": 6000,
+  "gears": 4,
+  "topSpeedKmh": 90,
+  "mileageKmpl": [
+   45,
+   55
+  ],
+  "weightKg": 113,
+  "seatHeightMm": 780,
+  "fuelTankL": 11,
+  "brakes": {
+   "front": "drum",
+   "rear": "drum",
+   "abs": "none"
+  },
+  "tubeless": false,
+  "tyres": {
+   "front": "2.50-18",
+   "rear": "2.75-18"
+  },
+  "scores": {
+   "reliability": 7,
+   "mechanicFamiliarity": 7,
+   "partsAvailability": 5,
+   "resale": 4,
+   "comfort": 6,
+   "cityHandling": 8,
+   "highway": 3,
+   "pillion": 5,
+   "offroad": 4,
+   "performance": 3,
+   "beginnerFriendly": 8
+  },
+  "tagline": "A light, frugal four-stroke Yamaha from the early-2000s commuter era.",
+  "feel": "Small 106cc four-stroke with a four-speed box, light weight and tall-ish 18-inch spoked wheels. Easy and relaxed in town, short of breath above 70 km/h.",
+  "quirks": "Most units are 15-25 years old, so wiring, carb and electrics are tired; genuine Yamaha parts are scarce and many items are generic or from similar Indian Crux/Yamaha parts; drum brakes front and rear; owners report the spec figures vary by source (100 vs 106cc listed).",
+  "braking": "Drum brakes both ends; fine at its modest pace, weak in the wet.",
+  "mechanicNote": "Simple air-cooled four-stroke that any town mechanic can fix; the shortage is genuine parts, not know-how.",
+  "pros": [
+   "Very light and easy for beginners",
+   "Frugal 4-stroke economy",
+   "Cheap to buy and repair",
+   "Simple engine any mechanic knows"
+  ],
+  "cons": [
+   "Old units, tired electrics",
+   "Genuine parts scarce",
+   "Drum brakes",
+   "Weak on highways"
+  ],
+  "bestFor": [
+   "Cheap first bike",
+   "Short city runs",
+   "Budget used-bike buyers"
+  ],
+  "serviceIntervalKm": 2000,
+  "avgServiceCostBDT": 700,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 300,
+    "availability": "common"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 1300,
+    "availability": "common"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 250,
+    "availability": "common"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 500,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 800,
+    "availability": "common"
+   }
+  ],
+  "sources": [
+   "https://bikroy.com/bn/motorcycles-and-scooters/yamaha-crux",
+   "https://bikebd.com/price/yamaha-crux/specifications"
+  ],
+  "collections": [
+   "old-school"
+  ],
+  "bn": {
+   "tagline": "আগের দিনের কমিউটার যুগের হালকা, মিতব্যয়ী চার-স্ট্রোক ইয়ামাহা।",
+   "feel": "ছোট 106cc ফোর-স্ট্রোক, চার-স্পিড গিয়ারবক্স, হালকা ওজন আর বড় 18-ইঞ্চি স্পোক হুইল। শহরে সহজ ও আরামদায়ক, তবে 70 km/h-এর ওপরে দম কম।",
+   "quirks": "বেশিরভাগ বাইক 15-25 বছরের পুরনো, তাই ওয়্যারিং, কার্ব আর ইলেকট্রিক্স ক্লান্ত; জেনুইন Yamaha পার্টস দুর্লভ; সামনে-পেছনে ড্রাম ব্রেক; সোর্সভেদে স্পেসিফিকেশন আলাদা (100 বনাম 106cc)।",
+   "braking": "দুই চাকায় ড্রাম ব্রেক; ধীর গতিতে ঠিক আছে, বৃষ্টিতে দুর্বল।",
+   "mechanicNote": "সহজ এয়ার-কুলড ফোর-স্ট্রোক, যেকোনো শহরের মেকানিক ঠিক করতে পারে; সমস্যা জেনুইন পার্টসের, জ্ঞানের নয়।",
+   "pros": [
+    "খুব হালকা, নতুনদের জন্য সহজ",
+    "মিতব্যয়ী ফোর-স্ট্রোক",
+    "কেনা ও মেরামত সস্তা",
+    "সহজ ইঞ্জিন, সব মেকানিক চেনে"
+   ],
+   "cons": [
+    "পুরনো বাইক, ইলেকট্রিক্স দুর্বল",
+    "জেনুইন পার্টস দুর্লভ",
+    "ড্রাম ব্রেক",
+    "হাইওয়েতে দুর্বল"
+   ],
+   "bestFor": [
+    "সস্তায় প্রথম বাইক",
+    "শহরের ছোট যাতায়াত",
+    "বাজেট ইউজড বাইক ক্রেতা"
+   ],
+   "priceNote": "Bikroy-তে 2000-2008 মডেলের চাওয়া দাম ৳21,000-50,000 (৯টি বিজ্ঞাপন, অক্টোবর 2026); 2021 লেখা একটি বিজ্ঞাপনের ৳4,05,000 আসল Crux-এর দাম নয়। পার্টসের দাম আনুমানিক, যাচাই করা নয়।",
+   "partNotes": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  "aliases": [
+   "ইয়ামাহা ক্রাক্স",
+   "ইয়ামাহা ক্রুক্স",
+   "ক্রুক্স",
+   "ক্রাক্স",
+   "yamaha crux",
+   "crux",
+   "krux",
+   "yamha crux"
+  ]
+ },
+ {
+  "id": "yamaha-ybr125",
+  "brand": "Yamaha",
+  "model": "YBR125",
+  "category": "classic",
+  "status": "used-only",
+  "priceBDT": 40000,
+  "priceNote": "Bikroy asks (5 ads, Oct 2026): 2005-2006 units ৳28,000-40,000, a 2012-titled unit ৳65,000, a 2017 unit ৳85,000. BikeBD lists the YBR125 as not officially available in Bangladesh, so these are privately imported units. Specs and part prices approx, unverified.",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://bikroy.com/bn/motorcycles-and-scooters/yamaha-ybr125",
+  "engine": {
+   "cc": 125,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "air",
+   "fuel": "carb"
+  },
+  "powerPS": 10.8,
+  "powerRpm": 8000,
+  "torqueNm": 10.4,
+  "torqueRpm": 6000,
+  "gears": 5,
+  "topSpeedKmh": 95,
+  "mileageKmpl": [
+   40,
+   50
+  ],
+  "weightKg": 123,
+  "seatHeightMm": 790,
+  "fuelTankL": 13,
+  "brakes": {
+   "front": "disc",
+   "rear": "drum",
+   "abs": "none"
+  },
+  "tubeless": false,
+  "scores": {
+   "reliability": 6,
+   "mechanicFamiliarity": 5,
+   "partsAvailability": 3,
+   "resale": 4,
+   "comfort": 7,
+   "cityHandling": 7,
+   "highway": 5,
+   "pillion": 6,
+   "offroad": 4,
+   "performance": 4,
+   "beginnerFriendly": 7
+  },
+  "tagline": "A rare Yamaha 125 import with a proper five-speed box and a front disc.",
+  "feel": "Smooth, upright and comfortable for a 125; the five-speed gearbox and disc brake make it nicer than typical 100cc commuters, though power is modest.",
+  "quirks": "Not sold by an official distributor in Bangladesh, so history, papers and parts are the buyer's problem; very few ads exist (about 5 on Bikroy); engine-parts matches with Yamaha YBR125 from India/China rather than Yamaha BD; BikeBD spec tables for it are inconsistent.",
+  "braking": "Front disc and rear drum; adequate for a 125 and better than the drum-only commuters of its age.",
+  "mechanicNote": "Basic air-cooled four-stroke, so general mechanics cope; model-specific parts must be sourced from importers or cannibalised from other YBR125s.",
+  "pros": [
+   "Five gears and front disc",
+   "Comfortable and smooth",
+   "Rarely seen, distinctive",
+   "Cheap to buy"
+  ],
+  "cons": [
+   "No official BD support",
+   "Parts hard to find",
+   "Few listings, unclear history",
+   "Modest performance"
+  ],
+  "bestFor": [
+   "Used-bike buyers wanting something different",
+   "Relaxed city commuting",
+   "Enthusiasts of old Yamaha 125s"
+  ],
+  "serviceIntervalKm": 2000,
+  "avgServiceCostBDT": 900,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 450,
+    "availability": "common"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 1600,
+    "availability": "rare"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 300,
+    "availability": "common"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 600,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 1000,
+    "availability": "rare"
+   }
+  ],
+  "sources": [
+   "https://bikroy.com/bn/motorcycles-and-scooters/yamaha-ybr125",
+   "https://www.bikebd.com/price/yamaha-ybr-125-2022"
+  ],
+  "collections": [
+   "old-school"
+  ],
+  "bn": {
+   "tagline": "পাঁচ-গিয়ার আর ফ্রন্ট ডিস্কওয়ালা বিরল ইয়ামাহা 125 ইম্পোর্ট।",
+   "feel": "125-এর জন্য মসৃণ, সোজা হয়ে বসা আর আরামদায়ক; পাঁচ গিয়ার আর ডিস্ক ব্রেক একে সাধারণ 100cc কমিউটারের চেয়ে ভালো করেছে, তবে পাওয়ার সীমিত।",
+   "quirks": "বাংলাদেশে অফিসিয়াল ডিস্ট্রিবিউটর নেই, তাই ইতিহাস, কাগজ আর পার্টস ক্রেতার দায়; Bikroy-তে বিজ্ঞাপন মাত্র প্রায় ৫টি; ইঞ্জিন-পার্টস ভারত/চীনের YBR125-এর সাথে মেলে, Yamaha BD-র নয়; BikeBD-র স্পেস টেবিল অসংগত।",
+   "braking": "সামনে ডিস্ক, পেছনে ড্রাম; 125-এর জন্য যথেষ্ট, ড্রাম-অনলি সমসাময়িক কমিউটারের চেয়ে ভালো।",
+   "mechanicNote": "সাধারণ এয়ার-কুলড ফোর-স্ট্রোক, তাই সাধারণ মেকানিকই পারে; মডেল-স্পেসিফিক পার্টস ইম্পোর্টার বা অন্য YBR125 থেকে জোগাড় করতে হয়।",
+   "pros": [
+    "পাঁচ গিয়ার আর ফ্রন্ট ডিস্ক",
+    "আরামদায়ক ও মসৃণ",
+    "বিরল, আলাদা চেহারা",
+    "কেনা সস্তা"
+   ],
+   "cons": [
+    "BD-তে অফিসিয়াল সাপোর্ট নেই",
+    "পার্টস পাওয়া কঠিন",
+    "বিজ্ঞাপন কম, ইতিহাস অস্পষ্ট",
+    "সীমিত পারফরম্যান্স"
+   ],
+   "bestFor": [
+    "ভিন্নধর্মী ইউজড বাইক চাওয়া ক্রেতা",
+    "শান্ত শহুরে কমিউট",
+    "পুরনো Yamaha 125 প্রেমী"
+   ],
+   "priceNote": "Bikroy-তে চাওয়া দাম (৫টি বিজ্ঞাপন, অক্টোবর 2026): 2005-2006 মডেল ৳28,000-40,000, 2012 লেখা একটি ৳65,000, 2017-র একটি ৳85,000। BikeBD অনুযায়ী YBR125 বাংলাদেশে অফিসিয়ালি পাওয়া যায় না, তাই এগুলো ব্যক্তিগত আমদানি। স্পেস ও পার্টসের দাম আনুমানিক, যাচাই করা নয়।",
+   "partNotes": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  "aliases": [
+   "ইয়ামাহা ওয়াইবিআর",
+   "ওয়াইবিআর ১২৫",
+   "ওয়াইবিআর125",
+   "ybr 125",
+   "ybr125",
+   "yamaha ybr",
+   "yamha ybr125"
+  ]
+ },
+ {
+  "id": "bajaj-discover-135",
+  "brand": "Bajaj",
+  "model": "Discover 135",
+  "category": "classic",
+  "status": "used-only",
+  "priceBDT": 80000,
+  "priceNote": "Bikroy asks (41 ads, 20 seen, Oct 2026): ৳35,000-1,20,000 for 2004-2019 units, most 2008-2010 bikes ৳75,000-1,00,000. Discontinued around 2010 per BikeBD; used units still command a premium. Part prices approx, unverified.",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://bikroy.com/bn/motorcycles-and-scooters/bajaj-discover-135",
+  "distributor": "Uttara Motors Limited",
+  "engine": {
+   "cc": 134.21,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "air",
+   "valves": 2,
+   "fuel": "carb"
+  },
+  "powerPS": 13,
+  "powerRpm": 8500,
+  "torqueNm": 11,
+  "torqueRpm": 6500,
+  "gears": 5,
+  "topSpeedKmh": 100,
+  "mileageKmpl": [
+   40,
+   50
+  ],
+  "weightKg": 133,
+  "seatHeightMm": 790,
+  "fuelTankL": 8,
+  "brakes": {
+   "front": "disc",
+   "rear": "drum",
+   "abs": "none"
+  },
+  "tubeless": true,
+  "scores": {
+   "reliability": 7,
+   "mechanicFamiliarity": 8,
+   "partsAvailability": 7,
+   "resale": 7,
+   "comfort": 7,
+   "cityHandling": 7,
+   "highway": 6,
+   "pillion": 6,
+   "offroad": 4,
+   "performance": 5,
+   "beginnerFriendly": 7
+  },
+  "tagline": "The 135cc DTS-i that Bangladesh still pays a premium for.",
+  "feel": "Light, torquey and economical; the DTS-i engine pulls cleanly in traffic and cruises comfortably at 70-80 km/h with a disc-brake version.",
+  "quirks": "Discontinued, so most units are 10-20 years old; many have been repainted or rebuilt; price ads vary widely by condition; genuine Bajaj parts are fading but compatible Pulsar/Discover parts are common.",
+  "braking": "Disc front on the better variant; drum on the base one. Adequate.",
+  "mechanicNote": "Bajaj mechanics are everywhere and the Discover 135 is simple air-cooled carb; parts are common through the Bajaj aftermarket.",
+  "pros": [
+   "Economical 135cc",
+   "Mechanics everywhere",
+   "Strong used demand",
+   "Comfortable ride"
+  ],
+  "cons": [
+   "No longer made",
+   "Condition varies widely",
+   "Aging electricals",
+   "Price premium for good units"
+  ],
+  "bestFor": [
+   "Used-bike commuters",
+   "Budget daily rider",
+   "Pulsar-alternative buyers"
+  ],
+  "serviceIntervalKm": 3000,
+  "avgServiceCostBDT": 900,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 500,
+    "availability": "common"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 1800,
+    "availability": "common"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 300,
+    "availability": "common"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 600,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 900,
+    "availability": "common"
+   }
+  ],
+  "sources": [
+   "https://bikroy.com/bn/motorcycles-and-scooters/bajaj-discover-135",
+   "https://bikebd.com/price/bajaj-discover-135",
+   "https://bikebd.com/blog/legendary-discontinued-motorcycles-of-bangladesh"
+  ],
+  "collections": [
+   "old-school"
+  ],
+  "bn": {
+   "tagline": "135cc DTS-i, যার জন্য বাংলাদেশ এখনো বাড়তি দাম দেয়।",
+   "feel": "হালকা, টর্কি আর মিতব্যয়ী; DTS-i ইঞ্জিন জ্যামে মসৃণ টানে, ডিস্ক ভ্যারিয়েন্টে 70-80 km/h-এ আরামে চলে।",
+   "quirks": "বন্ধ হয়ে গেছে, তাই বেশিরভাগ বাইক 10-20 বছরের পুরনো; অনেকগুলো রিপেইন্ট বা রিবিল্ট; কন্ডিশন অনুযায়ী দাম বহু ভিন্ন; জেনুইন Bajaj পার্টস কমছে, তবে Pulsar/Discover-এর সামঞ্জস্যপূর্ণ পার্টস সহজে মেলে।",
+   "braking": "ভালো ভ্যারিয়েন্টে সামনে ডিস্ক, বেসে ড্রাম। যথেষ্ট।",
+   "mechanicNote": "Bajaj মেকানিক সবখানে, Discover 135 সহজ এয়ার-কুলড কার্ব; Bajaj আফটারমার্কেটে পার্টস সহজলভ্য।",
+   "pros": [
+    "মিতব্যয়ী 135cc",
+    "সবখানে মেকানিক",
+    "ইউজড মার্কেটে ভালো চাহিদা",
+    "আরামদায়ক রাইড"
+   ],
+   "cons": [
+    "আর তৈরি হয় না",
+    "কন্ডিশন বহু ভিন্ন",
+    "পুরনো ইলেকট্রিক্স",
+    "ভালো বাইকের দাম বেশি"
+   ],
+   "bestFor": [
+    "ইউজড বাইক কমিউটার",
+    "বাজেট ডেইলি রাইডার",
+    "Pulsar-এর বিকল্প খোঁজা ক্রেতা"
+   ],
+   "priceNote": "Bikroy-তে চাওয়া দাম (৪১টি বিজ্ঞাপন, ২০টি দেখা, অক্টোবর 2026): 2004-2019 মডেল ৳35,000-1,20,000, বেশিরভাগ 2008-2010 বাইক ৳75,000-1,00,000। BikeBD অনুযায়ী প্রায় 2010-এ বন্ধ; ব্যবহৃত বাইকে এখনো প্রিমিয়াম। পার্টসের দাম আনুমানিক, যাচাই করা নয়।",
+   "partNotes": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  "aliases": [
+   "বাজাজ ডিসকভার ১৩৫",
+   "ডিসকভার ১৩৫",
+   "ডিসকভার 135",
+   "discover 135",
+   "bajaj discover 135",
+   "discovar 135",
+   "discover135"
+  ]
+ },
+ {
+  "id": "bajaj-pulsar-135-ls",
+  "brand": "Bajaj",
+  "model": "Pulsar 135 LS",
+  "category": "street",
+  "status": "used-only",
+  "priceBDT": 48000,
+  "priceNote": "Bikroy asks (40 ads, 20 seen, Oct 2026): ৳20,000-90,000, typical 2009-2014 units ৳35,000-55,000. BikeBD lists it as discontinued in Bangladesh (distributor Uttara Motors). Part prices approx, unverified.",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://bikroy.com/bn/motorcycles-and-scooters/bajaj-pulsar-135-ls",
+  "distributor": "Uttara Motors Limited",
+  "engine": {
+   "cc": 134.6,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "air",
+   "valves": 4,
+   "fuel": "carb"
+  },
+  "powerPS": 13.4,
+  "powerRpm": 9000,
+  "torqueNm": 11.4,
+  "torqueRpm": 7500,
+  "gears": 5,
+  "topSpeedKmh": 100,
+  "mileageKmpl": [
+   40,
+   48
+  ],
+  "weightKg": 121,
+  "seatHeightMm": 800,
+  "groundClearanceMm": 165,
+  "fuelTankL": 8,
+  "brakes": {
+   "front": "disc",
+   "rear": "drum",
+   "abs": "none"
+  },
+  "tubeless": false,
+  "tyres": {
+   "front": "2.75-17",
+   "rear": "100/90-17"
+  },
+  "suspension": {
+   "front": "Telescopic",
+   "rear": "5-way adjustable gas shocks"
+  },
+  "scores": {
+   "reliability": 6,
+   "mechanicFamiliarity": 8,
+   "partsAvailability": 7,
+   "resale": 5,
+   "comfort": 6,
+   "cityHandling": 8,
+   "highway": 5,
+   "pillion": 5,
+   "offroad": 3,
+   "performance": 5,
+   "beginnerFriendly": 8
+  },
+  "tagline": "The cheapest way into Pulsar styling.",
+  "feel": "Light, narrow and sporty-looking; twin-spark 4-valve engine revs happily but runs out of power above 80 km/h. Great for a budget student rider.",
+  "quirks": "Discontinued; most units 8-17 years old; the small 8-litre tank and low-torque engine limit it on highways; spares are mostly shared with other Pulsars but 135-specific bits take hunting.",
+  "braking": "Front disc with rear drum; decent for the weight.",
+  "mechanicNote": "Bajaj mechanics everywhere know the Pulsar family; the 135 is simple and cheap to maintain.",
+  "pros": [
+   "Very cheap to buy",
+   "Light and agile",
+   "Pulsar styling",
+   "Easy and cheap servicing"
+  ],
+  "cons": [
+   "Underpowered on highways",
+   "Small tank",
+   "Old units, variable condition",
+   "Discontinued"
+  ],
+  "bestFor": [
+   "Students on a tight budget",
+   "Cheap first bike",
+   "City commuting"
+  ],
+  "serviceIntervalKm": 3000,
+  "avgServiceCostBDT": 800,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 450,
+    "availability": "common"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 1700,
+    "availability": "common"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 300,
+    "availability": "common"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 600,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 900,
+    "availability": "common"
+   }
+  ],
+  "sources": [
+   "https://bikroy.com/bn/motorcycles-and-scooters/bajaj-pulsar-135-ls",
+   "https://bikebd.com/price/bajaj-pulsar-135/specifications"
+  ],
+  "collections": [
+   "old-school"
+  ],
+  "bn": {
+   "tagline": "পালসার স্টাইলে ঢোকার সবচেয়ে সস্তা পথ।",
+   "feel": "হালকা, সরু আর স্পোর্টি চেহারা; টুইন-স্পার্ক 4-ভাল্ব ইঞ্জিন ভালো রিভ করে, তবে 80 km/h-এর ওপরে পাওয়ার ফুরায়। বাজেটের ছাত্র রাইডারের জন্য দারুণ।",
+   "quirks": "বন্ধ হয়ে গেছে; বেশিরভাগ বাইক 8-17 বছরের পুরনো; ছোট 8-লিটার ট্যাংক আর কম টর্ক হাইওয়েতে সীমাবদ্ধ করে; পার্টস বেশিরভাগ অন্য Pulsar-এর সাথে মেলে, তবে 135-স্পেসিফিক জিনিস খুঁজতে হয়।",
+   "braking": "সামনে ডিস্ক, পেছনে ড্রাম; ওজনের জন্য ভালো।",
+   "mechanicNote": "Bajaj মেকানিক সবখানে Pulsar পরিবার চেনে; 135 সহজ ও সার্ভিসিং সস্তা।",
+   "pros": [
+    "কেনা খুব সস্তা",
+    "হালকা ও চটপটে",
+    "Pulsar স্টাইল",
+    "সার্ভিসিং সহজ ও সস্তা"
+   ],
+   "cons": [
+    "হাইওয়েতে দুর্বল",
+    "ছোট ট্যাংক",
+    "পুরনো বাইক, কন্ডিশন ভিন্ন",
+    "আর তৈরি হয় না"
+   ],
+   "bestFor": [
+    "টাইট বাজেটের ছাত্র",
+    "সস্তা প্রথম বাইক",
+    "শহরের কমিউট"
+   ],
+   "priceNote": "Bikroy-তে চাওয়া দাম (৪০টি বিজ্ঞাপন, ২০টি দেখা, অক্টোবর 2026): ৳20,000-90,000, সাধারণত 2009-2014 মডেল ৳35,000-55,000। BikeBD অনুযায়ী বাংলাদেশে বন্ধ (ডিস্ট্রিবিউটর Uttara Motors)। পার্টসের দাম আনুমানিক, যাচাই করা নয়।",
+   "partNotes": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  "aliases": [
+   "বাজাজ পালসার ১৩৫",
+   "পালসার ১৩৫ এলএস",
+   "পালসার 135",
+   "pulsar 135",
+   "pulsar 135 ls",
+   "pulsar135",
+   "palsar 135",
+   "pulser 135"
   ]
  }
 ]

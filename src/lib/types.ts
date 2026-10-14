@@ -9,6 +9,9 @@ export type Category =
   | "classic"       // retro/classic (Classic 350, Hunter, CG125, RX100)
   | "scooter";
 
+/** Cross-cutting sections; a bike can sit in several, independent of its category. */
+export type Collection = "legendary" | "old-school";
+
 export interface Part { name: string; priceBDT: number; availability: "everywhere" | "common" | "dealer-only" | "rare"; note?: string }
 
 export interface Bike {
@@ -17,6 +20,7 @@ export interface Bike {
   model: string;            // "Pulsar N160" (no brand prefix)
   variant?: string;         // "Dual Channel ABS" — if multiple variants exist, pick the most-sold one and mention others in priceNote
   category: Category;
+  collections?: Collection[]; // "legendary": rite-of-passage bikes few can buy; "old-school": vintage era, includes every two-stroke
   status: "on-sale" | "used-only";   // used-only = discontinued, bought on used market (CG125, RX100)
   priceBDT: number;         // current official ex-showroom price in BD (Taka). For used-only: typical used market price for decent condition.
   priceNote?: string;       // e.g. "Single-channel ABS variant ৳2,99,000"

@@ -40,6 +40,11 @@ async function budgetStep(pg, { emi = false, budget } = {}) {
 async function restOfQuiz(pg) {
   await pg.getByRole('button', { name: /Daily commute/ }).click(); // auto-advances
   await pg.waitForTimeout(400);
+  const where = pg.getByRole('button', { name: /Dhaka/i });
+  if (await where.count()) {
+    await where.first().click();
+    await pg.waitForTimeout(400);
+  }
   await pg.getByRole('button', { name: /Show me both/ }).click();
   await pg.waitForTimeout(400);
   await cont(pg); // rider

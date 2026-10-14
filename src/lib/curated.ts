@@ -14,6 +14,12 @@ export const POPULAR_COMPARISONS: [string, string][] = [
   ["hero-splendor-plus", "bajaj-platina-100"],
   ["honda-hornet-2-0", "yamaha-fzs-fi-v4"],
   ["honda-dio", "tvs-ntorq-125"],
+  ["yamaha-r15-v4", "suzuki-gixxer-sf-250"],
+  ["bajaj-pulsar-150", "tvs-apache-rtr-160-2v"],
+  ["yamaha-r15-v4", "honda-cbr150r"],
+  ["bajaj-pulsar-n250", "suzuki-gixxer-250"],
+  ["tvs-raider-125", "hero-xtreme-125r"],
+  ["suzuki-gixxer-monotone", "yamaha-fzs-v2-dd"],
 ];
 
 export const popularPairs = () =>
@@ -23,6 +29,21 @@ export const popularPairs = () =>
 export const pairSlug = (a: string, b: string) => `${a}-vs-${b}`;
 export const pairHref = (a: string, b: string) => `/compare/${pairSlug(a, b)}/`;
 export const pairBySlug = (slug: string) => popularPairs().find(([a, b]) => pairSlug(a.id, b.id) === slug);
+
+/** Popular comparisons that include this bike id. */
+export function pairsForBike(id: string) {
+  const res: { other: BikeLite; slug: string; href: string }[] = [];
+  for (const [a, b] of POPULAR_COMPARISONS) {
+    if (a === id) {
+      const other = getBike(b);
+      if (other) res.push({ other, slug: pairSlug(a, b), href: pairHref(a, b) });
+    } else if (b === id) {
+      const other = getBike(a);
+      if (other) res.push({ other, slug: pairSlug(a, b), href: pairHref(a, b) });
+    }
+  }
+  return res;
+}
 
 /** Title, description and hreflang for a popular pair page; every figure comes from bikes.json via the engines. */
 export function pairMetadata(slug: string, lang: "en" | "bn"): Metadata {

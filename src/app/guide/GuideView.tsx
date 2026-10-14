@@ -142,6 +142,11 @@ export function GuideView() {
                 <p className="mt-3 text-[13px] leading-relaxed text-muted">{lic.exam.notes}</p>
               </div>
             </div>
+            <p className="mt-6 text-[14.5px]">
+              <Link href="/guide/driving-licence/" className="inline-flex items-center gap-1 font-medium text-brand underline underline-offset-2">
+                {tx("Full step-by-step driving licence guide with fees, test tips and FAQs", "ফি, পরীক্ষার প্রস্তুতি ও প্রশ্নোত্তরসহ ড্রাইভিং লাইসেন্সের পূর্ণাঙ্গ গাইড")} <ArrowUpRight size={14} />
+              </Link>
+            </p>
           </Section>
 
           {/* EMI */}

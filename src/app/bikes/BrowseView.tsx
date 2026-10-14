@@ -2,11 +2,11 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { SlidersHorizontal, X } from "lucide-react";
-import { BIKES, BRANDS, CATEGORIES, PRICE_BANDS, avgMileage, brandLabel, overall } from "@/lib/bikes";
+import { BIKES, BRANDS, CATEGORIES, COLLECTIONS, PRICE_BANDS, avgMileage, brandLabel, overall } from "@/lib/bikes";
 import { L, useLang, useTx } from "@/lib/i18n";
 import { BikeCard, WithSearchParams } from "@/components/ui";
 import { searchBikes } from "@/components/SearchBox";
-import type { Category } from "@/lib/types";
+import type { Category, Collection } from "@/lib/types";
 import { onRoadPrice } from "@/lib/cost";
 
 type Sort = "recommended" | "price-asc" | "price-desc" | "mileage" | "power" | "reliability";
@@ -22,6 +22,7 @@ const SORTS: { id: Sort; label: string; bn: string }[] = [
 type Filters = {
   q: string;
   cats: Category[];
+  cols: Collection[];
   price: string;
   brands: string[];
   abs: boolean;
@@ -30,7 +31,7 @@ type Filters = {
   sort: Sort;
 };
 
-const EMPTY: Filters = { q: "", cats: [], price: "", brands: [], abs: false, fi: false, includeUsed: true, sort: "recommended" };
+const EMPTY: Filters = { q: "", cats: [], cols: [], price: "", brands: [], abs: false, fi: false, includeUsed: true, sort: "recommended" };
 
 export function BrowseView() {
   return <WithSearchParams render={(params) => <Browse params={params} />} />;
@@ -48,9 +49,11 @@ function Browse({ params }: { params: URLSearchParams }) {
     if (written.current !== null && params.toString() === written.current) return;
     const cat = params.get("cat");
     const brand = params.get("brand");
+    const col = params.get("col");
     setF((x) => ({
       ...x,
       cats: cat && cat in CATEGORIES ? [cat as Category] : [],
+      cols: col && col in COLLECTIONS ? [col as Collection] : [],
       price: params.get("price") ?? "",
       brands: brand ? [brand] : [],
       q: params.get("q") ?? "",
@@ -63,6 +66,7 @@ function Browse({ params }: { params: URLSearchParams }) {
     if (written.current === null) return;
     const p = new URLSearchParams();
     if (f.cats.length === 1) p.set("cat", f.cats[0]);
+    if (f.cols.length === 1) p.set("col", f.cols[0]);
     if (f.price) p.set("price", f.price);
     if (f.brands.length === 1) p.set("brand", f.brands[0]);
     if (f.q) p.set("q", f.q);
@@ -82,6 +86,7 @@ function Browse({ params }: { params: URLSearchParams }) {
     list = list.filter(
       (b) =>
         (!f.cats.length || f.cats.includes(b.category)) &&
+        (!f.cols.length || f.cols.some((c) => b.collections?.includes(c))) &&
         (!band || (onRoadPrice(b) >= band.min && onRoadPrice(b) < band.max)) &&
         (!f.brands.length || f.brands.includes(b.brand)) &&
         (!f.abs || b.brakes.abs === "single" || b.brakes.abs === "dual") &&
@@ -103,8 +108,8 @@ function Browse({ params }: { params: URLSearchParams }) {
     return sorted;
   }, [f]);
 
-  const activeCount = f.cats.length + f.brands.length + (f.price ? 1 : 0) + (f.abs ? 1 : 0) + (f.fi ? 1 : 0) + (f.includeUsed ? 0 : 1);
-  const toggle = <K extends "cats" | "brands">(k: K, v: Filters[K][number]) =>
+  const activeCount = f.cats.length + f.cols.length + f.brands.length + (f.price ? 1 : 0) + (f.abs ? 1 : 0) + (f.fi ? 1 : 0) + (f.includeUsed ? 0 : 1);
+  const toggle = <K extends "cats" | "cols" | "brands">(k: K, v: Filters[K][number]) =>
     setF((x) => ({ ...x, [k]: (x[k] as string[]).includes(v) ? (x[k] as string[]).filter((y) => y !== v) : [...(x[k] as string[]), v] }));
 
   const panel = (
@@ -114,6 +119,15 @@ function Browse({ params }: { params: URLSearchParams }) {
           {(Object.keys(CATEGORIES) as Category[]).map((c) => (
             <button key={c} className="chip" data-active={f.cats.includes(c)} onClick={() => toggle("cats", c)}>
               {lang === "bn" ? CATEGORIES[c].bn : CATEGORIES[c].en}
+            </button>
+          ))}
+        </div>
+      </FilterGroup>
+      <FilterGroup title={<L en="Collection" bn="সংকলন" />}>
+        <div className="flex flex-wrap gap-1.5">
+          {(Object.keys(COLLECTIONS) as Collection[]).map((c) => (
+            <button key={c} className="chip" data-active={f.cols.includes(c)} onClick={() => toggle("cols", c)}>
+              {lang === "bn" ? COLLECTIONS[c].bn : COLLECTIONS[c].en}
             </button>
           ))}
         </div>

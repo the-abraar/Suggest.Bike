@@ -158,6 +158,10 @@ export function LicenceView({ lang }: { lang: Lang }) {
         </p>
         <p className="mt-2">
           {tx("More: ", "আরও: ")}
+          <Link href={href("/guide/motorcycle-fines/")} className={a}>
+            {tx("all motorcycle fines", "মোটরসাইকেলের সব জরিমানা")}
+          </Link>
+          {" · "}
           <Link href={href("/guide/#registration")} className={a}>
             {tx("registration and tax token cost", "রেজিস্ট্রেশন ও ট্যাক্স টোকেন খরচ")}
           </Link>

@@ -51,3 +51,24 @@ Run log for the SEO agent (`.claude/agents/seo.md`). Newest run at the bottom. O
 3. Search aliases for misspellings (palsar, apachi, gixer).
 4. Re-read the 2022 Rules (Schedule 1 fees, Schedule 4 points at zero) and add to the licence and fines pages.
 5. In about 2 weeks, ask the owner for Search Console coverage (indexed or not) and first queries; use them to pick titles to tune.
+
+## 2026-10-14: run 3
+
+**Changed**
+- Internal linking for guide pages: `/guide/` licence section now links directly to the full driving licence guide (`/guide/driving-licence/`); `/guide/motorcycle-fines/` now links to `/guide/e-fines/` from the police-stop section and to `/guide/speed-limits/`, `/guide/driving-licence/`, `/guide/e-fines/` in its More section; `/guide/driving-licence/` links to `/guide/motorcycle-fines/` (`GuideView.tsx`, `FinesView.tsx`, `LicenceView.tsx`).
+- Fixed critical `/bn/` twin orphan bug: `BN_TWIN` in `src/lib/site.ts` omitted `maintenance` and `owner`, making `/bn/owner/`, `/bn/maintenance/` and all 27 `/bn/maintenance/[slug]/` pages (29 total) unreachable from Bangla navigation. `BN_TWIN` regex now includes `maintenance` (with optional slug) and `owner`.
+- Popular comparisons expanded from 8 to 14 pairs: added `yamaha-r15-v4` vs `suzuki-gixxer-sf-250`, `bajaj-pulsar-150` vs `tvs-apache-rtr-160-2v`, `yamaha-r15-v4` vs `honda-cbr150r`, `bajaj-pulsar-n250` vs `suzuki-gixxer-250`, `tvs-raider-125` vs `hero-xtreme-125r`, and `suzuki-gixxer-monotone` vs `yamaha-fzs-v2-dd` (`src/lib/curated.ts`). Exported `pairsForBike(id)`.
+- Bike pages → comparison pages: added crawlable "Popular comparisons" section on `/bikes/[id]` and `/bn/bikes/[id]` for bikes with curated pairs; updated `similarBikes` compare links to route directly to clean `/compare/<a>-vs-<b>/` URLs when a curated pair exists (`src/app/bikes/[id]/BikeDetail.tsx`).
+- Search aliases: added common Banglish and Bangla misspellings (palsar, apachi, gixer, jixer, discovar, radier, xtream, ntork, platena, জিকসার, পলসার, etc.) to `aliases` for 25 bikes across `src/data/bikes.json`.
+- Tests: `tests/seo.test.ts` now tests `pairsForBike`, validates that every indexable sitemap URL has a valid `/bn/` mapping in `langHref`, and crawls built `out/` verifying 0 orphan pages. `tests/search.test.ts` tests the new misspellings. `tools/qa/interact.mjs` and `tools/qa/keyboard.mjs` updated for the `HAS_NETWORKS` "Where" quiz step.
+
+**Checked**
+- `scripts/check.sh` (full): all steps pass (typecheck, stray files, unsafe HTML, validate data, tests [51 pass], build [444 static pages]).
+- Built `out/` crawl audit: 0 orphan pages across all 301 HTML files in `out/` (verified in `tests/seo.test.ts`).
+- `tools/qa/interact.mjs`: 24/24 PASS.
+- `tools/qa/keyboard.mjs`: 50/50 PASS.
+
+**Next (ranked)**
+1. Share images for `/guide/motorcycle-fines/`, `/guide/speed-limits/`, `/guide/driving-licence/`, `/guide/e-fines/`, and popular pair pages (Bangla share cards via `scripts/bn-og.mts`).
+2. Re-read the 2022 Road Transport Rules (Schedule 1 fees, Schedule 4 points at zero) and add to the licence and fines pages.
+3. In about 2 weeks, check Search Console coverage (indexed pages and submitted sitemap status) and impressions for first queries.

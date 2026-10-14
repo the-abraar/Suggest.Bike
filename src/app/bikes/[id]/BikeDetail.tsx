@@ -22,6 +22,7 @@ import { DEFAULT_COST_INPUT, emiMonthly, onRoadPrice, ownershipCost } from "@/li
 import { FuelAgeNote, OfferBox, OfferTag } from "@/components/Dated";
 import { useLang, useTx } from "@/lib/i18n";
 import { SITE, issueUrl, langHref } from "@/lib/site";
+import { pairBySlug, pairHref, pairSlug, pairsForBike } from "@/lib/curated";
 import type { Bike, Part, ScoreKey } from "@/lib/types";
 import type { PricePoint } from "@/lib/history";
 import { EstimateBadge } from "@/components/Experimental";
@@ -482,35 +483,83 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
         </div>
       </div>
 
+      {pairsForBike(bike.id).length > 0 && (
+        <section className="container-x mt-20">
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <div>
+              <h2 className="text-[22px] font-semibold tracking-tight text-ink sm:text-[24px]">
+                {tx(`Popular ${bike.model} comparisons`, `${bike.model}-এর জনপ্রিয় তুলনা`)}
+              </h2>
+              <p className="mt-1 text-[14px] text-muted">
+                {tx(
+                  "Side-by-side on-road price, real mileage, specs and true monthly cost.",
+                  "অন-রোড দাম, আসল মাইলেজ, স্পেক ও মাসিক খরচের সরাসরি তুলনা।",
+                )}
+              </p>
+            </div>
+            <Link href="/compare/" className="text-[13px] font-medium text-brand hover:underline">
+              {tx("All comparisons →", "সব তুলনা →")}
+            </Link>
+          </div>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {pairsForBike(bike.id).map((p) => (
+              <Link
+                key={p.href}
+                href={p.href}
+                className="group card flex items-center justify-between gap-3 p-4 transition-all hover:-translate-y-0.5 hover:border-line-strong hover:shadow-md"
+              >
+                <div className="min-w-0">
+                  <p className="truncate text-[14.5px] font-semibold text-ink group-hover:text-brand">
+                    {bike.model} <span className="font-normal text-muted">{tx("vs", "বনাম")}</span> {p.other.model}
+                  </p>
+                  <p className="mt-0.5 text-[12.5px] text-muted">
+                    {p.other.brand} · {formatBDT(p.other.priceBDT)}
+                  </p>
+                </div>
+                <ArrowRight size={16} className="shrink-0 text-faint transition-transform group-hover:translate-x-0.5 group-hover:text-brand" />
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
       <section className="container-x mt-20">
         <h2 className="mb-6 text-[24px] font-semibold tracking-tight text-ink">{tx("Also consider", "এগুলোও দেখুন")}</h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {similarBikes(bike).map((s) => (
-            <BikeCard
-              key={s.id}
-              bike={s}
-              footer={
-                <span
-                  role="link"
-                  tabIndex={0}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    router.push(langHref(`/compare/?bikes=${bike.id},${s.id}`, lang));
-                  }}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
+          {similarBikes(bike).map((s) => {
+            const popularSlug = pairBySlug(pairSlug(bike.id, s.id))
+              ? pairHref(bike.id, s.id)
+              : pairBySlug(pairSlug(s.id, bike.id))
+                ? pairHref(s.id, bike.id)
+                : null;
+            const targetHref = popularSlug || `/compare/?bikes=${bike.id},${s.id}`;
+            return (
+              <BikeCard
+                key={s.id}
+                bike={s}
+                footer={
+                  <span
+                    role="link"
+                    tabIndex={0}
+                    onClick={(e) => {
                       e.preventDefault();
-                      router.push(langHref(`/compare/?bikes=${bike.id},${s.id}`, lang));
-                    }
-                  }}
-                  className="-mx-5 -mb-5 mt-1 flex cursor-pointer items-center justify-between border-t border-line px-5 py-3 text-[13px] font-medium text-brand hover:bg-surface-2"
-                >
-                  {tx(`Compare with ${bike.model}`, `${bike.model}-এর সাথে তুলনা`)} <ArrowRight size={14} />
-                </span>
-              }
-            />
-          ))}
+                      e.stopPropagation();
+                      router.push(langHref(targetHref, lang));
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        router.push(langHref(targetHref, lang));
+                      }
+                    }}
+                    className="-mx-5 -mb-5 mt-1 flex cursor-pointer items-center justify-between border-t border-line px-5 py-3 text-[13px] font-medium text-brand hover:bg-surface-2"
+                  >
+                    {tx(`Compare with ${bike.model}`, `${bike.model}-এর সাথে তুলনা`)} <ArrowRight size={14} />
+                  </span>
+                }
+              />
+            );
+          })}
         </div>
       </section>
     </div>

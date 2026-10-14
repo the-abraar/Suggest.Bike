@@ -170,6 +170,13 @@ export function FinesView({ lang }: { lang: Lang }) {
             )}
           </li>
         </ol>
+        <p className="mt-4 rounded-xl border border-line bg-surface p-3.5 text-[14px] leading-relaxed text-ink-2">
+          {tx("In Dhaka and along major highways, cameras now register speeding and violations automatically. See how notices arrive, payment options and how to spot scam SMS in our ", "ঢাকা ও প্রধান মহাসড়কগুলোতে ক্যামেরা এখন নিজে থেকেই গতি ও অন্যান্য লঙ্ঘন ধরে ফেলে। নোটিশ কীভাবে আসে, কীভাবে দিতে হয় আর ভুয়া এসএমএস কীভাবে চিনবেন দেখুন আমাদের ")}
+          <Link href={href("/guide/e-fines/")} className={a}>
+            {tx("Dhaka AI-camera e-fines guide", "ঢাকার এআই ক্যামেরা ই-জরিমানা গাইডে")}
+          </Link>
+          {tx(".", "।")}
+        </p>
       </section>
 
       <section id="accident" className="mt-10 scroll-mt-24">
@@ -213,16 +220,24 @@ export function FinesView({ lang }: { lang: Lang }) {
         </p>
         <p className="mt-2">
           {tx("More: ", "আরও: ")}
-          <Link href={href("/guide/#registration")} className={a}>
-            {tx("registration and tax token cost", "রেজিস্ট্রেশন ও ট্যাক্স টোকেন খরচ")}
+          <Link href={href("/guide/speed-limits/")} className={a}>
+            {tx("motorcycle speed limits", "মোটরসাইকেলের গতিসীমা")}
           </Link>
           {" · "}
-          <Link href={href("/guide/#licence")} className={a}>
-            {tx("getting a licence", "লাইসেন্স করা")}
+          <Link href={href("/guide/driving-licence/")} className={a}>
+            {tx("getting a driving licence", "ড্রাইভিং লাইসেন্স করা")}
+          </Link>
+          {" · "}
+          <Link href={href("/guide/e-fines/")} className={a}>
+            {tx("AI-camera e-fines & fake SMS", "ক্যামেরা ই-জরিমানা ও ভুয়া এসএমএস")}
+          </Link>
+          {" · "}
+          <Link href={href("/guide/#registration")} className={a}>
+            {tx("registration & tax token", "রেজিস্ট্রেশন ও ট্যাক্স টোকেন")}
           </Link>
           {" · "}
           <Link href={href("/guide/#used")} className={a}>
-            {tx("buying used and ownership transfer", "পুরনো বাইক কেনা ও মালিকানা বদলি")}
+            {tx("buying used", "পুরনো বাইক কেনা")}
           </Link>
           {" · "}
           <Link href={href("/cost/")} className={a}>

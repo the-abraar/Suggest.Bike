@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 
 const bikes = JSON.parse(readFileSync(new URL("../src/data/bikes.json", import.meta.url)));
 const CATS = ["commuter", "street", "sport", "naked", "adventure", "cruiser", "classic", "scooter"];
+const COLS = ["legendary", "old-school"];
 const SCORES = ["reliability", "mechanicFamiliarity", "partsAvailability", "resale", "comfort", "cityHandling", "highway", "pillion", "offroad", "performance", "beginnerFriendly"];
 const errors = [];
 const ids = new Set();
@@ -13,6 +14,8 @@ for (const b of bikes) {
   if (ids.has(b.id)) e("duplicate id");
   ids.add(b.id);
   if (!CATS.includes(b.category)) e(`bad category ${b.category}`);
+  for (const c of b.collections ?? []) if (!COLS.includes(c)) e(`bad collection ${c}`);
+  if (b.engine?.stroke === 2 && !b.collections?.includes("old-school")) e("two-stroke must be in the old-school collection");
   if (!["on-sale", "used-only"].includes(b.status)) e("bad status");
   if (!Number.isFinite(b.priceBDT) || b.priceBDT < 20000 || b.priceBDT > 3000000) e(`implausible price ${b.priceBDT}`);
   const isEv = b.engine?.fuel === "electric";
