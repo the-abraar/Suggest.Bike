@@ -173,9 +173,3 @@ export function ownershipCost(b: CostBike, inp: CostInput) {
 }
 
 export type CostBreakdown = ReturnType<typeof ownershipCost>;
-
-/**
- * Card EMI as sold at BD showrooms: the price split over N months, usually 0% for 3–12 months
- * with partner-bank credit cards (bank processing fees vary). We show the plain split and say so.
- */
-export const emiMonthly = (price: number, months = 12) => Math.ceil(price / months / 10) * 10;

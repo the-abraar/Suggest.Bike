@@ -1,25 +1,26 @@
 // Self-tests for the pure logic in src/lib. Run: npm test (node:test via tsx).
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { BIKES, HAS_NETWORKS, formatLakh, getBike, networkReach } from "../src/lib/bikes";
+import { BIKES, HAS_NETWORKS, avgMileage, formatLakh, getBike, networkReach } from "../src/lib/bikes";
 import {
   matchBikes,
   anyNewFits,
   cheapestNew,
   cheapestPicks,
   stretchPicks,
-  emiBudget,
-  emiFor,
   onRoadPrice,
   encodeAnswers,
   decodeAnswers,
+  isUsedOption,
   DEFAULT_ANSWERS,
-  EMI_FLAT_RATE,
+  BAND_LOW,
+  DIVERSE_GAP,
   STRETCH,
   type Answers,
+  type Match,
 } from "../src/lib/match";
-import { emiMonthly, registrationFor, yearlyRetention, defaultUsedPrice, ownershipCost, DEFAULT_COST_INPUT, type CostBike } from "../src/lib/cost";
-import { DEFAULT_FEE_PCT, loanEmi, payPaths } from "../src/lib/fund";
+import { registrationFor, yearlyRetention, defaultUsedPrice, ownershipCost, DEFAULT_COST_INPUT, type CostBike } from "../src/lib/cost";
+import { DEFAULT_FEE_PCT, PAY_TERMS, cardEmi, emiCeiling, emiPlan, loanEmi, maxPrincipal, payPaths } from "../src/lib/fund";
 
 const A = (o: Partial<Answers> = {}): Answers => ({ ...DEFAULT_ANSWERS, ...o });
 const bike = (id: string) => getBike(id)! as unknown as CostBike & typeof BIKES[number];
@@ -29,10 +30,11 @@ test("match: results are sorted, bounded and within the on-road budget", () => {
   const a = A({ budget: 200000 });
   const r = matchBikes(a, 6);
   assert.ok(r.length > 0 && r.length <= 6);
-  for (let i = 0; i < r.length; i++) {
-    assert.ok(r[i].score >= 0 && r[i].score <= 99 && ["great", "good", "possible"].includes(r[i].band));
-    if (i) assert.ok(r[i - 1].score >= r[i].score);
-  }
+  for (let i = 0; i < r.length; i++) assert.ok(r[i].score >= 0 && r[i].score <= 99 && ["great", "good", "possible"].includes(r[i].band));
+  // sorted, except that #3 may be a bike of another style moved up (see the diversity test)
+  const rest = r.filter((_, i) => i !== 2);
+  for (let i = 1; i < rest.length; i++) assert.ok(rest[i - 1].score >= rest[i].score);
+  if (r[2]) assert.ok(r[2].score <= r[1].score && (!r[3] || r[3].score - r[2].score <= DIVERSE_GAP));
   assert.equal(matchBikes(a, 2).length, 2);
 });
 test("match: on-road ceiling — nothing over budget outside stretch; stretch is ≤10% over and capped at 2", () => {
@@ -50,21 +52,36 @@ test("match: on-road ceiling — nothing over budget outside stretch; stretch is
   const b = BIKES.find((x) => x.status === "on-sale")!;
   assert.ok(!matchBikes(A({ budget: b.priceBDT, gearless: "either" }), 1000).some((m) => m.bike.id === b.id && !m.used));
 });
-test("match: cheaper bike is not penalised (score is independent of how much budget is left)", () => {
-  const lo = matchBikes(A({ budget: 150000 }), 1000);
-  const hi = new Map(matchBikes(A({ budget: 600000 }), 1000).map((m) => [m.bike.id, m.score]));
-  assert.ok(lo.length > 0);
-  for (const m of lo) if (!m.used) assert.equal(hi.get(m.bike.id), m.score, m.bike.id);
+test("match: budget band is soft — a bike far under the budget scores lower but stays; inside the band the budget does not matter", () => {
+  const at = (budget: number, o: Partial<Answers> = {}) => new Map(matchBikes(A({ budget, ...o }), 1000).map((m) => [m.bike.id, m]));
+  const lo = at(150000), hi = at(600000), hi2 = at(650000);
+  const cheap = [...lo.values()].filter((m) => !m.used && m.cost < BAND_LOW * 600000);
+  assert.ok(cheap.length > 0);
+  for (const m of cheap) assert.ok(hi.get(m.bike.id)!.score < m.score, m.bike.id);
+  // two budgets whose band both bikes sit in score them the same
+  for (const m of hi.values()) if (m.cost >= BAND_LOW * 650000) assert.equal(hi2.get(m.bike.id)!.score, m.score, m.bike.id);
+  // "Lowest price" turns the band off: the cheaper bike wins on a big budget
+  const cheapest = matchBikes(A({ budget: 400000, priorities: ["price"] }), 1)[0];
+  assert.ok(cheapest.cost < BAND_LOW * 400000, cheapest.bike.id);
 });
-test("match: EMI budget math (0% up to 12 months, flat interest beyond) and instalment round-trip", () => {
-  assert.equal(emiBudget(50000, 10000, 12), 170000);
-  assert.equal(emiBudget(0, 10000, 3), 30000);
-  assert.equal(emiBudget(0, 12000, 24), Math.round(288000 / (1 + EMI_FLAT_RATE * 2)));
-  assert.ok(emiBudget(0, 10000, 36) < 360000);
-  assert.equal(emiFor(170000, 50000, 12), 10000);
-  assert.equal(emiFor(10000, 50000, 12), 0);
-  const budget = emiBudget(40000, 9000, 24);
-  assert.ok(emiFor(budget, 40000, 24) <= 9010);
+test("match: EMI mode checks cash now and the instalment, for new bikes only", () => {
+  const emiA = (down: number, monthly: number, tenure: Answers["tenure"], o: Partial<Answers> = {}) =>
+    A({ payMode: "monthly", down, monthly, tenure, budget: emiCeiling(down, monthly, tenure), condition: "any", ...o });
+  for (const [down, monthly, tenure] of [[50000, 20000, 12], [20000, 8000, 24], [100000, 15000, 36], [30000, 30000, 6]] as const) {
+    const a = emiA(down, monthly, tenure);
+    const r = matchBikes(a, 1000);
+    assert.ok(r.length > 0, `${down}/${monthly}/${tenure}`);
+    for (const m of r) {
+      assert.ok(!isUsedOption(m) && m.pay, m.bike.id);
+      assert.ok(m.pay.upfront <= down && m.pay.emi <= monthly + 1e-6, m.bike.id);
+      assert.ok(m.pay.upfront >= m.registration + m.pay.fee, m.bike.id); // BRTA and the fee are never financed
+    }
+    for (const m of stretchPicks(a)) assert.ok(m.pay && m.pay.upfront <= down + a.budget * STRETCH && m.pay.upfront > down, m.bike.id);
+  }
+  // no cash: every new bike needs BRTA in cash, so nothing fits and the fallback says how much cash is missing
+  const broke = emiA(0, 40000, 12);
+  assert.equal(matchBikes(broke).length, 0);
+  assert.ok(/more cash now/.test(cheapestPicks(broke, 1)[0].warnings[0].en));
 });
 test("match: empty state — budget below cheapest on-road returns no matches but cheapest fallbacks with how far over", () => {
   const a = A({ budget: 30000 });
@@ -139,11 +156,20 @@ test("match: cheapestNew respects gearbox; encode/decode round-trips; bad params
 });
 
 // ---------------- cost / EMI / BRTA ----------------
-test("emiMonthly: known answers, rounds up to ৳10, zero price", () => {
-  assert.equal(emiMonthly(120000, 12), 10000);
-  assert.equal(emiMonthly(100001, 12), 8340); // 8333.4 -> 8340
-  assert.equal(emiMonthly(0), 0);
-  assert.ok(emiMonthly(200000, 6) > emiMonthly(200000, 12));
+test("cardEmi: the one '/month' figure is payPaths' 12-month 0% card EMI on the ex-showroom price", () => {
+  assert.equal(PAY_TERMS.cardMonths, 12);
+  assert.equal(cardEmi(120000), 10000);
+  assert.equal(cardEmi(0), 0);
+  for (const id of ["bajaj-platina-100", "bajaj-pulsar-n160"]) {
+    const b = bike(id);
+    assert.equal(cardEmi(b.priceBDT), payPaths({ price: b.priceBDT, brta: onRoadPrice(b) - b.priceBDT, feePct: DEFAULT_FEE_PCT, ...PAY_TERMS }).card.emi);
+  }
+});
+test("maxPrincipal is the inverse of loanEmi; guards", () => {
+  assert.equal(maxPrincipal(10000, 0, 12), 120000);
+  for (const [m, pct, n] of [[9000, 14, 24], [5000, 10, 36], [20000, 0, 6]]) assert.ok(Math.abs(loanEmi(maxPrincipal(m, pct, n), pct, n) - m) < 1e-6);
+  assert.equal(maxPrincipal(0, 14, 24), 0);
+  assert.equal(maxPrincipal(1000, 14, 0), 0);
 });
 test("loanEmi: zero-interest split, known answer, monotonic, guards", () => {
   assert.equal(loanEmi(120000, 0, 12), 10000);
@@ -270,4 +296,124 @@ test("network: a brand with no official count is neutral, not flagged as a small
   assert.equal(networkReach("No Such Brand"), 0.5);
   assert.ok(networkReach("No Such Brand") >= 0.45); // match.ts warns town/village riders below 0.45
   assert.ok(networkReach("Bajaj") > networkReach("KTM"));
+});
+
+// ---------------- one payment engine (critique B2, B3, B16) ----------------
+const n160 = () => {
+  const b = bike("bajaj-pulsar-n160");
+  return { b, brta: onRoadPrice(b) - b.priceBDT, paths: payPaths({ price: b.priceBDT, brta: onRoadPrice(b) - b.priceBDT, feePct: DEFAULT_FEE_PCT, ...PAY_TERMS }) };
+};
+const near = (x: number, y: number, what: string) => assert.ok(Math.abs(x - y) < 1e-6, `${what}: ${x} vs ${y}`);
+test("B2 scenario: Pulsar N160, 30% down, 24 months — /cost and the quiz both say ৳9,195/mo after ৳96,717 upfront", () => {
+  const { b, brta, paths } = n160();
+  assert.equal(b.priceBDT, 273600, "fixture: update the expected figures when the N160 price changes");
+  assert.equal(Math.round(paths.loan.emi), 9195);
+  assert.equal(Math.round(paths.loan.upfront), 96717);
+  const quiz = emiPlan(b.priceBDT, brta, paths.loan.emi, 24);
+  near(quiz.emi, paths.loan.emi, "emi");
+  near(quiz.upfront, paths.loan.upfront, "upfront");
+});
+test("B2 scenario: 12-month card, no cash — ৳22,800/mo plus ৳15,868 upfront, so a zero-cash buyer cannot get it", () => {
+  const { b, brta, paths } = n160();
+  assert.equal(Math.round(paths.card.emi), 22800);
+  assert.equal(Math.round(paths.card.upfront), 15868); // BRTA 11,764 + 1.5% fee 4,104
+  const quiz = emiPlan(b.priceBDT, brta, 22800, 12);
+  assert.equal(quiz.emi, paths.card.emi);
+  assert.equal(quiz.upfront, paths.card.upfront);
+  const has = (down: number) =>
+    matchBikes(A({ payMode: "monthly", down, monthly: 22800, tenure: 12, budget: emiCeiling(down, 22800, 12) }), 1000).some((m) => m.bike.id === b.id);
+  assert.equal(has(0), false);
+  assert.equal(has(15868), true);
+});
+test("quiz and /cost agree: the quiz's plan for a bike equals payPaths for the same price, cash and term", () => {
+  for (const id of ["bajaj-platina-100", "bajaj-pulsar-n160", "yamaha-fzs-v2-dd"]) {
+    const b = bike(id);
+    const brta = onRoadPrice(b) - b.priceBDT;
+    const paths = payPaths({ price: b.priceBDT, brta, feePct: DEFAULT_FEE_PCT, ...PAY_TERMS });
+    for (const [key, tenure] of [["card", PAY_TERMS.cardMonths], ["loan", PAY_TERMS.loanMonths]] as [keyof typeof paths, Answers["tenure"]][]) {
+      const p = paths[key];
+      const down = Math.ceil(p.upfront) + 1; // a taka of slack for float rounding at the exact boundary
+      const a = A({ payMode: "monthly", down, monthly: p.emi, tenure, budget: emiCeiling(down, p.emi, tenure), gearless: "either" });
+      const m = matchBikes(a, 1000).find((x) => x.bike.id === id);
+      assert.ok(m?.pay, `${id} ${key} not offered`);
+      for (const k of ["upfront", "emi", "fee", "total"] as const) near(m.pay[k], p[k], `${id} ${key} ${k}`);
+    }
+  }
+});
+test("B3: used and used-only options never carry EMI or a registration, and EMI mode leaves them out", () => {
+  const usedOnly = BIKES.find((b) => b.status === "used-only")!;
+  assert.ok(usedOnly, "fixture needs a used-only bike in src/data/bikes.json");
+  assert.equal(isUsedOption({ bike: usedOnly }), true);
+  assert.equal(isUsedOption({ bike: bike("bajaj-pulsar-n160") }), false);
+  assert.equal(isUsedOption({ bike: bike("bajaj-pulsar-n160"), used: { age: 1, price: 1 } }), true);
+  const total = matchBikes(A({ budget: 200000, condition: "any" }), 1000);
+  const used = total.filter(isUsedOption);
+  assert.ok(used.some((m) => m.bike.status === "used-only") && used.some((m) => m.used));
+  for (const m of used) assert.ok(!m.pay && m.registration === 0 && m.onRoad === m.price, m.bike.id);
+  const emi = matchBikes(A({ budget: emiCeiling(700000, 60000, 12), payMode: "monthly", down: 700000, monthly: 60000, tenure: 12, condition: "any" }), 1000);
+  assert.ok(emi.length > 0 && !emi.some(isUsedOption));
+});
+
+// ---------------- matcher usefulness (critique B1) ----------------
+const top3 = (o: Partial<Answers>) => matchBikes(A(o), 3);
+const ids = (r: Match[]) => r.map((m) => m.bike.id);
+test("persona: commute at ৳1.5 lakh and at ৳4 lakh get different top 3; the bigger budget reaches bikes the smaller cannot", () => {
+  const lo = top3({ use: "commute", budget: 150000 }), hi = top3({ use: "commute", budget: 400000 });
+  assert.equal(lo.length, 3);
+  assert.notDeepEqual(ids(lo), ids(hi));
+  assert.ok(hi.filter((m) => m.cost > 150000).length >= 2, ids(hi).join());
+});
+test("persona: mixed use at ৳2.5 lakh and at ৳4 lakh get different top 3", () => {
+  assert.notDeepEqual(ids(top3({ use: "mixed", budget: 250000 })), ids(top3({ use: "mixed", budget: 400000 })));
+});
+test("persona: home quick pick (geared) changes with the slider", () => {
+  const qp = (budget: number) => ids(top3({ use: "commute", budget, gearless: "no" }));
+  assert.notDeepEqual(qp(150000), qp(400000));
+});
+test("persona: rideshare at ৳2 lakh gets frugal, mechanic-friendly bikes that carry a passenger", () => {
+  for (const m of top3({ use: "rideshare", budget: 200000 })) {
+    assert.ok(m.bike.status === "on-sale" && m.bike.engine.stroke !== 2, m.bike.id);
+    assert.ok(m.bike.ev || avgMileage(m.bike) >= 55, `${m.bike.id} mileage`);
+    assert.ok(m.bike.scores.mechanicFamiliarity >= 8 && m.bike.scores.pillion >= 6, m.bike.id);
+  }
+});
+test("persona: village at ৳2 lakh gets bikes any local mechanic knows, from brands with a wide network", () => {
+  for (const o of [{ use: "rough" }, { use: "commute", where: "village" }] as Partial<Answers>[])
+    for (const m of top3({ ...o, budget: 200000 })) {
+      assert.ok(m.bike.category !== "scooter" && m.bike.scores.mechanicFamiliarity >= 8, `${JSON.stringify(o)} ${m.bike.id}`);
+      if (HAS_NETWORKS) assert.ok(networkReach(m.bike.brand) >= 0.45, m.bike.id);
+    }
+});
+test("match: the top 3 span two styles unless no other style is within DIVERSE_GAP points of #3", () => {
+  let mixed = 0;
+  for (const use of ["commute", "mixed", "highway", "rough", "rideshare", "fun"] as const)
+    for (const budget of [150000, 250000, 400000, 650000]) {
+      const r = matchBikes(A({ use, budget }), 1000);
+      if (r.length < 4) continue;
+      if (new Set(r.slice(0, 3).map((m) => m.bike.category)).size > 1) mixed++;
+      else for (const m of r.slice(3)) if (m.bike.category !== r[0].bike.category) assert.ok(r[2].score - m.score > DIVERSE_GAP, `${use} ${budget} ${m.bike.id}`);
+    }
+  assert.ok(mixed >= 12, `only ${mixed} of 24 personas get a mixed top 3`);
+});
+
+// ---------------- shared links are clamped (critique B11) ----------------
+test("decodeAnswers: clamps the budget, de-duplicates priorities and derives the EMI budget", () => {
+  const d = (q: string) => decodeAnswers(new URLSearchParams(q))!;
+  assert.equal(d("b=-5&r=1").budget, 30000);
+  assert.equal(d("b=999999999999&r=1").budget, 1000000);
+  assert.equal(d("b=Infinity").budget, 1000000);
+  assert.equal(decodeAnswers(new URLSearchParams("b=abc")), null);
+  assert.equal(decodeAnswers(new URLSearchParams("b=0")), null);
+  assert.deepEqual(d("b=200000&pr=mileage.mileage.mileage").priorities, ["mileage"]);
+  assert.deepEqual(d("b=200000&pr=price.safety.price.style.comfort").priorities, ["price", "safety", "style"]);
+  const m = d("pm=monthly&m=2000&t=36&b=150000");
+  assert.equal(m.budget, emiCeiling(0, 2000, 36));
+  assert.ok(m.budget < 150000);
+  const big = d("pm=monthly&m=999999999&d=99999999999&t=12&b=1");
+  assert.equal(big.monthly, 60000);
+  assert.equal(big.down, 1000000);
+  assert.equal(big.budget, emiCeiling(1000000, 60000, 12));
+  assert.equal(d("pm=monthly&m=-500&d=-9&b=200000").down, 0);
+  const a = A({ payMode: "monthly", down: 40000, monthly: 9000, tenure: 24, budget: emiCeiling(40000, 9000, 24) });
+  assert.deepEqual(decodeAnswers(new URLSearchParams(encodeAnswers(a))), a);
 });

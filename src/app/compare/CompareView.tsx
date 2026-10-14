@@ -4,7 +4,9 @@ import Link from "@/components/LangLink";
 import { useEffect, useMemo, useState } from "react";
 import { Plus, Search, X } from "lucide-react";
 import { BIKES, SCORE_LABELS, avgMileage, ccLabel, formatBDT, formatLakh, fullName, getBike, mileageText, partLabel, tagline } from "@/lib/bikes";
-import { DEFAULT_COST_INPUT, emiMonthly, onRoadPrice, ownershipCost } from "@/lib/cost";
+import { DEFAULT_COST_INPUT, onRoadPrice, ownershipCost } from "@/lib/cost";
+import { cardEmi } from "@/lib/fund";
+import { isUsedOption } from "@/lib/match";
 import { OfferTag } from "@/components/Dated";
 import { pairHref, popularPairs } from "@/lib/curated";
 import { langHref } from "@/lib/site";
@@ -247,7 +249,7 @@ function Table({ bikes }: { bikes: BikeLite[] }) {
         { label: tx("Ex-showroom", "শোরুম মূল্য"), values: bikes.map((b) => (b.status === "used-only" ? "—" : formatBDT(b.priceBDT))) },
         {
           label: tx("12-month card EMI", "১২ মাসের কার্ড কিস্তি"),
-          values: bikes.map((b) => (b.status === "used-only" ? "—" : `${formatBDT(emiMonthly(b.priceBDT))}${tx("/mo", "/মাস")}`)),
+          values: bikes.map((b) => (isUsedOption({ bike: b }) ? "—" : `${formatBDT(cardEmi(b.priceBDT))}${tx("/mo", "/মাস")}`)),
         },
         {
           label: tx("Running cost / month (25 km/day)", "চলার খরচ / মাস (দিনে ২৫ km)"),

@@ -24,7 +24,6 @@ import {
 } from "lucide-react";
 import {
   DEFAULT_ANSWERS,
-  EMI_FLAT_RATE,
   EMI_TENURES,
   STRETCH,
   USED_HAIRCUT,
@@ -32,9 +31,8 @@ import {
   cheapestNew,
   cheapestPicks,
   decodeAnswers,
-  emiBudget,
-  emiFor,
   encodeAnswers,
+  isUsedOption,
   matchBikes,
   onRoadPrice,
   stretchPicks,
@@ -46,7 +44,8 @@ import {
   type Where,
 } from "@/lib/match";
 import { CATEGORIES, HAS_NETWORKS, ccLabel, formatBDT, formatLakh, fullName, tagline } from "@/lib/bikes";
-import { ownershipCost, DEFAULT_COST_INPUT, emiMonthly } from "@/lib/cost";
+import { ownershipCost, DEFAULT_COST_INPUT } from "@/lib/cost";
+import { DEFAULT_FEE_PCT, PAY_TERMS, cardEmi, emiCeiling } from "@/lib/fund";
 import guide from "@/data/guide.json";
 import { useLang, useTx } from "@/lib/i18n";
 import { useStore } from "@/lib/store";
@@ -80,6 +79,7 @@ const PRIORITIES: Opt<Priority>[] = [
   { id: "resale", en: "Resale value", bn: "রিসেল ভ্যালু" },
   { id: "safety", en: "Safety (ABS)", bn: "নিরাপত্তা (ABS)" },
   { id: "style", en: "Looks & style", bn: "লুক ও স্টাইল" },
+  { id: "price", en: "Lowest price", bn: "সবচেয়ে কম দাম" },
 ];
 
 const STEPS = 7;
@@ -338,13 +338,13 @@ function BudgetStep({ a, set }: { a: Answers; set: <K extends keyof Answers>(k: 
     set("monthly", n.monthly);
     set("down", n.down);
     set("tenure", n.tenure);
-    set("budget", emiBudget(n.down, n.monthly, n.tenure));
+    set("budget", emiCeiling(n.down, n.monthly, n.tenure));
   };
   const setValue = (v: number) => {
     if (monthly) setEmi({ monthly: v });
     else {
       set("budget", v);
-      set("monthly", emiMonthly(v));
+      set("monthly", Math.round(cardEmi(v)));
     }
   };
   const presets = monthly ? [8000, 12000, 18000, 25000, 40000] : [130000, 180000, 250000, 350000, 500000];
@@ -380,8 +380,8 @@ function BudgetStep({ a, set }: { a: Answers; set: <K extends keyof Answers>(k: 
         <p className="text-center text-[14px] text-muted">
           {monthly
             ? tx(
-                `${formatBDT(a.down)} down + ${a.tenure} months = up to ${formatLakh(a.budget, lang)} on the road`,
-                `${formatBDT(a.down)} ডাউন + ${a.tenure} মাস = অন-রোড ${formatLakh(a.budget, lang)} পর্যন্ত`,
+                `${formatBDT(a.down)} cash now + ${a.tenure} months = up to ${formatLakh(a.budget, lang)} on the road`,
+                `এখন ${formatBDT(a.down)} নগদ + ${a.tenure} মাস = অন-রোড ${formatLakh(a.budget, lang)} পর্যন্ত`,
               )
             : tx(`${formatLakh(a.budget, lang)} on the road`, `অন-রোড ${formatLakh(a.budget, lang)}`)}
         </p>
@@ -407,7 +407,7 @@ function BudgetStep({ a, set }: { a: Answers; set: <K extends keyof Answers>(k: 
           <>
             <div className="mt-6 grid gap-4 border-t border-line pt-5 sm:grid-cols-2">
               <label className="block text-[13px] font-medium text-ink-2">
-                {tx("Down payment (cash upfront)", "ডাউন পেমেন্ট (নগদ আগে)")}
+                {tx("Cash available now", "এখন হাতে নগদ কত")}
                 <input
                   type="number"
                   inputMode="numeric"
@@ -433,8 +433,8 @@ function BudgetStep({ a, set }: { a: Answers; set: <K extends keyof Answers>(k: 
             <p className="mx-auto mt-5 flex max-w-md gap-2 text-[12.5px] leading-relaxed text-muted">
               <Info size={14} className="mt-0.5 shrink-0" />
               {tx(
-                `Most showrooms offer 0% EMI for up to 12 months on partner-bank credit cards; banks may add a processing fee. Longer plans charge interest: we assume ${EMI_FLAT_RATE * 100}% a year flat (an estimate, not a quote), so ask the dealer for the real rate.`,
-                `বেশিরভাগ শোরুমে পার্টনার ব্যাংকের ক্রেডিট কার্ডে ১২ মাস পর্যন্ত ০% কিস্তি পাওয়া যায়; ব্যাংক প্রসেসিং ফি নিতে পারে। এর বেশি মেয়াদে সুদ লাগে: আমরা বছরে ফ্ল্যাট ${EMI_FLAT_RATE * 100}% ধরেছি (আনুমানিক, কোটেশন নয়), আসল হার ডিলারের কাছে জেনে নিন।`,
+                `Cash now pays BRTA registration and a ${DEFAULT_FEE_PCT}% processing fee before you ride home, plus a down payment when the instalments can't cover the whole price. Up to ${PAY_TERMS.cardMonths} months is 0% card EMI with partner banks; longer plans are a loan, and we assume ${PAY_TERMS.loanPct}% a year on a reducing balance (an estimate, not a quote), so ask for the real rate. Used bikes are left out: a private sale has no card EMI or bike loan.`,
+                `এখনকার নগদে বাইক বাড়ি নেওয়ার আগে BRTA রেজিস্ট্রেশন আর ${DEFAULT_FEE_PCT}% প্রসেসিং ফি দিতে হয়; কিস্তিতে পুরো দাম না উঠলে বাকিটা ডাউন পেমেন্ট। ${PAY_TERMS.cardMonths} মাস পর্যন্ত পার্টনার ব্যাংকের কার্ডে ০% কিস্তি; এর বেশি মেয়াদে লোন, আমরা বছরে ${PAY_TERMS.loanPct}% ক্রমহ্রাসমান ব্যালান্সে সুদ ধরেছি (আনুমানিক, কোটেশন নয়), আসল হার জেনে নিন। পুরনো বাইক বাদ: ব্যক্তিগত বিক্রিতে কার্ড কিস্তি বা বাইক লোন নেই।`,
               )}
             </p>
           </>
@@ -499,8 +499,8 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
       {/* answers summary */}
       <div className="mt-6 flex flex-wrap gap-2">
         <EditChip onClick={() => onEdit(0)}>
-          {a.payMode === "monthly" ? `${formatBDT(a.monthly)}${tx("/mo", "/মাস")} × ${a.tenure} · ` : ""}≤ {formatLakh(a.budget, lang)} {tx("on-road", "অন-রোড")} ·{" "}
-          {a.condition === "new" ? tx("new", "নতুন") : tx("new or used", "নতুন বা পুরনো")}
+          {a.payMode === "monthly" ? `${formatBDT(a.monthly)}${tx("/mo", "/মাস")} × ${a.tenure} + ${formatBDT(a.down)} ${tx("cash", "নগদ")} · ` : ""}≤ {formatLakh(a.budget, lang)} {tx("on-road", "অন-রোড")} ·{" "}
+          {a.condition === "new" || a.payMode === "monthly" ? tx("new", "নতুন") : tx("new or used", "নতুন বা পুরনো")}
         </EditChip>
         <EditChip onClick={() => onEdit(1)}>{lang === "bn" ? use.bn : use.en}</EditChip>
         {HAS_NETWORKS && <EditChip onClick={() => onEdit(2)}>{lang === "bn" ? where.bn : where.en}</EditChip>}
@@ -535,14 +535,19 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
         <div className="card mt-10 p-6 sm:p-8">
           <p className="text-[17px] font-semibold text-ink">{tx(`Nothing fits ${formatLakh(a.budget, lang)} on the road.`, `অন-রোড ${formatLakh(a.budget, lang)}-এ কিছু মেলেনি।`)}</p>
           <p className="mt-1 text-[14.5px] text-muted">
-            {a.condition === "new"
+            {a.payMode === "monthly"
+              ? tx(
+                  "BRTA registration and the processing fee are paid in cash before you ride home. These are the cheapest new bikes and the extra cash each needs.",
+                  "বাইক বাড়ি নেওয়ার আগে BRTA রেজিস্ট্রেশন আর প্রসেসিং ফি নগদে দিতে হয়। নিচে সবচেয়ে কম দামের নতুন বাইক আর প্রতিটির জন্য কত বাড়তি নগদ লাগবে।",
+                )
+              : a.condition === "new"
               ? tx("These are the cheapest ways in, and how far over they are. A used bike costs far less: allow used bikes on the budget step.", "সবচেয়ে কম দামের বিকল্প আর বাজেটের চেয়ে কত বেশি, নিচে দেখুন। পুরনো বাইক অনেক সস্তা: বাজেটের ধাপে পুরনো বাইক চালু করুন।")
               : tx("These are the cheapest options, new or used, and how far over they are.", "নতুন বা পুরনো, সবচেয়ে কম দামের বিকল্প আর বাজেটের চেয়ে কত বেশি, নিচে দেখুন।")}
           </p>
           {fallback.length > 0 && (
             <div className="mt-5 grid gap-3">
               {fallback.map((m) => (
-                <MatchRow key={m.bike.id} m={m} a={a} />
+                <MatchRow key={m.bike.id} m={m} />
               ))}
             </div>
           )}
@@ -587,15 +592,15 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
                 ))}
               </ul>
               <div className="mt-6 grid grid-cols-3 gap-4 border-t border-line pt-5">
-                <MiniStat k={top.used ? tx("Bikroy asking", "Bikroy-তে চাওয়া দাম") : tx("On-road (2-yr tax token)", "অন-রোড (২ বছরের টোকেন)")} v={formatLakh(top.onRoad, lang)} />
+                <MiniStat k={isUsedOption(top) ? tx("Bikroy asking", "Bikroy-তে চাওয়া দাম") : tx("On-road (2-yr tax token)", "অন-রোড (২ বছরের টোকেন)")} v={formatLakh(top.onRoad, lang)} />
                 {top.bike.ev ? (
                   <MiniStat k={tx("Range/charge", "রেঞ্জ/চার্জ")} v={`${top.bike.ev.realRangeKm[0]}–${top.bike.ev.realRangeKm[1]} km`} />
                 ) : (
                   <MiniStat k={tx("Mileage", "মাইলেজ")} v={`${top.bike.mileageKmpl[0]}–${top.bike.mileageKmpl[1]}`} />
                 )}
                 <MiniStat
-                  k={top.used ? tx("Running/mo", "চলার খরচ/মাস") : tx("EMI/mo", "কিস্তি/মাস")}
-                  v={formatBDT(top.used ? ownershipCost(top.bike, { ...DEFAULT_COST_INPUT, includeDepreciation: false }).runningPerMonth : perMonth(top, a))}
+                  k={isUsedOption(top) ? tx("Running/mo", "চলার খরচ/মাস") : tx("EMI/mo", "কিস্তি/মাস")}
+                  v={formatBDT(isUsedOption(top) ? ownershipCost(top.bike, { ...DEFAULT_COST_INPUT, includeDepreciation: false }).runningPerMonth : perMonth(top))}
                 />
               </div>
               <p className="mt-3 text-[12.5px] text-muted tnum">
@@ -622,7 +627,7 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
               </div>
               <div className="mt-5 grid gap-3">
                 {rest.map((m, i) => (
-                  <MatchRow key={m.bike.id} m={m} a={a} rank={i + 2} />
+                  <MatchRow key={m.bike.id} m={m} rank={i + 2} />
                 ))}
               </div>
             </>
@@ -636,7 +641,7 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
               </p>
               <div className="mt-5 grid gap-3">
                 {stretch.map((m) => (
-                  <MatchRow key={m.bike.id} m={m} a={a} />
+                  <MatchRow key={m.bike.id} m={m} />
                 ))}
               </div>
             </>
@@ -667,9 +672,11 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
             `Match bands come from our 11 ownership scores and your answers — no brand pays for placement. On-road = ex-showroom + BRTA registration with a 2-year tax token (fees as of ${REG_AS_OF}).`,
             `ম্যাচ ব্যান্ড আমাদের ১১টি মালিকানা স্কোর আর আপনার উত্তর থেকে হিসাব করা — কোনো ব্র্যান্ড টাকা দিয়ে জায়গা কেনে না। অন-রোড = শোরুম দাম + ২ বছরের ট্যাক্স টোকেনসহ BRTA রেজিস্ট্রেশন (ফি ${REG_AS_OF} অনুযায়ী)।`,
           )}{" "}
-          {a.payMode === "monthly" && a.tenure > 12
-            ? tx(`EMI includes our assumed ${EMI_FLAT_RATE * 100}% a year flat interest. `, `কিস্তিতে আমাদের ধরা বছরে ফ্ল্যাট ${EMI_FLAT_RATE * 100}% সুদ যোগ আছে। `)
-            : ""}
+          {a.payMode === "monthly"
+            ? a.tenure > PAY_TERMS.cardMonths
+              ? tx(`EMI assumes a loan at ${PAY_TERMS.loanPct}% a year (reducing balance) and a ${DEFAULT_FEE_PCT}% processing fee. `, `কিস্তিতে বছরে ${PAY_TERMS.loanPct}% সুদের লোন (ক্রমহ্রাসমান ব্যালান্স) আর ${DEFAULT_FEE_PCT}% প্রসেসিং ফি ধরা হয়েছে। `)
+              : tx(`EMI assumes 0% card EMI and a ${DEFAULT_FEE_PCT}% processing fee. `, `কিস্তিতে ০% কার্ড কিস্তি আর ${DEFAULT_FEE_PCT}% প্রসেসিং ফি ধরা হয়েছে। `)
+            : tx(`"/mo" is ${PAY_TERMS.cardMonths}-month 0% card EMI on the ex-showroom price; BRTA is paid upfront. `, `"/মাস" মানে শোরুম মূল্যে ${PAY_TERMS.cardMonths} মাসের ০% কার্ড কিস্তি; BRTA শুরুতেই দিতে হয়। `)}
           <Link href="/disclaimer/" className="underline underline-offset-2">
             {tx("Disclaimer", "দায়মুক্তি")}
           </Link>
@@ -681,11 +688,17 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
 
 const STRETCH_PCT = Math.round(STRETCH * 100);
 const REG_AS_OF = guide.registration.asOf;
-const perMonth = (m: Match, a: Answers) => (a.payMode === "monthly" ? emiFor(m.onRoad, a.down, a.tenure) : emiMonthly(m.price));
+// EMI mode: the plan from fund.ts; otherwise the site-wide 12-month card EMI on the ex-showroom price.
+const perMonth = (m: Match) => m.pay?.emi ?? cardEmi(m.price);
 
 function PriceNote({ m }: { m: Match }) {
   const tx = useTx();
-  return m.used || m.registration === 0
+  if (m.pay)
+    return tx(
+      `${formatBDT(m.pay.upfront)} cash now (${formatBDT(m.registration)} BRTA + ${formatBDT(m.pay.fee)} fee${m.pay.upfront > m.registration + m.pay.fee + 1 ? ` + ${formatBDT(m.pay.upfront - m.registration - m.pay.fee)} down` : ""}), then ${formatBDT(m.pay.emi)}/mo × ${m.pay.emiMonths}`,
+      `এখন ${formatBDT(m.pay.upfront)} নগদ (${formatBDT(m.registration)} BRTA + ${formatBDT(m.pay.fee)} ফি${m.pay.upfront > m.registration + m.pay.fee + 1 ? ` + ${formatBDT(m.pay.upfront - m.registration - m.pay.fee)} ডাউন` : ""}), তারপর ${formatBDT(m.pay.emi)}/মাস × ${m.pay.emiMonths}`,
+    );
+  return isUsedOption(m)
     ? tx(
         `Asking price on Bikroy (typical selling price is lower; we count ${formatBDT(m.cost)} against your budget)`,
         `Bikroy-তে চাওয়া দাম (আসল বিক্রি সাধারণত কমে হয়; বাজেটে আমরা ${formatBDT(m.cost)} ধরেছি)`,
@@ -714,7 +727,7 @@ function BandBadge({ band }: { band: Band }) {
   return <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-[12.5px] font-semibold ${b.cls}`}>{b[lang]}</span>;
 }
 
-function MatchRow({ m, a, rank }: { m: Match; a: Answers; rank?: number }) {
+function MatchRow({ m, rank }: { m: Match; rank?: number }) {
   const { lang } = useLang();
   const tx = useTx();
   return (
@@ -744,7 +757,7 @@ function MatchRow({ m, a, rank }: { m: Match; a: Answers; rank?: number }) {
         <span className="text-right">
           <span className="block text-[18px] font-semibold text-ink tnum">{formatLakh(m.onRoad, lang)}</span>
           <span className="block text-[12px] text-muted tnum">
-            {m.used ? tx("asking", "চাওয়া দাম") : `${tx("on-road", "অন-রোড")} · ${formatBDT(perMonth(m, a))}${tx("/mo", "/মাস")}`}
+            {isUsedOption(m) ? tx("asking", "চাওয়া দাম") : `${tx("on-road", "অন-রোড")} · ${formatBDT(perMonth(m))}${tx("/mo", "/মাস")}`}
           </span>
         </span>
         <CompareButton id={m.bike.id} size="sm" />
