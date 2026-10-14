@@ -20,12 +20,12 @@ const newPage = async (c = ctx) => {
 const cont = (pg) => pg.getByRole('button', { name: /^(Continue|Show my matches)/ }).click();
 const mainText = (pg) => pg.locator('main').innerText();
 
-// Budget step: total (default) or EMI with ৳30,000 cash now over 24 months; `budget` drives the slider by keyboard.
-async function budgetStep(pg, { emi = false, budget } = {}) {
+// Budget step: total (default) or EMI with `cash` now over 24 months (a loan needs 30% down); `budget` drives the slider by keyboard.
+async function budgetStep(pg, { emi = false, cash = '60000', budget } = {}) {
   await pg.goto(BASE + '/match/', { waitUntil: 'networkidle' });
   if (emi) {
     await pg.getByRole('button', { name: 'Monthly (EMI)' }).click();
-    await pg.getByLabel('Cash available now').fill('30000');
+    await pg.getByLabel('Cash available now').fill(cash);
     await pg.getByRole('button', { name: '24', exact: true }).click();
   } else if (budget) {
     const slider = pg.getByRole('slider', { name: 'Budget' });
@@ -72,10 +72,17 @@ await budgetStep(pg, { emi: true });
 await restOfQuiz(pg);
 t = await mainText(pg);
 ok('quiz EMI: summary has /mo × 24', /\/mo × 24/.test(t), pg.url());
-ok('quiz EMI: down and tenure in url', /d=30000/.test(pg.url()) && /t=24/.test(pg.url()), pg.url());
+ok('quiz EMI: down and tenure in url', /d=60000/.test(pg.url()) && /t=24/.test(pg.url()), pg.url());
 ok('quiz EMI: on-road + band', /On-road/i.test(t) && /\b(Great|Good|Possible)\b/.test(t));
 ok('quiz EMI: stretch', /A stretch/.test(t));
 await pg.screenshot({ path: `${OUT}/match_emi_t1.png` });
+
+// 2b. EMI with ৳0 cash: says the least cash needed and shows what it buys (critique 15 Oct N5)
+pg = await newPage();
+await budgetStep(pg, { emi: true, cash: '0' });
+await restOfQuiz(pg);
+t = await mainText(pg);
+ok('quiz EMI ৳0 cash: names the least cash and shows matches', /You need at least ৳[\d,]+ cash now/.test(t) && /Best match/.test(t), t.slice(0, 300));
 
 // 3. ৳40,000 via the slider: empty state with the 3 cheapest
 pg = await newPage();
@@ -212,6 +219,23 @@ ok('header 375 menu: Dealers', (await pg.locator('a[href="/dealers/"]:visible').
   ok('Show more: 48 cards and ?page=2', (await cards()) === 48 && p.url().endsWith('/bikes/?page=2'), `${await cards()} ${p.url()}`);
   await p.getByLabel('Filter by name').fill('pulsar');
   ok('a filter searches the whole catalogue and resets the page', (await cards()) >= 5 && !/page=/.test(p.url()), `${await cards()} ${p.url()}`);
+  await p.close();
+}
+
+// 12. Home Quick pick flags an availability-unconfirmed bike (N4); a removed bike's old URL redirects, no 404
+{
+  const p = await newPage();
+  await p.goto(BASE + '/', { waitUntil: 'networkidle' });
+  await p.locator('#qp-budget').focus();
+  await p.keyboard.press('Home'); // ৳1 lakh
+  for (let i = 0; i < 6; i++) await p.keyboard.press('ArrowRight'); // ৳1.3 lakh: Hero Splendor+ is in the top 3
+  const row = p.locator('a[href="/bikes/hero-splendor-plus/"]').filter({ hasText: 'Availability unconfirmed' });
+  ok('Quick pick ৳1.3 lakh: Splendor+ says Availability unconfirmed', (await row.count()) === 1);
+  for (const path of ['/bikes/honda-cd70/', '/bn/bikes/honda-cd70/']) {
+    await p.goto(BASE + path);
+    await p.waitForURL(/\/bikes\/$/, { timeout: 5000 }).catch(() => {});
+    ok(`${path} redirects to the bike list`, p.url().endsWith(path.replace('honda-cd70/', '')), p.url());
+  }
   await p.close();
 }
 

@@ -42,10 +42,11 @@ Bangladeshi buyers choose a motorcycle with poor information. Most reviews come 
 - FR-M6. The system shall give a shareable URL for the result.
 - FR-M7. In EMI mode, the system shall ask for the cash available now, a monthly instalment and a term. It shall count BRTA registration and the processing fee as cash paid upfront. A plan longer than 12 months is a loan and shall finance at most 70% of the price (30% down, as on /cost). It shall show a bike only when the cash and the instalment both fit. It shall use the payment engine of /cost (`src/lib/fund.ts`).
 - FR-M8. The system shall rank a bike that costs less than 60% of the budget lower, but still show it. When the user picks "Lowest price", the system shall not do this.
-- FR-M9. When the top three bikes have the same style, and a bike of another style scores within 5 points of the third, the system shall put that bike third.
+- FR-M9. When the top three bikes have the same style, and a bike of another style scores within 5 points of the third, the system shall put that bike third. When two of the top three are the same model line (for example two Platinas), the system shall replace the second with the next bike within 5 points. A bike shall move up only with the same match label as the bike it replaces, and not with a parts, mechanic, network or availability warning.
 - FR-M10. The system shall not show EMI or "on-road" for a used or used-only bike. EMI mode shall not show used bikes.
 - FR-M11. The system shall clamp values from a shared URL: the budget to ৳30,000–৳10,00,000 and the EMI inputs to the quiz limits. It shall ignore repeated priorities. In EMI mode, it shall calculate the budget from the EMI inputs.
 - FR-M12. The system shall not suggest a bike whose engine is larger than the BRTA registration limit for individuals (375cc, `guide.json`).
+- FR-M13. The system shall rank a new bike whose availability is unconfirmed after the confirmed bikes with the same match label, and the home Quick pick shall show that warning.
 
 ### 5.2 Compare (`/compare`)
 

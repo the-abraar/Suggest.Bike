@@ -34,8 +34,10 @@ import {
   encodeAnswers,
   isUsedOption,
   matchBikes,
+  minCashNow,
   onRoadPrice,
   stretchPicks,
+  withCash,
   type Answers,
   type Band,
   type Match,
@@ -460,9 +462,13 @@ function BudgetStep({ a, set }: { a: Answers; set: <K extends keyof Answers>(k: 
 
 /* ---------------- Results ---------------- */
 
-function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) => void; onRestart: () => void }) {
+function Results({ a: asked, onEdit, onRestart }: { a: Answers; onEdit: (step: number) => void; onRestart: () => void }) {
   const { lang } = useLang();
   const tx = useTx();
+  // EMI with less cash than any bike needs now: show what the least workable cash buys (critique 15 Oct N5).
+  const cashFloor = useMemo(() => (asked.payMode === "monthly" ? minCashNow(asked) : 0), [asked]);
+  const needCash = asked.down < cashFloor && Number.isFinite(cashFloor) ? Math.ceil(cashFloor / 1000) * 1000 : 0;
+  const a = useMemo(() => (needCash ? withCash(asked, needCash) : asked), [asked, needCash]);
   const { compare, setCompare } = useStore();
   const matches = useMemo(() => matchBikes(a, 6), [a]);
   const stretch = useMemo(() => stretchPicks(a, 2), [a]);
@@ -495,7 +501,7 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
       {/* answers summary */}
       <div className="mt-6 flex flex-wrap gap-2">
         <EditChip onClick={() => onEdit(0)}>
-          {a.payMode === "monthly" ? `${formatBDT(a.monthly)}${tx("/mo", "/মাস")} × ${a.tenure} + ${formatBDT(a.down)} ${tx("cash", "নগদ")} · ` : ""}≤ {formatLakh(a.budget, lang)} {tx("on-road", "অন-রোড")} ·{" "}
+          {asked.payMode === "monthly" ? `${formatBDT(asked.monthly)}${tx("/mo", "/মাস")} × ${asked.tenure} + ${formatBDT(asked.down)} ${tx("cash", "নগদ")} · ` : ""}≤ {formatLakh(asked.budget, lang)} {tx("on-road", "অন-রোড")} ·{" "}
           {a.condition === "new" || a.payMode === "monthly" ? tx("new", "নতুন") : tx("new or used", "নতুন বা পুরনো")}
         </EditChip>
         <EditChip onClick={() => onEdit(1)}>{lang === "bn" ? use.bn : use.en}</EditChip>
@@ -511,6 +517,18 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
         </EditChip>
         {a.priorities.length > 0 && <EditChip onClick={() => onEdit(6)}>{a.priorities.map((p) => tx(PRIORITIES.find((x) => x.id === p)!.en, PRIORITIES.find((x) => x.id === p)!.bn)).join(", ")}</EditChip>}
       </div>
+
+      {needCash > 0 && (
+        <div className="mt-6 flex items-center gap-3 rounded-2xl border border-warn/30 bg-warn-soft p-4 text-[14.5px] text-ink-2">
+          <Info size={18} className="shrink-0 text-warn" />
+          <span>
+            {tx(
+              `BRTA registration and the processing fee are paid in cash${asked.tenure > PAY_TERMS.cardMonths ? `, and a loan needs ${PAY_TERMS.loanDownPct}% down` : ""}, so ${formatBDT(asked.down)} cash is not enough. You need at least ${formatBDT(needCash)} cash now. With that and ${formatBDT(asked.monthly)}/mo, these fit:`,
+              `BRTA রেজিস্ট্রেশন আর প্রসেসিং ফি নগদে দিতে হয়${asked.tenure > PAY_TERMS.cardMonths ? `, আর লোনে ${PAY_TERMS.loanDownPct}% ডাউন পেমেন্ট লাগে` : ""}, তাই ${formatBDT(asked.down)} নগদে হবে না। এখন অন্তত ${formatBDT(needCash)} নগদ লাগবে। তার সাথে মাসে ${formatBDT(asked.monthly)} দিলে এগুলো মেলে:`,
+            )}
+          </span>
+        </div>
+      )}
 
       {top && noNew && cheapest && (
         <div className="mt-6 flex flex-wrap items-center gap-3 rounded-2xl border border-warn/30 bg-warn-soft p-4 text-[14.5px] text-ink-2">

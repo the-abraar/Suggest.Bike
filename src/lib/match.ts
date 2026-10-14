@@ -195,6 +195,9 @@ type Option = Pick<Match, "bike" | "price" | "registration" | "onRoad" | "cost" 
 /** A used example or a used-only model: asking price, no new registration, no card EMI or bike loan. */
 export const isUsedOption = (m: Pick<Match, "bike" | "used">) => !!m.used || m.bike.status === "used-only";
 
+/** Parts beyond the dealer and mechanics who know it: below these the quiz warns (and a bike may not jump the ranking). */
+const serviceable = (b: BikeLite) => b.scores.partsAvailability > 5 && b.scores.mechanicFamiliarity > 4;
+const smallNetwork = (a: Pick<Answers, "where">, b: BikeLite) => HAS_NETWORKS && (a.where === "town" || a.where === "village") && networkReach(b.brand) < 0.45;
 const gearOk = (a: Pick<Answers, "gearless">, b: BikeLite) => !(a.gearless === "no" && b.category === "scooter") && !(a.gearless === "yes" && b.category !== "scooter");
 /** The quiz never suggests a bike an individual cannot register in BD (critique section 4: a 748cc import came up for "fun"). */
 export const registrable = (b: Pick<BikeLite, "engine">) => b.engine.cc <= MAX_REGISTRABLE_CC;
@@ -274,7 +277,7 @@ function score(a: Answers, o: Option): Match {
   if (used) s -= used.age === 3 ? 0.05 : 0.025;
   if (b.scores.partsAvailability <= 5) warnings.push({ en: "Parts are mostly dealer-only — expect waits", bn: "পার্টস মূলত ডিলারেই পাওয়া যায় — অপেক্ষা করতে হতে পারে" });
   if (b.scores.mechanicFamiliarity <= 4) warnings.push({ en: "Few mechanics outside the dealer know it well", bn: "ডিলারের বাইরে খুব কম মিস্ত্রি এটা ভালো চেনে" });
-  if (HAS_NETWORKS && (a.where === "town" || a.where === "village") && networkReach(b.brand) < 0.45) {
+  if (smallNetwork(a, b)) {
     s -= 0.05;
     warnings.push({ en: `Small ${b.brand} network outside big cities`, bn: `বড় শহরের বাইরে ${b.brand}-এর নেটওয়ার্ক ছোট` });
   }
@@ -305,15 +308,41 @@ function score(a: Answers, o: Option): Match {
 /** Internal score cut-offs for the bands users see (roughly the top 40% / next 45% of top-6 results across personas). */
 const BAND = { great: 88, good: 78 };
 
-// Ties go to the cheaper option: same fit, more money left over.
-const rank = (a: Answers, os: Option[]) => os.map((o) => score(a, o)).sort((x, y) => y.score - x.score || x.cost - y.cost);
+const BAND_ORDER: Record<Band, number> = { great: 0, good: 1, possible: 2 };
+/** A new bike the distributor may not sell any more (critique 15 Oct N4): it goes after the confirmed bikes of its band. */
+const unsure = (m: Match) => (m.bike.availability === "unconfirmed" && !isUsedOption(m) ? 1 : 0);
+// Best band first, then confirmed availability, then score; ties go to the cheaper option (same fit, more money left over).
+const rank = (a: Answers, os: Option[]) =>
+  os.map((o) => score(a, o)).sort((x, y) => BAND_ORDER[x.band] - BAND_ORDER[y.band] || unsure(x) - unsure(y) || y.score - x.score || x.cost - y.cost);
 
-/** Best matches whose on-road cost is within the budget, best first, except that #3 may be a close bike of another style. */
+/** A bike's model line ("Bajaj Platina" for the Platina 100 and Platina 110 H): the top 3 shows one bike per line. */
+const family = (b: BikeLite) => `${b.brand} ${b.model.split(" ")[0]}`;
+/**
+ * `m` may move up into `over`'s slot only with the same band label (never "Good" above "Great"), within DIVERSE_GAP
+ * points, and without a parts, mechanic, network or availability warning (critique 15 Oct N3).
+ */
+const canJump = (a: Answers, m: Match, over: Match) =>
+  m.band === over.band &&
+  over.score - m.score <= DIVERSE_GAP &&
+  !unsure(m) &&
+  serviceable(m.bike) &&
+  !smallNetwork(a, m.bike);
+
+/**
+ * Best matches whose on-road cost is within the budget, best first, except in the top 3: a second bike of the same model
+ * line gives way to the next close one, and when all three share a style a close bike of another style takes #3.
+ */
 export function matchBikes(a: Answers, limit = 6): Match[] {
   const r = rank(a, candidates(a, a.budget));
-  const i = r.findIndex((m) => m.bike.category !== r[0].bike.category);
-  // The top 3 share a style: the best bike of another style takes #3 if it is nearly as good.
-  if (i > 2 && r[2].score - r[i].score <= DIVERSE_GAP) r.splice(2, 0, ...r.splice(i, 1));
+  for (let k = 1; k < 3 && k < r.length; k++) {
+    const taken = new Set(r.slice(0, k).map((m) => family(m.bike)));
+    if (!taken.has(family(r[k].bike))) continue;
+    const i = r.findIndex((m, j) => j > k && !taken.has(family(m.bike)) && canJump(a, m, r[k]));
+    if (i > 0) r.splice(k, 0, ...r.splice(i, 1));
+  }
+  const oneStyle = r.slice(0, 3).every((m) => m.bike.category === r[0].bike.category);
+  const i = r.findIndex((m, j) => j > 2 && m.bike.category !== r[0].bike.category && canJump(a, m, r[2]));
+  if (oneStyle && i > 0) r.splice(2, 0, ...r.splice(i, 1));
   return r.slice(0, limit);
 }
 
@@ -336,6 +365,11 @@ export function cheapestPicks(a: Answers, n = 3): Match[] {
 export function cheapestNew(a: Pick<Answers, "gearless">) {
   return BIKES.filter((b) => b.status === "on-sale" && gearOk(a, b) && registrable(b)).sort((x, y) => x.priceBDT - y.priceBDT)[0];
 }
+
+/** EMI mode: the least cash now that buys any bike on these terms (BRTA, the fee and any down payment); Infinity if none. */
+export const minCashNow = (a: Answers) => Math.min(...options(a).flatMap((os) => os.flatMap((o) => (o.pay ? [o.pay.upfront] : []))));
+/** The same EMI answers with `down` cash now, the budget re-derived from it. */
+export const withCash = (a: Answers, down: number): Answers => ({ ...a, down, budget: emiCeiling(down, a.monthly, a.tenure) });
 
 export const anyNewFits = (a: Answers) => candidates({ ...a, condition: "new" }, a.budget).length > 0;
 

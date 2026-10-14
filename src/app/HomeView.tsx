@@ -251,7 +251,7 @@ function monthName(iso: string) {
 
 /* Hero card: live, three-second recommendation */
 function QuickPick() {
-  const { lang } = useLang();
+  const { lang, t } = useLang();
   const tx = useTx();
   const [budget, setBudget] = useState(250000);
   const [use, setUse] = useState<Use>("commute");
@@ -325,7 +325,11 @@ function QuickPick() {
               </span>
               <span className="min-w-0 flex-1">
                 <span className="block truncate text-[14.5px] font-semibold text-ink">{fullName(m.bike)}</span>
-                <span className="block truncate text-[12.5px] text-muted">{m.reasons[0]?.[lang]}</span>
+                {m.bike.availability === "unconfirmed" ? (
+                  <span className="block truncate text-[12.5px] font-semibold text-warn">{t("common.availUnconfirmed")}</span>
+                ) : (
+                  <span className="block truncate text-[12.5px] text-muted">{m.reasons[0]?.[lang]}</span>
+                )}
               </span>
               <span className="text-right">
                 <span className="block text-[14px] font-semibold text-ink tnum">{formatLakh(m.onRoad, lang)}</span>
