@@ -34,18 +34,48 @@ test("langAlternates gives canonical per language and the same hreflang set", ()
   assert.deepEqual(langAlternates("/cost/", "bn"), { canonical: "/bn/cost/", languages: langs });
 });
 
-test("Product JSON-LD has an Offer only for bikes on sale", () => {
+// Properties schema.org defines on Product and Offer (https://schema.org/Product, https://schema.org/Offer) that we use.
+const PRODUCT_PROPS = ["@context", "@type", "name", "brand", "category", "description", "url", "image", "offers"];
+const OFFER_PROPS = ["@type", "price", "priceCurrency", "itemCondition", "availability", "url", "seller"];
+
+test("Product JSON-LD: InStock Offer only for bikes on sale with confirmed availability, valid schema.org properties", () => {
   const all = bikes as unknown as Bike[];
-  const onSale = all.find((b) => b.status === "on-sale")!;
-  const used = all.find((b) => b.status === "used-only")!;
+  const onSale = all.find((b) => b.status === "on-sale" && !b.availability)!;
   const offer = (productJsonLd(onSale) as { offers?: Record<string, unknown> }).offers;
   assert.equal(offer?.["@type"], "Offer");
   assert.equal(offer?.price, onSale.priceBDT);
   assert.equal(offer?.priceCurrency, "BDT");
-  assert.equal("availability" in offer!, false); // no stock data, so no InStock claim
-  assert.equal("offers" in productJsonLd(used), false);
+  assert.equal(offer?.availability, "https://schema.org/InStock");
+  assert.equal(offer?.itemCondition, "https://schema.org/NewCondition");
+  for (const b of all) {
+    const ld = productJsonLd(b) as Record<string, unknown> & { offers?: Record<string, unknown> };
+    const sells = b.status === "on-sale" && b.availability !== "unconfirmed" && b.priceBDT > 0;
+    assert.equal("offers" in ld, sells, `${b.id}: ${b.status} ${b.availability ?? ""}`);
+    for (const k of Object.keys(ld)) assert.ok(PRODUCT_PROPS.includes(k), `${b.id}: Product.${k}`);
+    for (const k of Object.keys(ld.offers ?? {})) assert.ok(OFFER_PROPS.includes(k), `${b.id}: Offer.${k}`);
+    assert.equal(typeof ld.name, "string");
+    assert.match(String(ld.url), /^https:\/\/suggest\.bike\/bikes\/[a-z0-9-]+\/$/);
+  }
+  assert.ok(all.some((b) => b.availability === "unconfirmed"), "fixture: an unconfirmed bike exists to prove it gets no Offer");
   assert.equal(productJsonLd(onSale).description, onSale.tagline);
   assert.equal(productJsonLd(onSale, "bn").description, onSale.bn?.tagline ?? onSale.tagline);
+});
+
+test("sitemap: a real lastmod per dated page, no changefreq, same date for EN and BN twins", () => {
+  const all = bikes as unknown as Bike[];
+  const entries = sitemap();
+  const at = (path: string) => entries.find((e) => e.url === `https://suggest.bike${path}`);
+  assert.ok(entries.every((e) => !("changeFrequency" in e)));
+  for (const b of all) {
+    const d = String(at(`/bikes/${b.id}/`)?.lastModified);
+    assert.match(d, /^\d{4}-\d{2}-\d{2}$/, b.id);
+    assert.ok(d >= `${b.priceAsOf}-01` && d <= new Date().toISOString().slice(0, 10), `${b.id}: ${d} vs priceAsOf ${b.priceAsOf}`);
+    assert.equal(at(`/bn/bikes/${b.id}/`)?.lastModified, d);
+  }
+  const newest = all.map((b) => String(at(`/bikes/${b.id}/`)?.lastModified)).sort().at(-1);
+  assert.equal(at("/bikes/")?.lastModified, newest); // the catalogue page is as new as its newest bike
+  assert.match(String(at("/guide/motorcycle-fines/")?.lastModified), /^\d{4}-\d{2}-\d{2}$/);
+  for (const p of ["/privacy/", "/terms/", "/about/"]) assert.equal(at(p)?.lastModified, undefined, `${p}: no dated data, no invented lastmod`);
 });
 
 test("bike titles use BD search words, stay under 60 characters, and Bangla pages keep Bangla titles", () => {

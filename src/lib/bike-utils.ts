@@ -99,9 +99,13 @@ export const mileageText = (b: Pick<BikeLite, "engine" | "mileageKmpl" | "ev">) 
   b.ev ? `${b.ev.realRangeKm[0]}–${b.ev.realRangeKm[1]} km/charge` : `${b.mileageKmpl[0]}–${b.mileageKmpl[1]} kmpl`;
 export const ccLabel =(b: Pick<BikeLite, "engine">) => (isEv(b) ? "Electric" : `${Math.round(b.engine.cc)}cc`);
 
-/** schema.org Product for a bike page. Only bikes on sale with a price carry an Offer; used-only bikes have no seller or list price. */
+/**
+ * schema.org Product for a bike page. Only bikes on sale with a price and confirmed availability carry an Offer, marked InStock
+ * (the distributor sells it new). Used-only bikes have no seller or list price, and "unconfirmed" bikes have unproven stock, so
+ * neither gets an Offer rather than a wrong availability.
+ */
 // Product has no inLanguage in schema.org, so the /bn/ twin only swaps in the Bangla description.
-export function productJsonLd(b: Pick<Bike, "id" | "brand" | "model" | "tagline" | "status" | "priceBDT" | "distributor" | "bn">, lang: "en" | "bn" = "en") {
+export function productJsonLd(b: Pick<Bike, "id" | "brand" | "model" | "tagline" | "status" | "availability" | "priceBDT" | "distributor" | "bn">, lang: "en" | "bn" = "en") {
   const url = `${SITE.url}/bikes/${b.id}/`;
   return {
     "@context": "https://schema.org",
@@ -112,12 +116,13 @@ export function productJsonLd(b: Pick<Bike, "id" | "brand" | "model" | "tagline"
     description: (lang === "bn" && b.bn?.tagline) || b.tagline,
     url,
     image: `${url}og.png`,
-    ...(b.status === "on-sale" && b.priceBDT > 0 && {
+    ...(b.status === "on-sale" && b.availability !== "unconfirmed" && b.priceBDT > 0 && {
       offers: {
         "@type": "Offer",
         price: b.priceBDT,
         priceCurrency: "BDT",
         itemCondition: "https://schema.org/NewCondition",
+        availability: "https://schema.org/InStock",
         url, // our page, which cites the price source; pointing at bikebd would hand it the click
         ...(b.distributor && { seller: { "@type": "Organization", name: b.distributor } }),
       },
