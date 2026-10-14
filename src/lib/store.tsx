@@ -22,9 +22,12 @@ const StoreContext = createContext<Store>({
   ready: false,
 });
 
+// The compare tray lives in sessionStorage (one visit, one tab) so a pair from days ago never reappears; saved bikes stay in localStorage.
+const storageFor = (key: string) => (key === "sb-compare" ? sessionStorage : localStorage);
+
 function read(key: string): string[] {
   try {
-    const v = JSON.parse(localStorage.getItem(key) || "[]");
+    const v = JSON.parse(storageFor(key).getItem(key) || "[]");
     return Array.isArray(v) ? v.filter((x) => typeof x === "string") : [];
   } catch {
     return [];
@@ -32,7 +35,7 @@ function read(key: string): string[] {
 }
 function write(key: string, v: string[]) {
   try {
-    localStorage.setItem(key, JSON.stringify(v));
+    storageFor(key).setItem(key, JSON.stringify(v));
   } catch {}
 }
 
@@ -42,6 +45,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    try {
+      localStorage.removeItem("sb-compare"); // stale tray from before it moved to sessionStorage
+    } catch {}
     setCompare(read("sb-compare").slice(0, MAX_COMPARE));
     setSaved(read("sb-saved"));
     setReady(true);

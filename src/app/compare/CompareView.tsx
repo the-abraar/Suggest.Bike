@@ -8,7 +8,7 @@ import { DEFAULT_COST_INPUT, emiMonthly, onRoadPrice, ownershipCost } from "@/li
 import { OfferTag } from "@/components/Dated";
 import { pairHref, popularPairs } from "@/lib/curated";
 import { langHref } from "@/lib/site";
-import { useStore, MAX_COMPARE } from "@/lib/store";
+import { MAX_COMPARE } from "@/lib/store";
 import { useLang, useTx } from "@/lib/i18n";
 import type { Bike, BikeLite, ScoreKey } from "@/lib/types";
 import { BikeArt } from "@/components/BikeArt";
@@ -24,23 +24,15 @@ export function CompareView({ pair }: { pair?: string[] }) {
 function Compare({ params, pair }: { params: URLSearchParams; pair?: string[] }) {
   const { lang } = useLang();
   const tx = useTx();
-  const { compare, toggleCompare, clearCompare, ready } = useStore();
   const [ids, setIds] = useState<string[]>(pair ?? []);
 
-  // URL wins on first load; otherwise fall back to the compare tray.
+  // The URL is the only source: falling back to (or writing into) the compare tray let an old pair reappear on later visits.
   useEffect(() => {
-    if (!ready) return;
-    const fromUrl = (params.get("bikes") || "").split(",").filter((id) => getBike(id));
-    const initial = (fromUrl.length ? fromUrl : compare).slice(0, MAX_COMPARE);
-    setIds(initial);
-    clearCompare();
-    initial.forEach((id) => toggleCompare(id));
-  }, [ready, params]); // eslint-disable-line react-hooks/exhaustive-deps
+    setIds((params.get("bikes") || "").split(",").filter((id) => getBike(id)).slice(0, MAX_COMPARE));
+  }, [params]);
 
   const update = (next: string[]) => {
     setIds(next);
-    clearCompare();
-    next.forEach((id) => toggleCompare(id));
     // A pair page that changes bikes moves to the generic /compare/ URL so the address matches what is shown.
     const base = pair ? langHref("/compare/", lang) : window.location.pathname;
     window.history.replaceState(null, "", next.length ? `${base}?bikes=${next.join(",")}` : base);
