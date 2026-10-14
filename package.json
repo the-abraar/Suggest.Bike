@@ -15,6 +15,7 @@
     "validate": "node scripts/validate-data.mjs",
     "test": "tsx --test tests/*.test.ts",
     "audit:prices": "node scripts/price-audit.mjs",
+    "refresh:prices": "tsx scripts/price-refresh.ts",
     "og:bn": "tsx scripts/bn-og.mts"
   },
   "dependencies": {
