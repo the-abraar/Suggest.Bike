@@ -1,5 +1,5 @@
 import type { Bike, Category } from "@/lib/types";
-import { brandColor } from "@/lib/bikes";
+import { brandColor } from "@/lib/bike-utils";
 
 /**
  * Consistent, theme-aware side-profile illustration for every bike.

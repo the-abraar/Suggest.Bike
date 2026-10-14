@@ -2,8 +2,8 @@
 
 import Link from "@/components/LangLink";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { ArrowRight, X } from "lucide-react";
-import { getBike } from "@/lib/bikes";
 import { useStore, MAX_COMPARE } from "@/lib/store";
 import { useLang } from "@/lib/i18n";
 import { BikeArt } from "./BikeArt";
@@ -12,7 +12,12 @@ export function CompareTray() {
   const { compare, toggleCompare, clearCompare, ready } = useStore();
   const { t, lang } = useLang();
   const pathname = usePathname();
-  const bikes = compare.map(getBike).filter((b) => !!b);
+  // The bike index loads only once something is in the tray, so pages without bike lists do not ship it.
+  const [index, setIndex] = useState<typeof import("@/lib/bikes") | null>(null);
+  useEffect(() => {
+    if (compare.length && !index) import("@/lib/bikes").then(setIndex, () => {});
+  }, [compare.length, index]);
+  const bikes = index ? compare.map(index.getBike).filter((b) => !!b) : [];
   // Counts bikes that resolve, not raw ids, so a stale id never shows an empty tray (critique B12).
   if (!ready || bikes.length === 0 || pathname?.replace(/^\/bn(?=\/)/, "").startsWith("/compare")) return null;
   const label = (

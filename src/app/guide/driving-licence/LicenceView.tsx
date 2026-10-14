@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { formatBDT } from "@/lib/bikes";
+import { formatBDT } from "@/lib/bike-utils";
 import { langHref } from "@/lib/site";
 
 type Lang = "en" | "bn";

@@ -111,7 +111,9 @@
   --shadow-md: var(--shadow-md);
   --shadow-lg: var(--shadow-lg);
 
-  --font-sans: var(--font-geist), var(--font-bangla), ui-sans-serif, system-ui, sans-serif;
+  /* No Hind Siliguri here: on English pages ৳ and any Bangla word fall back to the system Bengali font, so they never
+     download it. html[lang="bn"] below puts it first. */
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --font-bangla: var(--font-bangla);
 }

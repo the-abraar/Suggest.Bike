@@ -3,16 +3,16 @@
 import Link from "@/components/LangLink";
 import { Logo } from "./Logo";
 import { T, useLang } from "@/lib/i18n";
-import { BIKES, CATEGORIES } from "@/lib/bikes";
+import { CATEGORIES } from "@/lib/bike-utils";
 import type { Category } from "@/lib/types";
 import { whatsappUrl } from "@/lib/site";
 // The owner's other project: a plain footer link only, no cards in guides (critique section 15 item 7).
 const THROTTLE_IQ_URL = "https://github.com/blankframe-tech/ThrottleIQ";
 
-export function Footer() {
+/** count and oldest price date come from the server layout, so the footer does not ship the bike index. */
+export function Footer({ count, latest }: { count: number; latest: string }) {
   const { t, lang } = useLang();
   const tx = (en: string, bn: string) => (lang === "bn" ? bn : en);
-  const latest = BIKES.map((b) => b.priceAsOf).sort()[0]; // oldest, so stale prices are not hidden by fresh ones
   return (
     <footer className="mt-24 border-t border-line bg-surface">
       <div className="container-x grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]">
@@ -22,7 +22,7 @@ export function Footer() {
             <T k="footer.tag" />
           </p>
           <p className="text-[12.5px] text-faint">
-            {lang === "bn" ? `${BIKES.length}টি বাইক · সবচেয়ে পুরনো দাম যাচাই ${latest}` : `${BIKES.length} bikes · oldest price checked ${latest}`}
+            {lang === "bn" ? `${count}টি বাইক · সবচেয়ে পুরনো দাম যাচাই ${latest}` : `${count} bikes · oldest price checked ${latest}`}
           </p>
         </div>
         <FooterCol title={tx("Decide", "সিদ্ধান্ত")}>

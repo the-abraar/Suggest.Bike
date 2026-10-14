@@ -4,7 +4,7 @@ import Link from "@/components/LangLink";
 import { ArrowUpRight, CheckCircle2, CreditCard, ExternalLink, FileText, Info, Scale, ShieldAlert, Users, Zap } from "lucide-react";
 import guideEn from "@/data/guide.json";
 import guideBn from "@/data/guide.bn.json";
-import { formatBDT } from "@/lib/bikes";
+import { formatBDT } from "@/lib/bike-utils";
 import { useLang, useTx } from "@/lib/i18n";
 
 export function GuideView() {

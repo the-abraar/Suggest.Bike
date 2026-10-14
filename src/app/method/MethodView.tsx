@@ -1,17 +1,17 @@
 "use client";
 
 import Link from "@/components/LangLink";
-import { SCORE_LABELS } from "@/lib/bikes";
+import { SCORE_LABELS } from "@/lib/bike-utils";
 import { FUEL } from "@/lib/cost";
 import { DEFAULT_FEE_PCT, PAY_TERMS } from "@/lib/fund";
-import { BAND_LOW } from "@/lib/match";
+// BAND_LOW comes from the server page: importing lib/match here would ship the bike index to this page.
 import { useLang, useTx } from "@/lib/i18n";
 import { SITE } from "@/lib/site";
 import type { ScoreKey } from "@/lib/types";
 
 type Row = { what: [string, string]; how: [string, string]; kind: "sourced" | "estimate" | "derived"; refresh: [string, string] };
 
-const ROWS: Row[] = [
+const rows = (bandLow: number): Row[] => [
   {
     what: ["Ex-showroom price", "শোরুম মূল্য"],
     how: [
@@ -87,8 +87,8 @@ const ROWS: Row[] = [
   {
     what: ["Match ranking", "ম্যাচ র‍্যাঙ্কিং"],
     how: [
-      `Filters by your on-road budget, gearbox and new/used. In EMI mode a bike is shown only when your cash now covers BRTA, the fee and any down payment, and the instalment fits your monthly figure; used bikes are left out. It then weights the ownership scores by how and where you ride. It lowers bikes that cost under ${BAND_LOW * 100}% of your budget (unless you pick "Lowest price"), seats too tall for you and bikes too strong for a first bike. When the top three are all one style, a close match of another style takes third place. Bikes above budget appear only in the labelled stretch section. Because it uses the editorial scores, the ranking is only as good as those estimates.`,
-      `আপনার অন-রোড বাজেট, গিয়ার ও নতুন/পুরনো দিয়ে ছাঁকে। কিস্তি মোডে বাইক তখনই দেখায় যখন হাতের নগদে BRTA, ফি ও দরকারি ডাউন পেমেন্ট হয়, আর কিস্তি আপনার মাসিক অঙ্কের মধ্যে থাকে; পুরনো বাইক বাদ। তারপর কীভাবে ও কোথায় চালাবেন সে অনুযায়ী মালিকানা স্কোরের গুরুত্ব ঠিক করে। বাজেটের ${BAND_LOW * 100}%-এর কম দামের বাইকে (আপনি “সবচেয়ে কম দাম” না বাছলে), উঁচু সিটে আর নতুনদের জন্য বেশি শক্তিশালী বাইকে নম্বর কমায়। সেরা তিনটি একই ধরনের হলে, কাছাকাছি নম্বরের অন্য ধরনের একটি বাইক তৃতীয় জায়গা পায়। বাজেটের বেশি বাইক শুধু আলাদা “একটু বেশি” অংশে দেখায়। স্কোর সম্পাদকের মূল্যায়ন, তাই র‍্যাঙ্কিংও ততটাই নির্ভুল।`,
+      `Filters by your on-road budget, gearbox and new/used. In EMI mode a bike is shown only when your cash now covers BRTA, the fee and any down payment, and the instalment fits your monthly figure; used bikes are left out. It then weights the ownership scores by how and where you ride. It lowers bikes that cost under ${bandLow * 100}% of your budget (unless you pick "Lowest price"), seats too tall for you and bikes too strong for a first bike. When the top three are all one style, a close match of another style takes third place. Bikes above budget appear only in the labelled stretch section. Because it uses the editorial scores, the ranking is only as good as those estimates.`,
+      `আপনার অন-রোড বাজেট, গিয়ার ও নতুন/পুরনো দিয়ে ছাঁকে। কিস্তি মোডে বাইক তখনই দেখায় যখন হাতের নগদে BRTA, ফি ও দরকারি ডাউন পেমেন্ট হয়, আর কিস্তি আপনার মাসিক অঙ্কের মধ্যে থাকে; পুরনো বাইক বাদ। তারপর কীভাবে ও কোথায় চালাবেন সে অনুযায়ী মালিকানা স্কোরের গুরুত্ব ঠিক করে। বাজেটের ${bandLow * 100}%-এর কম দামের বাইকে (আপনি “সবচেয়ে কম দাম” না বাছলে), উঁচু সিটে আর নতুনদের জন্য বেশি শক্তিশালী বাইকে নম্বর কমায়। সেরা তিনটি একই ধরনের হলে, কাছাকাছি নম্বরের অন্য ধরনের একটি বাইক তৃতীয় জায়গা পায়। বাজেটের বেশি বাইক শুধু আলাদা “একটু বেশি” অংশে দেখায়। স্কোর সম্পাদকের মূল্যায়ন, তাই র‍্যাঙ্কিংও ততটাই নির্ভুল।`,
     ],
     kind: "derived",
     refresh: ["Changes when scores or prices change.", "স্কোর বা দাম বদলালে বদলায়।"],
@@ -101,7 +101,7 @@ const KIND: Record<Row["kind"], [string, string, string]> = {
   estimate: ["Editorial estimate", "সম্পাদকীয় অনুমান", "bg-warn-soft text-warn"],
 };
 
-export function MethodView() {
+export function MethodView({ bandLow }: { bandLow: number }) {
   const { lang } = useLang();
   const tx = useTx();
   const p = (pair: [string, string]) => (lang === "bn" ? pair[1] : pair[0]);
@@ -117,7 +117,7 @@ export function MethodView() {
       </p>
 
       <div className="mt-8 space-y-4">
-        {ROWS.map((r) => (
+        {rows(bandLow).map((r) => (
           <section key={r.what[0]} className="rounded-2xl border border-line bg-surface p-5">
             <div className="flex flex-wrap items-center gap-2">
               <h2 className="text-[18px] font-semibold text-ink">{p(r.what)}</h2>
