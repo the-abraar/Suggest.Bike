@@ -19,7 +19,8 @@ const derive = (b) => {
   const avgRange = (b.ev.realRangeKm[0] + b.ev.realRangeKm[1]) / 2;
   return { ...b, mileageKmpl, fuelTankL: Math.round((avgRange / ((mileageKmpl[0] + mileageKmpl[1]) / 2)) * 100) / 100 };
 };
-const bikes = JSON.parse(readFileSync(new URL("src/data/bikes.json", root))).map(derive);
+// dataNote holds editorial and owner notes: dropped here so no page, payload or public JSON ever carries it.
+const bikes = JSON.parse(readFileSync(new URL("src/data/bikes.json", root))).map(({ dataNote, ...b }) => derive(b));
 
 const index = bikes.map((b) => {
   const { feel, quirks, braking, mechanicNote, pros, cons, bestFor, sources, priceNote, priceSource, tyres, suspension, bn, parts, variants, outlierNote, ...rest } = b;

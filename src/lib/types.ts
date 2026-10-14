@@ -22,11 +22,13 @@ export interface Bike {
   category: Category;
   collections?: Collection[]; // "legendary": rite-of-passage bikes few can buy; "old-school": vintage era, includes every two-stroke
   status: "on-sale" | "used-only";   // used-only = discontinued, bought on used market (CG125, RX100)
+  availability?: "unconfirmed"; // on sale per the data, but missing from the distributor's BD list or with unproven stock; pages say so
   priceBDT: number;         // current official ex-showroom price in BD (Taka). For used-only: typical used market price for decent condition.
   priceNote?: string;       // e.g. "Single-channel ABS variant ৳2,99,000"
   outlierNote?: string;     // why the price is >40% from its category median (checked against a second source); validate gate
   priceAsOf: string;       // "2026-09" — month of the source you found
   priceSource: string;      // URL where you saw the price (official site, bikebd.com, bikevaly.com etc.). Never invent.
+  dataNote?: string;        // provenance, editorial and owner-TODO notes; never rendered, stripped by build-data (validate lints the public text)
   distributor?: string;     // BD distributor/assembler e.g. "Uttara Motors", "ACI Motors", "Bangladesh Honda Private Ltd (BHL)"
   assembledInBD?: boolean;
   engine: { cc: number; cylinders: number; stroke: 0 | 2 | 4; cooling: "air" | "oil" | "liquid"; valves?: number; fuel: "carb" | "fi" | "electric" }; // electric: cc, cylinders, stroke are 0
@@ -102,7 +104,7 @@ export type ScoreKey = keyof Bike["scores"];
  */
 export type BikeLite = Omit<
   Bike,
-  "feel" | "quirks" | "braking" | "mechanicNote" | "pros" | "cons" | "bestFor" | "sources" | "priceNote" | "priceSource" | "tyres" | "suspension" | "bn" | "parts" | "variants" | "outlierNote"
+  "feel" | "quirks" | "braking" | "mechanicNote" | "pros" | "cons" | "bestFor" | "sources" | "priceNote" | "priceSource" | "tyres" | "suspension" | "bn" | "parts" | "variants" | "outlierNote" | "dataNote"
 > & {
   taglineBn?: string;
   parts: Pick<Part, "name" | "priceBDT" | "availability">[];

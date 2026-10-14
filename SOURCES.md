@@ -10,13 +10,13 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 
 | Site | References |
 | --- | ---: |
-| bikebd.com | 238 |
-| bikroy.com | 90 |
+| bikebd.com | 223 |
+| bikroy.com | 88 |
 | bajajauto.com | 31 |
 | bdhonda.com | 26 |
 | suzuki.com.bd | 23 |
+| heromotocorp.com | 12 |
 | motorcyclevalley.com | 11 |
-| heromotocorp.com | 9 |
 | motorcyclebd.com | 8 |
 | royalenfield.com | 8 |
 | motorcycle.com.bd | 6 |
@@ -34,7 +34,6 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 | bikestall.com | 2 |
 | yamahabd.com | 2 |
 | motorcyclefair.com | 2 |
-| bikes4sale.com | 2 |
 | banglamotor.net | 1 |
 | motobikebd.com | 1 |
 | online91.thedailystar.net | 1 |
@@ -47,7 +46,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 | observerbd.com | 1 |
 | en.wikipedia.org | 1 |
 
-**Primary price source** (the `priceSource` of each bike): bikebd.com 58 (54%), bikroy.com 14 (13%), bajajauto.com 10 (9%), bdhonda.com 10 (9%), suzuki.com.bd 8 (7%), royalenfield.com 4 (4%), heromotocorp.com 1 (1%), waltonbd.com 1 (1%), bikes4sale.com 1 (1%).
+**Primary price source** (the `priceSource` of each bike): bikebd.com 52 (50%), bikroy.com 14 (14%), bajajauto.com 10 (10%), bdhonda.com 10 (10%), suzuki.com.bd 8 (8%), heromotocorp.com 4 (4%), royalenfield.com 4 (4%), waltonbd.com 1 (1%).
 
 ## Bike data — per bike
 
@@ -175,11 +174,13 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - Price: https://www.bikebd.com/price/hero-splendor-plus
   - https://www.heromotocorp.com/en-bd/the-bike/passion-xpro-xtec-110cc-motorcycle-91.html
   - Photo: Sonachalam 2k Ramalingame, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Hero_Splendor_Plus_i3s_All_Black_Edition_and_IBS_2023_model_Non-_Xtec_PGM_FI_Model.png
-- **HF Deluxe** (Tubeless) — ৳1,14,500 as of 2026-09
-  - Price: https://www.bikebd.com/price/hero-hf-deluxe-price-in-bangladesh
+- **HF Deluxe** (Tubeless) — ৳1,15,500 as of 2026-10
+  - Price: https://www.heromotocorp.com/en-bd/products/commuter/hf-deluxe-price-in-bangladesh.html
+  - https://www.bikebd.com/price/hero-hf-deluxe-price-in-bangladesh
   - https://www.heromotocorp.com/en-bd/the-bike/passion-xpro-xtec-110cc-motorcycle-91.html
-- **Glamour X 125** — ৳1,65,000 as of 2026-09
-  - Price: https://www.bikebd.com/price/hero-glamour-x-125
+- **Glamour X 125** — ৳1,67,000 as of 2026-10
+  - Price: https://www.heromotocorp.com/en-bd/products/executive/glamour-x-price-in-bangladesh.html
+  - https://www.bikebd.com/price/hero-glamour-x-125
   - https://www.dhakatribune.com/business/403965/hero-bangladesh-unveils-glamour-x-125-motorcycle
 - **Xtreme 125R** (Single Channel ABS) — ৳1,75,000 as of 2026-09
   - Price: https://www.bikebd.com/price/hero-xtreme-125r
@@ -190,8 +191,9 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://www.bikebd.com/price/hero-hunk-150-price-in-bangladesh
   - https://www.bikebd.com/price/hero-hunk-150r-xtec
   - Used asking prices (2026-10): ~1 yr ৳1,75,000, ~3 yr ৳1,35,000 — https://bikroy.com/bn/motorcycles-and-scooters/hero-hunk-150r
-- **Thriller 160R 4V** — ৳2,20,000 as of 2026-09
-  - Price: https://www.bikebd.com/price/hero-xtreme-160r-4v
+- **Thriller 160R 4V** — ৳2,25,000 as of 2026-10
+  - Price: https://www.heromotocorp.com/en-bd/products/premium/thriller-160r-4v-price-in-bangladesh.html
+  - https://www.bikebd.com/price/hero-xtreme-160r-4v
   - https://www.heromotocorp.com/en-bd/products/premium/thriller-160r-4v.html
   - https://www.bikebd.com/price/hero-xtreme-160r
   - https://www.bikewale.com/hero-bikes/xtreme-160r-4v/reviews/1152746/
@@ -288,22 +290,10 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 - **Benly 125 (CD125T)** — ৳1,80,000 as of 2026-10 (used market)
   - Price: https://bikebd.com/price/honda-cd-125-t-benly-2002
   - https://www.bikebros.co.jp/bikesearch2/1/1010661/?newold=0
-- **CD200 Road Master** — ৳2,50,000 as of 2026-10 (used market)
-  - Price: https://bikebd.com/price/honda-cd-200-road-master-1981
-  - https://www.bikebd.com/price/honda-cd200-roadmaster
-  - https://bikebd.com/blog/honda-cd200-roadmaster
 - **Rebel 250 (CMX250)** — ৳2,40,000 as of 2026-10 (used market)
   - Price: https://bikebd.com/price/honda-250-rebel-2010
   - https://bikebd.com/price/honda-rebel-250-2007
   - https://bikebd.com/price/honda-rebel-250
-- **CBX 750** (CBX 750F (1984-88 import)) — ৳6,00,000 as of 2026-10 (used market)
-  - Price: https://bikebd.com/price/honda-cbx-750-f-1986
-  - https://bikebd.com/price/honda-cbx-750-f-1987
-  - https://bikebd.com/price/honda-cbx-750-boldor-1986
-  - https://bikroy.com/bn/motorcycles-and-scooters/honda-cbx
-- **CBX 600P** (Name as used by the user; likely a 1980s CBX 550/600-class four import (unconfirmed)) — ৳3,50,000 as of 2026-10 (used market)
-  - Price: https://bikebd.com/price/honda-cbx-600-e-1983
-  - https://bikroy.com/bn/motorcycles-and-scooters/honda-cbx
 - **H100S Super CDI** (H100S (1985-92 two-stroke)) — ৳45,000 as of 2026-10 (used market)
   - Price: https://bikebd.com/price/h100s-super-cdi
   - https://bikebd.com/price/honda-h-100-s-1986
@@ -312,10 +302,6 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - Price: https://bikroy.com/bn/motorcycles-and-scooters/honda-cd80
   - https://www.bikebd.com/price/honda-cd80
   - https://bikebd.com/blog/honda-cd80-best-80cc-bike-in-bangladesh
-- **CD70** — ৳30,000 as of 2026-10 (used market)
-  - Price: https://www.bikes4sale.com/used/buy/honda-cd70-in-sirajganj/101189/
-  - https://www.bikebd.com/price/honda-cd70
-  - https://www.bikebd.com/price/honda-cd70-dream-2022
 - **Super Cub** (C-series family (C50/C70/C90 step-throughs)) — ৳50,000 as of 2026-10 (used market)
   - Price: https://bikroy.com/bn/motorcycles-and-scooters/honda-super-cub
   - https://en.wikipedia.org/wiki/Honda_Super_Cub
