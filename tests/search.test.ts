@@ -47,3 +47,11 @@ test("search: exact matches rank first and fuzzy stays narrow", () => {
   assert.deepEqual(ids("v3"), ["yamaha-r15-v3"]); // a lone generation token is not a fuzzy wildcard
   assert.deepEqual(ids("  "), []);
 });
+test("search: a brand-only query lists on-sale bikes before used-only antiques (critique B8)", () => {
+  for (const q of ["honda", "yamha", "hunda", "suzki", "bajaj", "hero"]) {
+    const found = searchBikes(q);
+    const firstUsed = found.findIndex((b) => b.status === "used-only");
+    assert.ok(found.length > 0 && found[0].status === "on-sale", `"${q}": ${found.map((b) => b.id).join(", ")}`);
+    if (firstUsed >= 0) assert.ok(found.slice(firstUsed).every((b) => b.status === "used-only"), `"${q}": used-only bikes must trail on ties`);
+  }
+});

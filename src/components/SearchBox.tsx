@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { Search } from "lucide-react";
-import { BIKES, CATEGORIES, ccLabel, formatLakh, fullName } from "@/lib/bikes";
+import { BIKES, BRANDS, CATEGORIES, ccLabel, formatLakh, fullName, overall } from "@/lib/bikes";
 import { useLang } from "@/lib/i18n";
 import { langHref } from "@/lib/site";
 import { BikeArt } from "./BikeArt";
@@ -33,7 +33,11 @@ export function searchBikes(q: string, limit = 7) {
   const n = norm(q);
   if (!n) return [];
   const words = q.toLowerCase().split(/\s+/).filter(Boolean).map(norm).filter(Boolean);
+  // A brand on its own ("honda", "yamha", "hunda") lists that brand in tie-break order, so the misspelt-brand aliases a few
+  // old bikes carry cannot push them to the top (critique B8).
+  const brand = words.length === 1 && BRANDS.find((br) => norm(br) === n || fuzzy(n, [norm(br)]));
   return BIKES.map((b) => {
+    if (brand) return { b, score: b.brand === brand ? 1 : 0 };
     const aliases = (b.aliases ?? []).map(norm);
     const hay = norm(`${b.brand}${b.model}${b.variant ?? ""}${b.category}${Math.round(b.engine.cc)}cc`) + aliases.join("|");
     const name = norm(fullName(b));
@@ -52,7 +56,8 @@ export function searchBikes(q: string, limit = 7) {
     return { b, score };
   })
     .filter((x) => x.score > 0)
-    .sort((a, b) => b.score - a.score || a.b.priceBDT - b.b.priceBDT)
+    // Ties: on-sale bikes first, then the best rated, so "honda" finds the Hornet before a 1980s CD80 (critique B8).
+    .sort((a, b) => b.score - a.score || +(a.b.status === "used-only") - +(b.b.status === "used-only") || overall(b.b) - overall(a.b))
     .slice(0, limit)
     .map((x) => x.b);
 }
