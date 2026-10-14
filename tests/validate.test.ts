@@ -50,3 +50,14 @@ test("validate: old prices fail only when shown as checked (on sale); PRICE_FAIL
   assert.equal(validate(bikes, { PRICE_FAIL_DAYS: "100000" }).code, 0);
   assert.match(validate(real(), { PRICE_FAIL_DAYS: "abc" }).out, /must be numbers/); // a typo must not switch the gate off
 });
+
+test("validate: an offer's struck-through price must be its bike's headline price (critique 15 Oct N8)", () => {
+  const offers: { bikeIds: string[]; regularPriceBDT?: number }[] = JSON.parse(readFileSync(new URL("../src/data/offers.json", import.meta.url), "utf8")).offers;
+  const o = offers.find((x) => x.regularPriceBDT !== undefined);
+  if (!o) return; // shortcut: skips once offers.json has no priced offer; give validate an offers-file argument if that matters
+  const bikes = real();
+  bikes.find((b) => b.id === o.bikeIds[0])!.priceBDT += 50;
+  const r = validate(bikes);
+  assert.equal(r.code, 1);
+  assert.match(r.out, /regularPriceBDT \d+ is not/);
+});

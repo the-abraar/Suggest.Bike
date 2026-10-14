@@ -1,4 +1,5 @@
 import data from "@/data/offers.json";
+import { getBike } from "./bikes";
 
 /** A time-limited showroom offer from src/data/offers.json (schema: offers.schema.json). */
 export type Offer = {
@@ -24,8 +25,12 @@ export const todayBD = (now = new Date()) => now.toLocaleDateString("en-CA", { t
 /** ISO dates compare correctly as strings; both ends are inclusive. */
 export const isActive = (o: Pick<Offer, "startsOn" | "endsOn">, today: string) => o.startsOn <= today && today <= o.endsOn;
 
-/** The offer running today for a bike, if any (first listed wins). */
-export const activeOffer = (bikeId: string, today: string, offers: Offer[] = OFFERS) => offers.find((o) => o.bikeIds.includes(bikeId) && isActive(o, today));
+/**
+ * The offer running today for a bike, if any (first listed wins). None for a bike whose availability is unconfirmed: a
+ * discount on a model the distributor may not sell contradicts the page's own warning (critique 15 Oct N8).
+ */
+export const activeOffer = (bikeId: string, today: string, offers: Offer[] = OFFERS) =>
+  getBike(bikeId)?.availability === "unconfirmed" ? undefined : offers.find((o) => o.bikeIds.includes(bikeId) && isActive(o, today));
 
 /** Whole days from an ISO date to today (both YYYY-MM-DD). */
 export const daysSince = (iso: string, today: string) => Math.round((Date.parse(today) - Date.parse(iso)) / 864e5);

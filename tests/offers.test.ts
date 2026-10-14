@@ -46,3 +46,9 @@ test("priceAge: amber after 60 days, red after 120, counted from the 1st of the 
   assert.equal(priceAge("2026-10", "2027-01-29"), "aging"); // 120 days
   assert.equal(priceAge("2026-10", "2027-01-30"), "stale");
 });
+
+test("offers: a bike whose availability is unconfirmed shows no offer, even a running one (critique 15 Oct N8)", () => {
+  const flagged = BIKES.find((b) => b.availability === "unconfirmed");
+  assert.ok(flagged, "fixture: no bike carries availability unconfirmed");
+  assert.equal(activeOffer(flagged.id, "2026-10-20", [o("2026-10-01", "2026-10-31", [flagged.id])]), undefined);
+});

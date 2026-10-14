@@ -247,7 +247,7 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
                     {tx("Price source", "দামের উৎস")}
                   </a>
                 )}
-                {bike.distributor && (
+                {bike.distributor && bike.availability !== "unconfirmed" && (
                   <>
                     {" · "}
                     {tx("Sold by", "বিক্রেতা")} {bike.distributor}

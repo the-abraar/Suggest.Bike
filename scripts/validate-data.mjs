@@ -105,6 +105,8 @@ for (const o of JSON.parse(readFileSync(new URL("../src/data/offers.json", impor
   else if (o.endsOn < todayBD) warnings.push(`offers.json ${o.id}: ended ${o.endsOn}; the site hides it, delete it when convenient`);
   for (const k of ["regularPriceBDT", "offerPriceBDT"]) if (o[k] !== undefined && !(Number.isInteger(o[k]) && o[k] >= 20000)) e(`bad ${k} ${o[k]}`);
   if (o.type === "discount" && !(o.offerPriceBDT < o.regularPriceBDT)) e("discount needs offerPriceBDT lower than regularPriceBDT");
+  // The struck-through price must be the headline price on the same page (critique 15 Oct N8: ৳4,50,000 vs ৳4,49,950).
+  if (o.regularPriceBDT !== undefined) for (const id of o.bikeIds ?? []) { const b = bikes.find((x) => x.id === id); if (b && b.priceBDT !== o.regularPriceBDT) e(`regularPriceBDT ${o.regularPriceBDT} is not ${id}'s price ${b.priceBDT}`); }
   if (!(typeof o.source?.name === "string" && o.source.name.length >= 2)) e("missing source.name");
   if (o.source?.url != null) try { if (!/^https?:$/.test(new URL(o.source.url).protocol)) e("source.url must be http(s)"); } catch { e("bad source.url"); }
 }
