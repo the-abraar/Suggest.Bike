@@ -1437,6 +1437,177 @@
   ]
  },
  {
+  "id": "bajaj-pulsar-ns160",
+  "brand": "Bajaj",
+  "model": "Pulsar NS160",
+  "variant": "FI ABS",
+  "category": "naked",
+  "status": "used-only",
+  "priceBDT": 120000,
+  "priceNote": "Bikroy asks (Oct 2026, 18 used ads): ৳80,000-2,10,000, median ~৳1,22,500; 2017-2019 units ৳80,000-1,35,000, 2023-24 units ৳1,92,000-2,10,000. BikeBD lists the NS160 FI ABS as discontinued (last list price ৳2,62,500, Uttara Motors). Specs from BikeBD and Bajaj's 2017 launch figures; part prices approx, unverified.",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://bikroy.com/bn/motorcycles-and-scooters/bajaj-pulsar-ns-160",
+  "distributor": "Uttara Motors Ltd",
+  "assembledInBD": true,
+  "engine": {
+   "cc": 160.3,
+   "cylinders": 1,
+   "stroke": 4,
+   "cooling": "oil",
+   "valves": 2,
+   "fuel": "fi"
+  },
+  "powerPS": 15.5,
+  "torqueNm": 14.6,
+  "gears": 5,
+  "topSpeedKmh": 130,
+  "mileageKmpl": [
+   35,
+   45
+  ],
+  "weightKg": 148,
+  "seatHeightMm": 805,
+  "fuelTankL": 12,
+  "brakes": {
+   "front": "disc",
+   "rear": "disc",
+   "abs": "single"
+  },
+  "tubeless": true,
+  "tyres": {
+   "front": "80/100-17",
+   "rear": "120/80-17"
+  },
+  "suspension": {
+   "front": "Telescopic",
+   "rear": "Nitrox monoshock"
+  },
+  "scores": {
+   "reliability": 7,
+   "mechanicFamiliarity": 8,
+   "partsAvailability": 8,
+   "resale": 7,
+   "comfort": 8,
+   "cityHandling": 6,
+   "highway": 7,
+   "pillion": 7,
+   "offroad": 4,
+   "performance": 6,
+   "beginnerFriendly": 6
+  },
+  "tagline": "The sporty NS look with a 160 engine and single-channel ABS, now a used-market buy.",
+  "feel": "Sporty, planted and comfortable on long rides; the 160 engine is punchy but heats up in traffic and the bike is heavy for city filtering.",
+  "quirks": "Discontinued, so buy used and check the condition and papers carefully; owners report battery quality, a weak headlamp and city mileage near 32 km/L.",
+  "braking": "Front and rear disc with single-channel ABS on the front; strong for its era but not dual-channel.",
+  "mechanicNote": "Pulsar-savvy mechanics are common and parts are stocked, but FI and ABS diagnostics are best done at an Uttara Motors service centre.",
+  "pros": [
+   "Sporty looks and stable handling",
+   "Front ABS with twin discs",
+   "Comfortable for long rides",
+   "Cheap to buy used"
+  ],
+  "cons": [
+   "Discontinued, no new units",
+   "Heavy at 148 kg",
+   "Engine heat in traffic",
+   "City mileage 32-35 km/L"
+  ],
+  "bestFor": [
+   "Used-bike buyers wanting a sporty 160",
+   "Long commutes",
+   "First bike on a budget"
+  ],
+  "serviceIntervalKm": 3000,
+  "avgServiceCostBDT": 1600,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 650,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Chain & sprocket set",
+    "priceBDT": 2500,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Air filter",
+    "priceBDT": 500,
+    "availability": "common"
+   },
+   {
+    "name": "Engine oil change",
+    "priceBDT": 1000,
+    "availability": "everywhere"
+   },
+   {
+    "name": "Clutch plate set",
+    "priceBDT": 1500,
+    "availability": "common"
+   }
+  ],
+  "sources": [
+   "https://bikebd.com/price/bajaj-pulsar-ns160-fi-abs",
+   "https://bikroy.com/bn/motorcycles-and-scooters/bajaj-pulsar-ns-160",
+   "https://www.bikebd.com/info/bajaj-pulsar-ns160-bike-price-in-bd"
+  ],
+  "bn": {
+   "tagline": "160 ইঞ্জিন আর সিঙ্গেল-চ্যানেল ABS-সহ স্পোর্টি NS লুক, এখন ইউজড মার্কেটের বাইক।",
+   "feel": "স্পোর্টি, রাস্তায় বসে থাকে আর লম্বা রাইডে আরামদায়ক; 160 ইঞ্জিন তেজি, কিন্তু জ্যামে গরম হয় আর শহরে ফাঁক দিয়ে চালাতে বাইকটা ভারী।",
+   "quirks": "বন্ধ হয়ে গেছে, তাই ইউজড কিনতে হবে — কন্ডিশন আর কাগজ ভালো করে দেখুন; ওনাররা ব্যাটারির মান, দুর্বল হেডল্যাম্প আর শহরে প্রায় 32 km/L মাইলেজের কথা বলেন।",
+   "braking": "সামনে-পেছনে ডিস্ক, সামনে সিঙ্গেল-চ্যানেল ABS; সময়ের তুলনায় ভালো, তবে ডুয়াল-চ্যানেল নয়।",
+   "mechanicNote": "পালসার বোঝে এমন মেকানিক অনেক আছে আর পার্টস পাওয়া যায়, তবে FI ও ABS ডায়াগনস্টিক উত্তরা মোটরসের সার্ভিস সেন্টারে করানোই ভালো।",
+   "pros": [
+    "স্পোর্টি লুক ও স্ট্যাবল হ্যান্ডলিং",
+    "টুইন ডিস্কসহ সামনে ABS",
+    "লম্বা রাইডে আরামদায়ক",
+    "ইউজডে সস্তা"
+   ],
+   "cons": [
+    "বন্ধ, নতুন পাওয়া যায় না",
+    "148 kg-এ ভারী",
+    "জ্যামে ইঞ্জিন গরম",
+    "শহরে মাইলেজ 32-35 km/L"
+   ],
+   "bestFor": [
+    "স্পোর্টি 160 খোঁজা ইউজড ক্রেতা",
+    "লম্বা যাতায়াত",
+    "বাজেটে প্রথম বাইক"
+   ],
+   "priceNote": null,
+   "partNotes": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  "aliases": [
+   "পালসার NS160",
+   "এনএস 160",
+   "পালসার",
+   "বাজাজ",
+   "ns160",
+   "ns 160",
+   "pulsar ns 160",
+   "plusar ns160",
+   "palsar ns160",
+   "plsar ns160",
+   "পালসার ১৬০",
+   "পলসার ১৬০"
+  ],
+  "usedPrice": {
+   "y1": 195000,
+   "y3": 130000,
+   "listingsSeen": 18,
+   "asOf": "2026-10",
+   "sources": [
+    "https://bikroy.com/bn/motorcycles-and-scooters/bajaj-pulsar-ns-160"
+   ]
+  }
+ },
+ {
   "id": "bajaj-avenger-160",
   "brand": "Bajaj",
   "model": "Avenger Street 160",

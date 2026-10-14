@@ -275,3 +275,10 @@ Fix blockers 1 to 4 below, hide the finder, and the site can soft-launch in abou
 **Open (owner):** Formspree URL, GoatCounter code, WhatsApp number (all empty in `src/lib/site.ts`); lawyer review; real-phone walk; proofread Bangla in the new posts; Suzuki "since" year (2013 vs 2012); helmet marks (BSTI?); quiz pre-selected defaults (product call).
 **Open (data):** TVS specs (no official BD source), Suzuki weights, XSR155/SP160 ABS, Vespa VXL fuel system, Ray ZR 125 hybrid or not, Runner/GPX/Haojue networks; bikebd.com still 56% of price sources.
 **Not verified:** Facebook link previews of the share cards; real devices.
+
+### Update 12 (2026-10-14): status check, no code changed
+
+Checked: last commit adds the Honda Super Cub (after Update 11); working tree clean. I did not re-run `scripts/check.sh` this round.
+**Score:** unchanged at 60%, cap 75. Live on suggest.bike over HTTPS; Search Console sitemap submitted, pages not yet crawled.
+**Still blocked on the owner:** Formspree URL, GoatCounter code and WhatsApp number (empty in `src/lib/site.ts`); lawyer review; real-phone walk; Bangla proofreading; the data items listed under Update 11 "Open (data)".
+**Next, first:** set the three site.ts values, then walk the live site on a real phone.
