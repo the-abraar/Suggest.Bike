@@ -282,3 +282,9 @@ Checked: last commit adds the Honda Super Cub (after Update 11); working tree cl
 **Score:** unchanged at 60%, cap 75. Live on suggest.bike over HTTPS; Search Console sitemap submitted, pages not yet crawled.
 **Still blocked on the owner:** Formspree URL, GoatCounter code and WhatsApp number (empty in `src/lib/site.ts`); lawyer review; real-phone walk; Bangla proofreading; the data items listed under Update 11 "Open (data)".
 **Next, first:** set the three site.ts values, then walk the live site on a real phone.
+
+### Update 13 (2026-10-14, agent round, pushed `68ec058`)
+
+Done (`scripts/check.sh` exit 0): WhatsApp set in `src/lib/site.ts` (8801327045005); `validate-data.mjs` now warns when the feedback endpoint, analytics code or WhatsApp is empty; `hero-honda-cbz` has a second source. Verified correct, no change: Discover 125 tank 8 L and price, X-Blade price.
+**Unresolved, needs an official source:** Metro Plus weight (bikebd says 138 kg vs our 116, page unreliable), Stryker seat height and tank, Access 125 brake layout, Gixxer Monotone price, Ray ZR 125 and R15 V4 prices (not fetched), `haojue-dr160` second source.
+**Still open for the owner:** Formspree/Web3Forms endpoint, GoatCounter code, lawyer review, real-phone walk. Score unchanged at 60%.
