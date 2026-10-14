@@ -37,16 +37,16 @@ test("langAlternates gives canonical per language and the same hreflang set", ()
 
 // Properties schema.org defines on Product and Offer (https://schema.org/Product, https://schema.org/Offer) that we use.
 const PRODUCT_PROPS = ["@context", "@type", "name", "brand", "category", "description", "url", "image", "offers"];
-const OFFER_PROPS = ["@type", "price", "priceCurrency", "itemCondition", "availability", "url", "seller"];
+const OFFER_PROPS = ["@type", "price", "priceCurrency", "itemCondition", "url"]; // no availability or seller: the site sees no stock and sells nothing (N7)
 
-test("Product JSON-LD: InStock Offer only for bikes on sale with confirmed availability, valid schema.org properties", () => {
+test("Product JSON-LD: a list-price Offer only for bikes on sale with confirmed availability, valid schema.org properties", () => {
   const all = bikes as unknown as Bike[];
   const onSale = all.find((b) => b.status === "on-sale" && !b.availability)!;
   const offer = (productJsonLd(onSale) as { offers?: Record<string, unknown> }).offers;
   assert.equal(offer?.["@type"], "Offer");
   assert.equal(offer?.price, onSale.priceBDT);
   assert.equal(offer?.priceCurrency, "BDT");
-  assert.equal(offer?.availability, "https://schema.org/InStock");
+  assert.ok(!("availability" in offer!) && !("seller" in offer!), "no stock or seller claim");
   assert.equal(offer?.itemCondition, "https://schema.org/NewCondition");
   for (const b of all) {
     const ld = productJsonLd(b) as Record<string, unknown> & { offers?: Record<string, unknown> };

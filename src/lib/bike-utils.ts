@@ -100,12 +100,12 @@ export const mileageText = (b: Pick<BikeLite, "engine" | "mileageKmpl" | "ev">) 
 export const ccLabel =(b: Pick<BikeLite, "engine">) => (isEv(b) ? "Electric" : `${Math.round(b.engine.cc)}cc`);
 
 /**
- * schema.org Product for a bike page. Only bikes on sale with a price and confirmed availability carry an Offer, marked InStock
- * (the distributor sells it new). Used-only bikes have no seller or list price, and "unconfirmed" bikes have unproven stock, so
- * neither gets an Offer rather than a wrong availability.
+ * schema.org Product for a bike page. Only bikes on sale with a price and confirmed availability carry an Offer: the list
+ * price. It states no stock and no seller, because this site sells nothing and cannot see stock (critique 15 Oct N7).
+ * Used-only bikes have no list price, and "unconfirmed" bikes may not be sold new, so neither gets an Offer.
  */
 // Product has no inLanguage in schema.org, so the /bn/ twin only swaps in the Bangla description.
-export function productJsonLd(b: Pick<Bike, "id" | "brand" | "model" | "tagline" | "status" | "availability" | "priceBDT" | "distributor" | "bn">, lang: "en" | "bn" = "en") {
+export function productJsonLd(b: Pick<Bike, "id" | "brand" | "model" | "tagline" | "status" | "availability" | "priceBDT" | "bn">, lang: "en" | "bn" = "en") {
   const url = `${SITE.url}/bikes/${b.id}/`;
   return {
     "@context": "https://schema.org",
@@ -122,9 +122,7 @@ export function productJsonLd(b: Pick<Bike, "id" | "brand" | "model" | "tagline"
         price: b.priceBDT,
         priceCurrency: "BDT",
         itemCondition: "https://schema.org/NewCondition",
-        availability: "https://schema.org/InStock",
         url, // our page, which cites the price source; pointing at bikebd would hand it the click
-        ...(b.distributor && { seller: { "@type": "Organization", name: b.distributor } }),
       },
     }),
   };
