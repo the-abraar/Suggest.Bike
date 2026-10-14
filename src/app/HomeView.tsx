@@ -286,6 +286,7 @@ function QuickPick() {
           max={max}
           step={5000}
           value={budget}
+          aria-valuetext={formatLakh(budget, lang)}
           style={{ ["--fill" as string]: `${fill}%` }}
           onChange={(e) => setBudget(Number(e.target.value))}
         />

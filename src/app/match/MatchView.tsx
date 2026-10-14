@@ -393,6 +393,7 @@ function BudgetStep({ a, set }: { a: Answers; set: <K extends keyof Answers>(k: 
           step={step}
           value={value}
           aria-label={tx("Budget", "বাজেট")}
+          aria-valuetext={monthly ? tx(`${formatBDT(value)} a month`, `মাসে ${formatBDT(value)}`) : formatLakh(value, lang)}
           style={{ ["--fill" as string]: `${fill}%` }}
           onChange={(e) => setValue(Number(e.target.value))}
         />
