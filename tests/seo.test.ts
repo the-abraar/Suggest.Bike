@@ -82,7 +82,7 @@ test("sitemap: a real lastmod per dated page, no changefreq, same date for EN an
 test("bike titles use BD search words, stay under 60 characters, and Bangla pages keep Bangla titles", () => {
   const all = bikes as unknown as Bike[];
   const n160 = all.find((b) => b.id === "bajaj-pulsar-n160")!;
-  assert.equal(bikeTitle(n160, "en"), "Pulsar N160 price in BD, on-road cost and EMI (dam koto)");
+  assert.equal(bikeTitle(n160, "en"), "Bajaj Pulsar N160 price in BD and EMI (dam koto)");
   assert.equal(bikeTitle(n160, "bn"), "Bajaj Pulsar N160-এর দাম কত? অন-রোড খরচ ও কিস্তি");
   for (const b of all) {
     const en = bikeTitle(b, "en");
@@ -90,6 +90,7 @@ test("bike titles use BD search words, stay under 60 characters, and Bangla page
     assert.ok(en.length <= 60, `${b.id}: "${en}" is ${en.length} characters`);
     assert.ok(bn.length <= 60, `${b.id}: "${bn}" is ${bn.length} characters`);
     assert.ok(en.includes(b.model) && en.endsWith("(dam koto)"), en);
+    if (`${b.brand} ${b.model} price in BD (dam koto)`.length <= 60) assert.ok(en.startsWith(b.brand), `${b.id}: "${en}" drops the brand`);
     assert.match(en, b.status === "used-only" ? / used price in BD/ : / price in BD/);
     assert.ok(!(b.status === "used-only" && /EMI|on-road/.test(en)), `${b.id}: a used-only bike has no on-road price or EMI`);
     assert.ok(bn.includes(b.model) && bn.includes("দাম কত"), bn);

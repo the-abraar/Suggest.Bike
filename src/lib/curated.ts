@@ -63,8 +63,8 @@ export function pairMetadata(slug: string, lang: "en" | "bn"): Metadata {
 
 const TITLE_MAX = 60;
 /**
- * Bike page title in the words BD buyers search ("pulsar n160 price in bd", "dam koto", "দাম কত"): the full name when it
- * fits ~60 characters, else the model alone, then a shorter tail. Used as an absolute title: " · Suggest.Bike" would push
+ * Bike page title in the words BD buyers search ("pulsar n160 price in bd", "dam koto", "দাম কত"): the full name with the
+ * longest tail that fits ~60 characters, and the model alone only when no tail fits. Used as an absolute title: " · Suggest.Bike" would push
  * every one past 60.
  */
 export function bikeTitle(b: Pick<Bike, "brand" | "model" | "status">, lang: "en" | "bn") {
@@ -73,7 +73,8 @@ export function bikeTitle(b: Pick<Bike, "brand" | "model" | "status">, lang: "en
     lang === "bn"
       ? used ? ["-এর পুরনো বাইকের দাম কত? পার্টস ও মাইলেজ", "-এর পুরনো বাইকের দাম কত?"] : ["-এর দাম কত? অন-রোড খরচ ও কিস্তি", "-এর দাম কত?"]
       : used ? [" used price in BD, parts and mileage (dam koto)", " used price in BD (dam koto)"] : [" price in BD, on-road cost and EMI (dam koto)", " price in BD and EMI (dam koto)", " price in BD (dam koto)"];
-  const all = tails.flatMap((t) => [fullName(b) + t, b.model + t]);
+  // Brand first: most BD searches name it ("bajaj pulsar n160 price"), so a shorter tail beats dropping it (critique 15 Oct N10).
+  const all = [...tails.map((t) => fullName(b) + t), ...tails.map((t) => b.model + t)];
   return all.find((t) => t.length <= TITLE_MAX) ?? all[all.length - 1];
 }
 
