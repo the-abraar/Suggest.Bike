@@ -72,9 +72,10 @@ export function LangProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>(onBn ? "bn" : "en");
 
   useEffect(() => {
+    // Visiting /bn/ (a shared link, a search result) is not a preference: only the toggle stores one (setLang), so a
+    // reader who once opened a Bangla link is not redirected away from every English page after (critique B10).
     if (onBn) {
       setLangState("bn");
-      try { localStorage.setItem("sb-lang", "bn"); } catch {} // keep Bangla when the reader follows an English-URL link
       return;
     }
     try {

@@ -20,7 +20,7 @@ Output: `tools/qa/shots/<scheme>/<page>_<width>_t<N>.png` (real viewport size: 3
 
 ## Interaction checks
 
-`interact.mjs` (375 wide, plus 1280 for the header nav) drives the UI and prints PASS/FAIL per check; exit code 1 on any FAIL. Covers: quiz in full-price and EMI mode (৳30,000 down, 24 months: on-road, bands, stretch), the ৳40,000 empty state reached by moving the budget slider, the EN↔বাংলা toggle keeping query and hash, owner-report validation and the mailto fallback, the bike-page price history block, the EV owner form having no km/l field, `/changes` entries, the header Dealers link and footer Method link (EN, `/bn/`, mobile menu). Screenshots go to `shots/interact/`.
+`interact.mjs` (375 wide, plus 1280 for the header nav) drives the UI and prints PASS/FAIL per check; exit code 1 on any FAIL. Covers: quiz in full-price and EMI mode (৳30,000 down, 24 months: on-road, bands, stretch), the ৳40,000 empty state reached by moving the budget slider, the EN↔বাংলা toggle keeping query and hash, owner-report validation and the mailto fallback, the bike-page price history block, the EV owner form having no km/l field, `/changes` entries, the header Dealers link and footer Method link (EN, `/bn/`, mobile menu), that a `/bn/` visit does not store a language, and the compare tray (a 4th pick refused, duplicate and stale ids, a shared link leaving a full tray alone, no button inside a link on `/` and `/bikes/`). Screenshots go to `shots/interact/`.
 
 ## Keyboard checks
 
