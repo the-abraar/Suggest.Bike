@@ -45,6 +45,7 @@ Bangladeshi buyers choose a motorcycle with poor information. Most reviews come 
 - FR-M9. When the top three bikes have the same style, and a bike of another style scores within 5 points of the third, the system shall put that bike third.
 - FR-M10. The system shall not show EMI or "on-road" for a used or used-only bike. EMI mode shall not show used bikes.
 - FR-M11. The system shall clamp values from a shared URL: the budget to ৳30,000–৳10,00,000 and the EMI inputs to the quiz limits. It shall ignore repeated priorities. In EMI mode, it shall calculate the budget from the EMI inputs.
+- FR-M12. The system shall not suggest a bike whose engine is larger than the BRTA registration limit for individuals (375cc, `guide.json`).
 
 ### 5.2 Compare (`/compare`)
 
@@ -52,6 +53,8 @@ Bangladeshi buyers choose a motorcycle with poor information. Most reviews come 
 - FR-C2. The system shall mark the lowest and highest value of each measured specification.
 - FR-C3. The system shall show editorial scores without a winner.
 - FR-C4. The system shall base quick verdicts only on measured numbers.
+- FR-C5. The compare tray shall hold at most three distinct, known bikes. It shall refuse a fourth with a message, not drop the oldest.
+- FR-C6. A shared `/compare/?bikes=` link shall fill the tray only when the tray is empty or holds the same bikes.
 
 ### 5.3 Cost (`/cost`)
 
@@ -90,11 +93,14 @@ Bangladeshi buyers choose a motorcycle with poor information. Most reviews come 
 ## 6. Data pipeline
 
 - DP-1. Each bike shall record `priceBDT`, `priceAsOf` and `priceSource`.
-- DP-2. Run `npm run validate` before each build. The validator shall fail the build when a price is more than 180 days old.
+- DP-2. Run `npm run validate` before each build. The validator shall fail the build when an on-sale price is more than 180 days old; a used-only estimate only warns. `PRICE_FAIL_DAYS` raises the limit for an emergency deploy (`docs/price-refresh.md`).
 - DP-3. The validator shall fail when a price is more than 40% from its category median and the bike has no `priceNote`.
 - DP-4. Run `npm run audit:prices` to list stale prices, single-source bikes and outliers.
 - DP-5. The build shall generate `src/data/generated` and `public/data/bikes` from `src/data`. Edit the source files only.
 - DP-6. A person shall check a price against its source before editing. Do not edit data to pass a check.
+- DP-7. Editorial, provenance and owner notes go in `dataNote`, which is never rendered. The validator shall fail when public text contains internal-note words ("user", "BikeBD data", "placeholder", "unconfirmed", "TODO").
+- DP-8. An on-sale bike missing from its distributor's list, or with unproven BD stock, shall carry `availability: "unconfirmed"`, and its page and card shall say so.
+- DP-9. The bike page shall age the price badge on the visitor's date (amber after 60 days, red after 120) and label used-only prices as estimates.
 
 ## 7. Non-functional requirements
 

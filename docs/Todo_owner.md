@@ -17,6 +17,9 @@ The agent is waiting on these. Send the value (or the answer) and it wires it in
 - [ ] **Proofread the Bangla** in the 18 new maintenance posts, the `/owner/` sections and the three new rules pages.
 - [ ] **Before each Facebook post** (`docs/launch-posts.md`): open the linked page that day and fix any number that moved (Hunk 150R went up ৳3,000 on 2026-10-14).
 - [ ] **Check `hello@suggest.bike` forwarding** by sending one test email to it.
+- [ ] **Two suspected spec errors** (critique B4; each bike's `dataNote` in `src/data/bikes.json` has the detail). Platina 100 ES: does it have CBS? bajajauto.com/en-bd lists drum/drum with no CBS; if not, set `brakes.abs` to `"none"`. Apache RTR 160 4V: 147 kg in the data, 143-144 kg on bikebd; ask TVS Auto Bangladesh.
+- [ ] **Availability:** ask the distributor or a showroom whether these are still sold new: Suzuki V-Strom SX 250, Bajaj Avenger 160, KTM Duke 125 and RC 125, Hero Splendor+. Each shows "Availability unconfirmed" until you remove `"availability": "unconfirmed"` (on sale) or set `status` (gone).
+- [ ] **Legal page gaps** (TODO comments at the top of `src/components/LegalView.tsx`): operator name and postal address, governing law, and a response time you can keep for corrections and takedowns.
 
 ## Before launch
 
