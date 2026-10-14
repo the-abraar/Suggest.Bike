@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "@/components/LangLink";
-import { SCORE_LABELS } from "@/lib/bikes";
+import { SCORE_LABELS } from "@/lib/bike-utils";
 import { useLang, useTx } from "@/lib/i18n";
 import { SITE } from "@/lib/site";
 import type { ScoreKey } from "@/lib/types";

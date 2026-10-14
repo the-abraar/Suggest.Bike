@@ -7,6 +7,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CompareTray } from "@/components/CompareTray";
 import { GOATCOUNTER_CODE, OG_BASE, SITE } from "@/lib/site";
+import { BIKES } from "@/lib/bikes"; // server component: read at build time, not shipped
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap", preload: false }); // no font-mono text today; skip the preload
@@ -46,7 +47,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </a>
             <Header />
             <main id="main">{children}</main>
-            <Footer />
+            {/* oldest price date, so stale prices are not hidden by fresh ones */}
+            <Footer count={BIKES.length} latest={BIKES.map((b) => b.priceAsOf).sort()[0]} />
             <CompareTray />
           </StoreProvider>
         </LangProvider>

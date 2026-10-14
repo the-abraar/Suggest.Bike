@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { langAlternates } from "@/lib/site";
+import { BAND_LOW } from "@/lib/match";
 import { MethodView } from "./MethodView";
 
 export const metadata: Metadata = {
@@ -9,5 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <MethodView />;
+  return <MethodView bandLow={BAND_LOW} />;
 }

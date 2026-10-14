@@ -1,12 +1,13 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
-import { getBike } from "./bikes";
+import bikeIds from "@/data/generated/bikes.ids.json"; // ids only: the layout validates picks without shipping the bike index
 
 export const MAX_COMPARE = 3;
+const KNOWN = new Set<string>(bikeIds);
 
 /** Known bike ids only, each once, at most MAX_COMPARE: stale ids from old localStorage or shared links drop out (critique B7, B12). */
-export const compareIds = (ids: string[]) => [...new Set(ids)].filter((id) => getBike(id)).slice(0, MAX_COMPARE);
+export const compareIds = (ids: string[]) => [...new Set(ids)].filter((id) => KNOWN.has(id)).slice(0, MAX_COMPARE);
 /** Adds or removes one bike. A 4th is refused, not swapped for the oldest (critique B6); the full tray says why. */
 export const toggleIn = (c: string[], id: string) => (c.includes(id) ? c.filter((x) => x !== id) : c.length >= MAX_COMPARE ? c : compareIds([...c, id]));
 

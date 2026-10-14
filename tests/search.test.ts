@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { getBike } from "../src/lib/bikes";
-import { searchBikes } from "../src/components/SearchBox";
+import { searchBikes } from "../src/lib/search";
 
 const ids = (q: string, limit = 7) => searchBikes(q, limit).map((b) => b.id);
 const cases: [string, string][] = [

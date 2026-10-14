@@ -14,7 +14,7 @@ import { compareIds, useStore, MAX_COMPARE } from "@/lib/store";
 import { useLang, useTx } from "@/lib/i18n";
 import type { Bike, BikeLite, ScoreKey } from "@/lib/types";
 import { BikeArt } from "@/components/BikeArt";
-import { searchBikes } from "@/components/SearchBox";
+import { searchBikes } from "@/lib/search";
 import { Approx, ShareButton, WithSearchParams } from "@/components/ui";
 
 /** `pair`: a popular pair page (/compare/a-vs-b/), prerendered with both bikes instead of reading the query string. */

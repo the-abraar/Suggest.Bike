@@ -3,64 +3,14 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { Search } from "lucide-react";
-import { BIKES, BRANDS, CATEGORIES, ccLabel, formatLakh, fullName, overall } from "@/lib/bikes";
+import { CATEGORIES, ccLabel, formatLakh, fullName } from "@/lib/bike-utils";
 import { useLang } from "@/lib/i18n";
 import { langHref } from "@/lib/site";
 import { BikeArt } from "./BikeArt";
 
-// Keeps Latin letters, digits and Bangla script; Bangla digits are folded to Latin so "এন১৬০" matches "n160".
-const BN_DIGITS = "০১২৩৪৫৬৭৮৯";
-const norm = (s: string) =>
-  s
-    .toLowerCase()
-    .replace(/[০-৯]/g, (d) => String(BN_DIGITS.indexOf(d)))
-    .replace(/[^a-z0-9\u0980-\u09ff]+/g, "");
-
-// Banglish spelling key: first letter, then consonants with doubles collapsed, so "palsar"/"plsar" = "pulsar", "gixar" = "gixxer", "harnet" = "hornet", "classik" = "classic".
-const skel = (s: string) => {
-  const w = s.replace(/ph/g, "f").replace(/[cq]/g, "k");
-  return w[0] + w.slice(1).replace(/(.)\1+/g, "$1").replace(/[aeiouy]/g, "");
-};
-const fuzzy = (w: string, tokens: string[]) => {
-  if (w.length < 4) return false;
-  const k = skel(w);
-  return tokens.some((t) => (k.length >= 3 ? skel(t).startsWith(k) : skel(t) === k));
-};
-// "fz v3", "r15 v5": a generation we do not list should still find the family.
-const isGen = (w: string) => /^v\d$/.test(w);
-
-export function searchBikes(q: string, limit = 7) {
-  const n = norm(q);
-  if (!n) return [];
-  const words = q.toLowerCase().split(/\s+/).filter(Boolean).map(norm).filter(Boolean);
-  // A brand on its own ("honda", "yamha", "hunda") lists that brand in tie-break order, so the misspelt-brand aliases a few
-  // old bikes carry cannot push them to the top (critique B8).
-  const brand = words.length === 1 && BRANDS.find((br) => norm(br) === n || fuzzy(n, [norm(br)]));
-  return BIKES.map((b) => {
-    if (brand) return { b, score: b.brand === brand ? 1 : 0 };
-    const aliases = (b.aliases ?? []).map(norm);
-    const hay = norm(`${b.brand}${b.model}${b.variant ?? ""}${b.category}${Math.round(b.engine.cc)}cc`) + aliases.join("|");
-    const name = norm(fullName(b));
-    let score = 0;
-    if (norm(b.model).startsWith(n)) score += 6;
-    if (name.startsWith(n)) score += 5;
-    if (name.includes(n)) score += 3;
-    if (aliases.some((a) => a.startsWith(n))) score += 4;
-    else if (aliases.some((a) => a.includes(n))) score += 2;
-    if (words.every((w) => hay.includes(w))) score += 2;
-    if (!score) {
-      const tokens = `${b.brand} ${b.model} ${b.variant ?? ""} ${(b.aliases ?? []).join(" ")}`.toLowerCase().split(/[\s-]+/).map(norm).filter(Boolean);
-      const hit = (w: string) => tokens.some((t) => t.startsWith(w)) || fuzzy(w, tokens);
-      if (words.some((w) => !isGen(w)) && words.every((w) => isGen(w) || hit(w))) score = 1;
-    }
-    return { b, score };
-  })
-    .filter((x) => x.score > 0)
-    // Ties: on-sale bikes first, then the best rated, so "honda" finds the Hornet before a 1980s CD80 (critique B8).
-    .sort((a, b) => b.score - a.score || +(a.b.status === "used-only") - +(b.b.status === "used-only") || overall(b.b) - overall(a.b))
-    .slice(0, limit)
-    .map((x) => x.b);
-}
+// The search engine carries the bike index (~30 KB gzip): loaded on first focus or keystroke, so pages that do not list
+// bikes (guides, legal, about) never download it. A failed load is retried on the next focus or keystroke.
+type SearchMod = typeof import("@/lib/search");
 
 export function SearchBox({ compact = false, autoFocus = false, large = false }: { compact?: boolean; autoFocus?: boolean; large?: boolean }) {
   const router = useRouter();
@@ -71,7 +21,9 @@ export function SearchBox({ compact = false, autoFocus = false, large = false }:
   const inputRef = useRef<HTMLInputElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
   const listId = useId();
-  const results = useMemo(() => searchBikes(q), [q]);
+  const [engine, setEngine] = useState<SearchMod | null>(null);
+  const load = () => engine || import("@/lib/search").then(setEngine, () => {});
+  const results = useMemo(() => (engine ? engine.searchBikes(q) : []), [q, engine]);
 
   useEffect(() => setIdx(0), [q]);
   useEffect(() => {
@@ -112,8 +64,12 @@ export function SearchBox({ compact = false, autoFocus = false, large = false }:
           onChange={(e) => {
             setQ(e.target.value);
             setOpen(true);
+            load();
           }}
-          onFocus={() => setOpen(true)}
+          onFocus={() => {
+            setOpen(true);
+            load();
+          }}
           onKeyDown={(e) => {
             if (e.key === "ArrowDown") {
               e.preventDefault();
@@ -147,7 +103,7 @@ export function SearchBox({ compact = false, autoFocus = false, large = false }:
           </kbd>
         )}
       </div>
-      {open && q && (
+      {open && q && engine && (
         <div
           id={listId}
           role="listbox"

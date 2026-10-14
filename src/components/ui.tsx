@@ -5,7 +5,7 @@ import { Suspense, useState, type ReactNode } from "react";
 import { useSearchParams } from "next/navigation";
 import { Check, Heart, Plus, Share2 } from "lucide-react";
 import type { BikeLite } from "@/lib/types";
-import { CATEGORIES, ccLabel, formatLakh, mileageText } from "@/lib/bikes";
+import { CATEGORIES, ccLabel, formatLakh, mileageText } from "@/lib/bike-utils";
 import { useStore, MAX_COMPARE } from "@/lib/store";
 import { useLang } from "@/lib/i18n";
 import { BikeArt } from "./BikeArt";

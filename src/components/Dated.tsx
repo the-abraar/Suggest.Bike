@@ -5,7 +5,7 @@
 // render for the build date (same on server and first client render, so no hydration mismatch).
 import { useEffect, useState } from "react";
 import { Tag } from "lucide-react";
-import { formatBDT } from "@/lib/bikes";
+import { formatBDT } from "@/lib/bike-utils";
 import { FUEL } from "@/lib/cost";
 import { activeOffer, daysSince, priceAge, todayBD } from "@/lib/offers";
 import { useLang, useTx } from "@/lib/i18n";

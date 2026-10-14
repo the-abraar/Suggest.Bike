@@ -1,6 +1,6 @@
 import guide from "@/data/guide.json";
 import type { BikeLite, Category } from "./types";
-import { avgMileage } from "./bikes";
+import { avgMileage } from "./bike-utils";
 
 export const FUEL = {
   octane: guide.fuel.octane,

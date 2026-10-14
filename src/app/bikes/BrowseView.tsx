@@ -5,7 +5,7 @@ import { SlidersHorizontal, X } from "lucide-react";
 import { BIKES, BRANDS, CATEGORIES, COLLECTIONS, PRICE_BANDS, avgMileage, brandLabel, overall } from "@/lib/bikes";
 import { L, useLang, useTx } from "@/lib/i18n";
 import { BikeCard, WithSearchParams } from "@/components/ui";
-import { searchBikes } from "@/components/SearchBox";
+import { searchBikes } from "@/lib/search";
 import type { Category, Collection } from "@/lib/types";
 import { onRoadPrice } from "@/lib/cost";
 

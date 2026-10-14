@@ -1,10 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { formatBDT, formatLakh, fullName } from "@/lib/bikes";
+import { formatBDT, formatLakh, fullName } from "@/lib/bike-utils";
 import { useLang, useTx } from "@/lib/i18n";
 import { BikeArt } from "@/components/BikeArt";
-import { searchBikes } from "@/components/SearchBox";
+import { searchBikes } from "@/lib/search";
 import type { BikeLite } from "@/lib/types";
 
 /** Form controls shared by the calculator page (/cost). */
