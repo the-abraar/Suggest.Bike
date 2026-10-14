@@ -191,6 +191,7 @@ ok('header 375 menu: Dealers', (await pg.locator('a[href="/dealers/"]:visible').
   await p.goto(BASE + '/bikes/', { waitUntil: 'networkidle' });
   ok('B12: a stale id shows no tray', (await p.getByRole('button', { name: 'Clear' }).count()) === 0);
   await p.locator('.card').getByRole('button', { name: /^Compare$/ }).first().click();
+  await p.locator('[aria-disabled="true"]', { hasText: 'Compare' }).waitFor({ timeout: 5000 }).catch(() => {}); // the tray imports the bike index on first use
   ok('tray with 1 bike: Compare is not a focusable link', (await p.locator('a[href^="/compare/?bikes="]').count()) === 0 && (await p.locator('[aria-disabled="true"]', { hasText: 'Compare' }).count()) === 1);
   await p.evaluate(() => localStorage.removeItem('sb-compare'));
   await p.goto(BASE + '/compare/?bikes=bajaj-pulsar-n160,honda-hornet-2-0', { waitUntil: 'networkidle' });
@@ -198,6 +199,20 @@ ok('header 375 menu: Dealers', (await pg.locator('a[href="/dealers/"]:visible').
   await p.goto(BASE + '/', { waitUntil: 'networkidle' });
   ok('B13: no button inside a link on /', (await p.locator('a button').count()) === 0);
   await c.close();
+}
+
+// 11. /bikes/ pagination: 24 cards in the HTML, "Show more" adds 24 and writes ?page=, plain links reach every bike
+{
+  const p = await newPage();
+  const cards = () => p.locator('main a[href^="/bikes/"]:not(details a)').evaluateAll((as) => new Set(as.map((a) => a.getAttribute('href'))).size);
+  await p.goto(BASE + '/bikes/', { waitUntil: 'networkidle' });
+  ok('/bikes/ shows 24 cards first', (await cards()) === 24, String(await cards()));
+  ok('/bikes/ A-Z list links every bike', (await p.locator('details a[href^="/bikes/"]').count()) >= 100);
+  await p.getByRole('link', { name: 'Show more bikes' }).click();
+  ok('Show more: 48 cards and ?page=2', (await cards()) === 48 && p.url().endsWith('/bikes/?page=2'), `${await cards()} ${p.url()}`);
+  await p.getByLabel('Filter by name').fill('pulsar');
+  ok('a filter searches the whole catalogue and resets the page', (await cards()) >= 5 && !/page=/.test(p.url()), `${await cards()} ${p.url()}`);
+  await p.close();
 }
 
 const pageErrs = [...new Set(errs)];

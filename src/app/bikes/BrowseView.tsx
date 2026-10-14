@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { SlidersHorizontal, X } from "lucide-react";
-import { BIKES, BRANDS, CATEGORIES, COLLECTIONS, PRICE_BANDS, avgMileage, brandLabel, overall } from "@/lib/bikes";
+import Link from "@/components/LangLink";
+import { BIKES, BRANDS, CATEGORIES, COLLECTIONS, PRICE_BANDS, avgMileage, brandLabel, fullName, overall } from "@/lib/bikes";
 import { L, useLang, useTx } from "@/lib/i18n";
 import { BikeCard, WithSearchParams } from "@/components/ui";
 import { searchBikes } from "@/lib/search";
@@ -29,9 +30,27 @@ type Filters = {
   fi: boolean;
   includeUsed: boolean;
   sort: Sort;
+  page: number;
 };
 
-const EMPTY: Filters = { q: "", cats: [], cols: [], price: "", brands: [], abs: false, fi: false, includeUsed: true, sort: "recommended" };
+const EMPTY: Filters = { q: "", cats: [], cols: [], price: "", brands: [], abs: false, fi: false, includeUsed: true, sort: "recommended", page: 1 };
+
+/** Cards per page. The static HTML carries page 1 only: all 103 cards made /bikes/ 950 KB of HTML (critique section 6). */
+export const PAGE = 24;
+/** ?page=N from the URL, clamped to 1..the last page of the whole catalogue. */
+export const pageParam = (v: string | null, total: number) => Math.min(Math.max(1, Math.floor(Number(v)) || 1), Math.max(1, Math.ceil(total / PAGE)));
+
+/** The shareable query string for a filter state; "Show more" links to the same with page + 1. */
+function queryFor(f: Filters) {
+  const p = new URLSearchParams();
+  if (f.cats.length === 1) p.set("cat", f.cats[0]);
+  if (f.cols.length === 1) p.set("col", f.cols[0]);
+  if (f.price) p.set("price", f.price);
+  if (f.brands.length === 1) p.set("brand", f.brands[0]);
+  if (f.q) p.set("q", f.q);
+  if (f.page > 1) p.set("page", String(f.page));
+  return p.toString();
+}
 
 export function BrowseView() {
   return <WithSearchParams render={(params) => <Browse params={params} />} />;
@@ -40,7 +59,9 @@ export function BrowseView() {
 function Browse({ params }: { params: URLSearchParams }) {
   const { lang } = useLang();
   const tx = useTx();
-  const [f, setF] = useState<Filters>(EMPTY);
+  const [f, setFilters] = useState<Filters>(EMPTY);
+  // Every filter, search or sort change starts again at page 1; only the URL and "Show more" set the page.
+  const setF = (u: (x: Filters) => Filters) => setFilters((x) => ({ ...u(x), page: 1 }));
   const [sheet, setSheet] = useState(false);
 
   // Hydrate from URL (links from home/footer use ?cat=, ?price=, ?brand=); ignore our own replaceState writes.
@@ -50,8 +71,9 @@ function Browse({ params }: { params: URLSearchParams }) {
     const cat = params.get("cat");
     const brand = params.get("brand");
     const col = params.get("col");
-    setF((x) => ({
+    setFilters((x) => ({
       ...x,
+      page: pageParam(params.get("page"), BIKES.length),
       cats: cat && cat in CATEGORIES ? [cat as Category] : [],
       cols: col && col in COLLECTIONS ? [col as Collection] : [],
       price: params.get("price") ?? "",
@@ -64,13 +86,7 @@ function Browse({ params }: { params: URLSearchParams }) {
   // Keep URL shareable
   useEffect(() => {
     if (written.current === null) return;
-    const p = new URLSearchParams();
-    if (f.cats.length === 1) p.set("cat", f.cats[0]);
-    if (f.cols.length === 1) p.set("col", f.cols[0]);
-    if (f.price) p.set("price", f.price);
-    if (f.brands.length === 1) p.set("brand", f.brands[0]);
-    if (f.q) p.set("q", f.q);
-    const qs = p.toString();
+    const qs = queryFor(f);
     if (qs === written.current) return;
     written.current = qs;
     window.history.replaceState(null, "", qs ? `?${qs}` : window.location.pathname);
@@ -106,7 +122,8 @@ function Browse({ params }: { params: URLSearchParams }) {
     };
     if (!(f.q && f.sort === "recommended")) sorted.sort(by[f.sort]);
     return sorted;
-  }, [f]);
+  }, [f.q, f.cats, f.cols, f.price, f.brands, f.abs, f.fi, f.includeUsed, f.sort]);
+  const shown = results.slice(0, f.page * PAGE);
 
   const activeCount = f.cats.length + f.cols.length + f.brands.length + (f.price ? 1 : 0) + (f.abs ? 1 : 0) + (f.fi ? 1 : 0) + (f.includeUsed ? 0 : 1);
   const toggle = <K extends "cats" | "cols" | "brands">(k: K, v: Filters[K][number]) =>
@@ -216,17 +233,47 @@ function Browse({ params }: { params: URLSearchParams }) {
             <div className="card grid place-items-center px-6 py-20 text-center">
               <p className="text-[17px] font-semibold text-ink">{tx("No bikes match those filters", "এই ফিল্টারে কোনো বাইক নেই")}</p>
               <p className="mt-1 text-[14.5px] text-muted">{tx("Try widening your budget or removing a brand.", "বাজেট বাড়ান বা কোনো ব্র্যান্ড সরিয়ে দেখুন।")}</p>
-              <button className="btn-secondary mt-5" onClick={() => setF(EMPTY)}>
+              <button className="btn-secondary mt-5" onClick={() => setF(() => EMPTY)}>
                 {tx("Reset everything", "সব রিসেট")}
               </button>
             </div>
           ) : (
-            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-              {results.map((b) => (
-                <BikeCard key={b.id} bike={b} />
-              ))}
-            </div>
+            <>
+              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                {shown.map((b) => (
+                  <BikeCard key={b.id} bike={b} />
+                ))}
+              </div>
+              {shown.length < results.length && (
+                <div className="mt-8 flex flex-col items-center gap-2">
+                  <a
+                    href={`?${queryFor({ ...f, page: f.page + 1 })}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setFilters((x) => ({ ...x, page: x.page + 1 }));
+                    }}
+                    className="btn-secondary"
+                  >
+                    {tx("Show more bikes", "আরও বাইক দেখুন")}
+                  </a>
+                  <p className="text-[13px] text-muted tnum">{tx(`Showing ${shown.length} of ${results.length}`, `${results.length}টির মধ্যে ${shown.length}টি দেখানো হচ্ছে`)}</p>
+                </div>
+              )}
+            </>
           )}
+          {/* Plain links to every bike, so crawlers and no-JS readers reach the bikes past page 1. */}
+          <details className="mt-12 border-t border-line pt-6">
+            <summary className="cursor-pointer text-[14.5px] font-medium text-ink-2">{tx(`All ${BIKES.length} bikes by brand`, `ব্র্যান্ড অনুযায়ী সব ${BIKES.length}টি বাইক`)}</summary>
+            <ul className="mt-4 grid grid-cols-2 gap-x-6 text-[13.5px] sm:grid-cols-3 lg:grid-cols-4">
+              {BIKES.map((b) => (
+                <li key={b.id}>
+                  <Link href={`/bikes/${b.id}/`} className="block py-1.5 text-muted hover:text-ink">
+                    {fullName(b)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </details>
         </div>
       </div>
 
