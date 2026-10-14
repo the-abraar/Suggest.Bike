@@ -81,14 +81,24 @@ export const cardEmi = (price: number) => loanEmi(price, 0, PAY_TERMS.cardMonths
 
 /** Interest rate for an EMI plan of `months`: 0% card EMI up to PAY_TERMS.cardMonths, a loan beyond. */
 const planPct = (months: number) => (months > PAY_TERMS.cardMonths ? PAY_TERMS.loanPct : 0);
+/** Share of the price a plan of `months` may finance: all of it on card EMI; a bank loan wants loanDownPct down (critique 15 Oct N2). */
+const planDown = (months: number) => (months > PAY_TERMS.cardMonths ? PAY_TERMS.loanDownPct / 100 : 0);
 
 /**
- * Quiz EMI mode: finance as much of the price as `monthly` repays over `months`; the rest of the price, BRTA and the
- * fee are the cash needed now. Same maths as payPaths, so the quiz and /cost agree.
+ * Quiz EMI mode: finance as much of the price as `monthly` repays over `months`, up to the plan's share (a loan needs
+ * loanDownPct down); the rest of the price, BRTA and the fee are the cash needed now. Same maths as payPaths, so the
+ * quiz and /cost agree.
  */
 export const emiPlan = (price: number, brta: number, monthly: number, months: number, feePct = DEFAULT_FEE_PCT) =>
-  financePath(price, brta, Math.min(price, maxPrincipal(monthly, planPct(months), months)), months, planPct(months), feePct);
+  financePath(price, brta, Math.min(price * (1 - planDown(months)), maxPrincipal(monthly, planPct(months), months)), months, planPct(months), feePct);
 
-/** Highest on-road price (bike + BRTA) that `cash` now plus `monthly` × `months` reaches, the fee taken out. */
-export const emiCeiling = (cash: number, monthly: number, months: number, feePct = DEFAULT_FEE_PCT) =>
-  Math.round(cash + maxPrincipal(monthly, planPct(months), months) * (1 - feePct / 100));
+/**
+ * Highest on-road price (bike + BRTA) that `cash` now plus `monthly` × `months` reaches, the fee taken out. Cash must
+ * also cover the down payment and the fee on what is financed, so the ceiling is the lower of the two limits. The cash
+ * limit ignores BRTA (it differs by bike), so it is an upper bound; the matcher checks each bike's real cash need.
+ */
+export function emiCeiling(cash: number, monthly: number, months: number, feePct = DEFAULT_FEE_PCT) {
+  const byInstalments = cash + maxPrincipal(monthly, planPct(months), months) * (1 - feePct / 100);
+  const k = planDown(months) + (1 - planDown(months)) * (feePct / 100); // cash needed per taka of price
+  return Math.round(Math.min(byInstalments, k > 0 ? cash / k : Infinity));
+}

@@ -40,7 +40,7 @@ Bangladeshi buyers choose a motorcycle with poor information. Most reviews come 
 - FR-M4. The system shall penalize a bike when the seat height does not fit the rider.
 - FR-M5. The system shall give a reason for each result.
 - FR-M6. The system shall give a shareable URL for the result.
-- FR-M7. In EMI mode, the system shall ask for the cash available now, a monthly instalment and a term. It shall count BRTA registration and the processing fee as cash paid upfront. It shall show a bike only when the cash and the instalment both fit. It shall use the payment engine of /cost (`src/lib/fund.ts`).
+- FR-M7. In EMI mode, the system shall ask for the cash available now, a monthly instalment and a term. It shall count BRTA registration and the processing fee as cash paid upfront. A plan longer than 12 months is a loan and shall finance at most 70% of the price (30% down, as on /cost). It shall show a bike only when the cash and the instalment both fit. It shall use the payment engine of /cost (`src/lib/fund.ts`).
 - FR-M8. The system shall rank a bike that costs less than 60% of the budget lower, but still show it. When the user picks "Lowest price", the system shall not do this.
 - FR-M9. When the top three bikes have the same style, and a bike of another style scores within 5 points of the third, the system shall put that bike third.
 - FR-M10. The system shall not show EMI or "on-road" for a used or used-only bike. EMI mode shall not show used bikes.

@@ -69,7 +69,7 @@ test("match: budget band is soft — a bike far under the budget scores lower bu
 test("match: EMI mode checks cash now and the instalment, for new bikes only", () => {
   const emiA = (down: number, monthly: number, tenure: Answers["tenure"], o: Partial<Answers> = {}) =>
     A({ payMode: "monthly", down, monthly, tenure, budget: emiCeiling(down, monthly, tenure), condition: "any", ...o });
-  for (const [down, monthly, tenure] of [[50000, 20000, 12], [20000, 8000, 24], [100000, 15000, 36], [30000, 30000, 6]] as const) {
+  for (const [down, monthly, tenure] of [[50000, 20000, 12], [60000, 8000, 24], [100000, 15000, 36], [30000, 30000, 6]] as const) {
     const a = emiA(down, monthly, tenure);
     const r = matchBikes(a, 1000);
     assert.ok(r.length > 0, `${down}/${monthly}/${tenure}`);
@@ -339,6 +339,23 @@ test("B2 scenario: Pulsar N160, 30% down, 24 months — /cost and the quiz both 
   const quiz = emiPlan(b.priceBDT, brta, paths.loan.emi, 24);
   near(quiz.emi, paths.loan.emi, "emi");
   near(quiz.upfront, paths.loan.upfront, "upfront");
+});
+test("N2: a loan (over 12 months) finances at most 70% of the price, so the quiz's cash now matches /cost", () => {
+  const { b, brta, paths } = n160();
+  // ৳20,000/mo over 24 months could repay the whole price, but a bank still wants 30% down: same cash as /cost
+  const quiz = emiPlan(b.priceBDT, brta, 20000, 24);
+  near(quiz.upfront, paths.loan.upfront, "upfront");
+  near(quiz.emi, paths.loan.emi, "emi");
+  assert.ok(quiz.upfront >= b.priceBDT * PAY_TERMS.loanDownPct / 100 + brta);
+  for (const t of [18, 24, 36] as const) assert.ok(emiPlan(b.priceBDT, brta, 1e6, t).upfront >= b.priceBDT * 0.3 + brta, `${t} mo`);
+  // card EMI (12 months or less) still finances it all
+  assert.equal(emiPlan(b.priceBDT, brta, 1e6, 12).upfront, paths.card.upfront);
+  const has = (down: number) =>
+    matchBikes(A({ payMode: "monthly", down, monthly: 20000, tenure: 24, budget: emiCeiling(down, 20000, 24) }), 1000).some((m) => m.bike.id === b.id);
+  assert.equal(has(20000), false); // was offered with ৳15,868 cash before the fix
+  assert.equal(has(Math.ceil(paths.loan.upfront)), true);
+  // the ceiling never promises more than ৳20k cash can put down
+  assert.ok(emiCeiling(20000, 20000, 24) < 20000 / 0.3);
 });
 test("B2 scenario: 12-month card, no cash — ৳22,800/mo plus ৳15,868 upfront, so a zero-cash buyer cannot get it", () => {
   const { b, brta, paths } = n160();
