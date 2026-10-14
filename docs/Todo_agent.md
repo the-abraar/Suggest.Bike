@@ -62,6 +62,15 @@ Full findings and file references: `docs/researching-stuff-uses.md`. Every numbe
 - [x] *(done 2026-10-14)* **`/owner/` additions.** First-service booking checklist; insurance for new owners (link to the guide); theft prevention and what to do if the bike is stolen; a "first month" timeline.
 - [ ] **Needs the owner.** Review and personally rewrite the 8 starter posts; supply photos; confirm the ThrottleIQ description and add a store or download link when one exists (the card currently links to the GitHub repo).
 
+## Bike spotlights and comments (added 2026-10-15)
+
+Spotlight posts live in `src/lib/spotlight-posts.ts` and render at `/spotlight/` and `/spotlight/<slug>/` (+ `/bn/` twins, sitemap, footer link). Prices, mileage, power and scores in the text are read from `bikes.json`, so they never go stale; quiz figures come from `docs/each bike speciality.html` (regenerate it if `match.ts` changes). `tests/spotlight.test.ts` fails if a bike repeats, a week has other than 5 bikes, or a week repeats a category.
+
+- [x] *(done 2026-10-15)* **Week 1:** Lifan Glint 100 (budget), Hero HF Deluxe (mileage and running cost), Yamaha FZS FI V4 (resale), Suzuki GSX-R150 (most fun), Royal Enfield Meteor 350 (highway).
+- [ ] **Weekly spotlight, every week.** Publish 5 bikes that win 5 different categories of section 3 of `docs/each bike speciality.html` (budget, resale, mileage, looks, reliability, cheap to maintain, fun, highway, Dhaka traffic, first bike, pillion/family, broken roads, safety, value). Add them with the next `week` number. Never repeat a bike until every bike has had a week (the test enforces this); when a category winner is already used, take the best unused bike in that category. Suggested week 2: Hero Splendor+ (value for money), Honda Shine 100 (Dhaka traffic / first bike), Honda Dream 110 (reliability), TVS Raider 125 (broken roads), Yamaha R15 V4 (looks). Pick the rival for each from `POPULAR_COMPARISONS` where one exists.
+- [ ] **Email OTP for commenters (later).** Today comments are name + email + text, sent through the feedback form (`FeedbackForm kind="comment"`) and published only when the owner copies them into `src/data/comments.json`; the email is not verified. Add one-time-code email verification before a comment is accepted. The site is static, so this needs a third-party service (e.g. a form service with email confirmation, or a small serverless function); the owner picks it (`Todo_owner.md`). Keep the email out of the repo and off the page.
+- [ ] **Owner reviews (after OTP).** Once commenters are verified, let people write a review of a bike they own (rating, km ridden, real mileage, what broke), shown on `/bikes/[id]` and its spotlight post, moderated the same way. Reuse the "I own this" report fields in `src/lib/report.ts`.
+
 ## P2 — Engineering
 
 - [x] **Per-bike Bangla URLs** (`/bn/bikes/[id]`) *(done 2026-10-13)* so Google indexes the Bangla pages. Today the language is client-side only.

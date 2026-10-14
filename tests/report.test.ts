@@ -26,3 +26,16 @@ test("body carries bike and fields as plain text", () => {
   assert.match(b, /On-road price paid \(BDT\): 215000/);
   assert.match(b, /Real mileage \(km\/l\): 48/);
 });
+
+test("comment needs a name (no email in it), an email and text; body names the post", () => {
+  const ok = { message: "Good bike", email: "a@b.co", name: "Rafi" };
+  assert.deepEqual(validateReport("comment", ok, now), []);
+  assert.deepEqual(validateReport("comment", { ...ok, email: "" }, now), ["emailNeeded"]);
+  assert.deepEqual(validateReport("comment", { ...ok, email: "nope" }, now), ["email"]);
+  assert.deepEqual(validateReport("comment", { ...ok, name: " " }, now), ["name"]);
+  assert.deepEqual(validateReport("comment", { ...ok, name: "a@b.co" }, now), ["name"]);
+  assert.deepEqual(validateReport("comment", { ...ok, message: "" }, now), ["message"]);
+  const b = reportBody("comment", ok, { id: "some-post", name: "Some post" });
+  assert.match(b, /Post: Some post \(some-post\)/);
+  assert.match(b, /Name: Rafi/);
+});
