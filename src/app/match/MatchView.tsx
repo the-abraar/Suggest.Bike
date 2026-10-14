@@ -465,7 +465,7 @@ function BudgetStep({ a, set }: { a: Answers; set: <K extends keyof Answers>(k: 
 function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) => void; onRestart: () => void }) {
   const { lang } = useLang();
   const tx = useTx();
-  const { compare, toggleCompare, clearCompare } = useStore();
+  const { compare, setCompare } = useStore();
   const matches = useMemo(() => matchBikes(a, 6), [a]);
   const stretch = useMemo(() => stretchPicks(a, 2), [a]);
   const fallback = useMemo(() => (matches.length ? [] : cheapestPicks(a, 3)), [a, matches.length]);
@@ -475,10 +475,7 @@ function Results({ a, onEdit, onRestart }: { a: Answers; onEdit: (step: number) 
   const noNew = !anyNewFits(a);
   const cheapest = cheapestNew(a);
 
-  const compareTop3 = () => {
-    clearCompare();
-    matches.slice(0, 3).forEach((m) => toggleCompare(m.bike.id));
-  };
+  const compareTop3 = () => setCompare(matches.slice(0, 3).map((m) => m.bike.id));
 
   return (
     <div className="container-x pb-10 pt-10">
@@ -735,16 +732,18 @@ function BandBadge({ band }: { band: Band }) {
 function MatchRow({ m, rank }: { m: Match; rank?: number }) {
   const { lang } = useLang();
   const tx = useTx();
+  // A div with the name's link stretched over it, so the Compare button is not nested inside a link (critique B13).
   return (
-    <Link
-      href={`/bikes/${m.bike.id}/`}
-      className="group card grid grid-cols-[88px_1fr] items-center gap-4 p-4 transition-all hover:border-line-strong hover:shadow-md sm:grid-cols-[28px_140px_1fr_auto] sm:gap-6 sm:p-5"
-    >
+    <div className="group card relative grid grid-cols-[88px_1fr] items-center gap-4 p-4 transition-all hover:border-line-strong hover:shadow-md sm:grid-cols-[28px_140px_1fr_auto] sm:gap-6 sm:p-5">
       <span className="hidden text-center text-[15px] font-semibold text-faint tnum sm:block">{rank}</span>
       <BikeArt bike={m.bike} shadow={false} className="w-full" />
       <div className="min-w-0">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-          <h3 className="text-[17px] font-semibold text-ink">{fullName(m.bike)}</h3>
+          <h3 className="text-[17px] font-semibold text-ink">
+            <Link href={`/bikes/${m.bike.id}/`} className="after:absolute after:inset-0 after:content-['']">
+              {fullName(m.bike)}
+            </Link>
+          </h3>
           <BandBadge band={m.band} />
           {m.used && <UsedTag age={m.used.age} />}
         </div>
@@ -767,7 +766,7 @@ function MatchRow({ m, rank }: { m: Match; rank?: number }) {
         </span>
         <CompareButton id={m.bike.id} size="sm" />
       </div>
-    </Link>
+    </div>
   );
 }
 

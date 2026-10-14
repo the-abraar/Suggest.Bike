@@ -10,7 +10,7 @@ import { isUsedOption } from "@/lib/match";
 import { OfferTag } from "@/components/Dated";
 import { pairHref, popularPairs } from "@/lib/curated";
 import { langHref } from "@/lib/site";
-import { useStore, MAX_COMPARE } from "@/lib/store";
+import { compareIds, useStore, MAX_COMPARE } from "@/lib/store";
 import { useLang, useTx } from "@/lib/i18n";
 import type { Bike, BikeLite, ScoreKey } from "@/lib/types";
 import { BikeArt } from "@/components/BikeArt";
@@ -26,23 +26,24 @@ export function CompareView({ pair }: { pair?: string[] }) {
 function Compare({ params, pair }: { params: URLSearchParams; pair?: string[] }) {
   const { lang } = useLang();
   const tx = useTx();
-  const { compare, toggleCompare, clearCompare, ready } = useStore();
+  const { compare, setCompare, ready } = useStore();
   const [ids, setIds] = useState<string[]>(pair ?? []);
+  const [ownsTray, setOwnsTray] = useState(false);
 
-  // URL wins on first load; otherwise fall back to the compare tray.
+  // URL wins on first load; otherwise fall back to the compare tray. A shared link fills the tray only when it is empty
+  // (or already the same bikes), so opening one never replaces the visitor's own picks (critique B7).
   useEffect(() => {
     if (!ready) return;
-    const fromUrl = (params.get("bikes") || "").split(",").filter((id) => getBike(id));
-    const initial = (fromUrl.length ? fromUrl : compare).slice(0, MAX_COMPARE);
-    setIds(initial);
-    clearCompare();
-    initial.forEach((id) => toggleCompare(id));
+    const fromUrl = compareIds((params.get("bikes") || "").split(","));
+    const owns = !fromUrl.length || !compare.length || fromUrl.join() === compare.join();
+    setIds(fromUrl.length ? fromUrl : compare);
+    setOwnsTray(owns);
+    if (owns && fromUrl.length) setCompare(fromUrl);
   }, [ready, params]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const update = (next: string[]) => {
     setIds(next);
-    clearCompare();
-    next.forEach((id) => toggleCompare(id));
+    if (ownsTray) setCompare(next);
     // A pair page that changes bikes moves to the generic /compare/ URL so the address matches what is shown.
     const base = pair ? langHref("/compare/", lang) : window.location.pathname;
     window.history.replaceState(null, "", next.length ? `${base}?bikes=${next.join(",")}` : base);
