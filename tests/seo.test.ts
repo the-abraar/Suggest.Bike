@@ -5,7 +5,7 @@ import { productJsonLd } from "../src/lib/bikes";
 import bikes from "../src/data/bikes.json";
 import type { Bike } from "../src/lib/types";
 import sitemap from "../src/app/sitemap";
-import { POPULAR_COMPARISONS, pairBySlug, pairHref, pairMetadata, pairSlug, pairsForBike } from "../src/lib/curated";
+import { POPULAR_COMPARISONS, bikeMetadata, bikeTitle, pairBySlug, pairHref, pairMetadata, pairSlug, pairsForBike } from "../src/lib/curated";
 
 test("langHref maps EN and BN twins and keeps query and hash", () => {
   assert.equal(langHref("/", "bn"), "/bn/");
@@ -46,6 +46,27 @@ test("Product JSON-LD has an Offer only for bikes on sale", () => {
   assert.equal("offers" in productJsonLd(used), false);
   assert.equal(productJsonLd(onSale).description, onSale.tagline);
   assert.equal(productJsonLd(onSale, "bn").description, onSale.bn?.tagline ?? onSale.tagline);
+});
+
+test("bike titles use BD search words, stay under 60 characters, and Bangla pages keep Bangla titles", () => {
+  const all = bikes as unknown as Bike[];
+  const n160 = all.find((b) => b.id === "bajaj-pulsar-n160")!;
+  assert.equal(bikeTitle(n160, "en"), "Pulsar N160 price in BD, on-road cost and EMI (dam koto)");
+  assert.equal(bikeTitle(n160, "bn"), "Bajaj Pulsar N160-এর দাম কত? অন-রোড খরচ ও কিস্তি");
+  for (const b of all) {
+    const en = bikeTitle(b, "en");
+    const bn = bikeTitle(b, "bn");
+    assert.ok(en.length <= 60, `${b.id}: "${en}" is ${en.length} characters`);
+    assert.ok(bn.length <= 60, `${b.id}: "${bn}" is ${bn.length} characters`);
+    assert.ok(en.includes(b.model) && en.endsWith("(dam koto)"), en);
+    assert.match(en, b.status === "used-only" ? / used price in BD/ : / price in BD/);
+    assert.ok(!(b.status === "used-only" && /EMI|on-road/.test(en)), `${b.id}: a used-only bike has no on-road price or EMI`);
+    assert.ok(bn.includes(b.model) && bn.includes("দাম কত"), bn);
+  }
+  const meta = bikeMetadata(n160, "en");
+  assert.deepEqual(meta.title, { absolute: bikeTitle(n160, "en") }); // no " · Suggest.Bike" suffix
+  assert.match(String(meta.description), /^Bajaj Pulsar N160 er dam koto\? ৳[\d,]+ on-road in Bangladesh/);
+  assert.match(String(bikeMetadata(n160, "bn").description), /^Bajaj Pulsar N160-এর দাম অন-রোড ৳/);
 });
 
 test("sitemap lists the fines guide and every popular pair in EN and BN, and not the noindex /saved/", () => {

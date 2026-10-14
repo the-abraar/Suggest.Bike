@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { formatBDT, getBike, mileageText } from "./bikes";
+import { ccLabel, formatBDT, fullName, getBike, mileageText } from "./bikes";
 import { onRoadPrice } from "./cost";
 import { langAlternates, OG_BASE, OG_BN } from "./site";
-import type { BikeLite } from "./types";
+import type { Bike, BikeLite } from "./types";
 
 /** The comparisons Bangladeshi buyers argue about most. */
 export const POPULAR_COMPARISONS: [string, string][] = [
@@ -59,4 +59,40 @@ export function pairMetadata(slug: string, lang: "en" | "bn"): Metadata {
       ? `${a.brand} ${a.model} না ${b.brand} ${b.model}? অন-রোড দাম ${price}, আসল মাইলেজ ${km}, পাওয়ার ${a.powerPS} বনাম ${b.powerPS} PS, ওজন, পার্টস আর মাসিক খরচ পাশাপাশি।`
       : `${a.brand} ${a.model} or ${b.brand} ${b.model}? On-road price ${price}, real mileage ${km}, power ${a.powerPS} vs ${b.powerPS} PS, weight, parts and monthly cost side by side.`;
   return { title, description, alternates: langAlternates(pairHref(a.id, b.id), lang), openGraph: { ...(lang === "bn" ? OG_BN : OG_BASE), title, description } };
+}
+
+const TITLE_MAX = 60;
+/**
+ * Bike page title in the words BD buyers search ("pulsar n160 price in bd", "dam koto", "দাম কত"): the full name when it
+ * fits ~60 characters, else the model alone, then a shorter tail. Used as an absolute title: " · Suggest.Bike" would push
+ * every one past 60.
+ */
+export function bikeTitle(b: Pick<Bike, "brand" | "model" | "status">, lang: "en" | "bn") {
+  const used = b.status === "used-only";
+  const tails =
+    lang === "bn"
+      ? used ? ["-এর পুরনো বাইকের দাম কত? পার্টস ও মাইলেজ", "-এর পুরনো বাইকের দাম কত?"] : ["-এর দাম কত? অন-রোড খরচ ও কিস্তি", "-এর দাম কত?"]
+      : used ? [" used price in BD, parts and mileage (dam koto)", " used price in BD (dam koto)"] : [" price in BD, on-road cost and EMI (dam koto)", " price in BD and EMI (dam koto)", " price in BD (dam koto)"];
+  const all = tails.flatMap((t) => [fullName(b) + t, b.model + t]);
+  return all.find((t) => t.length <= TITLE_MAX) ?? all[all.length - 1];
+}
+
+/** Title, description, hreflang and share image for a bike page; every figure comes from bikes.json via the engines. */
+export function bikeMetadata(b: Bike, lang: "en" | "bn"): Metadata {
+  const used = b.status === "used-only";
+  const title = bikeTitle(b, lang);
+  const description =
+    lang === "bn"
+      ? `${fullName(b)}-এর দাম ${used ? `পুরনো বাজারে প্রায় ${formatBDT(b.priceBDT)}` : `অন-রোড ${formatBDT(onRoadPrice(b))} (২ বছরের ট্যাক্স টোকেনসহ; শোরুম মূল্য ${formatBDT(b.priceBDT)})`}। ${b.ev ? `আসল রেঞ্জ ${b.ev.realRangeKm[0]}–${b.ev.realRangeKm[1]} কিমি/চার্জ` : `আসল মাইলেজ ${b.mileageKmpl[0]}–${b.mileageKmpl[1]} কিমি/লি`}, পার্টসের দাম, মিস্ত্রির মতামত ও মাসিক খরচ।`
+      : used
+        ? `${fullName(b)} er dam koto? About ${formatBDT(b.priceBDT)} used in Bangladesh. ${ccLabel(b)}, real-world ${mileageText(b)}, parts prices, mechanic familiarity and monthly running cost. ${b.tagline}`
+        : `${fullName(b)} er dam koto? ${formatBDT(onRoadPrice(b))} on-road in Bangladesh with a 2-year tax token (${formatBDT(b.priceBDT)} ex-showroom). ${ccLabel(b)}, real-world ${mileageText(b)}, card EMI and loan cost, parts prices and monthly running cost. ${b.tagline}`;
+  // The /bn/ card is rendered after the build by scripts/bn-og.mts (Chromium shapes Bangla; next/og cannot).
+  const images = [{ url: `${lang === "bn" ? "/bn" : ""}/bikes/${b.id}/og.png`, width: 1200, height: 630, alt: fullName(b) }];
+  return {
+    title: { absolute: title },
+    description,
+    alternates: langAlternates(`/bikes/${b.id}/`, lang),
+    openGraph: { ...(lang === "bn" ? OG_BN : OG_BASE), title, description, images },
+  };
 }
