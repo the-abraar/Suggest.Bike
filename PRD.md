@@ -1,6 +1,6 @@
 # Suggest.Bike: Product Requirements Document
 
-Written in ASD-STE100 style. Status: draft, 2026-10-13. Facts come from `README.md`, `judge.md` and the code. The owner has not reviewed this draft.
+Written in ASD-STE100 style. Status: draft, 2026-10-13, matchmaker and payment sections updated 2026-10-14. Facts come from `README.md`, `judge.md` and the code. The owner has not reviewed this draft.
 
 ## 1. Problem
 
@@ -16,7 +16,7 @@ Bangladeshi buyers choose a motorcycle with poor information. Most reviews come 
 
 ## 3. Goals
 
-1. Give a ranked shortlist in six questions or fewer.
+1. Give a ranked shortlist in seven questions or fewer.
 2. Show the all-in monthly cost of each bike.
 3. Show the source and date of each price.
 4. Keep every page in English and Bangla.
@@ -34,13 +34,17 @@ Bangladeshi buyers choose a motorcycle with poor information. Most reviews come 
 
 ### 5.1 Matchmaker (`/match`)
 
-- FR-M1. The system shall ask six questions and rank every bike.
+- FR-M1. The system shall ask seven questions (six while there is no district network data) and rank every bike.
 - FR-M2. The system shall not rank a bike above the budget ceiling.
 - FR-M3. The system shall not show a scooter when the rider wants a geared bike.
 - FR-M4. The system shall penalize a bike when the seat height does not fit the rider.
 - FR-M5. The system shall give a reason for each result.
 - FR-M6. The system shall give a shareable URL for the result.
-- FR-M7. The system shall accept a monthly budget and convert it to a price.
+- FR-M7. In EMI mode, the system shall ask for the cash available now, a monthly instalment and a term. It shall count BRTA registration and the processing fee as cash paid upfront. It shall show a bike only when the cash and the instalment both fit. It shall use the payment engine of /cost (`src/lib/fund.ts`).
+- FR-M8. The system shall rank a bike that costs less than 60% of the budget lower, but still show it. When the user picks "Lowest price", the system shall not do this.
+- FR-M9. When the top three bikes have the same style, and a bike of another style scores within 5 points of the third, the system shall put that bike third.
+- FR-M10. The system shall not show EMI or "on-road" for a used or used-only bike. EMI mode shall not show used bikes.
+- FR-M11. The system shall clamp values from a shared URL: the budget to ৳30,000–৳10,00,000 and the EMI inputs to the quiz limits. It shall ignore repeated priorities. In EMI mode, it shall calculate the budget from the EMI inputs.
 
 ### 5.2 Compare (`/compare`)
 
@@ -53,7 +57,8 @@ Bangladeshi buyers choose a motorcycle with poor information. Most reviews come 
 
 - FR-K1. The system shall calculate fuel, service, wear parts, paperwork, insurance and resale loss.
 - FR-K2. The system shall show one all-in monthly figure.
-- FR-K3. The system shall show cash, 0% card EMI and loan as three options. For each option it shall show the upfront cash, the instalment, the interest and the total.
+- FR-K3. The system shall show cash, 0% card EMI and loan as three options. For each option it shall show the upfront cash, the instalment, the interest and the total. For a used bike it shall show cash only.
+- FR-K6. Every "/month" figure next to a price shall be the 12-month 0% card EMI on the ex-showroom price, from `src/lib/fund.ts`.
 - FR-K4. The system shall use the used-market price of a bike when one exists.
 - FR-K5. The system shall return zero, not an infinite value, when distance or years is zero.
 
