@@ -101,6 +101,15 @@ const KIND: Record<Row["kind"], [string, string, string]> = {
   estimate: ["Editorial estimate", "সম্পাদকীয় অনুমান", "bg-warn-soft text-warn"],
 };
 
+/** 2025 brand shares: The Daily Star (calendar 2025, 16 Jan 2026) vs TBS (latest fiscal year, 4 Jul 2026); both re-read 2026-10-15. */
+const MARKET: [string, string, string][] = [
+  ["Suzuki", "20.1%", "19.08%"],
+  ["Yamaha", "19.7%", "20.8%"],
+  ["Hero", "18.1%", "17.8%"],
+  ["Honda", "17.8%", "~20%"],
+  ["Bajaj", "17.6%", "15.7%"],
+];
+
 export function MethodView({ bandLow }: { bandLow: number }) {
   const { lang } = useLang();
   const tx = useTx();
@@ -140,6 +149,45 @@ export function MethodView({ bandLow }: { bandLow: number }) {
           </div>
         ))}
       </dl>
+
+      <h2 className="mt-10 text-[22px] font-semibold text-ink">{tx("The market in 2025, as reported", "২০২৫ সালের বাজার, প্রকাশিত হিসাবে")}</h2>
+      <p className="mt-3 text-[15px] leading-relaxed text-ink-2">
+        {tx(
+          "Two newspapers report brand shares, for different periods, and they disagree, so we show both. The Daily Star counts calendar 2025: 466,858 bikes sold, up 19%. TBS counts the latest fiscal year: 424,304, up more than 8%.",
+          "দুটি পত্রিকা ব্র্যান্ডের ভাগ জানিয়েছে, ভিন্ন সময়ের হিসাবে, আর তাদের সংখ্যা মেলে না, তাই দুটোই দেখাচ্ছি। ডেইলি স্টার ২০২৫ পঞ্জিকা বছর ধরে: ৪,৬৬,৮৫৮টি বাইক বিক্রি, ১৯% বেশি। টিবিএস সর্বশেষ অর্থবছর ধরে: ৪,২৪,৩০৪টি, ৮%-এর বেশি বৃদ্ধি।",
+        )}
+      </p>
+      <div className="mt-4 overflow-x-auto rounded-2xl border border-line bg-surface">
+        <table className="w-full text-left text-[14.5px]">
+          <thead className="text-muted">
+            <tr>
+              <th scope="col" className="px-4 py-2 font-medium">{tx("Brand", "ব্র্যান্ড")}</th>
+              <th scope="col" className="px-4 py-2 font-medium">The Daily Star</th>
+              <th scope="col" className="px-4 py-2 font-medium">TBS</th>
+            </tr>
+          </thead>
+          <tbody>
+            {MARKET.map(([brand, ds, tbs], i) => (
+              <tr key={brand} className={i % 2 ? "" : "bg-surface-2/40"}>
+                <th scope="row" className="px-4 py-2 font-medium text-ink">{brand}</th>
+                <td className="px-4 py-2 tabular-nums">{ds}</td>
+                <td className="px-4 py-2 tabular-nums">{tbs}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <ul className="mt-4 list-disc space-y-2 pl-5 text-[15px] leading-relaxed text-ink-2">
+        <li>{tx("TVS sales fell 80% in 2025, to just over 10,000 bikes (The Daily Star).", "২০২৫ সালে TVS-এর বিক্রি ৮০% কমে ১০,০০০-এর সামান্য বেশিতে নেমেছে (ডেইলি স্টার)।")}</li>
+        <li>{tx("Suzuki, Yamaha and Honda together sold 58% of all bikes, and the five largest brands more than 93% (The Daily Star).", "Suzuki, Yamaha আর Honda মিলে মোট বিক্রির ৫৮%, আর বড় পাঁচটি ব্র্যান্ড মিলে ৯৩%-এর বেশি (ডেইলি স্টার)।")}</li>
+        <li>{tx("We found no published sales figures per model in Bangladesh. Our scores and \"popular\" picks are not based on sales counts.", "বাংলাদেশে মডেলভিত্তিক বিক্রির কোনো প্রকাশিত হিসাব আমরা পাইনি। আমাদের স্কোর আর \"জনপ্রিয়\" বাছাই বিক্রির সংখ্যার ওপর ভিত্তি করে নয়।")}</li>
+      </ul>
+      <p className="mt-3 text-[13px] text-muted">
+        {tx("Sources (checked 15 Oct 2026):", "উৎস (১৫ অক্টোবর ২০২৬ যাচাই):")}{" "}
+        <a href="https://www.thedailystar.net/news/japanese-brands-take-the-lead-motorcycle-market-recovers-4082151" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">The Daily Star, 16 Jan 2026</a>
+        {" · "}
+        <a href="https://www.tbsnews.net/node/1479086" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">TBS, 4 Jul 2026</a>
+      </p>
 
       <div className="mt-10 space-y-5 text-[16px] leading-relaxed text-ink-2">
         <h2 className="text-[22px] font-semibold text-ink">{tx("Sources", "উৎস")}</h2>
