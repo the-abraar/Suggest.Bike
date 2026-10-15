@@ -192,6 +192,8 @@ function Cost({ params }: { params: URLSearchParams }) {
             <Range min={120} max={220} step={1} value={inp.fuelPrice} onChange={(v) => set("fuelPrice", v)} label={tx("Fuel price", "তেলের দাম")} />
             <p className="mt-1 text-[12px] text-faint">
               {tx(`Govt price is ৳${FUEL.octane}/L (${FUEL.asOf}).`, `সরকারি দাম ৳${FUEL.octane}/লিটার (${FUEL.asOf})।`)}{" "}
+              {tx("In January 2026 it was ৳122/L: up 35% by September", "জানুয়ারি ২০২৬-এ ছিল ৳১২২/লিটার: সেপ্টেম্বরের মধ্যে ৩৫% বেশি")}{" "}
+              (<a href="https://www.unb.com.bd/category/Bangladesh/fuel-prices-rise-up-to-nearly-36-between-january-and-september-2026/195927" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">UNB, 21 Sep 2026</a>).{" "}
               {inp.fuelPrice !== FUEL.octane && (
                 <button className="font-medium text-brand underline underline-offset-2" onClick={() => set("fuelPrice", FUEL.octane)}>
                   {tx("Reset", "রিসেট")}

@@ -7,7 +7,7 @@
       "locator": "https://www.bajajauto.com/en-bd/store-locator",
       "hotline": "09678-333888",
       "sourceUrl": "https://www.bajajauto.com/en-bd/store-locator",
-      "checked": "2026-10-14",
+      "checked": "2026-10-15",
       "note": "The locator filters showrooms by district (about 64).",
       "noteBn": "শোরুম খোঁজার পাতায় জেলা ধরে খোঁজা যায় (প্রায় ৬৪টি)।"
     },
@@ -25,7 +25,7 @@
       "locator": "https://www.heromotocorp.com/en-bd/dealers.html",
       "hotline": "09611 566666",
       "sourceUrl": "https://www.heromotocorp.com/en-bd/",
-      "checked": "2026-10-14",
+      "checked": "2026-10-15",
       "note": "Labelled \"Niloy Hero Care\". Service centres are listed on a separate page.",
       "noteBn": "\"Niloy Hero Care\" নামে দেওয়া। সার্ভিস সেন্টারের তালিকা আলাদা পাতায়।"
     },
@@ -35,7 +35,7 @@
       "locator": "https://bdhonda.com/dealer-locator",
       "hotline": "08000430430",
       "sourceUrl": "https://bdhonda.com",
-      "checked": "2026-10-14"
+      "checked": "2026-10-15"
     },
     "Yamaha": {
       "distributor": "ACI Motors Ltd",
@@ -43,7 +43,7 @@
       "locator": "https://www.yamahabd.com/#dealers",
       "hotline": "16533",
       "sourceUrl": "https://www.yamahabd.com",
-      "checked": "2026-10-14",
+      "checked": "2026-10-15",
       "note": "The dealer list is in the Dealers section of the home page; pick your district.",
       "noteBn": "ডিলারের তালিকা হোম পেজের Dealers অংশে আছে; আপনার জেলা বেছে নিন।"
     },
@@ -53,7 +53,7 @@
       "locator": "https://www.suzuki.com.bd/dealer",
       "hotline": "16638",
       "sourceUrl": "https://www.suzuki.com.bd",
-      "checked": "2026-10-14"
+      "checked": "2026-10-15"
     },
     "Royal Enfield": {
       "distributor": "IFAD Motors Ltd",
