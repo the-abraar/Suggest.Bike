@@ -28,15 +28,18 @@ type Filters = {
   brands: string[];
   abs: boolean;
   fi: boolean;
+  lowSeat: boolean;
   includeUsed: boolean;
   sort: Sort;
   page: number;
 };
 
-const EMPTY: Filters = { q: "", cats: [], cols: [], price: "", brands: [], abs: false, fi: false, includeUsed: true, sort: "recommended", page: 1 };
+const EMPTY: Filters = { q: "", cats: [], cols: [], price: "", brands: [], abs: false, fi: false, lowSeat: false, includeUsed: true, sort: "recommended", page: 1 };
 
 /** Cards per page. The static HTML carries page 1 only: all 103 cards made /bikes/ 950 KB of HTML (critique section 6). */
 export const PAGE = 24;
+/** "Low seat" filter (?seat=low): seat height at most this, in mm. */
+export const LOW_SEAT_MM = 780;
 /** ?page=N from the URL, clamped to 1..the last page of the whole catalogue. */
 export const pageParam = (v: string | null, total: number) => Math.min(Math.max(1, Math.floor(Number(v)) || 1), Math.max(1, Math.ceil(total / PAGE)));
 
@@ -48,6 +51,7 @@ function queryFor(f: Filters) {
   if (f.price) p.set("price", f.price);
   if (f.brands.length === 1) p.set("brand", f.brands[0]);
   if (f.q) p.set("q", f.q);
+  if (f.lowSeat) p.set("seat", "low");
   if (f.page > 1) p.set("page", String(f.page));
   return p.toString();
 }
@@ -79,6 +83,7 @@ function Browse({ params }: { params: URLSearchParams }) {
       price: params.get("price") ?? "",
       brands: brand ? [brand] : [],
       q: params.get("q") ?? "",
+      lowSeat: params.get("seat") === "low",
     }));
     written.current = params.toString();
   }, [params]);
@@ -107,6 +112,7 @@ function Browse({ params }: { params: URLSearchParams }) {
         (!f.brands.length || f.brands.includes(b.brand)) &&
         (!f.abs || b.brakes.abs === "single" || b.brakes.abs === "dual") &&
         (!f.fi || b.engine.fuel === "fi") &&
+        (!f.lowSeat || b.seatHeightMm <= LOW_SEAT_MM) &&
         (f.includeUsed || b.status === "on-sale"),
     );
     const sorted = [...list];
@@ -122,10 +128,10 @@ function Browse({ params }: { params: URLSearchParams }) {
     };
     if (!(f.q && f.sort === "recommended")) sorted.sort(by[f.sort]);
     return sorted;
-  }, [f.q, f.cats, f.cols, f.price, f.brands, f.abs, f.fi, f.includeUsed, f.sort]);
+  }, [f.q, f.cats, f.cols, f.price, f.brands, f.abs, f.fi, f.lowSeat, f.includeUsed, f.sort]);
   const shown = results.slice(0, f.page * PAGE);
 
-  const activeCount = f.cats.length + f.cols.length + f.brands.length + (f.price ? 1 : 0) + (f.abs ? 1 : 0) + (f.fi ? 1 : 0) + (f.includeUsed ? 0 : 1);
+  const activeCount = f.cats.length + f.cols.length + f.brands.length + (f.price ? 1 : 0) + (f.abs ? 1 : 0) + (f.fi ? 1 : 0) + (f.lowSeat ? 1 : 0) + (f.includeUsed ? 0 : 1);
   const toggle = <K extends "cats" | "cols" | "brands">(k: K, v: Filters[K][number]) =>
     setF((x) => ({ ...x, [k]: (x[k] as string[]).includes(v) ? (x[k] as string[]).filter((y) => y !== v) : [...(x[k] as string[]), v] }));
 
@@ -171,6 +177,7 @@ function Browse({ params }: { params: URLSearchParams }) {
         <div className="space-y-1">
           <Toggle on={f.abs} onChange={(v) => setF((x) => ({ ...x, abs: v }))} label="ABS" />
           <Toggle on={f.fi} onChange={(v) => setF((x) => ({ ...x, fi: v }))} label={tx("Fuel injection", "ফুয়েল ইনজেকশন")} />
+          <Toggle on={f.lowSeat} onChange={(v) => setF((x) => ({ ...x, lowSeat: v }))} label={tx(`Low seat (≤ ${LOW_SEAT_MM} mm)`, `নিচু সিট (≤ ${LOW_SEAT_MM} মিমি)`)} />
           <Toggle on={f.includeUsed} onChange={(v) => setF((x) => ({ ...x, includeUsed: v }))} label={tx("Include used-market classics", "পুরনো বাজারের ক্লাসিকও দেখাও")} />
         </div>
       </FilterGroup>

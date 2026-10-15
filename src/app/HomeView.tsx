@@ -12,6 +12,7 @@ import { useLang, useTx, L } from "@/lib/i18n";
 import { BikeArt } from "@/components/BikeArt";
 import { SearchBox } from "@/components/SearchBox";
 import { BikeCard, SectionHead } from "@/components/ui";
+import { LOW_SEAT_MM } from "@/app/bikes/BrowseView";
 import type { Category } from "@/lib/types";
 
 const QUICK_USES: { id: Use; en: string; bn: string }[] = [
@@ -193,6 +194,8 @@ export function HomeView() {
           })}
         </div>
       </section>
+
+      <LowSeatPath />
 
       {/* ---------------- Guide teaser ---------------- */}
       <section className="container-x mt-24">
@@ -382,6 +385,51 @@ function GuideFact({ k, v, href }: { k: string; v: React.ReactNode; href: string
       <p className="text-[24px] font-semibold tracking-tight text-ink tnum">{k}</p>
       <p className="mt-1 text-[13.5px] text-muted">{v}</p>
     </Link>
+  );
+}
+
+/** Shorter riders and scooter buyers: the lightest low-seat bikes on sale, plus the filters, a scooter comparison and licence steps. */
+function LowSeatPath() {
+  const tx = useTx();
+  const light = BIKES.filter((b) => b.status === "on-sale" && !b.availability && b.seatHeightMm <= LOW_SEAT_MM)
+    .sort((a, b) => a.weightKg - b.weightKg)
+    .slice(0, 4);
+  const links = [
+    { href: "/bikes/?seat=low", label: tx(`All bikes with a seat of ${LOW_SEAT_MM} mm or lower`, `${LOW_SEAT_MM} মিমি বা তার কম সিটের সব বাইক`) },
+    { href: "/bikes/?cat=scooter", label: tx("All scooters", "সব স্কুটার") },
+    { href: pairHref("honda-dio", "tvs-ntorq-125"), label: tx("Compare: Honda Dio vs TVS Ntorq 125", "তুলনা: Honda Dio বনাম TVS Ntorq 125") },
+    { href: "/guide/driving-licence/", label: tx("Driving licence: steps and fees", "ড্রাইভিং লাইসেন্স: ধাপ ও ফি") },
+  ];
+  return (
+    <section className="container-x mt-24">
+      <SectionHead
+        eyebrow={tx("Low seat, light weight", "নিচু সিট, হালকা ওজন")}
+        title={<L en="Shorter rider, or want a scooter?" bn="উচ্চতা কম, নাকি স্কুটার চান?" />}
+        sub={tx(
+          "If both feet reach the ground and the bike is light, slow traffic and parking are far easier. These are the lightest bikes on sale with a low seat.",
+          "দুই পা মাটিতে পৌঁছালে আর বাইক হালকা হলে ধীর ট্রাফিক আর পার্কিং অনেক সহজ। নিচু সিটের মধ্যে এগুলো বিক্রি হওয়া সবচেয়ে হালকা বাইক।",
+        )}
+      />
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {light.map((b) => (
+          <Link key={b.id} href={`/bikes/${b.id}/`} className="card p-4 transition-colors hover:border-line-strong">
+            <h3 className="text-[15.5px] font-semibold text-ink">{fullName(b)}</h3>
+            <p className="mt-1 text-[13px] text-muted tnum">
+              {tx(`Seat ${b.seatHeightMm} mm · ${b.weightKg} kg · ${formatLakh(onRoadPrice(b), "en")} on-road`, `সিট ${b.seatHeightMm} মিমি · ${b.weightKg} কেজি · অন-রোড ${formatLakh(onRoadPrice(b), "bn")}`)}
+            </p>
+          </Link>
+        ))}
+      </div>
+      <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[14.5px]">
+        {links.map((l) => (
+          <li key={l.href}>
+            <Link href={l.href} className="inline-flex items-center gap-1 font-medium text-brand underline underline-offset-2">
+              {l.label} <ArrowRight size={14} />
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }
 
