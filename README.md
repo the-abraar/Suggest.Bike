@@ -7,13 +7,14 @@
 | Page | What it does |
 | --- | --- |
 | `/` | Home page with a live "Quick pick" (budget slider and riding style give the top 3 instantly), budget bands, popular match-ups and the editor's shortlist |
-| `/match` | A 7-question matchmaker (6 while there is no district network data) that ranks every bike for you and explains why. Results have a shareable URL. |
+| `/match` | A 7-question matchmaker (6 while there is no district network data) that ranks every bike for you and explains why. You pick one or more kinds of bike (motorcycle, scooter, electric) and, with the Looks priority, the look types you like. Results have a shareable URL. |
 | `/bikes` | Browse all bikes. Filter by style, budget, brand, ABS and FI; sort by rating, price, mileage, power or ease of maintenance |
-| `/bikes/[id]` | Detail page for each of the 103 bikes (84 on sale, 19 used-only): verdict, riding feel, quirks, 11 ownership scores, parts and service prices, full specs, monthly cost, similar bikes and sources |
+| `/bikes/[id]` | Detail page for each of the 107 bikes (88 on sale, 19 used-only; 5 electric): verdict, riding feel, quirks, 11 ownership scores, parts and service prices, full specs, monthly cost, similar bikes and sources |
 | `/compare` | Compare up to 3 bikes side by side. Measured specs mark the lowest/highest value; editorial scores are shown without a winner. Quick verdicts use only measured numbers (price, running cost, power-to-weight, mileage) |
 | `/cost` | True cost of ownership: fuel, servicing, wear parts, BRTA paperwork, insurance and resale loss, as an all-in monthly figure, plus cash vs 0% card EMI vs loan (cash upfront, instalment, interest, total) |
 | `/guide` | Buyer's guide: BRTA registration costs, the 10-year tax token, smart licence steps and fees, the 375cc rule, road rules, an 11-point used-bike checklist and rider communities |
 | `/saved` | Shortlist of hearted bikes, stored on the device |
+| `/spotlight` | Weekly bike spotlights: five bikes a week, each the winner of a different segment, with moderated comments (open once the form service is set up) |
 
 Also included: English/বাংলা toggle, light and dark themes (following the system), a compare tray, a `/` keyboard shortcut for search, an SEO sitemap and robots.txt, and Product JSON-LD on every bike page.
 

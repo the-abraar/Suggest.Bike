@@ -1,6 +1,6 @@
 # Suggest.Bike: Product Requirements Document
 
-Written in ASD-STE100 style. Status: draft, 2026-10-13, matchmaker and payment sections updated 2026-10-14. Facts come from `README.md`, `judge.md` and the code. The owner has not reviewed this draft.
+Written in ASD-STE100 style. Status: draft, 2026-10-13, matchmaker and payment sections updated 2026-10-14; matchmaker, compare and cost updated 2026-10-15. Facts come from `README.md`, `judge.md` and the code. The owner has not reviewed this draft.
 
 ## 1. Problem
 
@@ -36,7 +36,8 @@ Bangladeshi buyers choose a motorcycle with poor information. Most reviews come 
 
 - FR-M1. The system shall ask seven questions (six while there is no district network data) and rank every bike.
 - FR-M2. The system shall not rank a bike above the budget ceiling.
-- FR-M3. The system shall not show a scooter when the rider wants a geared bike.
+- FR-M3. The system shall ask which kinds of bike the rider wants (motorcycle, petrol scooter, electric; one or more, never none) and shall show only those kinds. An old shared link with the gears answer shall map to kinds (geared = motorcycle; gearless = scooter and electric).
+- FR-M3a. When the rider picks "Looks & style", the system shall offer look types (sporty, naked/street, cruiser, classic, adventure, scooter). A chosen look shall rank bikes of that shape first.
 - FR-M4. The system shall penalize a bike when the seat height does not fit the rider.
 - FR-M5. The system shall give a reason for each result.
 - FR-M6. The system shall give a shareable URL for the result.
@@ -56,10 +57,11 @@ Bangladeshi buyers choose a motorcycle with poor information. Most reviews come 
 - FR-C4. The system shall base quick verdicts only on measured numbers.
 - FR-C5. The compare tray shall hold at most three distinct, known bikes. It shall refuse a fourth with a message, not drop the oldest.
 - FR-C6. A shared `/compare/?bikes=` link shall fill the tray only when the tray is empty or holds the same bikes.
+- FR-C7. `/compare/` shall show the bikes in its URL. With no bikes in the URL, it shall show the tray and write those bikes into the URL. The tray shall live in sessionStorage, so it ends with the browser tab and an old pair never returns on a later visit.
 
 ### 5.3 Cost (`/cost`)
 
-- FR-K1. The system shall calculate fuel, service, wear parts, paperwork, insurance and resale loss.
+- FR-K1. The system shall calculate fuel, service, wear parts, paperwork, insurance and resale loss. For an electric bike it shall add one traction battery at 30% of the new price when the ownership period passes the battery warranty (48 months when the data gives none), from `src/lib/cost.ts`.
 - FR-K2. The system shall show one all-in monthly figure.
 - FR-K3. The system shall show cash, 0% card EMI and loan as three options. For each option it shall show the upfront cash, the instalment, the interest and the total. For a used bike it shall show cash only.
 - FR-K6. Every "/month" figure next to a price shall be the 12-month 0% card EMI on the ex-showroom price, from `src/lib/fund.ts`.
