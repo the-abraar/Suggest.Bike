@@ -8,6 +8,7 @@ import { onRoadPrice } from "@/lib/cost";
 import { pairsForBike } from "@/lib/curated";
 import { commentsFor } from "@/lib/comments";
 import { useLang, useTx } from "@/lib/i18n";
+import { FORM_ENDPOINT } from "@/lib/site";
 import type { Pair } from "@/lib/maintenance-posts";
 import { SPOTLIGHTS, spotlightBySlug } from "@/lib/spotlight-posts";
 import type { ScoreKey } from "@/lib/types";
@@ -153,7 +154,15 @@ export function SpotlightPost({ slug }: { slug: string }) {
             <p className="mt-3 text-[15px] text-muted">{tx("No comments yet. Own this bike or rode one? Tell others.", "এখনো কোনো মন্তব্য নেই। বাইকটি আপনার আছে বা চালিয়েছেন? অন্যদের জানান।")}</p>
           )}
           <h3 className="mt-6 text-[17px] font-semibold text-ink">{tx("Add a comment", "মন্তব্য লিখুন")}</h3>
-          <p className="mt-1 text-[13.5px] text-muted">{tx("We read every comment and publish the useful ones with your name. Your email stays private.", "প্রতিটি মন্তব্য আমরা পড়ি, কাজের মন্তব্য আপনার নামসহ প্রকাশ করি। আপনার ইমেইল গোপন থাকে।")}</p>
+          {FORM_ENDPOINT && (
+            <p className="mt-1 text-[13.5px] text-muted">
+              {tx(
+                "We read each comment by hand before anything appears. We publish it with your name if it is about bikes and has no insults, phone numbers, or claims about a named person or showroom without proof. Your email is never shown. ",
+                "কিছু দেখানোর আগে প্রতিটি মন্তব্য আমরা নিজে পড়ি। মন্তব্য বাইক নিয়ে হলে এবং তাতে গালি, ফোন নম্বর বা প্রমাণ ছাড়া কোনো ব্যক্তি বা শোরুমের বিরুদ্ধে অভিযোগ না থাকলে আপনার নামসহ প্রকাশ করি। আপনার ইমেইল কখনো দেখানো হয় না। ",
+              )}
+              <Link href="/privacy/" className="underline underline-offset-2">{tx("Privacy", "গোপনীয়তা")}</Link>
+            </p>
+          )}
           <div className="mt-4">
             <FeedbackForm kind="comment" post={{ slug, title: post.title[0] }} />
           </div>

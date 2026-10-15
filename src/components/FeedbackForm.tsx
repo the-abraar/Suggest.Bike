@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Link from "@/components/LangLink";
 import { useTx } from "@/lib/i18n";
 import { FORM_ENDPOINT, SITE, track, whatsappUrl } from "@/lib/site";
-import { LIMITS, reportBody, validateReport, type ReportInput, type ReportKind } from "@/lib/report";
+import { LIMITS, formRoute, reportBody, validateReport, type ReportInput, type ReportKind } from "@/lib/report";
 
 const ERR: Record<string, [string, string]> = {
   message: ["Write a message (up to 2000 characters).", "একটি বার্তা লিখুন (২০০০ অক্ষর পর্যন্ত)।"],
@@ -17,7 +18,7 @@ const ERR: Record<string, [string, string]> = {
   empty: ["Fill in at least the price, mileage or a note.", "অন্তত দাম, মাইলেজ বা একটি মন্তব্য দিন।"],
 };
 
-/** Feedback, "I own this" report, or a post comment (name + email + text; shown only after the owner approves it). Posts JSON to FORM_ENDPOINT; with no endpoint it opens a prefilled email. */
+/** Feedback, "I own this" report, or a post comment (name + email + text; shown only after the owner approves it). Posts JSON to FORM_ENDPOINT; with no endpoint feedback opens a prefilled email and comments are closed (formRoute). */
 export function FeedbackForm({ kind, bike, post }: { kind: ReportKind; bike?: { id: string; name: string; ev?: boolean }; post?: { slug: string; title: string } }) {
   const tx = useTx();
   const [r, setR] = useState<ReportInput>({ message: "", email: "", name: "", onRoadBDT: "", showroom: "", month: "", kmpl: "" });
@@ -27,6 +28,7 @@ export function FeedbackForm({ kind, bike, post }: { kind: ReportKind; bike?: { 
   const subject = kind === "owner" ? `Owner report: ${bike?.name ?? ""}` : kind === "comment" ? `Comment: ${post?.title ?? ""}` : "Suggest.Bike feedback";
   const body = reportBody(kind, r, bike ?? (post && { id: post.slug, name: post.title }));
   const mailto = `mailto:${SITE.contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const route = formRoute(kind, FORM_ENDPOINT);
   const wa = whatsappUrl(kind === "owner" ? `Owner report: ${bike?.name ?? ""}\n` : "Suggest.Bike feedback:\n");
 
   async function submit(e: React.FormEvent) {
@@ -35,7 +37,7 @@ export function FeedbackForm({ kind, bike, post }: { kind: ReportKind; bike?: { 
     setErrs(v);
     if (v.length) return;
     track(`form-${kind}`);
-    if (!FORM_ENDPOINT) return void (window.location.href = mailto);
+    if (route !== "endpoint") return void (window.location.href = mailto); // "closed" never renders the form
     setState("sending");
     try {
       const res = await fetch(FORM_ENDPOINT, {
@@ -52,7 +54,15 @@ export function FeedbackForm({ kind, bike, post }: { kind: ReportKind; bike?: { 
   if (state === "sent")
     return (
       <p role="status" className="rounded-xl border border-line-strong p-4 text-[15px] text-ink">
-        {kind === "comment" ? tx("Thanks. Your comment will appear here once we approve it.", "ধন্যবাদ। অনুমোদনের পর আপনার মন্তব্য এখানে দেখা যাবে।") : tx("Thanks, received. We read every report.", "ধন্যবাদ, পেয়েছি। প্রতিটি রিপোর্ট আমরা পড়ি।")}
+        {kind === "comment" ? tx("Thanks. We read it by hand; if we approve it, it appears here with your name after our next site update.", "ধন্যবাদ। আমরা নিজে পড়ে দেখি; অনুমোদন করলে পরের সাইট আপডেটে আপনার নামসহ এখানে দেখা যাবে।") : tx("Thanks, received. We read every report.", "ধন্যবাদ, পেয়েছি। প্রতিটি রিপোর্ট আমরা পড়ি।")}
+      </p>
+    );
+
+  if (route === "closed")
+    return (
+      <p role="status" className="rounded-xl border border-line-strong p-4 text-[15px] text-ink-2">
+        {tx("Comments are not open yet. ", "মন্তব্য এখনো চালু হয়নি। ")}
+        <Link href="/feedback/" className="text-brand underline underline-offset-2">{tx("Send us feedback instead", "এর বদলে মতামত পাঠান")}</Link>
       </p>
     );
 
@@ -113,7 +123,7 @@ export function FeedbackForm({ kind, bike, post }: { kind: ReportKind; bike?: { 
       {state === "error" && (
         <p role="alert" className="text-[14px] text-ink-2">
           {tx("Could not send. ", "পাঠানো যায়নি। ")}
-          <a className="text-brand underline" href={mailto}>{tx("Email it instead", "ইমেইলে পাঠান")}</a>
+          {kind === "comment" ? tx("Please try again later.", "একটু পরে আবার চেষ্টা করুন।") : <a className="text-brand underline" href={mailto}>{tx("Email it instead", "ইমেইলে পাঠান")}</a>}
         </p>
       )}
     </form>

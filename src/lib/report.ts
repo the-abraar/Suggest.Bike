@@ -13,6 +13,12 @@ export type ReportInput = {
   kmpl?: string;
 };
 
+/**
+ * Where a form goes: the form service when FORM_ENDPOINT is set, else the visitor's email app. Comments need the service: the
+ * privacy page names it as the processor of the commenter's name and email, so without it they are closed, not mailed.
+ */
+export const formRoute = (kind: ReportKind, endpoint: string): "endpoint" | "mailto" | "closed" => (endpoint ? "endpoint" : kind === "comment" ? "closed" : "mailto");
+
 export const LIMITS = { message: 2000, email: 120, name: 60, showroom: 120, onRoadMin: 50_000, onRoadMax: 3_000_000, kmplMin: 10, kmplMax: 120 } as const;
 
 /** Returns an English error key list; empty means valid. */

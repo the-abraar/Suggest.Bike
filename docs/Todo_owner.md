@@ -63,14 +63,15 @@ Then run `npm run validate`: it fails on unknown bike ids, bad dates, `endsOn` b
 
 ## How to approve a comment
 
-Comments on `/spotlight/` posts arrive the same way as feedback: in the Formspree inbox (or as an email to `hello@suggest.bike` while `FORM_ENDPOINT` is empty), with the subject "Comment: <post title>". Each has the post slug, a name, an email and the text. Nothing appears on the site until you add it.
+Comments on `/spotlight/` posts open only once `FORM_ENDPOINT` (in `src/lib/site.ts`) is a Formspree form; until then each post says "Comments are not open yet". They arrive in the Formspree inbox with the subject "Comment: <post title>". Each has the post slug, a name, an email and the text. Nothing appears on the site until you add it.
 
 1. Read it. Skip spam, insults, phone numbers, and anything that names or accuses a private person or a specific showroom without proof.
 2. Open `src/data/comments.json` and add one entry per approved comment:
    `{ "post": "hero-hf-deluxe-best-mileage", "name": "Rafi", "date": "2026-10-20", "text": "Getting 65 km/l in Mirpur traffic." }`
    `post` is the slug from the message; `date` is the day you approve it. **Never copy the email.** Fix nothing in the text except removing a phone number or email.
 3. Run `npm test` (it rejects a wrong slug, an extra field or an email address in the text), commit and push. The comment shows after the deploy.
-4. To remove a comment later (someone asks), delete its entry and push.
+4. Within 30 days of deciding (approved or not), delete the submission from the Formspree inbox. The privacy page promises this, because the email is in it.
+5. To remove a comment later (someone asks), delete its entry and push.
 
 ## Weekly spotlight
 

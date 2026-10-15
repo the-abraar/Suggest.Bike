@@ -12,7 +12,10 @@ export const SITE = {
   editor: "Abrar (The-Abraar)",
 };
 
-/** Formspree-compatible JSON endpoint (e.g. https://formspree.io/f/xxxx). Empty: forms open a prefilled email instead. See docs/Todo_owner.md. */
+/**
+ * Formspree JSON endpoint (https://formspree.io/f/xxxx). Empty: feedback opens a prefilled email and spotlight comments are closed.
+ * The privacy page names Formspree as the processor of commenters' names and emails (tests/report.test.ts), so another service means updating it too.
+ */
 export const FORM_ENDPOINT: string = "";
 
 /** WhatsApp number in international digits only (e.g. "8801XXXXXXXXX"). Empty: no WhatsApp link is shown. See Todo_owner.md. */
