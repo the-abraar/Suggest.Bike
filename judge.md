@@ -288,3 +288,10 @@ Checked: last commit adds the Honda Super Cub (after Update 11); working tree cl
 Done (`scripts/check.sh` exit 0): WhatsApp set in `src/lib/site.ts` (8801327045005); `validate-data.mjs` now warns when the feedback endpoint, analytics code or WhatsApp is empty; `hero-honda-cbz` has a second source. Verified correct, no change: Discover 125 tank 8 L and price, X-Blade price.
 **Unresolved, needs an official source:** Metro Plus weight (bikebd says 138 kg vs our 116, page unreliable), Stryker seat height and tank, Access 125 brake layout, Gixxer Monotone price, Ray ZR 125 and R15 V4 prices (not fetched), `haojue-dr160` second source.
 **Still open for the owner:** Formspree/Web3Forms endpoint, GoatCounter code, lawyer review, real-phone walk. Score unchanged at 60%.
+
+### Update 14 (2026-10-15, agent round)
+
+Done (`scripts/check.sh` exit 0): spotlight week 2 (Splendor+ value, Shine 100 Dhaka traffic, Dream 110 reliability, Raider 125 broken roads, R15 V4 looks; quiz claims pass the test); /method market snapshot citing The Daily Star and TBS side by side; /cost octane history line (UNB, +35% Jan → Sep 2026); 5 dealer hotlines re-found on official pages; price-history sparkline on bike pages (2+ points); home low-seat and scooter section plus `/bikes/?seat=low`; `npm run diff:bikebd` report script (robots.txt, 2 s delay, report only).
+**Found:** BikeBD differs from us on `ktm-rc-125` (৳3,70,000 vs our ৳4,43,000) and `gpx-demon-gr165r` (৳3,24,000 vs ৳3,14,999). Not changed: needs an official source. Splendor+ (a week-2 pick) is still "availability unconfirmed"; its post says to confirm stock.
+**Not verified:** the new home section and the sparkline were not checked in a real browser (tools/qa not run). The Bangla post text has not been proofread. No new EV models.
+**Score:** unchanged at 60%.
