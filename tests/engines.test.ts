@@ -6,6 +6,8 @@ import {
   matchBikes,
   minCashNow,
   withCash,
+  KINDS,
+  kindOf,
   anyNewFits,
   cheapestNew,
   cheapestPicks,
@@ -60,7 +62,7 @@ test("match: on-road ceiling — nothing over budget outside stretch; stretch is
   }
   // A bike whose ex-showroom price fits but whose on-road price does not is excluded.
   const b = BIKES.find((x) => x.status === "on-sale")!;
-  assert.ok(!matchBikes(A({ budget: b.priceBDT, gearless: "either" }), 1000).some((m) => m.bike.id === b.id && !m.used));
+  assert.ok(!matchBikes(A({ budget: b.priceBDT }), 1000).some((m) => m.bike.id === b.id && !m.used));
 });
 test("match: budget band is soft — a bike far under the budget scores lower but stays; inside the band the budget does not matter", () => {
   const at = (budget: number, o: Partial<Answers> = {}) => new Map(matchBikes(A({ budget, ...o }), 1000).map((m) => [m.bike.id, m]));
@@ -134,10 +136,37 @@ test("match: height uses seat + weight; tall riders are never warned", () => {
   assert.equal(warned("tall"), 0);
   assert.ok(warned("short") > warned("medium"));
 });
-test("match: gearless=no never returns scooters; yes returns only scooters", () => {
-  assert.ok(matchBikes(A({ gearless: "no", budget: 400000 }), 50).every((m) => m.bike.category !== "scooter"));
-  const yes = matchBikes(A({ gearless: "yes", budget: 400000 }), 50);
-  assert.ok(yes.length > 0 && yes.every((m) => m.bike.category === "scooter"));
+test("match: kinds filter to motorcycles, petrol scooters or EVs", () => {
+  for (const k of KINDS) {
+    const r = matchBikes(A({ kinds: [k], budget: 400000 }), 50);
+    assert.ok(r.length > 0 && r.every((m) => kindOf(m.bike) === k), k);
+  }
+  assert.ok(matchBikes(A({ kinds: ["motorcycle"], budget: 400000 }), 50).every((m) => m.bike.category !== "scooter" && m.bike.engine.fuel !== "electric"));
+  // Old share links used g=yes|no.
+  assert.deepEqual(decodeAnswers(new URLSearchParams("b=200000&g=no"))!.kinds, ["motorcycle"]);
+  assert.deepEqual(decodeAnswers(new URLSearchParams("b=200000&g=yes"))!.kinds, ["scooter", "ev"]);
+});
+test("match: scooter-only and EV-only keep the budget, band order, unconfirmed rule and 375cc cap; links are bounded", () => {
+  for (const kinds of [["scooter"], ["ev"], ["scooter", "ev"]] as Answers["kinds"][])
+    for (const budget of [130000, 250000, 400000])
+      for (const condition of ["new", "any"] as const) {
+        const a = A({ kinds, budget, condition });
+        const r = matchBikes(a, 1000);
+        const tag = `${kinds} ${budget} ${condition}`;
+        assert.ok(r.length > 0 || budget < 200000, tag); // no petrol scooter is ৳1.3 lakh on the road
+        for (const m of r) assert.ok(kinds.includes(kindOf(m.bike)) && m.cost <= budget && m.bike.engine.cc <= 375, `${tag} ${m.bike.id}`);
+        for (let i = 1; i < r.length; i++) {
+          assert.ok(BAND_ORDER[r[i - 1].band] <= BAND_ORDER[r[i].band], `${tag}: ${r[i].band} above ${r[i - 1].band}`); // never Good above Great
+          if (r[i].band === r[i - 1].band) assert.ok(!unsure(r[i - 1]) || unsure(r[i]), `${tag}: unconfirmed ${r[i - 1].bike.id} leads`);
+        }
+        for (const m of stretchPicks(a, 50)) assert.ok(kinds.includes(kindOf(m.bike)), `${tag} stretch ${m.bike.id}`);
+      }
+  // The EV-only fallback when nothing new fits is an EV.
+  assert.equal(kindOf(cheapestNew({ kinds: ["ev"] })!), "ev");
+  // A link may not empty the kinds (nothing could match) or repeat them.
+  assert.deepEqual(decodeAnswers(new URLSearchParams("b=200000&k=junk"))!.kinds, DEFAULT_ANSWERS.kinds);
+  assert.deepEqual(decodeAnswers(new URLSearchParams("b=200000&k=ev.ev.scooter"))!.kinds, ["scooter", "ev"]);
+  assert.deepEqual(decodeAnswers(new URLSearchParams(encodeAnswers(A({ kinds: ["ev"] }))))!.kinds, ["ev"]);
 });
 test("match: never suggests a bike over 375cc (BRTA registration limit), at any budget, use or condition", () => {
   assert.equal(MAX_REGISTRABLE_CC, 375);
@@ -189,7 +218,7 @@ test("match: HAS_NETWORKS off => 'where' answer is ignored (same ranking, no net
   }
 });
 test("match: cheapestNew respects gearbox; encode/decode round-trips; bad params fall back", () => {
-  const c = cheapestNew({ gearless: "no" });
+  const c = cheapestNew({ kinds: ["motorcycle"] });
   assert.ok(c && c.category !== "scooter");
   assert.ok(BIKES.filter((b) => b.status === "on-sale" && b.category !== "scooter").every((b) => b.priceBDT >= c!.priceBDT));
   const a = A({ budget: 175000, use: "highway", priorities: ["safety", "comfort"], where: "town" });
@@ -402,7 +431,7 @@ test("quiz and /cost agree: the quiz's plan for a bike equals payPaths for the s
     for (const [key, tenure] of [["card", PAY_TERMS.cardMonths], ["loan", PAY_TERMS.loanMonths]] as [keyof typeof paths, Answers["tenure"]][]) {
       const p = paths[key];
       const down = Math.ceil(p.upfront) + 1; // a taka of slack for float rounding at the exact boundary
-      const a = A({ payMode: "monthly", down, monthly: p.emi, tenure, budget: emiCeiling(down, p.emi, tenure), gearless: "either" });
+      const a = A({ payMode: "monthly", down, monthly: p.emi, tenure, budget: emiCeiling(down, p.emi, tenure) });
       const m = matchBikes(a, 1000).find((x) => x.bike.id === id);
       assert.ok(m?.pay, `${id} ${key} not offered`);
       for (const k of ["upfront", "emi", "fee", "total"] as const) near(m.pay[k], p[k], `${id} ${key} ${k}`);
@@ -436,7 +465,7 @@ test("persona: mixed use at ৳2.5 lakh and at ৳4 lakh get different top 3", (
   assert.notDeepEqual(ids(top3({ use: "mixed", budget: 250000 })), ids(top3({ use: "mixed", budget: 400000 })));
 });
 test("persona: home quick pick (geared) changes with the slider", () => {
-  const qp = (budget: number) => ids(top3({ use: "commute", budget, gearless: "no" }));
+  const qp = (budget: number) => ids(top3({ use: "commute", budget, kinds: ["motorcycle"] }));
   assert.notDeepEqual(qp(150000), qp(400000));
 });
 test("persona: rideshare at ৳2 lakh gets frugal, mechanic-friendly bikes that carry a passenger", () => {
@@ -480,7 +509,7 @@ test("persona N3: the default ৳2.5 lakh commute gives three model lines, all G
 test("persona N4: an availability-unconfirmed bike never leads a confirmed bike of the same band", () => {
   const splendor = bike("hero-splendor-plus");
   assert.equal(splendor.availability, "unconfirmed", "fixture: Hero Splendor+ is no longer flagged; pick another flagged bike");
-  for (const o of [{ budget: 130000 }, { budget: 150000 }, { budget: 200000 }, { use: "rideshare", budget: 200000 }, { budget: 150000, gearless: "no" }] as Partial<Answers>[]) {
+  for (const o of [{ budget: 130000 }, { budget: 150000 }, { budget: 200000 }, { use: "rideshare", budget: 200000 }, { budget: 150000, kinds: ["motorcycle"] }] as Partial<Answers>[]) {
     const r = matchBikes(A(o), 1000);
     assert.notEqual(r[0].bike.id, splendor.id, JSON.stringify(o));
     for (let i = 1; i < r.length; i++) if (r[i].band === r[i - 1].band) assert.ok(!unsure(r[i - 1]) || unsure(r[i]), `${JSON.stringify(o)} ${r[i - 1].bike.id}`);

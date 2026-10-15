@@ -14709,7 +14709,8 @@
     70,
     90
    ],
-   "chargeHours": 7
+   "chargeHours": 7,
+   "batteryWarrantyMonths": 15
   },
   "powerPS": 1.6,
   "torqueNm": 88,
@@ -14806,6 +14807,530 @@
    "ওয়ালটন টাকিয়ন",
    "walton takyon",
    "takyon 25td",
+   "electric scooter",
+   "ইলেকট্রিক স্কুটার",
+   "ev"
+  ]
+ },
+ {
+  "status": "on-sale",
+  "priceAsOf": "2026-10",
+  "assembledInBD": true,
+  "id": "walton-takyon-1-00",
+  "brand": "Walton",
+  "model": "Takyon 1.00",
+  "variant": "38Ah",
+  "priceBDT": 159999,
+  "priceNote": "bikebd.com's Walton price table also shows ৳1,29,500 for a Takyon 1.00; Walton's own page lists ৳1,59,999 for the 38Ah battery version used here.",
+  "priceSource": "https://waltonbd.com/takyon/takyon-1-00-38ah",
+  "distributor": "Walton",
+  "category": "scooter",
+  "engine": {
+   "cc": 0,
+   "cylinders": 0,
+   "stroke": 0,
+   "cooling": "air",
+   "fuel": "electric"
+  },
+  "ev": {
+   "motorW": 1200,
+   "peakMotorW": 1500,
+   "batteryKWh": 2.74,
+   "battery": "72V 38Ah graphene lead-acid (2,736 Wh, Walton)",
+   "rangeKm": 130,
+   "realRangeKm": [
+    70,
+    90
+   ],
+   "chargeHours": 7,
+   "batteryWarrantyMonths": 15
+  },
+  "powerPS": 1.6,
+  "torqueNm": 88,
+  "topSpeedKmh": 50,
+  "weightKg": 141,
+  "seatHeightMm": 770,
+  "groundClearanceMm": 130,
+  "gears": 0,
+  "brakes": {
+   "front": "disc",
+   "rear": "disc",
+   "abs": "none"
+  },
+  "tubeless": true,
+  "tyres": {
+   "front": "90/90-12",
+   "rear": "100/80-12"
+  },
+  "scores": {
+   "reliability": 5,
+   "mechanicFamiliarity": 3,
+   "partsAvailability": 5,
+   "resale": 3,
+   "comfort": 6,
+   "cityHandling": 8,
+   "highway": 1,
+   "pillion": 5,
+   "offroad": 2,
+   "performance": 2,
+   "beginnerFriendly": 9
+  },
+  "tagline": "Walton's long-range electric scooter: the same big battery as the Fusion 25TD, tuned for range over speed.",
+  "feel": "Smooth, silent 1.2 kW hub motor (1.5 kW peak) that tops out at 50 km/h; easy in city traffic, too slow for highways.",
+  "quirks": "Walton's 120-130 km range is measured at a steady 25 km/h; expect 70-90 km in real riding, less with a pillion or an ageing lead-acid battery. Charging takes 6-8 hours. Walton lists a 76 kg curb weight plus a 65 kg battery, so it weighs about 141 kg ready to ride. Battery warranty is 15 months.",
+  "braking": "Discs front and rear, no ABS or CBS.",
+  "mechanicNote": "Service and battery replacement go through Walton's own service centres; local mechanics can do tyres and brakes but not motor or controller faults.",
+  "pros": [
+   "Longest claimed range in Walton's line-up",
+   "Very low running cost",
+   "Discs both ends",
+   "Tubeless tyres"
+  ],
+  "cons": [
+   "50 km/h top speed",
+   "6-8 hour charge",
+   "Heavy lead-acid battery",
+   "Dealer-only electrics"
+  ],
+  "bestFor": [
+   "City commutes",
+   "Riders with home charging",
+   "Cutting fuel costs"
+  ],
+  "serviceIntervalKm": 3000,
+  "avgServiceCostBDT": 500,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 600,
+    "availability": "dealer-only"
+   }
+  ],
+  "sources": [
+   "https://waltonbd.com/takyon/takyon-1-00-38ah",
+   "https://waltonbd.com/takyon",
+   "https://www.bikebd.com/ev-brand/walton"
+  ],
+  "bn": {
+   "tagline": "Walton-এর লম্বা রেঞ্জের ইলেকট্রিক স্কুটার: Fusion 25TD-এর মতো বড় ব্যাটারি, গতির চেয়ে রেঞ্জে জোর।",
+   "feel": "মসৃণ, নিঃশব্দ 1.2 kW হাব মোটর (পিক 1.5 kW), সর্বোচ্চ 50 km/h; শহরের জ্যামে সহজ, হাইওয়ের জন্য ধীর।",
+   "quirks": "Walton-এর 120-130 km রেঞ্জ একটানা 25 km/h গতিতে মাপা; বাস্তবে 70-90 km আশা করুন, পিলিয়নসহ বা লেড-অ্যাসিড ব্যাটারি পুরনো হলে আরও কম। চার্জে 6-8 ঘণ্টা লাগে। Walton 76 kg কার্ব ওজন আর 65 kg ব্যাটারি বলে, তাই চালানোর সময় প্রায় 141 kg। ব্যাটারি ওয়ারেন্টি 15 মাস।",
+   "braking": "সামনে-পেছনে ডিস্ক, ABS বা CBS নেই।",
+   "mechanicNote": "সার্ভিস আর ব্যাটারি বদল Walton-এর নিজস্ব সার্ভিস সেন্টারে; লোকাল মেকানিক টায়ার-ব্রেক পারেন, মোটর বা কন্ট্রোলারের সমস্যা নয়।",
+   "pros": [
+    "Walton-এর মধ্যে সবচেয়ে বেশি দাবি করা রেঞ্জ",
+    "চালানোর খরচ খুব কম",
+    "দুই চাকায় ডিস্ক",
+    "টিউবলেস টায়ার"
+   ],
+   "cons": [
+    "সর্বোচ্চ 50 km/h",
+    "চার্জে 6-8 ঘণ্টা",
+    "ভারী লেড-অ্যাসিড ব্যাটারি",
+    "ইলেকট্রিক কাজ শুধু ডিলারে"
+   ],
+   "bestFor": [
+    "শহরে যাতায়াত",
+    "যাদের বাসায় চার্জের সুবিধা আছে",
+    "তেলের খরচ কমাতে"
+   ]
+  },
+  "aliases": [
+   "ওয়ালটন টাকিয়ন",
+   "walton takyon",
+   "takyon 1.00",
+   "electric scooter",
+   "ইলেকট্রিক স্কুটার",
+   "ev"
+  ]
+ },
+ {
+  "status": "on-sale",
+  "priceAsOf": "2026-10",
+  "assembledInBD": true,
+  "id": "walton-takyon-fusion-swift",
+  "dataNote": "Walton's model page has two warranty tables (12 or 15 months on the battery); the cost page uses 12. Seat height is not published: 770 mm is taken from the Takyon 1.00, which uses the same tyre sizes.",
+  "brand": "Walton",
+  "model": "Takyon Fusion 1.00 Swift",
+  "priceBDT": 117000,
+  "outlierNote": "A small 800 W, 1.38 kWh electric scooter, so it sits well below petrol scooters; ৳1,17,000 is on both Walton's Takyon price list and the model page (2026-10).",
+  "priceSource": "https://waltonbd.com/takyon/takyon-fusion-1-00-swift",
+  "distributor": "Walton",
+  "category": "scooter",
+  "engine": {
+   "cc": 0,
+   "cylinders": 0,
+   "stroke": 0,
+   "cooling": "air",
+   "fuel": "electric"
+  },
+  "ev": {
+   "motorW": 800,
+   "batteryKWh": 1.38,
+   "battery": "60V 27Ah graphene lead-acid (1,380 Wh, Walton)",
+   "rangeKm": 70,
+   "realRangeKm": [
+    45,
+    55
+   ],
+   "chargeHours": 7,
+   "batteryWarrantyMonths": 12
+  },
+  "powerPS": 1.1,
+  "torqueNm": 15,
+  "topSpeedKmh": 45,
+  "weightKg": 79,
+  "seatHeightMm": 770,
+  "groundClearanceMm": 130,
+  "gears": 0,
+  "brakes": {
+   "front": "disc",
+   "rear": "disc",
+   "abs": "none"
+  },
+  "tubeless": true,
+  "tyres": {
+   "front": "90/90-12",
+   "rear": "100/80-12"
+  },
+  "scores": {
+   "reliability": 5,
+   "mechanicFamiliarity": 3,
+   "partsAvailability": 5,
+   "resale": 3,
+   "comfort": 5,
+   "cityHandling": 9,
+   "highway": 1,
+   "pillion": 3,
+   "offroad": 1,
+   "performance": 1,
+   "beginnerFriendly": 10
+  },
+  "tagline": "Walton's light, cheaper electric scooter for short daily city trips.",
+  "feel": "Light at 79 kg with a gentle 800 W hub motor and a 45 km/h top speed; easy to push, park and learn on, slow off the line with a pillion.",
+  "quirks": "Walton quotes 65-70 km range in Eco mode from a 1.38 kWh battery; plan on 45-55 km. Charging takes 6-8 hours. Ask the dealer whether the battery warranty is 12 or 15 months: Walton's page shows both. Seat height is not published (about 770 mm, approx, unverified), so sit on one before buying.",
+  "braking": "Discs front and rear, no ABS or CBS.",
+  "mechanicNote": "Service and battery replacement go through Walton's own service centres; local mechanics can do tyres and brakes but not motor or controller faults.",
+  "pros": [
+   "Cheapest disc-braked Walton Takyon",
+   "Very low running cost",
+   "Light and easy to handle",
+   "Tubeless tyres"
+  ],
+  "cons": [
+   "Short 45-55 km real range",
+   "45 km/h top speed",
+   "6-8 hour charge",
+   "Weak with a pillion"
+  ],
+  "bestFor": [
+   "Short city errands",
+   "New riders",
+   "Cutting fuel costs"
+  ],
+  "serviceIntervalKm": 3000,
+  "avgServiceCostBDT": 500,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 600,
+    "availability": "dealer-only"
+   }
+  ],
+  "sources": [
+   "https://waltonbd.com/takyon/takyon-fusion-1-00-swift",
+   "https://waltonbd.com/takyon"
+  ],
+  "bn": {
+   "tagline": "Walton-এর হালকা, কম দামের ইলেকট্রিক স্কুটার, শহরে প্রতিদিনের ছোট যাতায়াতের জন্য।",
+   "feel": "79 kg-এর হালকা স্কুটার, নরম 800 W হাব মোটর, সর্বোচ্চ 45 km/h; ঠেলে নেওয়া, পার্ক করা আর শেখা সহজ, পিলিয়নসহ শুরুতে ধীর।",
+   "quirks": "Walton 1.38 kWh ব্যাটারিতে ইকো মোডে 65-70 km রেঞ্জ বলে; 45-55 km ধরে রাখুন। চার্জে 6-8 ঘণ্টা লাগে। ব্যাটারি ওয়ারেন্টি 12 নাকি 15 মাস, ডিলারকে জিজ্ঞেস করুন: Walton-এর পেজে দুটোই আছে। সিটের উচ্চতা প্রকাশিত নয় (প্রায় 770 mm, আনুমানিক, যাচাই করা হয়নি), তাই কেনার আগে বসে দেখুন।",
+   "braking": "সামনে-পেছনে ডিস্ক, ABS বা CBS নেই।",
+   "mechanicNote": "সার্ভিস আর ব্যাটারি বদল Walton-এর নিজস্ব সার্ভিস সেন্টারে; লোকাল মেকানিক টায়ার-ব্রেক পারেন, মোটর বা কন্ট্রোলারের সমস্যা নয়।",
+   "pros": [
+    "ডিস্ক ব্রেকের সবচেয়ে কম দামের Takyon",
+    "চালানোর খরচ খুব কম",
+    "হালকা, সামলানো সহজ",
+    "টিউবলেস টায়ার"
+   ],
+   "cons": [
+    "বাস্তবে মাত্র 45-55 km রেঞ্জ",
+    "সর্বোচ্চ 45 km/h",
+    "চার্জে 6-8 ঘণ্টা",
+    "পিলিয়নসহ দুর্বল"
+   ],
+   "bestFor": [
+    "শহরে ছোট কাজ",
+    "নতুন রাইডার",
+    "তেলের খরচ কমাতে"
+   ]
+  },
+  "aliases": [
+   "ওয়ালটন টাকিয়ন সুইফট",
+   "walton takyon swift",
+   "takyon swift",
+   "electric scooter",
+   "ইলেকট্রিক স্কুটার",
+   "ev"
+  ]
+ },
+ {
+  "status": "on-sale",
+  "priceAsOf": "2026-10",
+  "id": "revoo-c32-y",
+  "availability": "unconfirmed",
+  "dataNote": "Specs from bikebd.com listings that contradict themselves (motor 1,200 or 1,800 W, kerb weight 105 or 250 kg, charging 6-8 or 8-10 hours); the lower, more plausible figures are used. Availability: no Revoo Bangladesh or distributor listing found (Oct 2026); price and specs from bikebd.com only. Ask the distributor or a showroom, then drop \"availability\" or set status.",
+  "brand": "Revoo",
+  "model": "C32-Y",
+  "priceBDT": 134900,
+  "priceNote": "bikebd.com price table; the same site's FAQ says ৳1,25,900 and older pages ৳1,29,900-1,32,900, so confirm with a Revoo dealer.",
+  "priceSource": "https://bikebd.com/price/revoo-c32-y/color",
+  "distributor": "Swift Tech Service Ltd (Revoo Bangladesh)",
+  "category": "scooter",
+  "engine": {
+   "cc": 0,
+   "cylinders": 0,
+   "stroke": 0,
+   "cooling": "air",
+   "fuel": "electric"
+  },
+  "ev": {
+   "motorW": 1200,
+   "batteryKWh": 2.52,
+   "battery": "72V 35Ah graphene lead-acid, 6 blocks, IP67 (72 x 35 = 2,520 Wh)",
+   "rangeKm": 120,
+   "realRangeKm": [
+    65,
+    85
+   ],
+   "chargeHours": 9,
+   "batteryWarrantyMonths": 18
+  },
+  "powerPS": 1.6,
+  "torqueNm": 85,
+  "topSpeedKmh": 55,
+  "weightKg": 105,
+  "seatHeightMm": 760,
+  "groundClearanceMm": 160,
+  "gears": 0,
+  "brakes": {
+   "front": "disc",
+   "rear": "drum",
+   "abs": "none"
+  },
+  "tubeless": true,
+  "tyres": {
+   "front": "3.00-10",
+   "rear": "3.00-10"
+  },
+  "scores": {
+   "reliability": 4,
+   "mechanicFamiliarity": 2,
+   "partsAvailability": 3,
+   "resale": 2,
+   "comfort": 6,
+   "cityHandling": 8,
+   "highway": 2,
+   "pillion": 5,
+   "offroad": 2,
+   "performance": 3,
+   "beginnerFriendly": 9
+  },
+  "tagline": "A 55 km/h Chinese electric scooter with a big 72V battery for less than Walton's top models.",
+  "feel": "1.2 kW hub motor and a 55 km/h top speed make it one of the quicker budget e-scooters; small 10-inch wheels feel nervous over broken roads.",
+  "quirks": "Published specs disagree (motor 1,200 or 1,800 W, charging 6-8 or 8-10 hours), so ask the dealer for the spec sheet; figures here are approx, unverified. Claimed range is 110-120 km; plan on 65-85 km. Battery warranty is listed as 18 months or 15,000 km.",
+  "braking": "Single front disc and a rear drum, no ABS or CBS.",
+  "mechanicNote": "A newer brand with service centres mainly in Dhaka (Banani, Mirpur, Farmgate, Rampura) and Gazipur; check the nearest one before buying outside Dhaka.",
+  "pros": [
+   "55 km/h top speed",
+   "Big 72V battery for the price",
+   "Very low running cost",
+   "Tubeless tyres"
+  ],
+  "cons": [
+   "Small service network",
+   "Specs not consistently published",
+   "Rear drum brake",
+   "8-10 hour charge"
+  ],
+  "bestFor": [
+   "Dhaka and Gazipur commutes",
+   "Riders with home charging",
+   "Cutting fuel costs"
+  ],
+  "serviceIntervalKm": 3000,
+  "avgServiceCostBDT": 500,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 600,
+    "availability": "dealer-only"
+   }
+  ],
+  "sources": [
+   "https://bikebd.com/price/revoo-c32-y/color",
+   "https://www.bikebd.com/ev/revoo-c32-y/specifications",
+   "https://www.bikebd.com/ev/revoo-c32-y"
+  ],
+  "bn": {
+   "tagline": "বড় 72V ব্যাটারির 55 km/h চাইনিজ ইলেকট্রিক স্কুটার, Walton-এর বড় মডেলগুলোর চেয়ে কম দামে।",
+   "feel": "1.2 kW হাব মোটর আর সর্বোচ্চ 55 km/h, কম দামের ই-স্কুটারের মধ্যে দ্রুত; ছোট 10 ইঞ্চি চাকা ভাঙা রাস্তায় অস্থির লাগে।",
+   "quirks": "প্রকাশিত স্পেক মেলে না (মোটর 1,200 বা 1,800 W, চার্জ 6-8 বা 8-10 ঘণ্টা), তাই ডিলারের কাছে স্পেক শিট চেয়ে নিন; এখানের সংখ্যা আনুমানিক, যাচাই করা হয়নি। দাবি করা রেঞ্জ 110-120 km; 65-85 km ধরে রাখুন। ব্যাটারি ওয়ারেন্টি 18 মাস বা 15,000 km।",
+   "braking": "সামনে একটি ডিস্ক, পেছনে ড্রাম, ABS বা CBS নেই।",
+   "mechanicNote": "নতুন ব্র্যান্ড, সার্ভিস সেন্টার মূলত ঢাকা (বনানী, মিরপুর, ফার্মগেট, রামপুরা) আর গাজীপুরে; ঢাকার বাইরে কেনার আগে কাছের সেন্টার দেখে নিন।",
+   "pros": [
+    "সর্বোচ্চ 55 km/h",
+    "দামের তুলনায় বড় 72V ব্যাটারি",
+    "চালানোর খরচ খুব কম",
+    "টিউবলেস টায়ার"
+   ],
+   "cons": [
+    "সার্ভিস নেটওয়ার্ক ছোট",
+    "স্পেক ঠিকমতো প্রকাশিত নয়",
+    "পেছনে ড্রাম ব্রেক",
+    "চার্জে 8-10 ঘণ্টা"
+   ],
+   "bestFor": [
+    "ঢাকা ও গাজীপুরে যাতায়াত",
+    "যাদের বাসায় চার্জের সুবিধা আছে",
+    "তেলের খরচ কমাতে"
+   ]
+  },
+  "aliases": [
+   "রিভু",
+   "revoo",
+   "revoo c32",
+   "electric scooter",
+   "ইলেকট্রিক স্কুটার",
+   "ev"
+  ]
+ },
+ {
+  "status": "on-sale",
+  "priceAsOf": "2026-10",
+  "id": "revoo-a12-s",
+  "availability": "unconfirmed",
+  "dataNote": "Specs from bikebd.com listings; one page gives a 257-267 kg kerb weight, a data error. Availability: no Revoo Bangladesh or distributor listing found (Oct 2026); price and specs from bikebd.com only. Ask the distributor or a showroom, then drop \"availability\" or set status.",
+  "brand": "Revoo",
+  "model": "A12-S",
+  "priceBDT": 105900,
+  "priceNote": "bikebd.com price; some pages show ৳1,03,900, and the original A12 (60V battery) launched at ৳99,900 in March 2025 (The Daily Star).",
+  "priceSource": "https://bikebd.com/price/revoo-a12-s/specifications",
+  "distributor": "Swift Tech Service Ltd (Revoo Bangladesh)",
+  "category": "scooter",
+  "engine": {
+   "cc": 0,
+   "cylinders": 0,
+   "stroke": 0,
+   "cooling": "air",
+   "fuel": "electric"
+  },
+  "ev": {
+   "motorW": 1000,
+   "batteryKWh": 1.87,
+   "battery": "72V 26Ah graphene lead-acid, 6 blocks (72 x 26 = 1,872 Wh)",
+   "rangeKm": 95,
+   "realRangeKm": [
+    50,
+    65
+   ],
+   "chargeHours": 8.5,
+   "batteryWarrantyMonths": 18
+  },
+  "powerPS": 1.4,
+  "torqueNm": 30,
+  "topSpeedKmh": 45,
+  "weightKg": 107,
+  "seatHeightMm": 750,
+  "groundClearanceMm": 150,
+  "gears": 0,
+  "brakes": {
+   "front": "disc",
+   "rear": "drum",
+   "abs": "none"
+  },
+  "tubeless": true,
+  "tyres": {
+   "front": "3.00-10",
+   "rear": "3.00-10"
+  },
+  "scores": {
+   "reliability": 4,
+   "mechanicFamiliarity": 2,
+   "partsAvailability": 3,
+   "resale": 2,
+   "comfort": 5,
+   "cityHandling": 9,
+   "highway": 1,
+   "pillion": 4,
+   "offroad": 2,
+   "performance": 2,
+   "beginnerFriendly": 9
+  },
+  "tagline": "One of the cheapest 72V electric scooters in Bangladesh, for short city runs.",
+  "feel": "Gentle 1 kW hub motor and a 45 km/h top speed; light and easy in traffic, slow once a pillion climbs on.",
+  "quirks": "Specs are approx, unverified: claimed range 85-95 km, plan on 50-65 km; kerb weight about 107 kg including a 45 kg battery; charging takes 8-9 hours. Battery warranty 18 months, motor 2 years.",
+  "braking": "Single front disc and a rear drum, no ABS or CBS.",
+  "mechanicNote": "A newer brand with service centres mainly in Dhaka and Gazipur; check the nearest one before buying outside Dhaka.",
+  "pros": [
+   "Low price for a 72V scooter",
+   "Very low running cost",
+   "Light and easy in traffic",
+   "Tubeless tyres"
+  ],
+  "cons": [
+   "Short real range",
+   "Small service network",
+   "8-9 hour charge",
+   "Rear drum brake"
+  ],
+  "bestFor": [
+   "Short city commutes",
+   "New riders",
+   "Cutting fuel costs"
+  ],
+  "serviceIntervalKm": 3000,
+  "avgServiceCostBDT": 500,
+  "parts": [
+   {
+    "name": "Brake pads/shoes (front)",
+    "priceBDT": 600,
+    "availability": "dealer-only"
+   }
+  ],
+  "sources": [
+   "https://bikebd.com/price/revoo-a12-s/specifications",
+   "https://www.bikebd.com/ev/revoo-a12-s/specifications",
+   "https://www.thedailystar.net/tech-startup/news/revoo-a10-and-a12-electric-bikes-launched-bangladesh-3843171"
+  ],
+  "bn": {
+   "tagline": "বাংলাদেশে সবচেয়ে কম দামের 72V ইলেকট্রিক স্কুটারগুলোর একটি, শহরে ছোট যাতায়াতের জন্য।",
+   "feel": "নরম 1 kW হাব মোটর, সর্বোচ্চ 45 km/h; জ্যামে হালকা আর সহজ, পিলিয়ন উঠলে ধীর।",
+   "quirks": "স্পেক আনুমানিক, যাচাই করা হয়নি: দাবি করা রেঞ্জ 85-95 km, 50-65 km ধরে রাখুন; ওজন 45 kg ব্যাটারিসহ প্রায় 107 kg; চার্জে 8-9 ঘণ্টা। ব্যাটারি ওয়ারেন্টি 18 মাস, মোটর 2 বছর।",
+   "braking": "সামনে একটি ডিস্ক, পেছনে ড্রাম, ABS বা CBS নেই।",
+   "mechanicNote": "নতুন ব্র্যান্ড, সার্ভিস সেন্টার মূলত ঢাকা আর গাজীপুরে; ঢাকার বাইরে কেনার আগে কাছের সেন্টার দেখে নিন।",
+   "pros": [
+    "72V স্কুটার হিসেবে কম দাম",
+    "চালানোর খরচ খুব কম",
+    "জ্যামে হালকা আর সহজ",
+    "টিউবলেস টায়ার"
+   ],
+   "cons": [
+    "বাস্তবে রেঞ্জ কম",
+    "সার্ভিস নেটওয়ার্ক ছোট",
+    "চার্জে 8-9 ঘণ্টা",
+    "পেছনে ড্রাম ব্রেক"
+   ],
+   "bestFor": [
+    "শহরে ছোট যাতায়াত",
+    "নতুন রাইডার",
+    "তেলের খরচ কমাতে"
+   ]
+  },
+  "aliases": [
+   "রিভু",
+   "revoo",
+   "revoo a12",
    "electric scooter",
    "ইলেকট্রিক স্কুটার",
    "ev"

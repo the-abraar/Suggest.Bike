@@ -515,7 +515,7 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
                 )}
               </p>
             </div>
-            <Link href="/compare/" className="text-[13px] font-medium text-brand hover:underline">
+            <Link href={`/compare/?bikes=${bike.id}`} className="text-[13px] font-medium text-brand hover:underline">
               {tx("All comparisons →", "সব তুলনা →")}
             </Link>
           </div>
@@ -696,6 +696,7 @@ function MonthlyCard({ bike }: { bike: Bike }) {
     { k: tx("Wear parts", "ক্ষয়যোগ্য পার্টস"), v: c.wear / months },
     { k: tx("Washing & parking", "ধোয়া ও পার্কিং"), v: c.upkeep / months },
     ...(c.hiddenRepairs ? [{ k: tx("Hidden used-bike repairs", "পুরনো বাইকের লুকানো মেরামত"), v: c.hiddenRepairs / months }] : []),
+    ...(c.evBattery ? [{ k: tx("EV battery replacement", "EV ব্যাটারি বদল"), v: c.evBattery / months }] : []),
     ...(c.insurance ? [{ k: tx("Third-party insurance", "থার্ড-পার্টি ইন্স্যুরেন্স"), v: c.insurance / months }] : []),
   ];
   return (

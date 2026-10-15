@@ -10,6 +10,16 @@ const KNOWN = new Set<string>(bikeIds);
 export const compareIds = (ids: string[]) => [...new Set(ids)].filter((id) => KNOWN.has(id)).slice(0, MAX_COMPARE);
 /** Adds or removes one bike. A 4th is refused, not swapped for the oldest (critique B6); the full tray says why. */
 export const toggleIn = (c: string[], id: string) => (c.includes(id) ? c.filter((x) => x !== id) : c.length >= MAX_COMPARE ? c : compareIds([...c, id]));
+/**
+ * What /compare/ shows on load: the URL's bikes, else this tab's tray (`fromTray`: the page then writes them into the URL).
+ * A shared link seeds the tray only when the tray is empty or holds the same bikes, and the page may edit the tray only
+ * then (`ownsTray`), so opening a link never replaces picks the visitor made (critique B7).
+ */
+export function compareStart(urlBikes: string | null, tray: string[]) {
+  const fromUrl = compareIds((urlBikes || "").split(","));
+  const ownsTray = !fromUrl.length || !tray.length || fromUrl.join() === tray.join();
+  return { ids: fromUrl.length ? fromUrl : tray, ownsTray, seedTray: ownsTray && fromUrl.length > 0, fromTray: !fromUrl.length && tray.length > 0 };
+}
 
 type Store = {
   compare: string[];
@@ -31,9 +41,12 @@ const StoreContext = createContext<Store>({
   ready: false,
 });
 
+// The compare tray lives in sessionStorage (one visit, one tab) so a pair from days ago never reappears; saved bikes stay in localStorage.
+export const storageFor = (key: string) => (key === "sb-compare" ? sessionStorage : localStorage);
+
 function read(key: string): string[] {
   try {
-    const v = JSON.parse(localStorage.getItem(key) || "[]");
+    const v = JSON.parse(storageFor(key).getItem(key) || "[]");
     return Array.isArray(v) ? v.filter((x) => typeof x === "string") : [];
   } catch {
     return [];
@@ -41,7 +54,7 @@ function read(key: string): string[] {
 }
 function write(key: string, v: string[]) {
   try {
-    localStorage.setItem(key, JSON.stringify(v));
+    storageFor(key).setItem(key, JSON.stringify(v));
   } catch {}
 }
 
@@ -51,6 +64,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    try {
+      localStorage.removeItem("sb-compare"); // stale tray from before it moved to sessionStorage
+    } catch {}
     setCompareState(compareIds(read("sb-compare")));
     setSaved(read("sb-saved"));
     setReady(true);

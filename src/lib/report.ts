@@ -1,10 +1,11 @@
-// Validation and message building for the feedback / owner-report form. Pure, so it is tested in tests/report.test.ts.
+// Validation and message building for the feedback / owner-report / comment form. Pure, so it is tested in tests/report.test.ts.
 
-export type ReportKind = "feedback" | "owner";
+export type ReportKind = "feedback" | "owner" | "comment";
 
 export type ReportInput = {
   message: string;
   email: string;
+  name?: string; // comments only; shown publicly once approved
   // owner reports only; strings straight from the inputs
   onRoadBDT?: string;
   showroom?: string;
@@ -12,13 +13,21 @@ export type ReportInput = {
   kmpl?: string;
 };
 
-export const LIMITS = { message: 2000, email: 120, showroom: 120, onRoadMin: 50_000, onRoadMax: 3_000_000, kmplMin: 10, kmplMax: 120 } as const;
+export const LIMITS = { message: 2000, email: 120, name: 60, showroom: 120, onRoadMin: 50_000, onRoadMax: 3_000_000, kmplMin: 10, kmplMax: 120 } as const;
 
 /** Returns an English error key list; empty means valid. */
 export function validateReport(kind: ReportKind, r: ReportInput, now = new Date()): string[] {
   const errs: string[] = [];
   if (r.message.length > LIMITS.message) errs.push("message");
   if (r.email && (r.email.length > LIMITS.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(r.email))) errs.push("email");
+  if (kind === "comment") {
+    // Email is required (owner may need to reach the commenter) but never published.
+    if (!r.email.trim()) errs.push("emailNeeded");
+    const name = (r.name ?? "").trim();
+    if (!name || name.length > LIMITS.name || name.includes("@")) errs.push("name");
+    if (!r.message.trim()) errs.push("message");
+    return errs;
+  }
   if (kind === "feedback") {
     if (!r.message.trim()) errs.push("message");
     return errs;
@@ -42,7 +51,8 @@ export function validateReport(kind: ReportKind, r: ReportInput, now = new Date(
 /** Plain-text body used for both the email fallback and the endpoint payload. */
 export function reportBody(kind: ReportKind, r: ReportInput, bike?: { id: string; name: string }) {
   const lines = [
-    bike ? `Bike: ${bike.name} (${bike.id})` : "",
+    bike ? `${kind === "comment" ? "Post" : "Bike"}: ${bike.name} (${bike.id})` : "",
+    kind === "comment" ? `Name: ${(r.name ?? "").trim()}` : "",
     kind === "owner" ? `On-road price paid (BDT): ${r.onRoadBDT || "-"}` : "",
     kind === "owner" ? `Showroom / district: ${r.showroom || "-"}` : "",
     kind === "owner" ? `Month bought: ${r.month || "-"}` : "",

@@ -4,7 +4,7 @@ import Link from "@/components/LangLink";
 import { useMemo, useState } from "react";
 import { ArrowRight, BadgeCheck, Fuel, Gauge, ShieldCheck, Sparkles, Wallet, Wrench } from "lucide-react";
 import { BIKES, BRANDS, CATEGORIES, PRICE_BANDS, formatBDT, formatLakh, fullName } from "@/lib/bikes";
-import { matchBikes, DEFAULT_ANSWERS, encodeAnswers, type Use } from "@/lib/match";
+import { matchBikes, DEFAULT_ANSWERS, encodeAnswers, type Kind, type Use } from "@/lib/match";
 import { pairHref, popularPairs } from "@/lib/curated";
 import { FUEL, ownershipCost, DEFAULT_COST_INPUT, registrationFor, onRoadPrice } from "@/lib/cost";
 import { cardEmi } from "@/lib/fund";
@@ -257,7 +257,7 @@ function QuickPick() {
   const [use, setUse] = useState<Use>("commute");
   const [scooter, setScooter] = useState(false);
   // Geared by default: most BD buyers mean a motorcycle; scooters are one tap away.
-  const answers = { ...DEFAULT_ANSWERS, budget, use, gearless: scooter ? ("yes" as const) : ("no" as const) };
+  const answers = { ...DEFAULT_ANSWERS, budget, use, kinds: scooter ? (["scooter", "ev"] as Kind[]) : (["motorcycle"] as Kind[]) };
   const top = useMemo(() => matchBikes(answers, 3), [budget, use, scooter]); // eslint-disable-line react-hooks/exhaustive-deps
   const min = 100000;
   const max = 700000;

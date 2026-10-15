@@ -7,7 +7,22 @@ export type Use = "commute" | "mixed" | "highway" | "rough" | "rideshare" | "fun
 export type Priority = "mileage" | "maintenance" | "performance" | "comfort" | "resale" | "safety" | "style" | "price";
 const PRIORITY_IDS: readonly Priority[] = ["mileage", "maintenance", "performance", "comfort", "resale", "safety", "style", "price"];
 export type Where = "dhaka" | "city" | "town" | "village";
+/** Look types asked after the Looks priority, mapped to bikes.json categories (street bikes such as Gixxer and Hornet 2.0 read as naked). */
+export const LOOKS = {
+  sport: ["sport"],
+  naked: ["naked", "street"],
+  cruiser: ["cruiser"],
+  classic: ["classic"],
+  adventure: ["adventure"],
+  scooter: ["scooter"],
+} satisfies Record<string, BikeLite["category"][]>;
+export type Look = keyof typeof LOOKS;
+export const LOOK_IDS = Object.keys(LOOKS) as Look[];
 export type Txt = { en: string; bn: string };
+/** Every bike is exactly one kind: electric (any shape), petrol scooter, or petrol motorcycle. */
+export type Kind = "motorcycle" | "scooter" | "ev";
+export const KINDS: Kind[] = ["motorcycle", "scooter", "ev"];
+export const kindOf = (b: Pick<BikeLite, "engine" | "category">): Kind => (b.engine.fuel === "electric" ? "ev" : b.category === "scooter" ? "scooter" : "motorcycle");
 
 export const EMI_TENURES = [3, 6, 12, 18, 24, 36] as const;
 export type Tenure = (typeof EMI_TENURES)[number];
@@ -24,8 +39,9 @@ export type Answers = {
   height: "short" | "medium" | "tall";
   experience: "first" | "some" | "pro";
   pillion: "rarely" | "sometimes" | "daily";
-  gearless: "yes" | "no" | "either";
+  kinds: Kind[]; // which kinds to show; never empty
   priorities: Priority[];
+  looks: Look[]; // used only while "style" is a priority; empty = any look
 };
 
 /** Bikroy prices are asking prices and bikes usually sell lower, so we count 5% off (APPROX) against the budget. */
@@ -59,8 +75,9 @@ export const DEFAULT_ANSWERS: Answers = {
   height: "medium",
   experience: "some",
   pillion: "sometimes",
-  gearless: "either",
+  kinds: ["motorcycle", "scooter", "ev"],
   priorities: [],
+  looks: [],
 };
 
 type Feature =
@@ -83,7 +100,7 @@ type Feature =
 const clamp = (x: number) => Math.max(0, Math.min(1, x));
 
 // Price depends on the option (new or used) and the budget, so score() adds it; here it is neutral.
-function features(b: BikeLite): Record<Feature, number> {
+function features(b: BikeLite, looks: Look[] = []): Record<Feature, number> {
   const s = b.scores;
   const absScore = { dual: 1, single: 0.75, cbs: 0.4, none: 0.1 }[b.brakes.abs] + (b.brakes.front === "disc" ? 0 : -0.1);
   const styleCat = { sport: 1, naked: 0.9, classic: 0.9, cruiser: 0.8, adventure: 0.85, street: 0.55, scooter: 0.45, commuter: 0.2 }[b.category];
@@ -94,7 +111,12 @@ function features(b: BikeLite): Record<Feature, number> {
     comfort: s.comfort / 10,
     resale: s.resale / 10,
     safety: clamp(absScore),
-    style: clamp(styleCat * 0.7 + (s.performance / 10) * 0.3),
+    // A chosen look decides style: matching bikes 0.85–1 (sharper ones higher), every other shape 0.1.
+    style: !looks.length
+      ? clamp(styleCat * 0.7 + (s.performance / 10) * 0.3)
+      : looks.some((l) => (LOOKS[l] as string[]).includes(b.category))
+        ? 0.85 + (s.performance / 10) * 0.15
+        : 0.1,
     city: s.cityHandling / 10,
     highway: s.highway / 10,
     offroad: s.offroad / 10,
@@ -127,6 +149,8 @@ function weights(a: Answers) {
   const add = (f: Feature, n: number) => (w[f] = (w[f] ?? 0) + n);
   Object.entries(WHERE_WEIGHTS[HAS_NETWORKS ? a.where : "dhaka"]).forEach(([f, n]) => add(f as Feature, n!));
   a.priorities.forEach((p) => add(p, 2.6));
+  // A named look is a shape the rider wants, so it counts double; otherwise a commuter still tops a "sporty" pick.
+  if (a.priorities.includes("style") && a.looks.length) add("style", 2.6);
   if (a.pillion === "daily") add("pillion", 2.5);
   if (a.pillion === "sometimes") add("pillion", 1);
   if (a.experience === "first") add("beginner", 2.5);
@@ -198,7 +222,7 @@ export const isUsedOption = (m: Pick<Match, "bike" | "used">) => !!m.used || m.b
 /** Parts beyond the dealer and mechanics who know it: below these the quiz warns (and a bike may not jump the ranking). */
 const serviceable = (b: BikeLite) => b.scores.partsAvailability > 5 && b.scores.mechanicFamiliarity > 4;
 const smallNetwork = (a: Pick<Answers, "where">, b: BikeLite) => HAS_NETWORKS && (a.where === "town" || a.where === "village") && networkReach(b.brand) < 0.45;
-const gearOk = (a: Pick<Answers, "gearless">, b: BikeLite) => !(a.gearless === "no" && b.category === "scooter") && !(a.gearless === "yes" && b.category !== "scooter");
+const kindOk = (a: Pick<Answers, "kinds">, b: BikeLite) => a.kinds.includes(kindOf(b));
 /** The quiz never suggests a bike an individual cannot register in BD (critique section 4: a 748cc import came up for "fun"). */
 export const registrable = (b: Pick<BikeLite, "engine">) => b.engine.cc <= MAX_REGISTRABLE_CC;
 const usedOption = (bike: BikeLite, price: number, used?: Match["used"]): Option => ({
@@ -214,7 +238,7 @@ const usedOption = (bike: BikeLite, price: number, used?: Match["used"]): Option
 function options(a: Answers): Option[][] {
   const emi = a.payMode === "monthly";
   const used = a.condition === "any" && !emi; // a private used sale has no card EMI or bike loan
-  return BIKES.filter((b) => gearOk(a, b) && registrable(b)).map((b) => {
+  return BIKES.filter((b) => kindOk(a, b) && registrable(b)).map((b) => {
     if (b.status === "used-only") return used ? [usedOption(b, b.priceBDT)] : [];
     const onRoad = onRoadPrice(b);
     const registration = onRoad - b.priceBDT;
@@ -236,10 +260,11 @@ function score(a: Answers, o: Option): Match {
   const { bike: b, cost, used } = o;
   const w = weights(a);
   const totalW = Object.values(w).reduce((s, x) => s + (x ?? 0), 0);
-  const f = { ...features(b), price: clamp(1 - cost / Math.max(1, a.budget)) };
+  const looks = a.priorities.includes("style") ? a.looks : [];
+  const f = { ...features(b, looks), price: clamp(1 - cost / Math.max(1, a.budget)) };
   const contrib = (Object.keys(w) as Feature[]).map((k) => ({ k, v: (w[k] ?? 0) * f[k], f: f[k] }));
   let s = contrib.reduce((acc, c) => acc + c.v, 0) / totalW;
-  const wantsClassic = a.use === "fun" || a.priorities.includes("style");
+  const wantsClassic = a.use === "fun" || (a.priorities.includes("style") && (!looks.length || looks.includes("classic")));
   const dailyRider = a.use === "commute" || a.use === "rideshare";
 
   if (!a.priorities.includes("price")) s -= Math.max(0, BAND_LOW - cost / Math.max(1, a.budget));
@@ -361,9 +386,9 @@ export function cheapestPicks(a: Answers, n = 3): Match[] {
     .map((o) => score(a, o));
 }
 
-/** Cheapest new bike matching the gearbox preference — shown when nothing new fits the budget. */
-export function cheapestNew(a: Pick<Answers, "gearless">) {
-  return BIKES.filter((b) => b.status === "on-sale" && gearOk(a, b) && registrable(b)).sort((x, y) => x.priceBDT - y.priceBDT)[0];
+/** Cheapest registrable new bike of the chosen kinds — shown when nothing new fits the budget. */
+export function cheapestNew(a: Pick<Answers, "kinds">) {
+  return BIKES.filter((b) => b.status === "on-sale" && kindOk(a, b) && registrable(b)).sort((x, y) => x.priceBDT - y.priceBDT)[0];
 }
 
 /** EMI mode: the least cash now that buys any bike on these terms (BRTA, the fee and any down payment); Infinity if none. */
@@ -387,9 +412,17 @@ export function encodeAnswers(a: Answers) {
     h: a.height,
     e: a.experience,
     p: a.pillion,
-    g: a.gearless,
+    k: a.kinds.join("."),
     pr: a.priorities.join("."),
+    lk: a.looks.join("."),
   }).toString();
+}
+
+// Old links carry g=yes|no|either (gears question) instead of k.
+function decodeKinds(q: URLSearchParams): Kind[] {
+  const k = (q.get("k") || "").split(".").filter((x): x is Kind => (KINDS as string[]).includes(x));
+  if (k.length) return KINDS.filter((x) => k.includes(x));
+  return q.get("g") === "yes" ? ["scooter", "ev"] : q.get("g") === "no" ? ["motorcycle"] : DEFAULT_ANSWERS.kinds;
 }
 
 /** Reads a shared link. Values are clamped (Cap rule): the budget to BUDGET_RANGE, the EMI inputs to the quiz limits. */
@@ -417,8 +450,10 @@ export function decodeAnswers(q: URLSearchParams): Answers | null {
     height: pick(q.get("h"), ["short", "medium", "tall"] as const, D.height),
     experience: pick(q.get("e"), ["first", "some", "pro"] as const, D.experience),
     pillion: pick(q.get("p"), ["rarely", "sometimes", "daily"] as const, D.pillion),
-    gearless: pick(q.get("g"), ["yes", "no", "either"] as const, D.gearless),
+    kinds: decodeKinds(q),
     // Any number of priorities; de-duplication bounds the list to PRIORITY_IDS (Cap rule).
     priorities: [...new Set((q.get("pr") || "").split("."))].filter((x): x is Priority => PRIORITY_IDS.includes(x as Priority)),
+    // Old links have no lk: any look. Known ids only, in canonical order, so the list stays bounded.
+    looks: LOOK_IDS.filter((l) => (q.get("lk") || "").split(".").includes(l)),
   };
 }

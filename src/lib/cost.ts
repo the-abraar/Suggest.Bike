@@ -85,7 +85,7 @@ export const DEFAULT_COST_INPUT: CostInput = {
 
 /** Fraction of purchase price kept per year, driven by the resale score (5 → 0.86/yr, 10 → 0.92/yr). */
 /** The fields the cost model reads — satisfied by both full and slim bike records. */
-export type CostBike = Pick<BikeLite, "mileageKmpl" | "serviceIntervalKm" | "avgServiceCostBDT" | "engine" | "status" | "priceBDT" | "scores" | "category" | "brakes" | "gears" | "tyrePairBDT" | "usedPrice"> & {
+export type CostBike = Pick<BikeLite, "ev" | "mileageKmpl" | "serviceIntervalKm" | "avgServiceCostBDT" | "engine" | "status" | "priceBDT" | "scores" | "category" | "brakes" | "gears" | "tyrePairBDT" | "usedPrice"> & {
   parts: Pick<BikeLite["parts"][number], "name" | "priceBDT">[];
 };
 
@@ -127,7 +127,7 @@ export const OVERHAUL_YEARS = 10;
  * (brand + size, clamped 0.6–4.5×). Engine, clutch and suspension also scale with distance against the 30 km/day
  * reference (clamped 0.5–3×); wiring and frame age with time. Liquid-cooled +25%, multi-cylinder +40% on the engine.
  * Frame straightening is a ৳8,000 job counted at half because not every bike needs it.
- * shortcut: EVs get no motor/controller/traction-battery line; add one once BD replacement prices are sourced.
+ * shortcut: EVs get no motor/controller line (the traction battery is evBatteryCost); add one once BD replacement prices are sourced.
  */
 export const OVERHAUL = { refKmPerDay: 30, refPartsBDT: 6000, engine: 15000, suspension: 6000, frame: 8000 * 0.5, wiring: 4000 };
 
@@ -144,6 +144,20 @@ export function overhaulCost(b: CostBike, km: number) {
   const frame = O.frame * partsFactor;
   const wiring = O.wiring * partsFactor; // harness, switches, regulator-rectifier
   return { engine, clutch, suspension, frame, wiring, total: engine + clutch + suspension + frame + wiring, partsFactor, kmFactor };
+}
+
+/**
+ * APPROX (owner rule): an EV's traction battery is replaced once, at 30% of the bike's new price, when the ownership period
+ * runs past the battery warranty: ev.batteryWarrantyMonths from the data, else an assumed 48 months (the middle of the usual 3–5 years).
+ * A used EV is taken as ~3 years old (as defaultUsedPrice), so its warranty has 3 years less to run.
+ */
+export const EV_BATTERY = { shareOfPrice: 0.3, defaultWarrantyMonths: 48, usedAgeYears: 3 };
+
+export function evBatteryCost(b: Pick<CostBike, "engine" | "ev" | "priceBDT">, years: number, used: boolean) {
+  if (b.engine.fuel !== "electric") return null;
+  const warrantyMonths = b.ev?.batteryWarrantyMonths ?? EV_BATTERY.defaultWarrantyMonths;
+  const due = years * 12 > warrantyMonths - (used ? EV_BATTERY.usedAgeYears * 12 : 0);
+  return { warrantyMonths, assumed: b.ev?.batteryWarrantyMonths === undefined, due, cost: due ? b.priceBDT * EV_BATTERY.shareOfPrice : 0 };
 }
 
 export function ownershipCost(b: CostBike, inp: CostInput) {
@@ -168,7 +182,7 @@ export function ownershipCost(b: CostBike, inp: CostInput) {
   const part = (needle: string) => b.parts.find((p) => p.name.toLowerCase().includes(needle))?.priceBDT;
   const pad = part("brake") ?? 600;
   const brakes = (km / W.frontPads) * pad + (km / W.rearPads) * (b.brakes.rear === "disc" ? pad : pad * 0.6);
-  // EVs (hub-motor): no chain, clutch, air filter, spark plug or 12 V battery. shortcut: traction-battery wear is not modelled; add it once a BD replacement price is sourced.
+  // EVs (hub-motor): no chain, clutch, air filter, spark plug or 12 V battery; the traction battery is its own line (evBattery).
   const chain = ev ? 0 : (km / W.chain) * (part("chain") ?? 2500) + (b.gears > 0 ? (km / 1000) * W.chainLubePer1000 : 0);
   const tyres = (km / W.tyres) * (b.tyrePairBDT ?? TYRE_PAIR[b.category]);
   const clutch = ev ? 0 : (km / W.clutch) * (part("clutch") ?? 1800);
@@ -177,6 +191,8 @@ export function ownershipCost(b: CostBike, inp: CostInput) {
   const wear = brakes + chain + tyres + clutch + filters + battery;
   const oh = inp.years >= OVERHAUL_YEARS ? overhaulCost(b, km) : null;
   const overhaul = oh?.total ?? 0;
+  const evb = evBatteryCost(b, inp.years, buyingUsed);
+  const evBattery = evb?.cost ?? 0;
   const upkeep = inp.upkeepPerMonth * months;
 
   const reg = registrationFor(b.engine.cc);
@@ -192,7 +208,7 @@ export function ownershipCost(b: CostBike, inp: CostInput) {
   const resaleValue = Math.round(price * Math.pow(yearlyRetention(b), inp.years));
   const depreciation = inp.includeDepreciation ? price - resaleValue : 0;
 
-  const running = fuel + service + wear + overhaul + upkeep + hiddenRepairs + insurance;
+  const running = fuel + service + wear + overhaul + evBattery + upkeep + hiddenRepairs + insurance;
   const total = running + paperwork + depreciation;
 
   return {
@@ -201,6 +217,7 @@ export function ownershipCost(b: CostBike, inp: CostInput) {
     service,
     wear,
     overhaul,
+    evBattery,
     upkeep,
     hiddenRepairs,
     paperwork,
@@ -222,6 +239,7 @@ export function ownershipCost(b: CostBike, inp: CostInput) {
       services,
       wear: { brakes, chain, tyres, clutch, filters, battery },
       overhaul: oh,
+      evBattery: evb,
       reg,
       renewals,
       roadTax: ROAD_TAX_2YR(b.engine.cc),

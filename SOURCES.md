@@ -10,13 +10,14 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 
 | Site | References |
 | --- | ---: |
-| bikebd.com | 223 |
+| bikebd.com | 231 |
 | bikroy.com | 88 |
 | bajajauto.com | 31 |
 | bdhonda.com | 26 |
 | suzuki.com.bd | 23 |
 | heromotocorp.com | 12 |
 | motorcyclevalley.com | 11 |
+| waltonbd.com | 9 |
 | motorcyclebd.com | 8 |
 | royalenfield.com | 8 |
 | motorcycle.com.bd | 6 |
@@ -28,25 +29,24 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 | bongshal.com | 3 |
 | bikepartsbd.com | 3 |
 | banglarbike.com | 3 |
-| waltonbd.com | 3 |
 | mrp.com.bd | 2 |
 | deshibiker.com | 2 |
 | bikestall.com | 2 |
 | yamahabd.com | 2 |
 | motorcyclefair.com | 2 |
+| thedailystar.net | 2 |
 | banglamotor.net | 1 |
 | motobikebd.com | 1 |
 | online91.thedailystar.net | 1 |
 | suzukicycles.org | 1 |
 | amarujala.com | 1 |
 | bdbiker.com | 1 |
-| thedailystar.net | 1 |
 | waltondigitech.com | 1 |
 | bikebros.co.jp | 1 |
 | observerbd.com | 1 |
 | en.wikipedia.org | 1 |
 
-**Primary price source** (the `priceSource` of each bike): bikebd.com 52 (50%), bikroy.com 14 (14%), bajajauto.com 10 (10%), bdhonda.com 10 (10%), suzuki.com.bd 8 (8%), heromotocorp.com 4 (4%), royalenfield.com 4 (4%), waltonbd.com 1 (1%).
+**Primary price source** (the `priceSource` of each bike): bikebd.com 54 (50%), bikroy.com 14 (13%), bajajauto.com 10 (9%), bdhonda.com 10 (9%), suzuki.com.bd 8 (7%), heromotocorp.com 4 (4%), royalenfield.com 4 (4%), waltonbd.com 3 (3%).
 
 ## Bike data — per bike
 
@@ -340,6 +340,17 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - Price: https://www.bikebd.com/price/lifan-glint-100
   - https://www.bikebd.com/price/lifan-glint-100/specifications
 
+### Revoo
+
+- **C32-Y** — ৳1,34,900 as of 2026-10
+  - Price: https://bikebd.com/price/revoo-c32-y/color
+  - https://www.bikebd.com/ev/revoo-c32-y/specifications
+  - https://www.bikebd.com/ev/revoo-c32-y
+- **A12-S** — ৳1,05,900 as of 2026-10
+  - Price: https://bikebd.com/price/revoo-a12-s/specifications
+  - https://www.bikebd.com/ev/revoo-a12-s/specifications
+  - https://www.thedailystar.net/tech-startup/news/revoo-a10-and-a12-electric-bikes-launched-bangladesh-3843171
+
 ### Royal Enfield
 
 - **Hunter 350** (Metro Rebel (Dual Channel ABS)) — ৳3,71,500 as of 2026-10
@@ -517,6 +528,13 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://waltonbd.com/takyon
   - https://www.waltondigitech.com/news/countrys-first-brta-approved-walton-e-bike-hits-market-km-cost-10-15-paisa
   - https://www.dhakatribune.com/business/408101/walton-offers-up-to-tk9-600-discount-on-takyon
+- **Takyon 1.00** (38Ah) — ৳1,59,999 as of 2026-10
+  - Price: https://waltonbd.com/takyon/takyon-1-00-38ah
+  - https://waltonbd.com/takyon
+  - https://www.bikebd.com/ev-brand/walton
+- **Takyon Fusion 1.00 Swift** — ৳1,17,000 as of 2026-10
+  - Price: https://waltonbd.com/takyon/takyon-fusion-1-00-swift
+  - https://waltonbd.com/takyon
 
 ### Yamaha
 

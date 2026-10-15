@@ -37,6 +37,7 @@ export function Footer({ count, latest }: { count: number; latest: string }) {
               {lang === "bn" ? CATEGORIES[c].bn : CATEGORIES[c].en}
             </FLink>
           ))}
+          <FLink href="/spotlight/">{tx("Bike spotlights", "বাইক স্পটলাইট")}</FLink>
         </FooterCol>
         <FooterCol title={tx("New bike owner", "নতুন বাইক নিয়ে কী করবেন")}>
           <FLink href="/owner/">{tx("What to do after buying", "কেনার পর কী করবেন")}</FLink>

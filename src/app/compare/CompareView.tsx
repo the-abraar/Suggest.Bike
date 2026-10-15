@@ -10,7 +10,7 @@ import { isUsedOption } from "@/lib/match";
 import { OfferTag } from "@/components/Dated";
 import { pairHref, popularPairs } from "@/lib/curated";
 import { langHref } from "@/lib/site";
-import { compareIds, useStore, MAX_COMPARE } from "@/lib/store";
+import { compareStart, useStore, MAX_COMPARE } from "@/lib/store";
 import { useLang, useTx } from "@/lib/i18n";
 import type { Bike, BikeLite, ScoreKey } from "@/lib/types";
 import { BikeArt } from "@/components/BikeArt";
@@ -30,15 +30,15 @@ function Compare({ params, pair }: { params: URLSearchParams; pair?: string[] })
   const [ids, setIds] = useState<string[]>(pair ?? []);
   const [ownsTray, setOwnsTray] = useState(false);
 
-  // URL wins on first load; otherwise fall back to the compare tray. A shared link fills the tray only when it is empty
-  // (or already the same bikes), so opening one never replaces the visitor's own picks (critique B7).
+  // The URL decides what is shown; with no bikes in it, this tab's tray fills it (sessionStorage, so never a pair from an
+  // earlier visit) and the address is updated to match. A shared link seeds the tray only when that is safe (critique B7).
   useEffect(() => {
     if (!ready) return;
-    const fromUrl = compareIds((params.get("bikes") || "").split(","));
-    const owns = !fromUrl.length || !compare.length || fromUrl.join() === compare.join();
-    setIds(fromUrl.length ? fromUrl : compare);
-    setOwnsTray(owns);
-    if (owns && fromUrl.length) setCompare(fromUrl);
+    const start = compareStart(params.get("bikes"), compare);
+    setIds(start.ids);
+    setOwnsTray(start.ownsTray);
+    if (start.seedTray) setCompare(start.ids);
+    if (start.fromTray && !pair) window.history.replaceState(null, "", `${window.location.pathname}?bikes=${start.ids.join(",")}`);
   }, [ready, params]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const update = (next: string[]) => {

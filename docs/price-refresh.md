@@ -34,14 +34,14 @@ It never deploys. `deploy.yml` runs only on a push to `main` or by hand, and Git
 | Suzuki (Rancon) | `suzuki.com.bd/bikes`, "start from" price per model | 9 |
 | Hero (HMCL Niloy) | `heromotocorp.com/en-bd/products/<type>/<model>-price-in-bangladesh.html` | 9 |
 | Royal Enfield (IFAD) | `royalenfield.com/bd/en/motorcycles/<model>/` | 2 (Hunter, Bullet) |
-| Walton | `waltonbd.com/<model>` | 1 |
+| Walton | `waltonbd.com/<model>` and `waltonbd.com/takyon/<model>` | 3 (Fusion 25TD, Takyon 1.00, Fusion 1.00 Swift) |
 
 Not covered automatically. These stay on the owner checklist:
 
 - **Royal Enfield Classic 350 and Meteor 350; Suzuki Gixxer FI ABS and its FI variants.** Their official pages load prices in the browser, so the HTML has none. Check the official page in a browser.
 - **Hero Splendor+.** Hero lists the model, but no BD price page was found.
 - **Bajaj Avenger 160, Suzuki V-Strom SX 250.** They are not on the distributor's BD list. The PR flags them every month until the data changes.
-- **TVS, Yamaha, KTM, Runner, Lifan, GPX, Haojue, Zontes, Vespa, Aprilia.** No official BD price page is parsed. Prices come from BikeBD.
+- **TVS, Yamaha, KTM, Runner, Lifan, GPX, Haojue, Zontes, Vespa, Aprilia, Revoo.** No official BD price page is parsed. Prices come from BikeBD.
 - **Used-only bikes (Bikroy and others).** Bikroy's and BikeBD's terms and robots rules forbid scraping, so no script may fetch them. Open them in a browser.
 
 ## What the owner does each month (2-3 hours)

@@ -23,6 +23,7 @@ const SEGMENTS = [
   { k: "service", en: "Servicing", bn: "সার্ভিসিং", color: "#4f8fd6" },
   { k: "wear", en: "Wear parts", bn: "ক্ষয়যোগ্য পার্টস", color: "#d99a2b" },
   { k: "overhaul", en: "Major overhaul (estimate)", bn: "বড় ওভারহল (আনুমানিক)", color: "#a0522d" },
+  { k: "evBattery", en: "EV battery replacement (estimate)", bn: "EV ব্যাটারি বদল (আনুমানিক)", color: "#3a7a8a" },
   { k: "upkeep", en: "Washing & parking", bn: "ধোয়া ও পার্কিং", color: "#c46f9e" },
   { k: "hiddenRepairs", en: "Hidden used-bike repairs", bn: "পুরনো বাইকের লুকানো মেরামত", color: "#7a8a3a" },
   { k: "paperwork", en: "BRTA paperwork", bn: "BRTA কাগজপত্র", color: "#8b6fd1" },
@@ -289,7 +290,7 @@ function Cost({ params }: { params: URLSearchParams }) {
               <div className="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-2">
                 {SEGMENTS.map((s) => {
                   const v = c[s.k];
-                  if (s.k === "overhaul" && !v) return null;
+                  if ((s.k === "overhaul" || s.k === "evBattery") && !v) return null;
                   const note = how[s.k as keyof typeof how];
                   return (
                     <div key={s.k} className={`flex items-center justify-between gap-3 text-[14.5px]`}>
@@ -477,6 +478,12 @@ function explain(c: CostBreakdown, bike: BikeLite, inp: CostInput, tx: Tx): Part
       ? tx(
           `One big repair over 10 years of ${inp.kmPerDay} km/day (${n(c.km)} km) with some highway trips, some misuse and missed services: engine top-end/rebuild ${formatBDT(o.engine)}, extra clutch plates ${formatBDT(o.clutch)}, suspension rebuild ${formatBDT(o.suspension)}, possible frame straightening ${formatBDT(o.frame)}, wiring ${formatBDT(o.wiring)}. Scaled ×${o.partsFactor.toFixed(2)} for this bike's parts prices and ×${o.kmFactor.toFixed(2)} for distance vs 30 km/day. Estimate.`,
           `১০ বছরে দিনে ${inp.kmPerDay} km (${n(c.km)} km), মাঝে মাঝে হাইওয়ে ট্যুর, কিছু অযত্ন আর বাদ পড়া সার্ভিস ধরে একটা বড় মেরামত: ইঞ্জিন টপ-এন্ড/রিবিল্ড ${formatBDT(o.engine)}, বাড়তি ক্লাচ প্লেট ${formatBDT(o.clutch)}, সাসপেনশন রিবিল্ড ${formatBDT(o.suspension)}, দরকার হলে ফ্রেম সোজা করা ${formatBDT(o.frame)}, ওয়্যারিং ${formatBDT(o.wiring)}। এই বাইকের পার্টসের দামে ×${o.partsFactor.toFixed(2)} আর দিনে 30 km-এর তুলনায় দূরত্বে ×${o.kmFactor.toFixed(2)}। আনুমানিক।`,
+        )
+      : undefined,
+    evBattery: d.evBattery?.due
+      ? tx(
+          `One new traction battery at 30% × ${formatBDT(bike.priceBDT)} new price = ${formatBDT(c.evBattery)}, because ${inp.years} year${inp.years === 1 ? "" : "s"} runs past the ${d.evBattery.warrantyMonths}-month battery warranty${d.evBattery.assumed ? " (assumed; makers quote 3–5 years)" : ""}${c.buyingUsed ? ", counting a used bike as ~3 years old" : ""}. Estimate.`,
+          `নতুন দাম ${formatBDT(bike.priceBDT)}-এর 30% = ${formatBDT(c.evBattery)}-এ একটি নতুন ব্যাটারি, কারণ ${inp.years} বছর ব্যাটারির ${d.evBattery.warrantyMonths} মাসের ওয়ারেন্টি${d.evBattery.assumed ? " (ধরে নেওয়া; কোম্পানিগুলো 3–5 বছর বলে)" : ""} পার হয়ে যায়${c.buyingUsed ? ", পুরনো বাইককে ~৩ বছরের ধরে" : ""}। আনুমানিক।`,
         )
       : undefined,
     hiddenRepairs: c.buyingUsed

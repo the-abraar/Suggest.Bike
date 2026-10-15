@@ -61,6 +61,23 @@ Offers live in `src/data/offers.json` (your editor autocompletes the fields from
 
 Then run `npm run validate`: it fails on unknown bike ids, bad dates, `endsOn` before `startsOn`, a discount that isn't cheaper or a `regularPriceBDT` that is not the bike's `priceBDT`, and only warns about offers that have ended (delete those when convenient). The matcher keeps ranking on the regular price.
 
+## How to approve a comment
+
+Comments on `/spotlight/` posts arrive the same way as feedback: in the Formspree inbox (or as an email to `hello@suggest.bike` while `FORM_ENDPOINT` is empty), with the subject "Comment: <post title>". Each has the post slug, a name, an email and the text. Nothing appears on the site until you add it.
+
+1. Read it. Skip spam, insults, phone numbers, and anything that names or accuses a private person or a specific showroom without proof.
+2. Open `src/data/comments.json` and add one entry per approved comment:
+   `{ "post": "hero-hf-deluxe-best-mileage", "name": "Rafi", "date": "2026-10-20", "text": "Getting 65 km/l in Mirpur traffic." }`
+   `post` is the slug from the message; `date` is the day you approve it. **Never copy the email.** Fix nothing in the text except removing a phone number or email.
+3. Run `npm test` (it rejects a wrong slug, an extra field or an email address in the text), commit and push. The comment shows after the deploy.
+4. To remove a comment later (someone asks), delete its entry and push.
+
+## Weekly spotlight
+
+- [ ] **Each week:** the agent drafts 5 new bike spotlights (see `Todo_agent.md`, "Weekly spotlight"). Read them, check the prices against the showroom like any Facebook post, then share the week on Facebook. Week 1 (2026-10-15): Lifan Glint 100, Hero HF Deluxe, Yamaha FZS FI V4, Suzuki GSX-R150, Royal Enfield Meteor 350.
+- [ ] **Proofread the Bangla** of the Week 1 spotlights.
+- [ ] **Later: pick an email OTP service** for commenters (needed before owner reviews; the site is static, so it must be a hosted service). Tell the agent which one.
+
 ## Growth
 
 - [ ] **Facebook first.** BD bike culture lives in Facebook groups (BikeBD Official, BD BikerZ, brand owner clubs). Seed it with genuinely useful posts: "true monthly cost of the 5 most popular 150cc bikes", shared as images with a link.

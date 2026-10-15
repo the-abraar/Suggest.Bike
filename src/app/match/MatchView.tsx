@@ -38,10 +38,14 @@ import {
   onRoadPrice,
   stretchPicks,
   withCash,
+  KINDS,
   type Answers,
+  type Kind,
   type Band,
   type Match,
   type Priority,
+  LOOK_IDS,
+  type Look,
   type Use,
   type Where,
 } from "@/lib/match";
@@ -82,6 +86,16 @@ const PRIORITIES: Opt<Priority>[] = [
   { id: "safety", en: "Safety (ABS)", bn: "নিরাপত্তা (ABS)" },
   { id: "style", en: "Looks & style", bn: "লুক ও স্টাইল" },
   { id: "price", en: "Lowest price", bn: "সবচেয়ে কম দাম" },
+];
+
+// Examples are bikes in bikes.json under the categories LOOKS maps each look to.
+const LOOK_OPTS: Opt<Look>[] = [
+  { id: "sport", en: "Sporty, faired", bn: "স্পোর্টি, ফেয়ারিংওয়ালা", sub: "R15, GSX-R150, Gixxer SF, CBR150R" },
+  { id: "naked", en: "Naked / street", bn: "নেকেড / স্ট্রিট", sub: "Gixxer, Hornet 2.0, MT-15, Pulsar N160" },
+  { id: "cruiser", en: "Cruiser", bn: "ক্রুজার", sub: "Avenger 160, Meteor 350, Rebel 250" },
+  { id: "classic", en: "Classic / retro", bn: "ক্লাসিক / রেট্রো", sub: "Royal Enfield, XSR155, CG125" },
+  { id: "adventure", en: "Adventure", bn: "অ্যাডভেঞ্চার", sub: "XPulse 200, V-Strom SX, NX200" },
+  { id: "scooter", en: "Scooter", bn: "স্কুটার", sub: "NTorq, Aerox 155, Vespa" },
 ];
 
 const STEPS = 7;
@@ -189,17 +203,26 @@ function Matchmaker({ params }: { params: URLSearchParams }) {
           </Question>
         )}
         {step === 3 && (
-          <Question title={tx("Gears or gearless?", "গিয়ার নাকি গিয়ারলেস?")} sub={tx("Scooters are easier in jams; geared bikes go further on highways.", "জ্যামে স্কুটার সহজ; হাইওয়েতে গিয়ার বাইক ভালো।")}>
+          <Question title={tx("What kind of bike do you want?", "কেমন বাইক চান?")} sub={tx("Pick one or more; we rank them together.", "এক বা একাধিক বাছুন; আমরা একসাথে র‍্যাঙ্ক করি।")}>
             <div className="grid gap-3 sm:grid-cols-3">
               {(
                 [
-                  { id: "either", en: "Show me both", bn: "দুটোই দেখান", sub: "I'm open — ranked together", subBn: "দুটোতেই রাজি — একসাথে র‍্যাঙ্ক" },
-                  { id: "no", en: "Geared only", bn: "শুধু গিয়ার", sub: "Filter: hides all scooters", subBn: "ফিল্টার: সব স্কুটার বাদ" },
-                  { id: "yes", en: "Scooters only", bn: "শুধু স্কুটার", sub: "Filter: hides geared bikes", subBn: "ফিল্টার: গিয়ার বাইক বাদ" },
-                ] as Opt<Answers["gearless"]>[]
-              ).map((o) => (
-                <OptionCard key={o.id} active={a.gearless === o.id} onClick={() => pickAndNext("gearless", o.id)} opt={o} />
-              ))}
+                  { id: "motorcycle", en: "Motorcycles", bn: "মোটরসাইকেল", sub: "Geared petrol bikes; go further on highways", subBn: "গিয়ারওয়ালা পেট্রোল বাইক; হাইওয়েতে ভালো" },
+                  { id: "scooter", en: "Scooters", bn: "স্কুটার", sub: "Gearless petrol; easier in jams", subBn: "গিয়ারলেস পেট্রোল; জ্যামে সহজ" },
+                  { id: "ev", en: "Electric (EV)", bn: "ইলেকট্রিক (EV)", sub: "Cheap to run; plan where you'll charge", subBn: "চালানো সস্তা; কোথায় চার্জ দেবেন ভেবে নিন" },
+                ] as Opt<Kind>[]
+              ).map((o) => {
+                const on = a.kinds.includes(o.id);
+                return (
+                  <OptionCard
+                    key={o.id}
+                    active={on}
+                    // At least one kind stays selected, or nothing could match.
+                    onClick={() => (on ? a.kinds.length > 1 && set("kinds", a.kinds.filter((k) => k !== o.id)) : set("kinds", KINDS.filter((k) => k === o.id || a.kinds.includes(k))))}
+                    opt={o}
+                  />
+                );
+              })}
             </div>
           </Question>
         )}
@@ -272,6 +295,18 @@ function Matchmaker({ params }: { params: URLSearchParams }) {
                 );
               })}
             </div>
+            {a.priorities.includes("style") && (
+              <div className="mt-8">
+                <h2 className="text-[17px] font-semibold text-ink">{tx("Which look do you like?", "কেমন লুক পছন্দ?")}</h2>
+                <p className="mt-1 text-[14px] text-muted">{tx("Pick any. None picked = any good-looking bike.", "যতগুলো খুশি বাছুন। কিছু না বাছলে যেকোনো সুন্দর বাইক।")}</p>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  {LOOK_OPTS.map((o) => {
+                    const on = a.looks.includes(o.id);
+                    return <OptionCard key={o.id} compact active={on} opt={o} onClick={() => set("looks", LOOK_IDS.filter((l) => (l === o.id ? !on : a.looks.includes(l))))} />;
+                  })}
+                </div>
+              </div>
+            )}
           </Question>
         )}
       </div>
@@ -506,7 +541,7 @@ function Results({ a: asked, onEdit, onRestart }: { a: Answers; onEdit: (step: n
         </EditChip>
         <EditChip onClick={() => onEdit(1)}>{lang === "bn" ? use.bn : use.en}</EditChip>
         {HAS_NETWORKS && <EditChip onClick={() => onEdit(2)}>{lang === "bn" ? where.bn : where.en}</EditChip>}
-        <EditChip onClick={() => onEdit(3)}>{a.gearless === "yes" ? tx("Scooters only", "শুধু স্কুটার") : a.gearless === "no" ? tx("Geared only", "শুধু গিয়ার") : tx("Geared or scooter", "গিয়ার বা স্কুটার")}</EditChip>
+        <EditChip onClick={() => onEdit(3)}>{a.kinds.map((k) => ({ motorcycle: tx("Motorcycles", "মোটরসাইকেল"), scooter: tx("Scooters", "স্কুটার"), ev: tx("EVs", "ইলেকট্রিক") })[k]).join(" · ")}</EditChip>
         <EditChip onClick={() => onEdit(4)}>
           {lang === "bn"
             ? `${{ short: "৫′৫″ এর কম", medium: "৫′৫″–৫′৯″", tall: "৫′৯″ এর বেশি" }[a.height]} · ${{ first: "প্রথম বাইক", some: "কিছু অভিজ্ঞতা", pro: "অভিজ্ঞ" }[a.experience]}`
@@ -516,6 +551,11 @@ function Results({ a: asked, onEdit, onRestart }: { a: Answers; onEdit: (step: n
           {tx("Pillion", "পিলিয়ন")}: {lang === "bn" ? { rarely: "কদাচিৎ", sometimes: "মাঝে মাঝে", daily: "প্রতিদিন" }[a.pillion] : a.pillion}
         </EditChip>
         {a.priorities.length > 0 && <EditChip onClick={() => onEdit(6)}>{a.priorities.map((p) => tx(PRIORITIES.find((x) => x.id === p)!.en, PRIORITIES.find((x) => x.id === p)!.bn)).join(", ")}</EditChip>}
+        {a.priorities.includes("style") && a.looks.length > 0 && (
+          <EditChip onClick={() => onEdit(6)}>
+            {tx("Look", "লুক")}: {a.looks.map((l) => tx(LOOK_OPTS.find((x) => x.id === l)!.en, LOOK_OPTS.find((x) => x.id === l)!.bn)).join(", ")}
+          </EditChip>
+        )}
       </div>
 
       {needCash > 0 && (

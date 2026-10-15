@@ -114,6 +114,8 @@ export const OFFICIAL: [string, string, string, string][] = [
   ["suzuki-gsx-r150", "", "https://www.suzuki.com.bd/bikes", "GSX-R150"],
   ["suzuki-access-125", "", "https://www.suzuki.com.bd/bikes", "ACCESS 125"],
   ["walton-takyon-fusion-25td", "", "https://waltonbd.com/takyon-fusion-25td", ""],
+  ["walton-takyon-1-00", "", "https://waltonbd.com/takyon/takyon-1-00-38ah", ""],
+  ["walton-takyon-fusion-swift", "", "https://waltonbd.com/takyon/takyon-fusion-1-00-swift", ""],
 ];
 
 export type Check = { id: string; variant: string; url: string; row: string; old: number; now?: number; status: "same" | "changed" | "suspect" | "missing" | "error"; note: string };
