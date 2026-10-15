@@ -105,3 +105,7 @@ When a redesign breaks a parser, every row for that host shows `missing: ... pag
 3. Update the expected rows in `tests/price-refresh.test.ts`, then run `npm test`.
 
 Adding a bike priced from an official page: add a row to `OFFICIAL`. `npm test` fails if one is missing or names an unknown bike or variant.
+
+## BikeBD diff report
+
+`npm run diff:bikebd -- --out report.md` (`scripts/bikebd-diff.ts`) re-reads every bike whose `priceSource` is a bikebd.com page (54 on 2026-10-15) and writes a Markdown table: our price, BikeBD's JSON-LD Offer price, the change, and pages it could not read. It changes no data and opens no PR. It honours robots.txt and waits 2 s between requests (about 2 minutes). First run, 2026-10-15: 43 match, 2 differ (`ktm-rc-125` ৳4,43,000 vs ৳3,70,000; `gpx-demon-gr165r` ৳3,14,999 vs ৳3,24,000), 9 pages carry no Offer price.

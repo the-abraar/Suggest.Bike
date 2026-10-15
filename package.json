@@ -16,6 +16,7 @@
     "test": "tsx --test tests/*.test.ts",
     "audit:prices": "node scripts/price-audit.mjs",
     "refresh:prices": "tsx scripts/price-refresh.ts",
+    "diff:bikebd": "tsx scripts/bikebd-diff.ts",
     "og:bn": "tsx scripts/bn-og.mts"
   },
   "dependencies": {

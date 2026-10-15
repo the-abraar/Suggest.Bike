@@ -225,13 +225,13 @@ export function robotsAllows(robots: string, path: string) {
 }
 
 /** Live fetcher: honours robots.txt, sends a clear User-Agent and waits DELAY_MS between requests. */
-function liveGet(): Get {
+export function liveGet(ua = UA): Get {
   const robots = new Map<string, string>();
   let last = 0;
   const fetchText = async (url: string) => {
     await new Promise((r) => setTimeout(r, Math.max(0, last + DELAY_MS - Date.now())));
     last = Date.now();
-    const res = await fetch(url, { headers: { "user-agent": UA }, redirect: "follow", signal: AbortSignal.timeout(30_000) });
+    const res = await fetch(url, { headers: { "user-agent": ua }, redirect: "follow", signal: AbortSignal.timeout(30_000) });
     return { status: res.status, body: res.ok ? await res.text() : "" };
   };
   // No robots.txt (4xx) allows everything; an unreachable one (5xx, network) blocks the host for this run, as crawlers do.
