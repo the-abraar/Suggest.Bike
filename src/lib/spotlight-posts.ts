@@ -40,6 +40,11 @@ const FZS = "yamaha-fzs-fi-v4";
 const GSXR = "suzuki-gsx-r150";
 const METEOR = "royal-enfield-meteor-350";
 const fzsUsed = bike(FZS).usedPrice;
+const SPLENDOR = "hero-splendor-plus";
+const SHINE = "honda-shine-100";
+const DREAM = "honda-dream-110";
+const RAIDER = "tvs-raider-125";
+const R15 = "yamaha-r15-v4";
 
 export const SPOTLIGHTS: Spotlight[] = [
   {
@@ -308,6 +313,271 @@ export const SPOTLIGHTS: Spotlight[] = [
       [
         `Mileage ${kmpl(METEOR)} km/l. The Classic 350 costs ${gap(METEOR, "royal-enfield-classic-350")} less on the road and resells better (${sc("royal-enfield-classic-350").resale}/10 vs ${sc(METEOR).resale}/10), but it is a step down for long rides. Registration for bikes above 165cc is our least certain cost; check it with the dealer.`,
         `মাইলেজ ${kmpl(METEOR)} কিমি/লি। Classic 350 অন-রোড ${gap(METEOR, "royal-enfield-classic-350")} কম আর রিসেল ভালো (${sc("royal-enfield-classic-350").resale}/১০ বনাম ${sc(METEOR).resale}/১০), কিন্তু দূরের পথে এক ধাপ পিছিয়ে। ১৬৫সিসির বেশি বাইকের রেজিস্ট্রেশন খরচ আমাদের সবচেয়ে অনিশ্চিত হিসাব; ডিলারের কাছে মিলিয়ে নিন।`,
+      ],
+    ],
+  },
+  {
+    slug: "hero-splendor-plus-best-value",
+    bestCase: { use: "commute", where: "town", experience: "first", pillion: "sometimes", priorities: ["resale", "price"] },
+    week: 2,
+    updated: "2026-10-15",
+    minutes: 4,
+    bike: SPLENDOR,
+    rival: "bajaj-platina-100",
+    wins: ["Value for money", "টাকার সেরা মূল্য"],
+    title: ["Hero Splendor+: the most bike per taka", "Hero Splendor+: প্রতি টাকায় সবচেয়ে বেশি বাইক"],
+    summary: [
+      `Top reliability, top resale and some of the lowest running costs on our list, for ${road(SPLENDOR)} on the road. Slow and basic, and that is the deal.`,
+      `আমাদের তালিকার সেরা নির্ভরযোগ্যতা, সেরা রিসেল আর প্রায় সবচেয়ে কম চালানোর খরচ, অন-রোড ${road(SPLENDOR)}-এ। ধীর আর সাধারণ, এটাই চুক্তি।`,
+    ],
+    why: [
+      [
+        `Reliability ${sc(SPLENDOR).reliability}/10 and resale ${sc(SPLENDOR).resale}/10. Only the FZS FI V4 and the R15 V4 match that resale among new bikes, and both cost far more.`,
+        `নির্ভরযোগ্যতা ${sc(SPLENDOR).reliability}/১০, রিসেল ${sc(SPLENDOR).resale}/১০। নতুন বাইকের মধ্যে এই রিসেল আছে শুধু FZS FI V4 আর R15 V4-এর, যাদের দাম অনেক বেশি।`,
+      ],
+      [
+        `Cheap to run: ${kmpl(SPLENDOR)} km/l real-world, a service every ${bike(SPLENDOR).serviceIntervalKm.toLocaleString("en-IN")} km at about ${formatBDT(bike(SPLENDOR).avgServiceCostBDT)}, mechanic familiarity ${sc(SPLENDOR).mechanicFamiliarity}/10 and parts ${sc(SPLENDOR).partsAvailability}/10.`,
+        `চালাতে সস্তা: বাস্তবে ${kmpl(SPLENDOR)} কিমি/লি, প্রতি ${bike(SPLENDOR).serviceIntervalKm.toLocaleString("en-IN")} কিমিতে সার্ভিস, খরচ প্রায় ${formatBDT(bike(SPLENDOR).avgServiceCostBDT)}; মেকানিক চেনে ${sc(SPLENDOR).mechanicFamiliarity}/১০, পার্টস ${sc(SPLENDOR).partsAvailability}/১০।`,
+      ],
+      [
+        `Against its usual rival, the Bajaj Platina 100: the same mileage, resale ${sc(SPLENDOR).resale}/10 vs ${sc("bajaj-platina-100").resale}/10, tubeless tyres, and ${gap(SPLENDOR, "bajaj-platina-100")} less on the road.`,
+        `সাধারণ প্রতিদ্বন্দ্বী Bajaj Platina 100-এর তুলনায়: একই মাইলেজ, রিসেল ${sc(SPLENDOR).resale}/১০ বনাম ${sc("bajaj-platina-100").resale}/১০, টিউবলেস টায়ার, আর অন-রোড ${gap(SPLENDOR, "bajaj-platina-100")} কম।`,
+      ],
+    ],
+    who: [
+      [
+        "In our quiz, with the budget set at its own on-road price, it comes first for: commuting in a district town, a first bike, a pillion now and then, with resale and lowest price as priorities.",
+        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: জেলা শহরে যাতায়াত, প্রথম বাইক, মাঝে মাঝে পেছনে একজন, আর অগ্রাধিকার রিসেল ও সবচেয়ে কম দাম।",
+      ],
+      [
+        "Buyers who want a bike that costs little, breaks rarely and sells easily, and who ride mostly in town.",
+        "যাঁরা এমন বাইক চান যার দাম কম, নষ্ট হয় কম আর সহজে বিক্রি হয়, আর যাঁরা বেশিরভাগ শহরের ভেতরে চালান।",
+      ],
+    ],
+    tradeoffs: [
+      [
+        "Check it is in stock first. Hero Bangladesh lists the model but shows no price, so our price comes from one review site. Confirm the price and stock at a showroom.",
+        "আগে স্টকে আছে কিনা দেখুন। Hero বাংলাদেশ মডেলটি দেখায় কিন্তু দাম দেখায় না, তাই আমাদের দাম একটি রিভিউ সাইট থেকে। শোরুমে দাম আর স্টক মিলিয়ে নিন।",
+      ],
+      [
+        "Drum brakes at both ends and no CBS, on thin tyres that skate in the wet. Leave a big gap in rain.",
+        "সামনে-পেছনে ড্রাম ব্রেক, CBS নেই, আর সরু টায়ার ভেজা রাস্তায় পিছলায়। বৃষ্টিতে অনেক দূরত্ব রাখুন।",
+      ],
+      [
+        `${ps(SPLENDOR)} PS and 4 gears, top speed about ${bike(SPLENDOR).topSpeedKmh} km/h. Highway ${sc(SPLENDOR).highway}/10, and it struggles on flyovers with a pillion. The HF Deluxe has the same engine for ${gap(SPLENDOR, HF)} less, with lower resale.`,
+        `${ps(SPLENDOR)} PS আর ৪টি গিয়ার, সর্বোচ্চ গতি প্রায় ${bike(SPLENDOR).topSpeedKmh} কিমি/ঘণ্টা। হাইওয়ে ${sc(SPLENDOR).highway}/১০, পেছনে কেউ থাকলে ফ্লাইওভারে কষ্ট হয়। HF Deluxe-এ একই ইঞ্জিন, দাম ${gap(SPLENDOR, HF)} কম, রিসেল কম।`,
+      ],
+    ],
+  },
+  {
+    slug: "honda-shine-100-best-for-dhaka-traffic",
+    bestCase: { use: "commute", where: "dhaka", experience: "first", priorities: ["maintenance"] },
+    week: 2,
+    updated: "2026-10-15",
+    minutes: 4,
+    bike: SHINE,
+    rival: HF,
+    wins: ["Dhaka traffic", "ঢাকার ট্রাফিক"],
+    title: ["Honda Shine 100: the easiest bike to thread through Dhaka traffic", "Honda Shine 100: ঢাকার ট্রাফিকে চালাতে সবচেয়ে সহজ বাইক"],
+    summary: [
+      `${bike(SHINE).weightKg} kg, city handling ${sc(SHINE).cityHandling}/10 and fuel injection, for ${road(SHINE)} on the road. Made for jams, not highways.`,
+      `${bike(SHINE).weightKg} কেজি, শহরে চালানো ${sc(SHINE).cityHandling}/১০ আর ফুয়েল ইনজেকশন, অন-রোড ${road(SHINE)}-এ। জ্যামের জন্য তৈরি, হাইওয়ের জন্য নয়।`,
+    ],
+    why: [
+      [
+        `Light: ${bike(SHINE).weightKg} kg, the lightest motorcycle we list (scooters aside). City handling ${sc(SHINE).cityHandling}/10, the top score, so it is easy to push, turn and stop in a jam.`,
+        `হালকা: ${bike(SHINE).weightKg} কেজি, আমাদের তালিকার সবচেয়ে হালকা মোটরসাইকেল (স্কুটার বাদে)। শহরে চালানো ${sc(SHINE).cityHandling}/১০, সর্বোচ্চ স্কোর, তাই জ্যামে ঠেলা, ঘোরানো আর থামানো সহজ।`,
+      ],
+      [
+        "Fuel injection, the only one on our list under ৳1.3 lakh. No carburettor to clean, and it copes better with bad petrol and cold starts.",
+        "ফুয়েল ইনজেকশন, আমাদের তালিকায় ১.৩ লাখের নিচে একমাত্র। কার্বুরেটর পরিষ্কারের ঝামেলা নেই, খারাপ পেট্রোল আর ঠান্ডায় স্টার্ট নিতে সুবিধা।",
+      ],
+      [
+        `Beginner-friendly ${sc(SHINE).beginnerFriendly}/10, a ${bike(SHINE).seatHeightMm} mm seat, reliability ${sc(SHINE).reliability}/10 and CBS, which brakes both wheels from the left lever.`,
+        `নতুনদের জন্য ${sc(SHINE).beginnerFriendly}/১০, ${bike(SHINE).seatHeightMm} মিমি সিট, নির্ভরযোগ্যতা ${sc(SHINE).reliability}/১০, আর CBS, যা বাম লিভারেই দুই চাকায় ব্রেক দেয়।`,
+      ],
+    ],
+    who: [
+      [
+        "In our quiz, with the budget set at its own on-road price, it comes first for: a daily commute in Dhaka, a first bike, a pillion now and then, with low maintenance as the priority.",
+        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকায় রোজকার যাতায়াত, প্রথম বাইক, মাঝে মাঝে পেছনে একজন, আর অগ্রাধিকার কম রক্ষণাবেক্ষণ।",
+      ],
+      [
+        "New riders, office commuters on short city routes, and anyone who spends more time in jams than at speed.",
+        "নতুন চালক, শহরের ছোট রুটে অফিস যাতায়াতকারী, আর যাঁরা গতির চেয়ে জ্যামে বেশি সময় কাটান।",
+      ],
+    ],
+    tradeoffs: [
+      [
+        `${ps(SHINE)} PS and 4 gears, highway ${sc(SHINE).highway}/10. Overtaking buses on a highway takes planning.`,
+        `${ps(SHINE)} PS আর ৪টি গিয়ার, হাইওয়ে ${sc(SHINE).highway}/১০। হাইওয়েতে বাস ওভারটেক করতে আগে থেকে পরিকল্পনা লাগে।`,
+      ],
+      [
+        `Drum brakes at both ends; they feel wooden with a pillion. Thin seat foam (comfort ${sc(SHINE).comfort}/10) gets tiring after an hour.`,
+        `সামনে-পেছনে ড্রাম ব্রেক; পেছনে কেউ থাকলে কম কাজ করে। পাতলা সিট (আরাম ${sc(SHINE).comfort}/১০) এক ঘণ্টা পর ক্লান্তিকর।`,
+      ],
+      [
+        `Mileage ${kmpl(SHINE)} km/l, against ${kmpl(HF)} km/l for the Hero HF Deluxe, which also resells better (${sc(HF).resale}/10 vs ${sc(SHINE).resale}/10) and costs ${gap(SHINE, HF)} more on the road.`,
+        `মাইলেজ ${kmpl(SHINE)} কিমি/লি; Hero HF Deluxe-এর ${kmpl(HF)} কিমি/লি, তার রিসেলও ভালো (${sc(HF).resale}/১০ বনাম ${sc(SHINE).resale}/১০), দাম অন-রোড ${gap(SHINE, HF)} বেশি।`,
+      ],
+    ],
+  },
+  {
+    slug: "honda-dream-110-most-reliable",
+    bestCase: { use: "mixed", where: "town", pillion: "sometimes", priorities: ["maintenance", "safety"] },
+    week: 2,
+    updated: "2026-10-15",
+    minutes: 4,
+    bike: DREAM,
+    rival: "honda-livo-110",
+    wins: ["Reliability", "নির্ভরযোগ্যতা"],
+    title: ["Honda Dream 110: the bike that just keeps going", "Honda Dream 110: যে বাইক থামতে জানে না"],
+    summary: [
+      `Reliability ${sc(DREAM).reliability}/10 with mechanic familiarity ${sc(DREAM).mechanicFamiliarity}/10, for ${road(DREAM)} on the road. Plain to look at, easy to keep alive anywhere.`,
+      `নির্ভরযোগ্যতা ${sc(DREAM).reliability}/১০, মেকানিক চেনে ${sc(DREAM).mechanicFamiliarity}/১০, অন-রোড ${road(DREAM)}-এ। দেখতে সাধারণ, যেকোনো জায়গায় সচল রাখা সহজ।`,
+    ],
+    why: [
+      [
+        `One of only three bikes on our list with top reliability (${sc(DREAM).reliability}/10) and top mechanic familiarity (${sc(DREAM).mechanicFamiliarity}/10). The other two are Hero's 97cc pair.`,
+        `আমাদের তালিকায় মাত্র তিনটি বাইকের সর্বোচ্চ নির্ভরযোগ্যতা (${sc(DREAM).reliability}/১০) আর সর্বোচ্চ মেকানিক পরিচিতি (${sc(DREAM).mechanicFamiliarity}/১০) দুটোই আছে। বাকি দুটি Hero-র ৯৭সিসি জুটি।`,
+      ],
+      [
+        `A simple ${bike(DREAM).engine.cc}cc carburettor engine with ${ps(DREAM)} PS, a little more pull than the 100s. Parts availability ${sc(DREAM).partsAvailability}/10, and a service costs about ${formatBDT(bike(DREAM).avgServiceCostBDT)}.`,
+        `সহজ ${bike(DREAM).engine.cc}সিসি কার্বুরেটর ইঞ্জিন, ${ps(DREAM)} PS, ১০০সিসির চেয়ে একটু বেশি টান। পার্টস পাওয়া ${sc(DREAM).partsAvailability}/১০, প্রতি সার্ভিসে খরচ প্রায় ${formatBDT(bike(DREAM).avgServiceCostBDT)}।`,
+      ],
+      [
+        `A low ${bike(DREAM).seatHeightMm} mm seat, ${bike(DREAM).weightKg} kg, CBS and tubeless tyres. Beginner-friendly ${sc(DREAM).beginnerFriendly}/10.`,
+        `নিচু ${bike(DREAM).seatHeightMm} মিমি সিট, ${bike(DREAM).weightKg} কেজি, CBS আর টিউবলেস টায়ার। নতুনদের জন্য ${sc(DREAM).beginnerFriendly}/১০।`,
+      ],
+    ],
+    who: [
+      [
+        "In our quiz, with the budget set at its own on-road price, it comes first for: a mix of town and highway riding from a district town, a pillion now and then, with low maintenance and safety as priorities.",
+        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: জেলা শহর থেকে শহর আর হাইওয়ে মিলিয়ে চালানো, মাঝে মাঝে পেছনে একজন, আর অগ্রাধিকার কম রক্ষণাবেক্ষণ ও নিরাপত্তা।",
+      ],
+      [
+        "Riders far from a dealer who need any mechanic to fix it, and anyone who wants years of daily use with no surprises.",
+        "যাঁরা ডিলার থেকে দূরে থাকেন আর যেকোনো মেকানিকের হাতে সারাতে চান, আর যাঁরা বছরের পর বছর ঝামেলা ছাড়া রোজ চালাতে চান।",
+      ],
+    ],
+    tradeoffs: [
+      [
+        "The carburettor needs cleaning and tuning now and then, more often after bad petrol.",
+        "কার্বুরেটর মাঝে মাঝে পরিষ্কার আর টিউন করতে হয়, খারাপ পেট্রোলের পর আরও ঘন ঘন।",
+      ],
+      [
+        `Drum brakes at both ends, 4 gears, and vibration above 70 km/h. Highway ${sc(DREAM).highway}/10, comfort ${sc(DREAM).comfort}/10.`,
+        `সামনে-পেছনে ড্রাম ব্রেক, ৪টি গিয়ার, আর ৭০ কিমি/ঘণ্টার ওপরে কাঁপুনি। হাইওয়ে ${sc(DREAM).highway}/১০, আরাম ${sc(DREAM).comfort}/১০।`,
+      ],
+      [
+        `Plain, dated looks and resale ${sc(DREAM).resale}/10. The Livo 110 has the same engine size and a front disc for ${gap(DREAM, "honda-livo-110")} more on the road.`,
+        `সাধারণ, পুরনো ধাঁচের লুক আর রিসেল ${sc(DREAM).resale}/১০। Livo 110-এ একই সিসির ইঞ্জিন আর সামনে ডিস্ক, অন-রোড ${gap(DREAM, "honda-livo-110")} বেশি।`,
+      ],
+    ],
+  },
+  {
+    slug: "tvs-raider-125-best-for-broken-roads",
+    bestCase: { use: "rough", where: "dhaka", experience: "some", pillion: "rarely", priorities: ["performance", "resale"] },
+    week: 2,
+    updated: "2026-10-15",
+    minutes: 4,
+    bike: RAIDER,
+    rival: "hero-xtreme-125r",
+    wins: ["Broken roads", "ভাঙা রাস্তা"],
+    title: ["TVS Raider 125: a light 125 for broken roads and city jams", "TVS Raider 125: ভাঙা রাস্তা আর শহরের জ্যামের হালকা ১২৫"],
+    summary: [
+      `${bike(RAIDER).groundClearanceMm} mm of ground clearance, an adjustable monoshock and ${bike(RAIDER).weightKg} kg, for ${road(RAIDER)} on the road. The firm ride is the price.`,
+      `${bike(RAIDER).groundClearanceMm} মিমি গ্রাউন্ড ক্লিয়ারেন্স, অ্যাডজাস্টেবল মনোশক আর ${bike(RAIDER).weightKg} কেজি, অন-রোড ${road(RAIDER)}-এ। বদলে শক্ত রাইড।`,
+    ],
+    why: [
+      [
+        `${bike(RAIDER).groundClearanceMm} mm of ground clearance and a 5-step adjustable rear monoshock, so potholes and speed breakers do not scrape the underside.`,
+        `${bike(RAIDER).groundClearanceMm} মিমি গ্রাউন্ড ক্লিয়ারেন্স আর ৫ ধাপে অ্যাডজাস্ট করা যায় এমন পেছনের মনোশক, তাই গর্ত আর স্পিড ব্রেকারে নিচে ঘষা লাগে না।`,
+      ],
+      [
+        `Light for a 125: ${bike(RAIDER).weightKg} kg, ${bike("hero-xtreme-125r").weightKg - bike(RAIDER).weightKg} kg less than the Hero Xtreme 125R, with city handling ${sc(RAIDER).cityHandling}/10, the top score.`,
+        `১২৫সিসি হিসেবে হালকা: ${bike(RAIDER).weightKg} কেজি, Hero Xtreme 125R-এর চেয়ে ${bike("hero-xtreme-125r").weightKg - bike(RAIDER).weightKg} কেজি কম; শহরে চালানো ${sc(RAIDER).cityHandling}/১০, সর্বোচ্চ স্কোর।`,
+      ],
+      [
+        `${ps(RAIDER)} PS, 5 gears, a front disc with CBS and tubeless tyres, at ${gap(RAIDER, "hero-xtreme-125r")} less than the Xtreme 125R on the road.`,
+        `${ps(RAIDER)} PS, ৫টি গিয়ার, সামনে ডিস্ক আর CBS, টিউবলেস টায়ার; অন-রোড Xtreme 125R-এর চেয়ে ${gap(RAIDER, "hero-xtreme-125r")} কম।`,
+      ],
+    ],
+    who: [
+      [
+        "In our quiz, with the budget set at its own on-road price, it comes first for: rough roads around Dhaka, a rider with some experience, rarely a pillion, with performance and resale as priorities.",
+        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকার আশেপাশের খারাপ রাস্তা, কিছুটা অভিজ্ঞ চালক, পেছনে কেউ কম বসেন, আর অগ্রাধিকার পারফরম্যান্স ও রিসেল।",
+      ],
+      [
+        "Young riders who want a sporty 125 that survives bad roads, and commuters whose route mixes jams with broken stretches.",
+        "যে তরুণ চালকরা খারাপ রাস্তায় টিকে থাকা স্পোর্টি ১২৫ চান, আর যাঁদের রুটে জ্যাম আর ভাঙা রাস্তা দুটোই আছে।",
+      ],
+    ],
+    tradeoffs: [
+      [
+        `Firm ride and a hard seat on long trips (comfort ${sc(RAIDER).comfort}/10). It is a road bike with good clearance, not an off-roader (off-road ${sc(RAIDER).offroad}/10).`,
+        `শক্ত রাইড, লম্বা পথে সিট শক্ত লাগে (আরাম ${sc(RAIDER).comfort}/১০)। এটি ভালো ক্লিয়ারেন্সের রোড বাইক, অফ-রোডার নয় (অফ-রোড ${sc(RAIDER).offroad}/১০)।`,
+      ],
+      [
+        `A ${bike(RAIDER).fuelTankL} L tank and some vibration above 80 km/h, so highway runs are short (highway ${sc(RAIDER).highway}/10).`,
+        `${bike(RAIDER).fuelTankL} লিটারের ট্যাংক আর ৮০ কিমি/ঘণ্টার ওপরে কিছুটা কাঁপুনি, তাই হাইওয়ে যাত্রা ছোট (হাইওয়ে ${sc(RAIDER).highway}/১০)।`,
+      ],
+      [
+        `A short split pillion seat that makes carrying loads awkward. Mileage ${kmpl(RAIDER)} km/l, and a carburettor where the Xtreme 125R has fuel injection and single-channel ABS.`,
+        `পেছনের আলাদা সিট ছোট, মালপত্র নেওয়া কঠিন। মাইলেজ ${kmpl(RAIDER)} কিমি/লি, আর কার্বুরেটর; Xtreme 125R-এ ফুয়েল ইনজেকশন আর সিঙ্গেল-চ্যানেল ABS।`,
+      ],
+    ],
+  },
+  {
+    slug: "yamaha-r15-v4-best-looking",
+    bestCase: { use: "mixed", pillion: "rarely", priorities: ["style", "resale"], looks: ["sport"] },
+    week: 2,
+    updated: "2026-10-15",
+    minutes: 4,
+    bike: R15,
+    rival: "suzuki-gixxer-sf-fi-abs",
+    wins: ["Looks and style", "লুক আর স্টাইল"],
+    title: ["Yamaha R15 V4: the sport bike everyone turns to look at", "Yamaha R15 V4: যে স্পোর্ট বাইকের দিকে সবাই ফিরে তাকায়"],
+    summary: [
+      `The top looks score on our list (shared with the GSX-R150), resale ${sc(R15).resale}/10 and dual-channel ABS, for ${road(R15)} on the road.`,
+      `আমাদের তালিকায় লুকে সর্বোচ্চ (GSX-R150-এর সাথে), রিসেল ${sc(R15).resale}/১০ আর ডুয়াল-চ্যানেল ABS, অন-রোড ${road(R15)}-এ।`,
+    ],
+    why: [
+      [
+        "Looks: a full fairing, USD fork and the R-series face. In our quiz's style measure it ties with the GSX-R150 for first place.",
+        "লুক: পুরো ফেয়ারিং, USD ফর্ক আর R-সিরিজের চেহারা। আমাদের কুইজের স্টাইল হিসাবে GSX-R150-এর সাথে যৌথভাবে প্রথম।",
+      ],
+      [
+        `It holds its value: resale ${sc(R15).resale}/10 and reliability ${sc(R15).reliability}/10, where the GSX-R150 has ${sc(GSXR).resale}/10 and ${sc(GSXR).reliability}/10.`,
+        `দাম ধরে রাখে: রিসেল ${sc(R15).resale}/১০, নির্ভরযোগ্যতা ${sc(R15).reliability}/১০; GSX-R150-এর ${sc(GSXR).resale}/১০ আর ${sc(GSXR).reliability}/১০।`,
+      ],
+      [
+        `${ps(R15)} PS, 6 gears, ${bike(R15).weightKg} kg, discs at both ends with dual-channel ABS. Performance ${sc(R15).performance}/10.`,
+        `${ps(R15)} PS, ৬টি গিয়ার, ${bike(R15).weightKg} কেজি, দুই চাকায় ডিস্ক আর ডুয়াল-চ্যানেল ABS। পারফরম্যান্স ${sc(R15).performance}/১০।`,
+      ],
+    ],
+    who: [
+      [
+        "In our quiz, with the budget set at its own on-road price, it comes first for: a mix of Dhaka and highway riding, rarely a pillion, with style (a sport look) and resale as priorities.",
+        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকা আর হাইওয়ে মিলিয়ে চালানো, পেছনে কেউ কম বসেন, আর অগ্রাধিকার স্টাইল (স্পোর্ট লুক) ও রিসেল।",
+      ],
+      [
+        "Riders who want a sport bike that looks the part and will sell well later, and who have the budget for its running costs.",
+        "যাঁরা দেখতে আসল স্পোর্ট বাইক চান যা পরে ভালো দামে বিক্রি হবে, আর যাঁদের চালানোর খরচ বহনের বাজেট আছে।",
+      ],
+    ],
+    tradeoffs: [
+      [
+        `The price: ${road(R15)} on the road, ${gap(R15, "suzuki-gixxer-sf-fi-abs")} more than the Gixxer SF FI ABS, which looks similar but makes ${ps("suzuki-gixxer-sf-fi-abs")} PS.`,
+        `দাম: অন-রোড ${road(R15)}, Gixxer SF FI ABS-এর চেয়ে ${gap(R15, "suzuki-gixxer-sf-fi-abs")} বেশি; সেটি দেখতে কাছাকাছি, তবে শক্তি ${ps("suzuki-gixxer-sf-fi-abs")} PS।`,
+      ],
+      [
+        `Hard work in traffic: comfort ${sc(R15).comfort}/10, pillion ${sc(R15).pillion}/10, and the radiator fan blows heat onto your legs in jams.`,
+        `ভিড়ে কষ্ট: আরাম ${sc(R15).comfort}/১০, পেছনের যাত্রী ${sc(R15).pillion}/১০, আর জ্যামে রেডিয়েটরের ফ্যান পায়ে গরম বাতাস দেয়।`,
+      ],
+      [
+        `A service costs about ${formatBDT(bike(R15).avgServiceCostBDT)} and mechanic familiarity is ${sc(R15).mechanicFamiliarity}/10. It is a big theft target, so budget for a good lock or a tracker.`,
+        `প্রতি সার্ভিসে খরচ প্রায় ${formatBDT(bike(R15).avgServiceCostBDT)}, মেকানিক চেনে ${sc(R15).mechanicFamiliarity}/১০। চুরির বড় লক্ষ্য, তাই ভালো লক বা ট্র্যাকারের খরচ ধরুন।`,
       ],
     ],
   },
