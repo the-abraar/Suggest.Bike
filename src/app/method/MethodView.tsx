@@ -2,7 +2,7 @@
 
 import Link from "@/components/LangLink";
 import { SCORE_LABELS } from "@/lib/bike-utils";
-import { FUEL } from "@/lib/cost";
+import { EV_BATTERY, FUEL } from "@/lib/cost";
 import { DEFAULT_FEE_PCT, PAY_TERMS } from "@/lib/fund";
 // BAND_LOW comes from the server page: importing lib/match here would ship the bike index to this page.
 import { useLang, useTx } from "@/lib/i18n";
@@ -69,8 +69,8 @@ const rows = (bandLow: number): Row[] => [
   {
     what: ["Monthly running cost", "মাসিক চলার খরচ"],
     how: [
-      "Calculated from your km per month, the mileage range, the government fuel price, service interval and cost, tyre and chain wear, road tax and third-party insurance. The formula is the same everywhere on the site.",
-      "আপনার মাসিক কিমি, মাইলেজ পরিসর, সরকারি জ্বালানির দাম, সার্ভিসের সময় ও খরচ, টায়ার ও চেইনের ক্ষয়, রোড ট্যাক্স ও থার্ড-পার্টি বিমা থেকে হিসাব। পুরো সাইটে একই সূত্র।",
+      `Calculated from your km per month, the mileage range, the government fuel price, service interval and cost, tyre and chain wear, road tax and third-party insurance. An electric bike also pays for one new traction battery, at ${EV_BATTERY.shareOfPrice * 100}% of its new price, once the years you own it run past the battery warranty (${EV_BATTERY.defaultWarrantyMonths} months assumed when the maker gives none; an estimate). The formula is the same everywhere on the site.`,
+      `আপনার মাসিক কিমি, মাইলেজ পরিসর, সরকারি জ্বালানির দাম, সার্ভিসের সময় ও খরচ, টায়ার ও চেইনের ক্ষয়, রোড ট্যাক্স ও থার্ড-পার্টি বিমা থেকে হিসাব। ইলেকট্রিক বাইকে মালিকানার সময় ব্যাটারি ওয়ারেন্টি পার হলে একটি নতুন ব্যাটারির খরচ ধরা হয়, নতুন দামের ${EV_BATTERY.shareOfPrice * 100}% (কোম্পানি ওয়ারেন্টি না বললে ${EV_BATTERY.defaultWarrantyMonths} মাস ধরা হয়; আনুমানিক)। পুরো সাইটে একই সূত্র।`,
     ],
     kind: "derived",
     refresh: ["Fuel price checked monthly against the government revision.", "জ্বালানির দাম প্রতি মাসে সরকারি সংশোধনের সাথে মেলানো হয়।"],
@@ -87,8 +87,8 @@ const rows = (bandLow: number): Row[] => [
   {
     what: ["Match ranking", "ম্যাচ র‍্যাঙ্কিং"],
     how: [
-      `Filters by your on-road budget, gearbox and new/used. In EMI mode a bike is shown only when your cash now covers BRTA, the fee and any down payment, and the instalment fits your monthly figure; used bikes are left out. It then weights the ownership scores by how and where you ride. It lowers bikes that cost under ${bandLow * 100}% of your budget (unless you pick "Lowest price"), seats too tall for you and bikes too strong for a first bike. Bikes whose availability is unconfirmed go after the confirmed bikes with the same match label. In the top three, a second bike of the same model line gives way to the next close one, and when all three are one style, a close match of another style takes third place, never with a weaker label or a parts or network warning. Bikes above budget appear only in the labelled stretch section. Because it uses the editorial scores, the ranking is only as good as those estimates.`,
-      `আপনার অন-রোড বাজেট, গিয়ার ও নতুন/পুরনো দিয়ে ছাঁকে। কিস্তি মোডে বাইক তখনই দেখায় যখন হাতের নগদে BRTA, ফি ও দরকারি ডাউন পেমেন্ট হয়, আর কিস্তি আপনার মাসিক অঙ্কের মধ্যে থাকে; পুরনো বাইক বাদ। তারপর কীভাবে ও কোথায় চালাবেন সে অনুযায়ী মালিকানা স্কোরের গুরুত্ব ঠিক করে। বাজেটের ${bandLow * 100}%-এর কম দামের বাইকে (আপনি “সবচেয়ে কম দাম” না বাছলে), উঁচু সিটে আর নতুনদের জন্য বেশি শক্তিশালী বাইকে নম্বর কমায়। যে বাইক পাওয়া যাবে কিনা অনিশ্চিত, সেটি একই লেবেলের নিশ্চিত বাইকগুলোর পরে আসে। সেরা তিনটিতে একই মডেল লাইনের দ্বিতীয় বাইক কাছাকাছি নম্বরের পরের বাইককে জায়গা ছেড়ে দেয়, আর তিনটিই একই ধরনের হলে কাছাকাছি নম্বরের অন্য ধরনের একটি বাইক তৃতীয় জায়গা পায়, তবে কখনো দুর্বল লেবেল বা পার্টস/নেটওয়ার্কের সতর্কতা নিয়ে নয়। বাজেটের বেশি বাইক শুধু আলাদা “একটু বেশি” অংশে দেখায়। স্কোর সম্পাদকের মূল্যায়ন, তাই র‍্যাঙ্কিংও ততটাই নির্ভুল।`,
+      `Filters by your on-road budget, the kinds of bike you pick (motorcycle, scooter, electric) and new/used. In EMI mode a bike is shown only when your cash now covers BRTA, the fee and any down payment, and the instalment fits your monthly figure; used bikes are left out. It then weights the ownership scores by how and where you ride. If you pick "Looks & style" and name a look (sporty, naked, cruiser and so on), bikes of that shape rank first. It lowers bikes that cost under ${bandLow * 100}% of your budget (unless you pick "Lowest price"), seats too tall for you and bikes too strong for a first bike. Bikes whose availability is unconfirmed go after the confirmed bikes with the same match label. In the top three, a second bike of the same model line gives way to the next close one, and when all three are one style, a close match of another style takes third place, never with a weaker label or a parts or network warning. Bikes above budget appear only in the labelled stretch section. Because it uses the editorial scores, the ranking is only as good as those estimates.`,
+      `আপনার অন-রোড বাজেট, বেছে নেওয়া বাইকের ধরন (মোটরসাইকেল, স্কুটার, ইলেকট্রিক) ও নতুন/পুরনো দিয়ে ছাঁকে। কিস্তি মোডে বাইক তখনই দেখায় যখন হাতের নগদে BRTA, ফি ও দরকারি ডাউন পেমেন্ট হয়, আর কিস্তি আপনার মাসিক অঙ্কের মধ্যে থাকে; পুরনো বাইক বাদ। তারপর কীভাবে ও কোথায় চালাবেন সে অনুযায়ী মালিকানা স্কোরের গুরুত্ব ঠিক করে। "লুক ও স্টাইল" বেছে কোনো লুক (স্পোর্টি, নেকেড, ক্রুজার ইত্যাদি) বললে সেই গড়নের বাইক আগে আসে। বাজেটের ${bandLow * 100}%-এর কম দামের বাইকে (আপনি “সবচেয়ে কম দাম” না বাছলে), উঁচু সিটে আর নতুনদের জন্য বেশি শক্তিশালী বাইকে নম্বর কমায়। যে বাইক পাওয়া যাবে কিনা অনিশ্চিত, সেটি একই লেবেলের নিশ্চিত বাইকগুলোর পরে আসে। সেরা তিনটিতে একই মডেল লাইনের দ্বিতীয় বাইক কাছাকাছি নম্বরের পরের বাইককে জায়গা ছেড়ে দেয়, আর তিনটিই একই ধরনের হলে কাছাকাছি নম্বরের অন্য ধরনের একটি বাইক তৃতীয় জায়গা পায়, তবে কখনো দুর্বল লেবেল বা পার্টস/নেটওয়ার্কের সতর্কতা নিয়ে নয়। বাজেটের বেশি বাইক শুধু আলাদা “একটু বেশি” অংশে দেখায়। স্কোর সম্পাদকের মূল্যায়ন, তাই র‍্যাঙ্কিংও ততটাই নির্ভুল।`,
     ],
     kind: "derived",
     refresh: ["Changes when scores or prices change.", "স্কোর বা দাম বদলালে বদলায়।"],

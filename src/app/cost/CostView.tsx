@@ -5,7 +5,7 @@ import { WithSearchParams } from "@/components/ui";
 import { useEffect, useId, useMemo, useState } from "react";
 import { Info } from "lucide-react";
 import { BIKES, formatBDT, formatLakh, fullName, getBike } from "@/lib/bikes";
-import { DEFAULT_COST_INPUT, FUEL, OVERHAUL_YEARS, OWNERSHIP_YEARS, WEAR_KM, defaultUsedPrice, ownershipCost, registrationFor, type CostBreakdown, type CostInput } from "@/lib/cost";
+import { DEFAULT_COST_INPUT, EV_BATTERY, FUEL, OVERHAUL_YEARS, OWNERSHIP_YEARS, WEAR_KM, defaultUsedPrice, ownershipCost, registrationFor, type CostBreakdown, type CostInput } from "@/lib/cost";
 import { DEFAULT_FEE_PCT, PAY_TERMS, cardEmi, payPaths, type PathKey } from "@/lib/fund";
 import { FuelAgeNote } from "@/components/Dated";
 import guide from "@/data/guide.json";
@@ -482,8 +482,8 @@ function explain(c: CostBreakdown, bike: BikeLite, inp: CostInput, tx: Tx): Part
       : undefined,
     evBattery: d.evBattery?.due
       ? tx(
-          `One new traction battery at 30% × ${formatBDT(bike.priceBDT)} new price = ${formatBDT(c.evBattery)}, because ${inp.years} year${inp.years === 1 ? "" : "s"} runs past the ${d.evBattery.warrantyMonths}-month battery warranty${d.evBattery.assumed ? " (assumed; makers quote 3–5 years)" : ""}${c.buyingUsed ? ", counting a used bike as ~3 years old" : ""}. Estimate.`,
-          `নতুন দাম ${formatBDT(bike.priceBDT)}-এর 30% = ${formatBDT(c.evBattery)}-এ একটি নতুন ব্যাটারি, কারণ ${inp.years} বছর ব্যাটারির ${d.evBattery.warrantyMonths} মাসের ওয়ারেন্টি${d.evBattery.assumed ? " (ধরে নেওয়া; কোম্পানিগুলো 3–5 বছর বলে)" : ""} পার হয়ে যায়${c.buyingUsed ? ", পুরনো বাইককে ~৩ বছরের ধরে" : ""}। আনুমানিক।`,
+          `One new traction battery at ${EV_BATTERY.shareOfPrice * 100}% × ${formatBDT(bike.priceBDT)} new price = ${formatBDT(c.evBattery)}, because ${inp.years} year${inp.years === 1 ? "" : "s"} runs past the ${d.evBattery.warrantyMonths}-month battery warranty${d.evBattery.assumed ? " (assumed; makers quote 3–5 years)" : ""}${c.buyingUsed ? ", counting a used bike as ~3 years old" : ""}. Estimate.`,
+          `নতুন দাম ${formatBDT(bike.priceBDT)}-এর ${EV_BATTERY.shareOfPrice * 100}% = ${formatBDT(c.evBattery)}-এ একটি নতুন ব্যাটারি, কারণ ${inp.years} বছর ব্যাটারির ${d.evBattery.warrantyMonths} মাসের ওয়ারেন্টি${d.evBattery.assumed ? " (ধরে নেওয়া; কোম্পানিগুলো 3–5 বছর বলে)" : ""} পার হয়ে যায়${c.buyingUsed ? ", পুরনো বাইককে ~৩ বছরের ধরে" : ""}। আনুমানিক।`,
         )
       : undefined,
     hiddenRepairs: c.buyingUsed
