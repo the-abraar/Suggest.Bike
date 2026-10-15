@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import { SPOTLIGHTS } from "../src/lib/spotlight-posts";
 import { COMMENTS } from "../src/lib/comments";
 import { getBike } from "../src/lib/bikes";
+import { DEFAULT_ANSWERS, matchBikes, onRoadPrice } from "../src/lib/match";
 
 test("spotlights: real bikes, unique slugs, never the same bike or category twice", () => {
   assert.equal(new Set(SPOTLIGHTS.map((s) => s.slug)).size, SPOTLIGHTS.length, "duplicate slug");
@@ -28,5 +29,13 @@ test("approved comments point at a spotlight and carry no email", () => {
     assert.match(c.date, /^\d{4}-\d{2}-\d{2}$/);
     assert.ok(c.name.trim() && c.text.trim());
     assert.doesNotMatch(c.name + c.text, /[^\s@]+@[^\s@]+\.[^\s@]+/, "email address in a public comment");
+  }
+});
+
+test("spotlights: each post's quiz claim holds, so its bike comes first for its bestCase at its own on-road price", () => {
+  for (const s of SPOTLIGHTS) {
+    const b = getBike(s.bike)!;
+    const top = matchBikes({ ...DEFAULT_ANSWERS, ...s.bestCase, budget: onRoadPrice(b) }, 1)[0];
+    assert.equal(top?.bike.id, s.bike, `${s.slug}: quiz now puts ${top?.bike.id} first; rewrite the "who" claim or its bestCase`);
   }
 });

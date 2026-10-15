@@ -1,9 +1,10 @@
 // Weekly bike spotlights: each week, 5 bikes that each win a different segment of "Best in BD by segment"
 // (docs/each bike speciality.html, section 3). Prices, mileage, power and scores are read from bikes.json at build
-// time, so the text never drifts from the data. Quiz figures are from that analysis run (2026-10-14).
+// time, so the text never drifts from the data. Each post's quiz claim is its `bestCase`, which a test re-runs against match.ts.
 import { formatBDT, getBike } from "./bikes";
 import { onRoadPrice } from "./cost";
 import type { Pair } from "./maintenance-posts";
+import type { Answers } from "./match";
 
 export type Spotlight = {
   slug: string;
@@ -12,6 +13,8 @@ export type Spotlight = {
   minutes: number;
   bike: string; // bikes.json id
   rival: string; // the bike it is most often weighed against; linked as a comparison
+  /** The quiz answers the text says it comes first for, with the budget at its on-road price; tests/spotlight.test.ts re-runs them. */
+  bestCase: Partial<Answers>;
   wins: Pair; // the segment it wins
   title: Pair;
   summary: Pair;
@@ -41,6 +44,7 @@ const fzsUsed = bike(FZS).usedPrice;
 export const SPOTLIGHTS: Spotlight[] = [
   {
     slug: "lifan-glint-100-cheapest-new-bike",
+    bestCase: { use: "commute", where: "dhaka", experience: "first", pillion: "sometimes" },
     week: 1,
     updated: "2026-10-15",
     minutes: 4,
@@ -68,8 +72,8 @@ export const SPOTLIGHTS: Spotlight[] = [
     ],
     who: [
       [
-        "In our quiz, with the budget set at its own price, it ranks first in 18% of answer combinations and top five in 28%. Its best case: a daily commute in Dhaka, a first bike, a pillion now and then.",
-        "আমাদের কুইজে বাজেট এর নিজের দামে রাখলে ১৮% উত্তর-কম্বিনেশনে এটি প্রথম হয়, আর ২৮%-এ প্রথম পাঁচে থাকে। সবচেয়ে মানায়: ঢাকায় রোজকার যাতায়াত, প্রথম বাইক, মাঝে মাঝে পেছনে একজন।",
+        "In our quiz, with the budget set at its own on-road price, it comes first for: a daily commute in Dhaka, a first bike, a pillion now and then.",
+        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকায় রোজকার যাতায়াত, প্রথম বাইক, মাঝে মাঝে পেছনে একজন।",
       ],
       [
         "Riders who want a new bike, not someone else's problems, and cannot stretch past a lakh, for short errands and town trips.",
@@ -97,6 +101,7 @@ export const SPOTLIGHTS: Spotlight[] = [
   },
   {
     slug: "hero-hf-deluxe-best-mileage",
+    bestCase: { use: "commute", where: "dhaka", pillion: "rarely", priorities: ["mileage", "resale"] },
     week: 1,
     updated: "2026-10-15",
     minutes: 4,
@@ -124,8 +129,8 @@ export const SPOTLIGHTS: Spotlight[] = [
     ],
     who: [
       [
-        "In our quiz, with the budget set at its own price, it ranks first in 32% of answer combinations and top five in 70%, one of the widest reaches of any bike. Its best case: Dhaka riding, rarely a pillion, with mileage and resale as priorities.",
-        "আমাদের কুইজে বাজেট এর নিজের দামে রাখলে ৩২% উত্তর-কম্বিনেশনে এটি প্রথম, আর ৭০%-এ প্রথম পাঁচে, যা প্রায় সব বাইকের চেয়ে বেশি। সবচেয়ে মানায়: ঢাকায় চালানো, পেছনে কেউ কম বসেন, আর অগ্রাধিকার মাইলেজ ও রিসেল।",
+        "In our quiz, with the budget set at its own on-road price, it comes first for: Dhaka commuting, rarely a pillion, with mileage and resale as priorities.",
+        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকায় যাতায়াত, পেছনে কেউ কম বসেন, আর অগ্রাধিকার মাইলেজ ও রিসেল।",
       ],
       [
         "Delivery and ride-share riders who count every litre, students, and anyone whose bike is a tool, not a hobby.",
@@ -149,6 +154,7 @@ export const SPOTLIGHTS: Spotlight[] = [
   },
   {
     slug: "yamaha-fzs-fi-v4-best-resale",
+    bestCase: { use: "commute", where: "dhaka", height: "short", pillion: "rarely", priorities: ["maintenance", "resale", "safety", "style"] },
     week: 1,
     updated: "2026-10-15",
     minutes: 4,
@@ -176,8 +182,8 @@ export const SPOTLIGHTS: Spotlight[] = [
     ],
     who: [
       [
-        "In our quiz, with the budget set at its own price, it ranks top five in 30% of answer combinations. Its best case: a Dhaka commute, a shorter rider, rarely a pillion, with low maintenance, resale, safety and style as priorities.",
-        "আমাদের কুইজে বাজেট এর নিজের দামে রাখলে ৩০% উত্তর-কম্বিনেশনে এটি প্রথম পাঁচে থাকে। সবচেয়ে মানায়: ঢাকায় যাতায়াত, কম উচ্চতার চালক, পেছনে কেউ কম বসেন, আর অগ্রাধিকার কম রক্ষণাবেক্ষণ, রিসেল, নিরাপত্তা ও স্টাইল।",
+        "In our quiz, with the budget set at its own on-road price, it comes first for: a Dhaka commute, a shorter rider, rarely a pillion, with low maintenance, resale, safety and style as priorities.",
+        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকায় যাতায়াত, কম উচ্চতার চালক, পেছনে কেউ কম বসেন, আর অগ্রাধিকার কম রক্ষণাবেক্ষণ, রিসেল, নিরাপত্তা ও স্টাইল।",
       ],
       [
         "Buyers who plan to sell or upgrade in two or three years, and first-time 150cc owners who want something that will not surprise them.",
@@ -201,6 +207,7 @@ export const SPOTLIGHTS: Spotlight[] = [
   },
   {
     slug: "suzuki-gsx-r150-most-fun",
+    bestCase: { use: "fun", height: "short", experience: "some", pillion: "rarely", priorities: ["performance"] },
     week: 1,
     updated: "2026-10-15",
     minutes: 4,
@@ -228,8 +235,8 @@ export const SPOTLIGHTS: Spotlight[] = [
     ],
     who: [
       [
-        "In our quiz it is a specialist: top five in only 4% of answer combinations, but a match score of 94 when the answers fit. Its best case: riding for fun, a shorter rider with some experience, rarely a pillion, with performance as the priority.",
-        "আমাদের কুইজে এটি বিশেষজ্ঞ বাইক: মাত্র ৪% উত্তর-কম্বিনেশনে প্রথম পাঁচে, কিন্তু উত্তর মিললে ম্যাচ স্কোর ৯৪। সবচেয়ে মানায়: শখে চালানো, কিছুটা অভিজ্ঞ ও কম উচ্চতার চালক, পেছনে কেউ কম বসেন, আর অগ্রাধিকার পারফরম্যান্স।",
+        "A specialist: in our quiz, with the budget set at its own on-road price, it comes first for: riding for fun, a shorter rider with some experience, rarely a pillion, with performance as the priority.",
+        "বিশেষজ্ঞ বাইক: আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: শখে চালানো, কিছুটা অভিজ্ঞ ও কম উচ্চতার চালক, পেছনে কেউ কম বসেন, আর অগ্রাধিকার পারফরম্যান্স।",
       ],
       [
         "Weekend riders with a second way to get to work, and experienced riders who want a light sport bike more than a status badge.",
@@ -253,6 +260,7 @@ export const SPOTLIGHTS: Spotlight[] = [
   },
   {
     slug: "royal-enfield-meteor-350-best-highway",
+    bestCase: { use: "highway", height: "short", experience: "some", priorities: ["comfort"] },
     week: 1,
     updated: "2026-10-15",
     minutes: 4,
@@ -280,8 +288,8 @@ export const SPOTLIGHTS: Spotlight[] = [
     ],
     who: [
       [
-        "In our quiz it is a specialist: top five in only 4% of answer combinations, but a match score of 94 when the answers fit. Its best case: highway use, a shorter rider with some experience, with comfort as the priority.",
-        "আমাদের কুইজে এটি বিশেষজ্ঞ বাইক: মাত্র ৪% উত্তর-কম্বিনেশনে প্রথম পাঁচে, কিন্তু উত্তর মিললে ম্যাচ স্কোর ৯৪। সবচেয়ে মানায়: হাইওয়েতে চালানো, কিছুটা অভিজ্ঞ ও কম উচ্চতার চালক, আর অগ্রাধিকার আরাম।",
+        "A specialist: in our quiz, with the budget set at its own on-road price, it comes first for: highway riding, a shorter rider with some experience, with comfort as the priority.",
+        "বিশেষজ্ঞ বাইক: আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: হাইওয়েতে চালানো, কিছুটা অভিজ্ঞ ও কম উচ্চতার চালক, আর অগ্রাধিকার আরাম।",
       ],
       [
         "Riders who travel between cities, often with a passenger, and who have a dealer within reach for service.",
