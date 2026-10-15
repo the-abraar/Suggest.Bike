@@ -202,6 +202,8 @@ test("out/ contains zero orphan pages when built", async () => {
   const orphans: string[] = [];
   for (const [p, inc] of incoming.entries()) {
     if (p === "/" || p === "/bn/" || p === "/404/" || p === "/_not-found/" || p.includes("404")) continue;
+    // A retired bike's page is a noindex redirect kept for old links, so nothing on the site links to it on purpose.
+    if (RETIRED_BIKES.some((id) => p === `/bikes/${id}/` || p === `/bn/bikes/${id}/`)) continue;
     if (inc.size === 0) orphans.push(p);
   }
   assert.equal(orphans.length, 0, `Found ${orphans.length} orphan pages: ${orphans.join(", ")}`);
