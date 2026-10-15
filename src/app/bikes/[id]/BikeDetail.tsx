@@ -226,6 +226,7 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
               {hist.length > 0 && (
                 <p className="mt-2 text-[13px] text-muted">
                   <span className="font-medium text-ink-2">{tx("Price history", "দামের ইতিহাস")}:</span>{" "}
+                  {hist.length > 1 && <Sparkline values={hist.map((p) => p.priceBDT)} />}{" "}
                   {hist.length > 1
                     ? hist
                         .slice(-3)
@@ -600,6 +601,18 @@ function BuyAndReport({ bike }: { bike: Bike }) {
         </p>
       </Section>
     </>
+  );
+}
+
+/** Price trend, oldest to newest, points evenly spaced (dates are when our data changed); the text beside it carries the figures. */
+function Sparkline({ values }: { values: number[] }) {
+  const [w, h] = [64, 16];
+  const [lo, hi] = [Math.min(...values), Math.max(...values)];
+  const pts = values.map((v, i) => `${((i / (values.length - 1)) * w).toFixed(1)},${(hi === lo ? h / 2 : h - 1 - ((v - lo) / (hi - lo)) * (h - 2)).toFixed(1)}`).join(" ");
+  return (
+    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} aria-hidden="true" className="inline-block align-middle text-brand">
+      <polyline points={pts} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" />
+    </svg>
   );
 }
 
