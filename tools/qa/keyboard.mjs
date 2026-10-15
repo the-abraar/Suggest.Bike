@@ -51,11 +51,20 @@ for (const width of [375, 1280]) {
   await pg.keyboard.press('Enter');
   ok(`${W} quiz: Tab reaches Continue`, await tabTo(pg, 'text=^\\s*Continue'));
   await pg.keyboard.press('Enter');
-  const steps = [/Daily commute/, /Dhaka/, /Show me both/, null, /Sometimes/];
+  const steps = [/Daily commute/, /Dhaka/, 'kinds', null, /Sometimes/];
   for (const [i, s] of steps.entries()) {
     await pg.waitForTimeout(300);
     preselected.push(`step ${i + 1} (${(await pg.locator('main h1').innerText()).slice(0, 30)}): ${(await pressedNow()).join(', ') || '-'}`);
-    if (s) {
+    if (s === 'kinds') {
+      // Multi-select: Space toggles a kind and stays on the step; Continue moves on.
+      ok(`${W} quiz kinds: Tab reaches Scooters`, await tabTo(pg, 'text=^Scooters'));
+      ok(`${W} quiz kinds: option has a focus ring`, (await ringOf(pg)).visible);
+      await pg.keyboard.press('Space');
+      ok(`${W} quiz kinds: Space unselects Scooters and stays`, (await pg.evaluate(() => document.activeElement?.getAttribute('aria-pressed'))) === 'false' && (await pg.locator('main h1').innerText()).startsWith('What kind'));
+      await pg.keyboard.press('Space'); // back on, so the run below matches the default answers
+      ok(`${W} quiz kinds: Tab reaches Continue`, await tabTo(pg, 'text=^\\s*Continue'));
+      await pg.keyboard.press('Enter');
+    } else if (s) {
       const reached = await tabTo(pg, 'text=' + s.source);
       ok(`${W} quiz step ${i + 1}: Tab reaches ${s.source}`, reached);
       const ring = await ringOf(pg);
