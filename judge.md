@@ -295,3 +295,17 @@ Done (`scripts/check.sh` exit 0): spotlight week 2 (Splendor+ value, Shine 100 D
 **Found:** BikeBD differs from us on `ktm-rc-125` (৳3,70,000 vs our ৳4,43,000) and `gpx-demon-gr165r` (৳3,24,000 vs ৳3,14,999). Not changed: needs an official source. Splendor+ (a week-2 pick) is still "availability unconfirmed"; its post says to confirm stock.
 **Not verified:** the new home section and the sparkline were not checked in a real browser (tools/qa not run). The Bangla post text has not been proofread. No new EV models.
 **Score:** unchanged at 60%.
+
+### Update 15 (2026-10-16, agent round)
+
+Done (`scripts/check.sh` exit 0): spotlight week 3, five new posts: Platina 100 (cheap to maintain), Radeon (first bike), Glamour X 125 (pillion and family), Pulsar N250 (safety: braking), NX200 (highway). Every figure is read from `bikes.json`; each `bestCase` was found by searching the quiz and is re-checked by `tests/spotlight.test.ts`. The section-3 picks Bajaj CT 100 and Suzuki V-Strom SX 250 never come first at their own price, so the next unused bike in each category was taken.
+**Fixed:** the GitHub Pages deploy had failed since 15 Oct (`scripts/bn-og.mts` imported helpers that moved from `src/lib/bikes` to `src/lib/bike-utils`), so the live site was three commits behind. `tsconfig.json` now includes `**/*.mts`, so the typecheck catches this.
+**Not verified:** the deploy itself (it runs on push); the Bangla post text has not been proofread.
+
+
+### Update 16 (2026-10-16, agent round)
+
+Done (`scripts/check.sh` exit 0; deploy run 38930206340 green; suggest.bike serves `0c86b3d`): committed Update 15's work. The deploy fix is `cf77b94`: with the `bike-utils` import fixed, `npm run og:bn` then failed its own self-check on the 4 retired-bike `/bn/` pages (their metadata had no `openGraph`, so they fell back to the English `/og.png`); `retiredMetadata` now sets it. The full deploy sequence (validate, tsc, tests, build, og:bn) passed locally before the push: 108 cards, 194 `/bn/` pages checked. Week 3 spotlight is `0c86b3d`; every hard-coded claim in its text (CBS/ABS level, tube or tubeless, seat-height rank, price direction against the rival, score comparisons) was checked against `bikes.json`.
+**Browser QA (live site, Playwright Chromium, 375 and 1280, EN and `/bn/`):** 20 pages (home, spotlight index, week 2 and 3 posts, /method, /cost, Pulsar N250 bike page, `/bikes/?seat=low`): 40 of 40 with 0 overflow, 0 axe serious or critical, 0 console errors. `interact.mjs` 52 PASS after one fix: check B6 read the compare tray before it mounted (a test race, not a site bug; `5040b09`). I looked at element shots of the low-seat section, market snapshot table, octane line, price sparkline and a Bangla week-3 post: no breakage found.
+**Hotlines (`658cc68`):** GPX service line +880 1324-418726 (Speedoz Central Service Center, https://speedoz.com.bd/contact-us/); Haojue service line 01730-730651 (Karnaphuli Tejgaon workshop, https://www.karnaphuli.com/areas-of-activities/motor-cycles). Shown as a second "Service" link on `/dealers/` and the bike-page dealer card. Lifan: Rasel Industries' service page lists independent workshops, not a service hotline; its contact line is unchanged.
+**Not verified:** the numbers were read from the pages, not called. Facebook pages were not checked. The Bangla post text has not been proofread. The price-history line can read "since Oct 2026 · was … in Oct 2026" when all changes fall in one month; not changed.
