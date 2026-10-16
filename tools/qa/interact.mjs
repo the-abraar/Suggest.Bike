@@ -218,7 +218,8 @@ ok('header 375 menu: Dealers', (await pg.locator('a[href="/dealers/"]:visible').
   const three = await tray();
   ok('B6: 3 picks fill the tray', three.length === 3, JSON.stringify(three));
   ok('B6: other cards say "Compare full" and are disabled', (await p.locator('.card button:disabled', { hasText: 'Compare full' }).count()) > 0);
-  ok('B6: tray says it holds 3', /Compare holds 3 bikes/.test(await p.locator('[aria-live="polite"]').allInnerTexts().then((t) => t.join(' '))));
+  // The tray mounts after the store updates, so wait for its live region instead of reading it at once.
+  ok('B6: tray says it holds 3', await p.locator('[aria-live="polite"]', { hasText: 'Compare holds 3 bikes' }).waitFor({ timeout: 5000 }).then(() => true, () => false));
   await p.goto(BASE + '/compare/?bikes=bajaj-pulsar-n160,bajaj-pulsar-n160', { waitUntil: 'networkidle' });
   ok('B7: duplicate ids show one bike', !/N160 vs/.test(await p.locator('h1').innerText()), await p.locator('h1').innerText());
   ok('B7: a shared link leaves a full tray untouched', JSON.stringify(await tray()) === JSON.stringify(three), JSON.stringify(await tray()));
