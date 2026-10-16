@@ -11,5 +11,6 @@ test("dealer entries are keyed by real brands and carry a source and date", () =
     assert.match(d.site, /^https:\/\//, brand);
     assert.match(d.checked, /^\d{4}-\d{2}-\d{2}$/, brand);
     if (d.hotline) assert.match(d.hotline, /^[+\d][\d -]{3,}$/, brand);
+    if (d.service) assert.match(d.service, /^[+\d][\d -]{3,}$/, brand);
   }
 });

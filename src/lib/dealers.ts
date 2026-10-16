@@ -5,6 +5,7 @@ export type Dealer = {
   site: string;
   locator: string | null;
   hotline: string | null;
+  service?: string; // service-centre line, also on sourceUrl
   sourceUrl: string;
   checked: string;
   note?: string;

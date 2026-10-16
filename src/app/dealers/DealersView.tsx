@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "@/components/LangLink";
-import { ExternalLink, Phone } from "lucide-react";
+import { ExternalLink, Phone, Wrench } from "lucide-react";
 import { useTx } from "@/lib/i18n";
 import { DEALERS, telHref, type Dealer } from "@/lib/dealers";
 
@@ -56,6 +56,7 @@ export function DealerCard({ brand, d, compact = false }: { brand: string; d: De
           <a href={d.site} target="_blank" rel="noopener noreferrer" className={a}><ExternalLink size={13} /> {tx("Official site", "অফিশিয়াল সাইট")}</a>
         )}
         {d.hotline && <a href={telHref(d.hotline)} className={a}><Phone size={13} /> {d.hotline}</a>}
+        {d.service && <a href={telHref(d.service)} className={a}><Wrench size={13} /> {tx("Service", "সার্ভিস")} {d.service}</a>}
       </p>
       {d.note && <p className="mt-2 text-[13px] text-muted">{tx(d.note, d.noteBn ?? d.note)}</p>}
       {!compact && d.districts && (

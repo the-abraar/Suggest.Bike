@@ -105,7 +105,7 @@
       "locator": "https://raselindustry.com/distribution-network/",
       "hotline": "+8801971834488",
       "sourceUrl": "https://raselindustry.com/",
-      "checked": "2026-10-14",
+      "checked": "2026-10-16",
       "districts": [
         "Dhaka",
         "Narayanganj",
@@ -145,18 +145,22 @@
       "site": "https://speedoz.com.bd/",
       "locator": null,
       "hotline": "01990-400600",
-      "sourceUrl": "https://speedoz.com.bd/",
-      "checked": "2026-10-14"
+      "service": "+880 1324-418726",
+      "sourceUrl": "https://speedoz.com.bd/contact-us/",
+      "checked": "2026-10-16",
+      "note": "Service line: Speedoz Central Service Center, Mohakhali DOHS, Dhaka.",
+      "noteBn": "সার্ভিস নম্বর: Speedoz সেন্ট্রাল সার্ভিস সেন্টার, মহাখালী ডিওএইচএস, ঢাকা।"
     },
     "Haojue": {
       "distributor": "Karnaphuli Group",
       "site": "https://www.karnaphuli.com/areas-of-activities/motor-cycles",
       "locator": null,
       "hotline": "08 000 333 333",
+      "service": "01730-730651",
       "sourceUrl": "https://www.karnaphuli.com/areas-of-activities/motor-cycles",
-      "checked": "2026-10-14",
-      "note": "Group customer-care line, not a motorcycle-only number.",
-      "noteBn": "গ্রুপের সাধারণ গ্রাহকসেবা নম্বর, শুধু মোটরসাইকেলের নয়।"
+      "checked": "2026-10-16",
+      "note": "The hotline is the group customer-care line, not a motorcycle-only number. The service line is the Tejgaon, Dhaka workshop.",
+      "noteBn": "হটলাইনটি গ্রুপের সাধারণ গ্রাহকসেবা নম্বর, শুধু মোটরসাইকেলের নয়। সার্ভিস নম্বরটি ঢাকার তেজগাঁও ওয়ার্কশপের।"
     }
   }
 }
