@@ -89,6 +89,7 @@ export const retiredMetadata = (id: string, lang: "en" | "bn"): Metadata => ({
   title: lang === "bn" ? "এই বাইকটি আর তালিকায় নেই" : "This bike is no longer listed",
   robots: { index: false, follow: true },
   alternates: langAlternates(`/bikes/${id}/`, lang),
+  openGraph: lang === "bn" ? OG_BN : OG_BASE, // bn-og.mts fails the deploy if a /bn/ page falls back to the English /og.png
 });
 
 /** Title, description, hreflang and share image for a bike page; every figure comes from bikes.json via the engines. */

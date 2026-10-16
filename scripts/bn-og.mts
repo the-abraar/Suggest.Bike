@@ -4,7 +4,7 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join } from "node:path";
-import { CATEGORIES, ccLabel, formatBDT, isEv, mileageText } from "../src/lib/bikes";
+import { CATEGORIES, ccLabel, formatBDT, isEv, mileageText } from "../src/lib/bike-utils";
 import { onRoadPrice } from "../src/lib/match";
 import type { Bike } from "../src/lib/types";
 import full from "../src/data/generated/bikes.full.json";
@@ -59,7 +59,7 @@ try {
   let bytes = 0, max = 0;
   for (const c of cards) {
     // Page code lives in the template: tsx would inject its __name helper into inline functions.
-    await page.evaluate(([d, i]) => (window as unknown as { show(d: unknown, i: unknown): void }).show(d, i), [c.bike ?? null, imgs] as const);
+    await page.evaluate(([d, i]: readonly [unknown, unknown]) => (window as unknown as { show(d: unknown, i: unknown): void }).show(d, i), [c.bike ?? null, imgs] as const);
     await page.evaluate(() => Promise.all([document.fonts.ready, ...[...document.images].map((i) => i.decode().catch(() => {}))]));
     const file = join(OUT, c.file);
     mkdirSync(dirname(file), { recursive: true });
