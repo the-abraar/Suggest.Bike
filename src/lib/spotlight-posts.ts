@@ -45,6 +45,13 @@ const SHINE = "honda-shine-100";
 const DREAM = "honda-dream-110";
 const RAIDER = "tvs-raider-125";
 const R15 = "yamaha-r15-v4";
+const PLATINA = "bajaj-platina-100";
+const RADEON = "tvs-radeon";
+const GLAMOUR = "hero-glamour-x-125";
+const N250 = "bajaj-pulsar-n250";
+const NX200 = "honda-nx200";
+const svc = (id: string) => `${bike(id).serviceIntervalKm.toLocaleString("en-IN")} km`;
+const samePrice = (a: string, b: string) => onRoadPrice(bike(a)) === onRoadPrice(bike(b));
 
 export const SPOTLIGHTS: Spotlight[] = [
   {
@@ -578,6 +585,251 @@ export const SPOTLIGHTS: Spotlight[] = [
       [
         `A service costs about ${formatBDT(bike(R15).avgServiceCostBDT)} and mechanic familiarity is ${sc(R15).mechanicFamiliarity}/10. It is a big theft target, so budget for a good lock or a tracker.`,
         `প্রতি সার্ভিসে খরচ প্রায় ${formatBDT(bike(R15).avgServiceCostBDT)}, মেকানিক চেনে ${sc(R15).mechanicFamiliarity}/১০। চুরির বড় লক্ষ্য, তাই ভালো লক বা ট্র্যাকারের খরচ ধরুন।`,
+      ],
+    ],
+  },
+  {
+    slug: "bajaj-platina-100-cheap-to-maintain",
+    bestCase: { use: "commute", where: "town", experience: "some", pillion: "sometimes", priorities: ["maintenance", "mileage"] },
+    week: 3,
+    updated: "2026-10-16",
+    minutes: 4,
+    bike: PLATINA,
+    rival: "bajaj-ct100",
+    wins: ["Cheap to maintain", "রক্ষণাবেক্ষণে সস্তা"],
+    title: ["Bajaj Platina 100: cheap to keep running", "Bajaj Platina 100: চালু রাখতে কম খরচ"],
+    summary: [
+      `Every mechanic knows it and every shop has its parts. A service every ${svc(PLATINA)} costs about ${formatBDT(bike(PLATINA).avgServiceCostBDT)}, and it does ${kmpl(PLATINA)} km/l, for ${road(PLATINA)} on the road.`,
+      `প্রত্যেক মেকানিক এটা চেনেন, প্রত্যেক দোকানে এর পার্টস আছে। প্রতি ${svc(PLATINA)}-এ সার্ভিসে খরচ প্রায় ${formatBDT(bike(PLATINA).avgServiceCostBDT)}, মাইলেজ ${kmpl(PLATINA)} কিমি/লি, অন-রোড ${road(PLATINA)}।`,
+    ],
+    why: [
+      [
+        `Mechanic familiarity ${sc(PLATINA).mechanicFamiliarity}/10 and parts availability ${sc(PLATINA).partsAvailability}/10, the top of our scale. A breakdown in a district town is a short wait, not a trip to Dhaka.`,
+        `মেকানিক চেনেন ${sc(PLATINA).mechanicFamiliarity}/১০, পার্টস পাওয়া যায় ${sc(PLATINA).partsAvailability}/১০, আমাদের স্কেলের সর্বোচ্চ। জেলা শহরে নষ্ট হলে অল্প অপেক্ষা, ঢাকায় যেতে হয় না।`,
+      ],
+      [
+        `Reliability ${sc(PLATINA).reliability}/10 and real-world mileage of ${kmpl(PLATINA)} km/l from ${ps(PLATINA)} PS, so fuel is a small part of the monthly bill.`,
+        `নির্ভরযোগ্যতা ${sc(PLATINA).reliability}/১০, আর ${ps(PLATINA)} PS থেকে বাস্তবে ${kmpl(PLATINA)} কিমি/লি, তাই মাসিক খরচে তেলের ভাগ কম।`,
+      ],
+      [
+        `Against the cheaper Bajaj CT 100: the same Bajaj 100 cc engine family, but CBS (linked brakes), comfort ${sc(PLATINA).comfort}/10 vs ${sc("bajaj-ct100").comfort}/10 and resale ${sc(PLATINA).resale}/10 vs ${sc("bajaj-ct100").resale}/10, for ${gap(PLATINA, "bajaj-ct100")} more.`,
+        `সস্তা Bajaj CT 100-এর তুলনায়: একই Bajaj ১০০ সিসি ইঞ্জিন পরিবার, কিন্তু CBS (একসাথে কাজ করা ব্রেক), আরাম ${sc(PLATINA).comfort}/১০ বনাম ${sc("bajaj-ct100").comfort}/১০, রিসেল ${sc(PLATINA).resale}/১০ বনাম ${sc("bajaj-ct100").resale}/১০, দাম ${gap(PLATINA, "bajaj-ct100")} বেশি।`,
+      ],
+    ],
+    who: [
+      [
+        "In our quiz, with the budget set at its own on-road price, it comes first for: commuting in a district town, some riding experience, a pillion now and then, with low maintenance and mileage as priorities.",
+        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: জেলা শহরে যাতায়াত, কিছুটা চালানোর অভিজ্ঞতা, মাঝে মাঝে পেছনে একজন, আর অগ্রাধিকার কম রক্ষণাবেক্ষণ ও মাইলেজ।",
+      ],
+      [
+        "Riders who put a lot of kilometres on a bike every month and want each service and repair to be cheap and quick.",
+        "যাঁরা প্রতি মাসে অনেক কিলোমিটার চালান আর চান প্রতিটি সার্ভিস ও মেরামত সস্তা ও দ্রুত হোক।",
+      ],
+    ],
+    tradeoffs: [
+      [
+        "Drum brakes at both ends and tube tyres. CBS helps, but stopping distances are long and a puncture means a roadside repair. Keep your distance in the rain.",
+        "দুই চাকাতেই ড্রাম ব্রেক আর টিউব টায়ার। CBS কিছুটা সাহায্য করে, তবু থামতে দূরত্ব বেশি লাগে, আর পাংচার হলে রাস্তায় সারাতে হয়। বৃষ্টিতে বেশি দূরত্ব রাখুন।",
+      ],
+      [
+        `${ps(PLATINA)} PS and a top speed of about ${bike(PLATINA).topSpeedKmh} km/h: highway ${sc(PLATINA).highway}/10. It is a town bike; long highway runs with a pillion are slow work.`,
+        `${ps(PLATINA)} PS আর সর্বোচ্চ গতি প্রায় ${bike(PLATINA).topSpeedKmh} কিমি/ঘণ্টা: হাইওয়ে ${sc(PLATINA).highway}/১০। এটা শহরের বাইক; পেছনে কাউকে নিয়ে লম্বা হাইওয়ে যাত্রা ধীর হয়।`,
+      ],
+    ],
+  },
+  {
+    slug: "tvs-radeon-best-first-bike",
+    bestCase: { use: "commute", where: "dhaka", experience: "first", pillion: "rarely", priorities: ["comfort"] },
+    week: 3,
+    updated: "2026-10-16",
+    minutes: 4,
+    bike: RADEON,
+    rival: "hero-hf-deluxe",
+    wins: ["First bike", "প্রথম বাইক"],
+    title: ["TVS Radeon: an easy, comfortable first bike", "TVS Radeon: সহজ আর আরামদায়ক প্রথম বাইক"],
+    summary: [
+      `A ${bike(RADEON).seatHeightMm} mm seat, linked brakes and a soft ride make it easy to learn on. Beginner-friendly ${sc(RADEON).beginnerFriendly}/10, for ${road(RADEON)} on the road.`,
+      `${bike(RADEON).seatHeightMm} মিমি সিট, একসাথে কাজ করা ব্রেক আর নরম রাইড, তাই শেখা সহজ। নতুনদের জন্য ${sc(RADEON).beginnerFriendly}/১০, অন-রোড ${road(RADEON)}।`,
+    ],
+    why: [
+      [
+        `The seat is ${bike(RADEON).seatHeightMm} mm high, among the lowest of the cheap commuters, so most new riders can put both feet down at a signal.`,
+        `সিটের উচ্চতা ${bike(RADEON).seatHeightMm} মিমি, সস্তা কমিউটারগুলোর মধ্যে সবচেয়ে নিচুগুলোর একটি, তাই বেশিরভাগ নতুন চালক সিগন্যালে দুই পা মাটিতে রাখতে পারেন।`,
+      ],
+      [
+        `CBS links the brakes, so a panicked grab of one lever still uses both. Comfort ${sc(RADEON).comfort}/10 and city handling ${sc(RADEON).cityHandling}/10 make Dhaka's stop-start traffic less tiring.`,
+        `CBS দুই ব্রেককে জুড়ে দেয়, তাই ভয়ে একটা লিভার চাপলেও দুটোই কাজ করে। আরাম ${sc(RADEON).comfort}/১০ আর শহরে চালানো ${sc(RADEON).cityHandling}/১০, তাই ঢাকার থামা-চলা জ্যামে কম ক্লান্তি।`,
+      ],
+      [
+        `Against the Hero HF Deluxe: CBS (the HF has none), comfort ${sc(RADEON).comfort}/10 vs ${sc("hero-hf-deluxe").comfort}/10 and pillion ${sc(RADEON).pillion}/10 vs ${sc("hero-hf-deluxe").pillion}/10, for ${gap(RADEON, "hero-hf-deluxe")} more on the road.`,
+        `Hero HF Deluxe-এর তুলনায়: CBS (HF-এ নেই), আরাম ${sc(RADEON).comfort}/১০ বনাম ${sc("hero-hf-deluxe").comfort}/১০, পেছনের আসন ${sc(RADEON).pillion}/১০ বনাম ${sc("hero-hf-deluxe").pillion}/১০, অন-রোড ${gap(RADEON, "hero-hf-deluxe")} বেশি।`,
+      ],
+    ],
+    who: [
+      [
+        "In our quiz, with the budget set at its own on-road price, it comes first for: commuting in Dhaka, a first bike, rarely a pillion, with comfort as the priority.",
+        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকায় যাতায়াত, প্রথম বাইক, পেছনে কেউ খুব কম, আর অগ্রাধিকার আরাম।",
+      ],
+      [
+        "New riders, shorter riders, and anyone who wants a gentle bike for learning in city traffic.",
+        "নতুন চালক, কম উচ্চতার চালক, আর যাঁরা শহরের জ্যামে শেখার জন্য একটা শান্ত বাইক চান।",
+      ],
+    ],
+    tradeoffs: [
+      [
+        `Resale ${sc(RADEON).resale}/10, against ${sc("hero-hf-deluxe").resale}/10 for the HF Deluxe: expect less back when you sell it to move up to a bigger bike.`,
+        `রিসেল ${sc(RADEON).resale}/১০, HF Deluxe-এর ${sc("hero-hf-deluxe").resale}/১০: বড় বাইকে যাওয়ার সময় বিক্রি করলে কম টাকা ফেরত পাবেন।`,
+      ],
+      [
+        `Drum brakes front and rear. Mechanic familiarity ${sc(RADEON).mechanicFamiliarity}/10: fine in cities, but fewer village mechanics know it than know a Bajaj or a Hero.`,
+        `সামনে-পেছনে ড্রাম ব্রেক। মেকানিক চেনেন ${sc(RADEON).mechanicFamiliarity}/১০: শহরে ঠিক আছে, কিন্তু গ্রামে Bajaj বা Hero-র চেয়ে কম মেকানিক এটা চেনেন।`,
+      ],
+    ],
+  },
+  {
+    slug: "hero-glamour-x-125-best-for-pillion",
+    bestCase: { use: "mixed", where: "dhaka", experience: "first", pillion: "daily", priorities: ["performance"] },
+    week: 3,
+    updated: "2026-10-16",
+    minutes: 4,
+    bike: GLAMOUR,
+    rival: "honda-sp125",
+    wins: ["Pillion and family", "পেছনের যাত্রী ও পরিবার"],
+    title: ["Hero Glamour X 125: the commuter that carries two", "Hero Glamour X 125: দুজনের জন্য কমিউটার"],
+    summary: [
+      `Pillion ${sc(GLAMOUR).pillion}/10 and comfort ${sc(GLAMOUR).comfort}/10, with ${ps(GLAMOUR)} PS to keep up with traffic when two are on board, for ${road(GLAMOUR)} on the road.`,
+      `পেছনের আসন ${sc(GLAMOUR).pillion}/১০, আরাম ${sc(GLAMOUR).comfort}/১০, আর দুজন থাকলেও জ্যামে তাল রাখতে ${ps(GLAMOUR)} PS, অন-রোড ${road(GLAMOUR)}।`,
+    ],
+    why: [
+      [
+        `Pillion ${sc(GLAMOUR).pillion}/10, one of the best scores among commuters, and comfort ${sc(GLAMOUR).comfort}/10. A daily ride with a passenger is the job it is built for.`,
+        `পেছনের আসন ${sc(GLAMOUR).pillion}/১০, কমিউটারদের মধ্যে সেরাগুলোর একটি, আর আরাম ${sc(GLAMOUR).comfort}/১০। প্রতিদিন একজন যাত্রী নিয়ে চলাই এর কাজ।`,
+      ],
+      [
+        `${ps(GLAMOUR)} PS and ${bike(GLAMOUR).torqueNm} Nm, a front disc with CBS, and tubeless tyres: enough pull for two up on a flyover, and braking that suits the extra weight.`,
+        `${ps(GLAMOUR)} PS আর ${bike(GLAMOUR).torqueNm} Nm, সামনে ডিস্ক সঙ্গে CBS, আর টিউবলেস টায়ার: দুজন নিয়ে ফ্লাইওভারে ওঠার মতো শক্তি, আর বাড়তি ওজনের সঙ্গে মানানসই ব্রেক।`,
+      ],
+      [
+        `Against the Honda SP125: ${samePrice(GLAMOUR, "honda-sp125") ? "the same on-road price" : `${gap(GLAMOUR, "honda-sp125")} apart on the road`}, pillion ${sc(GLAMOUR).pillion}/10 vs ${sc("honda-sp125").pillion}/10, comfort ${sc(GLAMOUR).comfort}/10 vs ${sc("honda-sp125").comfort}/10 and ${ps(GLAMOUR)} vs ${ps("honda-sp125")} PS.`,
+        `Honda SP125-এর তুলনায়: ${samePrice(GLAMOUR, "honda-sp125") ? "অন-রোড দাম একই" : `অন-রোড দামে পার্থক্য ${gap(GLAMOUR, "honda-sp125")}`}, পেছনের আসন ${sc(GLAMOUR).pillion}/১০ বনাম ${sc("honda-sp125").pillion}/১০, আরাম ${sc(GLAMOUR).comfort}/১০ বনাম ${sc("honda-sp125").comfort}/১০, শক্তি ${ps(GLAMOUR)} বনাম ${ps("honda-sp125")} PS।`,
+      ],
+    ],
+    who: [
+      [
+        "In our quiz, with the budget set at its own on-road price, it comes first for: mixed riding from Dhaka, a first bike, a pillion every day, with performance as the priority.",
+        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকা থেকে মিশ্র চালানো, প্রথম বাইক, প্রতিদিন পেছনে একজন, আর অগ্রাধিকার পারফরম্যান্স।",
+      ],
+      [
+        "Couples and small families who ride two up every day and want a bit more power than a 100 cc commuter.",
+        "দম্পতি আর ছোট পরিবার, যাঁরা প্রতিদিন দুজন মিলে চলেন আর ১০০ সিসি কমিউটারের চেয়ে একটু বেশি শক্তি চান।",
+      ],
+    ],
+    tradeoffs: [
+      [
+        `The SP125 is the safer long-term bet: reliability ${sc("honda-sp125").reliability}/10 vs ${sc(GLAMOUR).reliability}/10, resale ${sc("honda-sp125").resale}/10 vs ${sc(GLAMOUR).resale}/10, and ${kmpl("honda-sp125")} km/l vs ${kmpl(GLAMOUR)}.`,
+        `দীর্ঘমেয়াদে SP125 বেশি নিরাপদ বাছাই: নির্ভরযোগ্যতা ${sc("honda-sp125").reliability}/১০ বনাম ${sc(GLAMOUR).reliability}/১০, রিসেল ${sc("honda-sp125").resale}/১০ বনাম ${sc(GLAMOUR).resale}/১০, আর মাইলেজ ${kmpl("honda-sp125")} বনাম ${kmpl(GLAMOUR)} কিমি/লি।`,
+      ],
+      [
+        `Mechanic familiarity ${sc(GLAMOUR).mechanicFamiliarity}/10 and parts ${sc(GLAMOUR).partsAvailability}/10: fine near a Hero dealer, harder in small towns. A service costs about ${formatBDT(bike(GLAMOUR).avgServiceCostBDT)}.`,
+        `মেকানিক চেনেন ${sc(GLAMOUR).mechanicFamiliarity}/১০, পার্টস ${sc(GLAMOUR).partsAvailability}/১০: Hero ডিলারের কাছে সমস্যা নেই, ছোট শহরে কঠিন। সার্ভিসে খরচ প্রায় ${formatBDT(bike(GLAMOUR).avgServiceCostBDT)}।`,
+      ],
+    ],
+  },
+  {
+    slug: "bajaj-pulsar-n250-safest-braking",
+    bestCase: { use: "mixed", where: "dhaka", experience: "some", pillion: "daily", priorities: ["performance", "safety"] },
+    week: 3,
+    updated: "2026-10-16",
+    minutes: 4,
+    bike: N250,
+    rival: "yamaha-fz25",
+    wins: ["Safety: braking", "নিরাপত্তা: ব্রেকিং"],
+    title: ["Bajaj Pulsar N250: dual-channel ABS for the money", "Bajaj Pulsar N250: এই দামে ডুয়াল-চ্যানেল ABS"],
+    summary: [
+      `Disc brakes at both ends with dual-channel ABS, ${ps(N250)} PS and a pillion score of ${sc(N250).pillion}/10, for ${road(N250)} on the road.`,
+      `দুই চাকাতেই ডিস্ক ব্রেক সঙ্গে ডুয়াল-চ্যানেল ABS, ${ps(N250)} PS আর পেছনের আসন ${sc(N250).pillion}/১০, অন-রোড ${road(N250)}।`,
+    ],
+    why: [
+      [
+        "Dual-channel ABS keeps both wheels from locking in a hard stop, the top level of braking safety in our quiz (dual ABS, then single ABS, then CBS, then none). On wet roads and with a pillion, that matters most.",
+        "ডুয়াল-চ্যানেল ABS জোরে ব্রেক করলে দুই চাকাকেই লক হতে দেয় না; আমাদের কুইজে ব্রেকিং নিরাপত্তার সর্বোচ্চ স্তর (ডুয়াল ABS, তারপর সিঙ্গেল ABS, তারপর CBS, তারপর কিছুই না)। ভেজা রাস্তায় আর পেছনে কেউ থাকলে এটাই সবচেয়ে জরুরি।",
+      ],
+      [
+        `${ps(N250)} PS and ${bike(N250).torqueNm} Nm, highway ${sc(N250).highway}/10 and comfort ${sc(N250).comfort}/10: it overtakes cleanly with two on board.`,
+        `${ps(N250)} PS আর ${bike(N250).torqueNm} Nm, হাইওয়ে ${sc(N250).highway}/১০, আরাম ${sc(N250).comfort}/১০: দুজন নিয়েও সহজে ওভারটেক করে।`,
+      ],
+      [
+        `Against the Yamaha FZ25 (also dual ABS): ${ps(N250)} vs ${ps("yamaha-fz25")} PS, pillion ${sc(N250).pillion}/10 vs ${sc("yamaha-fz25").pillion}/10 and resale ${sc(N250).resale}/10 vs ${sc("yamaha-fz25").resale}/10, for ${gap(N250, "yamaha-fz25")} less on the road.`,
+        `Yamaha FZ25-এর তুলনায় (এতেও ডুয়াল ABS): শক্তি ${ps(N250)} বনাম ${ps("yamaha-fz25")} PS, পেছনের আসন ${sc(N250).pillion}/১০ বনাম ${sc("yamaha-fz25").pillion}/১০, রিসেল ${sc(N250).resale}/১০ বনাম ${sc("yamaha-fz25").resale}/১০, অন-রোড ${gap(N250, "yamaha-fz25")} কম।`,
+      ],
+    ],
+    who: [
+      [
+        "In our quiz, with the budget set at its own on-road price, it comes first for: mixed riding from Dhaka, some riding experience, a pillion every day, with performance and safety as priorities.",
+        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকা থেকে মিশ্র চালানো, কিছুটা অভিজ্ঞতা, প্রতিদিন পেছনে একজন, আর অগ্রাধিকার পারফরম্যান্স ও নিরাপত্তা।",
+      ],
+      [
+        "Riders moving up from a 150 cc bike who carry a passenger often and want the best brakes they can buy at this price.",
+        "যাঁরা ১৫০ সিসি থেকে বড় বাইকে যাচ্ছেন, প্রায়ই পেছনে কাউকে নেন, আর এই দামে সবচেয়ে ভালো ব্রেক চান।",
+      ],
+    ],
+    tradeoffs: [
+      [
+        `${bike(N250).weightKg} kg and city handling ${sc(N250).cityHandling}/10: heavy in a jam and in tight lanes. Beginner-friendly only ${sc(N250).beginnerFriendly}/10; not a first bike.`,
+        `${bike(N250).weightKg} কেজি আর শহরে চালানো ${sc(N250).cityHandling}/১০: জ্যামে আর সরু গলিতে ভারী লাগে। নতুনদের জন্য মাত্র ${sc(N250).beginnerFriendly}/১০; প্রথম বাইক হিসেবে নয়।`,
+      ],
+      [
+        `${kmpl(N250)} km/l and a service of about ${formatBDT(bike(N250).avgServiceCostBDT)} every ${svc(N250)}: running costs are a big step up from a 150.`,
+        `মাইলেজ ${kmpl(N250)} কিমি/লি আর প্রতি ${svc(N250)}-এ সার্ভিসে প্রায় ${formatBDT(bike(N250).avgServiceCostBDT)}: ১৫০ সিসির তুলনায় চালানোর খরচ অনেক বেশি।`,
+      ],
+    ],
+  },
+  {
+    slug: "honda-nx200-best-for-highway",
+    bestCase: { use: "highway", where: "dhaka", experience: "some", pillion: "rarely", priorities: [] },
+    week: 3,
+    updated: "2026-10-16",
+    minutes: 4,
+    bike: NX200,
+    rival: "hero-xpulse-200-4v",
+    wins: ["Highway cruising", "হাইওয়েতে চলা"],
+    title: ["Honda NX200: an upright tourer for the highway", "Honda NX200: হাইওয়ের জন্য সোজা হয়ে বসার ট্যুরার"],
+    summary: [
+      `Highway ${sc(NX200).highway}/10 and comfort ${sc(NX200).comfort}/10, dual-channel ABS and an upright seat, for ${road(NX200)} on the road.`,
+      `হাইওয়ে ${sc(NX200).highway}/১০, আরাম ${sc(NX200).comfort}/১০, ডুয়াল-চ্যানেল ABS আর সোজা হয়ে বসার আসন, অন-রোড ${road(NX200)}।`,
+    ],
+    why: [
+      [
+        `Highway ${sc(NX200).highway}/10 with comfort ${sc(NX200).comfort}/10: an upright riding position and ${ps(NX200)} PS make a long day on the Dhaka-Chattogram road less tiring than on a sport bike.`,
+        `হাইওয়ে ${sc(NX200).highway}/১০, আরাম ${sc(NX200).comfort}/১০: সোজা হয়ে বসার ভঙ্গি আর ${ps(NX200)} PS, তাই ঢাকা-চট্টগ্রাম রাস্তায় সারাদিন চালানো স্পোর্ট বাইকের চেয়ে কম ক্লান্তিকর।`,
+      ],
+      [
+        `Dual-channel ABS and reliability ${sc(NX200).reliability}/10, with ${kmpl(NX200)} km/l, good for its size.`,
+        `ডুয়াল-চ্যানেল ABS আর নির্ভরযোগ্যতা ${sc(NX200).reliability}/১০, সঙ্গে ${kmpl(NX200)} কিমি/লি, এই আকারের বাইকের জন্য ভালো।`,
+      ],
+      [
+        `Against the Hero XPulse 200 4V: dual vs single-channel ABS, highway ${sc(NX200).highway}/10 vs ${sc("hero-xpulse-200-4v").highway}/10, tubeless tyres, and ${gap(NX200, "hero-xpulse-200-4v")} less on the road.`,
+        `Hero XPulse 200 4V-এর তুলনায়: ডুয়াল বনাম সিঙ্গেল-চ্যানেল ABS, হাইওয়ে ${sc(NX200).highway}/১০ বনাম ${sc("hero-xpulse-200-4v").highway}/১০, টিউবলেস টায়ার, আর অন-রোড ${gap(NX200, "hero-xpulse-200-4v")} কম।`,
+      ],
+    ],
+    who: [
+      [
+        "In our quiz, with the budget set at its own on-road price, it comes first for: mostly highway riding from Dhaka, some riding experience, rarely a pillion, and no other priority.",
+        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকা থেকে বেশিরভাগ হাইওয়েতে চালানো, কিছুটা অভিজ্ঞতা, পেছনে কেউ খুব কম, আর অন্য কোনো অগ্রাধিকার নেই।",
+      ],
+      [
+        "Riders who travel between cities often and want comfort and good brakes more than speed or off-road ability.",
+        "যাঁরা প্রায়ই এক শহর থেকে আরেক শহরে যান আর গতি বা অফরোডের চেয়ে আরাম আর ভালো ব্রেক বেশি চান।",
+      ],
+    ],
+    tradeoffs: [
+      [
+        `Off-road ${sc(NX200).offroad}/10 against ${sc("hero-xpulse-200-4v").offroad}/10 for the XPulse: it looks like an adventure bike, but for broken village roads and trails the XPulse is the better tool.`,
+        `অফরোড ${sc(NX200).offroad}/১০, XPulse-এর ${sc("hero-xpulse-200-4v").offroad}/১০: দেখতে অ্যাডভেঞ্চার বাইক, কিন্তু ভাঙা গ্রামের রাস্তা আর কাঁচা পথে XPulse ভালো।`,
+      ],
+      [
+        `A ${bike(NX200).seatHeightMm} mm seat, mechanic familiarity ${sc(NX200).mechanicFamiliarity}/10 and parts ${sc(NX200).partsAvailability}/10: check the seat height in person, and expect to rely on Honda dealers for service.`,
+        `${bike(NX200).seatHeightMm} মিমি সিট, মেকানিক চেনেন ${sc(NX200).mechanicFamiliarity}/১০, পার্টস ${sc(NX200).partsAvailability}/১০: শোরুমে বসে সিটের উচ্চতা দেখে নিন, আর সার্ভিসের জন্য Honda ডিলারের ওপর নির্ভর করতে হবে।`,
       ],
     ],
   },
