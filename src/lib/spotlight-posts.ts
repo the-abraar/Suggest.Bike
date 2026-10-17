@@ -85,7 +85,7 @@ export const SPOTLIGHTS: Spotlight[] = [
     who: [
       [
         "In our quiz, with the budget set at its own on-road price, it comes first for: a daily commute in Dhaka, a first bike, a pillion now and then.",
-        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকায় রোজকার যাতায়াত, প্রথম বাইক, মাঝে মাঝে পেছনে একজন।",
+        "আমাদের কুইজে বাজেট এই বাইকের নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকায় রোজকার যাতায়াত, প্রথম বাইক, মাঝে মাঝে পেছনে একজন।",
       ],
       [
         "Riders who want a new bike, not someone else's problems, and cannot stretch past a lakh, for short errands and town trips.",
@@ -142,7 +142,7 @@ export const SPOTLIGHTS: Spotlight[] = [
     who: [
       [
         "In our quiz, with the budget set at its own on-road price, it comes first for: Dhaka commuting, rarely a pillion, with mileage and resale as priorities.",
-        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকায় যাতায়াত, পেছনে কেউ কম বসেন, আর অগ্রাধিকার মাইলেজ ও রিসেল।",
+        "আমাদের কুইজে বাজেট এই বাইকের নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকায় যাতায়াত, পেছনে কেউ কম বসেন, আর অগ্রাধিকার মাইলেজ ও রিসেল।",
       ],
       [
         "Delivery and ride-share riders who count every litre, students, and anyone whose bike is a tool, not a hobby.",
@@ -195,7 +195,7 @@ export const SPOTLIGHTS: Spotlight[] = [
     who: [
       [
         "In our quiz, with the budget set at its own on-road price, it comes first for: a Dhaka commute, a shorter rider, rarely a pillion, with low maintenance, resale, safety and style as priorities.",
-        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকায় যাতায়াত, কম উচ্চতার চালক, পেছনে কেউ কম বসেন, আর অগ্রাধিকার কম রক্ষণাবেক্ষণ, রিসেল, নিরাপত্তা ও স্টাইল।",
+        "আমাদের কুইজে বাজেট এই বাইকের নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকায় যাতায়াত, কম উচ্চতার চালক, পেছনে কেউ কম বসেন, আর অগ্রাধিকার কম রক্ষণাবেক্ষণ, রিসেল, নিরাপত্তা ও স্টাইল।",
       ],
       [
         "Buyers who plan to sell or upgrade in two or three years, and first-time 150cc owners who want something that will not surprise them.",
@@ -248,7 +248,7 @@ export const SPOTLIGHTS: Spotlight[] = [
     who: [
       [
         "A specialist: in our quiz, with the budget set at its own on-road price, it comes first for: riding for fun, a shorter rider with some experience, rarely a pillion, with performance as the priority.",
-        "বিশেষজ্ঞ বাইক: আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: শখে চালানো, কিছুটা অভিজ্ঞ ও কম উচ্চতার চালক, পেছনে কেউ কম বসেন, আর অগ্রাধিকার পারফরম্যান্স।",
+        "বিশেষজ্ঞ বাইক: আমাদের কুইজে বাজেট এই বাইকের নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: শখে চালানো, কিছুটা অভিজ্ঞ ও কম উচ্চতার চালক, পেছনে কেউ কম বসেন, আর অগ্রাধিকার পারফরম্যান্স।",
       ],
       [
         "Weekend riders with a second way to get to work, and experienced riders who want a light sport bike more than a status badge.",
@@ -301,7 +301,7 @@ export const SPOTLIGHTS: Spotlight[] = [
     who: [
       [
         "A specialist: in our quiz, with the budget set at its own on-road price, it comes first for: highway riding, a shorter rider with some experience, with comfort as the priority.",
-        "বিশেষজ্ঞ বাইক: আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: হাইওয়েতে চালানো, কিছুটা অভিজ্ঞ ও কম উচ্চতার চালক, আর অগ্রাধিকার আরাম।",
+        "বিশেষজ্ঞ বাইক: আমাদের কুইজে বাজেট এই বাইকের নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: হাইওয়েতে চালানো, কিছুটা অভিজ্ঞ ও কম উচ্চতার চালক, আর অগ্রাধিকার আরাম।",
       ],
       [
         "Riders who travel between cities, often with a passenger, and who have a dealer within reach for service.",
@@ -354,7 +354,7 @@ export const SPOTLIGHTS: Spotlight[] = [
     who: [
       [
         "In our quiz, with the budget set at its own on-road price, it comes first for: commuting in a district town, a first bike, a pillion now and then, with resale and lowest price as priorities.",
-        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: জেলা শহরে যাতায়াত, প্রথম বাইক, মাঝে মাঝে পেছনে একজন, আর অগ্রাধিকার রিসেল ও সবচেয়ে কম দাম।",
+        "আমাদের কুইজে বাজেট এই বাইকের নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: জেলা শহরে যাতায়াত, প্রথম বাইক, মাঝে মাঝে পেছনে একজন, আর অগ্রাধিকার রিসেল ও সবচেয়ে কম দাম।",
       ],
       [
         "Buyers who want a bike that costs little, breaks rarely and sells easily, and who ride mostly in town.",
@@ -407,7 +407,7 @@ export const SPOTLIGHTS: Spotlight[] = [
     who: [
       [
         "In our quiz, with the budget set at its own on-road price, it comes first for: a daily commute in Dhaka, a first bike, a pillion now and then, with low maintenance as the priority.",
-        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকায় রোজকার যাতায়াত, প্রথম বাইক, মাঝে মাঝে পেছনে একজন, আর অগ্রাধিকার কম রক্ষণাবেক্ষণ।",
+        "আমাদের কুইজে বাজেট এই বাইকের নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকায় রোজকার যাতায়াত, প্রথম বাইক, মাঝে মাঝে পেছনে একজন, আর অগ্রাধিকার কম রক্ষণাবেক্ষণ।",
       ],
       [
         "New riders, office commuters on short city routes, and anyone who spends more time in jams than at speed.",
@@ -438,7 +438,7 @@ export const SPOTLIGHTS: Spotlight[] = [
     bike: DREAM,
     rival: "honda-livo-110",
     wins: ["Reliability", "নির্ভরযোগ্যতা"],
-    title: ["Honda Dream 110: the bike that just keeps going", "Honda Dream 110: যে বাইক থামতে জানে না"],
+    title: ["Honda Dream 110: the bike that just keeps going", "Honda Dream 110: যে বাইক চলতেই থাকে"],
     summary: [
       `Reliability ${sc(DREAM).reliability}/10 with mechanic familiarity ${sc(DREAM).mechanicFamiliarity}/10, for ${road(DREAM)} on the road. Plain to look at, easy to keep alive anywhere.`,
       `নির্ভরযোগ্যতা ${sc(DREAM).reliability}/১০, মেকানিক চেনে ${sc(DREAM).mechanicFamiliarity}/১০, অন-রোড ${road(DREAM)}-এ। দেখতে সাধারণ, যেকোনো জায়গায় সচল রাখা সহজ।`,
@@ -460,7 +460,7 @@ export const SPOTLIGHTS: Spotlight[] = [
     who: [
       [
         "In our quiz, with the budget set at its own on-road price, it comes first for: a mix of town and highway riding from a district town, a pillion now and then, with low maintenance and safety as priorities.",
-        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: জেলা শহর থেকে শহর আর হাইওয়ে মিলিয়ে চালানো, মাঝে মাঝে পেছনে একজন, আর অগ্রাধিকার কম রক্ষণাবেক্ষণ ও নিরাপত্তা।",
+        "আমাদের কুইজে বাজেট এই বাইকের নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: জেলা শহর থেকে শহর আর হাইওয়ে মিলিয়ে চালানো, মাঝে মাঝে পেছনে একজন, আর অগ্রাধিকার কম রক্ষণাবেক্ষণ ও নিরাপত্তা।",
       ],
       [
         "Riders far from a dealer who need any mechanic to fix it, and anyone who wants years of daily use with no surprises.",
@@ -513,7 +513,7 @@ export const SPOTLIGHTS: Spotlight[] = [
     who: [
       [
         "In our quiz, with the budget set at its own on-road price, it comes first for: rough roads around Dhaka, a rider with some experience, rarely a pillion, with performance and resale as priorities.",
-        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকার আশেপাশের খারাপ রাস্তা, কিছুটা অভিজ্ঞ চালক, পেছনে কেউ কম বসেন, আর অগ্রাধিকার পারফরম্যান্স ও রিসেল।",
+        "আমাদের কুইজে বাজেট এই বাইকের নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকার আশেপাশের খারাপ রাস্তা, কিছুটা অভিজ্ঞ চালক, পেছনে কেউ কম বসেন, আর অগ্রাধিকার পারফরম্যান্স ও রিসেল।",
       ],
       [
         "Young riders who want a sporty 125 that survives bad roads, and commuters whose route mixes jams with broken stretches.",
@@ -566,7 +566,7 @@ export const SPOTLIGHTS: Spotlight[] = [
     who: [
       [
         "In our quiz, with the budget set at its own on-road price, it comes first for: a mix of Dhaka and highway riding, rarely a pillion, with style (a sport look) and resale as priorities.",
-        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকা আর হাইওয়ে মিলিয়ে চালানো, পেছনে কেউ কম বসেন, আর অগ্রাধিকার স্টাইল (স্পোর্ট লুক) ও রিসেল।",
+        "আমাদের কুইজে বাজেট এই বাইকের নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকা আর হাইওয়ে মিলিয়ে চালানো, পেছনে কেউ কম বসেন, আর অগ্রাধিকার স্টাইল (স্পোর্ট লুক) ও রিসেল।",
       ],
       [
         "Riders who want a sport bike that looks the part and will sell well later, and who have the budget for its running costs.",
@@ -619,7 +619,7 @@ export const SPOTLIGHTS: Spotlight[] = [
     who: [
       [
         "In our quiz, with the budget set at its own on-road price, it comes first for: commuting in a district town, some riding experience, a pillion now and then, with low maintenance and mileage as priorities.",
-        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: জেলা শহরে যাতায়াত, কিছুটা চালানোর অভিজ্ঞতা, মাঝে মাঝে পেছনে একজন, আর অগ্রাধিকার কম রক্ষণাবেক্ষণ ও মাইলেজ।",
+        "আমাদের কুইজে বাজেট এই বাইকের নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: জেলা শহরে যাতায়াত, কিছুটা চালানোর অভিজ্ঞতা, মাঝে মাঝে পেছনে একজন, আর অগ্রাধিকার কম রক্ষণাবেক্ষণ ও মাইলেজ।",
       ],
       [
         "Riders who put a lot of kilometres on a bike every month and want each service and repair to be cheap and quick.",
@@ -668,7 +668,7 @@ export const SPOTLIGHTS: Spotlight[] = [
     who: [
       [
         "In our quiz, with the budget set at its own on-road price, it comes first for: commuting in Dhaka, a first bike, rarely a pillion, with comfort as the priority.",
-        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকায় যাতায়াত, প্রথম বাইক, পেছনে কেউ খুব কম, আর অগ্রাধিকার আরাম।",
+        "আমাদের কুইজে বাজেট এই বাইকের নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকায় যাতায়াত, প্রথম বাইক, পেছনে কেউ খুব কম, আর অগ্রাধিকার আরাম।",
       ],
       [
         "New riders, shorter riders, and anyone who wants a gentle bike for learning in city traffic.",
@@ -717,7 +717,7 @@ export const SPOTLIGHTS: Spotlight[] = [
     who: [
       [
         "In our quiz, with the budget set at its own on-road price, it comes first for: mixed riding from Dhaka, a first bike, a pillion every day, with performance as the priority.",
-        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকা থেকে মিশ্র চালানো, প্রথম বাইক, প্রতিদিন পেছনে একজন, আর অগ্রাধিকার পারফরম্যান্স।",
+        "আমাদের কুইজে বাজেট এই বাইকের নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকা থেকে মিশ্র চালানো, প্রথম বাইক, প্রতিদিন পেছনে একজন, আর অগ্রাধিকার পারফরম্যান্স।",
       ],
       [
         "Couples and small families who ride two up every day and want a bit more power than a 100 cc commuter.",
@@ -766,7 +766,7 @@ export const SPOTLIGHTS: Spotlight[] = [
     who: [
       [
         "In our quiz, with the budget set at its own on-road price, it comes first for: mixed riding from Dhaka, some riding experience, a pillion every day, with performance and safety as priorities.",
-        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকা থেকে মিশ্র চালানো, কিছুটা অভিজ্ঞতা, প্রতিদিন পেছনে একজন, আর অগ্রাধিকার পারফরম্যান্স ও নিরাপত্তা।",
+        "আমাদের কুইজে বাজেট এই বাইকের নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকা থেকে মিশ্র চালানো, কিছুটা অভিজ্ঞতা, প্রতিদিন পেছনে একজন, আর অগ্রাধিকার পারফরম্যান্স ও নিরাপত্তা।",
       ],
       [
         "Riders moving up from a 150 cc bike who carry a passenger often and want the best brakes they can buy at this price.",
@@ -815,7 +815,7 @@ export const SPOTLIGHTS: Spotlight[] = [
     who: [
       [
         "In our quiz, with the budget set at its own on-road price, it comes first for: mostly highway riding from Dhaka, some riding experience, rarely a pillion, and no other priority.",
-        "আমাদের কুইজে বাজেট এর নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকা থেকে বেশিরভাগ হাইওয়েতে চালানো, কিছুটা অভিজ্ঞতা, পেছনে কেউ খুব কম, আর অন্য কোনো অগ্রাধিকার নেই।",
+        "আমাদের কুইজে বাজেট এই বাইকের নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকা থেকে বেশিরভাগ হাইওয়েতে চালানো, কিছুটা অভিজ্ঞতা, পেছনে কেউ খুব কম, আর অন্য কোনো অগ্রাধিকার নেই।",
       ],
       [
         "Riders who travel between cities often and want comfort and good brakes more than speed or off-road ability.",

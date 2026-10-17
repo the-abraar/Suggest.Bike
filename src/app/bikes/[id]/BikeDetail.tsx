@@ -227,7 +227,11 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
                 <p className="mt-2 text-[13px] text-muted">
                   <span className="font-medium text-ink-2">{tx("Price history", "দামের ইতিহাস")}:</span>{" "}
                   {hist.length > 1 && <Sparkline values={hist.map((p) => p.priceBDT)} />}{" "}
-                  {hist.length > 1
+                  {hist.length > 1 && new Set(hist.slice(-3).map((p) => p.firstSeen.slice(0, 7))).size === 1
+                    ? // all recent changes in one month: "since Oct · was … in Oct" reads oddly
+                      `${monthLabel(hist[hist.length - 1].firstSeen.slice(0, 7), lang)}: ` +
+                      hist.slice(-3).map((p) => formatBDT(p.priceBDT)).join(" → ")
+                    : hist.length > 1
                     ? hist
                         .slice(-3)
                         .reverse()
