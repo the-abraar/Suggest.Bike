@@ -290,6 +290,27 @@ ok('header 375 menu: Dealers', (await pg.locator('a[href="/dealers/"]:visible').
   await p.close();
 }
 
+// 14. Home search list paints over Quick pick on a phone (the columns stack there)
+{
+  const p = await newPage();
+  await p.goto(BASE + '/', { waitUntil: 'networkidle' });
+  const box = p.locator('section input[role="combobox"]');
+  await box.fill('pulsar');
+  await p.locator('section [role="option"]').first().waitFor();
+  await box.evaluate((e) => e.scrollIntoView({ block: 'start', behavior: 'instant' })); // html has scroll-behavior: smooth
+  const [onTop, all] = await p.evaluate(() => {
+    const lb = document.querySelector('section [role="listbox"]');
+    const shown = [...lb.querySelectorAll('[role="option"]')].filter((o) => o.getBoundingClientRect().bottom <= innerHeight);
+    const hit = shown.filter((o) => {
+      const r = o.getBoundingClientRect();
+      return lb.contains(document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2));
+    });
+    return [hit.length, shown.length];
+  });
+  ok('home search: every on-screen result is on top of Quick pick', all > 1 && onTop === all, `${onTop}/${all}`);
+  await p.close();
+}
+
 const pageErrs = [...new Set(errs)];
 ok('no page/console errors', pageErrs.length === 0, pageErrs.join(' | '));
 await br.close();

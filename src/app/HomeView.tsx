@@ -34,7 +34,8 @@ export function HomeView() {
       <section className="relative overflow-hidden">
         <div className="bg-grid pointer-events-none absolute inset-0 opacity-70" />
         <div className="container-x relative grid grid-cols-[minmax(0,1fr)] items-center gap-12 pb-16 pt-10 sm:pt-16 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:pb-24 lg:pt-20">
-          <div className="animate-rise">
+          {/* z-10: animate-rise leaves each hero column its own stacking context, so on phones (stacked) Quick pick painted over the search list */}
+          <div className="relative z-10 animate-rise">
             <span className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-[12.5px] font-medium text-ink-2 shadow-sm">
               <span className="h-1.5 w-1.5 rounded-full bg-accent" />
               {t("home.kicker")}
