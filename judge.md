@@ -1,6 +1,6 @@
 # Launch-readiness judgement: Suggest.Bike
 
-> **Current go-to-market score: 60%.** The verdict below is the original 2026-10-12 audit. See *Update 8* at the bottom for the current score, gaps and next steps, and `../GO_TO_MARKET_SCORECARD.md`.
+> **Current go-to-market score: 55% (cap 55).** The verdict below is the original 2026-10-12 audit. For the current score, gaps and next steps see the latest update at the bottom, *Update (2026-10-19, review round)*, and `../GO_TO_MARKET_SCORECARD.md`.
 
 Audited 2026-10-12 against `main` @ `d56bb02`. Checks run: `npm run validate` (77 bikes, 0 problems), `npx tsc --noEmit` (0 errors), `npm run build` (173 static pages, OK), `npx tsx finder/test.mjs` (10/10). Also checked live DNS, GitHub Pages and Bikroy.
 
@@ -104,38 +104,38 @@ Fix blockers 1 to 4 below, hide the finder, and the site can soft-launch in abou
 
 ## Major gaps
 
-1. **No analytics, so success cannot be measured.**
+1. **No analytics, so success cannot be measured.** *Status 2026-10-19: still open. `GOATCOUNTER_CODE` is empty (`src/lib/site.ts:28`).*
    - Evidence: nothing in `src/` (grep for `analytics`, `plausible` or `gtag` finds nothing); the owner todo is unchecked.
    - Fix: add Cloudflare Web Analytics or Plausible (one script tag in `layout.tsx`). Track these events: quiz completed, compare pair, cost-calculator use, "report wrong price" click, share. Mention it in `/privacy`.
-2. **Bangla is invisible to Google.**
+2. **Bangla is invisible to Google.** *Status 2026-10-19: fixed. `/bn/` routes with hreflang and a server-rendered `lang="bn"` since Update 10. The evidence below is out of date.*
    - Evidence: the language toggle is client-side only (`localStorage sb-lang`), `<html lang="en">` is fixed (`layout.tsx:35`), there are no `/bn/` routes and no `hreflang`. Most BD queries are in Bangla or Banglish ("pulsar n160 dam koto").
    - Fix: generate `/bn/...` static routes from the same components with server-rendered `bn` text, add `alternates.languages` (hreflang) both ways, and add the BN URLs to the sitemap.
-3. **Client pages have no SEO metadata.**
+3. **Client pages have no SEO metadata.** *Status 2026-10-19: fixed in Update 5. Every page checked live has its own title and canonical.*
    - Evidence: `/`, `/bikes`, `/match`, `/compare`, `/cost` and `/saved` all render the default title, and `rel="canonical"` count is 0 in `out/index.html`, `out/bikes/`, `out/compare/` and `out/match/`. This matches the open P2 item in `Todo_agent.md`.
    - Fix: split each page into a server `page.tsx` that exports `metadata` (title, description, canonical) and a client `*View.tsx`, the same pattern as `about/` and `guide/`.
-4. **Share images may fail on GitHub Pages.**
+4. **Share images may fail on GitHub Pages.** *Status 2026-10-19: fixed. Share cards are `.png` files served as `image/png`, EN and BN. Facebook's Sharing Debugger has still not been run.*
    - Evidence: the OG images are extension-less (`out/opengraph-image`, `out/bikes/*/opengraph-image`). `public/.htaccess` forces `image/png`, but that file only works on Apache; **GitHub Pages ignores it** and serves them as `application/octet-stream`. Facebook and Messenger previews are the growth loop (`UI_AUDIT.md` M6).
    - Fix: test with the Facebook Sharing Debugger after DNS is live. If previews fail, emit `.png` files at build time (`scripts/build-art.tsx`) and point `openGraph.images` at them, or host on Cloudflare Pages and set a `_headers` rule.
-5. **Product JSON-LD misrepresents the site as a seller.**
+5. **Product JSON-LD misrepresents the site as a seller.** *Status 2026-10-19: fixed in Update 5 (`Offer` removed, `url` and `image` added).*
    - Evidence: `bikes/[id]/page.tsx:33` emits an `Offer` with `InStock` and no seller, URL or image. Google may flag it as invalid merchant-listing markup.
    - Fix: drop `offers`, or use `AggregateOffer` with `offerCount` and no availability. Add `image` (the photo or OG URL).
-6. **Feedback works only through `mailto:`.**
+6. **Feedback works only through `mailto:`.** *Status 2026-10-19: partly fixed. `/feedback/` and WhatsApp exist, but `FORM_ENDPOINT` is empty (`src/lib/site.ts:19`), so Send still opens an email app.*
    - Evidence: the feedback links in `BikeDetail.tsx:60`, `Footer.tsx:49` and the listing-check scam report are all `mailto:`. On many Android phones in BD there is no mail client, so the tap does nothing. MX records exist (Namecheap eforward), but the `hello@` forward is unverified.
    - Fix: confirm the `hello@` forward. Add a small form posting to the same Worker (`POST /feedback`, stored in KV) or to a Google Form, plus a Facebook page or Messenger link. Review it weekly.
-7. **No tests on the decision engines, and CI doesn't gate.**
+7. **No tests on the decision engines, and CI doesn't gate.** *Status 2026-10-19: fixed. `tests/` covers the engines, and `deploy.yml` runs validate, tsc, tests and build before it deploys.*
    - Evidence: the only tests are `finder/test.mjs`. There are none for `src/lib/match.ts`, `cost.ts`, `fund.ts`, `listingcheck/engine.ts`, `negotiate/parts.ts` or `usedcheck/value.ts`. `deploy.yml` runs only `npm ci && npm run build`, with no validate step.
    - Fix:
      1. Add `npm run validate` and `npm run typecheck` steps to `deploy.yml`.
      2. Add one `scripts/selftest.mjs` (node:assert, run with tsx) covering the H6 persona (৳1 lakh + used + commute must not put a 2-stroke at #1), the budget ceiling, `gearless:"no"` (no scooters), the 2yr vs 10yr tax maths and `emiMonthly`.
      3. Add a curl smoke test of every route against `out/`, served locally.
-8. **No business model, and a public promise that limits it.**
+8. **No business model, and a public promise that limits it.** *Status 2026-10-19: still open. The promises are "no affiliate deals with dealers" (`src/app/about/AboutView.tsx:63`) and "0 paid placements. Ever." (`src/app/HomeView.tsx:72`).*
    - Evidence: `AboutView.tsx` promises "no sponsored rankings and no affiliate deals with dealers", and `Todo_owner.md` "decide the business model" is unchecked.
    - Fix: choose a model before traffic arrives. The best fit is clearly labelled sponsorship plus disclosed dealer or insurance lead referrals, kept outside the ranking code. Write a public "how we make money" section on `/about`. Re-word the promise to "money never touches rankings" so it allows disclosed referrals.
-9. **No distribution.**
+9. **No distribution.** *Status 2026-10-19: still open. 10 Facebook posts are drafted in `docs/launch-posts.md`, but the site links no Facebook page, and Bing shows no results for `site:suggest.bike`.*
    - Evidence: no Facebook page, no social links, no content calendar (`Todo_owner.md` Growth is all unchecked).
    - Fix: create a Facebook page first. Post weekly "true monthly cost of the top 5 150cc bikes" image cards that link to bike pages. Seed 3–5 BD bike groups and offer creators the compare and cost links.
-10. **EV gap.** The schema can't describe electric bikes (`types.ts`: cc, carb/FI), and EVs are a growing segment in BD (Revoo, Walton). Add `powertrain` with battery, range and charge-time fields after launch.
-11. **Docs and repo drift.**
+10. **EV gap.** *Status 2026-10-19: fixed. `engine.fuel: "electric"` with an `ev` spec; 5 electric bikes are listed.* The schema can't describe electric bikes (`types.ts`: cc, carb/FI), and EVs are a growing segment in BD (Revoo, Walton). Add `powertrain` with battery, range and charge-time fields after launch.
+11. **Docs and repo drift.** *Status 2026-10-19: these four items are fixed (README count, `HANDOFF.md` gone, worktrees pruned, duplicate deleted).*
     - `README.md:12` says 76 bikes; there are 77.
     - `HANDOFF.md` expects "about 165 pages"; there are 173. It also points at a dead scratchpad path.
     - Three stale agent worktrees sit in `.claude/worktrees/`.
@@ -146,14 +146,14 @@ Fix blockers 1 to 4 below, hide the finder, and the site can soft-launch in abou
 
 ## Launch path (in order)
 
-1. **Days 1–2:** point the DNS at GitHub Pages, enforce HTTPS, verify the domain, add an uptime monitor. Confirm the `hello@suggest.bike` forward works.
-2. **Days 1–3:** pull or hide `/labs/finder/` (sitemap and nav). Hide the network box and the "Where" weighting until `networks.json` is filled. Mark KTM 125s and the other uncertain bikes correctly.
-3. **Days 2–4:** add the `/privacy`, `/terms` and `/disclaimer` pages (EN and BN) and link them everywhere. Fix the Product JSON-LD.
-4. **Days 2–7:** fix the data. Resolve the P0 shaky-spec list. Re-source prices to distributors. Call showrooms for the top 10 bikes. Add the staleness gate to `validate-data.mjs` and run validate and typecheck in `deploy.yml`.
-5. **Days 4–7:** add analytics, the feedback form and server metadata or canonicals for client pages. Verify OG previews in the Facebook debugger, and switch to `.png` files if needed.
-6. **Day 7:** run the engine self-test and the route smoke test. **Soft launch:** a Facebook page plus 2–3 group posts. Watch analytics and corrections for 2 weeks.
-7. **Weeks 2–4:** a monthly price-refresh Action that opens PRs; the owner mileage survey and mechanic interviews; per-field `confidence`; `/bn/` routes with hreflang.
-8. **Month 2:** decide and publish the business model; start sponsorship or referral talks. Finder v2 only with a legal listing supply (partner feed, paste-link or seller posts), the deployed Worker with Turnstile and deletion, and an approved WhatsApp template.
+1. **Days 1–2:** point the DNS at GitHub Pages, enforce HTTPS, verify the domain, add an uptime monitor. Confirm the `hello@suggest.bike` forward works. *Status 2026-10-19: DNS and HTTPS done (Update 11). No uptime monitor is recorded, and the `hello@` forward is still untested.*
+2. **Days 1–3:** pull or hide `/labs/finder/` (sitemap and nav). Hide the network box and the "Where" weighting until `networks.json` is filled. Mark KTM 125s and the other uncertain bikes correctly. *Status 2026-10-19: done (finder hidden; `networks.json` filled for 9 brands in Update 11).*
+3. **Days 2–4:** add the `/privacy`, `/terms` and `/disclaimer` pages (EN and BN) and link them everywhere. Fix the Product JSON-LD. *Status 2026-10-19: done, except the lawyer review.*
+4. **Days 2–7:** fix the data. Resolve the P0 shaky-spec list. Re-source prices to distributors. Call showrooms for the top 10 bikes. Add the staleness gate to `validate-data.mjs` and run validate and typecheck in `deploy.yml`. *Status 2026-10-19: mostly done (age and outlier gates, deploy gates, spec fixes). Still open: showroom calls, 2 `TODO(owner)` spec notes in `bikes.json`, and bikebd.com is still 54 of 107 price sources.*
+5. **Days 4–7:** add analytics, the feedback form and server metadata or canonicals for client pages. Verify OG previews in the Facebook debugger, and switch to `.png` files if needed. *Status 2026-10-19: canonicals and PNG share cards done. Analytics and the form endpoint are still empty; the Facebook debugger has not been run.*
+6. **Day 7:** run the engine self-test and the route smoke test. **Soft launch:** a Facebook page plus 2–3 group posts. Watch analytics and corrections for 2 weeks. *Status 2026-10-19: self-test and route checks done. Soft launch not started.*
+7. **Weeks 2–4:** a monthly price-refresh Action that opens PRs; the owner mileage survey and mechanic interviews; per-field `confidence`; `/bn/` routes with hreflang. *Status 2026-10-19: the price-refresh Action and `/bn/` routes exist, but the Action cannot open its PR yet (see the 2026-10-19 update). The mileage survey and mechanic interviews have not started.*
+8. **Month 2:** decide and publish the business model; start sponsorship or referral talks. Finder v2 only with a legal listing supply (partner feed, paste-link or seller posts), the deployed Worker with Turnstile and deletion, and an approved WhatsApp template. *Status 2026-10-19: not started.*
 9. **Ongoing:** a monthly review of fuel prices, new launches and discontinued models, plus a weekly corrections triage.
 
 
@@ -317,3 +317,46 @@ Done (`scripts/check.sh` exit 0; deploy run 38930206340 green; suggest.bike serv
 **Fixed:** price-history line now reads "Oct 2026: ৳A → ৳B" when the last three changes fall in one month (was "since Oct · was … in Oct").
 **Bangla proofread (spotlight posts):** "বাজেট এর নিজের" (15 posts) became "বাজেট এই বাইকের নিজের"; Dream 110 title "থামতে জানে না" (also reads as "can't brake") became "চলতেই থাকে". Doubtful, not changed: "অন্যের ঝামেলাসহ পুরনো বাইক" (Glint), "পিছলায়" (Splendor+), loanword-heavy "রিসেল" and "মনোশক"; needs a native reader.
 **Git:** 7 merged local branches deleted with `-d`; `git worktree prune` run. `GOATCOUNTER_CODE` untouched.
+
+
+## Update (2026-10-19, review round)
+
+Read-only review of the live site and the repo at `a7bf0ec`. There are no new commits since the 2026-10-18 hardening round. Checked: GitHub Actions history and settings; the live site in Playwright at 375 and 1280 px (home, a bike page, compare, quiz, `/bn/`, a Bangla bike page, 404, dealers, cost, feedback), with 0 horizontal overflow and 0 console errors; sitemap (378 URLs), robots, share tags and page weight; and a dry run of the monthly price refresh against the live distributor pages. `scripts/check.sh` was not re-run, because no code changed and CI is green on `a7bf0ec`.
+
+**Score:** 55% (cap 55), unchanged. Dimension scores are also unchanged: Product 7, Quality 7, Security 8, Legal 5, Market 1, Ops 5, Honesty 7 (`../GO_TO_MARKET_SCORECARD.md`).
+
+**Still open from the last round:**
+- `GOATCOUNTER_CODE` and `FORM_ENDPOINT` are still empty (`src/lib/site.ts:19`, `:28`). The live home page loads no counter, and Send on `/feedback/` opens an email app.
+- "0 paid placements. Ever." (`src/app/HomeView.tsx:72`) and "no affiliate deals with dealers" (`src/app/about/AboutView.tsx:63`) are unchanged.
+- The repo is still public, with 84 tracked internal files (critiques, research, this file).
+
+**Bugs found:**
+1. **The Pulsar F250 price is ৳20,000 too high.** The site shows ৳3,65,100 with "Price checked Oct 2026" and bajajauto.com as the source (`src/data/bikes.json:1949`). bajajauto.com/en-bd/bikes/pulsar-f250 shows ৳3,45,100 today. The price refresh dry run found this as the only change among 64 official prices; the other 63 match.
+2. **The monthly price refresh cannot open its pull request.** The repo setting "Allow GitHub Actions to create and approve pull requests" is off (`can_approve_pull_request_reviews: false` in the Actions settings API). On 1 November the job will push `bot/price-refresh` and then fail at `gh pr create` (`.github/workflows/price-refresh.yml:50`), so no PR reaches you. The scraper itself works: the dry run read 40 distributor pages with 0 failures. Also, a PR opened with the Actions token does not start `check.yml`; `deploy.yml` still runs its gates when you merge.
+3. **The 404 page shows the home page's title** ("Suggest.Bike — Find the right motorcycle in Bangladesh"), and `/bn/` addresses get the English 404 page. Small.
+
+**Price spot check:** 6 of 6 match their source today: Pulsar N160 ৳2,73,600 (bajajauto.com), Livo ৳1,45,000 (bdhonda.com), and Apache RTR 160 4V ৳2,47,900, Splendor+ ৳1,17,000, R15 V4 ৳6,05,000 and FZS V4 ৳2,92,500 (bikebd.com). The suzuki.com.bd Gixxer SF page loads its price in the browser only, so curl could not check it.
+
+**Gaps, ranked:**
+1. **No analytics (critical).** Nothing can be measured, so no post, SEO change or feature can be judged. First flagged 12 Oct; it is a 10-minute owner task.
+2. **No revenue model, and public promises block the obvious ones (critical).** Dealer leads, finance referrals and sponsored offers are how comparable sites earn. "0 paid placements. Ever." rules out even a labelled sponsor slot.
+3. **No evidence anyone can find the site (high).** Bing returns "There are no results" for `site:suggest.bike`. Search Console coverage has not been checked since the sitemap went in on 14 Oct. The 10 Facebook posts in `docs/launch-posts.md` are drafted, but the site links no Facebook page. BikeBD holds the top results for the same queries.
+4. **The selling points are still editorial estimates (high).** Real mileage, mistri scores and parts prices are labelled "Editorial estimate". The owner mileage survey and mechanic panel have not started.
+5. **The correction loop is half-built (medium).** `FORM_ENDPOINT` is empty, so the feedback and "I own this" forms open an email app, which many Android phones in BD lack. WhatsApp works.
+6. **No step after the decision, and no reason to come back (medium).** A bike page ends at a distributor hotline. There is no "get a showroom quote", price-drop alert or newsletter. The one offer in `src/data/offers.json` is hidden because its bike is "availability unconfirmed", so the offers feature shows nothing.
+7. **The quiz answers for you (medium).** Answers start pre-selected and "Skip to results" ranks bikes on a ৳2.5 lakh Dhaka commuter the user never chose (`src/app/match/MatchView.tsx:110`, `:171`). At 375 px the first results screen shows the heading, chips and a drawing, but no bike name or price.
+8. **Legal pages are unreviewed drafts (medium).** No lawyer review; the terms name no operator, address or governing law (`src/components/LegalView.tsx:8-11`).
+9. **The public repo shows strategy and critiques to competitors (medium).** 84 internal files, including this one, `CrtiQue_*.md`, `ResearchingStuff/` and the owner todo list.
+10. **Bangla pages mix digit systems (low).** The Bangla Pulsar N160 page prints all 37 ৳ amounts in Latin digits (৳2,85,364), while dates and counts use Bangla digits (অক্টো ২০২৬, ১২ মাসের). It reads as machine-made.
+
+Also still true, lower down: about 270 KB of gzipped JS per page; 72 of 107 bikes have a drawing, not a photo; "bike under 2 lakh" and "best mileage" in search return nothing; the home page says "88 bikes on sale" while the footer says "107 bikes"; the footer links ThrottleIQ's GitHub repo; `docs/Todo_owner.md` still lists DNS hosting and the WhatsApp number as open, though both are done.
+
+**Next, in order:**
+1. **You (5 min):** in GitHub, Settings → Actions → General, tick "Allow GitHub Actions to create and approve pull requests". Then open Actions → price-refresh → Run workflow. It should open a PR that fixes the F250 price. Review it per `docs/price-refresh.md` and merge it (merging deploys).
+2. **You (15 min):** create the GoatCounter and Formspree accounts and give the agent the code and URL (steps in `docs/Todo_owner.md`). Do this before any Facebook post.
+3. **You (30 min):** check Search Console coverage, import the site into Bing Webmaster Tools from Search Console, create the Facebook page, and post the first two launch posts once analytics is on.
+4. **You (decision):** pick a business model. If it includes leads or sponsorship, reword the promises to "money never touches the rankings". **Agent:** then build a disclosed "get a showroom quote" form.
+5. **Agent (about 2 h, needs your OK to push):** a proper 404 title and Bangla 404 text; Bangla digits for every number on `/bn/`; route searches like "under 2 lakh" to the budget filter; one "Edit answers" line on quiz results so the top bike shows on the first screen.
+6. **You:** lawyer review plus operator name and address in the terms; one walk-through on a real Android phone and an iPhone.
+
+**Not checked:** Google Search Console coverage (owner login); Facebook's Sharing Debugger; real phones and low-end CPU speed (only transfer sizes were measured); whether an uptime monitor exists; whether mail to `hello@suggest.bike` arrives; the Bangla text by a native reader; BikeBD's rankings for our target queries (search engines block scripted queries); the ৳165/L octane figure.
