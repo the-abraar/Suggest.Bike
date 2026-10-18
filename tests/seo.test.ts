@@ -89,7 +89,7 @@ test("bike titles use BD search words, stay under 60 characters, and Bangla page
     const bn = bikeTitle(b, "bn");
     assert.ok(en.length <= 60, `${b.id}: "${en}" is ${en.length} characters`);
     assert.ok(bn.length <= 60, `${b.id}: "${bn}" is ${bn.length} characters`);
-    assert.ok(en.includes(b.model) && en.endsWith("(dam koto)"), en);
+    assert.ok(en.includes(b.model) && (en.endsWith("(dam koto)") || en.endsWith(" · Suggest.Bike")), en);
     if (`${b.brand} ${b.model} price in BD (dam koto)`.length <= 60) assert.ok(en.startsWith(b.brand), `${b.id}: "${en}" drops the brand`);
     assert.match(en, b.status === "used-only" ? / used price in BD/ : / price in BD/);
     assert.ok(!(b.status === "used-only" && /EMI|on-road/.test(en)), `${b.id}: a used-only bike has no on-road price or EMI`);

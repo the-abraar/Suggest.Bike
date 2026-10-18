@@ -38,6 +38,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning className={`${geist.variable} ${geistMono.variable} ${bangla.variable}`}>
       <head>
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://gc.zgo.at https://*.goatcounter.com https://formspree.io;"
+        />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         {GOATCOUNTER_CODE && <script async data-goatcounter={`https://${GOATCOUNTER_CODE}.goatcounter.com/count`} src="https://gc.zgo.at/count.js" />}
       </head>

@@ -27,8 +27,8 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
   if (!bike) notFound();
   return (
     <>
-      {/* safe-html: JSON.stringify of build-time bike data */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd(bike)) }} />
+      {/* safe-html: JSON.stringify of build-time bike data, escaped to prevent script breakout */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd(bike)).replace(/</g, "\\u003c") }} />
       <BikeDetail bike={bike} />
     </>
   );

@@ -22,6 +22,7 @@ const ERR: Record<string, [string, string]> = {
 export function FeedbackForm({ kind, bike, post }: { kind: ReportKind; bike?: { id: string; name: string; ev?: boolean }; post?: { slug: string; title: string } }) {
   const tx = useTx();
   const [r, setR] = useState<ReportInput>({ message: "", email: "", name: "", onRoadBDT: "", showroom: "", month: "", kmpl: "" });
+  const [gotcha, setGotcha] = useState("");
   const [errs, setErrs] = useState<string[]>([]);
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const set = (k: keyof ReportInput) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setR({ ...r, [k]: e.target.value });
@@ -33,6 +34,11 @@ export function FeedbackForm({ kind, bike, post }: { kind: ReportKind; bike?: { 
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
+    if (gotcha) {
+      // Spam bot caught by honeypot
+      setState("sent");
+      return;
+    }
     const v = validateReport(kind, r);
     setErrs(v);
     if (v.length) return;
@@ -43,7 +49,7 @@ export function FeedbackForm({ kind, bike, post }: { kind: ReportKind; bike?: { 
       const res = await fetch(FORM_ENDPOINT, {
         method: "POST",
         headers: { "content-type": "application/json", accept: "application/json" },
-        body: JSON.stringify({ kind, bike: bike?.id ?? "", ...(post ? { post: post.slug } : {}), ...r, _subject: subject, ...(r.email ? { _replyto: r.email } : {}) }),
+        body: JSON.stringify({ kind, bike: bike?.id ?? "", ...(post ? { post: post.slug } : {}), ...r, _subject: subject, _gotcha: gotcha, ...(r.email ? { _replyto: r.email } : {}) }),
       });
       setState(res.ok ? "sent" : "error");
     } catch {
@@ -69,6 +75,16 @@ export function FeedbackForm({ kind, bike, post }: { kind: ReportKind; bike?: { 
   const field = "block text-[13px] font-medium text-ink-2";
   return (
     <form onSubmit={submit} noValidate className="space-y-4">
+      <input
+        type="text"
+        name="_gotcha"
+        value={gotcha}
+        onChange={(e) => setGotcha(e.target.value)}
+        tabIndex={-1}
+        autoComplete="off"
+        className="hidden"
+        aria-hidden="true"
+      />
       {kind === "owner" && (
         <div className="grid gap-4 sm:grid-cols-2">
           <label className={field}>

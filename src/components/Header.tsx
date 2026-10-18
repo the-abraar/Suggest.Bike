@@ -47,7 +47,7 @@ export function Header() {
         }`}
       >
         <div className="container-x flex h-16 items-center gap-3 sm:gap-6">
-          <Link href="/" className="shrink-0 rounded-lg" aria-label="Suggest.Bike home">
+          <Link href="/" prefetch={false} className="shrink-0 rounded-lg" aria-label="Suggest.Bike home">
             <Logo />
           </Link>
 
@@ -56,6 +56,7 @@ export function Header() {
               <Link
                 key={n.href}
                 href={n.href}
+                prefetch={false}
                 className={`whitespace-nowrap rounded-lg px-2.5 py-2 text-[14px] font-medium transition-colors xl:px-3 xl:text-[14.5px] ${
                   active(n.href) ? "text-ink bg-surface-2" : "text-muted hover:text-ink"
                 }`}
@@ -71,6 +72,7 @@ export function Header() {
             </div>
             <Link
               href="/saved/"
+              prefetch={false}
               className="relative grid h-10 w-10 place-items-center rounded-xl text-ink-2 hover:bg-surface-2"
               aria-label={t("nav.saved")}
             >
@@ -104,12 +106,13 @@ export function Header() {
                 <Link
                   key={n.href}
                   href={n.href}
+                  prefetch={false}
                   className={`rounded-xl px-4 py-3.5 text-lg font-medium ${active(n.href) ? "bg-surface-2 text-ink" : "text-ink-2"}`}
                 >
                   {t(n.k)}
                 </Link>
               ))}
-              <Link href="/saved/" className="rounded-xl px-4 py-3.5 text-lg font-medium text-ink-2">
+              <Link href="/saved/" prefetch={false} className="rounded-xl px-4 py-3.5 text-lg font-medium text-ink-2">
                 {t("nav.saved")} {ready && saved.length > 0 && <span className="text-muted">({saved.length})</span>}
               </Link>
             </nav>

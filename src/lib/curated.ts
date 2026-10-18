@@ -75,7 +75,12 @@ export function bikeTitle(b: Pick<Bike, "brand" | "model" | "status">, lang: "en
       : used ? [" used price in BD, parts and mileage (dam koto)", " used price in BD (dam koto)"] : [" price in BD, on-road cost and EMI (dam koto)", " price in BD and EMI (dam koto)", " price in BD (dam koto)"];
   // Brand first: most BD searches name it ("bajaj pulsar n160 price"), so a shorter tail beats dropping it (critique 15 Oct N10).
   const all = [...tails.map((t) => fullName(b) + t), ...tails.map((t) => b.model + t)];
-  return all.find((t) => t.length <= TITLE_MAX) ?? all[all.length - 1];
+  let picked = all.find((t) => t.length <= TITLE_MAX) ?? all[all.length - 1];
+  const brandSuffix = " · Suggest.Bike";
+  if (picked.length + brandSuffix.length <= TITLE_MAX) {
+    picked += brandSuffix;
+  }
+  return picked;
 }
 
 /**
