@@ -239,7 +239,7 @@ function Table({ bikes }: { bikes: BikeLite[] }) {
           label: tx("On-road, with 2-year tax token", "অন-রোড, ২ বছরের ট্যাক্স টোকেনসহ"),
           values: bikes.map((b) => (
             <>
-              {formatBDT(onRoadPrice(b))}
+              {formatBDT(onRoadPrice(b), lang)}
               {b.status === "used-only" && <span className="block text-[12px] font-normal text-muted">{tx("used, asking price", "পুরনো, চাওয়া দাম")}</span>}
               <OfferTag bikeId={b.id} className="mt-1 inline-block" />
             </>
@@ -247,29 +247,29 @@ function Table({ bikes }: { bikes: BikeLite[] }) {
           nums: bikes.map((b) => onRoadPrice(b)),
           better: "low",
         },
-        { label: tx("Ex-showroom", "শোরুম মূল্য"), values: bikes.map((b) => (b.status === "used-only" ? "—" : formatBDT(b.priceBDT))) },
+        { label: tx("Ex-showroom", "শোরুম মূল্য"), values: bikes.map((b) => (b.status === "used-only" ? "—" : formatBDT(b.priceBDT, lang))) },
         {
           label: tx("12-month card EMI", "১২ মাসের কার্ড কিস্তি"),
-          values: bikes.map((b) => (isUsedOption({ bike: b }) ? "—" : `${formatBDT(cardEmi(b.priceBDT))}${tx("/mo", "/মাস")}`)),
+          values: bikes.map((b) => (isUsedOption({ bike: b }) ? "—" : `${formatBDT(cardEmi(b.priceBDT), lang)}${tx("/mo", "/মাস")}`)),
         },
         {
           label: tx("Running cost / month (25 km/day)", "চলার খরচ / মাস (দিনে ২৫ km)"),
-          values: costs.map((c) => formatBDT(c.runningPerMonth)),
+          values: costs.map((c) => formatBDT(c.runningPerMonth, lang)),
           nums: costs.map((c) => Math.round(c.runningPerMonth)),
           better: "low",
         },
         {
           label: tx("True cost / month incl. resale loss (3 yrs)", "আসল খরচ / মাস, রিসেল লসসহ (৩ বছর)"),
-          values: costs.map((c) => formatBDT(c.perMonth)),
+          values: costs.map((c) => formatBDT(c.perMonth, lang)),
         },
         {
           label: tx("Used price, ~1 year old (bikroy)", "পুরনো দাম, ~১ বছর (bikroy)"),
-          values: bikes.map((b) => (b.usedPrice?.y1 ? formatBDT(b.usedPrice.y1) : "—")),
+          values: bikes.map((b) => (b.usedPrice?.y1 ? formatBDT(b.usedPrice.y1, lang) : "—")),
         },
-        { label: tx("Est. resale after 3 years", "৩ বছর পর আনুমানিক রিসেল"), values: costs.map((c) => formatBDT(c.resaleValue)) },
+        { label: tx("Est. resale after 3 years", "৩ বছর পর আনুমানিক রিসেল"), values: costs.map((c) => formatBDT(c.resaleValue, lang)) },
         {
           label: tx("Periodic service", "নিয়মিত সার্ভিস"),
-          values: bikes.map((b) => `${formatBDT(b.avgServiceCostBDT)} / ${b.serviceIntervalKm.toLocaleString("en-IN")} km`),
+          values: bikes.map((b) => `${formatBDT(b.avgServiceCostBDT, lang)} / ${b.serviceIntervalKm.toLocaleString("en-IN")} km`),
         },
       ],
     },
@@ -372,7 +372,7 @@ function Table({ bikes }: { bikes: BikeLite[] }) {
         label: bikes.every((b) => partLabel(b, p.name, lang) === partLabel(bikes[0], p.name, lang))
           ? partLabel(bikes[0], p.name, lang)
           : bikes.map((b) => partLabel(b, p.name, lang)).join(" / "),
-        values: bikes.map((b) => (b.parts[idx] ? formatBDT(b.parts[idx].priceBDT) : "—")),
+        values: bikes.map((b) => (b.parts[idx] ? formatBDT(b.parts[idx].priceBDT, lang) : "—")),
       })),
     },
   ];

@@ -360,3 +360,12 @@ Also still true, lower down: about 270 KB of gzipped JS per page; 72 of 107 bike
 6. **You:** lawyer review plus operator name and address in the terms; one walk-through on a real Android phone and an iPhone.
 
 **Not checked:** Google Search Console coverage (owner login); Facebook's Sharing Debugger; real phones and low-end CPU speed (only transfer sizes were measured); whether an uptime monitor exists; whether mail to `hello@suggest.bike` arrives; the Bangla text by a native reader; BikeBD's rankings for our target queries (search engines block scripted queries); the ৳165/L octane figure.
+
+
+### Update 18 (2026-10-20, agent round: next-step 5)
+
+Done (`scripts/check.sh` exit 0; `npm run og:bn` 108 cards, 194 `/bn/` pages checked; `interact.mjs` 53 PASS, `keyboard.mjs` 57 PASS; `qa.mjs` on 8 pages at 375 and 1280: 0 overflow, axe or console problems):
+- **404:** title "Page not found · Suggest.Bike" (`src/app/not-found.tsx` now exports metadata). On `/bn/…` addresses the one `404.html` shows the Bangla text, `lang="bn"` and the title "পাতা পাওয়া যায়নি · Suggest.Bike" (set on the client in `NotFoundView.tsx`).
+- **Digits:** `formatBDT` and `formatLakh` print Bangla digits on Bangla pages (`৳২,৮৫,৩৬৪`, `৳২.৬৫ লাখ`), including page descriptions, Bangla share cards, price-band labels, home stats and spotlight posts (৳ amounts and "N/১০" scores). Not changed: hand-written Bangla copy (guides, cost page notes, `priceNoteBn` in `bikes.json`) and km, cc and mileage figures still use Latin digits; that needs an editorial pass, since model names like "R15 V4" must keep Latin digits.
+- **Search:** "under 2 lakh", "1.5 lac", "150k", "২ লাখের নিচে" offer "All bikes up to ৳2 lakh on-road", which opens `/bikes/?price=u200000` with a removable "Up to ৳2 lakh" chip (`budgetQuery` in `src/lib/search.ts`, tested). "best mileage" still returns nothing.
+- **Quiz results at 375 px:** only the budget chip shows (the other answer chips from 640 px up), and the on-road price sits under the model name, so the top bike's name and price are on the first screen.

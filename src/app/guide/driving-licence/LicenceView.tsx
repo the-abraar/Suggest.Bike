@@ -32,7 +32,7 @@ export function LicenceView({ lang }: { lang: Lang }) {
       {label}
     </a>
   );
-  const total = formatBDT(LEARNER_ONE + SMART_NONPRO + POSTAGE);
+  const total = formatBDT(LEARNER_ONE + SMART_NONPRO + POSTAGE, lang);
 
   const steps: Bi[] = [
     {
@@ -115,7 +115,7 @@ export function LicenceView({ lang }: { lang: Lang }) {
           {FEES.map((f) => (
             <li key={f.what.en} className="flex items-baseline justify-between gap-4 px-4 py-3.5">
               <span className="text-[15px] text-ink">{t(f.what)}</span>
-              <span className="shrink-0 text-[16px] font-semibold text-ink">{formatBDT(f.bdt)}</span>
+              <span className="shrink-0 text-[16px] font-semibold text-ink">{formatBDT(f.bdt, lang)}</span>
             </li>
           ))}
         </ul>

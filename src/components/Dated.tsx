@@ -52,9 +52,9 @@ export function OfferBox({ bikeId }: { bikeId: string }) {
       <p className="mt-1 text-[16px] font-semibold text-ink">{lang === "bn" ? o.titleBn : o.title}</p>
       {o.offerPriceBDT && (
         <p className="mt-1 text-[14px] text-ink-2 tnum">
-          <strong className="text-[20px] font-semibold text-ink">{formatBDT(o.offerPriceBDT)}</strong>
-          {o.regularPriceBDT && <s className="ml-2 text-ink-2">{formatBDT(o.regularPriceBDT)}</s>}
-          {saving > 0 && <span className="ml-2 font-semibold text-ink">{tx(`save ${formatBDT(saving)}`, `${formatBDT(saving)} সাশ্রয়`)}</span>}
+          <strong className="text-[20px] font-semibold text-ink">{formatBDT(o.offerPriceBDT, lang)}</strong>
+          {o.regularPriceBDT && <s className="ml-2 text-ink-2">{formatBDT(o.regularPriceBDT, lang)}</s>}
+          {saving > 0 && <span className="ml-2 font-semibold text-ink">{tx(`save ${formatBDT(saving, lang)}`, `${formatBDT(saving, lang)} সাশ্রয়`)}</span>}
         </p>
       )}
       <p className="mt-1.5 text-[13px] text-ink-2">

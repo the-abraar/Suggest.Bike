@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { getBike } from "../src/lib/bikes";
-import { searchBikes } from "../src/lib/search";
+import { budgetQuery, searchBikes } from "../src/lib/search";
 
 const ids = (q: string, limit = 7) => searchBikes(q, limit).map((b) => b.id);
 const cases: [string, string][] = [
@@ -54,4 +54,10 @@ test("search: a brand-only query lists on-sale bikes before used-only antiques (
     assert.ok(found.length > 0 && found[0].status === "on-sale", `"${q}": ${found.map((b) => b.id).join(", ")}`);
     if (firstUsed >= 0) assert.ok(found.slice(firstUsed).every((b) => b.status === "used-only"), `"${q}": used-only bikes must trail on ties`);
   }
+});
+
+test("budgetQuery: lakh, lac, k, Bangla and plain amounts are budgets; model numbers are not", () => {
+  for (const [q, want] of [["under 2 lakh", 200000], ["bike under 1.5 lac", 150000], ["২ লাখের নিচে", 200000], ["150k", 150000], ["2,00,000", 200000]] as const)
+    assert.equal(budgetQuery(q), want, q);
+  for (const q of ["n160", "r15 v4", "pulsar 150", "160cc", "ktm 390", "honda"]) assert.equal(budgetQuery(q), null, q);
 });

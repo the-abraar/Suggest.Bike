@@ -47,7 +47,7 @@ export function ChangesView() {
                   <span className="font-medium text-ink">{e.name}</span>
                 )}
                 <span className="tnum text-ink-2">
-                  {e.from != null && e.to != null ? `${formatBDT(e.from)} → ${formatBDT(e.to)} (${(e.pct ?? 0) > 0 ? "+" : ""}${e.pct}%)` : formatBDT(e.to ?? e.from ?? 0)}
+                  {e.from != null && e.to != null ? `${formatBDT(e.from, lang)} → ${formatBDT(e.to, lang)} (${(e.pct ?? 0) > 0 ? "+" : ""}${e.pct}%)` : formatBDT(e.to ?? e.from ?? 0, lang)}
                 </span>
                 <span className="ml-auto text-[12.5px] text-muted">{fmtDate(e.date, { day: "numeric", month: "short" })}</span>
               </li>

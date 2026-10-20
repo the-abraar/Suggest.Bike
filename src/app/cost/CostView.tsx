@@ -9,7 +9,7 @@ import { DEFAULT_COST_INPUT, EV_BATTERY, FUEL, OVERHAUL_YEARS, OWNERSHIP_YEARS, 
 import { DEFAULT_FEE_PCT, PAY_TERMS, cardEmi, payPaths, type PathKey } from "@/lib/fund";
 import { FuelAgeNote } from "@/components/Dated";
 import guide from "@/data/guide.json";
-import { useLang, useTx } from "@/lib/i18n";
+import { useLang, useTx, type Lang } from "@/lib/i18n";
 import { BikeArt } from "@/components/BikeArt";
 import { BikePicker, Field, Range, Switch } from "@/components/form";
 import type { BikeLite } from "@/lib/types";
@@ -53,7 +53,7 @@ function Cost({ params }: { params: URLSearchParams }) {
   const belowPct = Math.round(c.detail.belowRef * 100);
   const cheap = c.detail.cheap;
   const checkSlug = usedCheckSlug(bike);
-  const how = explain(c, bike, inp, tx);
+  const how = explain(c, bike, inp, tx, lang);
 
   const others = useMemo(
     () =>
@@ -132,8 +132,8 @@ function Cost({ params }: { params: URLSearchParams }) {
               </p>
               <p className="mt-2 rounded-lg bg-surface-2 px-3 py-2 text-[12.5px] leading-snug text-ink-2">
                 {tx(
-                  `+${repairPct}% (${formatBDT(c.hiddenRepairs)}) set aside for problems a used bike hides until later. ${cheap ? `${repairPct}% because the price is ${belowPct}% under the typical ${formatBDT(c.detail.refUsedPrice)} (estimate).` : bike.engine.cooling === "air" ? "5% because a simple air-cooled engine is cheap to put right." : "10% because an oil- or liquid-cooled engine costs more to fix."}`,
-                  `পুরনো বাইকের যে সমস্যাগুলো পরে বের হয় তার জন্য +${repairPct}% (${formatBDT(c.hiddenRepairs)}) আলাদা রাখা হয়েছে। ${cheap ? `দাম সাধারণ ${formatBDT(c.detail.refUsedPrice)}-এর চেয়ে ${belowPct}% কম, তাই ${repairPct}% (আনুমানিক)।` : bike.engine.cooling === "air" ? "সাধারণ এয়ার-কুলড ইঞ্জিন ঠিক করতে খরচ কম, তাই 5%।" : "অয়েল বা লিকুইড-কুলড ইঞ্জিন সারাতে খরচ বেশি, তাই 10%।"}`,
+                  `+${repairPct}% (${formatBDT(c.hiddenRepairs, lang)}) set aside for problems a used bike hides until later. ${cheap ? `${repairPct}% because the price is ${belowPct}% under the typical ${formatBDT(c.detail.refUsedPrice, lang)} (estimate).` : bike.engine.cooling === "air" ? "5% because a simple air-cooled engine is cheap to put right." : "10% because an oil- or liquid-cooled engine costs more to fix."}`,
+                  `পুরনো বাইকের যে সমস্যাগুলো পরে বের হয় তার জন্য +${repairPct}% (${formatBDT(c.hiddenRepairs, lang)}) আলাদা রাখা হয়েছে। ${cheap ? `দাম সাধারণ ${formatBDT(c.detail.refUsedPrice, lang)}-এর চেয়ে ${belowPct}% কম, তাই ${repairPct}% (আনুমানিক)।` : bike.engine.cooling === "air" ? "সাধারণ এয়ার-কুলড ইঞ্জিন ঠিক করতে খরচ কম, তাই 5%।" : "অয়েল বা লিকুইড-কুলড ইঞ্জিন সারাতে খরচ বেশি, তাই 10%।"}`,
                 )}
               </p>
               {cheap && (
@@ -141,8 +141,8 @@ function Cost({ params }: { params: URLSearchParams }) {
                   <p className="font-semibold">{tx("This is not a normal price for this bike", "এই বাইকের জন্য এটা স্বাভাবিক দাম নয়")}</p>
                   <p className="mt-0.5">
                     {tx(
-                      `It is ${belowPct}% below the typical ${formatBDT(c.detail.refUsedPrice)}. A bike this cheap often hides accident damage, a worn engine or paper trouble. Check it thoroughly, with a mechanic, before you pay.`,
-                      `সাধারণ ${formatBDT(c.detail.refUsedPrice)}-এর চেয়ে ${belowPct}% কম। এত সস্তা বাইকে প্রায়ই দুর্ঘটনার ক্ষতি, ক্ষয়ে যাওয়া ইঞ্জিন বা কাগজের ঝামেলা লুকানো থাকে। টাকা দেওয়ার আগে মেকানিক নিয়ে ভালো করে দেখে নিন।`,
+                      `It is ${belowPct}% below the typical ${formatBDT(c.detail.refUsedPrice, lang)}. A bike this cheap often hides accident damage, a worn engine or paper trouble. Check it thoroughly, with a mechanic, before you pay.`,
+                      `সাধারণ ${formatBDT(c.detail.refUsedPrice, lang)}-এর চেয়ে ${belowPct}% কম। এত সস্তা বাইকে প্রায়ই দুর্ঘটনার ক্ষতি, ক্ষয়ে যাওয়া ইঞ্জিন বা কাগজের ঝামেলা লুকানো থাকে। টাকা দেওয়ার আগে মেকানিক নিয়ে ভালো করে দেখে নিন।`,
                     )}
                     {checkSlug && (
                       <>
@@ -188,10 +188,10 @@ function Cost({ params }: { params: URLSearchParams }) {
             )}
           </Field>
 
-          <Field label={tx("Octane price", "অকটেনের দাম")} value={`৳${inp.fuelPrice}/L`}>
+          <Field label={tx("Octane price", "অকটেনের দাম")} value={`${formatBDT(inp.fuelPrice, lang)}/L`}>
             <Range min={120} max={220} step={1} value={inp.fuelPrice} onChange={(v) => set("fuelPrice", v)} label={tx("Fuel price", "তেলের দাম")} />
             <p className="mt-1 text-[12px] text-faint">
-              {tx(`Govt price is ৳${FUEL.octane}/L (${FUEL.asOf}).`, `সরকারি দাম ৳${FUEL.octane}/লিটার (${FUEL.asOf})।`)}{" "}
+              {tx(`Govt price is ৳${FUEL.octane}/L (${FUEL.asOf}).`, `সরকারি দাম ${formatBDT(FUEL.octane, "bn")}/লিটার (${FUEL.asOf})।`)}{" "}
               {tx("In January 2026 it was ৳122/L: up 35% by September", "জানুয়ারি ২০২৬-এ ছিল ৳১২২/লিটার: সেপ্টেম্বরের মধ্যে ৩৫% বেশি")}{" "}
               (<a href="https://www.unb.com.bd/category/Bangladesh/fuel-prices-rise-up-to-nearly-36-between-january-and-september-2026/195927" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">UNB, 21 Sep 2026</a>).{" "}
               {inp.fuelPrice !== FUEL.octane && (
@@ -203,7 +203,7 @@ function Cost({ params }: { params: URLSearchParams }) {
             <FuelAgeNote className="mt-2" />
           </Field>
 
-          <Field label={tx("Washing, parking & small fixes", "ধোয়া, পার্কিং ও ছোটখাটো খরচ")} value={`${formatBDT(inp.upkeepPerMonth)}${tx("/mo", "/মাস")}`}>
+          <Field label={tx("Washing, parking & small fixes", "ধোয়া, পার্কিং ও ছোটখাটো খরচ")} value={`${formatBDT(inp.upkeepPerMonth, lang)}${tx("/mo", "/মাস")}`}>
             <Range min={0} max={5000} step={100} value={inp.upkeepPerMonth} onChange={(v) => set("upkeepPerMonth", v)} label={tx("Washing and parking per month", "মাসে ধোয়া ও পার্কিং")} />
             <p className="mt-1 text-[12px] text-faint">
               {tx("Paid garage parking in Dhaka is often ৳1,500–3,000 a month.", "ঢাকায় গ্যারেজ পার্কিং প্রায়ই মাসে ৳1,500–3,000।")}
@@ -256,12 +256,12 @@ function Cost({ params }: { params: URLSearchParams }) {
                 </p>
                 <div className="mt-2 flex flex-wrap items-end gap-x-10 gap-y-5">
                   <div>
-                    <p className="text-[48px] font-semibold leading-none tracking-[-0.03em] text-ink tnum sm:text-[60px]">{formatBDT(c.pocketPerMonth)}</p>
+                    <p className="text-[48px] font-semibold leading-none tracking-[-0.03em] text-ink tnum sm:text-[60px]">{formatBDT(c.pocketPerMonth, lang)}</p>
                     <p className="mt-2 text-[15px] text-muted">{tx("from your pocket each month", "প্রতি মাসে পকেট থেকে যাবে")}</p>
                   </div>
                   {inp.includeDepreciation && (
                     <div>
-                      <p className="text-[30px] font-semibold leading-none tracking-[-0.02em] text-ink-2 tnum sm:text-[36px]">{formatBDT(c.perMonth)}</p>
+                      <p className="text-[30px] font-semibold leading-none tracking-[-0.02em] text-ink-2 tnum sm:text-[36px]">{formatBDT(c.perMonth, lang)}</p>
                       <p className="mt-2 text-[15px] text-muted">{tx("true cost, with resale loss", "আসল খরচ, রিসেল লস সহ")}</p>
                     </div>
                   )}
@@ -276,7 +276,7 @@ function Cost({ params }: { params: URLSearchParams }) {
               <div className="grid grid-cols-3 gap-6 sm:grid-cols-1 sm:gap-4 sm:text-right">
                 <Kpi k={tx("Total", "মোট")} v={formatLakh(c.total, lang)} />
                 <Kpi k={tx("Per km", "প্রতি km")} v={`৳${c.perKm.toFixed(2)}`} />
-                <Kpi k={tx("Running only / mo", "শুধু চলার খরচ / মাস")} v={formatBDT(c.runningPerMonth)} />
+                <Kpi k={tx("Running only / mo", "শুধু চলার খরচ / মাস")} v={formatBDT(c.runningPerMonth, lang)} />
               </div>
             </div>
 
@@ -286,7 +286,7 @@ function Cost({ params }: { params: URLSearchParams }) {
                 {SEGMENTS.map((s) => {
                   const v = c[s.k];
                   if (!v) return null;
-                  return <div key={s.k} title={`${tx(s.en, s.bn)}: ${formatBDT(v)}`} style={{ width: `${(v / c.total) * 100}%`, background: s.color }} className="h-full transition-all duration-500" />;
+                  return <div key={s.k} title={`${tx(s.en, s.bn)}: ${formatBDT(v, lang)}`} style={{ width: `${(v / c.total) * 100}%`, background: s.color }} className="h-full transition-all duration-500" />;
                 })}
               </div>
               <div className="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-2">
@@ -302,9 +302,9 @@ function Cost({ params }: { params: URLSearchParams }) {
                         {note && <HowPopover label={tx(`How ${s.en.toLowerCase()} is worked out`, `${s.bn} কীভাবে হিসাব করা`)} text={note} />}
                       </span>
                       <span className="font-medium text-ink tnum">
-                        {formatBDT(v)}{" "}
+                        {formatBDT(v, lang)}{" "}
                         <span className="text-[12.5px] font-normal text-faint">
-                          · {formatBDT(v / months)}
+                          · {formatBDT(v / months, lang)}
                           {tx("/mo", "/মাস")}
                         </span>
                       </span>
@@ -318,15 +318,15 @@ function Cost({ params }: { params: URLSearchParams }) {
           <div className="grid gap-4 sm:grid-cols-3">
             <Fact
               k={c.buyingUsed ? tx("Buy today", "আজ কিনলে") : inp.taxPlan === "2yr" ? tx("On-road, with 2-year tax token", "অন-রোড, ২ বছরের ট্যাক্স টোকেনসহ") : tx("On-road, with 10-year tax token", "অন-রোড, ১০ বছরের ট্যাক্স টোকেনসহ")}
-              v={formatBDT(c.onRoad)}
-              sub={!c.buyingUsed ? tx(`ex-showroom ${formatBDT(bike.priceBDT)} + ${formatBDT(c.onRoad - bike.priceBDT)} BRTA`, `শোরুম মূল্য ${formatBDT(bike.priceBDT)} + ${formatBDT(c.onRoad - bike.priceBDT)} BRTA`) : tx("used price, plus transfer fee", "পুরনো দাম, সাথে মালিকানা বদলের ফি")}
+              v={formatBDT(c.onRoad, lang)}
+              sub={!c.buyingUsed ? tx(`ex-showroom ${formatBDT(bike.priceBDT, lang)} + ${formatBDT(c.onRoad - bike.priceBDT, lang)} BRTA`, `শোরুম মূল্য ${formatBDT(bike.priceBDT, lang)} + ${formatBDT(c.onRoad - bike.priceBDT, lang)} BRTA`) : tx("used price, plus transfer fee", "পুরনো দাম, সাথে মালিকানা বদলের ফি")}
             />
             <Fact
               k={tx("Or on 12-month EMI", "অথবা ১২ মাসের কিস্তিতে")}
-              v={!c.buyingUsed ? `${formatBDT(cardEmi(bike.priceBDT))}${tx("/mo", "/মাস")}` : "—"}
+              v={!c.buyingUsed ? `${formatBDT(cardEmi(bike.priceBDT), lang)}${tx("/mo", "/মাস")}` : "—"}
               sub={c.buyingUsed ? tx("No card EMI on a private sale", "ব্যক্তিগত বিক্রিতে কার্ড কিস্তি নেই") : tx("0% card EMI where offered, plus BRTA upfront", "যেখানে ০% কার্ড কিস্তি আছে; BRTA খরচ শুরুতেই")}
             />
-            <Fact k={tx(`Worth after ${inp.years} yr`, `${inp.years} বছর পর দাম`)} v={formatBDT(c.resaleValue)} sub={tx("estimated, decent condition", "আনুমানিক, ভালো অবস্থায়")} />
+            <Fact k={tx(`Worth after ${inp.years} yr`, `${inp.years} বছর পর দাম`)} v={formatBDT(c.resaleValue, lang)} sub={tx("estimated, decent condition", "আনুমানিক, ভালো অবস্থায়")} />
           </div>
 
           <PayCompare price={c.buyingUsed ? c.onRoad : bike.priceBDT} brta={c.buyingUsed ? 0 : c.onRoad - bike.priceBDT} used={c.buyingUsed} />
@@ -345,12 +345,12 @@ function Cost({ params }: { params: URLSearchParams }) {
                       </span>
                       <span className="min-w-0 flex-1 truncate text-[14.5px] font-medium text-ink">{fullName(b)}</span>
                       <span className="text-[14.5px] font-semibold text-ink tnum">
-                        {formatBDT(cc.perMonth)}
+                        {formatBDT(cc.perMonth, lang)}
                         {tx("/mo", "/মাস")}
                       </span>
                       <span className={`w-20 text-right text-[13px] font-medium tnum sm:w-24 ${diff < 0 ? "text-good" : "text-signal"}`}>
                         {diff < 0 ? "−" : "+"}
-                        {formatBDT(Math.abs(diff))}
+                        {formatBDT(Math.abs(diff), lang)}
                       </span>
                     </button>
                   );
@@ -382,6 +382,7 @@ const INSURANCE_AS_OF = guide.insurance.asOf;
 /** Cash vs 0% card EMI vs loan for the same bike (example PAY_TERMS from fund.ts; the fee is set by the user). A private (used) sale is cash only. */
 function PayCompare({ price, brta, used }: { price: number; brta: number; used: boolean }) {
   const tx = useTx();
+  const { lang } = useLang();
   const [feePct, setFeePct] = useState(DEFAULT_FEE_PCT);
   const p = payPaths({ price, brta, feePct, ...PAY_TERMS });
   const rows: { key: PathKey; label: string }[] = [
@@ -418,11 +419,11 @@ function PayCompare({ price, brta, used }: { price: number; brta: number; used: 
             {rows.map(({ key, label }) => (
               <tr key={key}>
                 <th className="py-2.5 font-medium text-ink" scope="row">{label}</th>
-                <td className="py-2.5 text-ink-2">{formatBDT(p[key].upfront)}</td>
-                <td className="py-2.5 text-ink-2">{p[key].emi > 0 ? `${formatBDT(p[key].emi)}${tx("/mo", "/মাস")} × ${p[key].emiMonths}` : "—"}</td>
+                <td className="py-2.5 text-ink-2">{formatBDT(p[key].upfront, lang)}</td>
+                <td className="py-2.5 text-ink-2">{p[key].emi > 0 ? `${formatBDT(p[key].emi, lang)}${tx("/mo", "/মাস")} × ${p[key].emiMonths}` : "—"}</td>
                 <td className="py-2.5 text-right font-semibold text-ink">
-                  {formatBDT(p[key].total)}
-                  {p[key].extra > 0 && <span className="block text-[12px] font-normal text-signal">+{formatBDT(p[key].extra)} {tx("interest/fees", "সুদ/ফি")}</span>}
+                  {formatBDT(p[key].total, lang)}
+                  {p[key].extra > 0 && <span className="block text-[12px] font-normal text-signal">+{formatBDT(p[key].extra, lang)} {tx("interest/fees", "সুদ/ফি")}</span>}
                 </td>
               </tr>
             ))}
@@ -463,47 +464,47 @@ type Tx = ReturnType<typeof useTx>;
 const n = (x: number) => Math.round(x).toLocaleString("en-IN");
 
 /** Plain-words formula behind each cost line, with the numbers the engine used. */
-function explain(c: CostBreakdown, bike: BikeLite, inp: CostInput, tx: Tx): Partial<Record<(typeof SEGMENTS)[number]["k"], string>> {
+function explain(c: CostBreakdown, bike: BikeLite, inp: CostInput, tx: Tx, lang: Lang): Partial<Record<(typeof SEGMENTS)[number]["k"], string>> {
   const d = c.detail;
   const w = d.wear;
   const o = d.overhaul;
   return {
     service: tx(
-      `${d.services.toFixed(1)} services × ${formatBDT(bike.avgServiceCostBDT)} each (oil, filter, labour). One every ${n(bike.serviceIntervalKm)} km over ${n(c.km)} km, and at least 2 a year. Estimate.`,
-      `${d.services.toFixed(1)}টি সার্ভিস × প্রতিটি ${formatBDT(bike.avgServiceCostBDT)} (মবিল, ফিল্টার, মজুরি)। ${n(c.km)} km-এ প্রতি ${n(bike.serviceIntervalKm)} km-এ একটি, বছরে অন্তত ২টি। আনুমানিক।`,
+      `${d.services.toFixed(1)} services × ${formatBDT(bike.avgServiceCostBDT, lang)} each (oil, filter, labour). One every ${n(bike.serviceIntervalKm)} km over ${n(c.km)} km, and at least 2 a year. Estimate.`,
+      `${d.services.toFixed(1)}টি সার্ভিস × প্রতিটি ${formatBDT(bike.avgServiceCostBDT, lang)} (মবিল, ফিল্টার, মজুরি)। ${n(c.km)} km-এ প্রতি ${n(bike.serviceIntervalKm)} km-এ একটি, বছরে অন্তত ২টি। আনুমানিক।`,
     ),
     wear: tx(
-      `Each part's price × (${n(c.km)} km ÷ its life), counted as it wears: brakes ${formatBDT(w.brakes)}, chain set & lube ${formatBDT(w.chain)}, tyres ${formatBDT(w.tyres)}, clutch ${formatBDT(w.clutch)}, air filter & spark plug ${formatBDT(w.filters)}, battery every 2 years ${formatBDT(w.battery)}. Estimate.`,
-      `প্রতিটি পার্টসের দাম × (${n(c.km)} km ÷ তার আয়ু), যতটা ক্ষয় হয় ততটা: ব্রেক ${formatBDT(w.brakes)}, চেইন সেট ও লুব ${formatBDT(w.chain)}, টায়ার ${formatBDT(w.tyres)}, ক্লাচ ${formatBDT(w.clutch)}, এয়ার ফিল্টার ও স্পার্ক প্লাগ ${formatBDT(w.filters)}, ২ বছরে ব্যাটারি ${formatBDT(w.battery)}। আনুমানিক।`,
+      `Each part's price × (${n(c.km)} km ÷ its life), counted as it wears: brakes ${formatBDT(w.brakes, lang)}, chain set & lube ${formatBDT(w.chain, lang)}, tyres ${formatBDT(w.tyres, lang)}, clutch ${formatBDT(w.clutch, lang)}, air filter & spark plug ${formatBDT(w.filters, lang)}, battery every 2 years ${formatBDT(w.battery, lang)}. Estimate.`,
+      `প্রতিটি পার্টসের দাম × (${n(c.km)} km ÷ তার আয়ু), যতটা ক্ষয় হয় ততটা: ব্রেক ${formatBDT(w.brakes, lang)}, চেইন সেট ও লুব ${formatBDT(w.chain, lang)}, টায়ার ${formatBDT(w.tyres, lang)}, ক্লাচ ${formatBDT(w.clutch, lang)}, এয়ার ফিল্টার ও স্পার্ক প্লাগ ${formatBDT(w.filters, lang)}, ২ বছরে ব্যাটারি ${formatBDT(w.battery, lang)}। আনুমানিক।`,
     ),
     overhaul: o
       ? tx(
-          `One big repair over 10 years of ${inp.kmPerDay} km/day (${n(c.km)} km) with some highway trips, some misuse and missed services: engine top-end/rebuild ${formatBDT(o.engine)}, extra clutch plates ${formatBDT(o.clutch)}, suspension rebuild ${formatBDT(o.suspension)}, possible frame straightening ${formatBDT(o.frame)}, wiring ${formatBDT(o.wiring)}. Scaled ×${o.partsFactor.toFixed(2)} for this bike's parts prices and ×${o.kmFactor.toFixed(2)} for distance vs 30 km/day. Estimate.`,
-          `১০ বছরে দিনে ${inp.kmPerDay} km (${n(c.km)} km), মাঝে মাঝে হাইওয়ে ট্যুর, কিছু অযত্ন আর বাদ পড়া সার্ভিস ধরে একটা বড় মেরামত: ইঞ্জিন টপ-এন্ড/রিবিল্ড ${formatBDT(o.engine)}, বাড়তি ক্লাচ প্লেট ${formatBDT(o.clutch)}, সাসপেনশন রিবিল্ড ${formatBDT(o.suspension)}, দরকার হলে ফ্রেম সোজা করা ${formatBDT(o.frame)}, ওয়্যারিং ${formatBDT(o.wiring)}। এই বাইকের পার্টসের দামে ×${o.partsFactor.toFixed(2)} আর দিনে 30 km-এর তুলনায় দূরত্বে ×${o.kmFactor.toFixed(2)}। আনুমানিক।`,
+          `One big repair over 10 years of ${inp.kmPerDay} km/day (${n(c.km)} km) with some highway trips, some misuse and missed services: engine top-end/rebuild ${formatBDT(o.engine, lang)}, extra clutch plates ${formatBDT(o.clutch, lang)}, suspension rebuild ${formatBDT(o.suspension, lang)}, possible frame straightening ${formatBDT(o.frame, lang)}, wiring ${formatBDT(o.wiring, lang)}. Scaled ×${o.partsFactor.toFixed(2)} for this bike's parts prices and ×${o.kmFactor.toFixed(2)} for distance vs 30 km/day. Estimate.`,
+          `১০ বছরে দিনে ${inp.kmPerDay} km (${n(c.km)} km), মাঝে মাঝে হাইওয়ে ট্যুর, কিছু অযত্ন আর বাদ পড়া সার্ভিস ধরে একটা বড় মেরামত: ইঞ্জিন টপ-এন্ড/রিবিল্ড ${formatBDT(o.engine, lang)}, বাড়তি ক্লাচ প্লেট ${formatBDT(o.clutch, lang)}, সাসপেনশন রিবিল্ড ${formatBDT(o.suspension, lang)}, দরকার হলে ফ্রেম সোজা করা ${formatBDT(o.frame, lang)}, ওয়্যারিং ${formatBDT(o.wiring, lang)}। এই বাইকের পার্টসের দামে ×${o.partsFactor.toFixed(2)} আর দিনে 30 km-এর তুলনায় দূরত্বে ×${o.kmFactor.toFixed(2)}। আনুমানিক।`,
         )
       : undefined,
     evBattery: d.evBattery?.due
       ? tx(
-          `One new traction battery at ${EV_BATTERY.shareOfPrice * 100}% × ${formatBDT(bike.priceBDT)} new price = ${formatBDT(c.evBattery)}, because ${inp.years} year${inp.years === 1 ? "" : "s"} runs past the ${d.evBattery.warrantyMonths}-month battery warranty${d.evBattery.assumed ? " (assumed; makers quote 3–5 years)" : ""}${c.buyingUsed ? ", counting a used bike as ~3 years old" : ""}. Estimate.`,
-          `নতুন দাম ${formatBDT(bike.priceBDT)}-এর ${EV_BATTERY.shareOfPrice * 100}% = ${formatBDT(c.evBattery)}-এ একটি নতুন ব্যাটারি, কারণ ${inp.years} বছর ব্যাটারির ${d.evBattery.warrantyMonths} মাসের ওয়ারেন্টি${d.evBattery.assumed ? " (ধরে নেওয়া; কোম্পানিগুলো 3–5 বছর বলে)" : ""} পার হয়ে যায়${c.buyingUsed ? ", পুরনো বাইককে ~৩ বছরের ধরে" : ""}। আনুমানিক।`,
+          `One new traction battery at ${EV_BATTERY.shareOfPrice * 100}% × ${formatBDT(bike.priceBDT, lang)} new price = ${formatBDT(c.evBattery, lang)}, because ${inp.years} year${inp.years === 1 ? "" : "s"} runs past the ${d.evBattery.warrantyMonths}-month battery warranty${d.evBattery.assumed ? " (assumed; makers quote 3–5 years)" : ""}${c.buyingUsed ? ", counting a used bike as ~3 years old" : ""}. Estimate.`,
+          `নতুন দাম ${formatBDT(bike.priceBDT, lang)}-এর ${EV_BATTERY.shareOfPrice * 100}% = ${formatBDT(c.evBattery, lang)}-এ একটি নতুন ব্যাটারি, কারণ ${inp.years} বছর ব্যাটারির ${d.evBattery.warrantyMonths} মাসের ওয়ারেন্টি${d.evBattery.assumed ? " (ধরে নেওয়া; কোম্পানিগুলো 3–5 বছর বলে)" : ""} পার হয়ে যায়${c.buyingUsed ? ", পুরনো বাইককে ~৩ বছরের ধরে" : ""}। আনুমানিক।`,
         )
       : undefined,
     hiddenRepairs: c.buyingUsed
       ? tx(
-          `${Math.round(d.hiddenRepairRate * 100)}% × ${formatBDT(c.price)} paid. 5% for air-cooled, 10% for oil/liquid-cooled; 20% if the price is 20–35% under the typical ${formatBDT(d.refUsedPrice)}, 25% if more. Estimate.`,
-          `${Math.round(d.hiddenRepairRate * 100)}% × দেওয়া দাম ${formatBDT(c.price)}। এয়ার-কুলড 5%, অয়েল/লিকুইড-কুলড 10%; দাম সাধারণ ${formatBDT(d.refUsedPrice)}-এর চেয়ে ২০–৩৫% কম হলে 20%, আরও কম হলে 25%। আনুমানিক।`,
+          `${Math.round(d.hiddenRepairRate * 100)}% × ${formatBDT(c.price, lang)} paid. 5% for air-cooled, 10% for oil/liquid-cooled; 20% if the price is 20–35% under the typical ${formatBDT(d.refUsedPrice, lang)}, 25% if more. Estimate.`,
+          `${Math.round(d.hiddenRepairRate * 100)}% × দেওয়া দাম ${formatBDT(c.price, lang)}। এয়ার-কুলড 5%, অয়েল/লিকুইড-কুলড 10%; দাম সাধারণ ${formatBDT(d.refUsedPrice, lang)}-এর চেয়ে ২০–৩৫% কম হলে 20%, আরও কম হলে 25%। আনুমানিক।`,
         )
       : undefined,
     paperwork: c.buyingUsed
       ? tx("Not counted for a used bike: no new registration. The ownership transfer fee is extra.", "পুরনো বাইকে ধরা হয়নি: নতুন রেজিস্ট্রেশন নেই। মালিকানা বদলের ফি আলাদা।")
       : inp.taxPlan === "10yr"
         ? tx(
-            `BRTA registration with the 10-year tax token for ${d.reg.label}: ${formatBDT(d.reg.totalBDT10yr)}. From BRTA fee schedules (${guide.registration.asOf}).`,
-            `${d.reg.label}-এর ১০ বছরের ট্যাক্স টোকেনসহ BRTA রেজিস্ট্রেশন: ${formatBDT(d.reg.totalBDT10yr)}। BRTA ফি তালিকা থেকে (${guide.registration.asOf})।`,
+            `BRTA registration with the 10-year tax token for ${d.reg.label}: ${formatBDT(d.reg.totalBDT10yr, lang)}. From BRTA fee schedules (${guide.registration.asOf}).`,
+            `${d.reg.label}-এর ১০ বছরের ট্যাক্স টোকেনসহ BRTA রেজিস্ট্রেশন: ${formatBDT(d.reg.totalBDT10yr, lang)}। BRTA ফি তালিকা থেকে (${guide.registration.asOf})।`,
           )
         : tx(
-            `BRTA registration with a 2-year tax token for ${d.reg.label}: ${formatBDT(d.reg.totalBDT)}, plus ${d.renewals} road-tax renewal${d.renewals === 1 ? "" : "s"} × ${formatBDT(d.roadTax)}. From BRTA fee schedules (${guide.registration.asOf}).`,
-            `${d.reg.label}-এর ২ বছরের ট্যাক্স টোকেনসহ BRTA রেজিস্ট্রেশন: ${formatBDT(d.reg.totalBDT)}, সাথে ${d.renewals} বার রোড ট্যাক্স নবায়ন × ${formatBDT(d.roadTax)}। BRTA ফি তালিকা থেকে (${guide.registration.asOf})।`,
+            `BRTA registration with a 2-year tax token for ${d.reg.label}: ${formatBDT(d.reg.totalBDT, lang)}, plus ${d.renewals} road-tax renewal${d.renewals === 1 ? "" : "s"} × ${formatBDT(d.roadTax, lang)}. From BRTA fee schedules (${guide.registration.asOf}).`,
+            `${d.reg.label}-এর ২ বছরের ট্যাক্স টোকেনসহ BRTA রেজিস্ট্রেশন: ${formatBDT(d.reg.totalBDT, lang)}, সাথে ${d.renewals} বার রোড ট্যাক্স নবায়ন × ${formatBDT(d.roadTax, lang)}। BRTA ফি তালিকা থেকে (${guide.registration.asOf})।`,
           ),
   };
 }

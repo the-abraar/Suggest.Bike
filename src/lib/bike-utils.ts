@@ -36,18 +36,22 @@ export const SCORE_LABELS: Record<ScoreKey, { en: string; bn: string; hint: stri
   beginnerFriendly: { en: "Beginner friendly", bn: "নতুনদের জন্য", hint: "Forgiving, light, easy to learn on", hintBn: "ক্ষমাশীল, হালকা, শেখা সহজ" },
 };
 
-/** Bangladeshi digit grouping: 1,95,000 */
-export function formatBDT(n: number) {
-  return "৳" + Math.round(n).toLocaleString("en-IN");
+/** Latin digits to Bangla (2,85,364 → ২,৮৫,৩৬৪). Only for numbers: model names like "N160" keep Latin digits. */
+export const bnDigits = (s: string) => s.replace(/[0-9]/g, (d) => "০১২৩৪৫৬৭৮৯"[+d]);
+
+/** Bangladeshi digit grouping: ৳1,95,000; Bangla digits on Bangla pages. */
+export function formatBDT(n: number, lang: "en" | "bn" = "en") {
+  const s = "৳" + Math.round(n).toLocaleString("en-IN");
+  return lang === "bn" ? bnDigits(s) : s;
 }
 
 /** ৳2.65 lakh / ৳2.65 লাখ; 100 lakh and up is crore (৳99,99,999 rounds to ৳1 crore, not "৳100 lakh"). */
 export function formatLakh(n: number, lang: "en" | "bn" = "en") {
-  if (n < 100000) return formatBDT(n);
+  if (n < 100000) return formatBDT(n, lang);
   const short = (x: number) => (x >= 10 ? x.toFixed(1) : x.toFixed(2)).replace(/\.?0+$/, "");
   const l = short(n / 1e5);
-  if (+l < 100) return `৳${l} ${lang === "bn" ? "লাখ" : "lakh"}`;
-  return `৳${short(n / 1e7)} ${lang === "bn" ? "কোটি" : "crore"}`;
+  if (+l < 100) return lang === "bn" ? `৳${bnDigits(l)} লাখ` : `৳${l} lakh`;
+  return lang === "bn" ? `৳${bnDigits(short(n / 1e7))} কোটি` : `৳${short(n / 1e7)} crore`;
 }
 
 export const avgMileage = (b: Pick<BikeLite, "mileageKmpl">) => (b.mileageKmpl[0] + b.mileageKmpl[1]) / 2;
@@ -146,10 +150,10 @@ export function overall(b: BikeLite) {
 
 /** Price bands used on the home page and browse filters. */
 export const PRICE_BANDS = [
-  { id: "u150", label: "Under ৳1.5 lakh", labelBn: "৳1.5 লাখের নিচে", min: 0, max: 150000 },
-  { id: "150-250", label: "৳1.5 – 2.5 lakh", labelBn: "৳1.5 – 2.5 লাখ", min: 150000, max: 250000 },
-  { id: "250-400", label: "৳2.5 – 4 lakh", labelBn: "৳2.5 – 4 লাখ", min: 250000, max: 400000 },
-  { id: "400p", label: "৳4 lakh +", labelBn: "৳4 লাখ +", min: 400000, max: Infinity },
+  { id: "u150", label: "Under ৳1.5 lakh", labelBn: "৳১.৫ লাখের নিচে", min: 0, max: 150000 },
+  { id: "150-250", label: "৳1.5 – 2.5 lakh", labelBn: "৳১.৫ – ২.৫ লাখ", min: 150000, max: 250000 },
+  { id: "250-400", label: "৳2.5 – 4 lakh", labelBn: "৳২.৫ – ৪ লাখ", min: 250000, max: 400000 },
+  { id: "400p", label: "৳4 lakh +", labelBn: "৳৪ লাখ +", min: 400000, max: Infinity },
 ] as const;
 
 const BRAND_COLORS: Record<string, string> = {

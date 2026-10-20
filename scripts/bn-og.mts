@@ -37,9 +37,9 @@ for (const b of full as unknown as Bike[]) {
     bike: {
       meta: `${b.brand} · ${isEv(b) ? "ইলেকট্রিক" : ccLabel(b)} · ${CATEGORIES[b.category].bn}`,
       model: b.model,
-      price: formatBDT(used ? b.priceBDT : onRoadPrice(b)),
+      price: formatBDT(used ? b.priceBDT : onRoadPrice(b), "bn"),
       suffix: used ? " সাধারণ পুরনো দাম" : " অন-রোড",
-      ex: used ? "শুধু পুরনো বাজারে" : `শোরুম মূল্য ${formatBDT(b.priceBDT)}`,
+      ex: used ? "শুধু পুরনো বাজারে" : `শোরুম মূল্য ${formatBDT(b.priceBDT, "bn")}`,
       spec: `আসল ${b.ev ? "রেঞ্জ" : "মাইলেজ"} ${mileageText(b)} · ${b.powerPS} PS`,
       art: A[b.id],
     },

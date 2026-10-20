@@ -3,7 +3,7 @@
 import Link from "@/components/LangLink";
 import { useMemo, useState } from "react";
 import { ArrowRight, BadgeCheck, Fuel, Gauge, ShieldCheck, Sparkles, Wallet, Wrench } from "lucide-react";
-import { BIKES, BRANDS, CATEGORIES, PRICE_BANDS, formatBDT, formatLakh, fullName } from "@/lib/bikes";
+import { BIKES, BRANDS, CATEGORIES, PRICE_BANDS, bnDigits, formatBDT, formatLakh, fullName } from "@/lib/bikes";
 import { matchBikes, DEFAULT_ANSWERS, encodeAnswers, type Kind, type Use } from "@/lib/match";
 import { pairHref, popularPairs } from "@/lib/curated";
 import { FUEL, ownershipCost, DEFAULT_COST_INPUT, registrationFor, onRoadPrice } from "@/lib/cost";
@@ -68,7 +68,7 @@ export function HomeView() {
         <div className="container-x grid grid-cols-2 gap-y-6 py-7 md:grid-cols-4">
           <TrustStat value={String(onSale.length)} label={<L en="bikes on sale, tracked" bn="টি বাইক বিক্রি হচ্ছে" />} />
           <TrustStat value={String(BRANDS.length)} label={<L en="brands in Bangladesh" bn="টি ব্র্যান্ড" />} />
-          <TrustStat value={`৳${FUEL.octane}/L`} label={<L en={`octane price, ${monthName(FUEL.asOf)}`} bn="অকটেনের বর্তমান সরকারি দাম" />} />
+          <TrustStat value={`${formatBDT(FUEL.octane, lang)}/L`} label={<L en={`octane price, ${monthName(FUEL.asOf)}`} bn="অকটেনের বর্তমান সরকারি দাম" />} />
           <TrustStat value="0" label={<L en="paid placements. Ever." bn="টি পেইড র‍্যাঙ্কিং। কখনো না।" />} />
         </div>
       </section>
@@ -217,8 +217,8 @@ export function HomeView() {
             </Link>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
-            <GuideFact k={formatBDT(registrationFor(150).totalBDT10yr)} v={<L en="Registration + 10-yr tax, 150cc" bn="রেজিস্ট্রেশন + ১০ বছর ট্যাক্স, ১৫০সিসি" />} href="/guide/#registration" />
-            <GuideFact k="৳4,497" v={<L en="Smart driving licence (non-pro)" bn="স্মার্ট ড্রাইভিং লাইসেন্স" />} href="/guide/#licence" />
+            <GuideFact k={formatBDT(registrationFor(150).totalBDT10yr, lang)} v={<L en="Registration + 10-yr tax, 150cc" bn="রেজিস্ট্রেশন + ১০ বছর ট্যাক্স, ১৫০সিসি" />} href="/guide/#registration" />
+            <GuideFact k={formatBDT(4497, lang)} v={<L en="Smart driving licence (non-pro)" bn="স্মার্ট ড্রাইভিং লাইসেন্স" />} href="/guide/#licence" />
             <GuideFact k="375cc" v={<L en="Max for locally assembled bikes" bn="দেশে তৈরি বাইকের সর্বোচ্চ সিসি" />} href="/guide/#cc" />
             <GuideFact k="11" v={<L en="Checks before buying used" bn="পুরনো বাইক কেনার আগে চেক" />} href="/guide/#used" />
           </div>
@@ -297,8 +297,8 @@ function QuickPick() {
         {top[0] && (
           <p className="text-right text-[11.5px] text-faint tnum">
             {tx(
-              `#1 on 12-month card EMI: ${formatBDT(cardEmi(top[0].price))}/mo, BRTA paid upfront`,
-              `১ নম্বর বাইক ১২ মাসের কার্ড কিস্তিতে: ${formatBDT(cardEmi(top[0].price))}/মাস, BRTA শুরুতেই নগদে`,
+              `#1 on 12-month card EMI: ${formatBDT(cardEmi(top[0].price), lang)}/mo, BRTA paid upfront`,
+              `১ নম্বর বাইক ১২ মাসের কার্ড কিস্তিতে: ${formatBDT(cardEmi(top[0].price), lang)}/মাস, BRTA শুরুতেই নগদে`,
             )}
           </p>
         )}
@@ -338,7 +338,7 @@ function QuickPick() {
               <span className="text-right">
                 <span className="block text-[14px] font-semibold text-ink tnum">{formatLakh(m.onRoad, lang)}</span>
                 <span className="block text-[11.5px] text-muted tnum">
-                  ~{formatBDT(monthly)}
+                  ~{formatBDT(monthly, lang)}
                   {tx("/mo to run", "/মাস চালাতে")}
                 </span>
               </span>
@@ -362,9 +362,10 @@ function QuickPick() {
 }
 
 function TrustStat({ value, label }: { value: string; label: React.ReactNode }) {
+  const { lang } = useLang();
   return (
     <div className="px-2">
-      <p className="text-[26px] font-semibold tracking-tight text-ink tnum">{value}</p>
+      <p className="text-[26px] font-semibold tracking-tight text-ink tnum">{lang === "bn" ? bnDigits(value) : value}</p>
       <p className="text-[13.5px] text-muted">{label}</p>
     </div>
   );

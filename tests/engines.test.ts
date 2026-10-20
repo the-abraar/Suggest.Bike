@@ -363,14 +363,15 @@ test("formatLakh: plain taka under a lakh; 2 decimals under 10 lakh, 1 above; tr
   assert.equal(formatLakh(265000), "৳2.65 lakh");
   assert.equal(formatLakh(250000), "৳2.5 lakh");
   assert.equal(formatLakh(1250000), "৳12.5 lakh");
-  assert.equal(formatLakh(265000, "bn"), "৳2.65 লাখ");
+  assert.equal(formatLakh(265000, "bn"), "৳২.৬৫ লাখ");
+  assert.equal(formatLakh(99999, "bn"), "৳৯৯,৯৯৯");
 });
 test("formatLakh: crore from 100 lakh, including amounts that round up to it (critique B15)", () => {
   assert.equal(formatLakh(9940000), "৳99.4 lakh");
   assert.equal(formatLakh(9999999), "৳1 crore");
   assert.equal(formatLakh(10000000), "৳1 crore");
   assert.equal(formatLakh(12500000), "৳1.25 crore");
-  assert.equal(formatLakh(250000000, "bn"), "৳25 কোটি");
+  assert.equal(formatLakh(250000000, "bn"), "৳২৫ কোটি");
 });
 
 test("network: a brand with no official count is neutral, not flagged as a small network", () => {

@@ -63,7 +63,7 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
     priceNote: (bn?.priceNote ?? bike.priceNote) || undefined,
   };
   const net = networkFor(bike.brand);
-  const reportBody = `Bike: ${fullName(bike)} (${bike.id})\nPage: ${SITE.url}/bikes/${bike.id}/\nPrice on Suggest.Bike: ${formatBDT(bike.priceBDT)} (checked ${bike.priceAsOf})\n\nWhat's wrong / correct value:\n\nWhere you saw it (showroom, link):\n`;
+  const reportBody = `Bike: ${fullName(bike)} (${bike.id})\nPage: ${SITE.url}/bikes/${bike.id}/\nPrice on Suggest.Bike: ${formatBDT(bike.priceBDT, lang)} (checked ${bike.priceAsOf})\n\nWhat's wrong / correct value:\n\nWhere you saw it (showroom, link):\n`;
   const reportTitle = `Price/spec correction: ${fullName(bike)}`;
     const reportHref = `mailto:${SITE.contactEmail}?subject=${encodeURIComponent(reportTitle)}&body=${encodeURIComponent(reportBody)}`;
   const ev = bike.ev;
@@ -170,19 +170,19 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
               <div className="mt-3 flex flex-wrap items-end gap-x-8 gap-y-3">
                 <div>
                   <p className="text-[12.5px] text-muted">{used ? tx("Typical used price", "সাধারণ পুরনো দাম") : tx("On-road, with 2-year tax token", "অন-রোড, ২ বছরের ট্যাক্স টোকেনসহ")}</p>
-                  <p className="text-[34px] font-semibold tracking-tight text-ink tnum">{formatBDT(onRoadPrice(bike))}</p>
+                  <p className="text-[34px] font-semibold tracking-tight text-ink tnum">{formatBDT(onRoadPrice(bike), lang)}</p>
                 </div>
                 {!used && (
                   <div className="pb-1.5">
                     <p className="text-[12.5px] text-muted">{tx("Ex-showroom", "শোরুম মূল্য")}</p>
-                    <p className="text-[18px] font-semibold text-ink-2 tnum">{formatBDT(bike.priceBDT)}</p>
+                    <p className="text-[18px] font-semibold text-ink-2 tnum">{formatBDT(bike.priceBDT, lang)}</p>
                   </div>
                 )}
               </div>
               <OfferBox bikeId={bike.id} />
               {!used && (
                 <p className="mt-2 text-[14px] text-ink-2">
-                  {tx("or about", "অথবা প্রায়")} <strong className="font-semibold text-ink tnum">{formatBDT(cardEmi(bike.priceBDT))}</strong>
+                  {tx("or about", "অথবা প্রায়")} <strong className="font-semibold text-ink tnum">{formatBDT(cardEmi(bike.priceBDT), lang)}</strong>
                   {tx("/month on 12-month card EMI", "/মাস — ১২ মাসের কার্ড কিস্তিতে")}{" "}
                   <Link href="/guide/#emi" className="text-[12.5px] text-brand underline underline-offset-2">
                     {tx("how EMI works", "কিস্তি কীভাবে কাজ করে")}
@@ -215,7 +215,7 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
                         </th>
                         <td className="py-1.5 text-right font-semibold text-ink tnum">
                           <a href={v.priceSource} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                            {formatBDT(v.priceBDT)}
+                            {formatBDT(v.priceBDT, lang)}
                           </a>
                         </td>
                       </tr>
@@ -230,13 +230,13 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
                   {hist.length > 1 && new Set(hist.slice(-3).map((p) => p.firstSeen.slice(0, 7))).size === 1
                     ? // all recent changes in one month: "since Oct · was … in Oct" reads oddly
                       `${monthLabel(hist[hist.length - 1].firstSeen.slice(0, 7), lang)}: ` +
-                      hist.slice(-3).map((p) => formatBDT(p.priceBDT)).join(" → ")
+                      hist.slice(-3).map((p) => formatBDT(p.priceBDT, lang)).join(" → ")
                     : hist.length > 1
                     ? hist
                         .slice(-3)
                         .reverse()
                         .map((p, i) => {
-                          const [price, m] = [formatBDT(p.priceBDT), monthLabel(p.firstSeen.slice(0, 7), lang)];
+                          const [price, m] = [formatBDT(p.priceBDT, lang), monthLabel(p.firstSeen.slice(0, 7), lang)];
                           return i === 0 ? tx(`${price} since ${m}`, `${m} থেকে ${price}`) : tx(`was ${price} in ${m}`, `আগে ${price} (${m})`);
                         })
                         .join(" · ")
@@ -423,9 +423,9 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
           {bike.usedPrice && (bike.usedPrice.y1 || bike.usedPrice.y3) && (
             <Section title={tx("Buying it used", "পুরনো কিনলে")} sub={tx("Typical asking prices on bikroy.com for clean bikes with papers. Deals usually close 5–10% lower.", "bikroy.com-এ কাগজসহ ভালো অবস্থার বাইকের সাধারণ চাওয়া দাম। আসল দাম সাধারণত ৫–১০% কমে ঠিক হয়।")}>
               <div className="grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-line bg-line">
-                <UsedCell k={tx("New", "নতুন")} v={formatBDT(bike.priceBDT)} />
-                <UsedCell k={tx("~1 year old", "~১ বছরের পুরনো")} v={bike.usedPrice.y1 ? formatBDT(bike.usedPrice.y1) : "—"} sub={bike.usedPrice.y1 ? `−${Math.round((1 - bike.usedPrice.y1 / bike.priceBDT) * 100)}%` : undefined} />
-                <UsedCell k={tx("~3 years old", "~৩ বছরের পুরনো")} v={bike.usedPrice.y3 ? formatBDT(bike.usedPrice.y3) : "—"} sub={bike.usedPrice.y3 ? `−${Math.round((1 - bike.usedPrice.y3 / bike.priceBDT) * 100)}%` : undefined} />
+                <UsedCell k={tx("New", "নতুন")} v={formatBDT(bike.priceBDT, lang)} />
+                <UsedCell k={tx("~1 year old", "~১ বছরের পুরনো")} v={bike.usedPrice.y1 ? formatBDT(bike.usedPrice.y1, lang) : "—"} sub={bike.usedPrice.y1 ? `−${Math.round((1 - bike.usedPrice.y1 / bike.priceBDT) * 100)}%` : undefined} />
+                <UsedCell k={tx("~3 years old", "~৩ বছরের পুরনো")} v={bike.usedPrice.y3 ? formatBDT(bike.usedPrice.y3, lang) : "—"} sub={bike.usedPrice.y3 ? `−${Math.round((1 - bike.usedPrice.y3 / bike.priceBDT) * 100)}%` : undefined} />
               </div>
               <p className="mt-2 text-[12.5px] text-faint">
                 {tx("Checked", "যাচাই")} {monthLabel(bike.usedPrice.asOf, lang)} ·{" "}
@@ -464,7 +464,7 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
                         <td className="px-4 py-3.5">
                           <span className={`whitespace-nowrap rounded-full px-2 py-0.5 text-[12px] font-semibold ${AVAIL[p.availability].cls}`}>{AVAIL[p.availability][lang]}</span>
                         </td>
-                        <td className="px-4 py-3.5 text-right font-semibold text-ink tnum">{formatBDT(p.priceBDT)}</td>
+                        <td className="px-4 py-3.5 text-right font-semibold text-ink tnum">{formatBDT(p.priceBDT, lang)}</td>
                       </tr>
                     );
                   })}
@@ -476,7 +476,7 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
                       </span>
                     </td>
                     <td className="px-4 py-3.5" />
-                    <td className="px-4 py-3.5 text-right font-semibold text-ink tnum">{formatBDT(bike.avgServiceCostBDT)}</td>
+                    <td className="px-4 py-3.5 text-right font-semibold text-ink tnum">{formatBDT(bike.avgServiceCostBDT, lang)}</td>
                   </tr>
                 </tbody>
               </table>
@@ -536,7 +536,7 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
                     {bike.model} <span className="font-normal text-muted">{tx("vs", "বনাম")}</span> {p.other.model}
                   </p>
                   <p className="mt-0.5 text-[12.5px] text-muted">
-                    {p.other.brand} · {formatBDT(p.other.priceBDT)}
+                    {p.other.brand} · {formatBDT(p.other.priceBDT, lang)}
                   </p>
                 </div>
                 <ArrowRight size={16} className="shrink-0 text-faint transition-transform group-hover:translate-x-0.5 group-hover:text-brand" />
@@ -719,7 +719,7 @@ function MonthlyCard({ bike }: { bike: Bike }) {
   return (
     <div className="card p-5 shadow-md">
       <p className="text-[13px] font-semibold text-ink">{tx("Monthly running cost", "মাসিক চলার খরচ")}</p>
-      <p className="mt-2 text-[34px] font-semibold tracking-tight text-ink tnum">{formatBDT(c.runningPerMonth)}</p>
+      <p className="mt-2 text-[34px] font-semibold tracking-tight text-ink tnum">{formatBDT(c.runningPerMonth, lang)}</p>
       <p className="text-[12.5px] text-muted">
         {tx(`at ${km} km/day, octane ৳${DEFAULT_COST_INPUT.fuelPrice}/L`, `দিনে ${km} km, অকটেন ৳${DEFAULT_COST_INPUT.fuelPrice}/লিটার`)}
       </p>
@@ -743,7 +743,7 @@ function MonthlyCard({ bike }: { bike: Bike }) {
         {rows.map((r) => (
           <div key={r.k} className="flex justify-between text-[14px]">
             <span className="text-muted">{r.k}</span>
-            <span className="font-medium text-ink tnum">{formatBDT(r.v)}</span>
+            <span className="font-medium text-ink tnum">{formatBDT(r.v, lang)}</span>
           </div>
         ))}
       </div>

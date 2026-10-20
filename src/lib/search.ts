@@ -54,3 +54,16 @@ export function searchBikes(q: string, limit = 7) {
     .slice(0, limit)
     .map((x) => x.b);
 }
+
+/** "under 2 lakh", "1.5 lac", "২ লাখের নিচে", "150k", "200000": the budget in taka, else null. Bare numbers under 10,000 are
+ * model numbers ("n160", "r15"), not budgets. */
+export function budgetQuery(q: string): number | null {
+  const s = q.toLowerCase().replace(/[০-৯]/g, (d) => String(BN_DIGITS.indexOf(d))).replace(/(\d),(?=\d)/g, "$1");
+  for (const m of s.matchAll(/(?<![a-z0-9.])(\d+(?:\.\d+)?)\s*(lakhs?|lacs?|লাখ|লক্ষ|k|hazar|hajar|হাজার)?(?![a-z0-9])/g)) {
+    const unit = m[2] ? (/^[lল]/.test(m[2]) ? 1e5 : 1e3) : 1;
+    if (!m[2] && +m[1] < 10000) continue;
+    const taka = Math.round(+m[1] * unit);
+    if (taka >= 20000 && taka <= 1e8) return taka;
+  }
+  return null;
+}

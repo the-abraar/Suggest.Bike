@@ -1,7 +1,7 @@
 // Weekly bike spotlights: each week, 5 bikes that each win a different segment of "Best in BD by segment"
 // (docs/each bike speciality.html, section 3). Prices, mileage, power and scores are read from bikes.json at build
 // time, so the text never drifts from the data. Each post's quiz claim is its `bestCase`, which a test re-runs against match.ts.
-import { formatBDT, getBike } from "./bikes";
+import { bnDigits, formatBDT, getBike } from "./bikes";
 import { onRoadPrice } from "./cost";
 import type { Pair } from "./maintenance-posts";
 import type { Answers } from "./match";
@@ -53,7 +53,7 @@ const NX200 = "honda-nx200";
 const svc = (id: string) => `${bike(id).serviceIntervalKm.toLocaleString("en-IN")} km`;
 const samePrice = (a: string, b: string) => onRoadPrice(bike(a)) === onRoadPrice(bike(b));
 
-export const SPOTLIGHTS: Spotlight[] = [
+const POSTS: Spotlight[] = [
   {
     slug: "lifan-glint-100-cheapest-new-bike",
     bestCase: { use: "commute", where: "dhaka", experience: "first", pillion: "sometimes" },
@@ -834,5 +834,17 @@ export const SPOTLIGHTS: Spotlight[] = [
     ],
   },
 ];
+
+// Bangla halves: ৳ amounts and "N/১০" scores get Bangla digits; other numbers stay as written ("R15 V4" keeps Latin).
+const bnNums = ([en, bn]: Pair): Pair => [en, bn.replace(/৳[\d,.]+|\d+(?:\.\d+)?(?=\/১০)/g, bnDigits)];
+export const SPOTLIGHTS: Spotlight[] = POSTS.map((s) => ({
+  ...s,
+  wins: bnNums(s.wins),
+  title: bnNums(s.title),
+  summary: bnNums(s.summary),
+  why: s.why.map(bnNums),
+  who: s.who.map(bnNums),
+  tradeoffs: s.tradeoffs.map(bnNums),
+}));
 
 export const spotlightBySlug = (slug: string) => SPOTLIGHTS.find((s) => s.slug === slug);

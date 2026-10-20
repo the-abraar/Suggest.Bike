@@ -200,7 +200,8 @@ ok('header 375 menu: Dealers', (await pg.locator('a[href="/dealers/"]:visible').
   const hrefs = await p.locator('main a[href^="/bikes/"]').evaluateAll((as) => [...new Set(as.map((a) => a.getAttribute('href')).filter((h) => /^\/bikes\/[a-z0-9-]+\/$/.test(h)))]);
   ok('quiz kinds: EV-only URL carries k=ev', /[?&]k=ev(&|$)/.test(p.url()), p.url());
   ok('quiz kinds: EV-only results are electric', hrefs.length > 0 && hrefs.every((h) => /^\/bikes\/(walton|revoo)-/.test(h)), hrefs.join(' '));
-  ok('quiz kinds: chip says EVs', (await p.getByRole('button', { name: 'EVs' }).count()) === 1);
+  // the kinds chip is in the DOM but hidden at 375: phones show only the budget chip, so the top bike fits the first screen
+  ok('quiz kinds: chip says EVs', (await p.locator('main button', { hasText: /^EVsEdit$/ }).count()) === 1);
   await p.screenshot({ path: `${OUT}/match_ev_only_t1.png` });
   await p.close();
 }

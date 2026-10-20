@@ -23,7 +23,9 @@ export function SearchBox({ compact = false, autoFocus = false, large = false }:
   const listId = useId();
   const [engine, setEngine] = useState<SearchMod | null>(null);
   const load = () => engine || import("@/lib/search").then(setEngine, () => {});
-  const results = useMemo(() => (engine ? engine.searchBikes(q) : []), [q, engine]);
+  // "under 2 lakh" is a budget, not a bike name: offer the bike list filtered to it instead of "no bikes match".
+  const budget = useMemo(() => (engine ? engine.budgetQuery(q) : null), [q, engine]);
+  const results = useMemo(() => (engine && !budget ? engine.searchBikes(q) : []), [q, engine, budget]);
 
   useEffect(() => setIdx(0), [q]);
   useEffect(() => {
@@ -46,12 +48,13 @@ export function SearchBox({ compact = false, autoFocus = false, large = false }:
     return () => window.removeEventListener("keydown", onKey);
   }, [compact]);
 
-  const go = (id: string) => {
+  const go = (path: string) => {
     setOpen(false);
     setQ("");
     inputRef.current?.blur();
-    router.push(langHref(`/bikes/${id}/`, lang));
+    router.push(langHref(path, lang));
   };
+  const budgetPath = `/bikes/?price=u${budget}`;
 
   return (
     <div ref={boxRef} className="relative" onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && setOpen(false)}>
@@ -78,8 +81,10 @@ export function SearchBox({ compact = false, autoFocus = false, large = false }:
             } else if (e.key === "ArrowUp") {
               e.preventDefault();
               setIdx((i) => Math.max(i - 1, 0));
+            } else if (e.key === "Enter" && budget) {
+              go(budgetPath);
             } else if (e.key === "Enter" && results[idx]) {
-              go(results[idx].id);
+              go(`/bikes/${results[idx].id}/`);
             } else if (e.key === "Escape") {
               setOpen(false); // keep focus: keyboard users stay in the field (ARIA combobox pattern)
             }
@@ -91,9 +96,9 @@ export function SearchBox({ compact = false, autoFocus = false, large = false }:
               : `input ${compact ? "h-10 pl-10 pr-9 text-[14px] bg-surface-2 border-transparent focus:bg-surface" : "pl-10"}`
           }
           role="combobox"
-          aria-expanded={open && results.length > 0}
+          aria-expanded={open && (results.length > 0 || !!budget)}
           aria-controls={listId}
-          aria-activedescendant={open && q && results[idx] ? `${listId}-${idx}` : undefined}
+          aria-activedescendant={open && q && (budget || results[idx]) ? `${listId}-${budget ? 0 : idx}` : undefined}
           aria-autocomplete="list"
           aria-label={lang === "bn" ? "বাইক খুঁজুন" : "Search bikes"}
         />
@@ -109,7 +114,19 @@ export function SearchBox({ compact = false, autoFocus = false, large = false }:
           role="listbox"
           className="absolute left-0 right-0 top-[calc(100%+8px)] z-50 overflow-hidden rounded-2xl border border-line bg-surface shadow-lg animate-fade"
         >
-          {results.length === 0 ? (
+          {budget ? (
+            <button
+              id={`${listId}-0`}
+              role="option"
+              tabIndex={-1}
+              aria-selected
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => go(budgetPath)}
+              className="flex w-full items-center gap-3 bg-surface-2 px-4 py-3 text-left text-[14.5px] font-medium text-ink"
+            >
+              {lang === "bn" ? `অন-রোড সর্বোচ্চ ${formatLakh(budget, "bn")} দামের সব বাইক` : `All bikes up to ${formatLakh(budget)} on-road`}
+            </button>
+          ) : results.length === 0 ? (
             <p className="px-4 py-5 text-sm text-muted">
               {lang === "bn" ? `“${q}” এর সাথে কোনো বাইক মেলেনি। ইয়ামাহা বা অ্যাপাচির মতো নাম লিখে দেখুন।` : `No bikes match “${q}”. Try a brand like Yamaha or a model like Apache.`}
             </p>
@@ -123,7 +140,7 @@ export function SearchBox({ compact = false, autoFocus = false, large = false }:
                 aria-selected={i === idx}
                 onMouseDown={(e) => e.preventDefault()} // keep focus in the input so the box's onBlur does not close the list mid-click
                 onMouseEnter={() => setIdx(i)}
-                onClick={() => go(b.id)}
+                onClick={() => go(`/bikes/${b.id}/`)}
                 className={`flex w-full items-center gap-3 px-3 py-2.5 text-left ${i === idx ? "bg-surface-2" : ""}`}
               >
                 <span className="h-9 w-14 shrink-0">

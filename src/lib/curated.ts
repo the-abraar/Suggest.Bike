@@ -50,7 +50,7 @@ export function pairMetadata(slug: string, lang: "en" | "bn"): Metadata {
   const p = pairBySlug(slug);
   if (!p) return {};
   const [a, b] = p;
-  const price = `${formatBDT(onRoadPrice(a))} vs ${formatBDT(onRoadPrice(b))}`;
+  const price = `${formatBDT(onRoadPrice(a), lang)} vs ${formatBDT(onRoadPrice(b), lang)}`;
   const km = `${mileageText(a)} vs ${mileageText(b)}`;
   const title =
     lang === "bn" ? `${a.model} বনাম ${b.model}: বাংলাদেশে দাম, মাইলেজ ও স্পেক` : `${a.model} vs ${b.model}: price, mileage & specs in Bangladesh`;
@@ -103,7 +103,7 @@ export function bikeMetadata(b: Bike, lang: "en" | "bn"): Metadata {
   const title = bikeTitle(b, lang);
   const description =
     lang === "bn"
-      ? `${fullName(b)}-এর দাম ${used ? `পুরনো বাজারে প্রায় ${formatBDT(b.priceBDT)}` : `অন-রোড ${formatBDT(onRoadPrice(b))} (২ বছরের ট্যাক্স টোকেনসহ; শোরুম মূল্য ${formatBDT(b.priceBDT)})`}। ${b.ev ? `আসল রেঞ্জ ${b.ev.realRangeKm[0]}–${b.ev.realRangeKm[1]} কিমি/চার্জ` : `আসল মাইলেজ ${b.mileageKmpl[0]}–${b.mileageKmpl[1]} কিমি/লি`}, পার্টসের দাম, মিস্ত্রির মতামত ও মাসিক খরচ।`
+      ? `${fullName(b)}-এর দাম ${used ? `পুরনো বাজারে প্রায় ${formatBDT(b.priceBDT, "bn")}` : `অন-রোড ${formatBDT(onRoadPrice(b), "bn")} (২ বছরের ট্যাক্স টোকেনসহ; শোরুম মূল্য ${formatBDT(b.priceBDT, "bn")})`}। ${b.ev ? `আসল রেঞ্জ ${b.ev.realRangeKm[0]}–${b.ev.realRangeKm[1]} কিমি/চার্জ` : `আসল মাইলেজ ${b.mileageKmpl[0]}–${b.mileageKmpl[1]} কিমি/লি`}, পার্টসের দাম, মিস্ত্রির মতামত ও মাসিক খরচ।`
       : used
         ? `${fullName(b)} er dam koto? About ${formatBDT(b.priceBDT)} used in Bangladesh. ${ccLabel(b)}, real-world ${mileageText(b)}, parts prices, mechanic familiarity and monthly running cost. ${b.tagline}`
         : `${fullName(b)} er dam koto? ${formatBDT(onRoadPrice(b))} on-road in Bangladesh with a 2-year tax token (${formatBDT(b.priceBDT)} ex-showroom). ${ccLabel(b)}, real-world ${mileageText(b)}, card EMI and loan cost, parts prices and monthly running cost. ${b.tagline}`;

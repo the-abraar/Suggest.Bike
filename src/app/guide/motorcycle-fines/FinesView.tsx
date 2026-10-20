@@ -60,7 +60,7 @@ const GROUPS: { title: Bi; rows: Fine[] }[] = [
 
 /** "up to 3 months in jail, up to ৳10,000 fine, or both" in either language. */
 export function penaltyText(f: Fine, lang: Lang) {
-  const fine = lang === "bn" ? `সর্বোচ্চ ${formatBDT(f.fineBDT)} জরিমানা` : `up to ${formatBDT(f.fineBDT)} fine`;
+  const fine = lang === "bn" ? `সর্বোচ্চ ${formatBDT(f.fineBDT, lang)} জরিমানা` : `up to ${formatBDT(f.fineBDT, lang)} fine`;
   const s = f.jail ? (lang === "bn" ? `${f.jail.bn}, ${fine} বা দুটোই` : `${f.jail.en}, ${fine}, or both`) : fine;
   return lang === "en" ? s[0].toUpperCase() + s.slice(1) : s;
 }

@@ -64,17 +64,17 @@ export function GuideView() {
           <Section id="registration" icon={<FileText size={20} />} title={tx("What registration really costs", "রেজিস্ট্রেশনে আসলে কত লাগে")} kicker={`${tx("As of", "তারিখ")} ${reg.asOf}`}>
             <p>{reg.summary}</p>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              <Big k={tx("Above 100cc · 10-year tax token", "100cc-এর বেশি · ১০ বছরের ট্যাক্স টোকেন")} v={formatBDT(above100.totalBDT10yr)} sub={tx("Pay once, no renewals for a decade", "একবার দিন, দশ বছর নবায়ন নেই")} highlight />
-              <Big k={tx("Above 100cc · 2-year tax token", "100cc-এর বেশি · ২ বছরের ট্যাক্স টোকেন")} v={formatBDT(above100.totalBDT)} sub={tx("Then ~৳2,300 every two years", "তারপর প্রতি দুই বছরে ~৳2,300")} />
-              <Big k={tx("Up to 100cc · 10-year", "100cc পর্যন্ত · ১০ বছর")} v={formatBDT(reg.bands[0].totalBDT10yr)} sub={tx("Platina, Splendor+, Shine 100 class", "প্লাটিনা, স্প্লেন্ডার+, শাইন 100 শ্রেণি")} />
-              <Big k={tx("Up to 100cc · 2-year", "100cc পর্যন্ত · ২ বছর")} v={formatBDT(reg.bands[0].totalBDT)} sub={tx("Lowest upfront", "শুরুতে সবচেয়ে কম")} />
+              <Big k={tx("Above 100cc · 10-year tax token", "100cc-এর বেশি · ১০ বছরের ট্যাক্স টোকেন")} v={formatBDT(above100.totalBDT10yr, lang)} sub={tx("Pay once, no renewals for a decade", "একবার দিন, দশ বছর নবায়ন নেই")} highlight />
+              <Big k={tx("Above 100cc · 2-year tax token", "100cc-এর বেশি · ২ বছরের ট্যাক্স টোকেন")} v={formatBDT(above100.totalBDT, lang)} sub={tx("Then ~৳2,300 every two years", "তারপর প্রতি দুই বছরে ~৳2,300")} />
+              <Big k={tx("Up to 100cc · 10-year", "100cc পর্যন্ত · ১০ বছর")} v={formatBDT(reg.bands[0].totalBDT10yr, lang)} sub={tx("Platina, Splendor+, Shine 100 class", "প্লাটিনা, স্প্লেন্ডার+, শাইন 100 শ্রেণি")} />
+              <Big k={tx("Up to 100cc · 2-year", "100cc পর্যন্ত · ২ বছর")} v={formatBDT(reg.bands[0].totalBDT, lang)} sub={tx("Lowest upfront", "শুরুতে সবচেয়ে কম")} />
             </div>
             <h3 className="mt-10 text-[17px] font-semibold text-ink">{tx("Line by line (above 100cc)", "খাত অনুযায়ী (100cc-এর বেশি)")}</h3>
             <div className="mt-4 overflow-hidden rounded-2xl border border-line bg-surface">
               {reg.breakdowns.above100cc.map((r, i) => (
                 <div key={i} className={`flex items-start justify-between gap-6 px-4 py-3 text-[14.5px] ${i % 2 ? "bg-surface-2/40" : ""}`}>
                   <span className="text-ink-2">{r.item}</span>
-                  <span className="shrink-0 font-semibold text-ink tnum">{formatBDT(r.amountBDT)}</span>
+                  <span className="shrink-0 font-semibold text-ink tnum">{formatBDT(r.amountBDT, lang)}</span>
                 </div>
               ))}
             </div>
@@ -102,7 +102,7 @@ export function GuideView() {
                 <Big
                   key={t.type}
                   k={t.type}
-                  v={formatBDT(t.feeBDT)}
+                  v={formatBDT(t.feeBDT, lang)}
                   sub={"validityYears" in t && t.validityYears ? tx(`Valid ${t.validityYears} years`, `মেয়াদ ${t.validityYears} বছর`) : tx("Start here", "এখান থেকে শুরু")}
                 />
               ))}
@@ -292,7 +292,7 @@ export function GuideView() {
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               <Big
                 k={`${tx("Third-party", "থার্ড-পার্টি")} · ${guide.insurance.thirdParty.exampleFor}`}
-                v={`${formatBDT(guide.insurance.thirdParty.exampleAnnualPremiumBDT)}${tx("/yr", "/বছর")}`}
+                v={`${formatBDT(guide.insurance.thirdParty.exampleAnnualPremiumBDT, lang)}${tx("/yr", "/বছর")}`}
                 sub={tx("IDRA pilot price (Feb 2026); not confirmed after Aug 2026", "আইডিআরএ পাইলটের দাম (ফেব্রুয়ারি 2026); আগস্ট 2026-এর পর নিশ্চিত নয়")}
               />
               <Big k={tx("Comprehensive (theft + damage)", "কম্প্রিহেনসিভ (চুরি + ক্ষতি)")} v={tx("Ask insurers", "বীমা কোম্পানিকে জিজ্ঞেস করুন")} sub={tx("No reliable public rate yet", "নির্ভরযোগ্য প্রকাশ্য রেট এখনো নেই")} />

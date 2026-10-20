@@ -25,7 +25,7 @@ export function BikePicker({ bike, onPick }: { bike: BikeLite; onPick: (b: BikeL
           </span>
           <span className="min-w-0 flex-1">
             <span className="block truncate text-[14.5px] font-semibold text-ink">{fullName(bike)}</span>
-            <span className="block text-[12.5px] text-muted tnum">{formatBDT(bike.priceBDT)}</span>
+            <span className="block text-[12.5px] text-muted tnum">{formatBDT(bike.priceBDT, lang)}</span>
           </span>
           <span className="text-[12.5px] font-medium text-brand">{tx("Change", "বদলান")}</span>
         </button>

@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { SlidersHorizontal, X } from "lucide-react";
 import Link from "@/components/LangLink";
-import { BIKES, BRANDS, CATEGORIES, COLLECTIONS, PRICE_BANDS, avgMileage, brandLabel, fullName, overall } from "@/lib/bikes";
+import { BIKES, BRANDS, CATEGORIES, COLLECTIONS, PRICE_BANDS, avgMileage, brandLabel, formatLakh, fullName, overall } from "@/lib/bikes";
 import { L, useLang, useTx } from "@/lib/i18n";
 import { BikeCard, WithSearchParams } from "@/components/ui";
 import { searchBikes } from "@/lib/search";
@@ -101,9 +101,11 @@ function Browse({ params }: { params: URLSearchParams }) {
     document.body.style.overflow = sheet ? "hidden" : "";
   }, [sheet]);
 
+  // ?price=u200000 (header search "under 2 lakh"): on-road up to that amount; 5-9 digits caps it.
+  const maxPrice = Number(/^u(\d{5,9})$/.exec(f.price)?.[1]) || 0;
   const results = useMemo(() => {
     let list = f.q ? searchBikes(f.q, 100) : BIKES;
-    const band = PRICE_BANDS.find((b) => b.id === f.price);
+    const band = PRICE_BANDS.find((b) => b.id === f.price) ?? (maxPrice ? { min: 0, max: maxPrice + 1 } : undefined);
     list = list.filter(
       (b) =>
         (!f.cats.length || f.cats.includes(b.category)) &&
@@ -128,7 +130,7 @@ function Browse({ params }: { params: URLSearchParams }) {
     };
     if (!(f.q && f.sort === "recommended")) sorted.sort(by[f.sort]);
     return sorted;
-  }, [f.q, f.cats, f.cols, f.price, f.brands, f.abs, f.fi, f.lowSeat, f.includeUsed, f.sort]);
+  }, [f.q, f.cats, f.cols, f.price, maxPrice, f.brands, f.abs, f.fi, f.lowSeat, f.includeUsed, f.sort]);
   const shown = results.slice(0, f.page * PAGE);
 
   const activeCount = f.cats.length + f.cols.length + f.brands.length + (f.price ? 1 : 0) + (f.abs ? 1 : 0) + (f.fi ? 1 : 0) + (f.lowSeat ? 1 : 0) + (f.includeUsed ? 0 : 1);
@@ -157,6 +159,11 @@ function Browse({ params }: { params: URLSearchParams }) {
       </FilterGroup>
       <FilterGroup title={<L en="Budget" bn="বাজেট" />}>
         <div className="flex flex-wrap gap-1.5">
+          {maxPrice > 0 && (
+            <button className="chip" data-active onClick={() => setF((x) => ({ ...x, price: "" }))}>
+              {tx(`Up to ${formatLakh(maxPrice)}`, `সর্বোচ্চ ${formatLakh(maxPrice, "bn")}`)}
+            </button>
+          )}
           {PRICE_BANDS.map((b) => (
             <button key={b.id} className="chip" data-active={f.price === b.id} onClick={() => setF((x) => ({ ...x, price: x.price === b.id ? "" : b.id }))}>
               {lang === "bn" ? b.labelBn : b.label}

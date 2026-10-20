@@ -69,7 +69,7 @@ export function SpotlightPost({ slug }: { slug: string }) {
     </ul>
   );
   const facts: [Pair, string][] = [
-    [["On-road price", "অন-রোড দাম"], formatBDT(onRoadPrice(b))],
+    [["On-road price", "অন-রোড দাম"], formatBDT(onRoadPrice(b), lang)],
     [["Mileage (real world)", "মাইলেজ (বাস্তবে)"], mileageText(b)],
     [["Power", "শক্তি"], `${b.powerPS} PS`],
     [["Weight", "ওজন"], `${b.weightKg} kg`],

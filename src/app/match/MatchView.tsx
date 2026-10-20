@@ -409,14 +409,14 @@ function BudgetStep({ a, set }: { a: Answers; set: <K extends keyof Answers>(k: 
       </div>
       <div className="card p-6 sm:p-8">
         <p className="text-center text-[44px] font-semibold tracking-[-0.03em] text-ink tnum sm:text-[56px]">
-          {formatBDT(value)}
+          {formatBDT(value, lang)}
           {monthly && <span className="text-[20px] font-medium text-muted">{tx("/mo", "/মাস")}</span>}
         </p>
         <p className="text-center text-[14px] text-muted">
           {monthly
             ? tx(
-                `${formatBDT(a.down)} cash now + ${a.tenure} months = up to ${formatLakh(a.budget, lang)} on the road`,
-                `এখন ${formatBDT(a.down)} নগদ + ${a.tenure} মাস = অন-রোড ${formatLakh(a.budget, lang)} পর্যন্ত`,
+                `${formatBDT(a.down, lang)} cash now + ${a.tenure} months = up to ${formatLakh(a.budget, lang)} on the road`,
+                `এখন ${formatBDT(a.down, lang)} নগদ + ${a.tenure} মাস = অন-রোড ${formatLakh(a.budget, lang)} পর্যন্ত`,
               )
             : tx(`${formatLakh(a.budget, lang)} on the road`, `অন-রোড ${formatLakh(a.budget, lang)}`)}
         </p>
@@ -428,14 +428,14 @@ function BudgetStep({ a, set }: { a: Answers; set: <K extends keyof Answers>(k: 
           step={step}
           value={value}
           aria-label={tx("Budget", "বাজেট")}
-          aria-valuetext={monthly ? tx(`${formatBDT(value)} a month`, `মাসে ${formatBDT(value)}`) : formatLakh(value, lang)}
+          aria-valuetext={monthly ? tx(`${formatBDT(value, lang)} a month`, `মাসে ${formatBDT(value, lang)}`) : formatLakh(value, lang)}
           style={{ ["--fill" as string]: `${fill}%` }}
           onChange={(e) => setValue(Number(e.target.value))}
         />
         <div className="mt-4 flex flex-wrap justify-center gap-2">
           {presets.map((v) => (
             <button key={v} className="chip" data-active={value === v} onClick={() => setValue(v)}>
-              {monthly ? `${formatBDT(v)}${tx("/mo", "/মাস")}` : formatLakh(v, lang)}
+              {monthly ? `${formatBDT(v, lang)}${tx("/mo", "/মাস")}` : formatLakh(v, lang)}
             </button>
           ))}
         </div>
@@ -536,26 +536,29 @@ function Results({ a: asked, onEdit, onRestart }: { a: Answers; onEdit: (step: n
       {/* answers summary */}
       <div className="mt-6 flex flex-wrap gap-2">
         <EditChip onClick={() => onEdit(0)}>
-          {asked.payMode === "monthly" ? `${formatBDT(asked.monthly)}${tx("/mo", "/মাস")} × ${asked.tenure} + ${formatBDT(asked.down)} ${tx("cash", "নগদ")} · ` : ""}≤ {formatLakh(asked.budget, lang)} {tx("on-road", "অন-রোড")} ·{" "}
+          {asked.payMode === "monthly" ? `${formatBDT(asked.monthly, lang)}${tx("/mo", "/মাস")} × ${asked.tenure} + ${formatBDT(asked.down, lang)} ${tx("cash", "নগদ")} · ` : ""}≤ {formatLakh(asked.budget, lang)} {tx("on-road", "অন-রোড")} ·{" "}
           {a.condition === "new" || a.payMode === "monthly" ? tx("new", "নতুন") : tx("new or used", "নতুন বা পুরনো")}
         </EditChip>
-        <EditChip onClick={() => onEdit(1)}>{lang === "bn" ? use.bn : use.en}</EditChip>
-        {HAS_NETWORKS && <EditChip onClick={() => onEdit(2)}>{lang === "bn" ? where.bn : where.en}</EditChip>}
-        <EditChip onClick={() => onEdit(3)}>{a.kinds.map((k) => ({ motorcycle: tx("Motorcycles", "মোটরসাইকেল"), scooter: tx("Scooters", "স্কুটার"), ev: tx("EVs", "ইলেকট্রিক") })[k]).join(" · ")}</EditChip>
-        <EditChip onClick={() => onEdit(4)}>
-          {lang === "bn"
-            ? `${{ short: "৫′৫″ এর কম", medium: "৫′৫″–৫′৯″", tall: "৫′৯″ এর বেশি" }[a.height]} · ${{ first: "প্রথম বাইক", some: "কিছু অভিজ্ঞতা", pro: "অভিজ্ঞ" }[a.experience]}`
-            : `${{ short: "Under 5′5″", medium: "5′5″–5′9″", tall: "Over 5′9″" }[a.height]} · ${{ first: "first bike", some: "some experience", pro: "experienced" }[a.experience]}`}
-        </EditChip>
-        <EditChip onClick={() => onEdit(5)}>
-          {tx("Pillion", "পিলিয়ন")}: {lang === "bn" ? { rarely: "কদাচিৎ", sometimes: "মাঝে মাঝে", daily: "প্রতিদিন" }[a.pillion] : a.pillion}
-        </EditChip>
-        {a.priorities.length > 0 && <EditChip onClick={() => onEdit(6)}>{a.priorities.map((p) => tx(PRIORITIES.find((x) => x.id === p)!.en, PRIORITIES.find((x) => x.id === p)!.bn)).join(", ")}</EditChip>}
-        {a.priorities.includes("style") && a.looks.length > 0 && (
-          <EditChip onClick={() => onEdit(6)}>
-            {tx("Look", "লুক")}: {a.looks.map((l) => tx(LOOK_OPTS.find((x) => x.id === l)!.en, LOOK_OPTS.find((x) => x.id === l)!.bn)).join(", ")}
+        {/* phones: only the budget chip, so the top bike's name and price fit on the first screen; each answer's step still has Back */}
+        <div className="hidden sm:contents">
+          <EditChip onClick={() => onEdit(1)}>{lang === "bn" ? use.bn : use.en}</EditChip>
+          {HAS_NETWORKS && <EditChip onClick={() => onEdit(2)}>{lang === "bn" ? where.bn : where.en}</EditChip>}
+          <EditChip onClick={() => onEdit(3)}>{a.kinds.map((k) => ({ motorcycle: tx("Motorcycles", "মোটরসাইকেল"), scooter: tx("Scooters", "স্কুটার"), ev: tx("EVs", "ইলেকট্রিক") })[k]).join(" · ")}</EditChip>
+          <EditChip onClick={() => onEdit(4)}>
+            {lang === "bn"
+              ? `${{ short: "৫′৫″ এর কম", medium: "৫′৫″–৫′৯″", tall: "৫′৯″ এর বেশি" }[a.height]} · ${{ first: "প্রথম বাইক", some: "কিছু অভিজ্ঞতা", pro: "অভিজ্ঞ" }[a.experience]}`
+              : `${{ short: "Under 5′5″", medium: "5′5″–5′9″", tall: "Over 5′9″" }[a.height]} · ${{ first: "first bike", some: "some experience", pro: "experienced" }[a.experience]}`}
           </EditChip>
-        )}
+          <EditChip onClick={() => onEdit(5)}>
+            {tx("Pillion", "পিলিয়ন")}: {lang === "bn" ? { rarely: "কদাচিৎ", sometimes: "মাঝে মাঝে", daily: "প্রতিদিন" }[a.pillion] : a.pillion}
+          </EditChip>
+          {a.priorities.length > 0 && <EditChip onClick={() => onEdit(6)}>{a.priorities.map((p) => tx(PRIORITIES.find((x) => x.id === p)!.en, PRIORITIES.find((x) => x.id === p)!.bn)).join(", ")}</EditChip>}
+          {a.priorities.includes("style") && a.looks.length > 0 && (
+            <EditChip onClick={() => onEdit(6)}>
+              {tx("Look", "লুক")}: {a.looks.map((l) => tx(LOOK_OPTS.find((x) => x.id === l)!.en, LOOK_OPTS.find((x) => x.id === l)!.bn)).join(", ")}
+            </EditChip>
+          )}
+        </div>
       </div>
 
       {needCash > 0 && (
@@ -563,8 +566,8 @@ function Results({ a: asked, onEdit, onRestart }: { a: Answers; onEdit: (step: n
           <Info size={18} className="shrink-0 text-warn" />
           <span>
             {tx(
-              `BRTA registration and the processing fee are paid in cash${asked.tenure > PAY_TERMS.cardMonths ? `, and a loan needs ${PAY_TERMS.loanDownPct}% down` : ""}, so ${formatBDT(asked.down)} cash is not enough. You need at least ${formatBDT(needCash)} cash now. With that and ${formatBDT(asked.monthly)}/mo, these fit:`,
-              `BRTA রেজিস্ট্রেশন আর প্রসেসিং ফি নগদে দিতে হয়${asked.tenure > PAY_TERMS.cardMonths ? `, আর লোনে ${PAY_TERMS.loanDownPct}% ডাউন পেমেন্ট লাগে` : ""}, তাই ${formatBDT(asked.down)} নগদে হবে না। এখন অন্তত ${formatBDT(needCash)} নগদ লাগবে। তার সাথে মাসে ${formatBDT(asked.monthly)} দিলে এগুলো মেলে:`,
+              `BRTA registration and the processing fee are paid in cash${asked.tenure > PAY_TERMS.cardMonths ? `, and a loan needs ${PAY_TERMS.loanDownPct}% down` : ""}, so ${formatBDT(asked.down, lang)} cash is not enough. You need at least ${formatBDT(needCash, lang)} cash now. With that and ${formatBDT(asked.monthly, lang)}/mo, these fit:`,
+              `BRTA রেজিস্ট্রেশন আর প্রসেসিং ফি নগদে দিতে হয়${asked.tenure > PAY_TERMS.cardMonths ? `, আর লোনে ${PAY_TERMS.loanDownPct}% ডাউন পেমেন্ট লাগে` : ""}, তাই ${formatBDT(asked.down, lang)} নগদে হবে না। এখন অন্তত ${formatBDT(needCash, lang)} নগদ লাগবে। তার সাথে মাসে ${formatBDT(asked.monthly, lang)} দিলে এগুলো মেলে:`,
             )}
           </span>
         </div>
@@ -575,8 +578,8 @@ function Results({ a: asked, onEdit, onRestart }: { a: Answers; onEdit: (step: n
           <Info size={18} className="shrink-0 text-warn" />
           <span className="min-w-0 flex-1">
             {tx(
-              `Nothing new fits ${formatLakh(a.budget, lang)} on the road. The cheapest new option is the ${fullName(cheapest)} at ${formatBDT(onRoadPrice(cheapest))} on-road.`,
-              `অন-রোড ${formatLakh(a.budget, lang)}-এ নতুন কিছু মেলে না। সবচেয়ে কম দামের নতুন বাইক ${fullName(cheapest)} — অন-রোড ${formatBDT(onRoadPrice(cheapest))}।`,
+              `Nothing new fits ${formatLakh(a.budget, lang)} on the road. The cheapest new option is the ${fullName(cheapest)} at ${formatBDT(onRoadPrice(cheapest), lang)} on-road.`,
+              `অন-রোড ${formatLakh(a.budget, lang)}-এ নতুন কিছু মেলে না। সবচেয়ে কম দামের নতুন বাইক ${fullName(cheapest)} — অন-রোড ${formatBDT(onRoadPrice(cheapest), lang)}।`,
             )}
           </span>
           <Link href={`/bikes/${cheapest.id}/`} className="text-[13.5px] font-medium text-brand underline underline-offset-2">
@@ -589,7 +592,7 @@ function Results({ a: asked, onEdit, onRestart }: { a: Answers; onEdit: (step: n
         <div className="card mt-10 p-6 sm:p-8">
           <p className="text-[17px] font-semibold text-ink">
             {a.payMode === "monthly"
-              ? tx(`Nothing fits ${formatBDT(a.monthly)}/mo with ${formatBDT(a.down)} cash now.`, `মাসে ${formatBDT(a.monthly)} আর এখন ${formatBDT(a.down)} নগদে কিছু মেলেনি।`)
+              ? tx(`Nothing fits ${formatBDT(a.monthly, lang)}/mo with ${formatBDT(a.down, lang)} cash now.`, `মাসে ${formatBDT(a.monthly, lang)} আর এখন ${formatBDT(a.down, lang)} নগদে কিছু মেলেনি।`)
               : tx(`Nothing fits ${formatLakh(a.budget, lang)} on the road.`, `অন-রোড ${formatLakh(a.budget, lang)}-এ কিছু মেলেনি।`)}
           </p>
           <p className="mt-1 text-[14.5px] text-muted">
@@ -633,6 +636,10 @@ function Results({ a: asked, onEdit, onRestart }: { a: Answers; onEdit: (step: n
                     {top.bike.brand} · {ccLabel(top.bike)} · {lang === "bn" ? CATEGORIES[top.bike.category].bn : CATEGORIES[top.bike.category].en}
                   </p>
                   <h2 className="mt-1 text-[30px] font-semibold leading-tight tracking-tight text-ink">{top.bike.model}</h2>
+                  {/* phones: the price is below the reasons, off the first screen; repeat it under the name */}
+                  <p className="mt-1 text-[17px] font-semibold text-ink tnum sm:hidden">
+                    {formatLakh(top.onRoad, lang)} <span className="text-[13px] font-normal text-muted">{isUsedOption(top) ? tx("asking", "চাওয়া দাম") : tx("on-road", "অন-রোড")}</span>
+                  </p>
                 </div>
                 <BandBadge band={top.band} />
               </div>
@@ -658,7 +665,7 @@ function Results({ a: asked, onEdit, onRestart }: { a: Answers; onEdit: (step: n
                 )}
                 <MiniStat
                   k={isUsedOption(top) ? tx("Running/mo", "চলার খরচ/মাস") : tx("EMI/mo", "কিস্তি/মাস")}
-                  v={formatBDT(isUsedOption(top) ? ownershipCost(top.bike, { ...DEFAULT_COST_INPUT, includeDepreciation: false }).runningPerMonth : perMonth(top))}
+                  v={formatBDT(isUsedOption(top) ? ownershipCost(top.bike, { ...DEFAULT_COST_INPUT, includeDepreciation: false }).runningPerMonth : perMonth(top), lang)}
                 />
               </div>
               <p className="mt-3 text-[12.5px] text-muted tnum">
@@ -751,17 +758,18 @@ const perMonth = (m: Match) => m.pay?.emi ?? cardEmi(m.price);
 
 function PriceNote({ m }: { m: Match }) {
   const tx = useTx();
+  const { lang } = useLang();
   if (m.pay)
     return tx(
-      `${formatBDT(m.pay.upfront)} cash now (${formatBDT(m.registration)} BRTA + ${formatBDT(m.pay.fee)} fee${m.pay.upfront > m.registration + m.pay.fee + 1 ? ` + ${formatBDT(m.pay.upfront - m.registration - m.pay.fee)} down` : ""}), then ${formatBDT(m.pay.emi)}/mo × ${m.pay.emiMonths}`,
-      `এখন ${formatBDT(m.pay.upfront)} নগদ (${formatBDT(m.registration)} BRTA + ${formatBDT(m.pay.fee)} ফি${m.pay.upfront > m.registration + m.pay.fee + 1 ? ` + ${formatBDT(m.pay.upfront - m.registration - m.pay.fee)} ডাউন` : ""}), তারপর ${formatBDT(m.pay.emi)}/মাস × ${m.pay.emiMonths}`,
+      `${formatBDT(m.pay.upfront, lang)} cash now (${formatBDT(m.registration, lang)} BRTA + ${formatBDT(m.pay.fee, lang)} fee${m.pay.upfront > m.registration + m.pay.fee + 1 ? ` + ${formatBDT(m.pay.upfront - m.registration - m.pay.fee, lang)} down` : ""}), then ${formatBDT(m.pay.emi, lang)}/mo × ${m.pay.emiMonths}`,
+      `এখন ${formatBDT(m.pay.upfront, lang)} নগদ (${formatBDT(m.registration, lang)} BRTA + ${formatBDT(m.pay.fee, lang)} ফি${m.pay.upfront > m.registration + m.pay.fee + 1 ? ` + ${formatBDT(m.pay.upfront - m.registration - m.pay.fee, lang)} ডাউন` : ""}), তারপর ${formatBDT(m.pay.emi, lang)}/মাস × ${m.pay.emiMonths}`,
     );
   return isUsedOption(m)
     ? tx(
-        `Asking price on Bikroy (typical selling price is lower; we count ${formatBDT(m.cost)} against your budget)`,
-        `Bikroy-তে চাওয়া দাম (আসল বিক্রি সাধারণত কমে হয়; বাজেটে আমরা ${formatBDT(m.cost)} ধরেছি)`,
+        `Asking price on Bikroy (typical selling price is lower; we count ${formatBDT(m.cost, lang)} against your budget)`,
+        `Bikroy-তে চাওয়া দাম (আসল বিক্রি সাধারণত কমে হয়; বাজেটে আমরা ${formatBDT(m.cost, lang)} ধরেছি)`,
       )
-    : tx(`${formatBDT(m.price)} bike + ${formatBDT(m.registration)} BRTA registration`, `${formatBDT(m.price)} বাইক + ${formatBDT(m.registration)} BRTA রেজিস্ট্রেশন`);
+    : tx(`${formatBDT(m.price, lang)} bike + ${formatBDT(m.registration, lang)} BRTA registration`, `${formatBDT(m.price, lang)} বাইক + ${formatBDT(m.registration, lang)} BRTA রেজিস্ট্রেশন`);
 }
 
 function UsedTag({ age }: { age: 1 | 3 }) {
@@ -817,7 +825,7 @@ function MatchRow({ m, rank }: { m: Match; rank?: number }) {
         <span className="text-right">
           <span className="block text-[18px] font-semibold text-ink tnum">{formatLakh(m.onRoad, lang)}</span>
           <span className="block text-[12px] text-muted tnum">
-            {isUsedOption(m) ? tx("asking", "চাওয়া দাম") : `${tx("on-road", "অন-রোড")} · ${formatBDT(perMonth(m))}${tx("/mo", "/মাস")}`}
+            {isUsedOption(m) ? tx("asking", "চাওয়া দাম") : `${tx("on-road", "অন-রোড")} · ${formatBDT(perMonth(m), lang)}${tx("/mo", "/মাস")}`}
           </span>
         </span>
         <CompareButton id={m.bike.id} size="sm" />

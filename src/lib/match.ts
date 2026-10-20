@@ -274,8 +274,8 @@ function score(a: Answers, o: Option): Match {
   if (short > 0)
     warnings.push(
       o.pay
-        ? { en: `Needs ${formatBDT(short)} more cash now (BRTA, fee and down payment)`, bn: `এখনই আরও ${formatBDT(short)} নগদ লাগবে (BRTA, ফি ও ডাউন পেমেন্ট)` }
-        : { en: `${formatBDT(short)} over your budget`, bn: `বাজেটের চেয়ে ${formatBDT(short)} বেশি` },
+        ? { en: `Needs ${formatBDT(short)} more cash now (BRTA, fee and down payment)`, bn: `এখনই আরও ${formatBDT(short, "bn")} নগদ লাগবে (BRTA, ফি ও ডাউন পেমেন্ট)` }
+        : { en: `${formatBDT(short)} over your budget`, bn: `বাজেটের চেয়ে ${formatBDT(short, "bn")} বেশি` },
     );
   const reachOver = reach(b) - REACH_LIMIT[a.height];
   if (reachOver > 0) {
@@ -322,8 +322,8 @@ function score(a: Answers, o: Option): Match {
   if (reasons.length < 3 && short <= 0)
     reasons.push(
       isUsedOption(o)
-        ? { en: `Fits your budget at ${formatBDT(o.price)} asking`, bn: `চাওয়া দাম ${formatBDT(o.price)} — আপনার বাজেটে মানায়` }
-        : { en: `Fits your budget at ${formatBDT(o.onRoad)} on the road`, bn: `অন-রোড ${formatBDT(o.onRoad)} — আপনার বাজেটে মানায়` },
+        ? { en: `Fits your budget at ${formatBDT(o.price)} asking`, bn: `চাওয়া দাম ${formatBDT(o.price, "bn")} — আপনার বাজেটে মানায়` }
+        : { en: `Fits your budget at ${formatBDT(o.onRoad)} on the road`, bn: `অন-রোড ${formatBDT(o.onRoad, "bn")} — আপনার বাজেটে মানায়` },
     );
 
   const sc = Math.round(Math.max(0, Math.min(99, 30 + s * 75)));
