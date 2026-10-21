@@ -40,6 +40,8 @@ const EMPTY: Filters = { q: "", cats: [], cols: [], price: "", brands: [], abs: 
 export const PAGE = 24;
 /** "Low seat" filter (?seat=low): seat height at most this, in mm. */
 export const LOW_SEAT_MM = 780;
+/** ?sort= from the URL (header search "best mileage" links ?sort=mileage); anything unknown is the default. */
+export const sortParam = (v: string | null): Sort => SORTS.find((s) => s.id === v)?.id ?? "recommended";
 /** ?page=N from the URL, clamped to 1..the last page of the whole catalogue. */
 export const pageParam = (v: string | null, total: number) => Math.min(Math.max(1, Math.floor(Number(v)) || 1), Math.max(1, Math.ceil(total / PAGE)));
 
@@ -52,6 +54,7 @@ function queryFor(f: Filters) {
   if (f.brands.length === 1) p.set("brand", f.brands[0]);
   if (f.q) p.set("q", f.q);
   if (f.lowSeat) p.set("seat", "low");
+  if (f.sort !== "recommended") p.set("sort", f.sort);
   if (f.page > 1) p.set("page", String(f.page));
   return p.toString();
 }
@@ -70,6 +73,8 @@ function Browse({ params }: { params: URLSearchParams }) {
 
   // Hydrate from URL (links from home/footer use ?cat=, ?price=, ?brand=); ignore our own replaceState writes.
   const written = useRef<string | null>(null);
+  // The write effect below runs once more with the pre-hydration filters; skip it or it wipes the URL just read.
+  const hydrated = useRef(false);
   useEffect(() => {
     if (written.current !== null && params.toString() === written.current) return;
     const cat = params.get("cat");
@@ -84,13 +89,16 @@ function Browse({ params }: { params: URLSearchParams }) {
       brands: brand ? [brand] : [],
       q: params.get("q") ?? "",
       lowSeat: params.get("seat") === "low",
+      sort: sortParam(params.get("sort")),
     }));
     written.current = params.toString();
+    hydrated.current = true;
   }, [params]);
 
   // Keep URL shareable
   useEffect(() => {
     if (written.current === null) return;
+    if (hydrated.current) return void (hydrated.current = false);
     const qs = queryFor(f);
     if (qs === written.current) return;
     written.current = qs;

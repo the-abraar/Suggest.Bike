@@ -1,8 +1,8 @@
 // Search: Banglish typos and Bangla script find the right bike. Run: npm test.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { getBike } from "../src/lib/bikes";
-import { budgetQuery, searchBikes } from "../src/lib/search";
+import { BIKES, getBike } from "../src/lib/bikes";
+import { budgetQuery, mileageQuery, searchBikes } from "../src/lib/search";
 
 const ids = (q: string, limit = 7) => searchBikes(q, limit).map((b) => b.id);
 const cases: [string, string][] = [
@@ -60,4 +60,12 @@ test("budgetQuery: lakh, lac, k, Bangla and plain amounts are budgets; model num
   for (const [q, want] of [["under 2 lakh", 200000], ["bike under 1.5 lac", 150000], ["২ লাখের নিচে", 200000], ["150k", 150000], ["2,00,000", 200000]] as const)
     assert.equal(budgetQuery(q), want, q);
   for (const q of ["n160", "r15 v4", "pulsar 150", "160cc", "ktm 390", "honda"]) assert.equal(budgetQuery(q), null, q);
+});
+
+test("mileageQuery: mileage and fuel-economy intent in English, Banglish and Bangla; bike names are not", () => {
+  for (const q of ["best mileage", "mileage", "milage bike", "fuel efficient", "fuel economy", "low fuel", "kmpl", "মাইলেজ", "সবচেয়ে বেশি মাইলেজ", "কম তেল খরচ"])
+    assert.ok(mileageQuery(q), q);
+  for (const q of ["pulsar", "hero hf deluxe", "splendor", "n160", "fz", "under 2 lakh", "পালসার"]) assert.ok(!mileageQuery(q), q);
+  // Every catalogue name must still search as a name, not turn into the mileage list.
+  for (const b of BIKES) assert.ok(!mileageQuery(`${b.brand} ${b.model} ${b.variant ?? ""}`), b.id);
 });

@@ -67,3 +67,7 @@ export function budgetQuery(q: string): number | null {
   }
   return null;
 }
+
+/** "best mileage", "fuel efficient", "low fuel", "kmpl", "মাইলেজ", "কম তেল": the visitor wants the bike list sorted by mileage. */
+export const mileageQuery = (q: string) =>
+  /mil[ea]+ge|maileg|kmpl|km\/l|fuel[\s-]*(efficien|econom|sav)|(low|less)[\s-]*fuel|মাইলেজ|তেল[\s-]*(কম|সাশ্র)|কম[\s-]*তেল/i.test(q);

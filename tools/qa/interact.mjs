@@ -312,6 +312,25 @@ ok('header 375 menu: Dealers', (await pg.locator('a[href="/dealers/"]:visible').
   await p.close();
 }
 
+// 15. Header search "best mileage" / "মাইলেজ" opens the bike list sorted by mileage (EN and BN)
+{
+  const p = await newPage();
+  for (const [path, q, want] of [['/', 'best mileage', '/bikes/?sort=mileage'], ['/bn/', 'সবচেয়ে বেশি মাইলেজ', '/bn/bikes/?sort=mileage']]) {
+    await p.goto(BASE + path, { waitUntil: 'networkidle' });
+    const box = p.locator('section input[role="combobox"]');
+    await box.fill(q);
+    await p.locator('section [role="option"]').first().waitFor();
+    await box.press('Enter');
+    await p.waitForURL((u) => u.pathname.endsWith('/bikes/'));
+    // the URL changes before /bikes/ hydrates its filters from it
+    await p.waitForFunction(() => document.querySelector('main select')?.value === 'mileage', null, { timeout: 5000 }).catch(() => {});
+    const sort = await p.locator('main select').inputValue();
+    const url = new URL(p.url());
+    ok(`${path} search "${q}": bike list sorted by mileage`, url.pathname + url.search === want && sort === 'mileage', `${p.url()} sort=${sort}`);
+  }
+  await p.close();
+}
+
 const pageErrs = [...new Set(errs)];
 ok('no page/console errors', pageErrs.length === 0, pageErrs.join(' | '));
 await br.close();

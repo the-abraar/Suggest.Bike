@@ -1,7 +1,7 @@
 // /bikes/ pagination: the ?page= param is capped to the catalogue. Run: npm test.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { PAGE, pageParam } from "../src/app/bikes/BrowseView";
+import { PAGE, pageParam, sortParam } from "../src/app/bikes/BrowseView";
 import { BIKES } from "../src/lib/bikes";
 
 test("pageParam reads ?page= and clamps it to 1..last page", () => {
@@ -13,4 +13,9 @@ test("pageParam reads ?page= and clamps it to 1..last page", () => {
   for (const bad of ["0", "-3", "abc", ""]) assert.equal(pageParam(bad, BIKES.length), 1, bad);
   for (const big of ["9999", "Infinity"]) assert.equal(pageParam(big, BIKES.length), last, big);
   assert.equal(pageParam("3", 0), 1); // an empty list still has page 1
+});
+
+test("sortParam reads ?sort= (search \"best mileage\" links ?sort=mileage); unknown values fall back", () => {
+  assert.equal(sortParam("mileage"), "mileage");
+  for (const bad of [null, "", "MILEAGE", "drop table", "toString"]) assert.equal(sortParam(bad), "recommended", String(bad));
 });

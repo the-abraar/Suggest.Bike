@@ -23,9 +23,11 @@ export function SearchBox({ compact = false, autoFocus = false, large = false }:
   const listId = useId();
   const [engine, setEngine] = useState<SearchMod | null>(null);
   const load = () => engine || import("@/lib/search").then(setEngine, () => {});
-  // "under 2 lakh" is a budget, not a bike name: offer the bike list filtered to it instead of "no bikes match".
+  // "under 2 lakh" is a budget and "best mileage" a sort, not bike names: offer the bike list filtered/sorted instead of "no bikes match".
   const budget = useMemo(() => (engine ? engine.budgetQuery(q) : null), [q, engine]);
-  const results = useMemo(() => (engine && !budget ? engine.searchBikes(q) : []), [q, engine, budget]);
+  const mileage = useMemo(() => !!engine?.mileageQuery(q), [q, engine]);
+  const intent = !!budget || mileage;
+  const results = useMemo(() => (engine && !intent ? engine.searchBikes(q) : []), [q, engine, intent]);
 
   useEffect(() => setIdx(0), [q]);
   useEffect(() => {
@@ -54,7 +56,7 @@ export function SearchBox({ compact = false, autoFocus = false, large = false }:
     inputRef.current?.blur();
     router.push(langHref(path, lang));
   };
-  const budgetPath = `/bikes/?price=u${budget}`;
+  const intentPath = `/bikes/?${[budget && `price=u${budget}`, mileage && "sort=mileage"].filter(Boolean).join("&")}`;
 
   return (
     <div ref={boxRef} className="relative" onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && setOpen(false)}>
@@ -81,8 +83,8 @@ export function SearchBox({ compact = false, autoFocus = false, large = false }:
             } else if (e.key === "ArrowUp") {
               e.preventDefault();
               setIdx((i) => Math.max(i - 1, 0));
-            } else if (e.key === "Enter" && budget) {
-              go(budgetPath);
+            } else if (e.key === "Enter" && intent) {
+              go(intentPath);
             } else if (e.key === "Enter" && results[idx]) {
               go(`/bikes/${results[idx].id}/`);
             } else if (e.key === "Escape") {
@@ -96,9 +98,9 @@ export function SearchBox({ compact = false, autoFocus = false, large = false }:
               : `input ${compact ? "h-10 pl-10 pr-9 text-[14px] bg-surface-2 border-transparent focus:bg-surface" : "pl-10"}`
           }
           role="combobox"
-          aria-expanded={open && (results.length > 0 || !!budget)}
+          aria-expanded={open && (results.length > 0 || intent)}
           aria-controls={listId}
-          aria-activedescendant={open && q && (budget || results[idx]) ? `${listId}-${budget ? 0 : idx}` : undefined}
+          aria-activedescendant={open && q && (intent || results[idx]) ? `${listId}-${intent ? 0 : idx}` : undefined}
           aria-autocomplete="list"
           aria-label={lang === "bn" ? "বাইক খুঁজুন" : "Search bikes"}
         />
@@ -114,17 +116,19 @@ export function SearchBox({ compact = false, autoFocus = false, large = false }:
           role="listbox"
           className="absolute left-0 right-0 top-[calc(100%+8px)] z-50 overflow-hidden rounded-2xl border border-line bg-surface shadow-lg animate-fade"
         >
-          {budget ? (
+          {intent ? (
             <button
               id={`${listId}-0`}
               role="option"
               tabIndex={-1}
               aria-selected
               onMouseDown={(e) => e.preventDefault()}
-              onClick={() => go(budgetPath)}
+              onClick={() => go(intentPath)}
               className="flex w-full items-center gap-3 bg-surface-2 px-4 py-3 text-left text-[14.5px] font-medium text-ink"
             >
-              {lang === "bn" ? `অন-রোড সর্বোচ্চ ${formatLakh(budget, "bn")} দামের সব বাইক` : `All bikes up to ${formatLakh(budget)} on-road`}
+              {lang === "bn"
+                ? `${budget ? `অন-রোড সর্বোচ্চ ${formatLakh(budget, "bn")} দামের সব বাইক` : "সব বাইক"}${mileage ? ", সবচেয়ে বেশি মাইলেজ আগে" : ""}`
+                : `${budget ? `All bikes up to ${formatLakh(budget)} on-road` : "All bikes"}${mileage ? ", best mileage first" : ""}`}
             </button>
           ) : results.length === 0 ? (
             <p className="px-4 py-5 text-sm text-muted">
