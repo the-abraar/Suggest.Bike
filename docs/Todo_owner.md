@@ -8,7 +8,7 @@ The agent is waiting on these. Send the value (or the answer) and it wires it in
 
 - [ ] **Formspree URL** for `FORM_ENDPOINT` in `src/lib/site.ts` (steps below). Until then the feedback and "I own this" forms open an email app, which fails on phones without one.
 - [ ] **GoatCounter code** for `GOATCOUNTER_CODE` (steps below). Set it before the first Facebook post, or that traffic can't be measured.
-- [ ] **WhatsApp number** for `WHATSAPP`, or say "skip".
+- [x] *(done: `8801327045005` in `site.ts`, checked 2026-10-22)* **WhatsApp number** for `WHATSAPP`, or say "skip".
 - [ ] **Data answers:** open `docs/data-needed.html` in a browser, fill each row (value, unsure, or both options), press "Download answers" and give the agent the JSON file.
 - [ ] **Quiz defaults:** the quiz shows default answers as already selected (budget ৳2.5 lakh, brand new, daily commute, etc.). Keep, or start every step blank?
 - [ ] **Search Console:** in URL Inspection, press "Request indexing" for `/`, `/bn/`, `/bikes/`, `/bn/bikes/`, `/guide/`, `/bn/guide/` (about 10 a day allowed). Check the sitemap status again around 2026-10-18.
@@ -26,7 +26,7 @@ The agent is waiting on these. Send the value (or the answer) and it wires it in
 ## Before launch
 
 - [x] **Domain.** `suggest.bike` (Namecheap), set in `src/lib/site.ts → SITE.url`.
-- [ ] **Hosting.** GitHub Pages via `.github/workflows/deploy.yml` (every push to `main` deploys `out/`). Point Namecheap DNS at GitHub (README → Deploy), then tick "Enforce HTTPS" in repo Settings → Pages.
+- [x] *(done: suggest.bike on Pages, HTTPS enforced, checked 2026-10-22)* **Hosting.** GitHub Pages via `.github/workflows/deploy.yml` (every push to `main` deploys `out/`). Point Namecheap DNS at GitHub (README → Deploy), then tick "Enforce HTTPS" in repo Settings → Pages.
 - [ ] **Spot-check prices in person or by phone.** Call or visit 3–4 showrooms (Uttara Motors/Bajaj, ACI/Yamaha, BHL/Honda, Rancon/Suzuki, IFAD/Royal Enfield). Check the 10 most-viewed bikes against our numbers. Showroom offers move faster than any website.
 - [ ] **Get a real BRTA registration receipt** for a 150cc and, if you can, a 350cc bike. Ask a friend who registered recently, or a dealer. This replaces the "medium/low confidence" totals.
 - [ ] **Legal footer.** Add a short disclaimer, a privacy note (we only use the browser's own storage, no tracking yet) and a contact email. A trademark note too: brand names are used for identification only.
@@ -34,7 +34,7 @@ The agent is waiting on these. Send the value (or the answer) and it wires it in
 
 - [ ] **Create a Formspree form** (free tier, formspree.io) sending to `hello@suggest.bike`, then paste its URL (`https://formspree.io/f/xxxx`) into `FORM_ENDPOINT` in `src/lib/site.ts`. Until then the feedback and "I own this" forms open a prefilled email, which fails on phones without a mail app.
 - [ ] **Create a GoatCounter account** (goatcounter.com, free for non-commercial use, no cookies) with the code `suggestbike`, then set `GOATCOUNTER_CODE` in `src/lib/site.ts`. The privacy page already covers it ("if enabled"). Form submits are counted as `form-feedback` / `form-owner` events.
-- [ ] **Set the WhatsApp number**: put your number, international digits only (e.g. `8801XXXXXXXXX`, no `+` or spaces), into `WHATSAPP` in `src/lib/site.ts`. Until then no WhatsApp link shows; once set, the feedback page, both forms and the footer get a `wa.me` link with a prefilled message. Use a number you are happy to have public.
+- [x] *(done, checked 2026-10-22)* **Set the WhatsApp number**: put your number, international digits only (e.g. `8801XXXXXXXXX`, no `+` or spaces), into `WHATSAPP` in `src/lib/site.ts`. Until then no WhatsApp link shows; once set, the feedback page, both forms and the footer get a `wa.me` link with a prefilled message. Use a number you are happy to have public.
 - [ ] **Confirm the distributor hotlines** in `src/data/dealers.json` by calling each one once, and ask Runner whether it distributes Vespa and Aprilia (not confirmed on an official page). Update `checked`.
 
 ## Data you're best placed to collect
