@@ -1,8 +1,8 @@
 // /bikes/ pagination: the ?page= param is capped to the catalogue. Run: npm test.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { PAGE, pageParam, sortParam } from "../src/app/bikes/BrowseView";
-import { BIKES } from "../src/lib/bikes";
+import { PAGE, byMileage, pageParam, sortParam } from "../src/app/bikes/BrowseView";
+import { BIKES, avgMileage, overall } from "../src/lib/bikes";
 
 test("pageParam reads ?page= and clamps it to 1..last page", () => {
   const last = Math.ceil(BIKES.length / PAGE);
@@ -18,4 +18,15 @@ test("pageParam reads ?page= and clamps it to 1..last page", () => {
 test("sortParam reads ?sort= (search \"best mileage\" links ?sort=mileage); unknown values fall back", () => {
   assert.equal(sortParam("mileage"), "mileage");
   for (const bad of [null, "", "MILEAGE", "drop table", "toString"]) assert.equal(sortParam(bad), "recommended", String(bad));
+});
+
+test("byMileage: best km/l first, EVs (petrol-cost equivalent, not km/l) after every petrol bike, ties best rated first", () => {
+  const list = [...BIKES].sort(byMileage);
+  const firstEv = list.findIndex((b) => b.engine.fuel === "electric");
+  assert.ok(firstEv > 0 && list.slice(firstEv).every((b) => b.engine.fuel === "electric"), "EVs last");
+  const petrol = list.slice(0, firstEv);
+  for (let i = 1; i < petrol.length; i++) {
+    const [a, b] = [petrol[i - 1], petrol[i]];
+    assert.ok(avgMileage(a) > avgMileage(b) || (avgMileage(a) === avgMileage(b) && overall(a) >= overall(b)), `${a.id} before ${b.id}`);
+  }
 });

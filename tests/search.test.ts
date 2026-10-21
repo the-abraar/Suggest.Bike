@@ -69,3 +69,13 @@ test("mileageQuery: mileage and fuel-economy intent in English, Banglish and Ban
   // Every catalogue name must still search as a name, not turn into the mileage list.
   for (const b of BIKES) assert.ok(!mileageQuery(`${b.brand} ${b.model} ${b.variant ?? ""}`), b.id);
 });
+
+test("mileageQuery: a bike named with mileage words is a bike lookup, not the sorted list", () => {
+  for (const [q, id] of [["mileage of Pulsar", "bajaj-pulsar-150"], ["what is the mileage of pulsar 150", "bajaj-pulsar-150"], ["hf deluxe mileage", "hero-hf-deluxe"], ["পালসার মাইলেজ", "bajaj-pulsar-150"]] as const) {
+    assert.ok(!mileageQuery(q), q);
+    assert.ok(ids(q).includes(id), q);
+  }
+  for (const q of ["mailej", "km per liter", "less fuel", "তেল খরচ কম", "জ্বালানি সাশ্রয়ী বাইক", "বেশি মাইলেজের বাইক", "১ লাখে বেশি মাইলেজ", "mileage 2 lakh er moddhe"]) assert.ok(mileageQuery(q), q);
+  for (const q of ["km", "fuel", "low", "fuel tank", "fuel injection", "low seat", "email"]) assert.ok(!mileageQuery(q), q);
+  assert.equal(budgetQuery("১ লাখে বেশি মাইলেজ"), 100000); // the combo links ?price=u100000&sort=mileage
+});

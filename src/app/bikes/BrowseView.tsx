@@ -7,7 +7,7 @@ import { BIKES, BRANDS, CATEGORIES, COLLECTIONS, PRICE_BANDS, avgMileage, brandL
 import { L, useLang, useTx } from "@/lib/i18n";
 import { BikeCard, WithSearchParams } from "@/components/ui";
 import { searchBikes } from "@/lib/search";
-import type { Category, Collection } from "@/lib/types";
+import type { BikeLite, Category, Collection } from "@/lib/types";
 import { onRoadPrice } from "@/lib/cost";
 
 type Sort = "recommended" | "price-asc" | "price-desc" | "mileage" | "power" | "reliability";
@@ -42,6 +42,9 @@ export const PAGE = 24;
 export const LOW_SEAT_MM = 780;
 /** ?sort= from the URL (header search "best mileage" links ?sort=mileage); anything unknown is the default. */
 export const sortParam = (v: string | null): Sort => SORTS.find((s) => s.id === v)?.id ?? "recommended";
+/** "Best mileage" order. EVs go last: their mileageKmpl is a derived petrol-cost equivalent (~500), not a km/l to rank against petrol bikes. Ties: best rated first. */
+export const byMileage = (a: BikeLite, b: BikeLite) =>
+  +(a.engine.fuel === "electric") - +(b.engine.fuel === "electric") || avgMileage(b) - avgMileage(a) || overall(b) - overall(a);
 /** ?page=N from the URL, clamped to 1..the last page of the whole catalogue. */
 export const pageParam = (v: string | null, total: number) => Math.min(Math.max(1, Math.floor(Number(v)) || 1), Math.max(1, Math.ceil(total / PAGE)));
 
@@ -131,7 +134,7 @@ function Browse({ params }: { params: URLSearchParams }) {
       // Price filter and sort follow the on-road headline on the cards.
       "price-asc": (a, b) => onRoadPrice(a) - onRoadPrice(b),
       "price-desc": (a, b) => onRoadPrice(b) - onRoadPrice(a),
-      mileage: (a, b) => avgMileage(b) - avgMileage(a),
+      mileage: byMileage,
       power: (a, b) => b.powerPS - a.powerPS,
       reliability: (a, b) =>
         b.scores.mechanicFamiliarity + b.scores.partsAvailability + b.scores.reliability - (a.scores.mechanicFamiliarity + a.scores.partsAvailability + a.scores.reliability),

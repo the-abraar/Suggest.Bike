@@ -22,7 +22,18 @@ const fuzzy = (w: string, tokens: string[]) => {
 // "fz v3", "r15 v5": a generation we do not list should still find the family.
 const isGen = (w: string) => /^v\d$/.test(w);
 
-export function searchBikes(q: string, limit = 7) {
+// Mileage words with their endings: "mileage", "milage", "mailej", "kmpl", "fuel efficient", "low fuel", "মাইলেজের", "তেল খরচ কম".
+const MILEAGE = /(?:mil[ea]+ge|mail[ea]?[gj]|milej|kmpl|km\/l|km[\s-]*per[\s-]*lit|fuel[\s-]*(?:efficien|econom|sav|consum)|(?:low|less)[\s-]*fuel|মাইলেজ|তেল[\s-]*(?:খরচ[\s-]*)?(?:কম|সাশ্র)|কম[\s-]*তেল|জ্বালানি[\s-]*সাশ্র)\S*/i;
+const MILEAGE_ALL = new RegExp(MILEAGE.source, "gi");
+// Words around a mileage ask that name no bike, dropped with it so "what is the mileage of pulsar" searches "pulsar".
+const FILLER = new Set(
+  "best top good great high higher highest most more max better average avg real actual bike bikes motorcycle motorcycles of for in on the a an with what whats which is ki koto kon er bhalo valo beshi besi sobcheye sob সবচেয়ে সবচাইতে বেশি ভালো সেরা বাইক মোটরসাইকেল কত কোন কী কি খরচ এর".split(" "),
+);
+const dropMileage = (q: string) =>
+  MILEAGE.test(q) ? q.replace(MILEAGE_ALL, " ").split(/\s+/).filter((w) => w && !FILLER.has(w.toLowerCase())).join(" ") : q;
+
+export function searchBikes(query: string, limit = 7) {
+  const q = dropMileage(query);
   const n = norm(q);
   if (!n) return [];
   const words = q.toLowerCase().split(/\s+/).filter(Boolean).map(norm).filter(Boolean);
@@ -68,6 +79,6 @@ export function budgetQuery(q: string): number | null {
   return null;
 }
 
-/** "best mileage", "fuel efficient", "low fuel", "kmpl", "মাইলেজ", "কম তেল": the visitor wants the bike list sorted by mileage. */
-export const mileageQuery = (q: string) =>
-  /mil[ea]+ge|maileg|kmpl|km\/l|fuel[\s-]*(efficien|econom|sav)|(low|less)[\s-]*fuel|মাইলেজ|তেল[\s-]*(কম|সাশ্র)|কম[\s-]*তেল/i.test(q);
+/** "best mileage", "fuel efficient", "মাইলেজ", "best mileage under 1 lakh": the visitor wants the bike list sorted by mileage.
+ * A bike named with it ("mileage of pulsar") is a bike lookup instead: searchBikes finds the Pulsar, whose page shows its mileage. */
+export const mileageQuery = (q: string) => MILEAGE.test(q) && !searchBikes(q, 1).length;
