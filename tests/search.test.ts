@@ -71,7 +71,7 @@ test("mileageQuery: mileage and fuel-economy intent in English, Banglish and Ban
 });
 
 test("mileageQuery: a bike named with mileage words is a bike lookup, not the sorted list", () => {
-  for (const [q, id] of [["mileage of Pulsar", "bajaj-pulsar-150"], ["what is the mileage of pulsar 150", "bajaj-pulsar-150"], ["hf deluxe mileage", "hero-hf-deluxe"], ["পালসার মাইলেজ", "bajaj-pulsar-150"]] as const) {
+  for (const [q, id] of [["mileage of Pulsar", "bajaj-pulsar-150"], ["what is the mileage of pulsar 150", "bajaj-pulsar-150"], ["hf deluxe mileage", "hero-hf-deluxe"], ["পালসার মাইলেজ", "bajaj-pulsar-150"], ["পালসারের মাইলেজ", "bajaj-pulsar-150"]] as const) {
     assert.ok(!mileageQuery(q), q);
     assert.ok(ids(q).includes(id), q);
   }

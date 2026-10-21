@@ -30,7 +30,15 @@ const FILLER = new Set(
   "best top good great high higher highest most more max better average avg real actual bike bikes motorcycle motorcycles of for in on the a an with what whats which is ki koto kon er bhalo valo beshi besi sobcheye sob সবচেয়ে সবচাইতে বেশি ভালো সেরা বাইক মোটরসাইকেল কত কোন কী কি খরচ এর".split(" "),
 );
 const dropMileage = (q: string) =>
-  MILEAGE.test(q) ? q.replace(MILEAGE_ALL, " ").split(/\s+/).filter((w) => w && !FILLER.has(w.toLowerCase())).join(" ") : q;
+  MILEAGE.test(q)
+    ? q
+        .replace(MILEAGE_ALL, " ")
+        .split(/\s+/)
+        .filter((w) => w && !FILLER.has(w.toLowerCase()))
+        // Bangla possessive "পালসারের মাইলেজ": drop "ের" (not a bare "র", which ends names like পালসার).
+        .map((w) => w.replace(/(?:ের|-?এর)$/, ""))
+        .join(" ")
+    : q;
 
 export function searchBikes(query: string, limit = 7) {
   const q = dropMileage(query);
