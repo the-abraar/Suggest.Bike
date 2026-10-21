@@ -17,12 +17,12 @@ const DICT = {
   "nav.saved": { en: "Saved", bn: "সংরক্ষিত" },
   "nav.menu": { en: "Menu", bn: "মেনু" },
 
-  "home.kicker": { en: "Bangladesh's motorcycle decision engine", bn: "বাংলাদেশের মোটরসাইকেল সিদ্ধান্তের প্ল্যাটফর্ম" },
+  "home.kicker": { en: "Bangladesh's motorcycle decision engine", bn: "বাইক কেনার আগে সব হিসাব, এক জায়গায়" },
   "home.title1": { en: "Don't buy a bike", bn: "বাইক কেনার আগে" },
   "home.title2": { en: "before you've been here.", bn: "একবার এখানে আসুন।" },
   "home.sub": {
     en: "Honest, Bangladesh-specific answers: real mileage, what the local mistri thinks, what parts cost in Bangshal, and what you'll actually spend each month.",
-    bn: "বাংলাদেশের জন্য সৎ উত্তর: আসল মাইলেজ, লোকাল মিস্ত্রি কী বলে, বংশালে পার্টসের দাম, আর প্রতি মাসে আসলে কত খরচ হবে।",
+    bn: "বাংলাদেশের জন্য আসল মাইলেজ, লোকাল মিস্ত্রি কী বলে, বংশালে পার্টসের দাম, আর প্রতি মাসে আসলে কত খরচ হবে।",
   },
   "home.cta": { en: "Find my bike in 60 seconds", bn: "৬০ সেকেন্ডে আমার বাইক খুঁজুন" },
   "home.cta2": { en: "Browse all bikes", bn: "সব বাইক দেখুন" },
