@@ -6551,7 +6551,7 @@
   "status": "on-sale",
   "priceBDT": 163500,
   "priceAsOf": "2026-10",
-  "priceSource": "https://www.bikebd.com/price/yamaha-saluto-125-ubs",
+  "priceSource": "https://www.yamahabd.com/products/yamaha-saluto-125-ubs",
   "distributor": "ACI Motors Ltd",
   "assembledInBD": true,
   "engine": {
@@ -6654,6 +6654,7 @@
    }
   ],
   "sources": [
+   "https://www.yamahabd.com/products/yamaha-saluto-125-ubs",
    "https://www.bikebd.com/price/yamaha-saluto-125-ubs",
    "https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/"
   ],
@@ -7692,9 +7693,9 @@
   "category": "sport",
   "status": "on-sale",
   "priceBDT": 605000,
-  "priceNote": "Imported 155cc fully-faired sportbike with VVA, quick-shifter and traction control, priced far above the sport median; Racing Blue ~৳6,06,000, Intensity White ৳6,60,000, R15M ৳6,25,000, R15M TFT ~৳6,78,000 (May 2026).",
+  "priceNote": "Imported 155cc fully-faired sportbike with VVA, quick-shifter and traction control, priced far above the sport median. Yamaha BD (Oct 2026): Metallic Red ৳6,05,000, Racing Blue ৳6,10,000, Intensity White ৳6,60,000; R15M ৳6,25,000. The ৳6,78,000 'BS7' figure on the same site is for the R15M.",
   "priceAsOf": "2026-10",
-  "priceSource": "https://www.bikebd.com/price/r15-v4-price-in-bangladesh",
+  "priceSource": "https://www.yamahabd.com/products/yamaha-r15-v4",
   "distributor": "ACI Motors Ltd",
   "assembledInBD": false,
   "engine": {
@@ -7798,6 +7799,7 @@
    }
   ],
   "sources": [
+   "https://www.yamahabd.com/products/yamaha-r15-v4",
    "https://www.bikebd.com/price/r15-v4-price-in-bangladesh",
    "https://www.bikebd.com/price/yamaha-r15m-price-in-bangladesh",
    "https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/"
@@ -7825,7 +7827,7 @@
     "ট্র্যাক ডে",
     "বাইকপ্রেমীর প্রথম বড় কেনা"
    ],
-   "priceNote": "রেসিং ব্লু ~৳6,06,000; ইনটেনসিটি হোয়াইট ৳6,60,000; R15M ৳6,25,000; R15M TFT ~৳6,78,000 (মে 2026)।",
+   "priceNote": "Yamaha BD (অক্টোবর 2026): মেটালিক রেড ৳6,05,000, রেসিং ব্লু ৳6,10,000, ইনটেনসিটি হোয়াইট ৳6,60,000; R15M ৳6,25,000। একই সাইটের ৳6,78,000 'BS7' দামটি R15M-এর।",
    "partNotes": [
     null,
     null,
@@ -8370,9 +8372,9 @@
   "category": "scooter",
   "status": "on-sale",
   "priceBDT": 270000,
-  "priceNote": "BikeBD also lists a Ray ZR Street Rally variant at ৳2,25,000; check dealer for current hybrid vs non-hybrid stock.",
+  "priceNote": "Yamaha BD lists the Ray ZR 125 FI at ৳2,70,000 (Oct 2026). The ৳2,25,000 Ray ZR Street Rally is the 113cc model, not a 125 variant.",
   "priceAsOf": "2026-10",
-  "priceSource": "https://www.bikebd.com/price/yamaha-ray-zr-125-price-in-bangladesh",
+  "priceSource": "https://www.yamahabd.com/products/yamaha-ray-zr-125",
   "distributor": "ACI Motors Ltd",
   "engine": {
    "cc": 125,
@@ -8476,6 +8478,7 @@
    }
   ],
   "sources": [
+   "https://www.yamahabd.com/products/yamaha-ray-zr-125",
    "https://www.bikebd.com/price/yamaha-ray-zr-125-price-in-bangladesh",
    "https://www.bikebd.com/brand/yamaha",
    "https://www.motorcycle.com.bd/yamaha-ray-zr-street-rally-125-fi/",
@@ -8504,7 +8507,7 @@
     "নারী রাইডার",
     "নতুন রাইডার"
    ],
-   "priceNote": "BikeBD-তে Ray ZR Street Rally ভ্যারিয়েন্টও ৳2,25,000-এ লিস্টেড; এখন হাইব্রিড না নন-হাইব্রিড স্টক আছে, ডিলারের কাছে জেনে নিন।",
+   "priceNote": "Yamaha BD-তে Ray ZR 125 FI ৳2,70,000 (অক্টোবর 2026)। ৳2,25,000-এর Ray ZR Street Rally হলো 113cc মডেল, 125-এর ভ্যারিয়েন্ট নয়।",
    "partNotes": [
     null,
     "CVT স্কুটারে চেইন থাকে না; এখানে দামটা ড্রাইভ বেল্ট বদলানোর",
@@ -9008,9 +9011,9 @@
   "category": "street",
   "status": "on-sale",
   "priceBDT": 199950,
-  "priceNote": "Suzuki BD lists Gixxer Classic Matt from ৳2,05,950 (the figure BikeBD shows for this bike).",
+  "priceNote": "Suzuki BD lists ৳1,99,950, marked down from ৳2,05,950 (Oct 2026); Gixxer Classic Matt ৳2,05,950.",
   "priceAsOf": "2026-10",
-  "priceSource": "https://www.suzuki.com.bd/",
+  "priceSource": "https://www.suzuki.com.bd/product/gixxer-monotone",
   "distributor": "Rancon Motorbikes Ltd",
   "assembledInBD": true,
   "engine": {
@@ -9113,6 +9116,7 @@
    }
   ],
   "sources": [
+   "https://www.suzuki.com.bd/product/gixxer-monotone",
    "https://www.suzuki.com.bd/",
    "https://www.bikebd.com/price/gixxer-price-in-bd",
    "https://www.bikebd.com/price/suzuki-gixxer-carb-disc",
@@ -9140,7 +9144,7 @@
     "স্টুডেন্ট",
     "ঢাকায় ডেইলি যাতায়াত"
    ],
-   "priceNote": "Suzuki BD-তে Gixxer Classic Matt ৳2,05,950 থেকে (BikeBD এই বাইকের জন্য এই দামই দেখায়)।",
+   "priceNote": "Suzuki BD-তে দাম ৳1,99,950, আগের ৳2,05,950 থেকে কমানো (অক্টোবর 2026); Gixxer Classic Matt ৳2,05,950।",
    "partNotes": [
     null,
     null,

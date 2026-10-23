@@ -10,15 +10,16 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 
 | Site | References |
 | --- | ---: |
-| bikebd.com | 231 |
+| bikebd.com | 228 |
 | bikroy.com | 88 |
 | bajajauto.com | 31 |
 | bdhonda.com | 26 |
-| suzuki.com.bd | 24 |
+| suzuki.com.bd | 25 |
 | heromotocorp.com | 12 |
 | motorcyclevalley.com | 11 |
 | waltonbd.com | 9 |
 | motorcyclebd.com | 8 |
+| yamahabd.com | 8 |
 | royalenfield.com | 8 |
 | motorcycle.com.bd | 6 |
 | tbsnews.net | 6 |
@@ -32,7 +33,6 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 | mrp.com.bd | 2 |
 | deshibiker.com | 2 |
 | bikestall.com | 2 |
-| yamahabd.com | 2 |
 | motorcyclefair.com | 2 |
 | thedailystar.net | 2 |
 | banglamotor.net | 1 |
@@ -46,7 +46,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 | observerbd.com | 1 |
 | en.wikipedia.org | 1 |
 
-**Primary price source** (the `priceSource` of each bike): bikebd.com 54 (50%), bikroy.com 14 (13%), bajajauto.com 10 (9%), bdhonda.com 10 (9%), suzuki.com.bd 8 (7%), heromotocorp.com 4 (4%), royalenfield.com 4 (4%), waltonbd.com 3 (3%).
+**Primary price source** (the `priceSource` of each bike): bikebd.com 51 (48%), bikroy.com 14 (13%), bajajauto.com 10 (9%), bdhonda.com 10 (9%), suzuki.com.bd 8 (7%), heromotocorp.com 4 (4%), royalenfield.com 4 (4%), yamahabd.com 3 (3%), waltonbd.com 3 (3%).
 
 ## Bike data — per bike
 
@@ -411,7 +411,8 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://www.suzuki.com.bd/news/launching-of-suzuki-gsx-125-the-all-rounder-bike-3dir82cf9
   - Used asking prices (2026-10): ~1 yr —, ~3 yr ৳80,000 — https://bikroy.com/bn/motorcycles-and-scooters/suzuki-gsx-125
 - **Gixxer Monotone** (Monotone (carb)) — ৳1,99,950 as of 2026-10
-  - Price: https://www.suzuki.com.bd/
+  - Price: https://www.suzuki.com.bd/product/gixxer-monotone
+  - https://www.suzuki.com.bd/
   - https://www.bikebd.com/price/gixxer-price-in-bd
   - https://www.bikebd.com/price/suzuki-gixxer-carb-disc
   - https://www.suzuki.com.bd/product/gixxer-classic-matt
@@ -540,7 +541,8 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 ### Yamaha
 
 - **Saluto 125** (UBS Disc) — ৳1,63,500 as of 2026-10
-  - Price: https://www.bikebd.com/price/yamaha-saluto-125-ubs
+  - Price: https://www.yamahabd.com/products/yamaha-saluto-125-ubs
+  - https://www.bikebd.com/price/yamaha-saluto-125-ubs
   - https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/
   - Used asking prices (2026-10): ~1 yr —, ~3 yr ৳1,15,000 — https://bikroy.com/bn/motorcycles-and-scooters/yamaha-saluto-125
   - Photo: Rainmaker47, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:2015_Yamaha_YC125-4_Saluto.JPG
@@ -569,7 +571,8 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/
   - https://www.yamahabd.com/products/yamaha-fz-25/
 - **R15 V4** (Indian-spec) — ৳6,05,000 as of 2026-10
-  - Price: https://www.bikebd.com/price/r15-v4-price-in-bangladesh
+  - Price: https://www.yamahabd.com/products/yamaha-r15-v4
+  - https://www.bikebd.com/price/r15-v4-price-in-bangladesh
   - https://www.bikebd.com/price/yamaha-r15m-price-in-bangladesh
   - https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/
   - Photo: Kamalnath P, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Yamaha_R15_v4_bike.jpg
@@ -589,7 +592,8 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://www.tbsnews.net/companies/aci-motors-introduces-yamaha-xsr-155-220432
   - Photo: Bonel14, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Yamaha_XSR_155.jpg
 - **Ray ZR 125 Fi** (Hybrid) — ৳2,70,000 as of 2026-10
-  - Price: https://www.bikebd.com/price/yamaha-ray-zr-125-price-in-bangladesh
+  - Price: https://www.yamahabd.com/products/yamaha-ray-zr-125
+  - https://www.bikebd.com/price/yamaha-ray-zr-125-price-in-bangladesh
   - https://www.bikebd.com/brand/yamaha
   - https://www.motorcycle.com.bd/yamaha-ray-zr-street-rally-125-fi/
   - https://www.motorcyclefair.com/yamaha-ray-zr-street-rally-125-fi/
