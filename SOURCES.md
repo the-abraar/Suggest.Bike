@@ -14,7 +14,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 | bikroy.com | 88 |
 | bajajauto.com | 31 |
 | bdhonda.com | 26 |
-| suzuki.com.bd | 23 |
+| suzuki.com.bd | 24 |
 | heromotocorp.com | 12 |
 | motorcyclevalley.com | 11 |
 | waltonbd.com | 9 |
@@ -463,8 +463,9 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://www.bikebd.com/price/suzuki-gsxr-price-in-bangladesh
   - Used asking prices (2026-10): ~1 yr ৳4,35,000, ~3 yr ৳3,70,000 — https://bikroy.com/bn/motorcycles-and-scooters/suzuki-gsx-r150
   - Photo: Haysnawri10, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:2022_Suzuki_GSX-R150_Mandalika_Limited_Edition.jpg
-- **Access 125** (FI CBS) — ৳2,14,950 as of 2026-10
+- **Access 125** (FI Disc) — ৳2,14,950 as of 2026-10
   - Price: https://www.suzuki.com.bd/
+  - https://www.suzuki.com.bd/product/access-125
   - https://www.bikebd.com/price/suzuki-access-125
   - Used asking prices (2026-10): ~1 yr ৳1,95,000, ~3 yr ৳1,70,000 — https://bikroy.com/bn/motorcycles-and-scooters/suzuki-access-125, https://bikroy.com/bn/motorcycles-and-scooters/suzuki-access-125-fi-cbs
 - **AX-100** — ৳45,000 as of 2026-10 (used market)

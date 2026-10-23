@@ -10454,7 +10454,7 @@
   "id": "suzuki-access-125",
   "brand": "Suzuki",
   "model": "Access 125",
-  "variant": "FI CBS",
+  "variant": "FI Disc",
   "category": "scooter",
   "status": "on-sale",
   "priceBDT": 214950,
@@ -10485,7 +10485,7 @@
   "groundClearanceMm": 160,
   "fuelTankL": 5,
   "brakes": {
-   "front": "drum",
+   "front": "disc",
    "rear": "drum",
    "abs": "cbs"
   },
@@ -10513,8 +10513,8 @@
   },
   "tagline": "The comfiest, most sensible family scooter in BD.",
   "feel": "Smooth, torquey 125 that pulls cleanly with a pillion; plush seat and roomy floorboard make it family-friendly.",
-  "quirks": "Priced well above Indian market levels. Small 10-inch rear wheel bumps over potholes. Drum brakes on the CBS variant. Scooter-savvy mechanics are fewer than bike mechanics outside Dhaka.",
-  "braking": "CBS drum brakes are adequate for city speeds; the disc variant isn't commonly sold here.",
+  "quirks": "Priced well above Indian market levels. Small 10-inch rear wheel bumps over potholes. Scooter-savvy mechanics are fewer than bike mechanics outside Dhaka.",
+  "braking": "Front disc and rear drum with combined braking are adequate for city speeds; there is no ABS.",
   "mechanicNote": "Rancon dealers service it routinely; CVT and FI need a trained mechanic, but it's one of the most familiar scooters in BD.",
   "pros": [
    "Smooth 125 FI engine",
@@ -10523,7 +10523,7 @@
    "Light and easy"
   ],
   "cons": [
-   "Drum brakes",
+   "Rear drum, no ABS",
    "Expensive",
    "Small rear wheel on bad roads"
   ],
@@ -10564,14 +10564,15 @@
    }
   ],
   "sources": [
+   "https://www.suzuki.com.bd/product/access-125",
    "https://www.suzuki.com.bd/",
    "https://www.bikebd.com/price/suzuki-access-125"
   ],
   "bn": {
    "tagline": "বাংলাদেশের সবচেয়ে আরামের আর সবচেয়ে কাজের ফ্যামিলি স্কুটার।",
    "feel": "স্মুথ, টর্কি 125, পিলিয়ন নিয়েও পরিষ্কারভাবে টানে; নরম সিট আর বড় ফ্লোরবোর্ড পরিবারের জন্য সুবিধাজনক।",
-   "quirks": "ইন্ডিয়ার বাজারের চেয়ে দাম অনেক বেশি। ছোট 10-ইঞ্চি পেছনের চাকা গর্তে ঝাঁকি দেয়। CBS ভ্যারিয়েন্টে ড্রাম ব্রেক। ঢাকার বাইরে বাইক মেকানিকের তুলনায় স্কুটার বোঝে এমন মেকানিক কম।",
-   "braking": "CBS ড্রাম ব্রেক শহরের স্পিডে চলে যায়; ডিস্ক ভ্যারিয়েন্ট এখানে সাধারণত বিক্রি হয় না।",
+   "quirks": "ইন্ডিয়ার বাজারের চেয়ে দাম অনেক বেশি। ছোট 10-ইঞ্চি পেছনের চাকা গর্তে ঝাঁকি দেয়। ঢাকার বাইরে বাইক মেকানিকের তুলনায় স্কুটার বোঝে এমন মেকানিক কম।",
+   "braking": "সামনে ডিস্ক, পেছনে ড্রাম আর কম্বাইন্ড ব্রেকিং শহরের স্পিডে যথেষ্ট; ABS নেই।",
    "mechanicNote": "Rancon ডিলাররা নিয়মিত এর সার্ভিস করে; CVT আর FI-এর জন্য ট্রেইনড মেকানিক লাগে, তবে এটা বাংলাদেশের সবচেয়ে চেনা স্কুটারগুলোর একটা।",
    "pros": [
     "স্মুথ 125 FI ইঞ্জিন",
@@ -10580,7 +10581,7 @@
     "হালকা আর সহজ"
    ],
    "cons": [
-    "ড্রাম ব্রেক",
+    "পেছনে ড্রাম, ABS নেই",
     "দামি",
     "খারাপ রাস্তায় ছোট পেছনের চাকা"
    ],

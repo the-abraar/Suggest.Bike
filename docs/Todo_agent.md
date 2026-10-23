@@ -10,6 +10,7 @@ Work an AI coding agent can pick up without the owner. Ordered by impact. Each i
   - [x] Hornet 2.0: BD-spec power/torque (16.6 PS / 15.9 Nm per BikeBD vs 17.03 / 16.1 used). *Done 2026-10-24: bdhonda.com/products/hornet20 says 16.6 PS @ 8500 and 15.5 Nm @ 6000; torque set to 15.5.*
   - TVS Stryker 125: gears, tank and seat height. Metro Plus: kerb weight. Discover 125: tank (8 L vs 11 L).
   - Hunk 150R: power/torque. Saluto: carb vs FI. XSR155: ABS. Access 125: brakes. SP160: ABS on the single-disc variant.
+    - [x] Access 125 *(2026-10-24: Suzuki BD's product data lists the one BD variant as FI, single front disc; brakes and copy updated, CBS kept)*.
   - Vespa VXL: carb vs FI. KTM Duke 125 / RC 125: still in stock in BD? (India discontinued both in 2025.)
   - Conflicting prices: Gixxer Monotone, X-Blade, Ray ZR 125, R15 V4 BS7.
 - [x] ~~**Show a "how sure are we" marker.**~~ *Partly done: an `approx` tag marks estimates. A per-field `confidence` value is still open.* Add an optional `confidence` (`"high" | "medium" | "low"`) per field group to the `Bike` type. Show a small "estimate" badge next to mileage and parts prices on `/bikes/[id]` and `/compare`.
