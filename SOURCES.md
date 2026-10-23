@@ -697,8 +697,10 @@ Compiled 2026-10-06. Fees and rules change; always confirm on brta.gov.bd / bsp.
   https://en.prothomalo.com/business/c7d38h8nz8
 - দেশে চালানো যাবে ৩৭৫ সিসি পর্যন্ত মোটরসাইকেল — The Daily Star Bangla, 2023-10-11  
   https://bangla.thedailystar.net/news/bangladesh/news-522546
-- দেশে ৩৭৫ সিসি পর্যন্ত মোটরসাইকেল আমদানির সুযোগ, গেজেট প্রকাশ — Dhaka Times, 2026-08-25  
-  https://www.dhakatimes24.com/2026/08/25/411300
+- Import Policy Order 2026-2029 (SRO 308-Law/2026), Bangladesh Gazette Extraordinary, 24 Aug 2026: Annex 1 part A item 8, p. 23876 — Ministry of Commerce, Govt of Bangladesh, 2026-08-24  
+  https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-mincom/2026/7/c91ed257-057d-4c4f-8eea-93a413c1ae4c.pdf
+- Import Policy Order 2026-2029 (amended text, updated to 24 Sep 2026; posted 30 Sep 2026): Annex 1 part A item 8 unchanged — Ministry of Commerce, Govt of Bangladesh, 2026-09-24  
+  https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-mincom/2026/8/0ef3d693-fb24-479c-9f66-77c0dbb356c1.pdf
 - ১৬৫ সিসির বেশি বাইক আমদানি করা যাবে না — Desh Rupantor, 2026-08-26  
   https://www.deshrupantor.com/715706/
 - এলসির বাইরে মূল্যসীমা ছাড়াই পণ্য আমদানি, বদলে গেলো আমদানি নীতির কাঠামো — Bangla Tribune, 2026-08  
@@ -764,7 +766,7 @@ Compiled 2026-10-06. Fees and rules change; always confirm on brta.gov.bd / bsp.
 
 - **registration:** medium - statutory fee slabs are confirmed from the gazette; package totals and road-tax amounts come from secondary guides that disagree slightly. BikeBD's itemised table (Oct 2026) still shows pre-2021 registration fees (4,200/5,600), so it was not used for totals.
 - **licence:** high for fees and documents (BRTA page updated 30 Jun 2026); medium for timeline
-- **ccPolicy:** high for 375cc locally-made registration rule; low for CBU import status after IPO 2026-29 (conflicting reports)
+- **ccPolicy:** high for 375cc locally-made registration rule; high for the >165cc CBU import ban (read in the Import Policy Order 2026-2029 gazette and its amended text, checked 2026-10-24)
 - **fuel:** high
 - **insurance:** high for legal status and pilot premium; low for comprehensive pricing
 - **evRules:** medium: pedal exemption and VAT come from news reports of the policy and budget

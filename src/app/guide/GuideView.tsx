@@ -196,8 +196,8 @@ export function GuideView() {
             </ol>
             <Note>
               {tx(
-                "Bottom line: bikes up to 375cc that are assembled in Bangladesh — like Royal Enfield's 350s from IFAD's Cumilla plant — can be registered. Fully imported (CBU) bikes above 165cc are legally murky right now — get the dealer to confirm registrability in writing.",
-                "সারকথা: দেশে অ্যাসেম্বল করা 375cc পর্যন্ত বাইক — যেমন IFAD-এর কুমিল্লা কারখানার রয়্যাল এনফিল্ড 350 — রেজিস্ট্রেশন করা যায়। 165cc-এর বেশি পুরো আমদানি করা (CBU) বাইকের আইনি অবস্থা এখন অস্পষ্ট — রেজিস্ট্রেশন হবে কি না ডিলারের কাছ থেকে লিখিত নিন।",
+                "Bottom line: bikes up to 375cc that are assembled in Bangladesh — like Royal Enfield's 350s from IFAD's Cumilla plant — can be registered. Importing fully built (CBU) bikes above 165cc is banned under the Import Policy Order 2026-2029 (police excepted) — if a seller offers one, ask for its import and registration papers before you pay.",
+                "সারকথা: দেশে অ্যাসেম্বল করা 375cc পর্যন্ত বাইক — যেমন IFAD-এর কুমিল্লা কারখানার রয়্যাল এনফিল্ড 350 — রেজিস্ট্রেশন করা যায়। আমদানি নীতি আদেশ 2026-2029 অনুযায়ী 165cc-এর বেশি পুরো তৈরি (CBU) বাইক আমদানি নিষিদ্ধ (পুলিশ বাদে) — কেউ এমন বাইক বিক্রি করতে চাইলে টাকা দেওয়ার আগে আমদানি ও রেজিস্ট্রেশনের কাগজ দেখে নিন।",
               )}
             </Note>
           </Section>

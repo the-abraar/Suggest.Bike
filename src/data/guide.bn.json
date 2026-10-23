@@ -156,11 +156,17 @@
     "publisher": "The Daily Star Bangla",
     "date": "2023-10-11"
    },
-   "dhakatimesIPO": {
-    "title": "দেশে ৩৭৫ সিসি পর্যন্ত মোটরসাইকেল আমদানির সুযোগ, গেজেট প্রকাশ",
-    "url": "https://www.dhakatimes24.com/2026/08/25/411300",
-    "publisher": "Dhaka Times",
-    "date": "2026-08-25"
+   "ipoGazette2026": {
+    "title": "Import Policy Order 2026-2029 (SRO 308-Law/2026), Bangladesh Gazette Extraordinary, 24 Aug 2026: Annex 1 part A item 8, p. 23876",
+    "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-mincom/2026/7/c91ed257-057d-4c4f-8eea-93a413c1ae4c.pdf",
+    "publisher": "Ministry of Commerce, Govt of Bangladesh",
+    "date": "2026-08-24"
+   },
+   "ipoAmended2026": {
+    "title": "Import Policy Order 2026-2029 (amended text, updated to 24 Sep 2026; posted 30 Sep 2026): Annex 1 part A item 8 unchanged",
+    "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-mincom/2026/8/0ef3d693-fb24-479c-9f66-77c0dbb356c1.pdf",
+    "publisher": "Ministry of Commerce, Govt of Bangladesh",
+    "date": "2026-09-24"
    },
    "deshrupantorIPO": {
     "title": "১৬৫ সিসির বেশি বাইক আমদানি করা যাবে না",
@@ -709,8 +715,8 @@
   "confidence": "high for fees and documents (BRTA page updated 30 Jun 2026); medium for timeline"
  },
  "ccPolicy": {
-  "asOf": "2026-10-06",
-  "currentRule": "রেজিস্ট্রেশন: দেশে তৈরি/সংযোজিত হলে বিআরটিএ 375cc পর্যন্ত মোটরসাইকেল রেজিস্ট্রেশন করে (সড়ক পরিবহন ও মহাসড়ক বিভাগের সিদ্ধান্ত, অক্টোবর 2023)। পুরোপুরি তৈরি (CBU) আমদানি: আগে থেকে 165cc-তে সীমিত। দেশি নির্মাতারা 500cc পর্যন্ত বাইক বানাতে যন্ত্রাংশ/যন্ত্রপাতি আমদানি করতে পারে।",
+  "asOf": "2026-10-24",
+  "currentRule": "রেজিস্ট্রেশন: দেশে তৈরি/সংযোজিত হলে বিআরটিএ 375cc পর্যন্ত মোটরসাইকেল রেজিস্ট্রেশন করে (সড়ক পরিবহন ও মহাসড়ক বিভাগের সিদ্ধান্ত, অক্টোবর 2023)। পুরোপুরি তৈরি (CBU) আমদানি: আমদানি নীতি আদেশ 2026-2029 অনুযায়ী 165cc-এর বেশি সব মোটরসাইকেল আমদানি নিষিদ্ধ (পুলিশ বাদে)। নিবন্ধিত দেশি নির্মাতারা 500cc পর্যন্ত বাইক বানাতে যন্ত্রপাতি ও যন্ত্রাংশ আমদানি করতে পারে।",
   "maxCcForRegularBuyersRegistrable": 375,
   "maxCcCbuImportLegacy": 165,
   "maxCcLocalManufacturePermitted": 500,
@@ -754,13 +760,19 @@
    },
    {
     "period": "2026-08-24",
-    "rule": "আমদানি নীতি আদেশ 2026-2029 জারি (মেয়াদ 31 ডিসেম্বর 2029 পর্যন্ত)। মোটরসাইকেল নিয়ে খবরগুলো পরস্পরবিরোধী: ঢাকা টাইমস (25 আগস্ট 2026) বলছে এখন 375cc পর্যন্ত CBU আমদানি করা যাবে; দেশ রূপান্তর (26 আগস্ট 2026) ও বাংলা ট্রিবিউন বলছে, খসড়ায় 375cc প্রস্তাব থাকলেও চূড়ান্ত আদেশে 165cc-এর বেশি CBU আমদানির নিষেধাজ্ঞা বহাল আছে (পুলিশ বাদে)।",
+    "rule": "আমদানি নীতি আদেশ 2026-2029 জারি (এসআরও 308, মেয়াদ 31 ডিসেম্বর 2029 পর্যন্ত)। গেজেটে নিষেধাজ্ঞা বহাল: 165cc-এর বেশি সব মোটরসাইকেল আমদানি নিষিদ্ধ, তবে পুলিশের ক্ষেত্রে নয়; নিবন্ধিত মোটরসাইকেল নির্মাতারা 500cc পর্যন্ত বাইক বানাতে যন্ত্রপাতি ও যন্ত্রাংশ আমদানি করতে পারবে (পরিশিষ্ট-১, ক অংশ, ক্রমিক 8)। খসড়ায় 375cc প্রস্তাব ছিল এবং ঢাকা টাইমসের শুরুর খবরে 375cc-র অনুমতির কথা বলা হয়েছিল, কিন্তু চূড়ান্ত আদেশে তা নেই। সংশোধিত পাঠেও (24 সেপ্টেম্বর 2026 পর্যন্ত হালনাগাদ) একই বিধান।",
     "source": [
      {
-      "title": "দেশে ৩৭৫ সিসি পর্যন্ত মোটরসাইকেল আমদানির সুযোগ, গেজেট প্রকাশ",
-      "url": "https://www.dhakatimes24.com/2026/08/25/411300",
-      "publisher": "Dhaka Times",
-      "date": "2026-08-25"
+      "title": "Import Policy Order 2026-2029 (SRO 308-Law/2026), Bangladesh Gazette Extraordinary, 24 Aug 2026: Annex 1 part A item 8, p. 23876",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-mincom/2026/7/c91ed257-057d-4c4f-8eea-93a413c1ae4c.pdf",
+      "publisher": "Ministry of Commerce, Govt of Bangladesh",
+      "date": "2026-08-24"
+     },
+     {
+      "title": "Import Policy Order 2026-2029 (amended text, updated to 24 Sep 2026; posted 30 Sep 2026): Annex 1 part A item 8 unchanged",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-mincom/2026/8/0ef3d693-fb24-479c-9f66-77c0dbb356c1.pdf",
+      "publisher": "Ministry of Commerce, Govt of Bangladesh",
+      "date": "2026-09-24"
      },
      {
       "title": "১৬৫ সিসির বেশি বাইক আমদানি করা যাবে না",
@@ -769,19 +781,13 @@
       "date": "2026-08-26"
      },
      {
-      "title": "এলসির বাইরে মূল্যসীমা ছাড়াই পণ্য আমদানি, বদলে গেলো আমদানি নীতির কাঠামো",
-      "url": "https://www.banglatribune.com/964670",
-      "publisher": "Bangla Tribune",
-      "date": "2026-08"
-     },
-     {
       "title": "BB issues import policy implementation guidelines",
       "url": "https://thefinancialexpress.com.bd/bangladesh/bb-issues-import-policy-implementation-guidelines",
       "publisher": "The Financial Express",
       "date": "2026-09-13"
      }
     ],
-    "confidence": "low"
+    "confidence": "high"
    }
   ],
   "importDutyNotes": "250cc-এর বেশি আমদানির ওপর শুল্ক প্রথম প্রস্তাব করা হয়েছিল আগের একটি বাজেটে (প্রথম আলো)। মোটরসাইকেলের বর্তমান CBU শুল্কহার এই গবেষণায় যাচাই করা হয়নি - নিশ্চয়তা কম; এনবিআরের কাস্টমস ট্যারিফ (HS 8711) দেখে নিন।",
@@ -793,16 +799,22 @@
     "date": "2023-10-11"
    },
    {
+    "title": "Import Policy Order 2026-2029 (SRO 308-Law/2026), Bangladesh Gazette Extraordinary, 24 Aug 2026: Annex 1 part A item 8, p. 23876",
+    "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-mincom/2026/7/c91ed257-057d-4c4f-8eea-93a413c1ae4c.pdf",
+    "publisher": "Ministry of Commerce, Govt of Bangladesh",
+    "date": "2026-08-24"
+   },
+   {
+    "title": "Import Policy Order 2026-2029 (amended text, updated to 24 Sep 2026; posted 30 Sep 2026): Annex 1 part A item 8 unchanged",
+    "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-mincom/2026/8/0ef3d693-fb24-479c-9f66-77c0dbb356c1.pdf",
+    "publisher": "Ministry of Commerce, Govt of Bangladesh",
+    "date": "2026-09-24"
+   },
+   {
     "title": "Import of 375cc motorcycles on the cards, questions over new policy",
     "url": "https://en.prothomalo.com/business/c7d38h8nz8",
     "publisher": "Prothom Alo English",
     "date": "2026-06"
-   },
-   {
-    "title": "দেশে ৩৭৫ সিসি পর্যন্ত মোটরসাইকেল আমদানির সুযোগ, গেজেট প্রকাশ",
-    "url": "https://www.dhakatimes24.com/2026/08/25/411300",
-    "publisher": "Dhaka Times",
-    "date": "2026-08-25"
    },
    {
     "title": "১৬৫ সিসির বেশি বাইক আমদানি করা যাবে না",
@@ -828,7 +840,7 @@
     "publisher": "The Daily Star"
    }
   ],
-  "confidence": "high for 375cc locally-made registration rule; low for CBU import status after IPO 2026-29 (conflicting reports)"
+  "confidence": "high for 375cc locally-made registration rule; high for the >165cc CBU import ban (read in the Import Policy Order 2026-2029 gazette and its amended text, checked 2026-10-24)"
  },
  "fuel": {
   "octane": 165,
