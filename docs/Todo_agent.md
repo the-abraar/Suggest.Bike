@@ -7,7 +7,7 @@ Work an AI coding agent can pick up without the owner. Ordered by impact. Each i
 ## P0 — Trust and correctness
 
 - [ ] **Re-check the data the research flagged as shaky.** Fix it in `src/data/bikes.json` and update `priceAsOf`/`sources`:
-  - Hornet 2.0: BD-spec power/torque (16.6 PS / 15.9 Nm per BikeBD vs 17.03 / 16.1 used).
+  - [x] Hornet 2.0: BD-spec power/torque (16.6 PS / 15.9 Nm per BikeBD vs 17.03 / 16.1 used). *Done 2026-10-24: bdhonda.com/products/hornet20 says 16.6 PS @ 8500 and 15.5 Nm @ 6000; torque set to 15.5.*
   - TVS Stryker 125: gears, tank and seat height. Metro Plus: kerb weight. Discover 125: tank (8 L vs 11 L).
   - Hunk 150R: power/torque. Saluto: carb vs FI. XSR155: ABS. Access 125: brakes. SP160: ABS on the single-disc variant.
   - Vespa VXL: carb vs FI. KTM Duke 125 / RC 125: still in stock in BD? (India discontinued both in 2025.)
