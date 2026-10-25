@@ -401,3 +401,18 @@ An outside 4-phase plan proposed turning Suggest.Bike into an oil and accessory 
 2. **Agent:** fill `engineOil` for the bikes above from official manuals (Ntorq first); add the manual URLs to the price-audit link check.
 3. **Agent:** one Playwright pass of a bike page at 375 px (`tools/qa`).
 Score unchanged at 55%.
+
+### Update 20 (2026-10-25): experimental marketplace preview
+
+A clickable, fully simulated shop so the owner can feel what selling on Suggest.Bike would be like before deciding (Update 19, Next 1). It does not make that decision: nothing is for sale, and the shop is hidden.
+
+**Built:** `/experimental/` (index, one card), `/experimental/marketplace/` (storefront), `p/<id>/` (42 product pages, `generateStaticParams`), `cart/`, `checkout/`, `orders/`.
+- **Storefront:** pick a bike (site search, `?bike=<id>` in the URL, remembered in `sb-exp-bike`); "Fits your <bike>" lists the oil matching its `engineOil.grade` with whole bottles for `litres` (least left over), front and rear tyres by `tyres` size, disc pads or drum shoes per end from `brakes`, air filter and spark plug (petrol only), chain kit (not scooters), clutch plates (geared petrol), and "Add all". No `engineOil` shows "Oil grade not confirmed for this bike yet", never a guess; India-manual grades say so. Category chips, "Only show what fits my bike", product cards with fit badges.
+- **Catalogue** `src/lib/experimental/catalogue.ts`: 42 generic products (no brands, no logos, drawn lucide placeholders), every price labelled "sample price". Oil in every bikes.json grade (10W-30, 10W-40, 15W-50, 20W-50) at 0.8 and 1 L; 6 tyre products covering every tyre size in bikes.json (tests fail if a new grade or size appears without a product).
+- **Rules:** `src/lib/experimental/fitment.ts` and `cart.ts` (add/merge, qty 1-10, 30 lines max, Dhaka ৳60 / outside ৳120, BD mobile `01[3-9]` + 8 digits, 64 districts), pure; `tests/marketplace.test.ts` (11 tests).
+- **Checkout:** name, mobile, division/district, address and note live in React state only, are never stored and are wiped on order. Cash on delivery shows a simulated "we'd text a code" step (any 4 digits). bKash shows only a note that you would be sent to bKash's own page; no PIN, OTP, wallet or logo. Confirmation: fake order number, ETA, summary, "Nothing was ordered, charged or sent. Your details were never saved or sent anywhere." Cart cleared. `orders/` lists simulated orders (items, totals, zone and payment type only; max 20) with a clock-driven Placed > Packed > Shipped > Delivered timeline.
+- **Hidden:** sticky "Preview only" banner on every experimental page, `robots: noindex, nofollow` (from `src/app/experimental/layout.tsx`), `Disallow: /experimental/` in robots.txt, not in the sitemap, not linked from any page. The shop chunk loads only on experimental pages (checked in `out/`).
+
+**Checked:** `scripts/check.sh` passes; tools/qa at 375 and 1280 on every route (no overflow, no serious axe issues, no console errors); a Playwright run of the whole flow (pick bike, add all, cart, invalid phone, bKash, COD code, confirmation, orders) at both widths: no request leaves localhost, no personal detail in localStorage, cart cleared, works with localStorage blocked.
+
+**Not done / simulated:** English only (allowed for experimental pages; breaks the bilingual rule if it ever goes public). Prices, "official importer", returns and ETAs are invented copy. Parts are generic by type, not matched to model or year; oil fits by grade only (all sample oils are API SN, JASO MA2; a JASO MB scooter manual is not special-cased). Not checked: dark mode, the keyboard-only script, Bangla.
