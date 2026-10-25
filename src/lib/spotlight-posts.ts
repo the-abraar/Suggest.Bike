@@ -55,6 +55,11 @@ const CT = "bajaj-ct100";
 const SP125 = "honda-sp125";
 const F250 = "bajaj-pulsar-f250";
 const APACHE4V = "tvs-apache-rtr-160-4v";
+const PLATINA110H = "bajaj-platina-110-h";
+const HUNK = "hero-hunk-150r";
+const GIXXER250 = "suzuki-gixxer-250";
+const METRO = "tvs-metro-plus";
+const SF250 = "suzuki-gixxer-sf-250";
 const svc = (id: string) => `${bike(id).serviceIntervalKm.toLocaleString("en-IN")} km`;
 const samePrice = (a: string, b: string) => onRoadPrice(bike(a)) === onRoadPrice(bike(b));
 /** "less" or "more": how a's on-road price compares with b's, so a gap sentence stays true when prices move. */
@@ -1095,6 +1100,251 @@ const POSTS: Spotlight[] = [
       [
         `Mileage ${kmpl(APACHE4V)} km/l and a service of about ${formatBDT(bike(APACHE4V).avgServiceCostBDT)} every ${svc(APACHE4V)}.`,
         `মাইলেজ ${kmpl(APACHE4V)} কিমি/লি আর প্রতি ${svc(APACHE4V)}-এ সার্ভিসে প্রায় ${formatBDT(bike(APACHE4V).avgServiceCostBDT)}।`,
+      ],
+    ],
+  },
+  {
+    slug: "bajaj-platina-110-h-high-mileage",
+    bestCase: { use: "mixed", where: "dhaka", height: "short", experience: "first", pillion: "rarely", priorities: ["mileage"] },
+    week: 5,
+    updated: "2026-10-25",
+    minutes: 4,
+    bike: PLATINA110H,
+    rival: PLATINA,
+    wins: ["Mileage and low running cost", "মাইলেজ আর কম চালানোর খরচ"],
+    title: ["Bajaj Platina 110 H: a 100 cc-class sipper with a front disc and 5 gears", "Bajaj Platina 110 H: সামনে ডিস্ক আর ৫ গিয়ারের কম তেলের বাইক"],
+    summary: [
+      `${kmpl(PLATINA110H)} km/l in real riding, a front disc brake with CBS and a service of about ${formatBDT(bike(PLATINA110H).avgServiceCostBDT)}, for ${road(PLATINA110H)} on the road.`,
+      `বাস্তবে ${kmpl(PLATINA110H)} কিমি/লি, সামনে ডিস্ক ব্রেক সঙ্গে CBS আর সার্ভিসে প্রায় ${formatBDT(bike(PLATINA110H).avgServiceCostBDT)}, অন-রোড ${road(PLATINA110H)}।`,
+    ],
+    why: [
+      [
+        `Real-world mileage ${kmpl(PLATINA110H)} km/l from ${ps(PLATINA110H)} PS, close behind the Platina 100 (${kmpl(PLATINA)} km/l). The Hero HF Deluxe, Splendor+, CT 100 and Platina 100 had their weeks already, so this is the best of the rest.`,
+        `${ps(PLATINA110H)} PS থেকে বাস্তবে ${kmpl(PLATINA110H)} কিমি/লি, Platina 100-এর (${kmpl(PLATINA)} কিমি/লি) ঠিক পেছনে। Hero HF Deluxe, Splendor+, CT 100 আর Platina 100 আগেই এসেছে, তাই বাকিদের মধ্যে এটি সেরা।`,
+      ],
+      [
+        `Mechanic familiarity ${sc(PLATINA110H).mechanicFamiliarity}/10 and parts ${sc(PLATINA110H).partsAvailability}/10, with a service every ${svc(PLATINA110H)}.`,
+        `মেকানিক চেনেন ${sc(PLATINA110H).mechanicFamiliarity}/১০, পার্টস ${sc(PLATINA110H).partsAvailability}/১০, আর প্রতি ${svc(PLATINA110H)}-এ সার্ভিস।`,
+      ],
+      [
+        `A ${bike(PLATINA110H).fuelTankL} L tank, ${bike(PLATINA110H).gears} gears and a front disc, where the Platina 100 has ${bike(PLATINA).gears} gears and drums at both ends.`,
+        `${bike(PLATINA110H).fuelTankL} লিটারের ট্যাংক, ${bike(PLATINA110H).gears}টি গিয়ার আর সামনে ডিস্ক; Platina 100-এ ${bike(PLATINA).gears}টি গিয়ার আর দুই চাকাতেই ড্রাম।`,
+      ],
+    ],
+    who: [
+      [
+        "In our quiz, with the budget set at its own on-road price, it comes first for: mixed riding from Dhaka, a shorter first-time rider, rarely a pillion, with mileage as the priority.",
+        "আমাদের কুইজে বাজেট এই বাইকের নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকা থেকে মিশ্র চালানো, কম উচ্চতার প্রথমবারের চালক, পেছনে কদাচিৎ কেউ, আর অগ্রাধিকার মাইলেজ।",
+      ],
+      [
+        "Riders who want the Platina's low running cost with a better front brake and a fifth gear for the road out of town.",
+        "যাঁরা Platina-র কম চালানোর খরচ চান, সঙ্গে ভালো সামনের ব্রেক আর শহরের বাইরের রাস্তার জন্য পঞ্চম গিয়ার।",
+      ],
+    ],
+    tradeoffs: [
+      [
+        `The Platina 100 costs ${gap(PLATINA, PLATINA110H)} ${lessMore(PLATINA, PLATINA110H)[0]} on the road and is rated ${kmpl(PLATINA)} km/l against ${kmpl(PLATINA110H)} km/l. If the disc brake does not matter to you, ride both.`,
+        `Platina 100-এর অন-রোড দাম ${gap(PLATINA, PLATINA110H)} ${lessMore(PLATINA, PLATINA110H)[1]}, মাইলেজ ${kmpl(PLATINA)} কিমি/লি বনাম ${kmpl(PLATINA110H)} কিমি/লি। ডিস্ক ব্রেক দরকার না হলে দুটোই চালিয়ে দেখুন।`,
+      ],
+      [
+        `${ps(PLATINA110H)} PS: highway ${sc(PLATINA110H).highway}/10 and performance ${sc(PLATINA110H).performance}/10. It is built for the city, not for fast roads.`,
+        `${ps(PLATINA110H)} PS: হাইওয়ে ${sc(PLATINA110H).highway}/১০, পারফরম্যান্স ${sc(PLATINA110H).performance}/১০। এটি শহরের জন্য, দ্রুত রাস্তার জন্য নয়।`,
+      ],
+    ],
+  },
+  {
+    slug: "hero-hunk-150r-for-pillion",
+    bestCase: { use: "highway", where: "dhaka", height: "short", experience: "some", pillion: "sometimes", priorities: ["comfort"] },
+    week: 5,
+    updated: "2026-10-25",
+    minutes: 4,
+    bike: HUNK,
+    rival: "bajaj-pulsar-n160",
+    wins: ["Pillion and family", "পেছনের যাত্রী ও পরিবার"],
+    title: ["Hero Hunk 150R: a 150 cc that carries two comfortably", "Hero Hunk 150R: দুজনকে আরামে নেওয়ার ১৫০ সিসি"],
+    summary: [
+      `Pillion ${sc(HUNK).pillion}/10 and comfort ${sc(HUNK).comfort}/10, with disc brakes at both ends and ${ps(HUNK)} PS, for ${road(HUNK)} on the road.`,
+      `পেছনের আসন ${sc(HUNK).pillion}/১০, আরাম ${sc(HUNK).comfort}/১০, দুই চাকাতেই ডিস্ক ব্রেক আর ${ps(HUNK)} PS, অন-রোড ${road(HUNK)}।`,
+    ],
+    why: [
+      [
+        `Pillion ${sc(HUNK).pillion}/10 and comfort ${sc(HUNK).comfort}/10, the same scores as the Pulsar N160 (${sc("bajaj-pulsar-n160").pillion}/10 and ${sc("bajaj-pulsar-n160").comfort}/10), for ${gap(HUNK, "bajaj-pulsar-n160")} ${lessMore(HUNK, "bajaj-pulsar-n160")[0]} on the road. The Meteor 350, Radeon and Glamour X had their weeks already.`,
+        `পেছনের আসন ${sc(HUNK).pillion}/১০, আরাম ${sc(HUNK).comfort}/১০, Pulsar N160-এর (${sc("bajaj-pulsar-n160").pillion}/১০ আর ${sc("bajaj-pulsar-n160").comfort}/১০) সমান স্কোর, অন-রোড ${gap(HUNK, "bajaj-pulsar-n160")} ${lessMore(HUNK, "bajaj-pulsar-n160")[1]}। Meteor 350, Radeon আর Glamour X আগেই এসেছে।`,
+      ],
+      [
+        `Disc brakes at both ends with single-channel ABS, ${ps(HUNK)} PS and ${bike(HUNK).torqueNm} Nm, a ${bike(HUNK).seatHeightMm} mm seat.`,
+        `দুই চাকাতেই ডিস্ক ব্রেক সঙ্গে সিঙ্গেল-চ্যানেল ABS, ${ps(HUNK)} PS আর ${bike(HUNK).torqueNm} Nm, সিটের উচ্চতা ${bike(HUNK).seatHeightMm} মিমি।`,
+      ],
+      [
+        `A ${bike(HUNK).fuelTankL} L tank and ${kmpl(HUNK)} km/l: about ${Math.round(bike(HUNK).fuelTankL * bike(HUNK).mileageKmpl[0])} km on a full tank at the low end of that range.`,
+        `${bike(HUNK).fuelTankL} লিটারের ট্যাংক আর ${kmpl(HUNK)} কিমি/লি: মাইলেজের নিচের দিক ধরলে ফুল ট্যাংকে প্রায় ${Math.round(bike(HUNK).fuelTankL * bike(HUNK).mileageKmpl[0])} কিমি।`,
+      ],
+    ],
+    who: [
+      [
+        "In our quiz, with the budget set at its own on-road price, it comes first for: highway riding from Dhaka, a shorter rider with some experience, a pillion now and then, with comfort as the priority.",
+        "আমাদের কুইজে বাজেট এই বাইকের নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকা থেকে হাইওয়েতে চালানো, কম উচ্চতার চালক, কিছুটা অভিজ্ঞতা, মাঝে মাঝে পেছনে একজন, আর অগ্রাধিকার আরাম।",
+      ],
+      [
+        "Riders who take a passenger on weekends and want a 150 cc that is calm to sit on, not a sharp sport bike.",
+        "যাঁরা সপ্তাহান্তে পেছনে কাউকে নেন আর শার্প স্পোর্ট বাইক নয়, বসে আরাম পাওয়া একটা ১৫০ সিসি চান।",
+      ],
+    ],
+    tradeoffs: [
+      [
+        `${bike(HUNK).weightKg} kg, and the ABS is single-channel where the Pulsar N160 has dual-channel. Service is about ${formatBDT(bike(HUNK).avgServiceCostBDT)} every ${svc(HUNK)}.`,
+        `${bike(HUNK).weightKg} কেজি, আর ABS সিঙ্গেল-চ্যানেল, Pulsar N160-এ ডুয়াল-চ্যানেল। সার্ভিস প্রতি ${svc(HUNK)}-এ প্রায় ${formatBDT(bike(HUNK).avgServiceCostBDT)}।`,
+      ],
+      [
+        `Highway ${sc(HUNK).highway}/10 and performance ${sc(HUNK).performance}/10 against ${sc("bajaj-pulsar-n160").highway}/10 and ${sc("bajaj-pulsar-n160").performance}/10 on the N160. Ride both before you pick.`,
+        `হাইওয়ে ${sc(HUNK).highway}/১০ আর পারফরম্যান্স ${sc(HUNK).performance}/১০, N160-এ ${sc("bajaj-pulsar-n160").highway}/১০ আর ${sc("bajaj-pulsar-n160").performance}/১০। বাছার আগে দুটোই চালিয়ে দেখুন।`,
+      ],
+    ],
+  },
+  {
+    slug: "suzuki-gixxer-250-dual-abs",
+    bestCase: { use: "mixed", where: "dhaka", experience: "pro", pillion: "rarely", priorities: ["performance"] },
+    week: 5,
+    updated: "2026-10-25",
+    minutes: 4,
+    bike: GIXXER250,
+    rival: N250,
+    wins: ["Safety: braking", "নিরাপত্তা: ব্রেকিং"],
+    title: ["Suzuki Gixxer 250: dual-channel ABS on a naked 250", "Suzuki Gixxer 250: নেকেড ২৫০-এ ডুয়াল-চ্যানেল ABS"],
+    summary: [
+      `Disc brakes at both ends with dual-channel ABS, ${ps(GIXXER250)} PS and ${bike(GIXXER250).gears} gears, for ${road(GIXXER250)} on the road.`,
+      `দুই চাকাতেই ডিস্ক ব্রেক সঙ্গে ডুয়াল-চ্যানেল ABS, ${ps(GIXXER250)} PS আর ${bike(GIXXER250).gears}টি গিয়ার, অন-রোড ${road(GIXXER250)}।`,
+    ],
+    why: [
+      [
+        "Dual-channel ABS is the top level of braking safety in our quiz (dual ABS, then single ABS, then CBS, then none). The GSX-R150, R15 V4, Pulsar N250 and F250 had their weeks already; the Gixxer 250 is the next dual-ABS bike on the list.",
+        "ডুয়াল-চ্যানেল ABS আমাদের কুইজে ব্রেকিং নিরাপত্তার সর্বোচ্চ স্তর (ডুয়াল ABS, তারপর সিঙ্গেল ABS, তারপর CBS, তারপর কিছুই না)। GSX-R150, R15 V4, Pulsar N250 আর F250 আগেই এসেছে; তালিকায় এরপর ডুয়াল-ABS বাইক Gixxer 250।",
+      ],
+      [
+        `${ps(GIXXER250)} PS and ${bike(GIXXER250).torqueNm} Nm, highway ${sc(GIXXER250).highway}/10 and performance ${sc(GIXXER250).performance}/10.`,
+        `${ps(GIXXER250)} PS আর ${bike(GIXXER250).torqueNm} Nm, হাইওয়ে ${sc(GIXXER250).highway}/১০ আর পারফরম্যান্স ${sc(GIXXER250).performance}/১০।`,
+      ],
+      [
+        `Against the Pulsar N250 (also dual ABS): ${ps(GIXXER250)} vs ${ps(N250)} PS and ${bike(GIXXER250).gears} gears vs ${bike(N250).gears}, for ${gap(GIXXER250, N250)} ${lessMore(GIXXER250, N250)[0]} on the road.`,
+        `Pulsar N250-এর তুলনায় (এতেও ডুয়াল ABS): ${ps(GIXXER250)} বনাম ${ps(N250)} PS আর ${bike(GIXXER250).gears}টি বনাম ${bike(N250).gears}টি গিয়ার, অন-রোড ${gap(GIXXER250, N250)} ${lessMore(GIXXER250, N250)[1]}।`,
+      ],
+    ],
+    who: [
+      [
+        "In our quiz, with the budget set at its own on-road price, it comes first for: mixed riding from Dhaka, an experienced rider, rarely a pillion, with performance as the priority.",
+        "আমাদের কুইজে বাজেট এই বাইকের নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকা থেকে মিশ্র চালানো, অভিজ্ঞ রাইডার, পেছনে কদাচিৎ কেউ, আর অগ্রাধিকার পারফরম্যান্স।",
+      ],
+      [
+        "Experienced riders who want the best braking level at this price and mostly ride alone.",
+        "অভিজ্ঞ রাইডার, যাঁরা এই দামে সেরা ব্রেকিং স্তর চান আর বেশিরভাগ সময় একা চালান।",
+      ],
+    ],
+    tradeoffs: [
+      [
+        `Service is about ${formatBDT(bike(GIXXER250).avgServiceCostBDT)} every ${svc(GIXXER250)}, against ${formatBDT(bike(N250).avgServiceCostBDT)} on the N250. Mechanic familiarity is ${sc(GIXXER250).mechanicFamiliarity}/10.`,
+        `সার্ভিস প্রতি ${svc(GIXXER250)}-এ প্রায় ${formatBDT(bike(GIXXER250).avgServiceCostBDT)}, N250-এ ${formatBDT(bike(N250).avgServiceCostBDT)}। মেকানিক চেনেন ${sc(GIXXER250).mechanicFamiliarity}/১০।`,
+      ],
+      [
+        `${bike(GIXXER250).weightKg} kg, pillion ${sc(GIXXER250).pillion}/10 and beginner-friendly ${sc(GIXXER250).beginnerFriendly}/10: not a first bike, and a so-so choice with a passenger.`,
+        `${bike(GIXXER250).weightKg} কেজি, পেছনের আসন ${sc(GIXXER250).pillion}/১০ আর নতুনদের জন্য ${sc(GIXXER250).beginnerFriendly}/১০: প্রথম বাইক নয়, আর পেছনে যাত্রী নিলে মোটামুটি।`,
+      ],
+    ],
+  },
+  {
+    slug: "tvs-metro-plus-easy-first-bike",
+    bestCase: { use: "fun", where: "dhaka", height: "short", experience: "first", pillion: "rarely", priorities: ["maintenance"] },
+    week: 5,
+    updated: "2026-10-25",
+    minutes: 4,
+    bike: METRO,
+    rival: RADEON,
+    wins: ["First bike", "প্রথম বাইক"],
+    title: ["TVS Metro Plus: a light, easy 110 cc to learn on", "TVS Metro Plus: শেখার জন্য হালকা, সহজ ১১০ সিসি"],
+    summary: [
+      `Beginner score ${sc(METRO).beginnerFriendly}/10, ${bike(METRO).weightKg} kg and a ${bike(METRO).seatHeightMm} mm seat, for ${road(METRO)} on the road.`,
+      `নতুনদের স্কোর ${sc(METRO).beginnerFriendly}/১০, ${bike(METRO).weightKg} কেজি আর সিটের উচ্চতা ${bike(METRO).seatHeightMm} মিমি, অন-রোড ${road(METRO)}।`,
+    ],
+    why: [
+      [
+        `Beginner-friendly ${sc(METRO).beginnerFriendly}/10, a ${bike(METRO).seatHeightMm} mm seat and ${bike(METRO).weightKg} kg: easy to hold up at a stop and easy to push. The Shine 100, HF Deluxe, Splendor+, CT 100 and Radeon had their weeks already.`,
+        `নতুনদের জন্য ${sc(METRO).beginnerFriendly}/১০, সিটের উচ্চতা ${bike(METRO).seatHeightMm} মিমি আর ${bike(METRO).weightKg} কেজি: থেমে দাঁড়ানো আর ঠেলা দুটোই সহজ। Shine 100, HF Deluxe, Splendor+, CT 100 আর Radeon আগেই এসেছে।`,
+      ],
+      [
+        `Mechanic familiarity ${sc(METRO).mechanicFamiliarity}/10, parts ${sc(METRO).partsAvailability}/10, a service about ${formatBDT(bike(METRO).avgServiceCostBDT)} every ${svc(METRO)}, and ${kmpl(METRO)} km/l.`,
+        `মেকানিক চেনেন ${sc(METRO).mechanicFamiliarity}/১০, পার্টস ${sc(METRO).partsAvailability}/১০, প্রতি ${svc(METRO)}-এ সার্ভিসে প্রায় ${formatBDT(bike(METRO).avgServiceCostBDT)}, আর ${kmpl(METRO)} কিমি/লি।`,
+      ],
+      [
+        `Against the TVS Radeon: ${bike(METRO).seatHeightMm} mm vs ${bike(RADEON).seatHeightMm} mm seat and ${bike(METRO).weightKg} kg vs ${bike(RADEON).weightKg} kg, the Metro Plus costing ${gap(METRO, RADEON)} ${lessMore(METRO, RADEON)[0]} on the road.`,
+        `TVS Radeon-এর তুলনায়: সিটের উচ্চতা ${bike(METRO).seatHeightMm} মিমি বনাম ${bike(RADEON).seatHeightMm} মিমি, ওজন ${bike(METRO).weightKg} কেজি বনাম ${bike(RADEON).weightKg} কেজি, Metro Plus-এর অন-রোড দাম ${gap(METRO, RADEON)} ${lessMore(METRO, RADEON)[1]}।`,
+      ],
+    ],
+    who: [
+      [
+        "In our quiz, with the budget set at its own on-road price, it comes first for: riding for fun, a shorter first-time rider, rarely a pillion, with low maintenance as the priority. The quiz reads the \"fun\" answer as a light, easy bike here, so treat that line as a quiz fact, not as a sporty claim.",
+        "আমাদের কুইজে বাজেট এই বাইকের নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: মজার জন্য চালানো, কম উচ্চতার প্রথমবারের চালক, পেছনে কদাচিৎ কেউ, আর অগ্রাধিকার কম রক্ষণাবেক্ষণ। কুইজ এখানে \"মজা\" উত্তরকে হালকা, সহজ বাইক হিসেবে পড়ে, তাই লাইনটিকে কুইজের ফল ধরুন, স্পোর্টি দাবি নয়।",
+      ],
+      [
+        "New riders on a small budget who want a bike that forgives mistakes and that any mechanic can fix.",
+        "ছোট বাজেটের নতুন রাইডার, যাঁরা ভুল ক্ষমা করে এমন বাইক চান যা যেকোনো মেকানিক সারাতে পারেন।",
+      ],
+    ],
+    tradeoffs: [
+      [
+        `Drum brakes at both ends with no ABS or CBS, and only ${bike(METRO).gears} gears. The Radeon has CBS. Keep your distance in the wet.`,
+        `দুই চাকাতেই ড্রাম ব্রেক, ABS বা CBS নেই, আর মাত্র ${bike(METRO).gears}টি গিয়ার। Radeon-এ CBS আছে। ভেজা রাস্তায় দূরত্ব রেখে চালান।`,
+      ],
+      [
+        `${ps(METRO)} PS: highway ${sc(METRO).highway}/10 and performance ${sc(METRO).performance}/10. A bike for slow city trips.`,
+        `${ps(METRO)} PS: হাইওয়ে ${sc(METRO).highway}/১০ আর পারফরম্যান্স ${sc(METRO).performance}/১০। ধীর শহুরে যাত্রার বাইক।`,
+      ],
+    ],
+  },
+  {
+    slug: "suzuki-gixxer-sf-250-most-fun",
+    bestCase: { use: "fun", where: "dhaka", experience: "pro", pillion: "rarely" },
+    week: 5,
+    updated: "2026-10-25",
+    minutes: 4,
+    bike: SF250,
+    rival: R15,
+    wins: ["Most fun to ride", "চালাতে সবচেয়ে মজা"],
+    title: ["Suzuki Gixxer SF 250: a 250 that is made for the open road", "Suzuki Gixxer SF 250: খোলা রাস্তার জন্য বানানো ২৫০"],
+    summary: [
+      `${ps(SF250)} PS, ${bike(SF250).torqueNm} Nm and ${bike(SF250).gears} gears with dual-channel ABS, for ${road(SF250)} on the road.`,
+      `${ps(SF250)} PS, ${bike(SF250).torqueNm} Nm আর ${bike(SF250).gears}টি গিয়ার সঙ্গে ডুয়াল-চ্যানেল ABS, অন-রোড ${road(SF250)}।`,
+    ],
+    why: [
+      [
+        `${ps(SF250)} PS against ${ps(R15)} PS on the Yamaha R15 V4, with performance ${sc(SF250).performance}/10 and highway ${sc(SF250).highway}/10. The GSX-R150, R15 V4 and Pulsar F250 had their weeks already.`,
+        `Yamaha R15 V4-এর ${ps(R15)} PS-এর বিপরীতে ${ps(SF250)} PS, পারফরম্যান্স ${sc(SF250).performance}/১০ আর হাইওয়ে ${sc(SF250).highway}/১০। GSX-R150, R15 V4 আর Pulsar F250 আগেই এসেছে।`,
+      ],
+      [
+        `Disc brakes at both ends with dual-channel ABS and ${bike(SF250).gears} gears: the kit for a fast day out.`,
+        `দুই চাকাতেই ডিস্ক ব্রেক সঙ্গে ডুয়াল-চ্যানেল ABS আর ${bike(SF250).gears}টি গিয়ার: দ্রুত দিনভর রাইডের জন্য যা দরকার।`,
+      ],
+      [
+        `It costs ${gap(SF250, R15)} ${lessMore(SF250, R15)[0]} than the R15 V4 on the road, with ${bike(SF250).weightKg} kg against ${bike(R15).weightKg} kg.`,
+        `অন-রোড দাম R15 V4-এর চেয়ে ${gap(SF250, R15)} ${lessMore(SF250, R15)[1]}, ওজন ${bike(SF250).weightKg} কেজি বনাম ${bike(R15).weightKg} কেজি।`,
+      ],
+    ],
+    who: [
+      [
+        "In our quiz, with the budget set at its own on-road price, it comes first for: riding for fun, from Dhaka, an experienced rider, rarely a pillion.",
+        "আমাদের কুইজে বাজেট এই বাইকের নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: মজার জন্য চালানো, ঢাকা থেকে, অভিজ্ঞ রাইডার, পেছনে কদাচিৎ কেউ।",
+      ],
+      [
+        "Experienced riders who plan long weekend runs and want more power than a 150 cc sport bike.",
+        "অভিজ্ঞ রাইডার, যাঁরা সপ্তাহান্তে লম্বা রাইড করেন আর ১৫০ সিসি স্পোর্ট বাইকের চেয়ে বেশি শক্তি চান।",
+      ],
+    ],
+    tradeoffs: [
+      [
+        `Comfort ${sc(SF250).comfort}/10 and pillion ${sc(SF250).pillion}/10: the riding position is built for the rider, not for a passenger.`,
+        `আরাম ${sc(SF250).comfort}/১০ আর পেছনের আসন ${sc(SF250).pillion}/১০: বসার ধরন চালকের জন্য, পেছনের যাত্রীর জন্য নয়।`,
+      ],
+      [
+        `Service is about ${formatBDT(bike(SF250).avgServiceCostBDT)} every ${svc(SF250)}, ${bike(SF250).weightKg} kg, city handling ${sc(SF250).cityHandling}/10 and ${kmpl(SF250)} km/l.`,
+        `সার্ভিস প্রতি ${svc(SF250)}-এ প্রায় ${formatBDT(bike(SF250).avgServiceCostBDT)}, ${bike(SF250).weightKg} কেজি, শহরে চালানো ${sc(SF250).cityHandling}/১০ আর ${kmpl(SF250)} কিমি/লি।`,
       ],
     ],
   },
