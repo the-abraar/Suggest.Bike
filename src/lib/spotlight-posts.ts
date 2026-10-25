@@ -745,7 +745,7 @@ const POSTS: Spotlight[] = [
   },
   {
     slug: "bajaj-pulsar-n250-safest-braking",
-    bestCase: { use: "mixed", where: "dhaka", experience: "some", pillion: "daily", priorities: ["performance", "safety"] },
+    bestCase: { use: "mixed", where: "city", experience: "pro", pillion: "daily", priorities: ["performance", "safety"] },
     week: 3,
     updated: "2026-10-16",
     minutes: 4,
@@ -773,8 +773,8 @@ const POSTS: Spotlight[] = [
     ],
     who: [
       [
-        "In our quiz, with the budget set at its own on-road price, it comes first for: mixed riding from Dhaka, some riding experience, a pillion every day, with performance and safety as priorities.",
-        "আমাদের কুইজে বাজেট এই বাইকের নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: ঢাকা থেকে মিশ্র চালানো, কিছুটা অভিজ্ঞতা, প্রতিদিন পেছনে একজন, আর অগ্রাধিকার পারফরম্যান্স ও নিরাপত্তা।",
+        "In our quiz, with the budget set at its own on-road price, it comes first for: mixed riding in another big city, an experienced rider, a pillion every day, with performance and safety as priorities.",
+        "আমাদের কুইজে বাজেট এই বাইকের নিজের অন-রোড দামে রাখলে এটি প্রথম হয় এই উত্তরে: অন্য বড় শহরে মিশ্র চালানো, অভিজ্ঞ রাইডার, প্রতিদিন পেছনে একজন, আর অগ্রাধিকার পারফরম্যান্স ও নিরাপত্তা।",
       ],
       [
         "Riders moving up from a 150 cc bike who carry a passenger often and want the best brakes they can buy at this price.",

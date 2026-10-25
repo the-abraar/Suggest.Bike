@@ -119,7 +119,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://www.bikebd.com/price/bajaj-pulsar-n250
   - https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh
   - Used asking prices (2026-10): ~1 yr ৳2,85,000, ~3 yr — — https://bikroy.com/bn/motorcycles-and-scooters/bajaj-pulsar-n250
-- **Pulsar F250** — ৳3,65,100 as of 2026-10
+- **Pulsar F250** — ৳3,45,100 as of 2026-10
   - Price: https://www.bajajauto.com/en-bd/bikes/pulsar-f250
   - https://www.bikebd.com/price/bajaj-pulsar-f250-abs-2024
   - https://www.bikebd.com/price/pulsar-f250
