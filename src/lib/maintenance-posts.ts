@@ -118,7 +118,7 @@ export const POSTS: Post[] = [
   },
   {
     slug: "engine-oil",
-    updated: "2026-10-13",
+    updated: "2026-10-25",
     minutes: 5,
     title: ["Checking and changing engine oil", "ইঞ্জিন অয়েল দেখা ও বদলানো"],
     summary: [
@@ -139,6 +139,7 @@ export const POSTS: Post[] = [
     ],
     avoid: [
       ["Using any oil that is cheap or loose. Buy a sealed bottle of motorcycle oil with the grade your manual lists (for bikes with a wet clutch this is usually JASO MA or MA2), and watch it being poured.", "সস্তা বা খোলা যেকোনো অয়েল ব্যবহার করা। ম্যানুয়ালের গ্রেডের সিল করা মোটরসাইকেল অয়েল কিনুন (ওয়েট ক্লাচ বাইকে সাধারণত JASO MA বা MA2), আর ঢালার সময় নিজে দেখুন।"],
+      ["Trusting the label alone. Fake oil in real-looking bottles is common. Buy from a shop that gets its stock from the official importer (Mobil: MJL Bangladesh; Shell: Ranks Petroleum; Motul: Rancon), and use the brand's check where it has one: tilt a Mobil seal and the mark turns from silver to gold, then scan its QR code; scan the QR code on a Motul bottle with the Motul Bangladesh app.", "শুধু লেবেল দেখে বিশ্বাস করা। আসলের মতো দেখতে বোতলে নকল অয়েল প্রায়ই পাওয়া যায়। এমন দোকান থেকে কিনুন যারা অফিসিয়াল আমদানিকারকের কাছ থেকে মাল আনে (Mobil: MJL Bangladesh; Shell: Ranks Petroleum; Motul: Rancon), আর ব্র্যান্ডের নিজের যাচাই থাকলে সেটা করুন: Mobil-এর সিল কাত করলে চিহ্ন রুপালি থেকে সোনালি হয়, তারপর এর QR কোড স্ক্যান করুন; Motul বোতলের QR কোড Motul Bangladesh অ্যাপ দিয়ে স্ক্যান করুন।"],
       ["Overfilling. Too much oil is also bad for the engine.", "বেশি অয়েল ভরা। বেশি হলেও ইঞ্জিনের ক্ষতি।"],
       ["Reading the level on a side stand or a slope. The reading will be wrong.", "সাইড স্ট্যান্ডে বা ঢালে লেভেল দেখা। রিডিং ভুল আসবে।"],
     ],

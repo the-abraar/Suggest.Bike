@@ -372,3 +372,32 @@ Done (`scripts/check.sh` exit 0; `npm run og:bn` 108 cards, 194 `/bn/` pages che
 
 - **2026-10-21, mileage search:** "best mileage", "mileage", "milage", "fuel efficient", "low fuel", "kmpl", "মাইলেজ", "সবচেয়ে বেশি মাইলেজ" and "কম তেল" offer "All bikes, best mileage first", which opens `/bikes/?sort=mileage` (or `/bn/bikes/?sort=mileage`) with the existing "Best mileage" sort over `mileageKmpl` in `bikes.json`; no new figures. With a budget ("best mileage under 1 lakh") it adds `price=u100000`. `/bikes/` now reads and writes `?sort=`. Fixed on the way: on mount `/bikes/` wrote the empty filters' URL over `?cat=`/`?price=`/`?sort=`, which could reset them. `mileageQuery` and `sortParam` tested; `scripts/check.sh` exit 0; `interact.mjs` 55/55 (new EN and BN search check), `keyboard.mjs` 57 PASS, `qa.mjs` on `/`, `/bikes/`, `/bn/bikes/` at 375 and 1280 clean.
 - **2026-10-21, mileage search review:** "Best mileage" put the 5 EVs on top (their `mileageKmpl` is a derived petrol-cost equivalent, 460-571); `byMileage` now lists every petrol bike first, ties best rated first. "mileage of pulsar", "hf deluxe mileage", "পালসার মাইলেজ" find the bike instead of the sorted list (`searchBikes` drops mileage words and filler). Added "mailej", "km per liter", "তেল খরচ কম", "জ্বালানি সাশ্রয়ী" and word endings ("মাইলেজের"). Not handled: Bangla possessive bike names ("পালসারের মাইলেজ" gives the sorted list). Bangla kicker fits one line at 375 px; `docs/` is not deployed (Pages publishes `out/` only).
+
+### Update 19 (2026-10-25): "marketplace + ThrottleIQ predictive e-commerce" plan, triaged and the useful slice built
+
+An outside 4-phase plan proposed turning Suggest.Bike into an oil and accessory shop (Prisma schema, storefront, COD + bKash checkout), linked to ThrottleIQ by SSO, Cloud Function discount links and push deep links, plus LLM-written DIY guides and post-delivery review SMS.
+
+**Flaws found:**
+- **Wrong stack.** Suggest.Bike is a static export on GitHub Pages: no server, database, ORM, accounts or webhooks. Prisma, checkout and webhooks need a backend that does not exist (`docs`-only research of what it would take below).
+- **It skips the open business decision** (Next step 4 above) and breaks two public promises ("0 paid placements. Ever.", "no affiliate deals with dealers"). A site that ranks bikes and then sells the oil it recommends is exactly the conflict those promises rule out. Selling also needs an operator, trade licence, VAT, stock and returns; the terms still name no operator.
+- **"Exclude grey market" is unworkable as stated:** trade licences are not publicly verifiable in BD, and wholesale terms are not published by any of the three importers.
+- **Margin analysis** from Daraz retail prices cannot estimate wholesale margins (wholesale prices are not public). Dropped.
+- **LLM-generated oil-change guides with wrench sizes** would publish unverified safety and torque figures under the site's name. The site already has a hand-written `/maintenance/engine-oil/` guide; the per-bike facts belong in sourced data instead.
+- **ThrottleIQ already does the "predictive" part on the phone** (oil-change alerts from the odometer, tap opens the bike's maintenance page); a Cloud Function would duplicate it and needs Blaze. See ThrottleIQ `judge.md`, same date.
+
+**Built (merged to `main`):**
+- **Engine oil per bike** (`engineOil` in `bikes.json`: grade, API/JASO class, litres, litres with filter, manual URL, BD or India manual) for **45 bikes**, 18 from BD owner's manuals, 27 from India manuals (labelled "the BD bike may differ" on the page). Shown under "Periodic service" on the bike page, EN and BN, with a link to the manual and the engine-oil guide. Validated in `validate-data.mjs`; `engineOilText` tested. Not in the list index.
+- **Engine-oil guide:** new "trusting the label alone" item naming the official importers and the Mobil and Motul authenticity checks.
+- **Research** (`ResearchingStuff/market/`): `oil-distributors-bd.{md,json}` (Shell: Ranks Petroleum, high; Mobil: MJL Bangladesh, high for the brand, mobil.com lists it as industrial distributor; Motul: Rancon since Jul 2026, medium, no motul.com page); `commerce-apis-bd.md` (bKash Tokenized Checkout verified from developer.bka.sh; Pathao from its merchant docs; Steadfast and BulkSMSBD docs are behind a login, so their fields are marked unofficial).
+
+**Not done / dropped, and why:**
+- Prisma models, storefront, cart, COD + SMS, bKash checkout, post-delivery review SMS: dropped until the owner picks a business model and a backend. If it is "sell", the smallest path is a hosted function set (see the last section of `commerce-apis-bd.md`) plus reworded promises, not a rewrite of the site.
+- "Show only compatible parts for my bike": done only for engine oil. No parts catalogue exists to filter.
+- Oil spec still missing for: all Gixxer 155/250/SF 250, Access 125, Hayate EP, GSX 125, GSX-R150, Platina 110 H, Pulsar F250, Xtreme 125R (PDF not text), XPulse 200 4V Pro, Dream 110, CBR150R, Dio, Classic 350 (J-series), Metro Plus, Stryker 125, Ntorq, KTM, Runner, Lifan, GPX, Haojue, Vespa, Aprilia, Zontes. Spec class left out on Splendor+, Livo, CT 100 (manual unclear).
+- **Not checked:** real-browser layout of the new line at 375 px; whether bdhonda.com and heromotocorp.com manual PDF links stay stable (they will 404 if renamed; `price-audit` does not cover them); Motul's distributor on motul.com; Shell BD's authenticity check (not published).
+
+**Next:**
+1. **You (decision):** sell or not. Until then the site stays neutral and oil facts are the product.
+2. **Agent:** fill `engineOil` for the bikes above from official manuals (Ntorq first); add the manual URLs to the price-audit link check.
+3. **Agent:** one Playwright pass of a bike page at 375 px (`tools/qa`).
+Score unchanged at 55%.

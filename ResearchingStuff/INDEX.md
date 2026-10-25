@@ -5,6 +5,8 @@ Every file cites sources with access dates. Gaps and conflicts are marked UNVERI
 ## market
 - [](market/)00-market-overview.md
 - [](market/)10-top-sellers-by-model.md
+- [](market/)oil-distributors-bd.md (+ `.json`): official Motul, Shell, Mobil distributors and how to spot fake oil
+- [](market/)commerce-apis-bd.md: bKash, Pathao, Steadfast, BulkSMSBD APIs (for a checkout, if one is ever decided)
 
 ## current-models
 - [](current-models/)bajaj.md

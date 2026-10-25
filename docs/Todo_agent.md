@@ -25,6 +25,8 @@ Work an AI coding agent can pick up without the owner. Ordered by impact. Each i
 - [x] ~~**Translate bike content into Bangla.**~~ *Done: `bn` field on every bike.* Add `bn` versions of `tagline`, `feel`, `quirks`, `braking`, `mechanicNote`, `pros`, `cons` and `bestFor`, either as optional `*Bn` fields or a parallel `bikes.bn.json`. Today a Bangla visitor gets an English bike page.
 - [x] ~~**Translate generated strings.**~~ *Done.* Match reasons and warnings (`src/lib/match.ts`), compare row labels, the cost page and the guide page are English-only. Move them into `src/lib/i18n.tsx`.
 
+- [ ] **Engine oil for the rest of the catalogue.** 45 bikes have `engineOil` (2026-10-25). Fill the ones listed in `judge.md` Update 19 from official owner's manuals only; prefer BD manuals over India ones (set `market`). Add the manual URLs to a link check so a renamed PDF is caught.
+
 ## P1 — Product
 
 - [x] *(done 2026-10-14 for 9 brands from official locators; Runner, GPX, Haojue, Vespa, Aprilia, Zontes, Walton have no official count)* **Fill `src/data/networks.json`.** Per brand: distributor, showroom and service-centre counts, divisions covered, dealer-locator URL, sources and confidence. The "Where do you ride" quiz step already uses it.

@@ -1,0 +1,73 @@
+[
+  {
+    "brand": "Shell (Shell Advance)",
+    "company": "Ranks Petroleum Limited (RkPL), a RANCON concern",
+    "role": "Macro distributor of Shell Lubricants in Bangladesh (listed on Shell's own distributor locator; described by Dhaka Tribune as 'sole macro distributor')",
+    "website": "https://rkpl.com.bd/",
+    "contactEmail": "info@shellbd.com (general / new business); support@rkpl.com.bd (site header)",
+    "phone": "Hotline 16775; General query +880 1787-672203 (per shell.com); Retail sales +88 01730 085 024; Online sales +88 01325 094 431",
+    "address": "Corporate office: 387, Tejgaon I/A, Dhaka 1208. Registered: Ulukhola Bypass Road, Ulukhola, Kaliganj, Gazipur (per shell.com)",
+    "authenticityCheck": "RkPL's 'Shell BD' Android app (com.shell.consumer.shell_consumer) advertises 'one-tap product authenticity checking'. The exact mechanism (QR, scratch code, etc.) is not described on any Bangladesh page found. Shell's QR/Laava/SMS-8042 scheme is documented for Pakistan only, so it is not cited here as applying to BD.",
+    "wholesaleTerms": "not published, contact required (a Shell Retail Locator page and a retailer/stock app 'Shell Agami' exist, but no dealer terms or minimum order are published)",
+    "tradeLicense": "not publicly verifiable",
+    "sources": [
+      "https://www.shell.com/motorist/oils-lubricants/distributor-locator.html",
+      "https://www.shell.com/motorist/oils-lubricants/distributor-locator.model.json",
+      "https://rkpl.com.bd/",
+      "https://rkpl.com.bd/contact/",
+      "https://www.dhakatribune.com/business/376512/ranks-petroleum-hosts-iftar-in-honor-of-b2b",
+      "https://www.tbsnews.net/node/158746",
+      "https://play.google.com/store/apps/details?id=com.shell.consumer.shell_consumer&hl=en",
+      "https://play.google.com/store/apps/details?id=com.shell.agami&hl=en"
+    ],
+    "checked": "2026-10-25",
+    "confidence": "high",
+    "note": "Brand-owner confirmed: shell.com distributor locator, Bangladesh entry, names Ranks Petroleum Limited. RkPL says Shell partnered with it in 2004. shell.com.bd did not resolve. The rkpl.com.bd retail-locator and price-list pages loaded empty because they are JS-rendered. Shell.com also lists named executives' personal mobile numbers; only the general-query line is copied here."
+  },
+  {
+    "brand": "Motul",
+    "company": "RANCON (Rancon Group); Motul Bangladesh app published by Ranks Petroleum Ltd., TBS tags Rancon Auto Industries Ltd",
+    "role": "Exclusive distributor of Motul in Bangladesh (appointed; announced 27 Jul 2026, press release 1 Aug 2026)",
+    "website": "https://estore.bdmotul.com/",
+    "contactEmail": "support@bdmotul.com",
+    "phone": "+880 9617357735",
+    "address": "387, Tejgaon Industrial Area, Dhaka 1208 (developer address on the Motul Bangladesh app listing)",
+    "authenticityCheck": "Scan the authentication QR code on the product with the 'Motul Bangladesh' app (Google Play id com.motulbd.consumer), which confirms whether it is genuine (FAQ on estore.bdmotul.com). Rancon's FAQ also says it imports products 'approved by Motul India for Bangladesh market'.",
+    "wholesaleTerms": "not published, contact required",
+    "tradeLicense": "not publicly verifiable",
+    "sources": [
+      "https://www.tbsnews.net/economy/corporates/motul-appoints-rancon-exclusive-distributor-bangladesh-1503996",
+      "https://www.dhakatribune.com/business/416482/motul-joins-hands-with-rancon-in-bangladesh",
+      "https://www.bikebd.com/blog/motul-officially-in-bangladesh-rancon",
+      "https://estore.bdmotul.com/",
+      "https://play.google.com/store/apps/details?id=com.motulbd.consumer&hl=en",
+      "https://rancon.com.bd/"
+    ],
+    "checked": "2026-10-25",
+    "confidence": "medium",
+    "note": "No motul.com page lists Bangladesh: /en-BD redirects to /en-FR. So the confirmation comes from the distributor's own site plus TBS and Dhaka Tribune, not from the brand owner. BikeBD reports that Motul India handed certificates to dealers at the launch. The exact legal entity is not clear. rancon.com.bd links its Motul logo to motoindustries.com.bd, which serves an empty directory. Royal Enterprise (Rajshahi) claims on its own site to have been Motul's exclusive national distributor since 2020. That claim is not backed by any brand-owner or news source and conflicts with the 2026 Rancon appointment, so it is excluded."
+  },
+  {
+    "brand": "Mobil (ExxonMobil, e.g. Mobil Super Moto)",
+    "company": "MJL Bangladesh PLC (formerly Mobil Jamuna Lubricants Ltd)",
+    "role": "Strategic alliance partner of ExxonMobil in Bangladesh; Mobil trademark used under licence; local blender and marketer. mobil.com lists it as 'Industrial lubricants distributor'",
+    "website": "https://mjlbl.com/ (consumer store: https://buymobil.mjlbl.com/; mobil.com lists http://mobilbd.com/)",
+    "contactEmail": "enquiry@mobilbd.com (also on mobil.com); buymobil@mjlbl.com (consumer store)",
+    "phone": "Hotline 16669; +88 02 226601427-29 (head office)",
+    "address": "Mobil House, CWS (A) 13/A, Gulshan Avenue, Bir Uttam Mir Shawkat Sarak, Dhaka 1212",
+    "authenticityCheck": "New security seal on the can, verified in 3 steps (buymobil.mjlbl.com/security-seal): (1) tilt the can: the MJL mark on the seal shifts silver to gold and a tick shows; (2) the GEAR graphic shifts orange to bright green; (3) scan the seal's QR code with the 'REVEO Scanner' app, which should show a verified tick and product details. There is also a non-resealable Ring Peel Liner (RPL) under the cap.",
+    "wholesaleTerms": "not published, contact required",
+    "tradeLicense": "not publicly verifiable",
+    "sources": [
+      "https://www.mobil.com/en/lubricants/distributors/mjl-bangladesh-limited-bangladesh-bgd-36",
+      "https://mjlbl.com/about-mjl-bangladesh",
+      "https://mjlbl.com/contact",
+      "https://mjlbl.com/product/motorcycle-engine-oils",
+      "https://buymobil.mjlbl.com/security-seal",
+      "https://www.tbsnews.net/companies/mobils-lubricant-business-declines-103147"
+    ],
+    "checked": "2026-10-25",
+    "confidence": "high",
+    "note": "Brand-owner listed on mobil.com, though only labelled 'Industrial lubricants distributor'. The Mobil Super Moto range is on MJL's motorcycle page. TBS (Jul 2020) calls MJL an 'authorised manufacturer and dealer' of ExxonMobil. Its site publishes E-TIN 589462716234 and BIN 000358969-0101: these are tax and VAT IDs, not a trade licence. The DSE company page (MJLBD) returned HTTP 410, so the listing was not verified there. The buymobil 'Find a Retailer' tool returned no data without JS."
+  }
+]
