@@ -39,6 +39,26 @@ export const SCORE_LABELS: Record<ScoreKey, { en: string; bn: string; hint: stri
 /** Latin digits to Bangla (2,85,364 → ২,৮৫,৩৬৪). Only for numbers: model names like "N160" keep Latin digits. */
 export const bnDigits = (s: string) => s.replace(/[0-9]/g, (d) => "০১২৩৪৫৬৭৮৯"[+d]);
 
+const BN_UNITS = new Set(["cc", "km", "kmpl", "kmph", "kg", "mm", "cm", "m", "Nm", "PS", "hp", "bhp", "kW", "kWh", "Wh", "W", "Ah", "L", "l", "rpm"]);
+
+/**
+ * Bangla digits for hand-written Bangla copy. Leaves model names alone: a number glued to a letter (R15, SP125, 4V), after a
+ * Latin word (Pulsar 150, RTR 160), URLs, hotlines and long digit runs (5+ digits, leading 0) keep Latin digits.
+ * shortcut: a number after a Latin word stays Latin even when it is a count ("TVS 5 models"); years (19xx/20xx) always convert.
+ */
+export function bnNumerals(s: string): string {
+  return s.replace(/\d+(?:[.,]\d+)*/g, (m, off: number) => {
+    const before = s.slice(0, off), after = s.slice(off + m.length);
+        if (/\S*(?:https?:|www\.|@)\S*$/.test(before + m)) return m;
+    if (/^(19|20)\d\d$/.test(m)) return bnDigits(m);
+    if (/^\d{5,}$/.test(m) || (m.length > 1 && m[0] === "0" && m[1] !== "." && m[1] !== ",")) return m;
+    if (/[A-Za-z][.\-/]?$/.test(before) || /[A-Za-z][A-Za-z0-9.+\-]*\s$/.test(before)) return m;
+    const unit = /^[A-Za-z]+/.exec(after)?.[0];
+    if (unit && !BN_UNITS.has(unit)) return m;
+    return bnDigits(m);
+  });
+}
+
 /** Bangladeshi digit grouping: ৳1,95,000; Bangla digits on Bangla pages. */
 export function formatBDT(n: number, lang: "en" | "bn" = "en") {
   const s = "৳" + Math.round(n).toLocaleString("en-IN");

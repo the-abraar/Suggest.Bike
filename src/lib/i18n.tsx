@@ -2,6 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { langHref } from "./site";
+import { bnNumerals } from "./bike-utils";
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
 
 export type Lang = "en" | "bn";
@@ -100,7 +101,7 @@ export function LangProvider({ children }: { children: ReactNode }) {
     } catch {}
   }, []);
 
-  const t = useCallback((k: DictKey) => DICT[k][lang], [lang]);
+  const t = useCallback((k: DictKey) => (lang === "bn" ? bnNumerals(DICT[k].bn) : DICT[k].en), [lang]);
   return <LangContext.Provider value={{ lang, setLang, t }}>{children}</LangContext.Provider>;
 }
 
@@ -109,7 +110,7 @@ export const useLang = () => useContext(LangContext);
 /** Inline translator for strings that aren't worth a dictionary key: tx("Price", "দাম"). */
 export function useTx() {
   const { lang } = useLang();
-  return useCallback((en: string, bn: string) => (lang === "bn" ? bn : en), [lang]);
+  return useCallback((en: string, bn: string) => (lang === "bn" ? bnNumerals(bn) : en), [lang]);
 }
 
 /** For server components: <T k="nav.match" /> */
@@ -121,5 +122,5 @@ export function T({ k }: { k: DictKey }) {
 /** Inline bilingual text when a string isn't worth a dictionary key. */
 export function L({ en, bn }: { en: ReactNode; bn: ReactNode }) {
   const { lang } = useLang();
-  return <>{lang === "bn" ? bn : en}</>;
+  return <>{lang === "bn" ? (typeof bn === "string" ? bnNumerals(bn) : bn) : en}</>;
 }

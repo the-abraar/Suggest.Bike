@@ -1,7 +1,7 @@
 // Weekly bike spotlights: each week, 5 bikes that each win a different segment of "Best in BD by segment"
 // (docs/each bike speciality.html, section 3). Prices, mileage, power and scores are read from bikes.json at build
 // time, so the text never drifts from the data. Each post's quiz claim is its `bestCase`, which a test re-runs against match.ts.
-import { bnDigits, formatBDT, getBike } from "./bikes";
+import { bnNumerals, formatBDT, getBike } from "./bikes";
 import { onRoadPrice } from "./cost";
 import type { Pair } from "./maintenance-posts";
 import type { Answers } from "./match";
@@ -1100,8 +1100,8 @@ const POSTS: Spotlight[] = [
   },
 ];
 
-// Bangla halves: ৳ amounts and "N/১০" scores get Bangla digits; other numbers stay as written ("R15 V4" keeps Latin).
-const bnNums = ([en, bn]: Pair): Pair => [en, bn.replace(/৳[\d,.]+|\d+(?:\.\d+)?(?=\/১০)/g, bnDigits)];
+// Bangla halves: bnNumerals gives numbers Bangla digits and keeps model names ("R15 V4", "Gixxer SF 250") Latin.
+const bnNums = ([en, bn]: Pair): Pair => [en, bnNumerals(bn)];
 export const SPOTLIGHTS: Spotlight[] = POSTS.map((s) => ({
   ...s,
   wins: bnNums(s.wins),
