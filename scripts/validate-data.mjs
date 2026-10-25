@@ -52,6 +52,18 @@ for (const b of bikes) {
   for (const k of ["pros", "cons", "bestFor", "parts", "sources"]) if (!Array.isArray(b[k]) || !b[k].length) e(`empty ${k}`);
   if (b.availability !== undefined && !(b.availability === "unconfirmed" && b.status === "on-sale")) e(`bad availability ${b.availability} (only "unconfirmed", on an on-sale bike)`);
   if (b.dataNote !== undefined && typeof b.dataNote !== "string") e("dataNote must be a string");
+  if (b.engineOil !== undefined) {
+    const o = b.engineOil, litres = (n) => typeof n === "number" && n >= 0.5 && n <= 4;
+    if (!(typeof o.grade === "string" && o.grade.split(" / ").every((g) => /^\d{1,2}W-\d{2}$/.test(g)))) e(`engineOil: bad grade ${o.grade} (SAE like "10W-30", or "10W-30 / 20W-40")`);
+    if (o.spec !== undefined && !(typeof o.spec === "string" && /\b(API|JASO)\b/.test(o.spec))) e(`engineOil: spec must name API and/or JASO (${o.spec})`);
+    if (!litres(o.litres)) e(`engineOil: litres ${o.litres} outside 0.5-4`);
+    if (o.litresWithFilter !== undefined && !(litres(o.litresWithFilter) && o.litresWithFilter >= o.litres)) e(`engineOil: litresWithFilter ${o.litresWithFilter} outside 0.5-4 or below litres`);
+    if (!["BD", "India"].includes(o.market)) e(`engineOil: bad market ${o.market}`);
+    let https = false;
+    try { https = new URL(o.source).protocol === "https:"; } catch {}
+    if (!https) e(`engineOil: source must be an https URL (${o.source})`);
+    else if (!b.sources?.includes(o.source)) e("engineOil: source must also be listed in sources");
+  }
   // Rendered text must not carry editorial or provenance notes (critique B4: "Name as used by the user…" under an H1).
   const pub = [b.variant, b.priceNote, b.tagline, b.feel, b.quirks, b.braking, b.mechanicNote, b.pros, b.cons, b.bestFor, b.parts?.map((p) => p.note), b.variants?.map((v) => v.name), b.bn];
   const leak = JSON.stringify(pub).match(INTERNAL);

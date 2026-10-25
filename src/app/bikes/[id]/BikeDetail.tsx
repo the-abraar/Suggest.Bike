@@ -9,6 +9,7 @@ import {
   absLabel,
   brakeLabel,
   ccLabel,
+  engineOilText,
   formatBDT,
   formatLakh,
   fullName,
@@ -67,6 +68,7 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
   const reportTitle = `Price/spec correction: ${fullName(bike)}`;
     const reportHref = `mailto:${SITE.contactEmail}?subject=${encodeURIComponent(reportTitle)}&body=${encodeURIComponent(reportBody)}`;
   const ev = bike.ev;
+  const oil = bike.engineOil;
   const braking: [string, string] = [tx("Braking", "ব্রেকিং"), bike.brakes.abs === "none" ? tx("No ABS", "ABS নেই") : bike.brakes.abs === "cbs" ? "CBS" : bike.brakes.abs === "dual" ? tx("2-ch ABS", "২-চ্যানেল ABS") : tx("1-ch ABS", "১-চ্যানেল ABS")];
   const keySpecs: [string, string, string?][] = ev ? [
     [tx("Real range (estimate)", "আসল রেঞ্জ (অনুমান)"), `${ev.realRangeKm[0]}–${ev.realRangeKm[1]}`, "km"],
@@ -474,6 +476,21 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
                       <span className="mt-0.5 block text-[12.5px] text-muted">
                         {tx(`every ~${bike.serviceIntervalKm.toLocaleString("en-IN")} km, incl. engine oil`, `প্রতি ~${bike.serviceIntervalKm.toLocaleString("en-IN")} km, ইঞ্জিন অয়েলসহ`)}
                       </span>
+                      {oil && (
+                        <span className="mt-1 block text-[12.5px] leading-snug text-muted">
+                          {tx("Engine oil: ", "ইঞ্জিন অয়েল: ")}
+                          <span className="font-medium text-ink-2">{engineOilText(oil, lang)}</span>
+                          {" · "}
+                          <a href={oil.source} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-ink">
+                            {oil.market === "BD" ? tx("owner's manual", "ওনার্স ম্যানুয়াল") : tx("India owner's manual", "ভারতের ওনার্স ম্যানুয়াল")}
+                          </a>
+                          {oil.market === "India" && tx("; the BD bike may differ, so check yours", "; বাংলাদেশের বাইকে ভিন্ন হতে পারে, নিজেরটা মিলিয়ে নিন")}
+                          {" · "}
+                          <Link href="/maintenance/engine-oil/" className="text-brand underline underline-offset-2">
+                            {tx("How to check and change it", "কীভাবে দেখবেন ও বদলাবেন")}
+                          </Link>
+                        </span>
+                      )}
                     </td>
                     <td className="px-4 py-3.5" />
                     <td className="px-4 py-3.5 text-right font-semibold text-ink tnum">{formatBDT(bike.avgServiceCostBDT, lang)}</td>

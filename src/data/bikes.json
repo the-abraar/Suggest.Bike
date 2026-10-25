@@ -87,6 +87,13 @@
   ],
   "serviceIntervalKm": 2500,
   "avgServiceCostBDT": 800,
+  "engineOil": {
+   "grade": "10W-30",
+   "spec": "API SN, JASO MA2",
+   "litres": 1,
+   "source": "https://cdn.bajajauto.com/-/media/assets/bajajauto/customer-service/owners-manual/owners-manual-pdf/om-for-website/platina_100-110_om.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -118,7 +125,8 @@
    "https://www.bajajauto.com/en-bd/bikes/platina-100-es",
    "https://www.bikebd.com/price/bajaj-platina-es",
    "https://www.bikebd.com/brand/bajaj",
-   "https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh"
+   "https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh",
+   "https://cdn.bajajauto.com/-/media/assets/bajajauto/customer-service/owners-manual/owners-manual-pdf/om-for-website/platina_100-110_om.pdf"
   ],
   "bn": {
    "tagline": "বাংলাদেশের সবচেয়ে আরামদায়ক ১০০cc, যারা শুধু কম খরচে যাতায়াত করতে চান তাদের জন্য।",
@@ -403,6 +411,12 @@
   ],
   "serviceIntervalKm": 2500,
   "avgServiceCostBDT": 750,
+  "engineOil": {
+   "grade": "10W-30",
+   "litres": 1,
+   "source": "https://cdn.bajajauto.com/pdf/owners-manul-CT%20100%20-110-BSVI-New.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -434,7 +448,8 @@
    "https://www.bajajauto.com/en-bd/bikes/ct-100-es",
    "https://www.bikebd.com/price/bajaj-ct-100-price-in-bangladesh",
    "https://www.bikebd.com/brand/bajaj",
-   "https://www.banglamotor.net/bajaj-ct100-es.html"
+   "https://www.banglamotor.net/bajaj-ct100-es.html",
+   "https://cdn.bajajauto.com/pdf/owners-manul-CT%20100%20-110-BSVI-New.pdf"
   ],
   "bn": {
    "tagline": "সবচেয়ে কম দামে নতুন বাজাজ — কোনো ঝামেলা ছাড়া খাটুনির বাইক।",
@@ -482,7 +497,8 @@
    "license": "CC BY-SA 3.0",
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
    "sourcePage": "https://commons.wikimedia.org/wiki/File:Bajaj_CT100.JPG"
-  }
+  },
+  "dataNote": "engineOil: Bajaj India CT 100/110 BS VI manual names only \"Bajaj DTS-i 10000 10W30 BSVI compliant\", no API/JASO class."
  },
  {
   "id": "bajaj-discover-125",
@@ -565,6 +581,13 @@
   ],
   "serviceIntervalKm": 2500,
   "avgServiceCostBDT": 900,
+  "engineOil": {
+   "grade": "20W-50",
+   "spec": "API SL, JASO MA",
+   "litres": 1,
+   "source": "https://www.bajajauto.com/en-bd/-/media/globalbajajauto/common-media/owners-manual/discover/110.pdf",
+   "market": "BD"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -595,7 +618,8 @@
   "sources": [
    "https://www.bajajauto.com/en-bd/bikes/discover-125-disc",
    "https://www.bikebd.com/price/discover-125-price-in-bangladesh",
-   "https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh"
+   "https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh",
+   "https://www.bajajauto.com/en-bd/-/media/globalbajajauto/common-media/owners-manual/discover/110.pdf"
   ],
   "bn": {
    "tagline": "আরামদায়ক ১০০cc-এর মতো চলে এমন একটা ১২৫ — কাজের বাইক, তবে নতুন প্রতিদ্বন্দ্বীদের কাছে ম্লান।",
@@ -664,7 +688,8 @@
     "frontDisc": true,
     "priceSource": "https://www.bajajauto.com/en-bd/bikes/discover-125-disc"
    }
-  ]
+  ],
+  "dataNote": "engineOil: from the Bajaj BD Discover 110 Disc manual, whose oil table also lists Discover 125 (20W50 API SL / JASO MA)."
  },
  {
   "id": "bajaj-discover-110",
@@ -749,6 +774,13 @@
   ],
   "serviceIntervalKm": 2500,
   "avgServiceCostBDT": 850,
+  "engineOil": {
+   "grade": "10W-30",
+   "spec": "API SL",
+   "litres": 1,
+   "source": "https://www.bajajauto.com/en-bd/-/media/globalbajajauto/common-media/owners-manual/discover/110.pdf",
+   "market": "BD"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -779,7 +811,8 @@
   "sources": [
    "https://www.bajajauto.com/en-bd/bikes/discover-110-disc",
    "https://www.bikebd.com/price/bajaj-discover-110-disc",
-   "https://www.bikebd.com/price/bajaj-discover-110-disc/specifications"
+   "https://www.bikebd.com/price/bajaj-discover-110-disc/specifications",
+   "https://www.bajajauto.com/en-bd/-/media/globalbajajauto/common-media/owners-manual/discover/110.pdf"
   ],
   "bn": {
    "tagline": "Discover 125-এর ফ্রেম আর সামনের ডিস্ক, সাথে কম খরচের ১১৫cc ইঞ্জিন।",
@@ -906,6 +939,13 @@
   ],
   "serviceIntervalKm": 2500,
   "avgServiceCostBDT": 1200,
+  "engineOil": {
+   "grade": "20W-50",
+   "spec": "API SN, JASO MA2",
+   "litres": 1,
+   "source": "https://cdn.bajajauto.com/-/media/assets/bajajauto/customer-service/owners-manual/owners-manual-pdf/owner-manual-pdf-2026/pulsar-ns125.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -939,7 +979,8 @@
    "https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh",
    "https://www.bajajauto.com/en-bd/blogs/pulsar-ns125-built-for-busy-bangladesh-streets",
    "https://www.motorcycle.com.bd/bajaj-pulsar-ns125/",
-   "https://www.motorcyclebd.com/specs/bajaj-pulsar-ns125/"
+   "https://www.motorcyclebd.com/specs/bajaj-pulsar-ns125/",
+   "https://cdn.bajajauto.com/-/media/assets/bajajauto/customer-service/owners-manual/owners-manual-pdf/owner-manual-pdf-2026/pulsar-ns125.pdf"
   ],
   "bn": {
    "tagline": "১২৫cc-এর দামে NS-এর লুক আর পেরিমিটার ফ্রেম।",
@@ -1094,6 +1135,13 @@
   ],
   "serviceIntervalKm": 2500,
   "avgServiceCostBDT": 1300,
+  "engineOil": {
+   "grade": "20W-50",
+   "spec": "API SL, JASO MA",
+   "litres": 1,
+   "source": "https://www.bajajauto.com/en-bd/-/media/globalbajajauto/common-media/owners-manual/pulsar/150-td.pdf",
+   "market": "BD"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -1124,7 +1172,8 @@
   "sources": [
    "https://www.bajajauto.com/en-bd/bikes/pulsar-150-sd",
    "https://www.bikebd.com/price/pulsar-150-price-in-bangladesh",
-   "https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh"
+   "https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh",
+   "https://www.bajajauto.com/en-bd/-/media/globalbajajauto/common-media/owners-manual/pulsar/150-td.pdf"
   ],
   "bn": {
    "tagline": "যে বাইকের ভেতর-বাইরে বাংলাদেশের সব মেকানিক আগে থেকেই চেনে।",
@@ -1312,6 +1361,13 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 1800,
+  "engineOil": {
+   "grade": "20W-50",
+   "spec": "API SN, JASO MA2",
+   "litres": 1.25,
+   "source": "https://cdn.bajajauto.com/-/media/assets/bajajauto/customer-service/owners-manual/owners-manual-pdf/owner-manual-pdf-2026/pulsar-n160_twin_disc.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -1346,7 +1402,8 @@
    "https://www.bajajauto.com/en-bd/bikes/pulsar-n160-dc-abs",
    "https://www.bajajauto.com/en-bd/bikes/pulsar-n160",
    "https://www.bajajauto.com/en-bd/bikes/pulsar-n160-single-seat",
-   "https://www.bajajauto.com/en-bd/bikes/pulsar-n160-td"
+   "https://www.bajajauto.com/en-bd/bikes/pulsar-n160-td",
+   "https://cdn.bajajauto.com/-/media/assets/bajajauto/customer-service/owners-manual/owners-manual-pdf/owner-manual-pdf-2026/pulsar-n160_twin_disc.pdf"
   ],
   "bn": {
    "tagline": "বুদ্ধিমানের মডার্ন ১৬০ — ডুয়াল-চ্যানেল ABS আর পালসারের মতো কম খরচ।",
@@ -1695,6 +1752,13 @@
   ],
   "serviceIntervalKm": 2500,
   "avgServiceCostBDT": 1600,
+  "engineOil": {
+   "grade": "20W-50",
+   "spec": "API SN, JASO MA2",
+   "litres": 1,
+   "source": "https://cdn.bajajauto.com/-/media/assets/bajajauto/customer-service/owners-manual/owners-manual-pdf/owner-manual-pdf-2026/avenger-160_pd39.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -1724,7 +1788,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/bajaj-avenger-160-abs",
-   "https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh"
+   "https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh",
+   "https://cdn.bajajauto.com/-/media/assets/bajajauto/customer-service/owners-manual/owners-manual-pdf/owner-manual-pdf-2026/avenger-160_pd39.pdf"
   ],
   "bn": {
    "tagline": "বাংলাদেশে একমাত্র সাশ্রয়ী ক্রুজার — রিল্যাক্সড আর নিচু।",
@@ -1853,6 +1918,13 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 2800,
+  "engineOil": {
+   "grade": "20W-50",
+   "spec": "API SN, JASO MA2",
+   "litres": 1.3,
+   "source": "https://cdn.bajajauto.com/-/media/assets/bajajauto/customer-service/owners-manual/owners-manual-pdf/owner-manual-pdf-2026/pulsar-n250.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -1883,7 +1955,8 @@
   "sources": [
    "https://www.bikebd.com/price/bajaj-pulsar-n250",
    "https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh",
-   "https://www.bajajauto.com/en-bd/bikes/pulsar-n250"
+   "https://www.bajajauto.com/en-bd/bikes/pulsar-n250",
+   "https://cdn.bajajauto.com/-/media/assets/bajajauto/customer-service/owners-manual/owners-manual-pdf/owner-manual-pdf-2026/pulsar-n250.pdf"
   ],
   "bn": {
    "tagline": "বাংলাদেশে সবচেয়ে সস্তা আসল ২৫০ — প্রচুর টর্ক, পালসারের মতো চালানোর খরচ।",
@@ -2363,6 +2436,13 @@
   ],
   "serviceIntervalKm": 2500,
   "avgServiceCostBDT": 800,
+  "engineOil": {
+   "grade": "10W-30",
+   "spec": "API SL, JASO MA2",
+   "litres": 1,
+   "source": "https://www.tvsmotor.com/-/media/UpdatedUserManuals2026/Before-April-2025/Motorcycles/Radeon/TVS-Radeon.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -2393,7 +2473,8 @@
   "sources": [
    "https://www.bikebd.com/price/tvs-radeon-price-in-bangladesh",
    "https://www.bikebd.com/brand/tvs",
-   "https://www.motorcycle.com.bd/tvs-radeon-110/"
+   "https://www.motorcycle.com.bd/tvs-radeon-110/",
+   "https://www.tvsmotor.com/-/media/UpdatedUserManuals2026/Before-April-2025/Motorcycles/Radeon/TVS-Radeon.pdf"
   ],
   "bn": {
    "tagline": "লম্বা নরম সিটওয়ালা আরামদায়ক ১১০, গ্রামের রাস্তার জন্য দারুণ।",
@@ -2677,6 +2758,13 @@
   ],
   "serviceIntervalKm": 2500,
   "avgServiceCostBDT": 1000,
+  "engineOil": {
+   "grade": "10W-30",
+   "spec": "API SL, JASO MA2",
+   "litres": 1,
+   "source": "https://www.tvsmotor.com/-/media/UpdatedUserManuals2026/Before-April-2025/Motorcycles/Raider/TVS-Raider.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -2707,7 +2795,8 @@
   "sources": [
    "https://www.bikebd.com/price/tvs-raider-125",
    "https://www.bikewale.com/tvs-bikes/raider-125/mileage/",
-   "https://www.bikebd.com/brand/tvs"
+   "https://www.bikebd.com/brand/tvs",
+   "https://www.tvsmotor.com/-/media/UpdatedUserManuals2026/Before-April-2025/Motorcycles/Raider/TVS-Raider.pdf"
   ],
   "bn": {
    "tagline": "সবচেয়ে স্পোর্টি ফিলের ১২৫ কমিউটার — দ্রুত, হালকা আর তেল সাশ্রয়ী।",
@@ -2857,6 +2946,13 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 1400,
+  "engineOil": {
+   "grade": "10W-30",
+   "spec": "API SL, JASO MA2",
+   "litres": 1,
+   "source": "https://www.tvsmotor.com/-/media/UpdatedUserManuals2026/Before-April-2025/Motorcycles/RTR/TVS-Apache-RTR-160-2V---with-Ride-Mode---Non-Connected-Cluster.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -2887,7 +2983,8 @@
   "sources": [
    "https://www.bikebd.com/price/rtr-160-2v-refresh",
    "https://www.bikebd.com/brand/tvs",
-   "https://deshibiker.com/tvs-apache-rtr-160-2v-xonnect-edition/"
+   "https://deshibiker.com/tvs-apache-rtr-160-2v-xonnect-edition/",
+   "https://www.tvsmotor.com/-/media/UpdatedUserManuals2026/Before-April-2025/Motorcycles/RTR/TVS-Apache-RTR-160-2V---with-Ride-Mode---Non-Connected-Cluster.pdf"
   ],
   "bn": {
    "tagline": "Pulsar 150-এর দামে হালকা, চটপটে Apache হ্যান্ডলিং।",
@@ -3052,6 +3149,13 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 1700,
+  "engineOil": {
+   "grade": "10W-30",
+   "spec": "API SL, JASO MA2",
+   "litres": 1.2,
+   "source": "https://www.tvsmotor.com/-/media/UpdatedUserManuals2026/Before-April-2025/Motorcycles/RTR/TVS-Apache-RTR-160-4V---with-Ride-Mode---Non-Connected-Cluster.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -3083,7 +3187,8 @@
    "https://www.bikebd.com/price/new-tvs-apache-rtr-160-4v-single-channel-abs",
    "https://www.bikebd.com/price/tvs-apache-rtr-160-4v-fi",
    "https://www.bikebd.com/brand/tvs",
-   "https://www.motorcyclebd.com/tvs-apache-rtr-160-4v-smartxconnect-abs/"
+   "https://www.motorcyclebd.com/tvs-apache-rtr-160-4v-smartxconnect-abs/",
+   "https://www.tvsmotor.com/-/media/UpdatedUserManuals2026/Before-April-2025/Motorcycles/RTR/TVS-Apache-RTR-160-4V---with-Ride-Mode---Non-Connected-Cluster.pdf"
   ],
   "bn": {
    "tagline": "বাইকপ্রেমীদের ১৬০ — শার্প হ্যান্ডলিং আর রেভ করতে ভালোবাসা ইঞ্জিন।",
@@ -3366,7 +3471,7 @@
   "priceNote": "Splendor+ i3S IBS ~৳1,20,000; Sports ৳1,28,000; Xtec ৳1,33,000; Xtec 2.0 ৳1,40,000.",
   "priceAsOf": "2026-09",
   "priceSource": "https://www.bikebd.com/price/hero-splendor-plus",
-  "dataNote": "Availability: Hero BD lists the model but has no BD price page; price from BikeBD only. Ask the distributor or a showroom, then drop \"availability\" or set status.",
+  "dataNote": "Availability: Hero BD lists the model but has no BD price page; price from BikeBD only. Ask the distributor or a showroom, then drop \"availability\" or set status. engineOil: Hero BD's Splendor+ Xtec manual (10W-30 SL, JASO MA2) and Splendor+ SE manual (10W-30 SJ, JASO MA) agree on grade and 0.75 L; spec left out because this record's variant is not pinned to either.",
   "distributor": "HMCL Niloy Bangladesh Ltd",
   "assembledInBD": true,
   "engine": {
@@ -3442,6 +3547,12 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 800,
+  "engineOil": {
+   "grade": "10W-30",
+   "litres": 0.75,
+   "source": "https://www.heromotocorp.com/content/dam/hero-aem-website/bd/en-bd/owners-manual-pdf/spleplusxtec.pdf",
+   "market": "BD"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -3471,7 +3582,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/hero-splendor-plus",
-   "https://www.heromotocorp.com/en-bd/the-bike/passion-xpro-xtec-110cc-motorcycle-91.html"
+   "https://www.heromotocorp.com/en-bd/the-bike/passion-xpro-xtec-110cc-motorcycle-91.html",
+   "https://www.heromotocorp.com/content/dam/hero-aem-website/bd/en-bd/owners-manual-pdf/spleplusxtec.pdf"
   ],
   "bn": {
    "tagline": "সবচেয়ে নির্ভরযোগ্য আর সবচেয়ে ভালো রিসেলের কমিউটার।",
@@ -3610,6 +3722,13 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 750,
+  "engineOil": {
+   "grade": "10W-30",
+   "spec": "API SL, JASO MA",
+   "litres": 0.85,
+   "source": "https://www.heromotocorp.com/content/dam/hero-aem-website/bd/en-bd/owners-manual-pdf/hf-deluxe-new-om.pdf",
+   "market": "BD"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -3639,7 +3758,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/hero-hf-deluxe-price-in-bangladesh",
-   "https://www.heromotocorp.com/en-bd/the-bike/passion-xpro-xtec-110cc-motorcycle-91.html"
+   "https://www.heromotocorp.com/en-bd/the-bike/passion-xpro-xtec-110cc-motorcycle-91.html",
+   "https://www.heromotocorp.com/content/dam/hero-aem-website/bd/en-bd/owners-manual-pdf/hf-deluxe-new-om.pdf"
   ],
   "bn": {
    "tagline": "Hero-র সবচেয়ে কম দামে Splendor-এর ইঞ্জিন।",
@@ -3763,6 +3883,13 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 1100,
+  "engineOil": {
+   "grade": "10W-30",
+   "spec": "API SL, JASO MA2",
+   "litres": 1,
+   "source": "https://www.heromotocorp.com/content/dam/hero-aem-website/bd/en-bd/owners-manual-pdf/Glamour-x.pdf",
+   "market": "BD"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -3792,7 +3919,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/hero-glamour-x-125",
-   "https://www.dhakatribune.com/business/403965/hero-bangladesh-unveils-glamour-x-125-motorcycle"
+   "https://www.dhakatribune.com/business/403965/hero-bangladesh-unveils-glamour-x-125-motorcycle",
+   "https://www.heromotocorp.com/content/dam/hero-aem-website/bd/en-bd/owners-manual-pdf/Glamour-x.pdf"
   ],
   "bn": {
    "tagline": "বাংলাদেশে সবচেয়ে হাই-টেক ১২৫ কমিউটার — ক্রুজ কন্ট্রোল আর রাইড মোডসহ।",
@@ -4085,6 +4213,13 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 1400,
+  "engineOil": {
+   "grade": "10W-30",
+   "spec": "API SL, JASO MA2",
+   "litres": 1,
+   "source": "https://www.heromotocorp.com/content/dam/hero-aem-website/bd/en-bd/owners-manual-pdf/hunk_150r_bangladesh_om.pdf",
+   "market": "BD"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -4115,7 +4250,8 @@
   "sources": [
    "https://www.bikebd.com/price/hero-hunk-150-price-in-bangladesh",
    "https://www.bikebd.com/price/hero-hunk-150r-xtec",
-   "https://www.heromotocorp.com/en-bd/products/premium/hunk-150r-price-in-bangladesh.html"
+   "https://www.heromotocorp.com/en-bd/products/premium/hunk-150r-price-in-bangladesh.html",
+   "https://www.heromotocorp.com/content/dam/hero-aem-website/bd/en-bd/owners-manual-pdf/hunk_150r_bangladesh_om.pdf"
   ],
   "bn": {
    "tagline": "বাংলাদেশের জন্য বানানো Hero-র আরামদায়ক, ঝামেলাহীন ১৫০।",
@@ -4269,6 +4405,13 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 1800,
+  "engineOil": {
+   "grade": "10W-30",
+   "spec": "API SL, JASO MA2",
+   "litres": 1.15,
+   "source": "https://www.heromotocorp.com/content/dam/hero-aem-website/bd/en-bd/owners-manual-pdf/Thriller%20160R%204V_Owner's%20Manual.pdf",
+   "market": "BD"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -4300,7 +4443,8 @@
    "https://www.bikebd.com/price/hero-xtreme-160r-4v",
    "https://www.heromotocorp.com/en-bd/products/premium/thriller-160r-4v.html",
    "https://www.bikebd.com/price/hero-xtreme-160r",
-   "https://www.bikewale.com/hero-bikes/xtreme-160r-4v/reviews/1152746/"
+   "https://www.bikewale.com/hero-bikes/xtreme-160r-4v/reviews/1152746/",
+   "https://www.heromotocorp.com/content/dam/hero-aem-website/bd/en-bd/owners-manual-pdf/Thriller%20160R%204V_Owner's%20Manual.pdf"
   ],
   "bn": {
    "tagline": "Apache 4V ABS-এর চেয়ে কম দামে USD ফর্ক, FI আর ৪ ভাল্ভ।",
@@ -4438,6 +4582,13 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 2200,
+  "engineOil": {
+   "grade": "10W-30",
+   "spec": "API SL, JASO MA2",
+   "litres": 1.2,
+   "source": "https://www.heromotocorp.com/content/dam/hero-aem-website/bd/en-bd/owners-manual-pdf/Xpulse_200_4V_OM.pdf",
+   "market": "BD"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -4467,7 +4618,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/hero-xpulse-200-4v",
-   "https://www.heromotocorp.com/en-bd/the-bike/passion-xpro-xtec-110cc-motorcycle-91.html"
+   "https://www.heromotocorp.com/en-bd/the-bike/passion-xpro-xtec-110cc-motorcycle-91.html",
+   "https://www.heromotocorp.com/content/dam/hero-aem-website/bd/en-bd/owners-manual-pdf/Xpulse_200_4V_OM.pdf"
   ],
   "bn": {
    "tagline": "বাংলাদেশে একমাত্র সত্যিকারের বাজেট অ্যাডভেঞ্চার বাইক।",
@@ -4602,6 +4754,13 @@
   ],
   "serviceIntervalKm": 5000,
   "avgServiceCostBDT": 3500,
+  "engineOil": {
+   "grade": "10W-30",
+   "spec": "API SL, JASO MA2",
+   "litres": 1.25,
+   "source": "https://www.heromotocorp.com/content/dam/hero-aem-website/bd/en-bd/owners-manual-pdf/Karizma%20XMR_Owner's%20Manual.pdf",
+   "market": "BD"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -4631,7 +4790,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/hero-karizma-xmr-210",
-   "https://www.heromotocorp.com/en-bd/the-bike/passion-xpro-xtec-110cc-motorcycle-91.html"
+   "https://www.heromotocorp.com/en-bd/the-bike/passion-xpro-xtec-110cc-motorcycle-91.html",
+   "https://www.heromotocorp.com/content/dam/hero-aem-website/bd/en-bd/owners-manual-pdf/Karizma%20XMR_Owner's%20Manual.pdf"
   ],
   "bn": {
    "tagline": "৫ লাখের নিচে ফুল-ফেয়ার্ড, লিকুইড-কুলড, ৬-স্পিড স্পোর্ট-ট্যুরার।",
@@ -4760,6 +4920,13 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 1200,
+  "engineOil": {
+   "grade": "10W-30",
+   "spec": "API SL, JASO MB",
+   "litres": 0.7,
+   "source": "https://www.heromotocorp.com/content/dam/hero-aem-website/bd/en-bd/owners-manual-pdf/Xoom_125R%20FI.pdf",
+   "market": "BD"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -4792,7 +4959,8 @@
   "sources": [
    "https://www.bikebd.com/price/hero-xoom-125r",
    "https://www.bikebd.com/brand/hero",
-   "https://www.heromotocorp.com/en-bd/products/scooter/xoom-125r-fi-price-in-bangladesh.html"
+   "https://www.heromotocorp.com/en-bd/products/scooter/xoom-125r-fi-price-in-bangladesh.html",
+   "https://www.heromotocorp.com/content/dam/hero-aem-website/bd/en-bd/owners-manual-pdf/Xoom_125R%20FI.pdf"
   ],
   "bn": {
    "tagline": "বাংলাদেশের রাস্তার জন্য বড় ১৪-ইঞ্চি চাকার স্পোর্টি ১২৫ স্কুটার।",
@@ -4917,6 +5085,14 @@
   ],
   "serviceIntervalKm": 2500,
   "avgServiceCostBDT": 900,
+  "engineOil": {
+   "grade": "10W-30",
+   "spec": "API SJ, JASO MA",
+   "litres": 0.75,
+   "litresWithFilter": 0.8,
+   "source": "https://bdhonda.com/public/uploads/2026/09/6ab0b1ffebc7e_Shine100_2025.pdf",
+   "market": "BD"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -4948,7 +5124,8 @@
    "https://www.bdhonda.com/products/shine100",
    "https://www.bikebd.com/price/honda-shine-100",
    "https://www.bikebd.com/price/honda-shine-100-dlx",
-   "https://bdhonda.com/media-center/pr-details/280"
+   "https://bdhonda.com/media-center/pr-details/280",
+   "https://bdhonda.com/public/uploads/2026/09/6ab0b1ffebc7e_Shine100_2025.pdf"
   ],
   "bn": {
    "tagline": "Honda ব্যাজ পাওয়ার সবচেয়ে সস্তা রাস্তা — লোন শেষ হওয়ার পরেও দিব্যি চলবে।",
@@ -4990,7 +5167,8 @@
    "honda shine",
    "sine 100",
    "shain"
-  ]
+  ],
+  "dataNote": "engineOil: Honda BD Bangla manual, spec table (page images): 10W-30, API SJ or higher (not energy-conserving), JASO T903 MA; 0.75 L draining, 0.80 L with filter, 0.90 L disassembly."
  },
  {
   "id": "honda-dream-110",
@@ -5230,6 +5408,12 @@
   ],
   "serviceIntervalKm": 2500,
   "avgServiceCostBDT": 950,
+  "engineOil": {
+   "grade": "10W-30",
+   "litres": 0.9,
+   "source": "https://bdhonda.com/public/uploads/2026/09/6ab0b1d6af45c_Livo.pdf",
+   "market": "BD"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -5260,7 +5444,8 @@
   "sources": [
    "https://www.bdhonda.com/products/livo",
    "https://www.bikebd.com/price/honda-livo-price-in-bd",
-   "https://www.bdhonda.com/product/livo/index"
+   "https://www.bdhonda.com/product/livo/index",
+   "https://bdhonda.com/public/uploads/2026/09/6ab0b1d6af45c_Livo.pdf"
   ],
   "bn": {
    "tagline": "যে ১১০ দেখতে আসলের চেয়ে একটু বেশি বড়সড় লাগে।",
@@ -5326,7 +5511,8 @@
     "frontDisc": true,
     "priceSource": "https://www.bdhonda.com/products/livo"
    }
-  ]
+  ],
+  "dataNote": "engineOil: Honda BD Bangla manual (outlined text, read from the page images): 10W-30, 0.9 L after draining, 1.0 L at disassembly; its API/JASO wording is garbled (\"API service classification MA\"), so spec left out."
  },
  {
   "id": "honda-sp125",
@@ -5413,6 +5599,14 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 1200,
+  "engineOil": {
+   "grade": "10W-30",
+   "spec": "API SJ, JASO MA",
+   "litres": 0.9,
+   "litresWithFilter": 0.9,
+   "source": "https://bdhonda.com/public/uploads/2026/09/6ab0b156738a3_SP125_2026.pdf",
+   "market": "BD"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -5444,7 +5638,8 @@
    "https://www.bdhonda.com/products/sp125",
    "https://www.bikebd.com/price/honda-sp125-dlx",
    "https://www.bikebd.com/blog/honda-sp125-mileage-technology",
-   "https://www.dhakatribune.com/business/331429/honda-launches-its-first-bs-vi-motorcycle"
+   "https://www.dhakatribune.com/business/331429/honda-launches-its-first-bs-vi-motorcycle",
+   "https://bdhonda.com/public/uploads/2026/09/6ab0b156738a3_SP125_2026.pdf"
   ],
   "bn": {
    "tagline": "Honda শোরুমে টাকার হিসেবে সবচেয়ে বুদ্ধিমানের ১২৫।",
@@ -5581,6 +5776,13 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 1600,
+  "engineOil": {
+   "grade": "10W-30",
+   "spec": "API SJ, JASO MA",
+   "litres": 1,
+   "source": "https://bdhonda.com/public/uploads/2026/09/6ab0b1b8a4172_SP160.pdf",
+   "market": "BD"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -5614,7 +5816,8 @@
    "https://www.bikebd.com/price/honda-sp160-single-disc",
    "https://www.bikebd.com/blog/honda-sp-160-launched-in-bangladesh",
    "https://www.motobikebd.com/bikes/honda-sp160",
-   "https://www.motorcyclevalley.com/overview/honda-sp-160/"
+   "https://www.motorcyclevalley.com/overview/honda-sp-160/",
+   "https://bdhonda.com/public/uploads/2026/09/6ab0b1b8a4172_SP160.pdf"
   ],
   "bn": {
    "tagline": "কমিউটারের মতো ভদ্র, কিন্তু হাইওয়েতেও চলার দম আছে — এমন একটা ১৬০।",
@@ -5775,6 +5978,13 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 1600,
+  "engineOil": {
+   "grade": "10W-30",
+   "spec": "API SJ, JASO MA",
+   "litres": 1,
+   "source": "https://bdhonda.com/public/uploads/2026/09/6ab0b0e1d2cb0_XBLADE_FI.pdf",
+   "market": "BD"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -5806,7 +6016,8 @@
    "https://www.bdhonda.com/products/xblade",
    "https://www.bikebd.com/price/honda-x-blade-160-fi-abs",
    "https://www.bikebd.com/blog/honda-special-world-cup-discounts",
-   "https://bdhonda.com/media-center/pr-details/191"
+   "https://bdhonda.com/media-center/pr-details/191",
+   "https://bdhonda.com/public/uploads/2026/09/6ab0b0e1d2cb0_XBLADE_FI.pdf"
   ],
   "bn": {
    "tagline": "দেখতে ধারালো, চালাতে বুঝদার — Honda-র ১৬০।",
@@ -5943,6 +6154,13 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 1800,
+  "engineOil": {
+   "grade": "10W-30",
+   "spec": "API SJ, JASO MA",
+   "litres": 1,
+   "source": "https://bdhonda.com/public/uploads/2026/09/6ab0b2cf2a019_HORNET_2.0.pdf",
+   "market": "BD"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -5974,7 +6192,8 @@
    "https://www.bdhonda.com/products/hornet20",
    "https://www.bikebd.com/price/honda-hornet-2-0",
    "https://www.bikebd.com/blog/honda-special-world-cup-discounts",
-   "https://bikewale.com/honda-bikes/hornet/reviews/page/2"
+   "https://bikewale.com/honda-bikes/hornet/reviews/page/2",
+   "https://bdhonda.com/public/uploads/2026/09/6ab0b2cf2a019_HORNET_2.0.pdf"
   ],
   "bn": {
    "tagline": "বাংলাদেশের পুরনো ১৬৫cc সীমার চিন্তায় সবচেয়ে পাওয়ারফুল বাইক, এখন Honda-র ফিনিশিংসহ।",
@@ -6118,6 +6337,13 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 2000,
+  "engineOil": {
+   "grade": "10W-30",
+   "spec": "API SJ, JASO MA",
+   "litres": 1,
+   "source": "https://bdhonda.com/public/uploads/2026/09/6ab0b23f05743_NX200.pdf",
+   "market": "BD"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -6148,7 +6374,8 @@
   "sources": [
    "https://bdhonda.com/media-center/pr-details/282",
    "https://www.bikebd.com/price/honda-nx200",
-   "https://bikebd.com/blog/honda-nx200-officially-launched-in-bangladesh"
+   "https://bikebd.com/blog/honda-nx200-officially-launched-in-bangladesh",
+   "https://bdhonda.com/public/uploads/2026/09/6ab0b23f05743_NX200.pdf"
   ],
   "bn": {
    "tagline": "ভাঙা রাস্তার জন্য সোজা হয়ে বসার, সবকিছুতে ABS-ওয়ালা ট্যুরার — আসল অফ-রোডার না।",
@@ -6626,6 +6853,14 @@
   ],
   "serviceIntervalKm": 2500,
   "avgServiceCostBDT": 1100,
+  "engineOil": {
+   "grade": "10W-40",
+   "spec": "API SL, JASO MA",
+   "litres": 0.9,
+   "litresWithFilter": 1.1,
+   "source": "https://library.ymcapps.net/library/om/contents/pdf/10/2LP-F8199-EF_02.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -6656,7 +6891,8 @@
   "sources": [
    "https://www.yamahabd.com/products/yamaha-saluto-125-ubs",
    "https://www.bikebd.com/price/yamaha-saluto-125-ubs",
-   "https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/"
+   "https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/",
+   "https://library.ymcapps.net/library/om/contents/pdf/10/2LP-F8199-EF_02.pdf"
   ],
   "bn": {
    "tagline": "প্রতিটা লিটার যারা হিসাব করেন, তাদের জন্য Yamaha-র সাশ্রয়ী ১২৫।",
@@ -6798,6 +7034,14 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 1500,
+  "engineOil": {
+   "grade": "10W-40",
+   "spec": "API SL, JASO MA",
+   "litres": 1,
+   "litresWithFilter": 1.1,
+   "source": "https://library.ymcapps.net/library/om/contents/pdf/10/2WS-F8199-E5_02.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -6827,7 +7071,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/yamaha-fazer-price-in-bangladesh",
-   "https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/"
+   "https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/",
+   "https://library.ymcapps.net/library/om/contents/pdf/10/2WS-F8199-E5_02.pdf"
   ],
   "bn": {
    "tagline": "যারা প্রতি মাসে হাইওয়েতে যান, তাদের জন্য হাফ-ফেয়ার্ড FZ।",
@@ -6963,6 +7208,14 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 1500,
+  "engineOil": {
+   "grade": "10W-40",
+   "spec": "API SL, JASO MA",
+   "litres": 1,
+   "litresWithFilter": 1.1,
+   "source": "https://library.ymcapps.net/library/om/contents/pdf/10/BJE-F819V-E2_02.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -6992,7 +7245,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/yamaha-fzs-v4",
-   "https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/"
+   "https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/",
+   "https://library.ymcapps.net/library/om/contents/pdf/10/BJE-F819V-E2_02.pdf"
   ],
   "bn": {
    "tagline": "বাংলাদেশে 'কোন ১৫০cc কিনব?' — এই প্রশ্নের ডিফল্ট উত্তর।",
@@ -7138,6 +7392,14 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 1500,
+  "engineOil": {
+   "grade": "10W-40",
+   "spec": "API SL, JASO MA",
+   "litres": 1,
+   "litresWithFilter": 1.1,
+   "source": "https://library.ymcapps.net/library/om/contents/pdf/10/2GS-F8199-EC_02.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -7168,7 +7430,8 @@
   "sources": [
    "https://bikebd.com/price/fzs-v2-price-in-bd",
    "https://bikebd.com/price/fzs-v2-price-in-bd/color",
-   "https://www.yamahabd.com/products"
+   "https://www.yamahabd.com/products",
+   "https://library.ymcapps.net/library/om/contents/pdf/10/2GS-F8199-EC_02.pdf"
   ],
   "bn": {
    "tagline": "FZ পাওয়ার সবচেয়ে সস্তা পথ: পুরনো ডিজাইন, একই সহজ ইঞ্জিন, ABS নেই।",
@@ -7292,6 +7555,14 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 1700,
+  "engineOil": {
+   "grade": "10W-40",
+   "spec": "API SL, JASO MA",
+   "litres": 1,
+   "litresWithFilter": 1.1,
+   "source": "https://library.ymcapps.net/library/om/contents/pdf/10/BST-F819V-E1_02.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -7321,7 +7592,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/yamaha-fz-s-fi-hybrid-2025",
-   "https://online91.thedailystar.net/business/news/aci-motors-launches-yamaha-hybrid-motorcycle-4083056"
+   "https://online91.thedailystar.net/business/news/aci-motors-launches-yamaha-hybrid-motorcycle-4083056",
+   "https://library.ymcapps.net/library/om/contents/pdf/10/BST-F819V-E1_02.pdf"
   ],
   "bn": {
    "tagline": "ঢাকার সিগন্যালে নিজে থেকেই বন্ধ হয়ে যায় এমন একটা FZS।",
@@ -7449,6 +7721,14 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 1500,
+  "engineOil": {
+   "grade": "10W-40",
+   "spec": "API SL, JASO MA",
+   "litres": 1,
+   "litresWithFilter": 1.1,
+   "source": "https://library.ymcapps.net/library/om/contents/pdf/10/BKH-F819V-E1_02.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -7478,7 +7758,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/yamaha-fz-x-price-in-bangladesh",
-   "https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/"
+   "https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/",
+   "https://library.ymcapps.net/library/om/contents/pdf/10/BKH-F819V-E1_02.pdf"
   ],
   "bn": {
    "tagline": "নিও-রেট্রো সাজে একটা FZ, সিটটা আরও আরামের।",
@@ -7612,6 +7893,14 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 2200,
+  "engineOil": {
+   "grade": "10W-40",
+   "spec": "API SL, JASO MA",
+   "litres": 1.35,
+   "litresWithFilter": 1.45,
+   "source": "https://library.ymcapps.net/library/om/contents/pdf/10/B9X-F819V-E1_02.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -7642,7 +7931,8 @@
   "sources": [
    "https://www.bikebd.com/price/yamaha-fz-25",
    "https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/",
-   "https://www.yamahabd.com/products/yamaha-fz-25/"
+   "https://www.yamahabd.com/products/yamaha-fz-25/",
+   "https://library.ymcapps.net/library/om/contents/pdf/10/B9X-F819V-E1_02.pdf"
   ],
   "bn": {
    "tagline": "স্পোর্টবাইকের কষ্ট ছাড়া হাইওয়েতে আরামে ক্রুজ করার ২৫০।",
@@ -7771,6 +8061,14 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 3000,
+  "engineOil": {
+   "grade": "10W-40",
+   "spec": "API SL, JASO MA",
+   "litres": 1,
+   "litresWithFilter": 1,
+   "source": "https://library.ymcapps.net/library/om/contents/pdf/10/BPD-F819V-E3_02.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -7802,7 +8100,8 @@
    "https://www.yamahabd.com/products/yamaha-r15-v4",
    "https://www.bikebd.com/price/r15-v4-price-in-bangladesh",
    "https://www.bikebd.com/price/yamaha-r15m-price-in-bangladesh",
-   "https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/"
+   "https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/",
+   "https://library.ymcapps.net/library/om/contents/pdf/10/BPD-F819V-E3_02.pdf"
   ],
   "bn": {
    "tagline": "বাংলাদেশের ড্রিম বাইক: ১৫০cc স্পোর্টবাইকের বেঞ্চমার্ক।",
@@ -7942,6 +8241,14 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 2800,
+  "engineOil": {
+   "grade": "10W-40",
+   "spec": "API SL, JASO MA",
+   "litres": 0.85,
+   "litresWithFilter": 0.95,
+   "source": "https://library.ymcapps.net/library/om/contents/pdf/10/B9E-F8199-E1_02.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -7971,7 +8278,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/r15-v3-indian-version-price-in-bd",
-   "https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/"
+   "https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/",
+   "https://library.ymcapps.net/library/om/contents/pdf/10/B9E-F8199-E1_02.pdf"
   ],
   "bn": {
    "tagline": "V4-এর চেয়ে ~৳85k কমে R15-এর থ্রিল।",
@@ -8114,6 +8422,14 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 2800,
+  "engineOil": {
+   "grade": "10W-40",
+   "spec": "API SL, JASO MA",
+   "litres": 0.85,
+   "litresWithFilter": 0.95,
+   "source": "https://library.ymcapps.net/library/om/contents/pdf/10/BXF-F819V-E6_02.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -8144,7 +8460,8 @@
   "sources": [
    "https://www.bikebd.com/price/yamaha-mt-15-version-20",
    "https://www.bikebd.com/price/yamaha-mt-15-price-in-bangladesh",
-   "https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/"
+   "https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/",
+   "https://library.ymcapps.net/library/om/contents/pdf/10/BXF-F819V-E6_02.pdf"
   ],
   "bn": {
    "tagline": "R15-এর ইঞ্জিন, সোজা হ্যান্ডেলবার, আর হুইলি মারার মেজাজ।",
@@ -8286,6 +8603,14 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 2800,
+  "engineOil": {
+   "grade": "10W-40",
+   "spec": "API SL, JASO MA",
+   "litres": 1,
+   "litresWithFilter": 1,
+   "source": "https://library.ymcapps.net/library/om/contents/pdf/10/DD4-F819V-E0_02.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -8315,7 +8640,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/yamaha-xsr-155-price-in-bangladesh",
-   "https://www.tbsnews.net/companies/aci-motors-introduces-yamaha-xsr-155-220432"
+   "https://www.tbsnews.net/companies/aci-motors-introduces-yamaha-xsr-155-220432",
+   "https://library.ymcapps.net/library/om/contents/pdf/10/DD4-F819V-E0_02.pdf"
   ],
   "bn": {
    "tagline": "নিও-রেট্রো লুক, ভেতরে R15-এর হার্ট।",
@@ -8448,6 +8774,13 @@
   ],
   "serviceIntervalKm": 2500,
   "avgServiceCostBDT": 1200,
+  "engineOil": {
+   "grade": "10W-40",
+   "spec": "API SL, JASO MB",
+   "litres": 0.8,
+   "source": "https://library.ymcapps.net/library/om/contents/pdf/10/BKX-F819V-E2_02.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -8483,7 +8816,8 @@
    "https://www.bikebd.com/brand/yamaha",
    "https://www.motorcycle.com.bd/yamaha-ray-zr-street-rally-125-fi/",
    "https://www.motorcyclefair.com/yamaha-ray-zr-street-rally-125-fi/",
-   "https://www.motorcyclebd.com/yamaha-ray-zr-street-rally-125-fi/"
+   "https://www.motorcyclebd.com/yamaha-ray-zr-street-rally-125-fi/",
+   "https://library.ymcapps.net/library/om/contents/pdf/10/BKX-F819V-E2_02.pdf"
   ],
   "bn": {
    "tagline": "জ্যামে ভরা ঢাকার জন্য হালকা, স্পোর্টি একটা ১২৫ স্কুটার।",
@@ -8609,6 +8943,13 @@
   ],
   "serviceIntervalKm": 3000,
   "avgServiceCostBDT": 2500,
+  "engineOil": {
+   "grade": "10W-40",
+   "spec": "API SL, JASO MB",
+   "litres": 0.9,
+   "source": "https://library.ymcapps.net/library/om/contents/pdf/10/BLV-F819V-E2_02.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -8640,7 +8981,8 @@
   ],
   "sources": [
    "https://www.bikebd.com/price/yamaha-aerox-155",
-   "https://www.tbsnews.net/node/748346"
+   "https://www.tbsnews.net/node/748346",
+   "https://library.ymcapps.net/library/om/contents/pdf/10/BLV-F819V-E2_02.pdf"
   ],
   "bn": {
    "tagline": "গিয়ার বদলাতে যাদের বিরক্তি, তাদের জন্য R15-এর টেকওয়ালা ম্যাক্সি-স্কুটার।",
@@ -10190,6 +10532,14 @@
   ],
   "serviceIntervalKm": 2500,
   "avgServiceCostBDT": 5000,
+  "engineOil": {
+   "grade": "10W-40",
+   "spec": "API SJ/SL/SM/SN, JASO MA",
+   "litres": 1.18,
+   "litresWithFilter": 1.2,
+   "source": "https://www.suzukimotorcycle.co.in/owner-manuals/download/1",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -10225,7 +10575,8 @@
    "https://www.motorcyclebd.com/suzuki-v-strom-sx-250/",
    "https://www.rokomari.com/product/358551/suzuki-ecstar-r5000-10w-40-mineral-1-liter",
    "https://bongshal.com/product/suzuki-ecstar-10w-40-4t-engine-oil",
-   "https://www.bikepartsbd.com/product/suzuki-gixxer-front-brake-pads/"
+   "https://www.bikepartsbd.com/product/suzuki-gixxer-front-brake-pads/",
+   "https://www.suzukimotorcycle.co.in/owner-manuals/download/1"
   ],
   "bn": {
    "tagline": "Gixxer 250-এর ইঞ্জিন, লম্বা আর আরামদায়ক ট্যুরিং বডিতে।",
@@ -10709,6 +11060,13 @@
   ],
   "serviceIntervalKm": 5000,
   "avgServiceCostBDT": 4000,
+  "engineOil": {
+   "grade": "15W-50",
+   "spec": "API SL, JASO MA2",
+   "litres": 1.7,
+   "source": "https://www.royalenfield.com/content/dam/open-pdf/royal-enfield-owners-manual-hunter-350_bsvi-english-2026.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -10741,7 +11099,8 @@
    "https://www.royalenfield.com/bd/en/motorcycles/hunter-350/",
    "https://bikebd.com/price/royal-enfield-hunter-350-abs",
    "https://bikebd.com/brand/royal-enfield",
-   "https://en.ittefaq.com.bd/9332/bangladesh-welcomes-royal-enfield"
+   "https://en.ittefaq.com.bd/9332/bangladesh-welcomes-royal-enfield",
+   "https://www.royalenfield.com/content/dam/open-pdf/royal-enfield-owners-manual-hunter-350_bsvi-english-2026.pdf"
   ],
   "bn": {
    "tagline": "Royal Enfield-এর থাম্প পাওয়ার সবচেয়ে সস্তা আর হালকা উপায়।",
@@ -11081,6 +11440,13 @@
   ],
   "serviceIntervalKm": 5000,
   "avgServiceCostBDT": 4000,
+  "engineOil": {
+   "grade": "15W-50",
+   "spec": "API SL, JASO MA2",
+   "litres": 1.7,
+   "source": "https://www.royalenfield.com/content/dam/open-pdf/royal-enfield-bullet-350-dual-channel-owners-manual-india.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -11113,7 +11479,8 @@
    "https://www.royalenfield.com/bd/en/motorcycles/bullet-350/",
    "https://bikebd.com/price/royal-enfield-bullet-350",
    "https://bikebd.com/brand/royal-enfield",
-   "https://en.ittefaq.com.bd/9332/bangladesh-welcomes-royal-enfield"
+   "https://en.ittefaq.com.bd/9332/bangladesh-welcomes-royal-enfield",
+   "https://www.royalenfield.com/content/dam/open-pdf/royal-enfield-bullet-350-dual-channel-owners-manual-india.pdf"
   ],
   "bn": {
    "tagline": "পুরনো দিনের বুলেট লুক, সাথে নতুন J-series-এর স্মুথনেস।",
@@ -11270,6 +11637,13 @@
   ],
   "serviceIntervalKm": 5000,
   "avgServiceCostBDT": 4000,
+  "engineOil": {
+   "grade": "15W-50",
+   "spec": "API SL, JASO MA2",
+   "litres": 1.7,
+   "source": "https://www.royalenfield.com/content/dam/open-pdf/royal-enfield-owners-manual-meteor-english.pdf",
+   "market": "India"
+  },
   "parts": [
    {
     "name": "Brake pads/shoes (front)",
@@ -11302,7 +11676,8 @@
    "https://www.royalenfield.com/bd/en/motorcycles/meteor-350/",
    "https://bikebd.com/brand/royal-enfield",
    "https://bikebd.com/price/royal-enfield-meteor-350",
-   "https://en.ittefaq.com.bd/9332/bangladesh-welcomes-royal-enfield"
+   "https://en.ittefaq.com.bd/9332/bangladesh-welcomes-royal-enfield",
+   "https://www.royalenfield.com/content/dam/open-pdf/royal-enfield-owners-manual-meteor-english.pdf"
   ],
   "bn": {
    "tagline": "বাংলাদেশে ৳৫ লাখের নিচে নতুন কেনা যায় এমন সবচেয়ে আরামদায়ক হাইওয়ে বাইক।",

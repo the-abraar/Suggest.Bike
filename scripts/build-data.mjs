@@ -25,7 +25,7 @@ const derive = (b) => {
 const bikes = JSON.parse(readFileSync(new URL("src/data/bikes.json", root))).map(({ dataNote, ...b }) => derive(b));
 
 const index = bikes.map((b) => {
-  const { feel, quirks, braking, mechanicNote, pros, cons, bestFor, sources, priceNote, priceSource, tyres, suspension, bn, parts, variants, outlierNote, ...rest } = b;
+  const { feel, quirks, braking, mechanicNote, pros, cons, bestFor, sources, priceNote, priceSource, tyres, suspension, bn, parts, variants, outlierNote, engineOil, ...rest } = b;
   return {
     ...rest,
     taglineBn: bn?.tagline,

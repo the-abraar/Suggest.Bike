@@ -64,6 +64,7 @@ export interface Bike {
   bestFor: string[];        // e.g. ["Daily Dhaka commute", "First bike", "Ride-sharing (Pathao/Uber)"]
   serviceIntervalKm: number;    // typical
   avgServiceCostBDT: number;    // typical periodic service at dealer: engine oil, oil filter, labour
+  engineOil?: EngineOil;        // from the owner's manual only; absent when no official source states it
   tyrePairBDT?: number;         // front + rear tyre price when the category default is wrong (odd sizes, e.g. a 19-inch front)
   parts: Part[];            // EXACTLY these 5 names, approx BD market price: "Brake pads/shoes (front)", "Chain & sprocket set", "Air filter", "Engine oil change", "Clutch plate set"
   sources: string[];        // URLs you actually consulted for this bike (2-5)
@@ -76,6 +77,16 @@ export interface Bike {
 
 /** Electric two-wheelers. Claimed figures come from the cited source; realRangeKm is an editorial estimate. */
 export interface EvSpec { motorW: number; peakMotorW?: number; batteryKWh: number; battery: string; rangeKm: number; realRangeKm: [number, number]; chargeHours: number; batteryWarrantyMonths?: number /* traction battery; the cost page assumes 48 when absent */ }
+
+/** Engine oil as the owner's manual states it, so a rider can buy the right sealed bottle. Official sources only. */
+export interface EngineOil {
+  grade: string;             // SAE viscosity, "10W-30"; "10W-30 / 20W-40" when the manual allows either
+  spec?: string;             // minimum API / JASO class the manual names, "API SL, JASO MA2" (Latin, as on the bottle); omit when unclear
+  litres: number;            // oil change (drain and refill)
+  litresWithFilter?: number; // with an oil filter change, when the manual gives it
+  source: string;            // owner's manual PDF or the maker's own spec page; also listed in sources
+  market: "BD" | "India";    // whose manual: an India-market manual may not match the BD bike, and the page says so
+}
 
 export interface Variant { name: string; priceBDT: number; abs?: "none" | "single" | "dual" | "cbs"; frontDisc?: boolean; rearDisc?: boolean; priceSource: string }
 
@@ -104,7 +115,7 @@ export type ScoreKey = keyof Bike["scores"];
  */
 export type BikeLite = Omit<
   Bike,
-  "feel" | "quirks" | "braking" | "mechanicNote" | "pros" | "cons" | "bestFor" | "sources" | "priceNote" | "priceSource" | "tyres" | "suspension" | "bn" | "parts" | "variants" | "outlierNote" | "dataNote"
+  "feel" | "quirks" | "braking" | "mechanicNote" | "pros" | "cons" | "bestFor" | "sources" | "priceNote" | "priceSource" | "tyres" | "suspension" | "bn" | "parts" | "variants" | "outlierNote" | "dataNote" | "engineOil"
 > & {
   taglineBn?: string;
   parts: Pick<Part, "name" | "priceBDT" | "availability">[];

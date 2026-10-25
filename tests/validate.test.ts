@@ -5,7 +5,8 @@ import { spawnSync } from "node:child_process";
 import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import type { Bike } from "../src/lib/types";
+import type { Bike, EngineOil } from "../src/lib/types";
+import { engineOilText } from "../src/lib/bike-utils";
 
 const real = (): Bike[] => JSON.parse(readFileSync(new URL("../src/data/bikes.json", import.meta.url), "utf8"));
 const validate = (bikes: Bike[], env: Record<string, string> = {}) => {
@@ -80,4 +81,32 @@ test("validate: owner-experience text that narrates our sources fails; the same 
   const ok = real();
   ok[0].dataNote = "bikebd's spec table and review disagree on top speed.";
   assert.equal(validate(ok).code, 0);
+});
+
+test("validate: engineOil needs an SAE grade, 0.5-4 L, and an https source that is also in sources", () => {
+  const withOil = (edit: (o: EngineOil) => void) => {
+    const bikes = real();
+    const b = bikes.find((x) => x.engineOil)!;
+    edit(b.engineOil!);
+    return { id: b.id, ...validate(bikes) };
+  };
+  const cases: [(o: EngineOil) => void, string][] = [
+    [(o) => (o.grade = "10W30"), "bad grade"],
+    [(o) => (o.litres = 10), "litres 10 outside"],
+    [(o) => (o.source = "http://example.com/manual.pdf"), "https URL"],
+    [(o) => (o.source = "https://example.com/manual.pdf"), "also be listed in sources"],
+  ];
+  for (const [edit, msg] of cases) {
+    const r = withOil(edit);
+    assert.equal(r.code, 1, msg);
+    assert.match(r.out, new RegExp(`${r.id}: engineOil: .*${msg}`));
+  }
+  assert.equal(withOil((o) => (o.grade = "10W-30 / 20W-40")).code, 0, "two grades the manual allows");
+});
+
+test("engineOilText: grade, spec and litres; Bangla digits for litres only", () => {
+  const o = { grade: "10W-30", spec: "API SL, JASO MA2", litres: 1, litresWithFilter: 1.1 };
+  assert.equal(engineOilText(o), "10W-30, API SL, JASO MA2, 1.0 L (1.1 L with filter)");
+  assert.equal(engineOilText(o, "bn"), "10W-30, API SL, JASO MA2, ১.০ লিটার (ফিল্টারসহ ১.১ লিটার)");
+  assert.equal(engineOilText({ grade: "20W-50", litres: 0.75, litresWithFilter: 0.75 }), "20W-50, 0.75 L");
 });

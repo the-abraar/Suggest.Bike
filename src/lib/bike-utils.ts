@@ -1,7 +1,7 @@
 // Bike helpers that need no catalogue: formatting, labels, scores, JSON-LD. The layout, header search and the guide,
 // legal, about and method pages import this module, not ./bikes, so they do not ship the bike index (critique section 2).
 import networks from "@/data/networks.json";
-import type { Bike, BikeLite, BrandNetwork, Category, Collection, ScoreKey } from "./types";
+import type { Bike, BikeLite, BrandNetwork, Category, Collection, EngineOil, ScoreKey } from "./types";
 import { SITE } from "./site";
 
 export const fullName = (b: Pick<BikeLite, "brand" | "model">) => `${b.brand} ${b.model}`;
@@ -63,6 +63,15 @@ export function bnNumerals(s: string): string {
 export function formatBDT(n: number, lang: "en" | "bn" = "en") {
   const s = "৳" + Math.round(n).toLocaleString("en-IN");
   return lang === "bn" ? bnDigits(s) : s;
+}
+
+/** "10W-30, API SL, JASO MA2, 1.0 L (1.1 L with filter)". Grade and spec stay Latin in Bangla: they are printed that way on the bottle. */
+export function engineOilText(o: Pick<EngineOil, "grade" | "spec" | "litres" | "litresWithFilter">, lang: "en" | "bn" = "en") {
+  const l = (n: number) => { const s = Number.isInteger(n) ? n.toFixed(1) : String(n); return lang === "bn" ? bnDigits(s) : s; };
+  const filter = o.litresWithFilter !== undefined && o.litresWithFilter !== o.litres
+    ? lang === "bn" ? ` (ফিল্টারসহ ${l(o.litresWithFilter)} লিটার)` : ` (${l(o.litresWithFilter)} L with filter)`
+    : "";
+  return [o.grade, o.spec, lang === "bn" ? `${l(o.litres)} লিটার${filter}` : `${l(o.litres)} L${filter}`].filter(Boolean).join(", ");
 }
 
 /** ৳2.65 lakh / ৳2.65 লাখ; 100 lakh and up is crore (৳99,99,999 rounds to ৳1 crore, not "৳100 lakh"). */
