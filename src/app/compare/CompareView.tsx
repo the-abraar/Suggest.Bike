@@ -276,7 +276,7 @@ function Table({ bikes }: { bikes: BikeLite[] }) {
     {
       title: tx("Engine & performance", "ইঞ্জিন ও পারফরম্যান্স"),
       rows: [
-        { label: tx("Engine", "ইঞ্জিন"), values: bikes.map((b) => (b.ev ? tx(`Electric · ${b.ev.motorW / 1000} kW motor`, `ইলেকট্রিক · ${b.ev.motorW / 1000} kW মোটর`) : `${ccLabel(b)} · ${b.engine.fuel === "fi" ? "FI" : tx("Carb", "কার্ব")} · ${b.engine.cooling}-cooled`)) },
+        { label: tx("Engine", "ইঞ্জিন"), values: bikes.map((b) => (b.ev ? tx(`Electric · ${b.ev.motorW / 1000} kW motor`, `ইলেকট্রিক · ${b.ev.motorW / 1000} kW মোটর`) : `${ccLabel(b)} · ${b.engine.fuel === "fi" ? "FI" : tx("Carb", "কার্ব")} · ${b.engine.cooling === "oil" ? "air- and oil" : b.engine.cooling}-cooled`)) },
         { label: tx("Power", "পাওয়ার"), values: bikes.map((b) => `${b.powerPS} PS`), nums: bikes.map((b) => b.powerPS), better: "high" },
         { label: tx("Torque", "টর্ক"), values: bikes.map((b) => `${b.torqueNm} Nm`), nums: bikes.map((b) => b.torqueNm), better: "high" },
         {

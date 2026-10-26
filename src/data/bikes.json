@@ -2707,6 +2707,7 @@
    "cylinders": 1,
    "stroke": 4,
    "cooling": "oil",
+   "coolingTech": "O3C (Oil-Cooled Combustion Chamber)",
    "valves": 3,
    "fuel": "carb"
   },

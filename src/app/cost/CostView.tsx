@@ -132,8 +132,8 @@ function Cost({ params }: { params: URLSearchParams }) {
               </p>
               <p className="mt-2 rounded-lg bg-surface-2 px-3 py-2 text-[12.5px] leading-snug text-ink-2">
                 {tx(
-                  `+${repairPct}% (${formatBDT(c.hiddenRepairs, lang)}) set aside for problems a used bike hides until later. ${cheap ? `${repairPct}% because the price is ${belowPct}% under the typical ${formatBDT(c.detail.refUsedPrice, lang)} (estimate).` : bike.engine.cooling === "air" ? "5% because a simple air-cooled engine is cheap to put right." : "10% because an oil- or liquid-cooled engine costs more to fix."}`,
-                  `পুরনো বাইকের যে সমস্যাগুলো পরে বের হয় তার জন্য +${repairPct}% (${formatBDT(c.hiddenRepairs, lang)}) আলাদা রাখা হয়েছে। ${cheap ? `দাম সাধারণ ${formatBDT(c.detail.refUsedPrice, lang)}-এর চেয়ে ${belowPct}% কম, তাই ${repairPct}% (আনুমানিক)।` : bike.engine.cooling === "air" ? "সাধারণ এয়ার-কুলড ইঞ্জিন ঠিক করতে খরচ কম, তাই ৫%।" : "অয়েল বা লিকুইড-কুলড ইঞ্জিন সারাতে খরচ বেশি, তাই ১০%।"}`,
+                  `+${repairPct}% (${formatBDT(c.hiddenRepairs, lang)}) set aside for problems a used bike hides until later. ${cheap ? `${repairPct}% because the price is ${belowPct}% under the typical ${formatBDT(c.detail.refUsedPrice, lang)} (estimate).` : bike.engine.cooling === "air" ? "5% because a simple air-cooled engine is cheap to put right." : "10% because an air- and oil-cooled or liquid-cooled engine costs more to fix."}`,
+                  `পুরনো বাইকের যে সমস্যাগুলো পরে বের হয় তার জন্য +${repairPct}% (${formatBDT(c.hiddenRepairs, lang)}) আলাদা রাখা হয়েছে। ${cheap ? `দাম সাধারণ ${formatBDT(c.detail.refUsedPrice, lang)}-এর চেয়ে ${belowPct}% কম, তাই ${repairPct}% (আনুমানিক)।` : bike.engine.cooling === "air" ? "সাধারণ এয়ার-কুলড ইঞ্জিন ঠিক করতে খরচ কম, তাই ৫%।" : "এয়ার ও অয়েল-কুলড বা লিকুইড-কুলড ইঞ্জিন সারাতে খরচ বেশি, তাই ১০%।"}`,
                 )}
               </p>
               {cheap && (

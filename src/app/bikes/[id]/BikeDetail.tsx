@@ -679,7 +679,7 @@ function SpecTable({ bike }: { bike: Bike }) {
     [tx("Distributor", "ডিস্ট্রিবিউটর"), bike.distributor],
   ] : [
     [tx("Engine", "ইঞ্জিন"), `${e.cc}cc, ${e.cylinders}-cylinder, ${e.stroke}-stroke${e.valves ? `, ${e.valves}-valve` : ""}`],
-    [tx("Cooling", "কুলিং"), lang === "bn" ? { air: "এয়ার-কুলড", oil: "অয়েল-কুলড", liquid: "লিকুইড-কুলড" }[e.cooling] : { air: "Air-cooled", oil: "Oil-cooled", liquid: "Liquid-cooled" }[e.cooling]],
+    [tx("Cooling", "কুলিং"), (lang === "bn" ? { air: "এয়ার-কুলড", oil: "এয়ার ও অয়েল-কুলড", liquid: "লিকুইড-কুলড" }[e.cooling] : { air: "Air-cooled", oil: "Air- and oil-cooled", liquid: "Liquid-cooled" }[e.cooling]) + (e.coolingTech ? ` · ${e.coolingTech}` : "")],
     [tx("Fuel system", "ফুয়েল সিস্টেম"), e.fuel === "fi" ? tx("Fuel injection", "ফুয়েল ইনজেকশন") : tx("Carburettor", "কার্বুরেটর")],
     [tx("Max power", "সর্বোচ্চ পাওয়ার"), `${bike.powerPS} PS${bike.powerRpm ? ` @ ${bike.powerRpm.toLocaleString()} rpm` : ""}`],
     [tx("Max torque", "সর্বোচ্চ টর্ক"), `${bike.torqueNm} Nm${bike.torqueRpm ? ` @ ${bike.torqueRpm.toLocaleString()} rpm` : ""}`],

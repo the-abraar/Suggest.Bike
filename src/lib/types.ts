@@ -31,7 +31,7 @@ export interface Bike {
   dataNote?: string;        // provenance, editorial and owner-TODO notes; never rendered, stripped by build-data (validate lints the public text)
   distributor?: string;     // BD distributor/assembler e.g. "Uttara Motors", "ACI Motors", "Bangladesh Honda Private Ltd (BHL)"
   assembledInBD?: boolean;
-  engine: { cc: number; cylinders: number; stroke: 0 | 2 | 4; cooling: "air" | "oil" | "liquid"; valves?: number; fuel: "carb" | "fi" | "electric" }; // electric: cc, cylinders, stroke are 0
+  engine: { cc: number; cylinders: number; stroke: 0 | 2 | 4; cooling: "air" | "oil" | "liquid"; coolingTech?: string; valves?: number; fuel: "carb" | "fi" | "electric" }; // electric: cc, cylinders, stroke are 0. cooling "oil" = air- and oil-cooled; coolingTech: the maker's name for it, "O3C (Oil-Cooled Combustion Chamber)"
   ev?: EvSpec;              // required when engine.fuel is "electric"
   variants?: Variant[];     // other BD variants with a different verified price (ABS/non-ABS, disc/drum, carb/FI)
   powerPS: number; powerRpm?: number;
