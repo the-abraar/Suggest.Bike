@@ -7,6 +7,7 @@ import {
   CATEGORIES,
   SCORE_LABELS,
   absLabel,
+  bnNumerals,
   brakeLabel,
   ccLabel,
   engineOilText,
@@ -290,7 +291,7 @@ export function BikeDetail({ bike }: { bike: Bike & { priceHistory?: PricePoint[
                   {i === 0 && <Approx />}
                 </dt>
                 <dd className="mt-1 text-[18px] font-semibold tracking-tight text-ink tnum">
-                  {v}
+                  {lang === "bn" ? bnNumerals(v) : v}
                   {u && <span className="ml-1 text-[12.5px] font-medium text-muted">{u}</span>}
                 </dd>
               </div>
@@ -710,7 +711,8 @@ function SpecTable({ bike }: { bike: Bike }) {
         .map(([k, v], i) => (
           <div key={k} className={`grid grid-cols-[minmax(120px,40%)_1fr] gap-4 px-4 py-3 text-[14.5px] ${i % 2 ? "bg-surface-2/40" : ""}`}>
             <dt className="text-muted">{k}</dt>
-            <dd className="text-ink">{v}</dd>
+            {/* tyre sizes stay Latin, as printed on the tyre */}
+            <dd className="text-ink">{lang === "bn" && k !== "টায়ার" ? bnNumerals(v) : v}</dd>
           </div>
         ))}
     </dl>
@@ -754,7 +756,7 @@ function MonthlyCard({ bike }: { bike: Bike }) {
       />
       <div className="flex justify-between text-[11.5px] text-faint">
         <span>5 km</span>
-        <span>{tx("120 km/day", "দিনে 120 km")}</span>
+        <span>{tx("120 km/day", "দিনে ১২০ km")}</span>
       </div>
       <div className="mt-4 space-y-2 border-t border-line pt-4">
         {rows.map((r) => (

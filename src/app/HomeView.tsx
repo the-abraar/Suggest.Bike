@@ -187,7 +187,7 @@ export function HomeView() {
                   <h3 className="text-[15.5px] font-semibold text-ink">
                     <L en={CATEGORIES[c].en} bn={CATEGORIES[c].bn} />
                   </h3>
-                  <span className="text-[12.5px] text-muted tnum">{list.length}</span>
+                  <span className="text-[12.5px] text-muted tnum">{lang === "bn" ? bnDigits(String(list.length)) : list.length}</span>
                 </div>
                 <p className="mt-1 text-[12.5px] leading-snug text-muted">{lang === "bn" ? CATEGORIES[c].blurbBn : CATEGORIES[c].blurb}</p>
               </Link>
@@ -322,7 +322,7 @@ function QuickPick() {
               href={`/bikes/${m.bike.id}/`}
               className="group flex items-center gap-3 rounded-xl border border-transparent p-2 transition-colors hover:border-line hover:bg-surface-2"
             >
-              <span className="w-5 text-center text-[13px] font-semibold text-faint tnum">{i + 1}</span>
+              <span className="w-5 text-center text-[13px] font-semibold text-faint tnum">{lang === "bn" ? bnDigits(String(i + 1)) : i + 1}</span>
               {/* hidden on phones so the bike name is not cut to one word */}
               <span className="hidden h-12 w-20 shrink-0 sm:block">
                 <BikeArt bike={m.bike} shadow={false} className="h-full w-full" />

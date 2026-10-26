@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { formatBDT } from "@/lib/bike-utils";
+import { bnNumerals, formatBDT } from "@/lib/bike-utils";
 import { langHref } from "@/lib/site";
 
 type Lang = "en" | "bn";
@@ -10,21 +10,21 @@ type Bi = { en: string; bn: string };
 const BRTA_URL = "https://brta.gov.bd/pages/static-pages/6922e0e7933eb65569e2919e";
 const BSP_URL = "https://bsp.brta.gov.bd/";
 const ACT_URL = "https://bdlaws.minlaw.gov.bd/act-print-1262.html";
-const AS_OF: Bi = { en: "14 Oct 2026", bn: "14 অক্টোবর 2026" };
+const AS_OF: Bi = { en: "14 Oct 2026", bn: "১৪ অক্টোবর ২০২৬" };
 
 // Fees as BRTA lists them, paid online only (no bank counter).
 const FEES: { what: Bi; bdt: number }[] = [
   { what: { en: "Learner licence, one category (motorcycle only)", bn: "শিক্ষানবিশ লাইসেন্স, এক ক্যাটাগরি (শুধু মোটরসাইকেল)" }, bdt: 518 },
   { what: { en: "Learner licence, two categories (for example motorcycle and car)", bn: "শিক্ষানবিশ লাইসেন্স, দুই ক্যাটাগরি (যেমন মোটরসাইকেল ও কার)" }, bdt: 748 },
-  { what: { en: "Smart card, non-professional (valid 10 years)", bn: "স্মার্ট কার্ড, অপেশাদার (মেয়াদ 10 বছর)" }, bdt: 4497 },
-  { what: { en: "Smart card, professional (valid 5 years)", bn: "স্মার্ট কার্ড, পেশাদার (মেয়াদ 5 বছর)" }, bdt: 2772 },
+  { what: { en: "Smart card, non-professional (valid 10 years)", bn: "স্মার্ট কার্ড, অপেশাদার (মেয়াদ ১০ বছর)" }, bdt: 4497 },
+  { what: { en: "Smart card, professional (valid 5 years)", bn: "স্মার্ট কার্ড, পেশাদার (মেয়াদ ৫ বছর)" }, bdt: 2772 },
   { what: { en: "Postage for the card", bn: "কার্ড ডাকে পাঠানোর খরচ" }, bdt: 60 },
 ];
 const [LEARNER_ONE, , SMART_NONPRO, , POSTAGE] = FEES.map((f) => f.bdt);
 
 export function LicenceView({ lang }: { lang: Lang }) {
-  const t = (b: Bi) => b[lang];
-  const tx = (en: string, bn: string) => (lang === "bn" ? bn : en);
+  const t = (b: Bi) => (lang === "bn" ? bnNumerals(b.bn) : b.en);
+  const tx = (en: string, bn: string) => (lang === "bn" ? bnNumerals(bn) : en);
   const href = (h: string) => langHref(h, lang);
   const a = "text-brand underline underline-offset-2";
   const ext = (url: string, label: string) => (
@@ -41,11 +41,11 @@ export function LicenceView({ lang }: { lang: Lang }) {
     },
     {
       en: "Apply for a learner licence online. Upload a photo (up to 150 KB), a medical certificate from a registered doctor, your NID, your class 8 (or higher) certificate, and a utility bill if you live somewhere other than your NID address (each up to 600 KB). Pay the learner fee online.",
-      bn: "অনলাইনে শিক্ষানবিশ লাইসেন্সের আবেদন করুন। ছবি (সর্বোচ্চ 150 কেবি), রেজিস্টার্ড ডাক্তারের মেডিকেল সার্টিফিকেট, এনআইডি, ৮ম শ্রেণি (বা বেশি) পাসের সনদ, আর এনআইডির ঠিকানা ছাড়া অন্য কোথাও থাকলে ইউটিলিটি বিল (প্রতিটি সর্বোচ্চ 600 কেবি) আপলোড করুন। শিক্ষানবিশ ফি অনলাইনে দিন।",
+      bn: "অনলাইনে শিক্ষানবিশ লাইসেন্সের আবেদন করুন। ছবি (সর্বোচ্চ ১৫০ কেবি), রেজিস্টার্ড ডাক্তারের মেডিকেল সার্টিফিকেট, এনআইডি, ৮ম শ্রেণি (বা বেশি) পাসের সনদ, আর এনআইডির ঠিকানা ছাড়া অন্য কোথাও থাকলে ইউটিলিটি বিল (প্রতিটি সর্বোচ্চ ৬০০ কেবি) আপলোড করুন। শিক্ষানবিশ ফি অনলাইনে দিন।",
     },
     {
       en: "Practise. The Act lets you ride on a learner licence where it applies (s.4); a learner licence carries no points (s.11).",
-      bn: "অনুশীলন করুন। আইনে প্রযোজ্য ক্ষেত্রে শিক্ষানবিশ লাইসেন্সে চালানোর সুযোগ আছে (ধারা 4); শিক্ষানবিশ লাইসেন্সে পয়েন্ট থাকে না (ধারা 11)।",
+      bn: "অনুশীলন করুন। আইনে প্রযোজ্য ক্ষেত্রে শিক্ষানবিশ লাইসেন্সে চালানোর সুযোগ আছে (ধারা ৪); শিক্ষানবিশ লাইসেন্সে পয়েন্ট থাকে না (ধারা ১১)।",
     },
     {
       en: "On your test date, go in person with the learner licence and documents. BRTA takes your biometrics and checks your fingerprint against the NID server before you can sit the driving skills test.",
@@ -90,7 +90,7 @@ export function LicenceView({ lang }: { lang: Lang }) {
         <p className="mt-3 text-[15.5px] leading-relaxed text-ink-2">
           {tx(
             "You must be at least 18 for a non-professional licence (21 for a professional one), have passed class 8 or equivalent, be physically and mentally fit, and pass the driving competence test (Act s.6). The licence is personal and cannot be transferred. BRTA says police verification is not currently needed.",
-            "অপেশাদার লাইসেন্সের জন্য বয়স কমপক্ষে 18 (পেশাদারের জন্য 21), ৮ম শ্রেণি বা সমমান পাস, শারীরিক ও মানসিকভাবে সুস্থ, এবং ড্রাইভিং দক্ষতা পরীক্ষায় উত্তীর্ণ হতে হবে (আইন ধারা 6)। লাইসেন্স ব্যক্তিগত, হস্তান্তর করা যায় না। বিআরটিএ জানাচ্ছে, এখন পুলিশ ভেরিফিকেশন লাগে না।",
+            "অপেশাদার লাইসেন্সের জন্য বয়স কমপক্ষে ১৮ (পেশাদারের জন্য ২১), ৮ম শ্রেণি বা সমমান পাস, শারীরিক ও মানসিকভাবে সুস্থ, এবং ড্রাইভিং দক্ষতা পরীক্ষায় উত্তীর্ণ হতে হবে (আইন ধারা ৬)। লাইসেন্স ব্যক্তিগত, হস্তান্তর করা যায় না। বিআরটিএ জানাচ্ছে, এখন পুলিশ ভেরিফিকেশন লাগে না।",
           )}
         </p>
       </section>
@@ -132,7 +132,7 @@ export function LicenceView({ lang }: { lang: Lang }) {
         <p className="mt-3 text-[15.5px] leading-relaxed text-ink-2">
           {tx(
             "Up to ৳25,000, up to 6 months in jail, or both (Act s.66). Riding on an expired licence counts the same (s.4). Every full licence starts with 12 points, and most riding offences cut one (s.11): see ",
-            "সর্বোচ্চ ৳25,000 জরিমানা, সর্বোচ্চ 6 মাস জেল বা দুটোই (আইন ধারা 66)। মেয়াদোত্তীর্ণ লাইসেন্সে চালানোও একই (ধারা 4)। প্রতিটি পূর্ণ লাইসেন্সে 12 পয়েন্ট থাকে, বেশিরভাগ চালানো-সংক্রান্ত অপরাধে 1 পয়েন্ট কাটা যায় (ধারা 11): দেখুন ",
+            "সর্বোচ্চ ৳২৫,০০০ জরিমানা, সর্বোচ্চ ৬ মাস জেল বা দুটোই (আইন ধারা ৬৬)। মেয়াদোত্তীর্ণ লাইসেন্সে চালানোও একই (ধারা ৪)। প্রতিটি পূর্ণ লাইসেন্সে ১২ পয়েন্ট থাকে, বেশিরভাগ চালানো-সংক্রান্ত অপরাধে ১ পয়েন্ট কাটা যায় (ধারা ১১): দেখুন ",
           )}
           <Link href={href("/guide/motorcycle-fines/")} className={a}>
             {tx("motorcycle fines and points", "মোটরসাইকেলের জরিমানা ও পয়েন্ট")}

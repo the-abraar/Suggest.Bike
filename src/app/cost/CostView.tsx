@@ -133,7 +133,7 @@ function Cost({ params }: { params: URLSearchParams }) {
               <p className="mt-2 rounded-lg bg-surface-2 px-3 py-2 text-[12.5px] leading-snug text-ink-2">
                 {tx(
                   `+${repairPct}% (${formatBDT(c.hiddenRepairs, lang)}) set aside for problems a used bike hides until later. ${cheap ? `${repairPct}% because the price is ${belowPct}% under the typical ${formatBDT(c.detail.refUsedPrice, lang)} (estimate).` : bike.engine.cooling === "air" ? "5% because a simple air-cooled engine is cheap to put right." : "10% because an oil- or liquid-cooled engine costs more to fix."}`,
-                  `পুরনো বাইকের যে সমস্যাগুলো পরে বের হয় তার জন্য +${repairPct}% (${formatBDT(c.hiddenRepairs, lang)}) আলাদা রাখা হয়েছে। ${cheap ? `দাম সাধারণ ${formatBDT(c.detail.refUsedPrice, lang)}-এর চেয়ে ${belowPct}% কম, তাই ${repairPct}% (আনুমানিক)।` : bike.engine.cooling === "air" ? "সাধারণ এয়ার-কুলড ইঞ্জিন ঠিক করতে খরচ কম, তাই 5%।" : "অয়েল বা লিকুইড-কুলড ইঞ্জিন সারাতে খরচ বেশি, তাই 10%।"}`,
+                  `পুরনো বাইকের যে সমস্যাগুলো পরে বের হয় তার জন্য +${repairPct}% (${formatBDT(c.hiddenRepairs, lang)}) আলাদা রাখা হয়েছে। ${cheap ? `দাম সাধারণ ${formatBDT(c.detail.refUsedPrice, lang)}-এর চেয়ে ${belowPct}% কম, তাই ${repairPct}% (আনুমানিক)।` : bike.engine.cooling === "air" ? "সাধারণ এয়ার-কুলড ইঞ্জিন ঠিক করতে খরচ কম, তাই ৫%।" : "অয়েল বা লিকুইড-কুলড ইঞ্জিন সারাতে খরচ বেশি, তাই ১০%।"}`,
                 )}
               </p>
               {cheap && (
@@ -161,7 +161,7 @@ function Cost({ params }: { params: URLSearchParams }) {
           <Field label={tx("Riding per day", "দিনে কতটা চালাবেন")} value={`${inp.kmPerDay} km`}>
             <Range min={5} max={150} step={5} value={inp.kmPerDay} onChange={(v) => set("kmPerDay", v)} label={tx("Kilometres per day", "দিনে কত কিলোমিটার")} />
             <p className="mt-1 text-[12px] text-faint">
-              {tx(`≈ ${(inp.kmPerDay * 30).toLocaleString("en-IN")} km a month. Pathao riders often do 100+.`, `মাসে ≈ ${(inp.kmPerDay * 30).toLocaleString("en-IN")} km। পাঠাও রাইডাররা প্রায়ই দিনে 100+ চালান।`)}
+              {tx(`≈ ${(inp.kmPerDay * 30).toLocaleString("en-IN")} km a month. Pathao riders often do 100+.`, `মাসে ≈ ${(inp.kmPerDay * 30).toLocaleString("en-IN")} km। পাঠাও রাইডাররা প্রায়ই দিনে ১০০+ চালান।`)}
             </p>
           </Field>
 
@@ -206,7 +206,7 @@ function Cost({ params }: { params: URLSearchParams }) {
           <Field label={tx("Washing, parking & small fixes", "ধোয়া, পার্কিং ও ছোটখাটো খরচ")} value={`${formatBDT(inp.upkeepPerMonth, lang)}${tx("/mo", "/মাস")}`}>
             <Range min={0} max={5000} step={100} value={inp.upkeepPerMonth} onChange={(v) => set("upkeepPerMonth", v)} label={tx("Washing and parking per month", "মাসে ধোয়া ও পার্কিং")} />
             <p className="mt-1 text-[12px] text-faint">
-              {tx("Paid garage parking in Dhaka is often ৳1,500–3,000 a month.", "ঢাকায় গ্যারেজ পার্কিং প্রায়ই মাসে ৳1,500–3,000।")}
+              {tx("Paid garage parking in Dhaka is often ৳1,500–3,000 a month.", "ঢাকায় গ্যারেজ পার্কিং প্রায়ই মাসে ৳১,৫০০–৩,০০০।")}
             </p>
           </Field>
 
@@ -234,7 +234,7 @@ function Cost({ params }: { params: URLSearchParams }) {
               label={tx("Third-party insurance", "থার্ড-পার্টি ইন্স্যুরেন্স")}
               sub={tx(
                 `On by default · ~৳1,006/yr · not compulsory as of ${INSURANCE_AS_OF}, but a rule to make it compulsory again is pending`,
-                `ডিফল্টে চালু · বছরে ~৳1,006 · ${INSURANCE_AS_OF} পর্যন্ত বাধ্যতামূলক নয়, তবে আবার বাধ্যতামূলক করার নিয়ম আসছে`,
+                `ডিফল্টে চালু · বছরে ~৳১,০০৬ · ${INSURANCE_AS_OF} পর্যন্ত বাধ্যতামূলক নয়, তবে আবার বাধ্যতামূলক করার নিয়ম আসছে`,
               )}
             />
             <Switch
@@ -480,19 +480,19 @@ function explain(c: CostBreakdown, bike: BikeLite, inp: CostInput, tx: Tx, lang:
     overhaul: o
       ? tx(
           `One big repair over 10 years of ${inp.kmPerDay} km/day (${n(c.km)} km) with some highway trips, some misuse and missed services: engine top-end/rebuild ${formatBDT(o.engine, lang)}, extra clutch plates ${formatBDT(o.clutch, lang)}, suspension rebuild ${formatBDT(o.suspension, lang)}, possible frame straightening ${formatBDT(o.frame, lang)}, wiring ${formatBDT(o.wiring, lang)}. Scaled ×${o.partsFactor.toFixed(2)} for this bike's parts prices and ×${o.kmFactor.toFixed(2)} for distance vs 30 km/day. Estimate.`,
-          `১০ বছরে দিনে ${inp.kmPerDay} km (${n(c.km)} km), মাঝে মাঝে হাইওয়ে ট্যুর, কিছু অযত্ন আর বাদ পড়া সার্ভিস ধরে একটা বড় মেরামত: ইঞ্জিন টপ-এন্ড/রিবিল্ড ${formatBDT(o.engine, lang)}, বাড়তি ক্লাচ প্লেট ${formatBDT(o.clutch, lang)}, সাসপেনশন রিবিল্ড ${formatBDT(o.suspension, lang)}, দরকার হলে ফ্রেম সোজা করা ${formatBDT(o.frame, lang)}, ওয়্যারিং ${formatBDT(o.wiring, lang)}। এই বাইকের পার্টসের দামে ×${o.partsFactor.toFixed(2)} আর দিনে 30 km-এর তুলনায় দূরত্বে ×${o.kmFactor.toFixed(2)}। আনুমানিক।`,
+          `১০ বছরে দিনে ${inp.kmPerDay} km (${n(c.km)} km), মাঝে মাঝে হাইওয়ে ট্যুর, কিছু অযত্ন আর বাদ পড়া সার্ভিস ধরে একটা বড় মেরামত: ইঞ্জিন টপ-এন্ড/রিবিল্ড ${formatBDT(o.engine, lang)}, বাড়তি ক্লাচ প্লেট ${formatBDT(o.clutch, lang)}, সাসপেনশন রিবিল্ড ${formatBDT(o.suspension, lang)}, দরকার হলে ফ্রেম সোজা করা ${formatBDT(o.frame, lang)}, ওয়্যারিং ${formatBDT(o.wiring, lang)}। এই বাইকের পার্টসের দামে ×${o.partsFactor.toFixed(2)} আর দিনে ৩০ km-এর তুলনায় দূরত্বে ×${o.kmFactor.toFixed(2)}। আনুমানিক।`,
         )
       : undefined,
     evBattery: d.evBattery?.due
       ? tx(
           `One new traction battery at ${EV_BATTERY.shareOfPrice * 100}% × ${formatBDT(bike.priceBDT, lang)} new price = ${formatBDT(c.evBattery, lang)}, because ${inp.years} year${inp.years === 1 ? "" : "s"} runs past the ${d.evBattery.warrantyMonths}-month battery warranty${d.evBattery.assumed ? " (assumed; makers quote 3–5 years)" : ""}${c.buyingUsed ? ", counting a used bike as ~3 years old" : ""}. Estimate.`,
-          `নতুন দাম ${formatBDT(bike.priceBDT, lang)}-এর ${EV_BATTERY.shareOfPrice * 100}% = ${formatBDT(c.evBattery, lang)}-এ একটি নতুন ব্যাটারি, কারণ ${inp.years} বছর ব্যাটারির ${d.evBattery.warrantyMonths} মাসের ওয়ারেন্টি${d.evBattery.assumed ? " (ধরে নেওয়া; কোম্পানিগুলো 3–5 বছর বলে)" : ""} পার হয়ে যায়${c.buyingUsed ? ", পুরনো বাইককে ~৩ বছরের ধরে" : ""}। আনুমানিক।`,
+          `নতুন দাম ${formatBDT(bike.priceBDT, lang)}-এর ${EV_BATTERY.shareOfPrice * 100}% = ${formatBDT(c.evBattery, lang)}-এ একটি নতুন ব্যাটারি, কারণ ${inp.years} বছর ব্যাটারির ${d.evBattery.warrantyMonths} মাসের ওয়ারেন্টি${d.evBattery.assumed ? " (ধরে নেওয়া; কোম্পানিগুলো ৩–৫ বছর বলে)" : ""} পার হয়ে যায়${c.buyingUsed ? ", পুরনো বাইককে ~৩ বছরের ধরে" : ""}। আনুমানিক।`,
         )
       : undefined,
     hiddenRepairs: c.buyingUsed
       ? tx(
           `${Math.round(d.hiddenRepairRate * 100)}% × ${formatBDT(c.price, lang)} paid. 5% for air-cooled, 10% for oil/liquid-cooled; 20% if the price is 20–35% under the typical ${formatBDT(d.refUsedPrice, lang)}, 25% if more. Estimate.`,
-          `${Math.round(d.hiddenRepairRate * 100)}% × দেওয়া দাম ${formatBDT(c.price, lang)}। এয়ার-কুলড 5%, অয়েল/লিকুইড-কুলড 10%; দাম সাধারণ ${formatBDT(d.refUsedPrice, lang)}-এর চেয়ে ২০–৩৫% কম হলে 20%, আরও কম হলে 25%। আনুমানিক।`,
+          `${Math.round(d.hiddenRepairRate * 100)}% × দেওয়া দাম ${formatBDT(c.price, lang)}। এয়ার-কুলড ৫%, অয়েল/লিকুইড-কুলড ১০%; দাম সাধারণ ${formatBDT(d.refUsedPrice, lang)}-এর চেয়ে ২০–৩৫% কম হলে ২০%, আরও কম হলে ২৫%। আনুমানিক।`,
         )
       : undefined,
     paperwork: c.buyingUsed

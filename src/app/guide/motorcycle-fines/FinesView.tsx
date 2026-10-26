@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { formatBDT } from "@/lib/bike-utils";
+import { bnNumerals, formatBDT } from "@/lib/bike-utils";
 import { langHref } from "@/lib/site";
 
 type Lang = "en" | "bn";
@@ -8,7 +8,7 @@ type Bi = { en: string; bn: string };
 
 /** Official Act text; every row below was read there on AS_OF. */
 export const ACT_URL = "https://bdlaws.minlaw.gov.bd/act-print-1262.html";
-const AS_OF: Bi = { en: "13 Oct 2026", bn: "13 অক্টোবর 2026" };
+const AS_OF: Bi = { en: "13 Oct 2026", bn: "১৩ অক্টোবর ২০২৬" };
 
 // Maximums from the Road Transport Act 2018 (Act 47 of 2018). rule = section broken, sec = penalty section.
 type Fine = { what: Bi; rule: string; sec: string; jail?: Bi; fineBDT: number; points?: number; noBail?: boolean };
@@ -37,12 +37,12 @@ const GROUPS: { title: Bi; rows: Fine[] }[] = [
       { what: { en: "No valid driving licence", bn: "বৈধ ড্রাইভিং লাইসেন্স নেই" }, rule: "4, 5", sec: "66", jail: months(6), fineBDT: 25000 },
       { what: { en: "No registration or no number plate", bn: "রেজিস্ট্রেশন বা নম্বর প্লেট নেই" }, rule: "16", sec: "72", jail: months(6), fineBDT: 50000 },
       { what: { en: "No tax token, or an expired one", bn: "ট্যাক্স টোকেন নেই বা মেয়াদ শেষ" }, rule: "26", sec: "76", fineBDT: 10000 },
-      { what: { en: "Buyer does not register the bike in their name within 60 days", bn: "কেনার 60 দিনের মধ্যে নিজের নামে রেজিস্ট্রেশন (মালিকানা বদলি) না করা" }, rule: "21", sec: "74", jail: months(1), fineBDT: 5000 },
+      { what: { en: "Buyer does not register the bike in their name within 60 days", bn: "কেনার ৬০ দিনের মধ্যে নিজের নামে রেজিস্ট্রেশন (মালিকানা বদলি) না করা" }, rule: "21", sec: "74", jail: months(1), fineBDT: 5000 },
       {
         what: { en: "Changing the bike against its approved specification (exhaust, lights, brakes and so on)", bn: "অনুমোদিত স্পেসিফিকেশনের বাইরে পরিবর্তন (এক্সজস্ট, লাইট, ব্রেক ইত্যাদি)" },
         rule: "40",
         sec: "84",
-        jail: { en: "1 to 3 years in jail", bn: "1 থেকে 3 বছর জেল" },
+        jail: { en: "1 to 3 years in jail", bn: "১ থেকে ৩ বছর জেল" },
         fineBDT: 300000,
         noBail: true,
       },
@@ -62,13 +62,13 @@ const GROUPS: { title: Bi; rows: Fine[] }[] = [
 export function penaltyText(f: Fine, lang: Lang) {
   const fine = lang === "bn" ? `সর্বোচ্চ ${formatBDT(f.fineBDT, lang)} জরিমানা` : `up to ${formatBDT(f.fineBDT, lang)} fine`;
   const s = f.jail ? (lang === "bn" ? `${f.jail.bn}, ${fine} বা দুটোই` : `${f.jail.en}, ${fine}, or both`) : fine;
-  return lang === "en" ? s[0].toUpperCase() + s.slice(1) : s;
+  return lang === "en" ? s[0].toUpperCase() + s.slice(1) : bnNumerals(s);
 }
 export const FINES = GROUPS.flatMap((g) => g.rows);
 
 export function FinesView({ lang }: { lang: Lang }) {
-  const t = (b: Bi) => b[lang];
-  const tx = (en: string, bn: string) => (lang === "bn" ? bn : en);
+  const t = (b: Bi) => (lang === "bn" ? bnNumerals(b.bn) : b.en);
+  const tx = (en: string, bn: string) => (lang === "bn" ? bnNumerals(bn) : en);
   const href = (h: string) => langHref(h, lang);
   const sec = (s: string) => tx(`s.${s}`, `ধারা ${s}`);
   const a = "text-brand underline underline-offset-2";
@@ -103,7 +103,7 @@ export function FinesView({ lang }: { lang: Lang }) {
         <p className="mt-3 text-[15.5px] leading-relaxed text-ink-2">
           {tx(
             "Up to ৳10,000, up to 3 months in jail, or both, and 1 point off the rider's licence (s.92(1)). The rule covers both people: the Act says the rider and the pillion must both wear a helmet properly, and a motorcycle may carry only one pillion (s.49). Carrying two pillions has the same penalty.",
-            "সর্বোচ্চ ৳10,000 জরিমানা, সর্বোচ্চ 3 মাস জেল বা দুটোই, আর চালকের লাইসেন্স থেকে 1 পয়েন্ট কাটা (ধারা 92(1))। নিয়মটা দুজনের জন্যই: আইন বলছে চালক ও পেছনের আরোহী দুজনকেই যথাযথভাবে হেলমেট পরতে হবে, আর মোটরসাইকেলে একজনের বেশি সহযাত্রী নেওয়া যাবে না (ধারা 49)। দুজন সহযাত্রী নিলেও একই শাস্তি।",
+            "সর্বোচ্চ ৳১০,০০০ জরিমানা, সর্বোচ্চ ৩ মাস জেল বা দুটোই, আর চালকের লাইসেন্স থেকে ১ পয়েন্ট কাটা (ধারা ৯২(১))। নিয়মটা দুজনের জন্যই: আইন বলছে চালক ও পেছনের আরোহী দুজনকেই যথাযথভাবে হেলমেট পরতে হবে, আর মোটরসাইকেলে একজনের বেশি সহযাত্রী নেওয়া যাবে না (ধারা ৪৯)। দুজন সহযাত্রী নিলেও একই শাস্তি।",
           )}
         </p>
       </section>
@@ -119,7 +119,7 @@ export function FinesView({ lang }: { lang: Lang }) {
                   <p className="text-[15px] font-medium text-ink">{t(f.what)}</p>
                   <p className="mt-1 text-[14.5px] leading-relaxed text-ink-2">
                     {penaltyText(f, lang)}
-                    {f.points ? tx(`, 1 licence point`, `, লাইসেন্স থেকে 1 পয়েন্ট`) : ""}
+                    {f.points ? tx(`, 1 licence point`, `, লাইসেন্স থেকে ১ পয়েন্ট`) : ""}
                     {f.noBail ? tx(". Not bailable", "। জামিন অযোগ্য") : ""}
                   </p>
                   <p className="mt-0.5 text-[12.5px] text-muted">
@@ -133,7 +133,7 @@ export function FinesView({ lang }: { lang: Lang }) {
         <p className="mt-4 text-[14px] leading-relaxed text-muted">
           {tx(
             "Doing the same offence again after being punished for it: up to double the maximum, and never less than double the earlier punishment (s.100).",
-            "শাস্তি পাওয়ার পর একই অপরাধ আবার করলে: সর্বোচ্চ শাস্তির দ্বিগুণ পর্যন্ত, আর আগের শাস্তির দ্বিগুণের কম নয় (ধারা 100)।",
+            "শাস্তি পাওয়ার পর একই অপরাধ আবার করলে: সর্বোচ্চ শাস্তির দ্বিগুণ পর্যন্ত, আর আগের শাস্তির দ্বিগুণের কম নয় (ধারা ১০০)।",
           )}
         </p>
       </section>
@@ -143,7 +143,7 @@ export function FinesView({ lang }: { lang: Lang }) {
         <p className="mt-3 text-[15.5px] leading-relaxed text-ink-2">
           {tx(
             "Every driving licence except a learner licence starts with 12 points (s.11). Most riding offences above also cut 1 point. The rules made under the Act set what happens as points run out.",
-            "শিক্ষানবিশ ছাড়া প্রতিটি ড্রাইভিং লাইসেন্সে 12 পয়েন্ট থাকে (ধারা 11)। ওপরের বেশিরভাগ চালানো-সংক্রান্ত অপরাধে 1 পয়েন্ট করে কাটা যায়। পয়েন্ট শেষ হলে কী হবে, তা আইনের অধীন বিধিমালায় ঠিক করা।",
+            "শিক্ষানবিশ ছাড়া প্রতিটি ড্রাইভিং লাইসেন্সে ১২ পয়েন্ট থাকে (ধারা ১১)। ওপরের বেশিরভাগ চালানো-সংক্রান্ত অপরাধে ১ পয়েন্ট করে কাটা যায়। পয়েন্ট শেষ হলে কী হবে, তা আইনের অধীন বিধিমালায় ঠিক করা।",
           )}
         </p>
       </section>
@@ -154,19 +154,19 @@ export function FinesView({ lang }: { lang: Lang }) {
           <li>
             {tx(
               "For the common offences (no licence, no registration, illegal changes, speeding, helmet and other riding rules, not helping after a crash) an officer of sub-inspector or sergeant rank or above writes a charge. You get a copy and sign or thumbprint it (s.108(1)).",
-              "সাধারণ অপরাধগুলোর জন্য (লাইসেন্স নেই, রেজিস্ট্রেশন নেই, অবৈধ পরিবর্তন, গতিসীমা, হেলমেটসহ চালানোর নিয়ম, দুর্ঘটনার পর সাহায্য না করা) সাব-ইন্সপেক্টর বা সার্জেন্ট বা তার ওপরের কর্মকর্তা অভিযোগ লেখেন। আপনি একটি কপি পান এবং তাতে সই বা টিপসই দেন (ধারা 108(1))।",
+              "সাধারণ অপরাধগুলোর জন্য (লাইসেন্স নেই, রেজিস্ট্রেশন নেই, অবৈধ পরিবর্তন, গতিসীমা, হেলমেটসহ চালানোর নিয়ম, দুর্ঘটনার পর সাহায্য না করা) সাব-ইন্সপেক্টর বা সার্জেন্ট বা তার ওপরের কর্মকর্তা অভিযোগ লেখেন। আপনি একটি কপি পান এবং তাতে সই বা টিপসই দেন (ধারা ১০৮(১))।",
             )}
           </li>
           <li>
             {tx(
               "In areas BRTA has notified, the officer can fine you on the spot. The amount is written on a form and you get a receipt when you pay (s.113(1)-(2)). Ask for it.",
-              "BRTA ঘোষিত এলাকায় কর্মকর্তা ঘটনাস্থলেই জরিমানা করতে পারেন। অঙ্কটা ফরমে লেখা হয় আর টাকা দিলে আপনি রসিদ পান (ধারা 113(1)-(2))। রসিদ চেয়ে নিন।",
+              "BRTA ঘোষিত এলাকায় কর্মকর্তা ঘটনাস্থলেই জরিমানা করতে পারেন। অঙ্কটা ফরমে লেখা হয় আর টাকা দিলে আপনি রসিদ পান (ধারা ১১৩(১)-(২))। রসিদ চেয়ে নিন।",
             )}
           </li>
           <li>
             {tx(
               "If you refuse the charge copy or do not pay, the bike can be sent to the nearest police station and is released after the fine is paid (s.113(3)).",
-              "অভিযোগের কপি নিতে অস্বীকার করলে বা জরিমানা না দিলে বাইক নিকটস্থ থানায় পাঠানো যায়, জরিমানা দিলে ছাড়া হয় (ধারা 113(3))।",
+              "অভিযোগের কপি নিতে অস্বীকার করলে বা জরিমানা না দিলে বাইক নিকটস্থ থানায় পাঠানো যায়, জরিমানা দিলে ছাড়া হয় (ধারা ১১৩(৩))।",
             )}
           </li>
         </ol>
@@ -184,17 +184,17 @@ export function FinesView({ lang }: { lang: Lang }) {
         <p className="mt-3 text-[15.5px] leading-relaxed text-ink-2">
           {tx(
             "Tell the nearest police station straight away (and the fire service or a hospital where needed), and get anyone injured to a hospital as fast as possible (s.62(1)). Not doing this: up to ৳20,000, up to 1 month in jail, or both (s.95). Crashes that kill or seriously injure someone fall under s.105 and the Penal Code; offences under ss.84, 98 and 105 are not bailable (s.117).",
-            "সঙ্গে সঙ্গে নিকটস্থ থানায় জানান (দরকার হলে ফায়ার সার্ভিস বা হাসপাতালেও), আর আহত কাউকে যত দ্রুত সম্ভব হাসপাতালে নিন (ধারা 62(1))। না করলে: সর্বোচ্চ ৳20,000 জরিমানা, সর্বোচ্চ 1 মাস জেল বা দুটোই (ধারা 95)। কারও মৃত্যু বা গুরুতর আঘাত হলে ধারা 105 ও দণ্ডবিধি প্রযোজ্য; ধারা 84, 98 ও 105-এর অপরাধ জামিন অযোগ্য (ধারা 117)।",
+            "সঙ্গে সঙ্গে নিকটস্থ থানায় জানান (দরকার হলে ফায়ার সার্ভিস বা হাসপাতালেও), আর আহত কাউকে যত দ্রুত সম্ভব হাসপাতালে নিন (ধারা ৬২(১))। না করলে: সর্বোচ্চ ৳২০,০০০ জরিমানা, সর্বোচ্চ ১ মাস জেল বা দুটোই (ধারা ৯৫)। কারও মৃত্যু বা গুরুতর আঘাত হলে ধারা ১০৫ ও দণ্ডবিধি প্রযোজ্য; ধারা ৮৪, ৯৮ ও ১০৫-এর অপরাধ জামিন অযোগ্য (ধারা ১১৭)।",
           )}
         </p>
       </section>
 
       <section id="changes" className="mt-10 scroll-mt-24">
-        <h2 className="text-[22px] font-semibold tracking-tight text-ink">{tx("Were the fines cut in 2024?", "2024-এ কি জরিমানা কমানো হয়েছে?")}</h2>
+        <h2 className="text-[22px] font-semibold tracking-tight text-ink">{tx("Were the fines cut in 2024?", "২০২৪-এ কি জরিমানা কমানো হয়েছে?")}</h2>
         <p className="mt-3 text-[15.5px] leading-relaxed text-ink-2">
           {tx(
             "Not as far as the law shows. On 13 March 2024 the cabinet gave in-principle approval to a draft Road Transport (Amendment) Act that would, among other things, cut the signal-breaking fine from ৳10,000 to ৳2,000. A draft is not law: the official text we checked on ",
-            "আইনে এখনো তা দেখা যায় না। 13 মার্চ 2024 মন্ত্রিসভা সড়ক পরিবহন (সংশোধন) আইনের একটি খসড়ায় নীতিগত অনুমোদন দেয়, যাতে অন্য বিষয়ের সঙ্গে সিগন্যাল অমান্যের জরিমানা ৳10,000 থেকে ৳2,000 করার প্রস্তাব ছিল। খসড়া আইন নয়: ",
+            "আইনে এখনো তা দেখা যায় না। ১৩ মার্চ ২০২৪ মন্ত্রিসভা সড়ক পরিবহন (সংশোধন) আইনের একটি খসড়ায় নীতিগত অনুমোদন দেয়, যাতে অন্য বিষয়ের সঙ্গে সিগন্যাল অমান্যের জরিমানা ৳১০,০০০ থেকে ৳২,০০০ করার প্রস্তাব ছিল। খসড়া আইন নয়: ",
           )}
           {t(AS_OF)}
           {tx(" still shows the original figures used on this page (", " তারিখে আমরা যে সরকারি পাঠ দেখেছি তাতে এখনো এই পাতার মূল অঙ্কগুলোই আছে (")}

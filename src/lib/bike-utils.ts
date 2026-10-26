@@ -7,8 +7,8 @@ import { SITE } from "./site";
 export const fullName = (b: Pick<BikeLite, "brand" | "model">) => `${b.brand} ${b.model}`;
 
 export const CATEGORIES: Record<Category, { en: string; bn: string; blurb: string; blurbBn: string }> = {
-  commuter: { en: "Commuter", bn: "কমিউটার", blurb: "100–125cc daily runners. Cheap to buy, cheaper to run.", blurbBn: "100–125cc প্রতিদিনের বাইক। কিনতে সস্তা, চালাতে আরও সস্তা।" },
-  street: { en: "Street", bn: "স্ট্রিট", blurb: "The 150–165cc all-rounders most of Bangladesh rides.", blurbBn: "150–165cc অলরাউন্ডার — বাংলাদেশের বেশিরভাগ মানুষ যা চালায়।" },
+  commuter: { en: "Commuter", bn: "কমিউটার", blurb: "100–125cc daily runners. Cheap to buy, cheaper to run.", blurbBn: "১০০–১২৫cc প্রতিদিনের বাইক। কিনতে সস্তা, চালাতে আরও সস্তা।" },
+  street: { en: "Street", bn: "স্ট্রিট", blurb: "The 150–165cc all-rounders most of Bangladesh rides.", blurbBn: "১৫০–১৬৫cc অলরাউন্ডার — বাংলাদেশের বেশিরভাগ মানুষ যা চালায়।" },
   naked: { en: "Naked", bn: "নেকেড", blurb: "Sharper, faster, more aggressive streetfighters.", blurbBn: "আরও ধারালো, দ্রুত, আগ্রাসী স্ট্রিটফাইটার।" },
   sport: { en: "Sport", bn: "স্পোর্টস", blurb: "Full fairings, clip-ons, highway speed.", blurbBn: "ফুল ফেয়ারিং, ক্লিপ-অন হ্যান্ডেল, হাইওয়ে স্পিড।" },
   adventure: { en: "Adventure", bn: "অ্যাডভেঞ্চার", blurb: "Long suspension for broken roads and village trails.", blurbBn: "ভাঙা রাস্তা আর গ্রামের পথের জন্য লম্বা সাসপেনশন।" },
@@ -29,7 +29,7 @@ export const SCORE_LABELS: Record<ScoreKey, { en: string; bn: string; hint: stri
   resale: { en: "Resale value", bn: "রিসেল ভ্যালু", hint: "How much you get back when you sell", hintBn: "বিক্রির সময় কত ফেরত পাবেন" },
   comfort: { en: "Comfort", bn: "আরাম", hint: "Seat, suspension and posture over an hour", hintBn: "এক ঘণ্টা চালালে সিট, সাসপেনশন ও বসার আরাম" },
   cityHandling: { en: "City handling", bn: "শহরে চালানো", hint: "Dhaka traffic: weight, clutch, heat, turning", hintBn: "ঢাকার জ্যাম: ওজন, ক্লাচ, গরম, ঘোরানো" },
-  highway: { en: "Highway", bn: "হাইওয়ে", hint: "Stability and reserve power at 80–100 km/h", hintBn: "80–100 km/h-এ স্থিরতা ও বাড়তি পাওয়ার" },
+  highway: { en: "Highway", bn: "হাইওয়ে", hint: "Stability and reserve power at 80–100 km/h", hintBn: "৮০–১০০ km/h-এ স্থিরতা ও বাড়তি পাওয়ার" },
   pillion: { en: "Pillion", bn: "পিলিয়ন", hint: "Comfort and stability with a passenger", hintBn: "পিলিয়নসহ আরাম ও স্থিরতা" },
   offroad: { en: "Rough roads", bn: "ভাঙা রাস্তা", hint: "Broken roads, village tracks, flooded patches", hintBn: "ভাঙা রাস্তা, গ্রামের পথ, পানি জমা জায়গা" },
   performance: { en: "Performance", bn: "পারফরম্যান্স", hint: "Acceleration and outright pace", hintBn: "এক্সেলারেশন ও গতি" },

@@ -949,7 +949,7 @@ export const POSTS: Post[] = [
     title: ["Buying a used oil-cooled fuel-injected bike: what to check", "সেকেন্ড-হ্যান্ড অয়েল-কুলড ফুয়েল-ইনজেক্টেড বাইক কেনার আগে কী দেখবেন"],
     summary: [
       "For oil-cooled FI bikes such as the Bajaj Pulsar N160, NS160 and N250, Suzuki Gixxer 250 and Gixxer SF 250, Hero Thriller 160R 4V, Hero XPulse 200 4V and the Royal Enfield 350s. On these the engine oil also carries heat away, so its level and condition tell you a lot.",
-      "Bajaj Pulsar N160, NS160 ও N250, Suzuki Gixxer 250 ও Gixxer SF 250, Hero Thriller 160R 4V, Hero XPulse 200 4V আর Royal Enfield-এর 350 মডেলগুলোর মতো অয়েল-কুলড এফআই বাইকের জন্য। এগুলোতে ইঞ্জিন অয়েল তাপও সরায়, তাই অয়েলের পরিমাণ আর অবস্থা অনেক কিছু বলে দেয়।",
+      "Bajaj Pulsar N160, NS160 ও N250, Suzuki Gixxer 250 ও Gixxer SF 250, Hero Thriller 160R 4V, Hero XPulse 200 4V আর Royal Enfield-এর ৩৫০ মডেলগুলোর মতো অয়েল-কুলড এফআই বাইকের জন্য। এগুলোতে ইঞ্জিন অয়েল তাপও সরায়, তাই অয়েলের পরিমাণ আর অবস্থা অনেক কিছু বলে দেয়।",
     ],
     need: [
       ["A torch, a clean rag, and a friend or mechanic who knows bikes", "একটি টর্চ, পরিষ্কার ন্যাকড়া, আর বাইক বোঝেন এমন বন্ধু বা মেকানিক"],

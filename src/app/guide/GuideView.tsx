@@ -64,12 +64,12 @@ export function GuideView() {
           <Section id="registration" icon={<FileText size={20} />} title={tx("What registration really costs", "রেজিস্ট্রেশনে আসলে কত লাগে")} kicker={`${tx("As of", "তারিখ")} ${reg.asOf}`}>
             <p>{reg.summary}</p>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              <Big k={tx("Above 100cc · 10-year tax token", "100cc-এর বেশি · ১০ বছরের ট্যাক্স টোকেন")} v={formatBDT(above100.totalBDT10yr, lang)} sub={tx("Pay once, no renewals for a decade", "একবার দিন, দশ বছর নবায়ন নেই")} highlight />
-              <Big k={tx("Above 100cc · 2-year tax token", "100cc-এর বেশি · ২ বছরের ট্যাক্স টোকেন")} v={formatBDT(above100.totalBDT, lang)} sub={tx("Then ~৳2,300 every two years", "তারপর প্রতি দুই বছরে ~৳2,300")} />
-              <Big k={tx("Up to 100cc · 10-year", "100cc পর্যন্ত · ১০ বছর")} v={formatBDT(reg.bands[0].totalBDT10yr, lang)} sub={tx("Platina, Splendor+, Shine 100 class", "প্লাটিনা, স্প্লেন্ডার+, শাইন 100 শ্রেণি")} />
-              <Big k={tx("Up to 100cc · 2-year", "100cc পর্যন্ত · ২ বছর")} v={formatBDT(reg.bands[0].totalBDT, lang)} sub={tx("Lowest upfront", "শুরুতে সবচেয়ে কম")} />
+              <Big k={tx("Above 100cc · 10-year tax token", "১০০cc-এর বেশি · ১০ বছরের ট্যাক্স টোকেন")} v={formatBDT(above100.totalBDT10yr, lang)} sub={tx("Pay once, no renewals for a decade", "একবার দিন, দশ বছর নবায়ন নেই")} highlight />
+              <Big k={tx("Above 100cc · 2-year tax token", "১০০cc-এর বেশি · ২ বছরের ট্যাক্স টোকেন")} v={formatBDT(above100.totalBDT, lang)} sub={tx("Then ~৳2,300 every two years", "তারপর প্রতি দুই বছরে ~৳২,৩০০")} />
+              <Big k={tx("Up to 100cc · 10-year", "১০০cc পর্যন্ত · ১০ বছর")} v={formatBDT(reg.bands[0].totalBDT10yr, lang)} sub={tx("Platina, Splendor+, Shine 100 class", "প্লাটিনা, স্প্লেন্ডার+, শাইন ১০০ শ্রেণি")} />
+              <Big k={tx("Up to 100cc · 2-year", "১০০cc পর্যন্ত · ২ বছর")} v={formatBDT(reg.bands[0].totalBDT, lang)} sub={tx("Lowest upfront", "শুরুতে সবচেয়ে কম")} />
             </div>
-            <h3 className="mt-10 text-[17px] font-semibold text-ink">{tx("Line by line (above 100cc)", "খাত অনুযায়ী (100cc-এর বেশি)")}</h3>
+            <h3 className="mt-10 text-[17px] font-semibold text-ink">{tx("Line by line (above 100cc)", "খাত অনুযায়ী (১০০cc-এর বেশি)")}</h3>
             <div className="mt-4 overflow-hidden rounded-2xl border border-line bg-surface">
               {reg.breakdowns.above100cc.map((r, i) => (
                 <div key={i} className={`flex items-start justify-between gap-6 px-4 py-3 text-[14.5px] ${i % 2 ? "bg-surface-2/40" : ""}`}>
@@ -81,7 +81,7 @@ export function GuideView() {
             <Note>
               {tx(
                 "Market quotes run ~৳800 above the sum of official components; dealers often add a service charge. Ask for an itemised receipt.",
-                "বাজারে যে প্যাকেজ বলা হয় তা সরকারি খাতগুলোর যোগফলের চেয়ে ~৳800 বেশি; ডিলাররা প্রায়ই সার্ভিস চার্জ যোগ করে। খাতওয়ারি রসিদ চেয়ে নিন।",
+                "বাজারে যে প্যাকেজ বলা হয় তা সরকারি খাতগুলোর যোগফলের চেয়ে ~৳৮০০ বেশি; ডিলাররা প্রায়ই সার্ভিস চার্জ যোগ করে। খাতওয়ারি রসিদ চেয়ে নিন।",
               )}
             </Note>
             <h3 className="mt-10 text-[17px] font-semibold text-ink">{tx("The process", "প্রক্রিয়া")}</h3>
@@ -197,7 +197,7 @@ export function GuideView() {
             <Note>
               {tx(
                 "Bottom line: bikes up to 375cc that are assembled in Bangladesh — like Royal Enfield's 350s from IFAD's Cumilla plant — can be registered. Importing fully built (CBU) bikes above 165cc is banned under the Import Policy Order 2026-2029 (police excepted) — if a seller offers one, ask for its import and registration papers before you pay.",
-                "সারকথা: দেশে অ্যাসেম্বল করা 375cc পর্যন্ত বাইক — যেমন IFAD-এর কুমিল্লা কারখানার রয়্যাল এনফিল্ড 350 — রেজিস্ট্রেশন করা যায়। আমদানি নীতি আদেশ 2026-2029 অনুযায়ী 165cc-এর বেশি পুরো তৈরি (CBU) বাইক আমদানি নিষিদ্ধ (পুলিশ বাদে) — কেউ এমন বাইক বিক্রি করতে চাইলে টাকা দেওয়ার আগে আমদানি ও রেজিস্ট্রেশনের কাগজ দেখে নিন।",
+                "সারকথা: দেশে অ্যাসেম্বল করা ৩৭৫cc পর্যন্ত বাইক — যেমন IFAD-এর কুমিল্লা কারখানার রয়্যাল এনফিল্ড ৩৫০ — রেজিস্ট্রেশন করা যায়। আমদানি নীতি আদেশ ২০২৬-২০২৯ অনুযায়ী ১৬৫cc-এর বেশি পুরো তৈরি (CBU) বাইক আমদানি নিষিদ্ধ (পুলিশ বাদে) — কেউ এমন বাইক বিক্রি করতে চাইলে টাকা দেওয়ার আগে আমদানি ও রেজিস্ট্রেশনের কাগজ দেখে নিন।",
               )}
             </Note>
           </Section>
@@ -293,7 +293,7 @@ export function GuideView() {
               <Big
                 k={`${tx("Third-party", "থার্ড-পার্টি")} · ${guide.insurance.thirdParty.exampleFor}`}
                 v={`${formatBDT(guide.insurance.thirdParty.exampleAnnualPremiumBDT, lang)}${tx("/yr", "/বছর")}`}
-                sub={tx("IDRA pilot price (Feb 2026); not confirmed after Aug 2026", "আইডিআরএ পাইলটের দাম (ফেব্রুয়ারি 2026); আগস্ট 2026-এর পর নিশ্চিত নয়")}
+                sub={tx("IDRA pilot price (Feb 2026); not confirmed after Aug 2026", "আইডিআরএ পাইলটের দাম (ফেব্রুয়ারি ২০২৬); আগস্ট ২০২৬-এর পর নিশ্চিত নয়")}
               />
               <Big k={tx("Comprehensive (theft + damage)", "কম্প্রিহেনসিভ (চুরি + ক্ষতি)")} v={tx("Ask insurers", "বীমা কোম্পানিকে জিজ্ঞেস করুন")} sub={tx("No reliable public rate yet", "নির্ভরযোগ্য প্রকাশ্য রেট এখনো নেই")} />
             </div>

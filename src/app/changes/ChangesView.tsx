@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "@/components/LangLink";
-import { BIKES, formatBDT } from "@/lib/bikes";
+import { BIKES, bnDigits, formatBDT } from "@/lib/bikes";
 import history from "@/data/generated/price-history.json"; // from git by scripts/build-history.ts
 import type { ChangeEvent, PriceHistory } from "@/lib/history";
 import { useLang, useTx } from "@/lib/i18n";
@@ -47,7 +47,7 @@ export function ChangesView() {
                   <span className="font-medium text-ink">{e.name}</span>
                 )}
                 <span className="tnum text-ink-2">
-                  {e.from != null && e.to != null ? `${formatBDT(e.from, lang)} → ${formatBDT(e.to, lang)} (${(e.pct ?? 0) > 0 ? "+" : ""}${e.pct}%)` : formatBDT(e.to ?? e.from ?? 0, lang)}
+                  {e.from != null && e.to != null ? `${formatBDT(e.from, lang)} → ${formatBDT(e.to, lang)} (${(e.pct ?? 0) > 0 ? "+" : ""}${lang === "bn" ? bnDigits(String(e.pct)) : e.pct}%)` : formatBDT(e.to ?? e.from ?? 0, lang)}
                 </span>
                 <span className="ml-auto text-[12.5px] text-muted">{fmtDate(e.date, { day: "numeric", month: "short" })}</span>
               </li>

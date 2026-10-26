@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ccLabel, formatBDT, fullName, getBike, mileageText } from "./bikes";
+import { bnNumerals, ccLabel, formatBDT, fullName, getBike, mileageText } from "./bikes";
 import { onRoadPrice } from "./cost";
 import { langAlternates, OG_BASE, OG_BN } from "./site";
 import type { Bike, BikeLite } from "./types";
@@ -53,10 +53,10 @@ export function pairMetadata(slug: string, lang: "en" | "bn"): Metadata {
   const price = `${formatBDT(onRoadPrice(a), lang)} vs ${formatBDT(onRoadPrice(b), lang)}`;
   const km = `${mileageText(a)} vs ${mileageText(b)}`;
   const title =
-    lang === "bn" ? `${a.model} বনাম ${b.model}: বাংলাদেশে দাম, মাইলেজ ও স্পেক` : `${a.model} vs ${b.model}: price, mileage & specs in Bangladesh`;
+    lang === "bn" ? bnNumerals(`${a.model} বনাম ${b.model}: বাংলাদেশে দাম, মাইলেজ ও স্পেক`) : `${a.model} vs ${b.model}: price, mileage & specs in Bangladesh`;
   const description =
     lang === "bn"
-      ? `${a.brand} ${a.model} না ${b.brand} ${b.model}? অন-রোড দাম ${price}, আসল মাইলেজ ${km}, পাওয়ার ${a.powerPS} বনাম ${b.powerPS} PS, ওজন, পার্টস আর মাসিক খরচ পাশাপাশি।`
+      ? bnNumerals(`${a.brand} ${a.model} না ${b.brand} ${b.model}? অন-রোড দাম ${price}, আসল মাইলেজ ${km}, পাওয়ার ${a.powerPS} বনাম ${b.powerPS} PS, ওজন, পার্টস আর মাসিক খরচ পাশাপাশি।`)
       : `${a.brand} ${a.model} or ${b.brand} ${b.model}? On-road price ${price}, real mileage ${km}, power ${a.powerPS} vs ${b.powerPS} PS, weight, parts and monthly cost side by side.`;
   return { title, description, alternates: langAlternates(pairHref(a.id, b.id), lang), openGraph: { ...(lang === "bn" ? OG_BN : OG_BASE), title, description } };
 }
@@ -103,7 +103,7 @@ export function bikeMetadata(b: Bike, lang: "en" | "bn"): Metadata {
   const title = bikeTitle(b, lang);
   const description =
     lang === "bn"
-      ? `${fullName(b)}-এর দাম ${used ? `পুরনো বাজারে প্রায় ${formatBDT(b.priceBDT, "bn")}` : `অন-রোড ${formatBDT(onRoadPrice(b), "bn")} (২ বছরের ট্যাক্স টোকেনসহ; শোরুম মূল্য ${formatBDT(b.priceBDT, "bn")})`}। ${b.ev ? `আসল রেঞ্জ ${b.ev.realRangeKm[0]}–${b.ev.realRangeKm[1]} কিমি/চার্জ` : `আসল মাইলেজ ${b.mileageKmpl[0]}–${b.mileageKmpl[1]} কিমি/লি`}, পার্টসের দাম, মিস্ত্রির মতামত ও মাসিক খরচ।`
+      ? bnNumerals(`${fullName(b)}-এর দাম ${used ? `পুরনো বাজারে প্রায় ${formatBDT(b.priceBDT, "bn")}` : `অন-রোড ${formatBDT(onRoadPrice(b), "bn")} (২ বছরের ট্যাক্স টোকেনসহ; শোরুম মূল্য ${formatBDT(b.priceBDT, "bn")})`}। ${b.ev ? `আসল রেঞ্জ ${b.ev.realRangeKm[0]}–${b.ev.realRangeKm[1]} কিমি/চার্জ` : `আসল মাইলেজ ${b.mileageKmpl[0]}–${b.mileageKmpl[1]} কিমি/লি`}, পার্টসের দাম, মিস্ত্রির মতামত ও মাসিক খরচ।`)
       : used
         ? `${fullName(b)} er dam koto? About ${formatBDT(b.priceBDT)} used in Bangladesh. ${ccLabel(b)}, real-world ${mileageText(b)}, parts prices, mechanic familiarity and monthly running cost. ${b.tagline}`
         : `${fullName(b)} er dam koto? ${formatBDT(onRoadPrice(b))} on-road in Bangladesh with a 2-year tax token (${formatBDT(b.priceBDT)} ex-showroom). ${ccLabel(b)}, real-world ${mileageText(b)}, card EMI and loan cost, parts prices and monthly running cost. ${b.tagline}`;

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { langHref } from "@/lib/site";
+import { bnNumerals } from "@/lib/bike-utils";
 
 type Lang = "en" | "bn";
 type Bi = { en: string; bn: string };
@@ -9,7 +10,7 @@ type Bi = { en: string; bn: string };
 const DT_AUTO = { url: "https://www.dhakatribune.com/bangladesh/409248/e-traffic-auto-notices-for-violations-warrant-if", label: "Dhaka Tribune, 3 May 2026" };
 const DT_FAKE = { url: "https://www.dhakatribune.com/bangladesh/dhaka/411077/dmp-warns-against-fake-traffic-fine-messages", label: "Dhaka Tribune, 25 May 2026" };
 const DT_HIGHWAY = { url: "https://www.dhakatribune.com/bangladesh/417540/auto-fine-system-coming-to-dhaka-chittagong", label: "Dhaka Tribune, 15 Aug 2026" };
-const AS_OF: Bi = { en: "14 Oct 2026", bn: "14 অক্টোবর 2026" };
+const AS_OF: Bi = { en: "14 Oct 2026", bn: "১৪ অক্টোবর ২০২৬" };
 /** The only numbers DMP says it sends e-fine SMS from. */
 const DMP_SMS = ["01320-042207", "01320-042227"];
 
@@ -22,8 +23,8 @@ const OFFENCES: Bi[] = [
 ];
 
 export function EFinesView({ lang }: { lang: Lang }) {
-  const t = (b: Bi) => b[lang];
-  const tx = (en: string, bn: string) => (lang === "bn" ? bn : en);
+  const t = (b: Bi) => (lang === "bn" ? bnNumerals(b.bn) : b.en);
+  const tx = (en: string, bn: string) => (lang === "bn" ? bnNumerals(bn) : en);
   const href = (h: string) => langHref(h, lang);
   const a = "text-brand underline underline-offset-2";
   const ext = (s: { url: string; label: string }) => (
@@ -93,7 +94,7 @@ export function EFinesView({ lang }: { lang: Lang }) {
         <p className="mt-3 text-[15.5px] leading-relaxed text-ink-2">
           {tx(
             "Because the letter goes to the registered address, a bike still in the seller's name sends your fines to them. One more reason to finish the ownership transfer (the buyer has 60 days, Act s.21). Source: ",
-            "চিঠি যেহেতু রেজিস্ট্রেশনের ঠিকানায় যায়, বাইক বিক্রেতার নামে থাকলে আপনার জরিমানার নোটিশ তাঁর কাছে যাবে। মালিকানা বদলি শেষ করার এটা আরেকটা কারণ (ক্রেতার হাতে 60 দিন, আইন ধারা 21)। সূত্র: ",
+            "চিঠি যেহেতু রেজিস্ট্রেশনের ঠিকানায় যায়, বাইক বিক্রেতার নামে থাকলে আপনার জরিমানার নোটিশ তাঁর কাছে যাবে। মালিকানা বদলি শেষ করার এটা আরেকটা কারণ (ক্রেতার হাতে ৬০ দিন, আইন ধারা ২১)। সূত্র: ",
           )}
           {ext(DT_FAKE)}
           {tx(".", "।")}
@@ -105,7 +106,7 @@ export function EFinesView({ lang }: { lang: Lang }) {
         <p className="mt-3 text-[15.5px] leading-relaxed text-ink-2">
           {tx(
             "DMP's first notice (3 May 2026) said to appear at DMP headquarters or the traffic division named in the notice and settle the case there, paying through a bank or mobile financial service. Its later warning (25 May 2026) named Upay and CBL as the approved online platforms. If you do not appear and pay, DMP will seek a summons or an arrest warrant through a special metropolitan magistrate (",
-            "ডিএমপির প্রথম বিজ্ঞপ্তি (3 মে 2026) বলেছিল, নোটিশে উল্লেখিত ডিএমপি সদর দপ্তর বা ট্রাফিক বিভাগে গিয়ে ব্যাংক বা মোবাইল আর্থিক সেবার মাধ্যমে টাকা দিয়ে মামলা নিষ্পত্তি করতে। পরের সতর্কবার্তায় (25 মে 2026) অনুমোদিত অনলাইন মাধ্যম হিসেবে উপায় ও সিবিএল-এর নাম আছে। হাজির হয়ে টাকা না দিলে ডিএমপি স্পেশাল মেট্রোপলিটন ম্যাজিস্ট্রেটের মাধ্যমে সমন বা গ্রেপ্তারি পরোয়ানা চাইবে (",
+            "ডিএমপির প্রথম বিজ্ঞপ্তি (৩ মে ২০২৬) বলেছিল, নোটিশে উল্লেখিত ডিএমপি সদর দপ্তর বা ট্রাফিক বিভাগে গিয়ে ব্যাংক বা মোবাইল আর্থিক সেবার মাধ্যমে টাকা দিয়ে মামলা নিষ্পত্তি করতে। পরের সতর্কবার্তায় (২৫ মে ২০২৬) অনুমোদিত অনলাইন মাধ্যম হিসেবে উপায় ও সিবিএল-এর নাম আছে। হাজির হয়ে টাকা না দিলে ডিএমপি স্পেশাল মেট্রোপলিটন ম্যাজিস্ট্রেটের মাধ্যমে সমন বা গ্রেপ্তারি পরোয়ানা চাইবে (",
           )}
           {ext(DT_AUTO)}
           {tx("). Follow the instructions printed on your own notice.", ")। নিজের নোটিশে লেখা নির্দেশনা মানুন।")}
@@ -118,7 +119,7 @@ export function EFinesView({ lang }: { lang: Lang }) {
           <li>{tx(`DMP sends e-fine SMS only from ${nums}. Any other sender is not DMP.`, `ডিএমপি ই-জরিমানার এসএমএস পাঠায় শুধু ${nums} থেকে। অন্য নম্বর থেকে এলে সেটা ডিএমপি নয়।`)}</li>
           <li>{tx("DMP never asks for a PIN, password, OTP or any other banking secret.", "ডিএমপি কখনো পিন, পাসওয়ার্ড, ওটিপি বা ব্যাংকিংয়ের কোনো গোপন তথ্য চায় না।")}</li>
           <li>{tx("Do not pay or share personal details outside the official process. If someone asks you to pay for a CCTV case, check with the nearest police station or traffic division.", "সরকারি প্রক্রিয়ার বাইরে টাকা দেবেন না বা ব্যক্তিগত তথ্য দেবেন না। কেউ সিসিটিভি মামলার টাকা চাইলে নিকটস্থ থানা বা ট্রাফিক বিভাগে যাচাই করুন।")}</li>
-          <li>{tx(`Questions about a camera case: DMP's Delta-3 desk on ${nums}, or 999.`, `ক্যামেরা মামলা নিয়ে প্রশ্ন: ডিএমপির ডেল্টা-3, ${nums}, অথবা 999।`)}</li>
+          <li>{tx(`Questions about a camera case: DMP's Delta-3 desk on ${nums}, or 999.`, `ক্যামেরা মামলা নিয়ে প্রশ্ন: ডিএমপির ডেল্টা-৩, ${nums}, অথবা ৯৯৯।`)}</li>
         </ul>
         <p className="mt-3 text-[14px] leading-relaxed text-muted">
           {tx("Source: DMP warning, ", "সূত্র: ডিএমপির সতর্কবার্তা, ")}
@@ -134,7 +135,7 @@ export function EFinesView({ lang }: { lang: Lang }) {
         <p className="mt-3 text-[15.5px] leading-relaxed text-ink-2">
           {tx(
             "This is a separate system, run by the Highway Police, not DMP. From 18 August 2026 its AI cameras on the Dhaka-Chattogram highway detect speeding, illegal parking and riding against the traffic; the case is sent by SMS to the registered owner, payable by bKash or Nagad. The fine amounts were not announced, and the announcement did not say whether motorcycles are covered (",
-            "এটি আলাদা ব্যবস্থা, চালায় হাইওয়ে পুলিশ, ডিএমপি নয়। 18 আগস্ট 2026 থেকে ঢাকা-চট্টগ্রাম মহাসড়কে এর এআই ক্যামেরা অতিরিক্ত গতি, অবৈধ পার্কিং ও উল্টো পথে চালানো ধরে; মামলার তথ্য এসএমএসে নিবন্ধিত মালিকের কাছে যায়, টাকা দেওয়া যায় বিকাশ বা নগদে। জরিমানার অঙ্ক ঘোষণা করা হয়নি, মোটরসাইকেলও এর আওতায় কি না তা ঘোষণায় বলা হয়নি (",
+            "এটি আলাদা ব্যবস্থা, চালায় হাইওয়ে পুলিশ, ডিএমপি নয়। ১৮ আগস্ট ২০২৬ থেকে ঢাকা-চট্টগ্রাম মহাসড়কে এর এআই ক্যামেরা অতিরিক্ত গতি, অবৈধ পার্কিং ও উল্টো পথে চালানো ধরে; মামলার তথ্য এসএমএসে নিবন্ধিত মালিকের কাছে যায়, টাকা দেওয়া যায় বিকাশ বা নগদে। জরিমানার অঙ্ক ঘোষণা করা হয়নি, মোটরসাইকেলও এর আওতায় কি না তা ঘোষণায় বলা হয়নি (",
           )}
           {ext(DT_HIGHWAY)}
           {tx("). Highway speed limits: ", ")। মহাসড়কের গতিসীমা: ")}

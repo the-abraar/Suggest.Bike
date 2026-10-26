@@ -3,7 +3,7 @@
 import Link from "@/components/LangLink";
 import { useEffect, useMemo, useState } from "react";
 import { Plus, Search, X } from "lucide-react";
-import { BIKES, SCORE_LABELS, avgMileage, ccLabel, formatBDT, formatLakh, fullName, getBike, mileageText, partLabel, tagline } from "@/lib/bikes";
+import { BIKES, SCORE_LABELS, avgMileage, bnNumerals, ccLabel, formatBDT, formatLakh, fullName, getBike, mileageText, partLabel, tagline } from "@/lib/bikes";
 import { DEFAULT_COST_INPUT, onRoadPrice, ownershipCost } from "@/lib/cost";
 import { cardEmi } from "@/lib/fund";
 import { isUsedOption } from "@/lib/match";
@@ -418,7 +418,7 @@ function Table({ bikes }: { bikes: BikeLite[] }) {
                   const mark = markMap[bi][ri][i];
                   return (
                     <div key={i} className={`flex flex-wrap items-center gap-x-1.5 text-[14px] tnum text-ink sm:text-[15px] ${mark ? "font-semibold" : ""}`}>
-                      {v}
+                      {lang === "bn" && typeof v === "string" ? bnNumerals(v) : v}
                       {mark && <span className="text-[12px] font-medium text-muted">{markLabel(r.better ?? null)}</span>}
                     </div>
                   );

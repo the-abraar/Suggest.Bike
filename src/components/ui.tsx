@@ -5,7 +5,7 @@ import { Suspense, useState, type ReactNode } from "react";
 import { useSearchParams } from "next/navigation";
 import { Check, Heart, Plus, Share2 } from "lucide-react";
 import type { BikeLite } from "@/lib/types";
-import { CATEGORIES, ccLabel, formatLakh, mileageText } from "@/lib/bike-utils";
+import { bnDigits, CATEGORIES, ccLabel, formatLakh, mileageText } from "@/lib/bike-utils";
 import { useStore, MAX_COMPARE } from "@/lib/store";
 import { useLang } from "@/lib/i18n";
 import { BikeArt } from "./BikeArt";
@@ -144,7 +144,7 @@ export function BikeCard({ bike, footer, badge }: { bike: BikeLite; footer?: Rea
       <div className="flex min-w-0 flex-1 flex-col gap-3 p-4 sm:p-5 sm:pt-4">
         <div className="pr-8 sm:pr-0">
           <p className="text-[12.5px] font-medium text-muted">
-            {bike.brand} · {ccLabel(bike)} · {lang === "bn" ? CATEGORIES[bike.category].bn : CATEGORIES[bike.category].en}
+            {bike.brand} · {lang === "bn" ? bnDigits(ccLabel(bike)) : ccLabel(bike)} · {lang === "bn" ? CATEGORIES[bike.category].bn : CATEGORIES[bike.category].en}
           </p>
           <h3 className="mt-0.5 text-[17px] font-semibold tracking-tight text-ink">
             <Link href={`/bikes/${bike.id}/`} className="after:absolute after:inset-0 after:content-['']">
@@ -166,7 +166,7 @@ export function BikeCard({ bike, footer, badge }: { bike: BikeLite; footer?: Rea
               )}
             </p>
             <p className="whitespace-nowrap text-[12.5px] text-muted tnum">
-              ~{mileageText(bike)} · {bike.powerPS} PS
+              ~{lang === "bn" ? bnDigits(`${mileageText(bike)} · ${bike.powerPS}`) : `${mileageText(bike)} · ${bike.powerPS}`} PS
             </p>
           </div>
           <CompareButton id={bike.id} size="sm" />
@@ -189,7 +189,7 @@ export function ScoreBar({ value, label, hint, tone = "brand" }: { value: number
       <div className="mb-1.5 flex items-baseline justify-between gap-3">
         <span className="text-[13.5px] text-ink-2">{label}</span>
         <span className="text-[13.5px] font-semibold text-ink">
-          {lang === "bn" ? band[1] : band[0]} <span className="text-[11.5px] font-normal text-faint tnum">{value}/10</span>
+          {lang === "bn" ? band[1] : band[0]} <span className="text-[11.5px] font-normal text-faint tnum">{lang === "bn" ? bnDigits(`${value}/10`) : `${value}/10`}</span>
         </span>
       </div>
       <div className="h-1.5 overflow-hidden rounded-full bg-surface-3">
