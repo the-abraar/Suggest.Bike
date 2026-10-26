@@ -539,7 +539,10 @@ function Results({ a: asked, onEdit, onRestart }: { a: Answers; onEdit: (step: n
           {asked.payMode === "monthly" ? `${formatBDT(asked.monthly, lang)}${tx("/mo", "/মাস")} × ${asked.tenure} + ${formatBDT(asked.down, lang)} ${tx("cash", "নগদ")} · ` : ""}≤ {formatLakh(asked.budget, lang)} {tx("on-road", "অন-রোড")} ·{" "}
           {a.condition === "new" || a.payMode === "monthly" ? tx("new", "নতুন") : tx("new or used", "নতুন বা পুরনো")}
         </EditChip>
-        {/* phones: only the budget chip, so the top bike's name and price fit on the first screen; each answer's step still has Back */}
+        {/* phones: the budget chip plus one "Edit answers" button, so the top bike's name and price fit on the first screen */}
+        <button onClick={() => onEdit(1)} className="chip h-9 text-[13px] font-semibold text-brand sm:hidden">
+          {tx("Edit answers", "উত্তর বদলান")}
+        </button>
         <div className="hidden sm:contents">
           <EditChip onClick={() => onEdit(1)}>{lang === "bn" ? use.bn : use.en}</EditChip>
           {HAS_NETWORKS && <EditChip onClick={() => onEdit(2)}>{lang === "bn" ? where.bn : where.en}</EditChip>}
