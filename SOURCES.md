@@ -12,20 +12,20 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 | --- | ---: |
 | bikebd.com | 228 |
 | bikroy.com | 88 |
-| bajajauto.com | 34 |
+| bajajauto.com | 37 |
 | bdhonda.com | 33 |
 | suzuki.com.bd | 25 |
-| heromotocorp.com | 20 |
+| heromotocorp.com | 22 |
 | library.ymcapps.net | 13 |
+| royalenfield.com | 12 |
 | motorcyclevalley.com | 11 |
-| royalenfield.com | 11 |
 | waltonbd.com | 9 |
 | motorcyclebd.com | 8 |
 | yamahabd.com | 8 |
 | cdn.bajajauto.com | 6 |
 | motorcycle.com.bd | 6 |
 | tbsnews.net | 6 |
-| tvsmotor.com | 4 |
+| tvsmotor.com | 5 |
 | en.ittefaq.com.bd | 4 |
 | bikewale.com | 3 |
 | dhakatribune.com | 3 |
@@ -72,6 +72,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 - **Platina 110 H** — ৳1,40,100 as of 2026-10
   - Price: https://www.bajajauto.com/en-bd/bikes/platina-110-h
   - https://bikebd.com/price/bajaj-platina-110cc-price-in-bangladesh
+  - https://www.bajajauto.com/pdf/platina.pdf
 - **CT 100** (ES) — ৳1,20,100 as of 2026-10
   - Price: https://www.bajajauto.com/en-bd/bikes/ct-100-es
   - https://www.bikebd.com/price/bajaj-ct-100-price-in-bangladesh
@@ -131,6 +132,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://www.bikebd.com/price/bajaj-pulsar-n250
   - https://bajajauto.com/en-bd/blogs/blog-bajaj-bike-price-in-bangladesh
   - https://cdn.bajajauto.com/-/media/assets/bajajauto/customer-service/owners-manual/owners-manual-pdf/owner-manual-pdf-2026/pulsar-n250.pdf
+  - https://www.bajajauto.com/en-bd/-/media/globalbajajauto/common-media/owners-manual/pulsar/250.pdf
   - Used asking prices (2026-10): ~1 yr ৳2,85,000, ~3 yr — — https://bikroy.com/bn/motorcycles-and-scooters/bajaj-pulsar-n250
 - **Pulsar F250** — ৳3,45,100 as of 2026-10
   - Price: https://www.bajajauto.com/en-bd/bikes/pulsar-f250
@@ -139,6 +141,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://www.bikebd.com/brand/bajaj
   - https://mrp.com.bd/product/bajaj-pulsar-f250/
   - https://deshibiker.com/baja-pulsar-f250/
+  - https://www.bajajauto.com/en-bd/-/media/globalbajajauto/common-media/owners-manual/pulsar/250.pdf
   - Used asking prices (2026-10): ~1 yr ৳3,00,000, ~3 yr — — https://bikroy.com/bn/motorcycles-and-scooters/bajaj-pulsar-f250
 - **CT100 (old, 2000s-2010s)** — ৳38,000 as of 2026-10 (used market)
   - Price: https://bikroy.com/bn/motorcycles-and-scooters/bajaj-ct-100
@@ -201,6 +204,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 - **Xtreme 125R** (Single Channel ABS) — ৳1,75,000 as of 2026-09
   - Price: https://www.bikebd.com/price/hero-xtreme-125r
   - https://www.heromotocorp.com/en-bd/the-bike/passion-xpro-xtec-110cc-motorcycle-91.html
+  - https://www.heromotocorp.com/content/dam/hero-aem-website/in/service-owner-manual/24_xtreme_125r_feb_2024.pdf
   - Used asking prices (2026-10): ~1 yr ৳1,55,000, ~3 yr — — https://bikroy.com/bn/motorcycles-and-scooters/hero-xtreme-125r
 - **Hunk 150R** (Dual Disc ABS) — ৳2,10,000 as of 2026-10
   - Price: https://www.heromotocorp.com/en-bd/products/premium/hunk-150r-price-in-bangladesh.html
@@ -235,6 +239,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://bikebd.com/price/hero-xpulse-200-4v-pro/specifications
   - https://www.bikebd.com/blog/hero-xpulse-200-4v-and-xpulse-200-4v-pro-officially-launched-in-bangladesh
   - https://observerbd.com/news/589485
+  - https://www.heromotocorp.com/content/dam/hero-aem-website/bd/en-bd/owners-manual-pdf/Xpulse_200_4V_OM.pdf
 
 ### Hero Honda
 
@@ -394,6 +399,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://bikebd.com/brand/royal-enfield
   - https://bikebd.com/price/royal-enfield-classic-350-halcon-greenblack
   - https://en.ittefaq.com.bd/9332/bangladesh-welcomes-royal-enfield
+  - https://www.royalenfield.com/content/dam/open-pdf/royal-enfield-owners-manual-classic-350-BSVI-english.pdf
   - Used asking prices (2026-10): ~1 yr ৳3,75,000, ~3 yr — — https://bikroy.com/bn/motorcycles-and-scooters/royal-enfield-classic-350
   - Photo: Billyinthedarbies, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:2022Classic350.jpg
 - **Bullet 350** — ৳4,17,500 as of 2026-10
@@ -549,6 +555,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - Price: https://www.bikebd.com/price/tvs-ntorq-125
   - https://www.bikebd.com/brand/tvs
   - https://www.motorcyclebd.com/tvs-ntorq-125/
+  - https://www.tvsmotor.com/-/media/UpdatedUserManuals2026/Before-April-2025/Scooters/Ntorq/TVS-Ntorq---Non-Connected-cluster.pdf
   - Used asking prices (2026-10): ~1 yr ৳1,85,000, ~3 yr ৳1,70,000 — https://bikroy.com/bn/motorcycles-and-scooters/tvs-ntorq-125-2025, https://bikroy.com/bn/motorcycles-and-scooters/tvs-ntorq-125-2023
   - Photo: M.parvage, CC BY 4.0 — https://commons.wikimedia.org/wiki/File:TVS_Ntorq_125_blue.jpg
 
