@@ -2706,7 +2706,7 @@
    "cc": 124.8,
    "cylinders": 1,
    "stroke": 4,
-   "cooling": "air",
+   "cooling": "oil",
    "valves": 3,
    "fuel": "carb"
   },
@@ -2715,10 +2715,10 @@
   "torqueNm": 11.2,
   "torqueRpm": 6000,
   "gears": 5,
-  "topSpeedKmh": 99,
+  "topSpeedKmh": 104,
   "mileageKmpl": [
-   50,
-   58
+   49,
+   54
   ],
   "weightKg": 123,
   "seatHeightMm": 780,
@@ -2777,7 +2777,7 @@
   "engineOil": {
    "grade": "10W-30",
    "spec": "API SL, JASO MA2",
-   "litres": 1,
+   "litres": 0.9,
    "source": "https://www.tvsmotor.com/-/media/UpdatedUserManuals2026/Before-April-2025/Motorcycles/Raider/TVS-Raider.pdf",
    "market": "India"
   },
