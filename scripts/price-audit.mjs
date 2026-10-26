@@ -1,5 +1,6 @@
 // Re-source worklist for bike prices. Reads src/data/bikes.json, prints Markdown. Changes no data.
 // Usage: node scripts/price-audit.mjs [--out file.md] [--check-urls [--limit N]] [--stale-days 90] [--outlier 0.4]
+// --check-urls probes every engineOil owner's-manual PDF (a renamed PDF shows as dead-oil-link) plus the first N priceSource URLs.
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
@@ -23,27 +24,38 @@ for (const b of bikes) (byCat[b.category] ??= []).push(b.priceBDT);
 const med = Object.fromEntries(Object.entries(byCat).map(([c, p]) => [c, median(p)]));
 
 // Optional link check: HEAD, fall back to GET; 8 s timeout; 4 at a time. Network failure is reported, never thrown.
-async function probe(url) {
+// pdf: a manual must still be a PDF after redirects (a renamed one may redirect to an HTML page). 403 = bot wall
+// (tvsmotor.com refuses Node's fetch but serves browsers and curl), so it is "blocked", not dead.
+async function probe(url, pdf = false) {
   const go = async (method) => {
     const ac = new AbortController(), t = setTimeout(() => ac.abort(), 8000);
-    try { return (await fetch(url, { method, redirect: "follow", signal: ac.signal, headers: { "user-agent": "suggest-bike-price-audit/1 (link check)" } })).status; }
-    finally { clearTimeout(t); }
+    try {
+      const r = await fetch(url, { method, redirect: "follow", signal: ac.signal, headers: { "user-agent": "suggest-bike-price-audit/1 (link check)" } });
+      r.body?.cancel();
+      return [r.status, r.headers.get("content-type") ?? ""];
+    } finally { clearTimeout(t); }
   };
   try {
-    let s = await go("HEAD");
-    if (s === 403 || s === 405 || s === 501) s = await go("GET");
-    return s >= 400 ? `HTTP ${s}` : "ok";
+    let [s, type] = await go("HEAD");
+    if (s === 403 || s === 405 || s === 501) [s, type] = await go("GET");
+    if (s === 403) return "blocked (HTTP 403): open it in a browser";
+    if (s >= 400) return `HTTP ${s}`;
+    return pdf && !/pdf|octet-stream/i.test(type) ? `not a PDF (${type || "no type"})` : "ok";
   } catch (e) { return `error: ${e.cause?.code ?? e.name}`; }
 }
 const urlResult = {};
 let urlNote = "";
 if (flag("--check-urls")) {
   const limit = +opt("--limit", 10);
-  const urls = [...new Set(bikes.map((b) => b.priceSource))].slice(0, limit);
+  // Every manual (a renamed PDF silently breaks the bike page's manual link), then --limit price pages.
+  const manuals = [...new Set(bikes.map((b) => b.engineOil?.source).filter(Boolean))];
+  const prices = [...new Set(bikes.map((b) => b.priceSource))];
+  const urls = [...new Set([...manuals, ...prices.slice(0, limit)])];
   const queue = [...urls];
-  await Promise.all(Array.from({ length: 4 }, async () => { for (let u; (u = queue.shift()); ) urlResult[u] = await probe(u); }));
-  const bad = Object.values(urlResult).filter((r) => r !== "ok");
-  urlNote = `Checked ${urls.length} of ${new Set(bikes.map((b) => b.priceSource)).size} unique priceSource URLs (--limit ${limit}); ${bad.length} not ok.` +
+  await Promise.all(Array.from({ length: 4 }, async () => { for (let u; (u = queue.shift()); ) urlResult[u] = await probe(u, manuals.includes(u)); }));
+  const bad = Object.values(urlResult).filter((r) => r !== "ok" && !r.startsWith("blocked"));
+  const blocked = Object.values(urlResult).filter((r) => r.startsWith("blocked")).length;
+  urlNote = `Checked all ${manuals.length} engineOil manual URLs and ${Math.min(limit, prices.length)} of ${prices.length} unique priceSource URLs (--limit ${limit}); ${bad.length} not ok, ${blocked} blocked by a bot wall.` +
     (bad.length === urls.length ? " Every probe failed: the network may be unavailable, so treat this as inconclusive." : "");
 }
 
@@ -56,7 +68,9 @@ const rows = bikes.map((b) => {
   else if (age > STALE) flags.push("stale");
   if (share[d] / bikes.length > CONC) flags.push("single-domain");
   if (Math.abs(dev) > OUTLIER) flags.push("outlier");
-  if (urlResult[b.priceSource] && urlResult[b.priceSource] !== "ok") flags.push("dead-link");
+  const dead = (u) => urlResult[u] && urlResult[u] !== "ok" && !urlResult[u].startsWith("blocked");
+  if (dead(b.priceSource)) flags.push("dead-link");
+  if (dead(b.engineOil?.source)) flags.push("dead-oil-link");
   return { id: b.id, cat: b.category, status: b.status, asOf: b.priceAsOf, age, d, dev, other, flags, url: b.priceSource, price: b.priceBDT };
 });
 const score = (r) => r.flags.filter((f) => f !== "single-domain").length * 10 + r.flags.length + (r.age ?? 0) / 1000;
