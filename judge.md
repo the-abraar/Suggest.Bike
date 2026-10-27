@@ -423,3 +423,19 @@ A clickable, fully simulated shop so the owner can feel what selling on Suggest.
 - **Next step 5:** 404 title, Bangla 404 text and the "under 2 lakh" search were already done (Update 18), re-checked. Quiz results on phones now show one "Edit answers" chip beside the budget chip (top bike's name and price still on the first screen). Bangla digits: a scan of `out/bn/` found Latin digits left in the footer on every page, bike and compare descriptions, the four law guides, cost notes, spec cells, scores and bike cards; all converted. Kept Latin on purpose: model names, tyre sizes, oil grades, hotlines, ISO dates in guide kickers, `/cost/` input labels.
 - **Spotlight:** no week due (week 5 went live 2026-10-25); week 6 about 2026-11-01.
 - **Not checked:** Bangla wording by a native reader; dark mode and 1280 px for the changed pages; the new link-check branches have no unit test (network only).
+
+### Update (2026-10-27, agent round): bugs 1 and 3, full price audit
+
+Local commits on `main`, **not pushed** (a push deploys). `scripts/check.sh` exit 0. Audit CSV kept outside the repo (agent scratchpad). A test needs every heromotocorp-priced bike in `price-refresh.ts` OFFICIAL, so Splendor+ was added there; its price loads in the browser, so the monthly run will report it "not found" (check by hand).
+
+- **Bug 1 (F250):** already fixed in `3b2d590`; today's official dry run reads ৳3,45,100 on bajajauto.com/en-bd, same as bikes.json.
+- **Bug 3 (404):** already fixed in Update 18 (`not-found.tsx` title; Bangla text, `lang` and title on `/bn/…` set client-side in `NotFoundView.tsx`). Not re-tested in a browser this round.
+- **Bug 2 (Actions can't open PRs):** owner step, unchanged: Settings → Actions → General → "Allow GitHub Actions to create and approve pull requests".
+- **Price audit (88 on-sale bikes):** 64 official prices (43 bikes) re-read by `price-refresh.ts --dry-run`: all match. By hand (yamahabd.com Nuxt data, Playwright for suzuki.com.bd, royalenfield.com, heromotocorp.com and Runner's shops): 7 changed, 14 confirmed.
+  - **Changed** (source now the official page, `priceAsOf` 2026-10): Fazer FI V2 ৳2,72,000 → 2,74,000; FZS FI V4 2,92,500 → 2,94,500; FZS Hybrid 3,44,500 → 3,47,500; FZ-X 2,92,500 → 2,93,500; FZ25 4,02,000 → 3,90,000 (cheapest colour, as for R15 V4; Metallic Black ৳4,02,000); Splendor+ 1,17,000 → 1,25,000 (heromotocorp.com now prices it); Gixxer FI ABS 2,82,950 → 2,77,950 (and its variant). Yamaha prices are the site's per-colour "discount" price, as the existing data already used; MRP is ৳5-20k higher.
+  - **Confirmed:** Saluto, FZS V2, R15 V4, R15 V3, MT-15 V2, Ray ZR, Aerox, Classic 350, Bolt 165R, Knight Rider V2, Bullet 100 V2, Vespa VXL 125, Aprilia SXR 160 (their `priceSource` still points at BikeBD where it did; switching it is next).
+  - **Unverifiable, left as is:** 7 TVS (bangladesh.tvsmotor.com shows no prices), XSR155 (no yamahabd.com page), Meteor 350 (page shows no price), Avenger 160 and V-Strom SX 250 (not on distributor lists), KTM Duke/RC 125 (not on ktm.com/en-bd), Lifan ×4, GPX ×2, Haojue ×3, Zontes, Revoo ×2 (no official BD site found).
+  - **Not offered on the official page, left:** Gixxer "FI, Double Disc" ৳2,51,950 and Gixxer SF "FI Disc (no ABS)" ৳3,19,950 variants. Owner: remove or confirm.
+  - 19 used-only bikes: no manufacturer price; not audited.
+- **Owner steps:** Bug 2 setting above; decide on the two orphan Gixxer variants; Splendor+ still carries `availability: "unconfirmed"` though Hero BD now lists and prices it (remove it if you agree); FZ-X `priceNote` "Matt Titan offer ৳2,95,000" is stale (site now ৳3,06,000).
+- **Not done:** switching the 14 confirmed bikes' `priceSource` to official pages; adding Yamaha/Runner parsers to `price-refresh.ts`.

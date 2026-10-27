@@ -10,18 +10,18 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 
 | Site | References |
 | --- | ---: |
-| bikebd.com | 228 |
+| bikebd.com | 222 |
 | bikroy.com | 88 |
 | bajajauto.com | 37 |
 | bdhonda.com | 33 |
 | suzuki.com.bd | 25 |
-| heromotocorp.com | 22 |
+| heromotocorp.com | 23 |
+| yamahabd.com | 13 |
 | library.ymcapps.net | 13 |
 | royalenfield.com | 12 |
 | motorcyclevalley.com | 11 |
 | waltonbd.com | 9 |
 | motorcyclebd.com | 8 |
-| yamahabd.com | 8 |
 | cdn.bajajauto.com | 6 |
 | motorcycle.com.bd | 6 |
 | tbsnews.net | 6 |
@@ -50,7 +50,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 | observerbd.com | 1 |
 | en.wikipedia.org | 1 |
 
-**Primary price source** (the `priceSource` of each bike): bikebd.com 51 (48%), bikroy.com 14 (13%), bajajauto.com 10 (9%), bdhonda.com 10 (9%), suzuki.com.bd 8 (7%), heromotocorp.com 4 (4%), royalenfield.com 4 (4%), yamahabd.com 3 (3%), waltonbd.com 3 (3%).
+**Primary price source** (the `priceSource` of each bike): bikebd.com 45 (42%), bikroy.com 14 (13%), bajajauto.com 10 (9%), bdhonda.com 10 (9%), yamahabd.com 8 (7%), suzuki.com.bd 8 (7%), heromotocorp.com 5 (5%), royalenfield.com 4 (4%), waltonbd.com 3 (3%).
 
 ## Bike data — per bike
 
@@ -186,8 +186,9 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 
 ### Hero
 
-- **Splendor+** — ৳1,17,000 as of 2026-09
-  - Price: https://www.bikebd.com/price/hero-splendor-plus
+- **Splendor+** — ৳1,25,000 as of 2026-10
+  - Price: https://www.heromotocorp.com/en-bd/products/commuter/splendor-plus.html
+  - https://www.bikebd.com/price/hero-splendor-plus
   - https://www.heromotocorp.com/en-bd/the-bike/passion-xpro-xtec-110cc-motorcycle-91.html
   - https://www.heromotocorp.com/content/dam/hero-aem-website/bd/en-bd/owners-manual-pdf/spleplusxtec.pdf
   - Photo: Sonachalam 2k Ramalingame, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Hero_Splendor_Plus_i3s_All_Black_Edition_and_IBS_2023_model_Non-_Xtec_PGM_FI_Model.png
@@ -459,7 +460,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - Price: https://www.suzuki.com.bd/
   - https://suzuki.com.bd/product/gixxer
   - https://www.bikebd.com/price/suzuki-gixxer-carb-disc
-- **Gixxer FI ABS** (FI ABS) — ৳2,82,950 as of 2026-10
+- **Gixxer FI ABS** (FI ABS) — ৳2,77,950 as of 2026-10
   - Price: https://suzuki.com.bd/product/gixxer
   - https://www.bikebd.com/price/suzuki-gixxer-abs-price-in-bangladesh
   - https://www.bikebd.com/price/suzuki-gixxer-fi-disc
@@ -590,13 +591,15 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://library.ymcapps.net/library/om/contents/pdf/10/2LP-F8199-EF_02.pdf
   - Used asking prices (2026-10): ~1 yr —, ~3 yr ৳1,15,000 — https://bikroy.com/bn/motorcycles-and-scooters/yamaha-saluto-125
   - Photo: Rainmaker47, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:2015_Yamaha_YC125-4_Saluto.JPG
-- **Fazer FI V2** — ৳2,72,000 as of 2026-10
-  - Price: https://www.bikebd.com/price/yamaha-fazer-price-in-bangladesh
+- **Fazer FI V2** — ৳2,74,000 as of 2026-10
+  - Price: https://www.yamahabd.com/products/yamaha-fazer-fi-v2
+  - https://www.bikebd.com/price/yamaha-fazer-price-in-bangladesh
   - https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/
   - https://library.ymcapps.net/library/om/contents/pdf/10/2WS-F8199-E5_02.pdf
   - Used asking prices (2026-10): ~1 yr ৳2,55,000, ~3 yr ৳2,05,000 — https://bikroy.com/bn/motorcycles-and-scooters/yamaha-fazer-fi-v2
-- **FZS FI V4** — ৳2,92,500 as of 2026-10
-  - Price: https://www.bikebd.com/price/yamaha-fzs-v4
+- **FZS FI V4** — ৳2,94,500 as of 2026-10
+  - Price: https://www.yamahabd.com/products/yamaha-fzs-v4
+  - https://www.bikebd.com/price/yamaha-fzs-v4
   - https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/
   - https://library.ymcapps.net/library/om/contents/pdf/10/BJE-F819V-E2_02.pdf
   - Used asking prices (2026-10): ~1 yr ৳2,75,000, ~3 yr ৳2,50,000 — https://bikroy.com/bn/motorcycles-and-scooters/yamaha-fzs-fi-v4, https://bikroy.com/bn/motorcycles-and-scooters/yamaha-yzf-r15-v4
@@ -606,17 +609,20 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://bikebd.com/price/fzs-v2-price-in-bd/color
   - https://www.yamahabd.com/products
   - https://library.ymcapps.net/library/om/contents/pdf/10/2GS-F8199-EC_02.pdf
-- **FZS FI Hybrid** — ৳3,44,500 as of 2026-10
-  - Price: https://www.bikebd.com/price/yamaha-fz-s-fi-hybrid-2025
+- **FZS FI Hybrid** — ৳3,47,500 as of 2026-10
+  - Price: https://www.yamahabd.com/products/yamaha-fzs-fi-hybrid
+  - https://www.bikebd.com/price/yamaha-fz-s-fi-hybrid-2025
   - https://online91.thedailystar.net/business/news/aci-motors-launches-yamaha-hybrid-motorcycle-4083056
   - https://library.ymcapps.net/library/om/contents/pdf/10/BST-F819V-E1_02.pdf
-- **FZ-X** — ৳2,92,500 as of 2026-10
-  - Price: https://www.bikebd.com/price/yamaha-fz-x-price-in-bangladesh
+- **FZ-X** — ৳2,93,500 as of 2026-10
+  - Price: https://www.yamahabd.com/products/yamaha-fz-x
+  - https://www.bikebd.com/price/yamaha-fz-x-price-in-bangladesh
   - https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/
   - https://library.ymcapps.net/library/om/contents/pdf/10/BKH-F819V-E1_02.pdf
   - Used asking prices (2026-10): ~1 yr ৳2,40,000, ~3 yr ৳2,30,000 — https://bikroy.com/bn/motorcycles-and-scooters/yamaha-fz-x
-- **FZ25** — ৳4,02,000 as of 2026-10
-  - Price: https://www.bikebd.com/price/yamaha-fz-25
+- **FZ25** — ৳3,90,000 as of 2026-10
+  - Price: https://www.yamahabd.com/products/yamaha-fz-25
+  - https://www.bikebd.com/price/yamaha-fz-25
   - https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/
   - https://www.yamahabd.com/products/yamaha-fz-25/
   - https://library.ymcapps.net/library/om/contents/pdf/10/B9X-F819V-E1_02.pdf

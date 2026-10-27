@@ -85,6 +85,8 @@ export const OFFICIAL: [string, string, string, string][] = [
   ["honda-cbr150r", "", "https://www.bdhonda.com/products/cbr150r", ""],
   ["honda-dio", "", "https://www.bdhonda.com/products/dio", ""],
   ["hero-hf-deluxe", "", "https://www.heromotocorp.com/en-bd/products/commuter/hf-deluxe-price-in-bangladesh.html", "HF Deluxe BS4 T/L"],
+  // shortcut: Splendor+ prices load in the browser only, so the run reports this row "not found"; check by hand until Hero serves it in HTML.
+  ["hero-splendor-plus", "", "https://www.heromotocorp.com/en-bd/products/commuter/splendor-plus.html", ""],
   ["hero-glamour-x-125", "", "https://www.heromotocorp.com/en-bd/products/executive/glamour-x-price-in-bangladesh.html", ""],
   ["hero-xtreme-125r", "", "https://www.heromotocorp.com/en-bd/products/executive/xtreme-125r-abs-price-in-bangladesh.html", "DISC SELF CAST (RED)"],
   ["hero-hunk-150r", "", "https://www.heromotocorp.com/en-bd/products/premium/hunk-150r-price-in-bangladesh.html", "Hunk 150R DD ABS"],
