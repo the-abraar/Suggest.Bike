@@ -12,7 +12,7 @@ export function NotFoundView() {
     if (lang === "bn") document.title = "পাতা পাওয়া যায়নি · Suggest.Bike";
   }, [lang]);
   return (
-    <div className="container-x grid min-h-[60vh] place-items-center text-center">
+    <div id="sb-404" className="container-x grid min-h-[60vh] place-items-center text-center">
       <div>
         <p className="text-[64px] font-semibold tracking-tight text-faint tnum">404</p>
         <h1 className="mt-2 text-[24px] font-semibold text-ink">{tx("This road doesn't go anywhere.", "এই রাস্তা কোথাও যায় না।")}</h1>
