@@ -22,6 +22,21 @@ const text = (s: string) => s.replace(/<!--[\s\S]*?-->|<[^>]+>/g, " ").replace(/
 const rows = (h: string, re: RegExp): Row[] =>
   [...h.matchAll(re)].map((m) => ({ name: text(m.groups!.name), price: Number(m.groups!.price.replace(/\D/g, "")) }));
 
+// yamahabd.com (Nuxt 2) ships each colour's price in window.__NUXT__=function(a,b,…){return{…}}(v1,v2,…), where a repeated
+// value is a parameter name bound to the matching argument. A colour's price is AfterDiscountPrice when set, else ProductColorMRP.
+const NUXT_VALUE = String.raw`"(?:[^"\\]|\\.)*"|[\w$]+`;
+function yamaha(h: string): Row[] {
+  const m = h.match(/window\.__NUXT__=function\(([^)]*)\)\{([\s\S]*)\}\(([\s\S]*?)\)<\/script>/);
+  if (!m) return [];
+  const params = m[1].split(","), args = [...m[3].matchAll(/"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|[^,'"]+/g)].map((a) => a[0]);
+  if (params.length !== args.length) return []; // the argument list did not split cleanly: no rows, never a guess
+  const val = (v: string) => { const i = params.indexOf(v), s = i < 0 ? v : args[i]; return s.startsWith('"') ? String(JSON.parse(s)) : s; };
+  const V = NUXT_VALUE;
+  return [...m[2].matchAll(new RegExp(`ColorName:(${V}),ColorCode:(?:${V}),ProductColorMRP:(${V}),[^}]*?AfterDiscountPrice:(${V})`, "g"))]
+    .map((r) => ({ name: val(r[1]), price: Number(([val(r[3]), val(r[2])].find((p) => /\d/.test(p)) ?? "").replace(/\D/g, "")) }))
+    .filter((r) => r.price > 0);
+}
+
 // One parser per distributor: page HTML to [{ name, price }]. Each is pinned by trimmed live markup in tests/fixtures/price-refresh/.
 export const PARSERS: Record<string, (html: string) => Row[]> = {
   "bajajauto.com": (h) => rows(h, /<h1 class="product-headerTxt">(?<name>[\s\S]*?)<\/h1>\s*<div class="price-tag">\s*<p[^>]*>Price:\s*<span>(?<price>[\d,]+) BDT/g),
@@ -34,6 +49,7 @@ export const PARSERS: Record<string, (html: string) => Row[]> = {
   ],
   "heromotocorp.com": (h) => rows(h, /<td><p>(?<name>[^<]+)<\/p><\/td>\s*<td><p class="price-value">\s*(?<price>[\d,]+)/g),
   "waltonbd.com": (h) => rows(h, /<title>(?<name>[^<]+)<\/title>[\s\S]*?class="final_price">(?<price>[\d,]+)</g),
+  "yamahabd.com": yamaha,
 };
 
 // Each distributor's current model list: [url, regex whose first group is a model key]. A key is the product URL's slug,
@@ -45,6 +61,7 @@ export const LISTS: Record<string, [string, RegExp]> = {
   "royalenfield.com": ["https://www.royalenfield.com/bd/en/motorcycles/", /\/bd\/en\/motorcycles\/([a-z0-9-]+)\/"/g],
   "heromotocorp.com": ["https://www.heromotocorp.com/en-bd/price-list.html", /\/en-bd\/products\/[a-z]+\/([a-z0-9-]+?)(?:-price-in-bangladesh)?\.html/g],
   "waltonbd.com": ["https://waltonbd.com/takyon", /\/takyon\/([a-z0-9-]+)"/g],
+  "yamahabd.com": ["https://www.yamahabd.com/sitemap.xml", /yamahabd\.com\/products\/([\w-]+)</g],
 };
 export const listKeys = (h: string, url: string) => new Set([...h.matchAll(LISTS[host(url)][1])].map((m) => norm(m[1])));
 const keyOf = (url: string, row: string) => (url === LISTS[host(url)][0] ? norm(row) : norm(slug(url)));
@@ -115,6 +132,19 @@ export const OFFICIAL: [string, string, string, string][] = [
   ["suzuki-gixxer-sf-250", "", "https://www.suzuki.com.bd/bikes", "GIXXER SF 250"],
   ["suzuki-gsx-r150", "", "https://www.suzuki.com.bd/bikes", "GSX-R150"],
   ["suzuki-access-125", "", "https://www.suzuki.com.bd/bikes", "ACCESS 125"],
+  // Yamaha: the page lists a price per colour; the row is a colour at the price the data carries (the cheapest, as for R15 V4 and FZ25).
+  ["yamaha-saluto-125", "", "https://www.yamahabd.com/products/yamaha-saluto-125-ubs", "Purplish Blue"],
+  ["yamaha-fazer-fi-v2", "", "https://www.yamahabd.com/products/yamaha-fazer-fi-v2", "Midnight Black"],
+  ["yamaha-fzs-fi-v4", "", "https://www.yamahabd.com/products/yamaha-fzs-v4", "Dark Matte Blue"],
+  ["yamaha-fzs-v2-dd", "", "https://www.yamahabd.com/products/yamaha-fzs-v2", "Armada Blue"],
+  ["yamaha-fzs-fi-hybrid", "", "https://www.yamahabd.com/products/yamaha-fzs-fi-hybrid", "Racing Blue"],
+  ["yamaha-fz-x", "", "https://www.yamahabd.com/products/yamaha-fz-x", "DARK-MATTE-BLUE"],
+  ["yamaha-fz25", "", "https://www.yamahabd.com/products/yamaha-fz-25", "Racing Blue"],
+  ["yamaha-r15-v4", "", "https://www.yamahabd.com/products/yamaha-r15-v4", "METALLIC-RED"],
+  ["yamaha-r15-v3", "", "https://www.yamahabd.com/products/yamaha-r15-v3", "Dark Knight"],
+  ["yamaha-mt-15-v2", "", "https://www.yamahabd.com/products/yamaha-mt-15-v2", "Metallic Black"],
+  ["yamaha-ray-zr-125", "", "https://www.yamahabd.com/products/yamaha-ray-zr-125", "SPARKLE-GREEN"],
+  ["yamaha-aerox-155", "", "https://www.yamahabd.com/products/yamaha-aerox-155", "Metallic Black"],
   ["walton-takyon-fusion-25td", "", "https://waltonbd.com/takyon-fusion-25td", ""],
   ["walton-takyon-1-00", "", "https://waltonbd.com/takyon/takyon-1-00-38ah", ""],
   ["walton-takyon-fusion-swift", "", "https://waltonbd.com/takyon/takyon-fusion-1-00-swift", ""],

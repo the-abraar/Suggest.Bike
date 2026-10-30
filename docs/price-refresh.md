@@ -35,20 +35,23 @@ It never deploys. `deploy.yml` runs only on a push to `main` or by hand, and Git
 | Hero (HMCL Niloy) | `heromotocorp.com/en-bd/products/<type>/<model>-price-in-bangladesh.html` | 9 |
 | Royal Enfield (IFAD) | `royalenfield.com/bd/en/motorcycles/<model>/` | 2 (Hunter, Bullet) |
 | Walton | `waltonbd.com/<model>` and `waltonbd.com/takyon/<model>` | 3 (Fusion 25TD, Takyon 1.00, Fusion 1.00 Swift) |
+| Yamaha (ACI) | `yamahabd.com/products/<model>` (per-colour prices in the page's Nuxt data; model list from `sitemap.xml`) | 12 (every on-sale Yamaha except XSR155) |
 
 Not covered automatically. These stay on the owner checklist:
 
 - **Royal Enfield Classic 350 and Meteor 350; Suzuki Gixxer FI ABS and its FI variants.** Their official pages load prices in the browser, so the HTML has none. Check the official page in a browser.
 - **Hero Splendor+.** Hero lists the model, but no BD price page was found.
 - **Bajaj Avenger 160, Suzuki V-Strom SX 250.** They are not on the distributor's BD list. The PR flags them every month until the data changes.
-- **TVS, Yamaha, KTM, Runner, Lifan, GPX, Haojue, Zontes, Vespa, Aprilia, Revoo.** No official BD price page is parsed. Prices come from BikeBD.
+- **Runner Bolt 165R, Knight Rider V2, Bullet 100 V2.** Their source is Runner's own shop (`motorcycles.runnerautomobiles.com/shop/products/<model>`), but it renders prices in the browser only (an Angular app fed by Runner's JSON API, which the script does not call). Check the page in a browser.
+- **Yamaha XSR155.** Not on yamahabd.com; the PR flags it every month.
+- **TVS, KTM, other Runner models, Lifan, GPX, Haojue, Zontes, Vespa, Aprilia, Revoo.** No official BD price page is parsed. Prices come from BikeBD.
 - **Used-only bikes (Bikroy and others).** Bikroy's and BikeBD's terms and robots rules forbid scraping, so no script may fetch them. Open them in a browser.
 
 ## What the owner does each month (2-3 hours)
 
 1. **Merge the bot PR**, around the 1st (about 15 minutes; see below).
 2. **Work one checklist batch each week** (about 17 bikes at 2-3 minutes each: 35-50 minutes). For each bike:
-   - open its source link in a browser; for TVS and Yamaha, also try the distributor's own page or a showroom;
+   - open its source link in a browser; for TVS, also try the distributor's own page or a showroom;
    - update `priceBDT`, `priceSource` and `priceAsOf` (YYYY-MM) in `src/data/bikes.json`, and any `variants` prices;
    - if the price did not change, still set `priceAsOf` to the current month;
    - for used-only bikes, take the typical asking price from current listings.
