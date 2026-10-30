@@ -4,7 +4,7 @@ import Link from "@/components/LangLink";
 import { WithSearchParams } from "@/components/ui";
 import { useEffect, useId, useMemo, useState } from "react";
 import { Info } from "lucide-react";
-import { BIKES, formatBDT, formatLakh, fullName, getBike } from "@/lib/bikes";
+import { BIKES, bnDigits, formatBDT, formatLakh, fullName, getBike } from "@/lib/bikes";
 import { DEFAULT_COST_INPUT, EV_BATTERY, FUEL, OVERHAUL_YEARS, OWNERSHIP_YEARS, WEAR_KM, defaultUsedPrice, ownershipCost, registrationFor, type CostBreakdown, type CostInput } from "@/lib/cost";
 import { DEFAULT_FEE_PCT, PAY_TERMS, cardEmi, payPaths, type PathKey } from "@/lib/fund";
 import { FuelAgeNote } from "@/components/Dated";
@@ -275,7 +275,7 @@ function Cost({ params }: { params: URLSearchParams }) {
               </div>
               <div className="grid grid-cols-3 gap-6 sm:grid-cols-1 sm:gap-4 sm:text-right">
                 <Kpi k={tx("Total", "মোট")} v={formatLakh(c.total, lang)} />
-                <Kpi k={tx("Per km", "প্রতি km")} v={`৳${c.perKm.toFixed(2)}`} />
+                <Kpi k={tx("Per km", "প্রতি km")} v={`৳${lang === "bn" ? bnDigits(c.perKm.toFixed(2)) : c.perKm.toFixed(2)}`} />
                 <Kpi k={tx("Running only / mo", "শুধু চলার খরচ / মাস")} v={formatBDT(c.runningPerMonth, lang)} />
               </div>
             </div>
