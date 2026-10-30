@@ -7352,7 +7352,7 @@
   "priceBDT": 234000,
   "priceNote": "LED edition (Black Metallic, Grey Metallic) ৳2,38,000.",
   "priceAsOf": "2026-10",
-  "priceSource": "https://bikebd.com/price/fzs-v2-price-in-bd",
+  "priceSource": "https://www.yamahabd.com/products/yamaha-fzs-v2",
   "distributor": "ACI Motors Ltd",
   "assembledInBD": true,
   "engine": {
@@ -7461,6 +7461,7 @@
    }
   ],
   "sources": [
+   "https://www.yamahabd.com/products/yamaha-fzs-v2",
    "https://bikebd.com/price/fzs-v2-price-in-bd",
    "https://bikebd.com/price/fzs-v2-price-in-bd/color",
    "https://www.yamahabd.com/products",
@@ -8200,7 +8201,7 @@
   "priceBDT": 525000,
   "priceNote": "Dark Knight ৳5,25,000; Racing Blue ~৳5,21,000 (May 2026). Indonesian V3 (USD fork) listed ~৳5,50,000.",
   "priceAsOf": "2026-10",
-  "priceSource": "https://www.bikebd.com/price/r15-v3-indian-version-price-in-bd",
+  "priceSource": "https://www.yamahabd.com/products/yamaha-r15-v3",
   "distributor": "ACI Motors Ltd",
   "assembledInBD": false,
   "engine": {
@@ -8310,6 +8311,7 @@
    }
   ],
   "sources": [
+   "https://www.yamahabd.com/products/yamaha-r15-v3",
    "https://www.bikebd.com/price/r15-v3-indian-version-price-in-bd",
    "https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/",
    "https://library.ymcapps.net/library/om/contents/pdf/10/B9E-F8199-E1_02.pdf"
@@ -8381,7 +8383,7 @@
   "priceBDT": 535000,
   "priceNote": "Imported 155cc VVA naked bike from ACI, priced well above the naked median; older MT-15 (V1) stock still listed at ৳4,60,000.",
   "priceAsOf": "2026-10",
-  "priceSource": "https://www.bikebd.com/price/yamaha-mt-15-version-20",
+  "priceSource": "https://www.yamahabd.com/products/yamaha-mt-15-v2",
   "distributor": "ACI Motors Ltd",
   "assembledInBD": false,
   "engine": {
@@ -8491,6 +8493,7 @@
    }
   ],
   "sources": [
+   "https://www.yamahabd.com/products/yamaha-mt-15-v2",
    "https://www.bikebd.com/price/yamaha-mt-15-version-20",
    "https://www.bikebd.com/price/yamaha-mt-15-price-in-bangladesh",
    "https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/",
@@ -8902,7 +8905,7 @@
   "priceBDT": 525000,
   "priceNote": "Launched Nov 2023 at ৳5,30,000; a 155cc maxi-scooter with ABS and VVA priced far above the common 110-125cc scooters.",
   "priceAsOf": "2026-10",
-  "priceSource": "https://www.bikebd.com/price/yamaha-aerox-155",
+  "priceSource": "https://www.yamahabd.com/products/yamaha-aerox-155",
   "distributor": "ACI Motors Ltd",
   "assembledInBD": false,
   "engine": {
@@ -9013,6 +9016,7 @@
    }
   ],
   "sources": [
+   "https://www.yamahabd.com/products/yamaha-aerox-155",
    "https://www.bikebd.com/price/yamaha-aerox-155",
    "https://www.tbsnews.net/node/748346",
    "https://library.ymcapps.net/library/om/contents/pdf/10/BLV-F819V-E2_02.pdf"
@@ -12160,7 +12164,7 @@
   "priceBDT": 109000,
   "priceNote": "Older Bullet 100 ৳1,06,000; Bullet 100 V2 Matt ৳1,09,000.",
   "priceAsOf": "2026-10",
-  "priceSource": "https://bikebd.com/price/bullet-100-v2",
+  "priceSource": "https://motorcycles.runnerautomobiles.com/shop/products/bullet-100cc-v2-white",
   "distributor": "Runner Automobiles Ltd",
   "assembledInBD": true,
   "engine": {
@@ -12260,6 +12264,7 @@
    }
   ],
   "sources": [
+   "https://motorcycles.runnerautomobiles.com/shop/products/bullet-100cc-v2-white",
    "https://bikebd.com/price/bullet-100-v2",
    "https://bikebd.com/brand/runner",
    "https://www.motorcycle.com.bd/runner-bullet-100-v2/",
@@ -12315,8 +12320,8 @@
   "status": "on-sale",
   "priceBDT": 167000,
   "priceNote": "Original Knight Rider ৳1,59,000. Other BD sites list ৳1,49,000–1,59,000.",
-  "priceAsOf": "2026-09",
-  "priceSource": "https://bikebd.com/brand/runner",
+  "priceAsOf": "2026-10",
+  "priceSource": "https://motorcycles.runnerautomobiles.com/shop/products/runner-knight-rider-150cc-v2-matte-red",
   "distributor": "Runner Automobiles Ltd",
   "assembledInBD": true,
   "engine": {
@@ -12416,6 +12421,7 @@
    }
   ],
   "sources": [
+   "https://motorcycles.runnerautomobiles.com/shop/products/runner-knight-rider-150cc-v2-matte-red",
    "https://bikebd.com/price/runner-knight-rider-v2",
    "https://bikebd.com/brand/runner",
    "https://www.bikestall.com/bike/runner-knight-rider-v2-price-in-bd",
@@ -14396,7 +14402,7 @@
   "model": "Bolt 165R",
   "category": "street",
   "priceBDT": 169000,
-  "priceSource": "https://www.bikebd.com/price/runner-bolt-165r-price-in-bangladesh",
+  "priceSource": "https://motorcycles.runnerautomobiles.com/shop/products/bolt165r-red-black",
   "distributor": "Runner Automobiles Limited",
   "engine": {
    "cc": 164.74,
@@ -14498,6 +14504,7 @@
    }
   ],
   "sources": [
+   "https://motorcycles.runnerautomobiles.com/shop/products/bolt165r-red-black",
    "https://www.bikebd.com/price/runner-bolt-165r-price-in-bangladesh",
    "https://www.bikebd.com/price/runner-bolt-165r-price-in-bangladesh/specifications",
    "https://www.tbsnews.net/feature/wheels/runner-launches-bolt-165-r-124528",
@@ -14531,7 +14538,7 @@
    "runner bolt",
    "bolt 165"
   ],
-  "priceNote": "Unchanged from the August 2020 launch price of ৳1,69,000 reported by TBS and The Daily Star; Runner publishes no current price list online.",
+  "priceNote": "Unchanged from the August 2020 launch price of ৳1,69,000 reported by TBS and The Daily Star; Runner's own online shop still lists it at ৳1,69,000 (October 2026).",
   "dataNote": "bikebd's spec table and review disagree on top speed and seat height."
  },
  {
