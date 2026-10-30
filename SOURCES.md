@@ -10,13 +10,13 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 
 | Site | References |
 | --- | ---: |
-| bikebd.com | 222 |
+| bikebd.com | 215 |
 | bikroy.com | 88 |
 | bajajauto.com | 37 |
 | bdhonda.com | 33 |
 | suzuki.com.bd | 25 |
 | heromotocorp.com | 23 |
-| yamahabd.com | 13 |
+| yamahabd.com | 21 |
 | library.ymcapps.net | 13 |
 | royalenfield.com | 12 |
 | motorcyclevalley.com | 11 |
@@ -25,6 +25,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 | cdn.bajajauto.com | 6 |
 | motorcycle.com.bd | 6 |
 | tbsnews.net | 6 |
+| motorcycles.runnerautomobiles.com | 6 |
 | tvsmotor.com | 5 |
 | en.ittefaq.com.bd | 4 |
 | bikewale.com | 3 |
@@ -50,7 +51,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 | observerbd.com | 1 |
 | en.wikipedia.org | 1 |
 
-**Primary price source** (the `priceSource` of each bike): bikebd.com 45 (42%), bikroy.com 14 (13%), bajajauto.com 10 (9%), bdhonda.com 10 (9%), yamahabd.com 8 (7%), suzuki.com.bd 8 (7%), heromotocorp.com 5 (5%), royalenfield.com 4 (4%), waltonbd.com 3 (3%).
+**Primary price source** (the `priceSource` of each bike): bikebd.com 38 (36%), bikroy.com 14 (13%), yamahabd.com 12 (11%), bajajauto.com 10 (9%), bdhonda.com 10 (9%), suzuki.com.bd 8 (7%), heromotocorp.com 5 (5%), royalenfield.com 4 (4%), motorcycles.runnerautomobiles.com 3 (3%), waltonbd.com 3 (3%).
 
 ## Bike data — per bike
 
@@ -423,17 +424,20 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 ### Runner
 
 - **Bullet 100 V2** — ৳1,09,000 as of 2026-10
-  - Price: https://bikebd.com/price/bullet-100-v2
+  - Price: https://motorcycles.runnerautomobiles.com/shop/products/bullet-100cc-v2-white
+  - https://bikebd.com/price/bullet-100-v2
   - https://bikebd.com/brand/runner
   - https://www.motorcycle.com.bd/runner-bullet-100-v2/
   - https://banglarbike.com/bike-brands/runner/runner-bullet-100-v2/
-- **Knight Rider V2** — ৳1,67,000 as of 2026-09
-  - Price: https://bikebd.com/brand/runner
+- **Knight Rider V2** — ৳1,67,000 as of 2026-10
+  - Price: https://motorcycles.runnerautomobiles.com/shop/products/runner-knight-rider-150cc-v2-matte-red
   - https://bikebd.com/price/runner-knight-rider-v2
+  - https://bikebd.com/brand/runner
   - https://www.bikestall.com/bike/runner-knight-rider-v2-price-in-bd
   - https://www.motorcyclefair.com/runner-knight-rider-v2/
 - **Bolt 165R** — ৳1,69,000 as of 2026-10
-  - Price: https://www.bikebd.com/price/runner-bolt-165r-price-in-bangladesh
+  - Price: https://motorcycles.runnerautomobiles.com/shop/products/bolt165r-red-black
+  - https://www.bikebd.com/price/runner-bolt-165r-price-in-bangladesh
   - https://www.bikebd.com/price/runner-bolt-165r-price-in-bangladesh/specifications
   - https://www.tbsnews.net/feature/wheels/runner-launches-bolt-165-r-124528
   - https://www.thedailystar.net/toggle/news/new-bike-week-1955401
@@ -605,7 +609,8 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - Used asking prices (2026-10): ~1 yr ৳2,75,000, ~3 yr ৳2,50,000 — https://bikroy.com/bn/motorcycles-and-scooters/yamaha-fzs-fi-v4, https://bikroy.com/bn/motorcycles-and-scooters/yamaha-yzf-r15-v4
   - Photo: Ganesh Mohan T, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Yamaha_FZS.jpg
 - **FZS V2** (FI Double Disc) — ৳2,34,000 as of 2026-10
-  - Price: https://bikebd.com/price/fzs-v2-price-in-bd
+  - Price: https://www.yamahabd.com/products/yamaha-fzs-v2
+  - https://bikebd.com/price/fzs-v2-price-in-bd
   - https://bikebd.com/price/fzs-v2-price-in-bd/color
   - https://www.yamahabd.com/products
   - https://library.ymcapps.net/library/om/contents/pdf/10/2GS-F8199-EC_02.pdf
@@ -634,13 +639,15 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://library.ymcapps.net/library/om/contents/pdf/10/BPD-F819V-E3_02.pdf
   - Photo: Kamalnath P, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Yamaha_R15_v4_bike.jpg
 - **R15 V3** (Indian Dual ABS) — ৳5,25,000 as of 2026-10
-  - Price: https://www.bikebd.com/price/r15-v3-indian-version-price-in-bd
+  - Price: https://www.yamahabd.com/products/yamaha-r15-v3
+  - https://www.bikebd.com/price/r15-v3-indian-version-price-in-bd
   - https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/
   - https://library.ymcapps.net/library/om/contents/pdf/10/B9E-F8199-E1_02.pdf
   - Used asking prices (2026-10): ~1 yr ৳4,85,000, ~3 yr ৳4,10,000 — https://bikroy.com/bn/motorcycles-and-scooters/yamaha-r15-v3, https://bikroy.com/bn/motorcycles-and-scooters/yamaha-r15-v3-2025, https://bikroy.com/bn/motorcycles-and-scooters/yamaha-r15-v3-2023
   - Photo: Akshayanil919, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Yamaha_R15_V3.0.jpg
 - **MT-15 V2** — ৳5,35,000 as of 2026-10
-  - Price: https://www.bikebd.com/price/yamaha-mt-15-version-20
+  - Price: https://www.yamahabd.com/products/yamaha-mt-15-v2
+  - https://www.bikebd.com/price/yamaha-mt-15-version-20
   - https://www.bikebd.com/price/yamaha-mt-15-price-in-bangladesh
   - https://www.motorcyclevalley.com/news/yamaha-bike-price-before-eid-ul-adha-2026/
   - https://library.ymcapps.net/library/om/contents/pdf/10/BXF-F819V-E6_02.pdf
@@ -660,7 +667,8 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
   - https://www.motorcyclebd.com/yamaha-ray-zr-street-rally-125-fi/
   - https://library.ymcapps.net/library/om/contents/pdf/10/BKX-F819V-E2_02.pdf
 - **Aerox 155** — ৳5,25,000 as of 2026-10
-  - Price: https://www.bikebd.com/price/yamaha-aerox-155
+  - Price: https://www.yamahabd.com/products/yamaha-aerox-155
+  - https://www.bikebd.com/price/yamaha-aerox-155
   - https://www.tbsnews.net/node/748346
   - https://library.ymcapps.net/library/om/contents/pdf/10/BLV-F819V-E2_02.pdf
   - Photo: Chanokchon, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:2021_Yamaha_Aerox_155_ABS.jpg
