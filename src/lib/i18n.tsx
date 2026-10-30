@@ -70,7 +70,8 @@ export function LangProvider({ children }: { children: ReactNode }) {
   // /bn/... pages are the indexable Bangla copy: the URL decides the language there, not localStorage.
   const onBn = /^\/bn(\/|$)/.test(usePathname());
   const router = useRouter();
-  const [lang, setLangState] = useState<Lang>(onBn ? "bn" : "en");
+  // The one 404.html is built in English: hydrate it in English on /bn/ too (else React #418), the effect below switches.
+  const [lang, setLangState] = useState<Lang>(() => (onBn && !(typeof document !== "undefined" && document.getElementById("sb-404")) ? "bn" : "en"));
 
   useEffect(() => {
     // Visiting /bn/ (a shared link, a search result) is not a preference: only the toggle stores one (setLang), so a

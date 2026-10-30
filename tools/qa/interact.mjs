@@ -331,6 +331,18 @@ ok('header 375 menu: Dealers', (await pg.locator('a[href="/dealers/"]:visible').
   await p.close();
 }
 
+// 16. /bn/ 404: the English-built 404.html hydrates without a React error, then shows Bangla
+{
+  // Own page: the 404 status itself logs a console error, so only uncaught page errors count here.
+  const p = await ctx.newPage();
+  const pageErrors = [];
+  p.on('pageerror', (e) => pageErrors.push(e.message));
+  await p.goto(BASE + '/bn/nope/', { waitUntil: 'networkidle' });
+  const h1 = await p.locator('main h1').innerText();
+  ok('/bn/nope/: 404 hydrates with no page error and shows Bangla', pageErrors.length === 0 && h1 === 'এই রাস্তা কোথাও যায় না।', `h1=${h1} errors=${pageErrors.join(' | ')}`);
+  await p.close();
+}
+
 const pageErrs = [...new Set(errs)];
 ok('no page/console errors', pageErrs.length === 0, pageErrs.join(' | '));
 await br.close();
