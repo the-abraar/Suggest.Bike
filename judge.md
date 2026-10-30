@@ -439,3 +439,20 @@ Local commits on `main`, **not pushed** (a push deploys). `scripts/check.sh` exi
   - 19 used-only bikes: no manufacturer price; not audited.
 - **Owner steps:** Bug 2 setting above; decide on the two orphan Gixxer variants; Splendor+ still carries `availability: "unconfirmed"` though Hero BD now lists and prices it (remove it if you agree); FZ-X `priceNote` "Matt Titan offer ৳2,95,000" is stale (site now ৳3,06,000).
 - **Not done:** switching the 14 confirmed bikes' `priceSource` to official pages; adding Yamaha/Runner parsers to `price-refresh.ts`.
+
+### Update 21 (2026-10-30, agent round: GitHub flow, issue → branch → PR → merge)
+
+Every task got an issue assigned to the-abraar, its own branch and worktree, and a PR merged into `main` after green CI (merges deploy).
+
+- **Official priceSource:** #1, PR #2 merged. 11 of 13 confirmed bikes now point at official pages; Vespa VXL 125 and Aprilia SXR 160 have no official BD price page.
+- **price-refresh parsers:** PR #4 merged: yamahabd.com Nuxt data parser (12 bikes, fixtures). **Runner blocked:** prices come from motorcycles-api.runnerautomobiles.com, which refused the request here. #3 open for the owner: let the script read that service, or keep the 3 Runner bikes on the monthly checklist.
+- **88 vs 107:** #5, PR #6 merged. The footer names on-sale and used-only counts beside the total.
+- **Bangla ৳ digits:** #7, PR #8 merged. The per-km KPI on `/bn/cost/` was the last `toFixed` amount with Latin digits; built page reads ৳১০.০১.
+- **`/bn/` 404:** #9, PR #10. The one English-built 404.html hydrated on `/bn/` with LangProvider already in bn (React #418). The 404 root carries `id="sb-404"`; the provider starts in en when it is in the served HTML, then its effect switches to bn. New interact.mjs check 16: FAIL (#418) before, PASS after.
+- **Search intents and "Edit answers":** check-only, #12 and #13 closed. `tests/search.test.ts` 6/6; interact.mjs "best mileage" EN and BN PASS; quiz checks PASS.
+
+**Proven:** `scripts/check.sh` exit 0 on each branch; tools/qa/interact.mjs 55/56 on the 404 branch.
+
+**Found:** interact.mjs "Quick pick ৳1.3 lakh: Splendor+ says Availability unconfirmed" fails on main. The 2026-10-27 audit raised Splendor+ to ৳1,25,000 and no Quick pick budget or use puts it in the top 3 now. The check is stale, not the UI. #11 open.
+
+**Not checked:** dark mode and 1280 px for the changed pages; "under 2 lakh" click-through in a browser (unit-tested only); a native reader of the Bangla.
