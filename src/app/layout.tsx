@@ -54,7 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Header />
             <main id="main">{children}</main>
             {/* oldest price date, so stale prices are not hidden by fresh ones */}
-            <Footer count={BIKES.length} latest={BIKES.map((b) => b.priceAsOf).sort()[0]} />
+            <Footer count={BIKES.length} onSale={BIKES.filter((b) => b.status === "on-sale").length} latest={BIKES.map((b) => b.priceAsOf).sort()[0]} />
             <CompareTray />
           </StoreProvider>
         </LangProvider>
