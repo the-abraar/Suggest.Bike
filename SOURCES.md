@@ -4,7 +4,7 @@ Where every number on Suggest.Bike comes from. Generated from `src/data/*.json` 
 
 **Confidence key:** specs and prices are sourced; real-world mileage ranges, the 1–10 ownership scores, parts prices and service costs are *editorial estimates* informed by the sources below and owner reports.
 
-**Price refresh:** on the 1st of each month `.github/workflows/price-refresh.yml` re-reads the official Bangladesh distributor pages (Bajaj, Honda, Suzuki, Hero, Royal Enfield, Walton) and opens a PR with the changes. Every other price (TVS, Yamaha, the Chinese brands, used-only bikes, and official pages that load prices in the browser) is on the owner's monthly checklist in that PR. See `docs/price-refresh.md`.
+**Price refresh:** on the 1st of each month `.github/workflows/price-refresh.yml` re-reads the official Bangladesh distributor pages (Bajaj, Honda, Suzuki, Hero, Royal Enfield, Walton, Yamaha) and opens a PR with the changes. Every other price (TVS, Runner, the Chinese brands, used-only bikes, and official pages that load prices in the browser) is on the owner's monthly checklist in that PR. See `docs/price-refresh.md`.
 
 ## Bike data — by website
 

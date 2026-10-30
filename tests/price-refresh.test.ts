@@ -20,9 +20,14 @@ test("price-refresh: each distributor parser reads its trimmed live page", () =>
     ["royalenfield.com", "re-hunter-350.html", [{ name: "Rebel Blue", price: 371500 }]],
     ["heromotocorp.com", "hero-hunk-150r.html", [{ name: "Hunk 150R DD", price: 198000 }, { name: "Hunk 150R DD ABS", price: 210000 }]],
     ["waltonbd.com", "walton-takyon-fusion-25td.html", [{ name: "TAKYON FUSION 25TD", price: 161999 }]],
+    // Nuxt data: colour MRPs as literals and as parameter names bound to call arguments ("605,000")
+    ["yamahabd.com", "yamaha-r15-v4.html", [{ name: "DARK-KNIGHT", price: 605000 }, { name: "RACING-BLUE", price: 610000 }, { name: "METALLIC-RED", price: 605000 }, { name: "INTENSITY-WHITE", price: 660000 }]],
+    // AfterDiscountPrice wins over the colour MRP where the page sets one
+    ["yamahabd.com", "yamaha-fz-25.html", [{ name: "Metallic Black", price: 402000 }, { name: "Racing Blue", price: 390000 }, { name: "Warrior White", price: 390000 }]],
   ];
   for (const [h, file, want] of cases) assert.deepEqual(PARSERS[h](fx(file)), want, file);
   assert.deepEqual(PARSERS["bajajauto.com"]("<html>redesigned page</html>"), [], "an unknown layout yields no rows, never a guess");
+  assert.deepEqual(PARSERS["yamahabd.com"](fx("yamaha-r15-v4.html").replace(/\)<\/script>/, ',"extra")</script>')), [], "Nuxt arguments that do not match the parameters yield no rows");
 });
 
 test("price-refresh: each model list yields the slugs or names the availability check looks up", () => {
@@ -34,6 +39,8 @@ test("price-refresh: each model list yields the slugs or names the availability 
     ["heromotocorp.com", "hero-hunk-150r.html", ["hunk-150r", "splendor-plus", "xtreme-125r-abs"]], // the last is only in an escaped JSON attribute
     ["waltonbd.com", "walton-takyon-fusion-25td.html", ["takyon-fusion-25td", "takyon-fusion-25tr"]],
   ];
+  const yamaha = [...listKeys(fx("yamaha-sitemap.xml"), LISTS["yamahabd.com"][0])];
+  for (const k of ["yamaha-saluto-125-ubs", "yamaha-fz-25", "yamaha-r15m"]) assert.ok(yamaha.includes(k), k);
   for (const [h, file, want] of cases) assert.deepEqual([...listKeys(fx(file), LISTS[h][0])], want, file);
 });
 
