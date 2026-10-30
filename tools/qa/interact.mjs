@@ -266,11 +266,24 @@ ok('header 375 menu: Dealers', (await pg.locator('a[href="/dealers/"]:visible').
 {
   const p = await newPage();
   await p.goto(BASE + '/', { waitUntil: 'networkidle' });
-  await p.locator('#qp-budget').focus();
-  await p.keyboard.press('Home'); // ৳1 lakh
-  for (let i = 0; i < 6; i++) await p.keyboard.press('ArrowRight'); // ৳1.3 lakh: Hero Splendor+ is in the top 3
-  const row = p.locator('a[href="/bikes/hero-splendor-plus/"]').filter({ hasText: 'Availability unconfirmed' });
-  ok('Quick pick ৳1.3 lakh: Splendor+ says Availability unconfirmed', (await row.count()) === 1);
+  // Find the scenario from the live rankings instead of hard-coding one (a fixed budget rots when data changes, issue #11).
+  const qp = p.locator('.card', { has: p.locator('#qp-budget') });
+  const flagged = qp.locator('a[href^="/bikes/"]').filter({ hasText: 'Availability unconfirmed' });
+  let hit = '';
+  scan: for (const scooter of [true, false]) {
+    await qp.getByRole('button', { name: 'Scooter' }).click(); // on first (EVs), then off (motorcycles)
+    for (const use of await qp.locator('button.chip:not([aria-pressed])').all()) {
+      await use.click();
+      await p.locator('#qp-budget').focus();
+      await p.keyboard.press('Home');
+      for (let i = 0; i <= 120; i++) { // ৳1–7 lakh in ৳5,000 steps
+        if (i) await p.keyboard.press('ArrowRight');
+        if (await flagged.count()) { hit = `${scooter ? 'scooter' : 'motorcycle'} / ${await use.innerText()} / ${await p.locator('#qp-budget').getAttribute('aria-valuetext')}`; break scan; }
+      }
+    }
+  }
+  ok('Quick pick: some use + budget badges an unconfirmed bike "Availability unconfirmed"', hit !== '', 'no scenario found');
+  if (hit) console.log(`INFO Quick pick unconfirmed scenario: ${hit}`);
   for (const path of ['/bikes/honda-cd70/', '/bn/bikes/honda-cd70/']) {
     await p.goto(BASE + path);
     await p.waitForURL(/\/bikes\/$/, { timeout: 5000 }).catch(() => {});
