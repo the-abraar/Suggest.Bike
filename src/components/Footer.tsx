@@ -10,7 +10,7 @@ import { whatsappUrl } from "@/lib/site";
 const THROTTLE_IQ_URL = "https://github.com/blankframe-tech/ThrottleIQ";
 
 /** count and oldest price date come from the server layout, so the footer does not ship the bike index. */
-export function Footer({ count, latest }: { count: number; latest: string }) {
+export function Footer({ count, onSale, latest }: { count: number; onSale: number; latest: string }) {
   const { t, lang } = useLang();
   const tx = (en: string, bn: string) => (lang === "bn" ? bnNumerals(bn) : en);
   return (
@@ -22,7 +22,7 @@ export function Footer({ count, latest }: { count: number; latest: string }) {
             <T k="footer.tag" />
           </p>
           <p className="text-[12.5px] text-faint">
-            {lang === "bn" ? bnDigits(`${count}টি বাইক · সবচেয়ে পুরনো দাম যাচাই ${latest}`) : `${count} bikes · oldest price checked ${latest}`}
+            {lang === "bn" ? bnDigits(`${count}টি বাইক (${onSale}টি নতুন বিক্রি হচ্ছে, ${count - onSale}টি শুধু পুরনো বাজারে) · সবচেয়ে পুরনো দাম যাচাই ${latest}`) : `${count} bikes (${onSale} on sale, ${count - onSale} used-only) · oldest price checked ${latest}`}
           </p>
         </div>
         <FooterCol title={tx("Decide", "সিদ্ধান্ত")}>
