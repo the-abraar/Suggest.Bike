@@ -33,7 +33,7 @@ function yamaha(h: string): Row[] {
   const val = (v: string) => { const i = params.indexOf(v), s = i < 0 ? v : args[i]; return s.startsWith('"') ? String(JSON.parse(s)) : s; };
   const V = NUXT_VALUE;
   return [...m[2].matchAll(new RegExp(`ColorName:(${V}),ColorCode:(?:${V}),ProductColorMRP:(${V}),[^}]*?AfterDiscountPrice:(${V})`, "g"))]
-    .map((r) => ({ name: val(r[1]), price: Number(([val(r[3]), val(r[2])].find((p) => /\d/.test(p)) ?? "").replace(/\D/g, "")) }))
+    .map((r) => ({ name: val(r[1]), price: [val(r[3]), val(r[2])].map((p) => Number(p.replace(/\D/g, ""))).find((n) => n > 0) ?? 0 })) // a 0 discount means unset
     .filter((r) => r.price > 0);
 }
 

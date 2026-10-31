@@ -27,6 +27,7 @@ test("price-refresh: each distributor parser reads its trimmed live page", () =>
   ];
   for (const [h, file, want] of cases) assert.deepEqual(PARSERS[h](fx(file)), want, file);
   assert.deepEqual(PARSERS["bajajauto.com"]("<html>redesigned page</html>"), [], "an unknown layout yields no rows, never a guess");
+  assert.equal(PARSERS["yamahabd.com"](fx("yamaha-fz-25.html").replace(/AfterDiscountPrice:"402,000"/, 'AfterDiscountPrice:"0"'))[0].price, 410000, "a 0 discount falls back to the colour MRP");
   assert.deepEqual(PARSERS["yamahabd.com"](fx("yamaha-r15-v4.html").replace(/\)<\/script>/, ',"extra")</script>')), [], "Nuxt arguments that do not match the parameters yield no rows");
 });
 
