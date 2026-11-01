@@ -1,6 +1,6 @@
 # Launch posts: 10 hand-written answers for BD bike Facebook groups
 
-Written 2026-10-14 from the live site (suggest.bike) as fetched that day. Every number below names the page it came from. Prices are rechecked monthly, so **open each linked page on the day you post and fix any number that has moved** before pasting.
+Written 2026-10-14 from the live site (suggest.bike); **numbers refreshed 2026-11-01** from a build of `main` at `b2226a6` (changed since 14 Oct: Hunk 150R, Dio, Raider 125, Splendor+, Gixxer FI ABS). Every number below names the page it came from. Prices are rechecked monthly, so **open each linked page on the day you post and fix any number that has moved** before pasting.
 
 `docs/Todo_owner.md` keeps "soft launch and distribution" on hold until you decide the site is ready. These posts are for that day.
 
@@ -20,6 +20,8 @@ Written 2026-10-14 from the live site (suggest.bike) as fetched that day. Every 
 10. Post 9: new-owner first service
 
 **Pace:** at most 2 posts a day, in different groups. Spread 10 posts over 5 to 7 days. Stay in the comments for the first 2 hours and answer every question by hand.
+
+**Link tags (added 2026-11-01):** every 🔗 link carries `src=fb-GROUP`. Before pasting, replace `GROUP` with that group's `src_tag` from `docs/gtm/groups.csv` minus the `fb-` (e.g. `src=fb-bikebd-official`), so GoatCounter's path view shows which group sent each visit.
 
 **Measuring:**
 - GoatCounter is wired into the code but **not enabled yet**: `GOATCOUNTER_CODE` in `src/lib/site.ts` is empty. Create the account and set the code (`docs/Todo_owner.md`, first section) **before** the first post, or the first week's traffic is lost.
@@ -52,7 +54,7 @@ Written 2026-10-14 from the live site (suggest.bike) as fetched that day. Every 
 > • TVS Apache RTR 160 2V: অন-রোড প্রায় ৳2,11,664
 > • Suzuki Gixxer Monotone: প্রায় ৳2,11,714
 > • Bajaj Pulsar 150 (Single Disc): প্রায় ৳2,16,964
-> • Hero Hunk 150R: প্রায় ৳2,18,764
+> • Hero Hunk 150R: প্রায় ৳2,21,764
 >
 > দাম প্রায় একই, তাই আমার মতে সিদ্ধান্তটা দামে না, এই তিনটা প্রশ্নে:
 > ১. ABS চান? Hunk 150R-এর এই দামে ১-চ্যানেল ABS আছে। Apache 2V আর Pulsar 150-এর ABS ভেরিয়েন্ট আলাদা দামে আছে; Gixxer Monotone-এ নেই।
@@ -61,11 +63,11 @@ Written 2026-10-14 from the live site (suggest.bike) as fetched that day. Every 
 >
 > শোরুমে নগদ দাম আর রেজিস্ট্রেশনে কী কী ধরা আছে, লিখিত চেয়ে নেবেন। সাইটটা আমি নিজে বানাচ্ছি, ভুল পেলে কমেন্টে বলবেন, ঠিক করে দেব।
 >
-> 🔗 https://suggest.bike/bn/bikes/bajaj-pulsar-150/
+> 🔗 https://suggest.bike/bn/bikes/bajaj-pulsar-150/?src=fb-GROUP
 
 **English:**
 
-> People keep asking which 150cc to buy for 2 to 2.2 lakh. On-road (showroom + registration with a 2-year tax token): Apache RTR 160 2V ~৳2,11,664, Gixxer Monotone ~৳2,11,714, Pulsar 150 ~৳2,16,964, Hunk 150R ~৳2,18,764. Prices are close, so decide on ABS, pillion comfort and how easy parts are where you live. Get the cash price and the registration items in writing. It's my own site; tell me if a number is wrong.
+> People keep asking which 150cc to buy for 2 to 2.2 lakh. On-road (showroom + registration with a 2-year tax token): Apache RTR 160 2V ~৳2,11,664, Gixxer Monotone ~৳2,11,714, Pulsar 150 ~৳2,16,964, Hunk 150R ~৳2,21,764. Prices are close, so decide on ABS, pillion comfort and how easy parts are where you live. Get the cash price and the registration items in writing. It's my own site; tell me if a number is wrong.
 
 **Links:** https://suggest.bike/bn/bikes/bajaj-pulsar-150/ (its page lists Hunk, Gixxer, Apache and SP160 as alternatives with on-road prices).
 
@@ -95,7 +97,7 @@ Written 2026-10-14 from the live site (suggest.bike) as fetched that day. Every 
 >
 > হিসাবটা আমার নিজের সাইটে করা। আপনার বাইকে আসল খরচ কত পড়ে, কমেন্টে জানালে মিলিয়ে দেখব।
 >
-> 🔗 https://suggest.bike/bn/cost/?bike=bajaj-pulsar-150
+> 🔗 https://suggest.bike/bn/cost/?bike=bajaj-pulsar-150&src=fb-GROUP
 
 **English:**
 
@@ -119,7 +121,7 @@ Written 2026-10-14 from the live site (suggest.bike) as fetched that day. Every 
 
 > যারা জীবনে প্রথম বাইক নিচ্ছেন (বিশেষ করে ক্লাচ-গিয়ার নিয়ে ভয় আছে), তাদের জন্য তিনটা জনপ্রিয় স্কুটার পাশাপাশি:
 >
-> • Honda Dio: অন-রোড প্রায় ৳2,10,764, ওজন 103 kg, সিট 765 mm, মাইলেজ (অনুমান) 42–48 kmpl
+> • Honda Dio: অন-রোড প্রায় ৳1,68,764, ওজন 103 kg, সিট 765 mm, মাইলেজ (অনুমান) 42–48 kmpl
 > • TVS Ntorq 125: প্রায় ৳2,16,664, 118 kg, সিট 770 mm, 38–45 kmpl
 > • Suzuki Access 125: প্রায় ৳2,26,714, 104 kg, সিট 773 mm, 42–48 kmpl
 >
@@ -130,11 +132,11 @@ Written 2026-10-14 from the live site (suggest.bike) as fetched that day. Every 
 >
 > চালাতে মাসে প্রায় ৳4,269 (Dio), ৳4,464 (Ntorq), ৳4,299 (Access), দিনে 25 km ধরে। সাইটটা আমার, তুলনাটা ওখানে পাশাপাশি দেখা যায়।
 >
-> 🔗 https://suggest.bike/bn/compare/?bikes=honda-dio,tvs-ntorq-125,suzuki-access-125
+> 🔗 https://suggest.bike/bn/compare/?bikes=honda-dio,tvs-ntorq-125,suzuki-access-125&src=fb-GROUP
 
 **English:**
 
-> First bike, scooter: Dio ~৳2,10,764 on-road, 103 kg, 765 mm seat; Ntorq 125 ~৳2,16,664, 118 kg, 770 mm; Access 125 ~৳2,26,714, 104 kg, 773 mm. Check you can put both feet down, accept that small wheels struggle on broken roads, and find the nearest service centre before buying, especially outside Dhaka. Running cost ~৳4,269 to ৳4,464/month at 25 km/day. My own site; side-by-side compare linked.
+> First bike, scooter: Dio ~৳1,68,764 on-road, 103 kg, 765 mm seat; Ntorq 125 ~৳2,16,664, 118 kg, 770 mm; Access 125 ~৳2,26,714, 104 kg, 773 mm. Check you can put both feet down, accept that small wheels struggle on broken roads, and find the nearest service centre before buying, especially outside Dhaka. Running cost ~৳4,269 to ৳4,464/month at 25 km/day. My own site; side-by-side compare linked.
 
 **Links:** https://suggest.bike/bn/compare/?bikes=honda-dio,tvs-ntorq-125,suzuki-access-125 ; https://suggest.bike/bn/bikes/honda-dio/
 
@@ -171,7 +173,7 @@ Written 2026-10-14 from the live site (suggest.bike) as fetched that day. Every 
 >
 > লাইসেন্স (বা অস্থায়ী অনুমতিপত্র), রেজিস্ট্রেশনের কাগজ আর ট্যাক্স টোকেন সবসময় সঙ্গে রাখুন। আমি আইনজীবী নই; পাতাটা আমার নিজের সাইটে, সরকারি পাঠের সঙ্গে মিলিয়ে লেখা, লিংক নিচে।
 >
-> 🔗 https://suggest.bike/bn/guide/motorcycle-fines/
+> 🔗 https://suggest.bike/bn/guide/motorcycle-fines/?src=fb-GROUP
 
 **English:**
 
@@ -206,7 +208,7 @@ Written 2026-10-14 from the live site (suggest.bike) as fetched that day. Every 
 >
 > পুরো চেকলিস্ট, কোন কাগজে কে সই করবে সহ, আমার সাইটে আছে (নিজের বানানো সাইট, ভুল দেখলে বলবেন):
 >
-> 🔗 https://suggest.bike/bn/guide/#used
+> 🔗 https://suggest.bike/bn/guide/?src=fb-GROUP#used
 
 **English:**
 
@@ -242,7 +244,7 @@ Written 2026-10-14 from the live site (suggest.bike) as fetched that day. Every 
 >
 > প্রসেসিং ফি আর সুদ ব্যাংকভেদে আলাদা, তাই ক্যালকুলেটরে নিজের সংখ্যা বসিয়ে দেখতে পারেন। এটা আমার নিজের সাইট, আর্থিক পরামর্শ না।
 >
-> 🔗 https://suggest.bike/bn/cost/?bike=bajaj-pulsar-n160
+> 🔗 https://suggest.bike/bn/cost/?bike=bajaj-pulsar-n160&src=fb-GROUP
 
 **English:**
 
@@ -276,7 +278,7 @@ Written 2026-10-14 from the live site (suggest.bike) as fetched that day. Every 
 >
 > হিসাবটা BRTA-র ফি তালিকা আর গেজেট থেকে আমার নিজের সাইটে করা। টাকা দেওয়ার আগে bsp.brta.gov.bd-তে মিলিয়ে নেবেন।
 >
-> 🔗 https://suggest.bike/bn/guide/#registration
+> 🔗 https://suggest.bike/bn/guide/?src=fb-GROUP#registration
 
 **English:**
 
@@ -305,18 +307,18 @@ Written 2026-10-14 from the live site (suggest.bike) as fetched that day. Every 
 > • Bajaj Discover 125: অন-রোড ৳1,73,764, মাইলেজ (অনুমান) 50–58 kmpl
 > • Yamaha Saluto 125: ৳1,75,264, 55–62 kmpl
 > • Honda SP125: ৳1,78,764, 55–62 kmpl
-> • TVS Raider 125: ৳1,81,664, 50–58 kmpl
+> • TVS Raider 125: ৳1,81,664, 49–54 kmpl
 > • Hero Xtreme 125R: ৳1,86,764, 50–58 kmpl, ১-চ্যানেল ABS
 >
-> দিনে 25 km চালালে এগুলোর মাসিক খরচ প্রায় ৳3,839 থেকে ৳3,974, যেখানে 150cc-গুলোর ৳4,600 থেকে ৳5,000-এর ওপরে। শহরে অফিস-যাতায়াতই যদি মূল কাজ হয়, 125cc-তে মাসে কয়েকশো টাকা বাঁচে।
+> দিনে 25 km চালালে এগুলোর মাসিক খরচ প্রায় ৳3,839 থেকে ৳4,087, যেখানে 150cc-গুলোর ৳4,600 থেকে ৳5,000-এর ওপরে। শহরে অফিস-যাতায়াতই যদি মূল কাজ হয়, 125cc-তে মাসে কয়েকশো টাকা বাঁচে।
 >
 > সাইটটা আমার নিজের; বাজেট আর কীভাবে চালাবেন দিলে ৭টা প্রশ্নে মিলিয়ে দেয়।
 >
-> 🔗 https://suggest.bike/bn/match/
+> 🔗 https://suggest.bike/bn/match/?src=fb-GROUP
 
 **English:**
 
-> "Best bike under 2 lakh" has a trap: showroom under 2 lakh often means on-road over it (Apache RTR 160 2V: ৳1,99,900 showroom, ~৳2,11,664 on-road). 125s that stay under 2 lakh on-road: Discover 125 ৳1,73,764, Saluto 125 ৳1,75,264, SP125 ৳1,78,764, Raider 125 ৳1,81,664, Xtreme 125R ৳1,86,764 (single-channel ABS). Running cost ~৳3,839 to ৳3,974/month at 25 km/day vs ~৳4,600 to ৳5,000+ for the 150s. My own site; the 7-question matcher is linked.
+> "Best bike under 2 lakh" has a trap: showroom under 2 lakh often means on-road over it (Apache RTR 160 2V: ৳1,99,900 showroom, ~৳2,11,664 on-road). 125s that stay under 2 lakh on-road: Discover 125 ৳1,73,764, Saluto 125 ৳1,75,264, SP125 ৳1,78,764, Raider 125 ৳1,81,664, Xtreme 125R ৳1,86,764 (single-channel ABS). Running cost ~৳3,839 to ৳4,087/month at 25 km/day vs ~৳4,600 to ৳5,000+ for the 150s. My own site; the 7-question matcher is linked.
 
 **Links:** https://suggest.bike/bn/match/ ; https://suggest.bike/bn/bikes/honda-sp125/
 
@@ -324,7 +326,7 @@ Written 2026-10-14 from the live site (suggest.bike) as fetched that day. Every 
 
 **Likely follow-up:** "1.5 লাখের মধ্যে কিছু আছে?"
 
-> হ্যাঁ, 100–110cc কমিউটারগুলো। যেমন Hero Splendor+ অন-রোড প্রায় ৳1,27,664, মাইলেজ (অনুমান) 60–70 kmpl, চালাতে মাসে প্রায় ৳3,427। 100cc পর্যন্ত বাইকে রেজিস্ট্রেশনও একটু কম। https://suggest.bike/bn/bikes/hero-splendor-plus/
+> হ্যাঁ, 100–110cc কমিউটারগুলো। যেমন Hero Splendor+ অন-রোড প্রায় ৳1,35,664, মাইলেজ (অনুমান) 60–70 kmpl, চালাতে মাসে প্রায় ৳3,427। 100cc পর্যন্ত বাইকে রেজিস্ট্রেশনও একটু কম। https://suggest.bike/bn/bikes/hero-splendor-plus/
 
 ---
 
@@ -344,7 +346,7 @@ Written 2026-10-14 from the live site (suggest.bike) as fetched that day. Every 
 >
 > চেইন লুব, অয়েল দেখা, ব্রেক চেক নিজে করার ধাপগুলো আমার সাইটে লিখে রেখেছি (সাইটটা আমার নিজের)।
 >
-> 🔗 https://suggest.bike/bn/owner/
+> 🔗 https://suggest.bike/bn/owner/?src=fb-GROUP
 
 **English:**
 
@@ -380,7 +382,7 @@ Written 2026-10-14 from the live site (suggest.bike) as fetched that day. Every 
 >
 > সোজা কথা: তেলের খরচ একটু কম আর ABS চাইলে Apache; রিসেলে টাকা কম হারাতে চাইলে Gixxer (অন্তত এখনকার চাওয়া দাম অনুযায়ী)। তুলনাটা আমার নিজের সাইটে পাশাপাশি রাখা, আপনার অভিজ্ঞতা ভিন্ন হলে জানাবেন।
 >
-> 🔗 https://suggest.bike/bn/compare/?bikes=tvs-apache-rtr-160-2v,suzuki-gixxer-monotone
+> 🔗 https://suggest.bike/bn/compare/?bikes=tvs-apache-rtr-160-2v,suzuki-gixxer-monotone&src=fb-GROUP
 
 **English:**
 
@@ -392,7 +394,7 @@ Written 2026-10-14 from the live site (suggest.bike) as fetched that day. Every 
 
 **Likely follow-up:** "Gixxer FI ABS নিলে কেমন হয়?"
 
-> Gixxer FI ABS আলাদা মডেল হিসেবে সাইটে আছে, শোরুম দাম ৳2,82,950 (অন-রোড প্রায় ৳2,94,714), মানে Monotone-এর চেয়ে বেশ বেশি। ওই বাজেটে লোকে সাধারণত FZS FI V4-এর সঙ্গে তুলনা করে; সাইটের জনপ্রিয় তুলনায় "FZS FI V4 বনাম Gixxer FI ABS" আছে। https://suggest.bike/bn/compare/?bikes=yamaha-fzs-fi-v4,suzuki-gixxer-fi-abs
+> Gixxer FI ABS আলাদা মডেল হিসেবে সাইটে আছে, শোরুম দাম ৳2,77,950 (অন-রোড প্রায় ৳2,89,714), মানে Monotone-এর চেয়ে বেশ বেশি। ওই বাজেটে লোকে সাধারণত FZS FI V4-এর সঙ্গে তুলনা করে; সাইটের জনপ্রিয় তুলনায় "FZS FI V4 বনাম Gixxer FI ABS" আছে। https://suggest.bike/bn/compare/?bikes=yamaha-fzs-fi-v4,suzuki-gixxer-fi-abs
 
 (Source: `/bn/bikes/suzuki-gixxer-fi-abs/`; popular-compare list from `/bn/compare/`.)
 
@@ -405,3 +407,20 @@ Written 2026-10-14 from the live site (suggest.bike) as fetched that day. Every 
 - [ ] Not posted in this group in the last 7 days.
 - [ ] GoatCounter on (`GOATCOUNTER_CODE` set), or note in the log that this post can't be measured.
 - [ ] Log it: date, group, post number.
+
+---
+
+## Comment templates (added 2026-11-01)
+
+For replying inside other people's threads. Answer first, link last, one disclosure line, never paste the same text twice in one group. Replace `GROUP` as above; check each number on the linked page that day.
+
+1. **"Budget 2 lakh, which bike?"** — রেজিস্ট্রেশনসহ ধরলে ২ লাখের নিচে থাকে মূলত 125cc: SP125 অন-রোড ~৳1,78,764, Discover 125 ~৳1,73,764, Saluto 125 ~৳1,75,264। শোরুম দাম ২ লাখের নিচে হলেও অনেক 150cc অন-রোডে পার হয়ে যায়। মিলিয়ে দেখার জন্য আমার নিজের বানানো সাইট: https://suggest.bike/bn/match/?src=fb-GROUP
+2. **"What's the on-road price of X?"** — শোরুম দামের সঙ্গে 100cc-এর বেশি সব বাইকে ২ বছরের টোকেনসহ BRTA খরচ ৳11,764 যোগ হয় (১০ বছরের টোকেনে ৳20,964)। খাতওয়ারি রসিদ চেয়ে নেবেন। হিসাবটা আমার সাইটে: https://suggest.bike/bn/guide/?src=fb-GROUP#registration
+3. **"Which gives better mileage, A or B?"** — কোম্পানির দাবি না, মালিকদের রিপোর্টের মাঝামাঝি ধরলে পার্থক্যটা মাসে কয়েকশো টাকা। দুটো পাশাপাশি এখানে দেখা যায় (আমার নিজের সাইট): https://suggest.bike/bn/compare/?bikes=A,B&src=fb-GROUP
+4. **"Monthly cost of running a bike?"** — দিনে 25 km, অকটেন ৳165 ধরে 150cc-তে মাসে মোটামুটি ৳4,600–5,100 (তেল + সার্ভিস + পার্টস + ইন্স্যুরেন্স)। নিজের km বসিয়ে দেখুন: https://suggest.bike/bn/cost/?bike=bajaj-pulsar-150&src=fb-GROUP
+5. **"0% EMI, is it really free?"** — কার্ড কিস্তিতে সাধারণত প্রসেসিং ফি থাকে, আর কিছু শোরুম কার্ডে নগদের ছাড় দেয় না। আগে নগদ দাম জিজ্ঞেস করুন। হিসাবের উদাহরণ (আমার সাইট, আর্থিক পরামর্শ না): https://suggest.bike/bn/cost/?bike=bajaj-pulsar-n160&src=fb-GROUP
+6. **"Buying used, what to check?"** — আগে কাগজ: DRC-র নাম বিক্রেতার NID-র সঙ্গে, চেসিস-ইঞ্জিন নম্বর, bsp.brta.gov.bd-তে বকেয়া, ট্যাক্স টোকেন। পুরো ১১টা চেক: https://suggest.bike/bn/guide/?src=fb-GROUP#used
+7. **"Police fined me for X"** — সড়ক পরিবহন আইন ২০১৮-এ সর্বোচ্চ সীমা ধারা নম্বরসহ এখানে আছে; স্পট জরিমানায় রসিদ চাওয়ার অধিকার আছে (ধারা 113)। আইনি পরামর্শ না: https://suggest.bike/bn/guide/motorcycle-fines/?src=fb-GROUP
+8. **"First scooter for a new rider?"** — শোরুমে বসে দুই পা মাটিতে রাখা যায় কি না দেখুন; Dio সবচেয়ে হালকা (103 kg) আর নিচু (765 mm)। তিনটা পাশাপাশি: https://suggest.bike/bn/compare/?bikes=honda-dio,tvs-ntorq-125,suzuki-access-125&src=fb-GROUP
+9. **"Your number is wrong"** — ধন্যবাদ! কোন পাতা আর কোন সংখ্যা, আর আপনি কোথায় দেখেছেন (শোরুম/রসিদ) জানালে মিলিয়ে ঠিক করে দেব, আর এখানে জানাব। (Then fix the data, reply in the thread when it is live.)
+10. **"Is this your site? Are you paid?"** — হ্যাঁ, সাইটটা আমার নিজের বানানো। কোনো শোরুম বা কোম্পানি টাকা দেয় না, বিজ্ঞাপনও নেই। দামের উৎস প্রতিটা পাতায় লেখা আছে। (No link in this reply.)
