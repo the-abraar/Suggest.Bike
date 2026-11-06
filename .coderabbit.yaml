@@ -1,0 +1,9 @@
+reviews:
+  profile: assertive
+  path_instructions:
+    - path: "src/**/*.{ts,tsx}"
+      instructions: |
+        Next.js static export on GitHub Pages; a push to main deploys. Flag server-only APIs (they break static export), broken links/assets, and accessibility regressions.
+
+tone_instructions: |
+  Be concise, direct, and constructive.
