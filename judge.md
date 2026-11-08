@@ -458,3 +458,9 @@ Each code-changing task got an issue assigned to the-abraar, its own branch and 
 **Not checked:** dark mode and 1280 px for the changed pages; "under 2 lakh" click-through in a browser (unit-tested only); a native reader of the Bangla.
 
 **#11 fixed (2026-10-30):** interact.mjs check 12 no longer hard-codes ৳1.3 lakh + Splendor+; it scans scooter/motorcycle, every use and every ৳5,000 budget step until a Quick pick row shows "Availability unconfirmed" (today: scooter, Daily commute, ৳1.2 lakh). interact.mjs 56/56 against a served `out/`; check.sh pass. App code and ranking untouched.
+
+### Update (2026-11-08, agent round): hash-based CSP, GoatCounter pinned by SRI
+
+- **CSP:** the policy meta is no longer rendered by `layout.tsx`. `scripts/csp-hash.mjs` (postbuild, after `bn-lang.mjs`) writes it into every exported page right after `<meta charset>`, before any script or stylesheet. `script-src` is `'self'` plus the sha256 of each inline script on that page, with no `'unsafe-inline'`. The policy adds `base-uri 'none'`, `form-action 'self' https://formspree.io` and `object-src 'none'`, drops the unused Google Fonts hosts, and narrows `img-src` to `'self' data: blob:`. The build fails if a page has no CSP meta or more than one, if the meta is in the wrong place, if `script-src` allows `'unsafe-inline'`, or if an inline script is not hashed. Tests: `tests/csp.test.ts`.
+- **GoatCounter:** the tag now loads `https://gc.zgo.at/count.v5.js` with its sha384 `integrity` and `crossorigin="anonymous"`. Once `GOATCOUNTER_CODE` is set, the CSP allows that exact URL and `https://<code>.goatcounter.com`, and nothing else from GoatCounter. The build fails on any third-party `<script src>` without SRI.
+- **QA:** `tools/qa` now reports `securitypolicyviolation` events as console problems.

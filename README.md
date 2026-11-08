@@ -42,6 +42,8 @@ npm run build      # writes plain HTML/CSS/JS to ./out
 npm run preview    # serves ./out locally to check it
 ```
 
+After `next build`, `postbuild` runs `scripts/bn-lang.mjs` (sets `lang="bn"` on `/bn/` pages) and then `scripts/csp-hash.mjs`. The second one adds each page's Content-Security-Policy meta right after `<meta charset>`. Its `script-src` is `'self'` plus the sha256 of every inline script on that page, with no `'unsafe-inline'`. It fails the build if a page lacks that meta in that place, if an inline script is not hashed, or if a third-party `<script src>` has no `integrity="sha384-…" crossorigin="anonymous"`. To loosen the policy (a new third-party host, say), edit the directive list in that script, not `layout.tsx`. `next dev` runs without a CSP.
+
 Live at **https://suggest.bike** on GitHub Pages. Every push to `main` runs `.github/workflows/deploy.yml`, which builds and publishes `out/`. `public/CNAME` holds the custom domain.
 
 DNS (Namecheap → Advanced DNS; delete the parking records and the URL redirect first):
