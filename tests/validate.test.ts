@@ -7,12 +7,16 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import type { Bike, EngineOil } from "../src/lib/types";
 import { engineOilText } from "../src/lib/bike-utils";
+import offersFixture from "./fixtures/offers.json";
 
 const real = (): Bike[] => JSON.parse(readFileSync(new URL("../src/data/bikes.json", import.meta.url), "utf8"));
-const validate = (bikes: Bike[], env: Record<string, string> = {}) => {
-  const file = join(mkdtempSync(join(tmpdir(), "sb-validate-")), "bikes.json");
+const validate = (bikes: Bike[], env: Record<string, string> = {}, offers?: unknown) => {
+  const dir = mkdtempSync(join(tmpdir(), "sb-validate-"));
+  const [file, offersFile] = [join(dir, "bikes.json"), join(dir, "offers.json")];
   writeFileSync(file, JSON.stringify(bikes));
-  const r = spawnSync(process.execPath, [new URL("../scripts/validate-data.mjs", import.meta.url).pathname, file], { encoding: "utf8", env: { ...process.env, ...env } });
+  if (offers) writeFileSync(offersFile, JSON.stringify(offers));
+  const args = [new URL("../scripts/validate-data.mjs", import.meta.url).pathname, file, ...(offers ? [offersFile] : [])];
+  const r = spawnSync(process.execPath, args, { encoding: "utf8", env: { ...process.env, ...env } });
   return { code: r.status, out: r.stdout };
 };
 
@@ -53,12 +57,13 @@ test("validate: old prices fail only when shown as checked (on sale); PRICE_FAIL
 });
 
 test("validate: an offer's struck-through price must be its bike's headline price (critique 15 Oct N8)", () => {
-  const offers: { bikeIds: string[]; regularPriceBDT?: number }[] = JSON.parse(readFileSync(new URL("../src/data/offers.json", import.meta.url), "utf8")).offers;
-  const o = offers.find((x) => x.regularPriceBDT !== undefined);
-  if (!o) return; // shortcut: skips once offers.json has no priced offer; give validate an offers-file argument if that matters
+  // The fixture offer, not offers.json: the live file may have no priced offer at all.
   const bikes = real();
+  const o = { ...offersFixture.offers[0], regularPriceBDT: bikes.find((b) => b.id === offersFixture.offers[0].bikeIds[0])!.priceBDT };
+  o.offerPriceBDT = o.regularPriceBDT - 10000;
+  assert.equal(validate(bikes, {}, { offers: [o] }).code, 0);
   bikes.find((b) => b.id === o.bikeIds[0])!.priceBDT += 50;
-  const r = validate(bikes);
+  const r = validate(bikes, {}, { offers: [o] });
   assert.equal(r.code, 1);
   assert.match(r.out, /regularPriceBDT \d+ is not/);
 });
