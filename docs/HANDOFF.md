@@ -60,4 +60,4 @@ Fix every issue in `UI_AUDIT.md` (C1, H1–H6, M1–M7, L1–L6). Then commit an
   - `public/data/bikes/*.json` (full records for `/compare`)
 - **Server vs client:** `src/lib/bikes.server.ts` is server-only (full records for `/bikes/[id]` at build time). Client code uses `src/lib/bikes.ts` (slim).
 - **Language:** `useLang()` / `useTx()` handle it on the client. The language is stored in `localStorage sb-lang`. Static HTML renders English first, then switches.
-- **Share images:** the OG font has no ৳ glyph, so share images say "Tk". Images are extension-less PNG files; `public/.htaccess` forces `image/png` on Apache/Namecheap.
+- **Share images:** the OG font has no ৳ glyph, so share images say "Tk". Images are `.png` files, so GitHub Pages serves them as `image/png` (the old Apache `public/.htaccess` was removed on 2026-11-08).
