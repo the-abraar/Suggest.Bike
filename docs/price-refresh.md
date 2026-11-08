@@ -14,7 +14,9 @@ How the 103 prices in `src/data/bikes.json` stay fresh. A scheduled Action re-ch
    - a price more than 30% from `bikes.json` (`suspect`: more likely a page or parse error than a real change);
    - a row the page no longer shows (`missing`);
    - a page that failed to load (`error`).
-4. regenerates `SOURCES.md`, force-pushes branch `bot/price-refresh` and opens a PR to `main`, or updates it if one is already open. There is only ever one bot PR.
+4. regenerates `SOURCES.md`, force-pushes branch `bot/price-refresh` and opens a PR to `main`, or updates it if one is already open. There is only ever one bot PR. The bot only reuses an open PR whose head is this repo's own `bot/price-refresh`; a fork's branch with the same name is ignored.
+
+Steps 1-3 run in the `scrape` job, which has a read-only token, keeps no git credential and installs with `npm ci --ignore-scripts`. It uploads `bikes.json`, `SOURCES.md` and the PR body as an artifact. Step 4 runs in the `publish` job, which holds the write token, runs no npm and commits only those two files.
 
 The PR body has four parts:
 
@@ -78,15 +80,16 @@ A value that is not a number fails the run. This only unblocks the deploy: re-ch
 
 ## How to merge the bot PR
 
-1. Read the **Official prices** table. For each `changed` row, open the page link and confirm the figure. Check that it is the right variant, and that it is a regular price, not a time-limited offer (offers go in `src/data/offers.json`).
-2. For `suspect` and `missing` rows, check the page by hand. Edit `bikes.json` on the PR branch if the change is real.
-3. CI does not run on its own: GitHub does not start workflows for pushes or PRs made with `GITHUB_TOKEN`. To run `check.yml` on the PR, close it and reopen it. Or check out `bot/price-refresh`, run `scripts/check.sh` and push any fix.
-4. Merge. The push to `main` runs `deploy.yml`, which validates, tests, builds and deploys.
-5. Merge or close the PR before the next 1st. The next run force-pushes `bot/price-refresh` from `main`, so commits left on that branch are lost.
+1. Check the PR is the bot's own: `gh pr view <n> --json isCrossRepository,headRepositoryOwner,author` must show `false`, `the-abraar` and author login `app/github-actions` (the github-actions bot). If not, close it and do not check it out.
+2. Read the **Official prices** table. For each `changed` row, open the page link and confirm the figure. Check that it is the right variant, and that it is a regular price, not a time-limited offer (offers go in `src/data/offers.json`).
+3. For `suspect` and `missing` rows, check the page by hand. Edit `bikes.json` on the PR branch if the change is real.
+4. CI does not run on its own: GitHub does not start workflows for pushes or PRs made with `GITHUB_TOKEN`. To run `check.yml` on the PR, close it and reopen it. Or run `git fetch origin bot/price-refresh && git switch --detach origin/bot/price-refresh`, run `scripts/check.sh`, and push any fix with `git push origin HEAD:bot/price-refresh`. Never run `gh pr checkout` on a price PR: it checks out whatever branch the PR points at, including a fork's.
+5. Merge. The push to `main` runs `deploy.yml`, which validates, tests, builds and deploys.
+6. Merge or close the PR before the next 1st. The next run force-pushes `bot/price-refresh` from `main`, so commits left on that branch are lost.
 
 ## One-time setup
 
-- **Let Actions open PRs.** In Settings → Actions → General → Workflow permissions, tick "Allow GitHub Actions to create and approve pull requests". It is off today, and until it is on, `gh pr create` fails. Leave the default token permission on "Read": the workflow asks for `contents: write` and `pull-requests: write` itself.
+- **Let Actions open PRs.** In Settings → Actions → General → Workflow permissions, tick "Allow GitHub Actions to create and approve pull requests". It is off today, and until it is on, `gh pr create` fails. Leave the default token permission on "Read": the workflow's `publish` job asks for `contents: write` and `pull-requests: write` itself, and the rest of the workflow stays read-only.
 - **Scheduled runs pause.** GitHub disables schedules after 60 days with no repository activity. If a month passes with no PR, re-enable the workflow in the Actions tab.
 
 ## Running it locally
