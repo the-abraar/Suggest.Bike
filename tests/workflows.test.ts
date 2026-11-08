@@ -30,6 +30,12 @@ test("price-refresh: publish holds the write token and runs no npm", () => {
   assert.doesNotMatch(p, /\bnpm\b|\bnpx\b|\bnode\b|setup-node/);
 });
 
+test("price-refresh: publish unpacks the artifact outside the checkout", () => {
+  const dl = job("publish").split(/- uses: actions\/download-artifact@/)[1]?.split(/\n {6}- /)[0] ?? "";
+  assert.ok(dl, "no download-artifact step in publish");
+  assert.match(dl, /^ +path: \$\{\{ runner\.temp \}\}\//m); // the default path is the workspace
+});
+
 test("price-refresh: the bot reuses only a PR whose head branch is in this repo", () => {
   assert.doesNotMatch(wf, /gh pr list/); // gh pr list --head matches same-named branches on forks too
   assert.match(wf, /head=\$\{GITHUB_REPOSITORY_OWNER\}:bot\/price-refresh/);

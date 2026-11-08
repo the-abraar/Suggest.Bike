@@ -16,7 +16,7 @@ How the 103 prices in `src/data/bikes.json` stay fresh. A scheduled Action re-ch
    - a page that failed to load (`error`).
 4. regenerates `SOURCES.md`, force-pushes branch `bot/price-refresh` and opens a PR to `main`, or updates it if one is already open. There is only ever one bot PR. The bot only reuses an open PR whose head is this repo's own `bot/price-refresh`; a fork's branch with the same name is ignored.
 
-Steps 1-3 run in the `scrape` job, which has a read-only token, keeps no git credential and installs with `npm ci --ignore-scripts`. It uploads `bikes.json`, `SOURCES.md` and the PR body as an artifact. Step 4 runs in the `publish` job, which holds the write token, runs no npm and commits only those two files.
+Steps 1-3 run in the `scrape` job, which has a read-only token, keeps no git credential and installs with `npm ci --ignore-scripts`. It uploads `bikes.json`, `SOURCES.md` and the PR body as an artifact. Step 4 runs in the `publish` job, which holds the write token, runs no npm, unpacks the artifact outside the checkout and copies in only `bikes.json` and `SOURCES.md`, and commits only those two files.
 
 The PR body has four parts:
 
