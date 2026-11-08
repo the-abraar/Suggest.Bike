@@ -39,10 +39,10 @@ The site is a fully static export, with no server or database.
 
 ```bash
 npm run build      # writes plain HTML/CSS/JS to ./out
-npm run preview    # serves ./out locally to check it
+npm run preview    # serves ./out at http://localhost:3000 (python3 -m http.server, nothing downloaded)
 ```
 
-Live at **https://suggest.bike** on GitHub Pages. Every push to `main` runs `.github/workflows/deploy.yml`, which builds and publishes `out/`. `public/CNAME` holds the custom domain.
+Live at **https://suggest.bike** on GitHub Pages. Every push to `main` runs `.github/workflows/deploy.yml`, which builds and publishes `out/`. Only its deploy job gets the Pages write and OIDC permissions; the build job is read-only. `.github/dependabot.yml` opens monthly grouped update PRs for npm (root and `tools/qa`) and GitHub Actions. `public/CNAME` holds the custom domain.
 
 DNS (Namecheap → Advanced DNS; delete the parking records and the URL redirect first):
 
