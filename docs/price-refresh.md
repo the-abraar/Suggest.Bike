@@ -23,7 +23,7 @@ The PR body has four parts:
 - **On the distributor's list, not checked here:** new models or variants the data does not carry.
 - **Owner checklist:** every bike whose headline price the run did not confirm, oldest `priceAsOf` first, in four weekly batches with due dates and source links.
 
-Names copied from distributor pages (the `page lists:` notes and the unchecked-models list) are cut to one line of 80 characters with Markdown and HTML punctuation backslash-escaped, so they show as plain text. A page cannot add headings, links, @mentions, issue references or checklist items to the body. Even so, judge prices from the Files tab, not from the description alone.
+Names copied from distributor pages (the `page lists:` notes and the unchecked-models list) are cut to one line of 80 characters and shown as inline code, so GitHub prints them literally. A page cannot add headings, links, autolinked URLs, @mentions, issue references, checklist items or HTML to the body. Even so, judge prices from the Files tab, not from the description alone.
 
 It never deploys. `deploy.yml` runs only on a push to `main` or by hand, and GitHub Pages is set to build from that workflow (`build_type: workflow`). The bot pushes only to `bot/price-refresh`. The site changes only when a person merges the PR.
 

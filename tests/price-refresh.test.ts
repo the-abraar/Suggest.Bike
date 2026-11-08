@@ -149,10 +149,9 @@ test("price-refresh: page text cannot add headings, links, checklist items or co
   const md = body(bikes, checks, lists, new Date("2027-01-01T03:17:00Z"), official);
   const ours = /^(## (Official prices|Availability unconfirmed|On the distributor's list, not checked here|Owner checklist)|### Week \d, due \S+)$/;
   assert.deepEqual(md.split("\n").filter((l) => l.startsWith("#") && !ours.test(l)), [], "no heading from page text");
-  assert.ok(!md.includes("<!--"), "no HTML comment that hides the rest of the body");
   assert.ok(!/^\s*- \[x\]/im.test(md), "no ticked checklist item");
-  assert.ok(!md.includes("](http"), "no Markdown link from page text");
-  assert.ok(!/(^|[^\\])(@octocat|#3\b)/m.test(md), "no live mention or issue reference");
+  const rendered = md.replace(/`[^`\n]*`/g, ""); // what GitHub renders as live Markdown: code spans are shown literally
+  for (const bad of ["octocat", "#3", "evil.example", "<!--"]) assert.ok(!rendered.includes(bad), `no live ${bad} outside a code span`);
   assert.match(md, /Availability unconfirmed[\s\S]*Owner checklist/, "the later sections are still there");
 });
 

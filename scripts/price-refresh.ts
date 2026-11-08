@@ -19,9 +19,12 @@ const host = (u: string) => new URL(u).hostname.replace(/^www\./, "");
 const slug = (u: string) => new URL(u).pathname.split("/").filter(Boolean).pop()?.replace(/(-price-in-bangladesh)?\.html$/, "") ?? "";
 const norm = (s: string) => s.toLowerCase().replace(/\s+/g, " ").trim();
 const text = (s: string) => s.replace(/<!--[\s\S]*?-->|<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
-// Page text printed in the PR body: one line, at most 80 characters, Markdown and HTML punctuation escaped, so a page
-// cannot add headings, links, mentions, issue references, checklist items or an HTML comment that hides the rest.
-export const safe = (s: string) => s.replace(/\s+/g, " ").trim().slice(0, 80).replace(/[\\`*_{}[\]()<>#+!|@~-]/g, "\\$&");
+// Page text printed in the PR body: one line, at most 80 characters, inside an inline code span, so a page cannot add
+// headings, links, autolinks, mentions, issue references, checklist items, HTML or an HTML comment that hides the rest.
+export const safe = (s: string) => {
+  const t = s.replace(/\s+/g, " ").trim().slice(0, 80).replace(/`/g, "'");
+  return t ? "`" + t + "`" : "(blank)";
+};
 const rows = (h: string, re: RegExp): Row[] =>
   [...h.matchAll(re)].map((m) => ({ name: text(m.groups!.name), price: Number(m.groups!.price.replace(/\D/g, "")) }));
 
