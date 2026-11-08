@@ -133,3 +133,48 @@ test("price-refresh: changes are written, confirmed headline prices bump priceAs
   assert.ok(!todo.some((l) => /`(bajaj-pulsar-n160|honda-sp160)`/.test(l)) && todo.some((l) => l.includes("`royal-enfield-bullet-350`")));
   assert.deepEqual(md.match(/^### Week \d, due \S+/gm), ["### Week 1, due 2027-01-08", "### Week 2, due 2027-01-15", "### Week 3, due 2027-01-22", "### Week 4, due 2027-01-29"]);
 });
+
+test("price-refresh: page text cannot add headings, links, checklist items or comments to the PR body", async () => {
+  const R15 = "https://www.yamahabd.com/products/yamaha-r15-v4", SUZUKI = "https://www.suzuki.com.bd/bikes";
+  // A Nuxt string literal with JSON escapes, as a hostile yamahabd.com page could serve it; METALLIC-RED goes missing.
+  const payload = JSON.stringify("RACING BLUE\n\n## Note from the distributor\n\nVerified. **Merge now.** Fixes #3 cc @octocat [docs](https://evil.example/x)\n\n- [x] done\n\n<!--");
+  const evil = '<p class="truncate">[x](https://evil.example)</p><p class="x">START FROM BDT 199,950</p>';
+  const pages: Record<string, string> = {
+    [R15]: fx("yamaha-r15-v4.html").replace('ColorName:"METALLIC-RED"', `ColorName:${payload}`),
+    [SUZUKI]: fx("suzuki-bikes.html") + evil,
+  };
+  const official: typeof OFFICIAL = [["yamaha-r15-v4", "", R15, "METALLIC-RED"], ["suzuki-gixxer-sf-fi-abs", "", SUZUKI, "GIXXER SF"]];
+  const { checks, lists } = await check(bikes, async (u) => pages[u] ?? 0, official);
+  assert.deepEqual(checks.map((c) => c.status), ["missing", "missing"]);
+  const md = body(bikes, checks, lists, new Date("2027-01-01T03:17:00Z"), official);
+  const ours = /^(## (Official prices|Availability unconfirmed|On the distributor's list, not checked here|Owner checklist)|### Week \d, due \S+)$/;
+  assert.deepEqual(md.split("\n").filter((l) => l.startsWith("#") && !ours.test(l)), [], "no heading from page text");
+  assert.ok(!md.includes("<!--"), "no HTML comment that hides the rest of the body");
+  assert.ok(!/^\s*- \[x\]/im.test(md), "no ticked checklist item");
+  assert.ok(!md.includes("](http"), "no Markdown link from page text");
+  assert.ok(!/(^|[^\\])(@octocat|#3\b)/m.test(md), "no live mention or issue reference");
+  assert.match(md, /Availability unconfirmed[\s\S]*Owner checklist/, "the later sections are still there");
+});
+
+test("price-refresh: robots.txt wildcards are matched in linear time", () => {
+  const t = performance.now();
+  assert.equal(robotsAllows("User-agent: *\nDisallow: /" + "*".repeat(50) + "!", "/a-b-c"), true);
+  assert.ok(performance.now() - t < 50, "a rule with many * must not backtrack");
+  assert.equal(robotsAllows("User-agent: *\nDisallow: /a*c*e$\n", "/abcde"), false);
+  assert.equal(robotsAllows("User-agent: *\nDisallow: /a*c*e$\n", "/abcdef"), true);
+  assert.equal(robotsAllows("User-agent: *\nDisallow: /a.b\n", "/axb"), true, "a dot is literal");
+});
+
+test("price-refresh: a page the parser chokes on marks only its own rows as error", async () => {
+  const R15 = "https://www.yamahabd.com/products/yamaha-r15-v4", N160 = "https://www.bajajauto.com/en-bd/bikes/pulsar-n160-dc-abs";
+  const data = structuredClone(bikes);
+  data.find((b) => b.id === "bajaj-pulsar-n160")!.priceBDT = 273600;
+  const pages: Record<string, string> = {
+    [R15]: fx("yamaha-r15-v4.html").replace('ColorName:"DARK-KNIGHT"', 'ColorName:"DARK\nKNIGHT"'), // raw newline: JSON.parse throws
+    [N160]: fx("bajaj-pulsar-n160-dc-abs.html"),
+  };
+  const official: typeof OFFICIAL = [["yamaha-r15-v4", "", R15, "METALLIC-RED"], ["bajaj-pulsar-n160", "", N160, ""]];
+  const { checks } = await check(data, async (u) => pages[u] ?? 0, official);
+  assert.deepEqual(checks.map((c) => c.status), ["error", "same"]);
+  assert.match(checks[0].note, /^page did not parse: /);
+});

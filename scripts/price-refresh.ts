@@ -19,6 +19,9 @@ const host = (u: string) => new URL(u).hostname.replace(/^www\./, "");
 const slug = (u: string) => new URL(u).pathname.split("/").filter(Boolean).pop()?.replace(/(-price-in-bangladesh)?\.html$/, "") ?? "";
 const norm = (s: string) => s.toLowerCase().replace(/\s+/g, " ").trim();
 const text = (s: string) => s.replace(/<!--[\s\S]*?-->|<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
+// Page text printed in the PR body: one line, at most 80 characters, Markdown and HTML punctuation escaped, so a page
+// cannot add headings, links, mentions, issue references, checklist items or an HTML comment that hides the rest.
+export const safe = (s: string) => s.replace(/\s+/g, " ").trim().slice(0, 80).replace(/[\\`*_{}[\]()<>#+!|@~-]/g, "\\$&");
 const rows = (h: string, re: RegExp): Row[] =>
   [...h.matchAll(re)].map((m) => ({ name: text(m.groups!.name), price: Number(m.groups!.price.replace(/\D/g, "")) }));
 
@@ -167,9 +170,10 @@ export async function check(bikes: Bike[], get: Get, official = OFFICIAL) {
     checks.push(c);
     const page = await load(url);
     if (typeof page === "number") { Object.assign(c, page === 404 || page === 410 ? { status: "missing", note: `page gone (HTTP ${page})` } : { note: page ? `HTTP ${page}` : "network error or robots.txt" }); continue; }
-    const found = PARSERS[host(url)](page);
+    let found: Row[];
+    try { found = PARSERS[host(url)](page); } catch (e) { c.note = `page did not parse: ${safe(String((e as Error)?.message ?? e))}`; continue; }
     const row = rowName ? found.find((r) => norm(r.name) === norm(rowName)) : found.length === 1 ? found[0] : undefined;
-    if (!row) { Object.assign(c, { status: "missing", note: `no "${rowName || "price"}" row; page lists: ${found.map((r) => `${r.name} ${r.price}`).join(", ") || "nothing"}` }); continue; }
+    if (!row) { Object.assign(c, { status: "missing", note: `no "${rowName || "price"}" row; page lists: ${found.map((r) => `${safe(r.name)} ${r.price}`).join(", ") || "nothing"}` }); continue; }
     c.now = row.price;
     // A big jump is more likely a parse or page error than a price change, so it goes to a person instead of the data.
     c.status = row.price === c.old ? "same" : Math.abs(row.price - c.old) / c.old > SUSPECT ? "suspect" : "changed";
@@ -224,7 +228,7 @@ export function body(bikes: Bike[], checks: Check[], lists: Record<string, Set<s
   out.push("", "## Availability unconfirmed", "", "On sale in bikes.json, but not on the distributor's current list. The data is unchanged; check with the distributor or a showroom.", "", ...(unconfirmed.length ? unconfirmed : ["None."]));
 
   const mapped = new Set(official.map(([, , url, row]) => `${host(url)} ${keyOf(url, row)}`));
-  const extra = Object.entries(lists).flatMap(([h, keys]) => [...(keys ?? [])].filter((k) => !mapped.has(`${h} ${k}`)).map((k) => `${h}: ${k}`));
+  const extra = Object.entries(lists).flatMap(([h, keys]) => [...(keys ?? [])].filter((k) => !mapped.has(`${h} ${k}`)).map((k) => `${h}: ${safe(k)}`));
   out.push("", "## On the distributor's list, not checked here", "", "New models, or pages for variants the data does not carry yet.", "", extra.length ? extra.sort().join(", ") : "None.");
 
   // Owner checklist: every bike whose headline price was not confirmed above, oldest first, a quarter due each week.
@@ -250,10 +254,24 @@ export function robotsAllows(robots: string, path: string) {
     if (k === "user-agent") { star = (prevUA && star) || v === "*"; prevUA = true; continue; }
     prevUA = false;
     if (!star || !v || (k !== "allow" && k !== "disallow")) continue;
-    const re = new RegExp("^" + v.replace(/[.+?^{}()|[\]\\]/g, "\\$&").replace(/\*/g, ".*"));
-    if (re.test(path) && v.length > best.len) best = { len: v.length, allow: k === "allow" };
+    if (globMatch(v, path) && v.length > best.len) best = { len: v.length, allow: k === "allow" };
   }
   return best.allow;
+}
+
+// A robots.txt rule matches a path prefix; * matches any run and a trailing $ anchors the end. Greedy two-pointer match with
+// one backtrack point, so a rule with many * costs O(rule x path) at worst, never the exponential time of a built RegExp.
+function globMatch(rule: string, path: string) {
+  const p = rule.endsWith("$") ? rule.slice(0, -1) : rule + "*";
+  let i = 0, j = 0, star = -1, mark = 0;
+  while (j < path.length) {
+    if (p[i] === "*") { star = i++; mark = j; }
+    else if (i < p.length && p[i] === path[j]) { i++; j++; }
+    else if (star >= 0) { i = star + 1; j = ++mark; }
+    else return false;
+  }
+  while (p[i] === "*") i++;
+  return i === p.length;
 }
 
 /** Live fetcher: honours robots.txt, sends a clear User-Agent and waits DELAY_MS between requests. */
