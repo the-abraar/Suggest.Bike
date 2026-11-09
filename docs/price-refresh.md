@@ -13,7 +13,7 @@ How the 103 prices in `src/data/bikes.json` stay fresh. A scheduled Action re-ch
 3. leaves these unwritten and lists them in the PR instead:
    - a price more than 30% from `bikes.json` (`suspect`: more likely a page or parse error than a real change);
    - a row the page no longer shows (`missing`);
-   - a page that failed to load (`error`).
+   - a page that failed to load or that its parser could not read (`error`, with the reason). The other rows still run.
 4. regenerates `SOURCES.md`, force-pushes branch `bot/price-refresh` and opens a PR to `main`, or updates it if one is already open. There is only ever one bot PR. The bot only reuses an open PR whose head is this repo's own `bot/price-refresh`; a fork's branch with the same name is ignored.
 
 Steps 1-3 run in the `scrape` job, which has a read-only token, keeps no git credential and installs with `npm ci --ignore-scripts`. It uploads `bikes.json`, `SOURCES.md` and the PR body as an artifact. Step 4 runs in the `publish` job, which holds the write token, runs no npm, unpacks the artifact outside the checkout and copies in only `bikes.json` and `SOURCES.md`, and commits only those two files.
@@ -24,6 +24,8 @@ The PR body has four parts:
 - **Availability unconfirmed:** on-sale bikes that are missing from the distributor's current model list. The data is not changed; you decide.
 - **On the distributor's list, not checked here:** new models or variants the data does not carry.
 - **Owner checklist:** every bike whose headline price the run did not confirm, oldest `priceAsOf` first, in four weekly batches with due dates and source links.
+
+Names copied from distributor pages (the `page lists:` notes and the unchecked-models list) are cut to one line of 80 characters and shown as inline code, so GitHub prints them literally. A page cannot add headings, links, autolinked URLs, @mentions, issue references, checklist items or HTML to the body. Even so, judge prices from the Files tab, not from the description alone.
 
 It never deploys. `deploy.yml` runs only on a push to `main` or by hand, and GitHub Pages is set to build from that workflow (`build_type: workflow`). The bot pushes only to `bot/price-refresh`. The site changes only when a person merges the PR.
 
@@ -104,7 +106,7 @@ The list of changes goes to stderr. The script exits 1, writing nothing, when ev
 
 ## When a distributor redesigns its site
 
-When a redesign breaks a parser, every row for that host shows `missing: ... page lists: nothing`, and its bikes move to the checklist. Nothing wrong is written. To fix a parser:
+When a redesign breaks a parser, every row for that host shows `missing: ... page lists: nothing` (or `error: page did not parse: ...` if the parser threw), and its bikes move to the checklist. Nothing wrong is written. To fix a parser:
 
 1. Save the new page and trim it to the price markup in `tests/fixtures/price-refresh/`.
 2. Update that host's regex in `PARSERS` (and `LISTS` if the model list changed).
