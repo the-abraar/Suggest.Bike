@@ -9,7 +9,7 @@
     "prebuild": "node scripts/build-data.mjs && tsx scripts/build-art.tsx && tsx scripts/build-history.ts",
     "build": "next build",
     "postbuild": "node scripts/bn-lang.mjs",
-    "preview": "npx --yes serve@14 out -l 3000",
+    "preview": "python3 -m http.server -d out 3000",
     "pretypecheck": "node scripts/build-data.mjs && tsx scripts/build-art.tsx && tsx scripts/build-history.ts",
     "typecheck": "tsc --noEmit",
     "validate": "node scripts/validate-data.mjs",
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "lucide-react": "^1.52.0",
-    "next": "^16.3.8",
+    "next": "^16.4.3",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "server-only": "^0.0.1"
