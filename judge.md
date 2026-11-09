@@ -470,3 +470,9 @@ Each code-changing task got an issue assigned to the-abraar, its own branch and 
 **Proven:** `scripts/check.sh` exit 0; `npm run og:bn` locally with no Playwright browser present: 108 cards, 204 `/bn/` pages checked; zizmor: no findings in check.yml or deploy.yml.
 
 **Not checked:** the deploy run itself (it runs on merge); watch that og:bn passes there.
+
+### Update (2026-11-08, agent round): hash-based CSP, GoatCounter pinned by SRI
+
+- **CSP:** the policy meta is no longer rendered by `layout.tsx`. `scripts/csp-hash.mjs` (postbuild, after `bn-lang.mjs`) writes it into every exported page right after `<meta charset>`, before any script or stylesheet. `script-src` is `'self'` plus the sha256 of each inline script on that page, with no `'unsafe-inline'`. The policy adds `base-uri 'none'`, `form-action 'self' https://formspree.io` and `object-src 'none'`, drops the unused Google Fonts hosts, and narrows `img-src` to `'self' data: blob:`. The build fails if a page has no CSP meta or more than one, if the meta is in the wrong place, if `script-src` allows `'unsafe-inline'`, or if an inline script is not hashed. Tests: `tests/csp.test.ts`.
+- **GoatCounter:** the tag now loads `https://gc.zgo.at/count.v5.js` with its sha384 `integrity` and `crossorigin="anonymous"`. Once `GOATCOUNTER_CODE` is set, the CSP allows that exact URL and `https://<code>.goatcounter.com`, and nothing else from GoatCounter. The build fails on any third-party `<script src>` without SRI.
+- **QA:** `tools/qa` now reports `securitypolicyviolation` events as console problems.

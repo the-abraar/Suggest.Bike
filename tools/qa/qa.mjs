@@ -22,6 +22,8 @@ for (const w of WIDTHS) {
   const h = SIZES[w] ?? 800;
   const ctx = await br.newContext({ viewport: { width: w, height: h }, colorScheme: SCHEME === 'dark' ? 'dark' : 'light' });
   if (SCHEME === 'dark-saved') await ctx.addInitScript(() => localStorage.setItem('sb-theme', 'dark'));
+  // CSP violations (scripts/csp-hash.mjs policy) land in the console check below.
+  await ctx.addInitScript(() => document.addEventListener('securitypolicyviolation', (e) => console.error(`CSP ${e.violatedDirective} blocked ${e.blockedURI}`)));
   for (const p of PAGES) {
     const pg = await ctx.newPage();
     const errs = [];

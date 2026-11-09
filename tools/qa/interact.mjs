@@ -13,6 +13,7 @@ const ok = (name, cond, info = '') => res.push(`${cond ? 'PASS' : 'FAIL'} ${name
 const errs = [];
 const newPage = async (c = ctx) => {
   const pg = await c.newPage();
+  await pg.addInitScript(() => document.addEventListener('securitypolicyviolation', (e) => console.error(`CSP ${e.violatedDirective} blocked ${e.blockedURI}`)));
   pg.on('pageerror', (e) => errs.push(e.message));
   pg.on('console', (m) => m.type() === 'error' && errs.push(m.text()));
   return pg;
