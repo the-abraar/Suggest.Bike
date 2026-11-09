@@ -48,6 +48,7 @@ jobs:
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: out
+          include-hidden-files: true # v4+ drops dotfiles by default; keeps /.well-known/security.txt live
 
   deploy:
     needs: build
