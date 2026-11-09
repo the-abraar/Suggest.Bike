@@ -1,4 +1,4 @@
-// Post-build, deploy step (`npm run og:bn`): Bangla share cards for /bn/ pages, rendered in Chromium from tools/qa's Playwright.
+// Post-build, deploy step (`npm run og:bn`): Bangla share cards for /bn/ pages, rendered in the installed Google Chrome via tools/qa's Playwright.
 // Why not next/og: satori does no complex-script shaping (Bangla conjuncts and pre-base vowel signs break) and cannot read woff2.
 // Writes out/bn/og.png (home + every BN section page, via OG_BN) and out/bn/bikes/<id>/og.png, then fails if any /bn/ page's og:image is missing.
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
@@ -19,7 +19,7 @@ let chromium;
 try {
   ({ chromium } = createRequire(new URL("../tools/qa/package.json", import.meta.url))("playwright"));
 } catch {
-  throw new Error("bn-og: Playwright missing. Run: npm ci --prefix tools/qa && npx --prefix tools/qa playwright install chromium");
+  throw new Error("bn-og: Playwright missing. Run: npm ci --prefix tools/qa (Google Chrome must be installed)");
 }
 
 const cssDir = join(OUT, "_next/static/chunks");
@@ -46,7 +46,7 @@ for (const b of full as unknown as Bike[]) {
   });
 }
 
-const browser = await chromium.launch();
+const browser = await chromium.launch({ channel: "chrome" }); // installed Google Chrome, not a Playwright-downloaded build
 try {
   const page = await browser.newPage({ viewport: { width: 1200, height: 630 } });
   await page.route(`${HOST}/**`, (r: { request(): { url(): string }; fulfill(o: object): Promise<void> }) => {

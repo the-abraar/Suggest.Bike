@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { langAlternates, langHref } from "../src/lib/site";
+import { langAlternates, langHref, sameOrigin } from "../src/lib/site";
 import { productJsonLd } from "../src/lib/bikes";
 import bikes from "../src/data/bikes.json";
 import type { Bike } from "../src/lib/types";
@@ -27,6 +27,20 @@ test("langHref leaves pages without a Bangla twin and non-paths alone", () => {
   assert.equal(langHref("/bnx/", "en"), "/bnx/");
   assert.equal(langHref("mailto:x@y.z", "bn"), "mailto:x@y.z");
   assert.equal(langHref("#top", "bn"), "#top");
+});
+
+test("langHref never returns a protocol-relative URL that leaves the site", () => {
+  assert.equal(langHref("/bn/bikes/?x=1#y", "en"), "/bikes/?x=1#y");
+  assert.equal(langHref("/bn/", "en"), "/");
+  for (const h of ["/bn//evil.example/", "/bn///x/?a#b", "//evil.example/", "/bn/\\evil.example/"]) {
+    for (const lang of ["en", "bn"] as const) {
+      const t = langHref(h, lang);
+      assert.ok(!t.startsWith("//"), `${h} ${lang} -> ${t}`);
+      assert.equal(new URL(t, "https://suggest.bike/").origin, "https://suggest.bike", `${h} ${lang} -> ${t}`);
+    }
+  }
+  assert.equal(sameOrigin("/bikes/", "https://suggest.bike/bn/"), true);
+  assert.equal(sameOrigin("//evil.example/", "https://suggest.bike/bn/"), false);
 });
 
 test("langAlternates gives canonical per language and the same hreflang set", () => {
@@ -219,4 +233,13 @@ test("a bike removed from bikes.json keeps a redirect page, and leaves the sitem
     assert.ok(!live.has(id), `${id} is back in bikes.json; drop it from RETIRED_BIKES`);
     assert.ok(!urls.some((u) => u.includes(`/bikes/${id}/`)), id);
   }
+});
+
+test("public/ ships a security.txt and no stray Apache config", async () => {
+  const { existsSync, readFileSync } = await import("node:fs");
+  assert.ok(!existsSync("public/.htaccess"), "GitHub Pages ignores .htaccess and would publish it as a file");
+  const txt = readFileSync("public/.well-known/security.txt", "utf8");
+  assert.match(txt, /^Contact: https:\/\/github\.com\/the-abraar\/Suggest\.Bike\/security\/advisories\/new$/m);
+  const expires = txt.match(/^Expires: (.+)$/m)?.[1];
+  assert.ok(expires && !Number.isNaN(Date.parse(expires)), "security.txt needs an ISO Expires date");
 });

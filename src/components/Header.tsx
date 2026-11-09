@@ -7,7 +7,7 @@ import { Heart, Menu, Moon, Sun, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { useLang, type DictKey } from "@/lib/i18n";
 import { useStore } from "@/lib/store";
-import { langHref } from "@/lib/site";
+import { langHref, sameOrigin } from "@/lib/site";
 import { SearchBox } from "./SearchBox";
 
 const NAV: { href: string; k: DictKey }[] = [
@@ -133,7 +133,7 @@ function LangToggle() {
         const here = location.pathname + location.search + location.hash;
         const twin = langHref(here, next);
         setLang(next);
-        if (twin !== here) router.push(twin); // go to the twin URL; pages without one switch in place
+        if (twin !== here && sameOrigin(twin, location.href)) router.push(twin); // go to the twin URL; pages without one switch in place
       }}
       className="grid h-10 min-w-10 place-items-center rounded-xl px-2.5 text-[13.5px] font-semibold text-ink-2 hover:bg-surface-2"
       aria-label={lang === "en" ? "বাংলায় দেখুন" : "Switch to English"}

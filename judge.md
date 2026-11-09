@@ -113,7 +113,7 @@ Fix blockers 1 to 4 below, hide the finder, and the site can soft-launch in abou
 3. **Client pages have no SEO metadata.** *Status 2026-10-19: fixed in Update 5. Every page checked live has its own title and canonical.*
    - Evidence: `/`, `/bikes`, `/match`, `/compare`, `/cost` and `/saved` all render the default title, and `rel="canonical"` count is 0 in `out/index.html`, `out/bikes/`, `out/compare/` and `out/match/`. This matches the open P2 item in `Todo_agent.md`.
    - Fix: split each page into a server `page.tsx` that exports `metadata` (title, description, canonical) and a client `*View.tsx`, the same pattern as `about/` and `guide/`.
-4. **Share images may fail on GitHub Pages.** *Status 2026-10-19: fixed. Share cards are `.png` files served as `image/png`, EN and BN. Facebook's Sharing Debugger has still not been run.*
+4. **Share images may fail on GitHub Pages.** *Status 2026-10-19: fixed. Share cards are `.png` files served as `image/png`, EN and BN. `public/.htaccess` was removed on 2026-11-08. Facebook's Sharing Debugger has still not been run.*
    - Evidence: the OG images are extension-less (`out/opengraph-image`, `out/bikes/*/opengraph-image`). `public/.htaccess` forces `image/png`, but that file only works on Apache; **GitHub Pages ignores it** and serves them as `application/octet-stream`. Facebook and Messenger previews are the growth loop (`UI_AUDIT.md` M6).
    - Fix: test with the Facebook Sharing Debugger after DNS is live. If previews fail, emit `.png` files at build time (`scripts/build-art.tsx`) and point `openGraph.images` at them, or host on Cloudflare Pages and set a `_headers` rule.
 5. **Product JSON-LD misrepresents the site as a seller.** *Status 2026-10-19: fixed in Update 5 (`Offer` removed, `url` and `image` added).*
@@ -458,6 +458,18 @@ Each code-changing task got an issue assigned to the-abraar, its own branch and 
 **Not checked:** dark mode and 1280 px for the changed pages; "under 2 lakh" click-through in a browser (unit-tested only); a native reader of the Bangla.
 
 **#11 fixed (2026-10-30):** interact.mjs check 12 no longer hard-codes ৳1.3 lakh + Splendor+; it scans scooter/motorcycle, every use and every ৳5,000 budget step until a Quick pick row shows "Availability unconfirmed" (today: scooter, Daily commute, ৳1.2 lakh). interact.mjs 56/56 against a served `out/`; check.sh pass. App code and ranking untouched.
+
+### Update 22 (2026-11-08, agent round: dependency and CI hygiene)
+
+- **Dependabot:** `.github/dependabot.yml` opens monthly grouped PRs for npm (`/`, `/tools/qa`) and GitHub Actions. Alerts and security updates are repo settings the owner turns on.
+- **next 16.4.3** (from 16.3.8). `npm audit` 0 vulnerabilities. The static export used none of the affected server features, so this is hygiene.
+- **Deploy permissions:** workflow-level `contents: read` only; `pages: write` and `id-token: write` sit on the deploy job. Both workflows check out with `persist-credentials: false`.
+- **og:bn uses the installed Google Chrome** (`channel: "chrome"`; ubuntu-latest ships it). The Playwright browser download and its Actions cache are gone from deploy.yml.
+- **`npm run preview`** is `python3 -m http.server -d out 3000`, so it no longer fetches a package at run time.
+
+**Proven:** `scripts/check.sh` exit 0; `npm run og:bn` locally with no Playwright browser present: 108 cards, 204 `/bn/` pages checked; zizmor: no findings in check.yml or deploy.yml.
+
+**Not checked:** the deploy run itself (it runs on merge); watch that og:bn passes there.
 
 ### Update (2026-11-08, agent round): hash-based CSP, GoatCounter pinned by SRI
 

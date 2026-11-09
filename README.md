@@ -39,12 +39,12 @@ The site is a fully static export, with no server or database.
 
 ```bash
 npm run build      # writes plain HTML/CSS/JS to ./out
-npm run preview    # serves ./out locally to check it
+npm run preview    # serves ./out at http://localhost:3000 (python3 -m http.server, nothing downloaded)
 ```
 
 After `next build`, `postbuild` runs `scripts/bn-lang.mjs` (sets `lang="bn"` on `/bn/` pages) and then `scripts/csp-hash.mjs`. The second one adds each page's Content-Security-Policy meta right after `<meta charset>`. Its `script-src` is `'self'` plus the sha256 of every inline script on that page, with no `'unsafe-inline'`. It fails the build if a page lacks that meta in that place, if an inline script is not hashed, or if a third-party `<script src>` has no `integrity="sha384-…" crossorigin="anonymous"`. To loosen the policy (a new third-party host, say), edit the directive list in that script, not `layout.tsx`. `next dev` runs without a CSP.
 
-Live at **https://suggest.bike** on GitHub Pages. Every push to `main` runs `.github/workflows/deploy.yml`, which builds and publishes `out/`. `public/CNAME` holds the custom domain.
+Live at **https://suggest.bike** on GitHub Pages. Every push to `main` runs `.github/workflows/deploy.yml`, which builds and publishes `out/`. Only its deploy job gets the Pages write and OIDC permissions; the build job is read-only. `.github/dependabot.yml` opens monthly grouped update PRs for npm (root and `tools/qa`) and GitHub Actions. `public/CNAME` holds the custom domain.
 
 DNS (Namecheap → Advanced DNS; delete the parking records and the URL redirect first):
 
@@ -55,6 +55,8 @@ DNS (Namecheap → Advanced DNS; delete the parking records and the URL redirect
 | A     | @    | 185.199.110.153        |
 | A     | @    | 185.199.111.153        |
 | CNAME | www  | the-abraar.github.io.  |
+
+`public/.well-known/security.txt` publishes the private security contact (see `SECURITY.md`); renew its `Expires` date each year.
 
 The domain lives in `src/lib/site.ts` (canonical URLs, sitemap) and `public/CNAME`. Change both if it ever moves.
 
