@@ -111,7 +111,7 @@ const OFFER_TYPES = ["discount", "free-registration", "cashback", "emi", "exchan
 const isDate = (s) => typeof s === "string" && /^\d{4}-\d{2}-\d{2}$/.test(s) && new Date(`${s}T00:00:00Z`).toISOString().startsWith(s);
 const todayBD = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Dhaka" });
 const offerIds = new Set();
-for (const o of JSON.parse(readFileSync(new URL("../src/data/offers.json", import.meta.url))).offers ?? []) {
+for (const o of JSON.parse(readFileSync(process.argv[3] ?? new URL("../src/data/offers.json", import.meta.url))).offers ?? []) {
   const e = (m) => errors.push(`offers.json ${o.id ?? "?"}: ${m}`);
   if (!/^[a-z0-9-]+$/.test(o.id ?? "") || offerIds.has(o.id)) e("missing, bad or duplicate id");
   offerIds.add(o.id);

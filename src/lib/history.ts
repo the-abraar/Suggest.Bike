@@ -12,11 +12,15 @@ export type ChangeEvent = {
   from?: number;
   to?: number;
   pct?: number; // signed, one decimal
+  priceCorrection?: true; // fixes our own wrong price, not a market move (src/data/price-corrections.json)
 };
 export type PriceHistory = { bikes: Record<string, PricePoint[]>; events: ChangeEvent[] };
+export type PriceCorrection = { id: string; date: string }; // the day our data fixed a wrong price
 
-/** Per-bike price points (only when the price changes) and change events, newest event first. The first snapshot is the baseline: its bikes are not "added". */
-export function diffSnapshots(snaps: Snapshot[]): PriceHistory {
+/** Per-bike price points (only when the price changes) and change events, newest event first. The first snapshot is the baseline: its bikes are not "added".
+ * A listed correction is flagged on its event and overwrites the wrong price point instead of adding one, so sparklines show only market moves. */
+export function diffSnapshots(snaps: Snapshot[], corrections: PriceCorrection[] = []): PriceHistory {
+  const fixes = new Set(corrections.map((c) => `${c.id}@${c.date}`));
   const bikes: Record<string, PricePoint[]> = {};
   const events: ChangeEvent[] = [];
   let prev: Map<string, SnapBike> | null = null;
@@ -27,11 +31,15 @@ export function diffSnapshots(snaps: Snapshot[]): PriceHistory {
       const before = prev?.get(b.id);
       const name = `${b.brand} ${b.model}`;
       if (prev && !before) events.push({ date: s.date, id: b.id, name, kind: "added", to: b.priceBDT });
+      const fix = fixes.has(`${b.id}@${s.date}`);
       if (before && before.priceBDT !== b.priceBDT) {
         const pct = Math.round(((b.priceBDT - before.priceBDT) / before.priceBDT) * 1000) / 10;
-        events.push({ date: s.date, id: b.id, name, kind: b.priceBDT > before.priceBDT ? "up" : "down", from: before.priceBDT, to: b.priceBDT, pct });
+        events.push({ date: s.date, id: b.id, name, kind: b.priceBDT > before.priceBDT ? "up" : "down", from: before.priceBDT, to: b.priceBDT, pct, ...(fix && { priceCorrection: true as const }) });
       }
-      if (pts.at(-1)?.priceBDT !== b.priceBDT) pts.push({ priceBDT: b.priceBDT, priceAsOf: b.priceAsOf, firstSeen: s.date });
+      if (fix && pts.length) {
+        pts.splice(-1, 1, { ...pts.at(-1)!, priceBDT: b.priceBDT, priceAsOf: b.priceAsOf });
+        if (pts.length > 1 && pts.at(-2)!.priceBDT === b.priceBDT) pts.pop(); // the fix lands back on the price before the mistake
+      } else if (pts.at(-1)?.priceBDT !== b.priceBDT) pts.push({ priceBDT: b.priceBDT, priceAsOf: b.priceAsOf, firstSeen: s.date });
     }
     for (const b of prev?.values() ?? []) {
       if (!cur.has(b.id)) events.push({ date: s.date, id: b.id, name: `${b.brand} ${b.model}`, kind: "removed", from: b.priceBDT });

@@ -3,7 +3,7 @@
 // Runs with build-data before `dev`, `build` and `typecheck`.
 import { execFileSync } from "node:child_process";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { diffSnapshots, type SnapBike, type Snapshot } from "../src/lib/history";
+import { diffSnapshots, type PriceCorrection, type SnapBike, type Snapshot } from "../src/lib/history";
 
 const root = new URL("..", import.meta.url);
 const FILE = "src/data/bikes.json";
@@ -30,7 +30,9 @@ try {
   snaps = [{ date: today, bikes: current }];
 }
 
-const history = diffSnapshots(snaps);
+// Hand-listed days when a price change fixed our own mistake; tests/history.test.ts checks each one matches a change.
+const corrections = JSON.parse(readFileSync(new URL("src/data/price-corrections.json", root), "utf8")) as PriceCorrection[];
+const history = diffSnapshots(snaps, corrections);
 mkdirSync(new URL("src/data/generated/", root), { recursive: true });
 writeFileSync(new URL("src/data/generated/price-history.json", root), JSON.stringify(history));
 console.log(`history: ${snaps.length} versions of ${FILE} → ${history.events.length} change events`);
