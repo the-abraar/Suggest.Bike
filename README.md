@@ -54,6 +54,8 @@ DNS (Namecheap → Advanced DNS; delete the parking records and the URL redirect
 | A     | @    | 185.199.111.153        |
 | CNAME | www  | the-abraar.github.io.  |
 
+`public/.well-known/security.txt` publishes the private security contact (see `SECURITY.md`); renew its `Expires` date each year.
+
 The domain lives in `src/lib/site.ts` (canonical URLs, sitemap) and `public/CNAME`. Change both if it ever moves.
 
 ## Data

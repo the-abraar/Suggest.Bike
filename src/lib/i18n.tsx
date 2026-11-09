@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { langHref } from "./site";
+import { langHref, sameOrigin } from "./site";
 import { bnNumerals } from "./bike-utils";
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
 
@@ -86,7 +86,7 @@ export function LangProvider({ children }: { children: ReactNode }) {
       const here = location.pathname + location.search + location.hash;
       const twin = saved === "bn" ? langHref(here, "bn") : here;
       // A Bangla reader on an English URL goes to its /bn/ twin; pages without one switch in place.
-      if (twin !== here) router.replace(twin);
+      if (twin !== here && sameOrigin(twin, location.href)) router.replace(twin);
       else setLangState(saved);
     } catch {}
   }, [onBn, router]);

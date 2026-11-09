@@ -42,9 +42,19 @@ export function langHref(href: string, lang: "en" | "bn"): string {
   const cut = href.search(/[?#]/);
   const path = cut < 0 ? href : href.slice(0, cut);
   const rest = cut < 0 ? "" : href.slice(cut);
-  const en = path.replace(/^\/bn(?=\/|$)/, "") || "/";
+  // Collapse a leading run of slashes, backslashes or tabs/newlines: "/bn//evil.example/" must not become the protocol-relative "//evil.example/".
+  const en = path.replace(/^\/bn(?=[/\\]|$)/, "").replace(/^[/\\\t\n\r]+/, "/") || "/";
   if (lang === "en" || !BN_TWIN.test(en)) return en + rest;
   return (en === "/" ? "/bn/" : `/bn${en}`) + rest;
+}
+
+/** True when `href` resolves to the same origin as `base` (the current page); guards client-side navigation. */
+export function sameOrigin(href: string, base: string): boolean {
+  try {
+    return new URL(href, base).origin === new URL(base).origin;
+  } catch {
+    return false;
+  }
 }
 
 /** Canonical + hreflang (en, bn, x-default) for an EN path and its /bn/ twin. */
