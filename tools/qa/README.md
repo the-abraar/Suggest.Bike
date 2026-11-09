@@ -16,7 +16,7 @@ npm run keyboard                   # keyboard-only checks (below)
 PAGES=/bn/,/bikes/bajaj-ct100/ npm run weight # throttled page weight (below)
 ```
 
-Output: `tools/qa/shots/<scheme>/<page>_<width>_t<N>.png` (real viewport size: 375x812, 768x1024, 1280x800; first screen plus up to 3 more) and `shots/<scheme>/index.txt` (page, width, tile, overflow/axe/console results). A page whose `data-theme` does not match the scheme counts as a console problem. Exit code is 1 if any page has overflow, axe or console problems.
+Output: `tools/qa/shots/<scheme>/<page>_<width>_t<N>.png` (real viewport size: 375x812, 768x1024, 1280x800; first screen plus up to 3 more) and `shots/<scheme>/index.txt` (page, width, tile, overflow/axe/console results). A page whose `data-theme` does not match the scheme counts as a console problem. So does a Content-Security-Policy violation (a `securitypolicyviolation` event, from the policy `scripts/csp-hash.mjs` writes). `interact.mjs` counts these too. Exit code is 1 if any page has overflow, axe or console problems.
 
 ## Interaction checks
 
