@@ -9,7 +9,7 @@
     "prebuild": "node scripts/build-data.mjs && tsx scripts/build-art.tsx && tsx scripts/build-history.ts",
     "build": "next build",
     "postbuild": "node scripts/bn-lang.mjs && node scripts/csp-hash.mjs",
-    "preview": "python3 -m http.server -d out 3000",
+    "preview": "node scripts/preview.mjs 3000",
     "pretypecheck": "node scripts/build-data.mjs && tsx scripts/build-art.tsx && tsx scripts/build-history.ts",
     "typecheck": "tsc --noEmit",
     "validate": "node scripts/validate-data.mjs",
