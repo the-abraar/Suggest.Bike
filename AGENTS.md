@@ -1,3 +1,5 @@
+Frozen until GoatCounter has 2 weeks of data: no features; only measurement, truth fixes and SEO. Call source: `~/Everything/dev/products/decision.md` (November bet, default A).
+
 # Agent notes
 
 - Run `scripts/check.sh` before finishing (typecheck, stray files, unsafe HTML, data validate, tests, build). `--fast` = typecheck, stray files, unsafe HTML only; it is the pre-commit hook (`.githooks`, enabled locally via `git config core.hooksPath .githooks`).
