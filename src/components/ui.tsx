@@ -11,6 +11,7 @@ import { useLang } from "@/lib/i18n";
 import { BikeArt } from "./BikeArt";
 import { OfferTag } from "./Dated";
 import { onRoadPrice } from "@/lib/cost";
+import { track } from "@/lib/site";
 
 /**
  * Renders a page that reads the query string. The static export prerenders the fallback, i.e. the page with no
@@ -75,12 +76,13 @@ export function SaveButton({ id, withLabel = false }: { id: string; withLabel?: 
   );
 }
 
-/** Uses the phone's share sheet (Messenger, WhatsApp, Facebook…) and falls back to copying the link. */
-export function ShareButton({ title, text, className = "" }: { title: string; text?: string; className?: string }) {
+/** Uses the phone's share sheet (Messenger, WhatsApp, Facebook…) and falls back to copying the link (`url`, else this page). */
+export function ShareButton({ title, text, url: shared, event, className = "" }: { title: string; text?: string; url?: string; event?: string; className?: string }) {
   const { lang } = useLang();
   const [copied, setCopied] = useState(false);
   const share = async () => {
-    const url = window.location.href;
+    const url = shared ?? window.location.href;
+    if (event) track(event);
     if (navigator.share) {
       try {
         await navigator.share({ title, text, url });

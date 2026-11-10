@@ -218,6 +218,8 @@ test("out/ contains zero orphan pages when built", async () => {
     if (p === "/" || p === "/bn/" || p === "/404/" || p === "/_not-found/" || p.includes("404")) continue;
     // A retired bike's page is a noindex redirect kept for old links, so nothing on the site links to it on purpose.
     if (RETIRED_BIKES.some((id) => p === `/bikes/${id}/` || p === `/bn/bikes/${id}/`)) continue;
+    // A quiz-result share page (/r/<id>/) is noindex and reached only from shared links, so nothing links to it either.
+    if (/^\/(?:bn\/)?r\/[^/]+\/$/.test(p)) continue;
     if (inc.size === 0) orphans.push(p);
   }
   assert.equal(orphans.length, 0, `Found ${orphans.length} orphan pages: ${orphans.join(", ")}`);

@@ -49,7 +49,7 @@ import {
   type Use,
   type Where,
 } from "@/lib/match";
-import { CATEGORIES, HAS_NETWORKS, ccLabel, formatBDT, formatLakh, fullName, tagline } from "@/lib/bikes";
+import { CATEGORIES, HAS_NETWORKS, ccLabel, formatBDT, formatLakh, fullName, getBike, tagline } from "@/lib/bikes";
 import { ownershipCost, DEFAULT_COST_INPUT } from "@/lib/cost";
 import { DEFAULT_FEE_PCT, PAY_TERMS, cardEmi, emiCeiling } from "@/lib/fund";
 import guide from "@/data/guide.json";
@@ -57,7 +57,9 @@ import { useLang, useTx } from "@/lib/i18n";
 import { useStore } from "@/lib/store";
 import { BikeArt } from "@/components/BikeArt";
 import { CompareButton, SaveButton, ShareButton, WithSearchParams } from "@/components/ui";
-import { track } from "@/lib/site";
+import { SITE, langHref, track } from "@/lib/site";
+import { shareCard, shareUrl } from "@/lib/share";
+import type { BikeLite } from "@/lib/types";
 
 type Opt<T> = { id: T; en: string; bn: string; sub?: string; subBn?: string; icon?: React.ReactNode };
 
@@ -112,6 +114,7 @@ function Matchmaker({ params }: { params: URLSearchParams }) {
   // Only a shared link (answers in the URL) waits for the effect; the static HTML gets step 1.
   const [loaded, setLoaded] = useState(() => !params.toString());
   const tracked = useRef(false); // one "match-results" event per completed quiz; a shared results link is not one
+  const vs = getBike(params.get("vs") ?? "");
 
   useEffect(() => {
     const decoded = decodeAnswers(params);
@@ -126,7 +129,8 @@ function Matchmaker({ params }: { params: URLSearchParams }) {
   useEffect(() => {
     if (!loaded) return;
     window.scrollTo({ top: 0, behavior: "smooth" });
-    if (step === STEPS) window.history.replaceState(null, "", `?${encodeAnswers(a)}&r=1`);
+    // vs = the friend's shared top bike (/r/<id>/), kept so the results can offer the comparison.
+    if (step === STEPS) window.history.replaceState(null, "", `?${encodeAnswers(a)}&r=1${vs ? `&vs=${encodeURIComponent(vs.id)}` : ""}`);
     if (step === STEPS && !tracked.current) {
       tracked.current = true;
       track("match-results");
@@ -140,6 +144,7 @@ function Matchmaker({ params }: { params: URLSearchParams }) {
     return (
       <Results
         a={a}
+        vs={vs}
         onEdit={(s) => setStep(s)}
         onRestart={() => {
           setA(DEFAULT_ANSWERS);
@@ -497,7 +502,7 @@ function BudgetStep({ a, set }: { a: Answers; set: <K extends keyof Answers>(k: 
 
 /* ---------------- Results ---------------- */
 
-function Results({ a: asked, onEdit, onRestart }: { a: Answers; onEdit: (step: number) => void; onRestart: () => void }) {
+function Results({ a: asked, vs, onEdit, onRestart }: { a: Answers; vs?: BikeLite; onEdit: (step: number) => void; onRestart: () => void }) {
   const { lang } = useLang();
   const tx = useTx();
   // EMI with less cash than any bike needs now: show what the least workable cash buys (critique 15 Oct N5).
@@ -526,12 +531,24 @@ function Results({ a: asked, onEdit, onRestart }: { a: Answers; onEdit: (step: n
           </h1>
         </div>
         <div className="flex gap-2">
-          <ShareButton title={tx("My bike matches — Suggest.Bike", "আমার বাইক ম্যাচ — Suggest.Bike")} text={top ? fullName(top.bike) : undefined} className="border border-line-strong bg-surface" />
+          {/* Shares the top bike's card (/r/<id>/), never this URL: it carries the answers (budget, height, experience). */}
+          <ShareButton
+            title={top ? shareCard(top.bike, lang).title : tx("Bike matchmaker — Suggest.Bike", "বাইক ম্যাচমেকার — Suggest.Bike")}
+            url={top ? shareUrl(top.bike.id, lang) : `${SITE.url}${langHref("/match/", lang)}`}
+            event="share-click"
+            className="border border-line-strong bg-surface"
+          />
           <button onClick={onRestart} className="btn-ghost h-10 px-3.5 text-[14px]">
             <RotateCcw size={16} /> {tx("Start over", "আবার শুরু")}
           </button>
         </div>
       </div>
+
+      {top && vs && vs.id !== top.bike.id && (
+        <Link href={`/compare/?bikes=${top.bike.id},${vs.id}`} className="btn-secondary mt-5 h-11 px-4 text-[14.5px]">
+          {tx(`Compare with your friend's pick: ${fullName(vs)}`, `বন্ধুর বাছাই ${fullName(vs)}-এর সাথে মিলিয়ে দেখুন`)}
+        </Link>
+      )}
 
       {/* answers summary */}
       <div className="mt-6 flex flex-wrap gap-2">
