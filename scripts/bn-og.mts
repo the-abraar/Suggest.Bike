@@ -1,11 +1,12 @@
 // Post-build, deploy step (`npm run og:bn`): Bangla share cards for /bn/ pages, rendered in the installed Google Chrome via tools/qa's Playwright.
 // Why not next/og: satori does no complex-script shaping (Bangla conjuncts and pre-base vowel signs break) and cannot read woff2.
-// Writes out/bn/og.png (home + every BN section page, via OG_BN) and out/bn/bikes/<id>/og.png, then fails if any /bn/ page's og:image is missing.
+// Writes out/bn/og.png (home + every BN section page, via OG_BN), out/bn/bikes/<id>/og.png and out/bn/r/<id>/og.png (share cards), then fails if any /bn/ page's og:image is missing.
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join } from "node:path";
 import { CATEGORIES, ccLabel, formatBDT, isEv, mileageText } from "../src/lib/bike-utils";
 import { onRoadPrice } from "../src/lib/match";
+import { shareCard } from "../src/lib/share";
 import type { Bike } from "../src/lib/types";
 import full from "../src/data/generated/bikes.full.json";
 import art from "../src/data/generated/art.json";
@@ -44,6 +45,9 @@ for (const b of full as unknown as Bike[]) {
       art: A[b.id],
     },
   });
+  // Quiz-result share card (/bn/r/<id>/): bike record only, see src/lib/share.ts.
+  const { meta, model, price, suffix, ex, spec } = shareCard(b, "bn");
+  cards.push({ file: `bn/r/${b.id}/og.png`, bike: { meta, model, price, suffix, ex, spec, art: A[b.id] } });
 }
 
 const browser = await chromium.launch({ channel: "chrome" }); // installed Google Chrome, not a Playwright-downloaded build
