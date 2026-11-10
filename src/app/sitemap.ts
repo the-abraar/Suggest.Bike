@@ -7,6 +7,7 @@ import type { PriceHistory } from "@/lib/history";
 import { POSTS } from "@/lib/maintenance-posts";
 import { SPOTLIGHTS } from "@/lib/spotlight-posts";
 import { POPULAR_COMPARISONS, pairSlug } from "@/lib/curated";
+import { LANDING_PATHS, REG_PATH } from "@/lib/best";
 import { SITE } from "@/lib/site";
 import type { BikeLite } from "@/lib/types";
 
@@ -45,6 +46,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...POPULAR_COMPARISONS.map(([a, b]): Row => [`compare/${pairSlug(a, b)}/`, latest([getBike(a), getBike(b)].map((x) => x && bikeLastmod(x))), 0.7]),
     ...POSTS.map((p): Row => [`maintenance/${p.slug}/`, p.updated, 0.6]),
     ...SPOTLIGHTS.map((s): Row => [`spotlight/${s.slug}/`, spotlightLastmod(s), 0.6]),
+    // Search landing pages (src/lib/best.ts): bike lists quote prices and BRTA fees, the BRTA page only guide.json.
+    ...LANDING_PATHS.map((p): Row => [p.slice(1), p === REG_PATH ? GUIDE : latest([CATALOGUE, GUIDE]), 0.8]),
   ];
   // No changeFrequency: it was "weekly" or "monthly" for everything, which says nothing (search engines ignore it).
   const entry = ([path, lastModified, priority]: Row) => ({ url: `${SITE.url}/${path}`, ...(lastModified && { lastModified }), priority });

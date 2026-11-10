@@ -29,6 +29,7 @@ export function Footer({ count, onSale, latest }: { count: number; onSale: numbe
           <FLink href="/match/">{t("nav.match")}</FLink>
           <FLink href="/compare/">{t("nav.compare")}</FLink>
           <FLink href="/cost/">{t("nav.cost")}</FLink>
+          <FLink href="/best/under-2-lakh/">{tx("Best bikes by budget", "বাজেট অনুযায়ী সেরা বাইক")}</FLink>
           <FLink href="/saved/">{t("nav.saved")}</FLink>
         </FooterCol>
         <FooterCol title={tx("Browse", "ব্রাউজ")}>
