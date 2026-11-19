@@ -7,7 +7,7 @@ import { Heart, Menu, Moon, Sun, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { useLang, type DictKey } from "@/lib/i18n";
 import { useStore } from "@/lib/store";
-import { langHref, sameOrigin } from "@/lib/site";
+import { langHref, sameOrigin, track } from "@/lib/site";
 import { SearchBox } from "./SearchBox";
 
 const NAV: { href: string; k: DictKey }[] = [
@@ -130,6 +130,7 @@ function LangToggle() {
     <button
       onClick={() => {
         const next = lang === "en" ? "bn" : "en";
+        track("lang-toggle");
         const here = location.pathname + location.search + location.hash;
         const twin = langHref(here, next);
         setLang(next);

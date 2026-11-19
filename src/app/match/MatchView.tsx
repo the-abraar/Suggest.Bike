@@ -151,7 +151,14 @@ function Matchmaker({ params }: { params: URLSearchParams }) {
     );
 
   const skip = (s: number, d: number) => (!HAS_NETWORKS && s === WHERE_STEP ? s + d : s);
-  const next = () => setStep((s) => skip(Math.min(STEPS, s + 1), 1));
+  const started = useRef(false);
+  const next = () => {
+    if (!started.current) {
+      started.current = true;
+      track("match-start");
+    }
+    setStep((s) => skip(Math.min(STEPS, s + 1), 1));
+  };
   const back = () => setStep((s) => skip(Math.max(0, s - 1), -1));
   const shown = HAS_NETWORKS ? STEPS : STEPS - 1;
   const shownStep = HAS_NETWORKS || step < WHERE_STEP ? step : step - 1;

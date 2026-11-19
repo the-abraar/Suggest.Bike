@@ -2,7 +2,7 @@
 
 import Link from "@/components/LangLink";
 import { WithSearchParams } from "@/components/ui";
-import { useEffect, useId, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { Info } from "lucide-react";
 import { BIKES, bnDigits, formatBDT, formatLakh, fullName, getBike } from "@/lib/bikes";
 import { DEFAULT_COST_INPUT, EV_BATTERY, FUEL, OVERHAUL_YEARS, OWNERSHIP_YEARS, WEAR_KM, defaultUsedPrice, ownershipCost, registrationFor, type CostBreakdown, type CostInput } from "@/lib/cost";
@@ -12,6 +12,7 @@ import guide from "@/data/guide.json";
 import { useLang, useTx, type Lang } from "@/lib/i18n";
 import { BikeArt } from "@/components/BikeArt";
 import { BikePicker, Field, Range, Switch } from "@/components/form";
+import { track } from "@/lib/site";
 import type { BikeLite } from "@/lib/types";
 
 export function CostView() {
@@ -47,7 +48,14 @@ function Cost({ params }: { params: URLSearchParams }) {
 
   const c = useMemo(() => ownershipCost(bike, { ...inp, usedPrice: paid ?? undefined }), [bike, inp, paid]);
   const usedOnly = bike.status === "used-only";
-  const set = <K extends keyof CostInput>(k: K, v: CostInput[K]) => setInp((x) => ({ ...x, [k]: v }));
+  const touched = useRef(false);
+  const set = <K extends keyof CostInput>(k: K, v: CostInput[K]) => {
+    if (!touched.current) {
+      touched.current = true;
+      track("cost-calc");
+    }
+    setInp((x) => ({ ...x, [k]: v }));
+  };
   const months = inp.years * 12;
   const repairPct = Math.round(c.detail.hiddenRepairRate * 100);
   const belowPct = Math.round(c.detail.belowRef * 100);

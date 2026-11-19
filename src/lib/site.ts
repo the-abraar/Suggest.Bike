@@ -27,8 +27,15 @@ export const whatsappUrl = (text: string) => (WHATSAPP ? `https://wa.me/${WHATSA
 /** GoatCounter site code (the "xxx" in xxx.goatcounter.com). Empty: no analytics script is loaded. See docs/Todo_owner.md. */
 export const GOATCOUNTER_CODE: string = "";
 
+/** Every custom GoatCounter event (sent as the path). tests/events.test.ts checks that each name in src/ is listed here. */
+export const EVENTS = [
+  "match-start", "match-results", "compare-open", "cost-calc", "dealer-call", "official-site", "lang-toggle",
+  "form-feedback", "form-owner", "form-comment",
+] as const;
+export type EventName = (typeof EVENTS)[number];
+
 /** Count a custom GoatCounter event; a no-op when analytics is off or blocked. */
-export function track(event: string) {
+export function track(event: EventName) {
   const gc = (globalThis as { goatcounter?: { count?: (o: { path: string; event: boolean }) => void } }).goatcounter;
   gc?.count?.({ path: event, event: true });
 }

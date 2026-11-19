@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "@/components/LangLink";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Plus, Search, X } from "lucide-react";
 import { BIKES, SCORE_LABELS, avgMileage, bnNumerals, ccLabel, formatBDT, formatLakh, fullName, getBike, mileageText, partLabel, tagline } from "@/lib/bikes";
 import { DEFAULT_COST_INPUT, onRoadPrice, ownershipCost } from "@/lib/cost";
@@ -9,7 +9,7 @@ import { cardEmi } from "@/lib/fund";
 import { isUsedOption } from "@/lib/match";
 import { OfferTag } from "@/components/Dated";
 import { pairHref, popularPairs } from "@/lib/curated";
-import { langHref } from "@/lib/site";
+import { langHref, track } from "@/lib/site";
 import { compareStart, useStore, MAX_COMPARE } from "@/lib/store";
 import { useLang, useTx } from "@/lib/i18n";
 import type { Bike, BikeLite, ScoreKey } from "@/lib/types";
@@ -50,6 +50,13 @@ function Compare({ params, pair }: { params: URLSearchParams; pair?: string[] })
   };
 
   const bikes = ids.map((id) => getBike(id)).filter((b): b is BikeLite => !!b);
+  const counted = useRef(false);
+  useEffect(() => {
+    if (bikes.length >= 2 && !counted.current) {
+      counted.current = true;
+      track("compare-open");
+    }
+  }, [bikes.length]);
 
   return (
     <div className="container-x pt-10">

@@ -4,6 +4,7 @@ import Link from "@/components/LangLink";
 import { ExternalLink, Phone, Wrench } from "lucide-react";
 import { useTx } from "@/lib/i18n";
 import { DEALERS, telHref, type Dealer } from "@/lib/dealers";
+import { track } from "@/lib/site";
 
 export function DealersView() {
   const tx = useTx();
@@ -51,12 +52,12 @@ export function DealerCard({ brand, d, compact = false }: { brand: string; d: De
       <p className="mt-1 text-[14.5px] text-ink-2">{d.distributor}</p>
       <p className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[14px]">
         {d.locator ? (
-          <a href={d.locator} target="_blank" rel="noopener noreferrer" className={a}><ExternalLink size={13} /> {tx("Find a showroom", "শোরুম খুঁজুন")}</a>
+          <a href={d.locator} target="_blank" rel="noopener noreferrer" className={a} onClick={() => track("official-site")}><ExternalLink size={13} /> {tx("Find a showroom", "শোরুম খুঁজুন")}</a>
         ) : (
-          <a href={d.site} target="_blank" rel="noopener noreferrer" className={a}><ExternalLink size={13} /> {tx("Official site", "অফিশিয়াল সাইট")}</a>
+          <a href={d.site} target="_blank" rel="noopener noreferrer" className={a} onClick={() => track("official-site")}><ExternalLink size={13} /> {tx("Official site", "অফিশিয়াল সাইট")}</a>
         )}
-        {d.hotline && <a href={telHref(d.hotline)} className={a}><Phone size={13} /> {d.hotline}</a>}
-        {d.service && <a href={telHref(d.service)} className={a}><Wrench size={13} /> {tx("Service", "সার্ভিস")} {d.service}</a>}
+        {d.hotline && <a href={telHref(d.hotline)} className={a} onClick={() => track("dealer-call")}><Phone size={13} /> {d.hotline}</a>}
+        {d.service && <a href={telHref(d.service)} className={a} onClick={() => track("dealer-call")}><Wrench size={13} /> {tx("Service", "সার্ভিস")} {d.service}</a>}
       </p>
       {d.note && <p className="mt-2 text-[13px] text-muted">{tx(d.note, d.noteBn ?? d.note)}</p>}
       {!compact && d.districts && (
